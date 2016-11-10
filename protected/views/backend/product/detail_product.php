@@ -59,7 +59,7 @@ $Total = $ItemModel->CountItems($product_id);
     <div class="row">
 
         <div class="col-lg-6 col-md-12 col-xs-12">
-            
+
             <font style=" color: #F00; font-size: 24px; font-weight: normal;">
             <img src="<?php echo Yii::app()->baseUrl; ?>/images/yellow-tag-icon.png"/>
             <?= $product['product_name'] ?>
@@ -83,9 +83,10 @@ $Total = $ItemModel->CountItems($product_id);
                 <div class="col-md-4 col-lg-4"><button type="button" class="btn btn-success btn-sm btn-block">> 30 วัน</button><br/>ยังไม่หมดอายุ</div>
             </div>
             <hr/>
-            
-            <button type="button" class="btn btn-default btn-sm" onclick="popup_add_items('<?php echo $product['product_id']?>','<?php echo $product['product_name'] ?>')">
+
+            <button type="button" class="btn btn-success btn-sm" onclick="popup_add_items('<?php echo $product['product_id'] ?>', '<?php echo $product['product_name'] ?>')">
                 <i class="fa fa-plus text-success"></i> เพิ่มจำนวน Item</button>
+                <br/><br/>
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -299,7 +300,7 @@ $Total = $ItemModel->CountItems($product_id);
             $("#itemcode").val(datas.itemcode);
         }, 'Json');
         $("#product_id").val(productID);
-        $("#popuptitle").text(productName);
+        $("#popuptitle").text("สินค้า : " + productName);
         $("#popupitems").modal();
     }
 
