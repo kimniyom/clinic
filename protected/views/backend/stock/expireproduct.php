@@ -33,7 +33,7 @@ $web = new Configweb_model();
         <i class="fa fa-info-circle"></i> สินค้าใกล้หมด *สินค้าเหลือน้อยกว่า 5 ชิ้น
     </div>
     <div class="panel-body">
-        <p class="text-danger">*กดที่รายชื่อสินค้าเพื่อดูรายละเอียด</p>
+        <p class="text-danger">*คลิกที่รายชื่อสินค้าเพื่อดูรายละเอียด</p>
         <hr/>
         <table class="table table-striped" id="p_product">
             <thead>
@@ -52,6 +52,7 @@ $web = new Configweb_model();
                 $product_model = new Product();
                 $i = 0;
                 foreach ($product as $last):
+                    if($last['TOTAL'] < 5):
                     //$img_title = $product_model->get_images_product_title($last['product_id']);
                     $productID = $last['product_id'];
                     $Total = $stock->CountItems($productID);
@@ -101,7 +102,10 @@ $web = new Configweb_model();
                         </td>
                         
                     </tr>
-                <?php endforeach; ?>
+                <?php 
+                endif;
+                endforeach; 
+                ?>
             </tbody>
         </table>
     </div>
