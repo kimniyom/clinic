@@ -14,8 +14,9 @@ $status = $StatusModel->find("id = '$model->status'")['status'];
 $branch = new Branch();
 ?>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading"><h4>ข้อมูล <?php echo $model->username; ?></h4></div>
+    <div style="color:#000000;">
     <?php
     $this->widget('zii.widgets.CDetailView', array(
         'data' => $model,
@@ -47,10 +48,11 @@ $branch = new Branch();
         ),
     ));
     ?>
+    </div>
 </div>
 
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading"><h4>สิทธิ์การเข้าถึงของ <?php echo $model->username; ?></h4></div>
     <div class="panel-body">
         <div class="row">

@@ -10,9 +10,9 @@ $this->breadcrumbs = array(
 <h1>Ocupations</h1>
 <a href="<?php echo Yii::app()->createUrl('occupation/create') ?>">
     <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มอาชีพ</button></a>
-    <br/><br/>
+    <hr/>
     
-    <table class="table table-bordered table-striped" id="occupation">
+    <table class="table table-bordered" id="occupation">
     <thead>
         <tr>
             <th>#</th>

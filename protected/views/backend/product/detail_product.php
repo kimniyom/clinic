@@ -55,7 +55,7 @@ $Total = $ItemModel->CountItems($product_id);
     </div>
 </span>
 
-<div class="well" style=" width:100%; margin-top:20px;text-align: left; background: #FFF;">
+<div class="wells" style=" width:100%; margin-top:20px;text-align: left;">
     <div class="row">
 
         <div class="col-lg-6 col-md-12 col-xs-12">
@@ -85,9 +85,9 @@ $Total = $ItemModel->CountItems($product_id);
             <hr/>
 
             <button type="button" class="btn btn-success btn-sm" onclick="popup_add_items('<?php echo $product['product_id'] ?>', '<?php echo $product['product_name'] ?>')">
-                <i class="fa fa-plus text-success"></i> เพิ่มจำนวน Item</button>
+                <i class="fa fa-plus"></i> เพิ่มจำนวน Item</button>
                 <br/><br/>
-            <table class="table table-striped table-bordered">
+            <table class="table">
                 <thead>
                     <tr>
                         <td>#</td>
@@ -169,7 +169,7 @@ $Total = $ItemModel->CountItems($product_id);
     <h4 style="font-weight:bold; font-size: 24px; color: #F00;">
         <i class="fa fa-tag"></i> รายละเอียด
     </h4>
-    <div class="well">
+    <div class="well" style=" background: #cccccc;">
         <div class="row" id="etc_product">
             <div class="col-lg-12 col-md-12">
                 <?= $product['product_detail'] ?>

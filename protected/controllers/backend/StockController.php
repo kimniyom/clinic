@@ -30,7 +30,7 @@ class StockController extends Controller{
                 'users' => array('@'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','expireproduct'),
+                'actions' => array('create', 'update','expireproduct','expireitem'),
                 'users' => array('*'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -56,6 +56,12 @@ class StockController extends Controller{
        $ProductModel = new Backend_Product();
        $data['product'] = $ProductModel->Getstockproductalert();
        $this->render('//backend/stock/expireproduct',$data);
+    }
+    
+    public function actionExpireitem(){
+        $ProductModel = new Backend_Product();
+       $data['item'] = $ProductModel->Getstockitemalert();
+       $this->render('//backend/stock/expireitem',$data);
     }
 }
 

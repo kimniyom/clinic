@@ -18,7 +18,7 @@ $this->menu = array(
         ประเภทลูกค้า
     </div>
     <div class="panel-body">
-        <table class="table table-striped table-bordered">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>#</th>
@@ -35,7 +35,7 @@ $this->menu = array(
                     <tr>
                         <td><?php echo $i ?></td>
                         <td><?php echo $rs['grad'] ?></td>
-                        <td style=" text-align: center;"><?php echo $rs['distcount']?></td>
+                        <td style=" text-align: center;"><?php echo number_format($rs['distcount']) ?></td>
                         <td style=" text-align: center;">
                             <a href="<?php echo Yii::app()->createUrl('gradcustomer/update', array('id' => $rs['id'])) ?>">
                                 <i class="fa fa-pencil"></i></a>

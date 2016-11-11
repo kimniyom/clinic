@@ -21,6 +21,7 @@
 
 <?php
 $this->breadcrumbs = array(
+    "คลังสินค้า" => array('producttype/index'),
     $type_name,
 );
 

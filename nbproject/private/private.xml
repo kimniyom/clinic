@@ -3,11 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/historyservice/detailservice.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Product.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Branch.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/product/update.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Masuser.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/HistoryserviceController.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/checkbody/historyview.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CheckbodyController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Backend_product.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/stock/expireproduct.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/product/detail_product.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/service/detail.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/type/edit.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/formappoint.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/historyservice/detailservice.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/HistoryserviceController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/product/create.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/StockController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/product/show_product_all.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/type/create.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/serviceDrug/formdrug.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/ProductController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ServiceDrugController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
     </open-files>
 </project-private>

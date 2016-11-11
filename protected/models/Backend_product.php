@@ -325,4 +325,18 @@ class Backend_Product {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
+    function Getstockitemalert() {
+        $branch = Yii::app()->session['branch'];
+        if ($branch == '99') {
+            $branchwhere = "1=1";
+        } else {
+            $branchwhere = "p.branch = '$branch' ";
+        }
+        $sql = "SELECT p.product_name,i.itemcode,i.product_id,DATEDIFF(i.expire,NOW()) AS expire,i.expire AS dateexpire
+                FROM items i INNER JOIN product p ON i.product_id = p.product_id
+                WHERE DATEDIFF(i.expire,NOW()) < 30 AND $branchwhere
+                ORDER BY DATEDIFF(i.expire,NOW()) ASC ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
 }

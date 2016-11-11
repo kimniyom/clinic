@@ -16,7 +16,7 @@ $typeModel = new Gradcustomer();
 <button type="button" class="btn btn-default"
         onclick="CheckPatient()"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลลูกค้า</button>
 <hr/>
-<table class="table table-striped" id="patient">
+<table class="table" id="patient">
     <thead>
         <tr>
             <th>#</th>

@@ -20,19 +20,11 @@
             body{
                 overflow-x: hidden;
             }
-            body table tbody tr td{
-                /*color: #ff9900;*/
-            }
-
-            body table tbody tr td a{
-                color: #ff9900;
-            }
-
         </style>
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css" type="text/css"/>
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-slate.css" type="text/css" media="all" />
-
-
+        
+       
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/gallery_img/dist/magnific-popup.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/DataTables-1.10.7/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/DataTables-1.10.7/extensions/TableTools/css/dataTables.tableTools.css" type="text/css" media="all" />
@@ -110,7 +102,7 @@
     <body style="/*background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;">-->
         <nav class="navbar navbar-default" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; /*background: #2a323b;*/">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; background: #2a323b;;">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -161,12 +153,6 @@
                                 <li><a href="<?php echo Yii::app()->createUrl('backend/typeproduct/from_add_type') ?>"> - ประเภทสินค้า</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('diag/index') ?>"> - หัตถการทางการแพทย์</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('occupation/index') ?>"> - อาชีพ</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('gradcustomer/index') ?>"> - ประเภทลูกค้า</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('position/index') ?>"> - ตำแหน่งพนักงาน</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('statususer/index') ?>"> - สถานะผู้ใช้งานระบบ</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('backend/logo') ?>"> - โลโก้</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('backend/web') ?>"> - ชื่อร้านค้า</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('backend/contact') ?>"> - ข้อมูลติดต่อ</a></li>
                             </ul>
                         </li>
 
@@ -196,10 +182,10 @@
 
         <div id="wrapper">
             <!-- Sidebar -->
-            <div id="sidebar-wrapper" style=" border-right: #000000 solid 1px;">
+            <div id="sidebar-wrapper">
                 <!-- ###################### USER #################-->
                 <div class="panel panel-default" id="panel-head">
-                    <div class=" panel-heading" id="panel" style=" padding-top: 15px;">
+                    <div class=" panel-heading" id="panel">
                         <img src="<?= Yii::app()->baseUrl; ?>/images/use-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px;"> ผู้ใช้งาน
                     </div>
                     <div class="panel-body">
@@ -207,7 +193,7 @@
                         สถานะ : <?php echo Yii::app()->session['status'] . ' (' . $Profile['status'] . ')'; ?><br/>
                         สาขา ​: <?php echo Yii::app()->session['branch'] . " " . $branchModel->Getbranch(Yii::app()->session['branch']) ?>
                     </div>
-                    <div class="panel-footer" style="border-bottom:solid 1px #000000; border-radius:0px;">
+                    <div class="panel-footer" style="border-bottom:solid 1px #eeeeee; border-radius:0px;">
                         <a href="<?= Yii::app()->createUrl('employee/view', array('id' => $Profile['id'])); ?>">ข้อมูลส่วนตัว</a>
                     </div>
                 </div>
@@ -224,54 +210,137 @@
                         </div>
                     </a>
                 <?php } ?>
-
-                <a href="<?= Yii::app()->createUrl('masuser/index') ?>">
-                    <div id="listmenu">
+                <div class="panel panel-default" id="panel-head">
+                    <div class="panel-heading" id="panel">
                         <img src="<?php echo Yii::app()->baseUrl; ?>/images/Login-icon.png"
                              height="32px"
                              style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
                         ผู้ใช้งานระบบ
+                        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
                     </div>
-                </a>
+                    <div class="list-group">
+                        <?php if (Yii::app()->session['status'] == '1') { ?>
+                            <a href="<?= Yii::app()->createUrl('statusUser/index') ?>" class="list-group-item">
+                                <i class="fa fa-user"></i> สถานะ
+                            </a>
+                        <?php } ?>
+                        <a href="<?= Yii::app()->createUrl('Masuser/index') ?>" class="list-group-item">
+                            <i class="fa fa-user"></i> รายชื่อผู้ใช้งาน
+                        </a>
 
-                <a href="<?= Yii::app()->createUrl('employee/index') ?>">
-                    <div id="listmenu">
+                    </div>
+                </div>
+
+                <div class="panel panel-default" id="panel-head">
+                    <div class="panel-heading" id="panel">
                         <img src="<?php echo Yii::app()->baseUrl; ?>/images/users-icon.png"
                              height="32px"
                              style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
                         ข้อมูลพนักงาน
+                        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
                     </div>
-                </a>
-
+                    <div class="list-group">
+                        <?php if (Yii::app()->session['status'] == '1') { ?>
+                            <a href="<?= Yii::app()->createUrl('position/index') ?>" class="list-group-item">
+                                <i class="fa fa-user"></i> ตำแหน่งพนักงาน
+                            </a>
+                        <?php } ?>
+                        <a href="<?= Yii::app()->createUrl('employee/index') ?>" class="list-group-item">
+                            <i class="fa fa-group"></i> รายชื่อพนักงาน
+                        </a>
+                    </div>
+                </div>
+                <!-- ตั้งค่าร้านค้า -->
+                <div class="panel panel-default" id="panel-head">
+                    <div class="panel-heading" id="panel">
+                        <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $web->get_logoweb(); ?>"
+                             height="32px"
+                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                        ข้อมูลร้านค้า
+                        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
+                    </div>
+                    <div class="list-group">
+                        <a href="<?= Yii::app()->createUrl('backend/contact') ?>" class="list-group-item">
+                            <i class="fa fa-phone-square"></i> ข้อมูลติดต่อ
+                        </a>
+                        <!--
+                        <a href="<?//= Yii::app()->createUrl('backend/about') ?>" class="list-group-item">
+                            <i class="fa fa-user-secret"></i> เกี่ยวกับเรา
+                        </a>
+                        <a href="<?//= Yii::app()->createUrl('backend/banner') ?>" class="list-group-item">
+                            <i class="fa fa-image"></i>  จัดการภาพ Banner
+                        </a>
+                        -->
+                        <a href="<?= Yii::app()->createUrl('backend/logo') ?>" class="list-group-item">
+                            <i class="fa fa-smile-o"></i>  จัดการ โลโก้ เว็บ
+                        </a>
+                        <a href="<?= Yii::app()->createUrl('backend/web') ?>" class="list-group-item">
+                            <i class="fa fa-text-height"></i>  จัดการ ชื่อเว็บ
+                        </a>
+                        <!--
+                        <a href="<?//= Yii::app()->createUrl('backend/howtoorder') ?>" class="list-group-item">
+                            <i class="fa fa-book"></i>  วิธีการสั่งซื้อ
+                        </a>
+                        -->
+                    </div>
+                </div>
+                <!-- List Menu Admin-->
+                <!--
+                <div class="panel panel-default" id="panel-head">
+                    <div class="panel-heading" id="panel">
+                        <img src="<?//= Yii::app()->baseUrl; ?>/images/system-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
+                        ตั้งค่าระบบ
+                        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
+                    </div>
+                    <div class="list-group">
+                        <a href="<?//= Yii::app()->createUrl('backend/typeproduct/from_add_type') ?>"
+                           class="list-group-item"><i class="fa fa-folder-open"></i> ประเภทสินค้า</a>
+                        <a href="<?//= Yii::app()->createUrl('diag/index') ?>"
+                           class="list-group-item"><span class="fa fa-dot-circle-o"></span>  รายการหัตถการ</a>
+                        <a href="<?//= Yii::app()->createUrl('occupation/index') ?>"
+                           class="list-group-item"><span class="fa fa-calendar"></span>  อาชีพ</a>
+                        <a href="<?//= Yii::app()->createUrl('backend/transport') ?>"
+                           class="list-group-item"><span class="fa fa-truck"></span>  ช่องทางการจัดส่ง</a>
+                    </div>
+                </div>
+                -->
                 <!-- List รายชื่อ สินค้า -->
-                <a href="<?= Yii::app()->createUrl('producttype/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?= Yii::app()->baseUrl; ?>/images/shipping-box-icon.png" 
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
+                <div class="panel panel-default" id="panel-head">
+                    <div class="panel-heading" id="panel">
+                        <img src="<?= Yii::app()->baseUrl; ?>/images/shipping-box-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
                         คลังสินค้า
+                        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
                     </div>
-                </a>
+                    <div class="list-group">
+                        <?php
+                        $produce_type = $product_model->_get_product_type();
+                        foreach ($produce_type as $produce_types):
+                            ?>
+                            <a href="<?php echo Yii::app()->createUrl('backend/product/Getproduct/type_id/' . $produce_types['type_id']) ?>"
+                               class="list-group-item">
+                                <span class="label" style=" background: #24282d;"><?php echo $product_model->get_count_product_type($produce_types['type_id']); ?></span>
+                                <?php echo $produce_types['type_name']; ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
 
                 <!-- ทะเบียนผู้ป่วย-->
-                <a href="<?= Yii::app()->createUrl('patient/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/patients-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                <div class="panel panel-default" id="panel-head">
+                    <div class="panel-heading" id="panel">
+                        <img src="<?= Yii::app()->baseUrl; ?>/images/patients-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
                         ทะเบียนลูกค้า
+                        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
                     </div>
-                </a>
-                <hr/>
-                <!-- ห้องตรวจ-->
-                <a href="<?= Yii::app()->createUrl('dortor/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/doctor-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ห้องตรวจ
+                    <div class="list-group">
+                        <a href="<?= Yii::app()->createUrl('gradcustomer/index') ?>"
+                           class="list-group-item"><i class="fa fa-group"></i> ประเภทลูกค้า</a>
+                        <a href="<?= Yii::app()->createUrl('patient/index') ?>"
+                           class="list-group-item"><i class="fa fa-plus"></i> เพิ่มทะเบียนลูกค้า</a>
+                        <a href="<?= Yii::app()->createUrl('backend/product/index') ?>"
+                           class="list-group-item"><i class="fa fa-search"></i> ค้นหาลูกค้า</a>
                     </div>
-                </a>
-
+                </div>
 
                 <!-- บทความ -->
                 <!--
@@ -300,20 +369,10 @@
 
             <!-- Page Content -->
             <div id="page-content-wrapper" style="padding:0px;">
-                <nav class="navbar navbar-default" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px; border-left: none; border-right: none;">
+                <nav class="navbar navbar-default" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px;">
                     <ul class="nav nav-pills pull-right" style="margin:5px;">
-                        <?php
-                        if ($product_model->stockproductalert() > 0)
-                            $classalertproduct = "fa fa-bell faa-flash animated faa-slow text-danger";
-                        else
-                            $classalertproduct = "fa fa-bell";
-                        ?>
-                        <?php
-                        if ($product_model->stockitemalert() > 0)
-                            $classalertitem = "fa fa-bell faa-flash animated text-danger";
-                        else
-                            $classalertitem = "fa fa-bell";
-                        ?>
+                        <?php if($product_model->stockproductalert() > 0) $classalertproduct = "fa fa-bell faa-flash animated faa-slow text-danger"; else $classalertproduct = "fa fa-bell";?>
+                        <?php if($product_model->stockitemalert() > 0) $classalertitem = "fa fa-bell faa-flash animated text-danger"; else $classalertitem = "fa fa-bell";?>
                         <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"><i class="<?php echo $classalertproduct ?>"></i> สินค้าใกล้หมด <span class="badge"><?php echo $product_model->stockproductalert(); ?> </span></a></li>
                         <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"><i class="<?php echo $classalertitem ?>"></i> สินค้าใกล้หมดอายุ <span class="badge"><?php echo $product_model->stockitemalert(); ?> </span></a></li>
                         <li><a href="#"><i class="fa fa-calendar text-success"></i> ลูกค้าใกล้ถึงวันนัด <span class="badge"><?php echo $order_model->count_wait_inform(); ?> </span></a></li>
@@ -332,7 +391,7 @@
                                         'links' => $this->breadcrumbs,
                                     ));
                                     ?><!-- breadcrumbs -->
-                            <?php endif ?>
+                                <?php endif ?>
                             </ol>
                             <?php
                             echo $content;

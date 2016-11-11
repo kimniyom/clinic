@@ -22,6 +22,10 @@ body {
     /*background:url('../images/bg.jpg');*/
 }
 
+#btn-menu-left{
+    border-radius: 0px; border-right: none;
+}
+
 body.modal-open #wrap_blur{
     -webkit-filter: blur(7px);
     -moz-filter: blur(15px);
@@ -240,6 +244,7 @@ table thead tr th{
 }
 */
 
+
 #panel-head .list-group a{
     border: 0px;
 }
@@ -288,13 +293,14 @@ body a:link{
 }
 
 #listmenu{
-    background: #24282d;
+    /*background: #24282d;*/
     padding: 10px 10px 10px 15px;
     width: 100%;
     color: #999999;
 }
 
 #listmenu:hover{
-    background: #2a323b;
+    background: #24282d;
     color: #FFFFFF;
 }
+

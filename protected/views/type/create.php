@@ -55,7 +55,7 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading">จัดการประเภทสินค้า</div>
     <div class="panel-body">
         <div class="row" style="margin: 0px;">
@@ -78,9 +78,9 @@ $this->breadcrumbs = array(
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading">ประเภทสินค้า</div>
-    <table class="table table-striped table-bordered" id="product_type">
+    <table class="table table-bordered" id="product_type">
         <thead>
             <tr>
                 <th>รหัส</th>
