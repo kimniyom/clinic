@@ -27,5 +27,14 @@
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ServiceDrugController.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
+        <group>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/dortorsearch.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/dortor/index.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/config/main.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/view.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/PatientController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/index.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/product/detail_product.php</file>
+        </group>
     </open-files>
 </project-private>
