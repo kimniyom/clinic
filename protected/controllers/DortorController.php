@@ -30,7 +30,7 @@ class DortorController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update','dortorsearch','patientview'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -49,6 +49,25 @@ class DortorController extends Controller {
      */
     public function actionIndex() {
         $this->render('index');
+    }
+
+    public function actionDortorsearch() {
+        $card = Yii::app()->request->getPost('card');
+        $patient = Patient::model()->find("card = '$card' ");
+        if ($patient['card']) {
+            $this->renderPartial('dortorsearch', array("patient" => $patient));
+        } else {
+            echo "0";
+        }
+    }
+
+    public function actionPatientview($id) {
+        $contact = PatientContact::model()->find("patient_id = '$id'");
+        $model = Patient::model()->find("id = '$id'");
+        $this->render('patientview', array(
+            'model' => $model,
+            'contact' => $contact,
+        ));
     }
 
 }

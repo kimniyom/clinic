@@ -30,7 +30,7 @@ class ServiceDrugController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'formdrug'),
+                'actions' => array('create', 'update', 'formdrug', 'getproduct', 'adddrug', 'cutstock','druglist'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -158,10 +158,74 @@ class ServiceDrugController extends Controller {
         }
     }
 
-    public function actionFormdrug() {
-        $service_id = Yii::app()->request->getPost('seq');
-        $data['seq'] = $service_id;
+    public function actionFormdrug($seq) {
+        $data['type'] = ProductType::model()->findAll("active", '1');
+        //$service_id = Yii::app()->request->getPost('seq');
+        $data['seq'] = $seq;
         $this->renderPartial('formdrug', $data);
+    }
+
+    public function actionGetproduct() {
+        $type = Yii::app()->request->getPost('type');
+        $sql = "SELECT p.product_id,p.product_name,COUNT(*) AS total
+                FROM product p LEFT JOIN items i ON p.product_id = i.product_id
+                WHERE p.type_id = '$type' AND i.status = '0' 
+                GROUP BY p.product_id ";
+        $data['product'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial("product", $data);
+    }
+
+    public function actionAdddrug() {
+        $patient_id = Yii::app()->request->getPost('patient_id');
+        $product = Yii::app()->request->getPost('product');
+        $branch = Yii::app()->request->getPost('branch');
+        $number = Yii::app()->request->getPost('number');
+        $user_id = Yii::app()->user->id;
+        $seq = Yii::app()->request->getPost('seq');
+        $diagcode = Yii::app()->request->getPost('diagcode');
+
+        $columns = array(
+            "patient_id" => $patient_id,
+            "service_id" => $seq,
+            "drug" => $product,
+            "number" => $number,
+            "diagcode" => $diagcode,
+            "branch" => $branch,
+            "user_id" => $user_id,
+            "date_serv" => date("Y-m-d")
+        );
+
+        Yii::app()->db->createCommand()
+                ->insert("service_drug", $columns);
+
+        $this->actionCutstock($product, $branch, $number);
+    }
+
+    public function actionCutstock($product, $branch, $number) {
+        //$product = Yii::app()->request->getPost('product');
+        //$branch = Yii::app()->request->getPost('branch');
+        //$number = Yii::app()->request->getPost('number');
+        $sql = "SELECT i.*
+                FROM items i 
+                INNER JOIN product p ON i.product_id = p.product_id 
+                WHERE i.product_id = '$product' AND p.branch = '$branch' ORDER BY i.date_input,i.expire ASC LIMIT $number";
+
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+        foreach ($result as $rs):
+            $itemcode = $rs['itemcode'];
+            Yii::app()->db->createCommand()
+                    ->update("items", array("status" => "1"), "itemcode = '$itemcode' ");
+        endforeach;
+    }
+
+    public function actionDruglist() {
+        $seq = Yii::app()->request->getPost('seq');
+        $sql = "SELECT p.product_id,p.product_name,SUM(s.number) AS number
+                FROM service_drug s INNER JOIN product p ON s.drug = p.product_id
+                WHERE s.service_id = '$seq'
+                GROUP BY p.product_id ";
+        $data['drug'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial("druglist",$data);
     }
 
 }

@@ -49,7 +49,7 @@
 
 <script type="text/javascript">
     function Search() {
-        var url = "<?php echo Yii::app()->createUrl('patient/dortorsearch') ?>";
+        var url = "<?php echo Yii::app()->createUrl('dortor/dortorsearch') ?>";
         var card = $("#card").val();
         var data = {card: card};
 

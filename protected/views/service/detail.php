@@ -33,8 +33,9 @@
             ?>
         </title>
         <style type="text/css">
-            body{
+            html body{
                 overflow-x: hidden;
+                background: #e3efff;
             }
 
             #font-18{
@@ -43,6 +44,7 @@
         </style>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/service/css/system.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/service/bootstrap/css/bootstrap.css" type="text/css" media="all" />
+
         <!--
                 <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/css/bootstrap-theme.css" type="text/css" media="all" />
         -->
@@ -73,9 +75,6 @@
         -->
         <script src="<?= Yii::app()->baseUrl; ?>/assets/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 
-        <!-- Uploadify -->
-        <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
-        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
 
         <!-- FancyBox -->
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/fancyBox/source/jquery.fancybox.css" type="text/css" media="all" />
@@ -91,6 +90,18 @@
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/sweet-alert/sweetalert.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/sweet-alert/sweetalert.min.js" type="text/javascript"></script>
 
+        <!--
+            SELECT2 Combobox
+        -->
+
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/select2-master/dist/css/select2.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/select2-bootstrap-theme-master/dist/select2-bootstrap.css" type="text/css" media="all" />
+        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/select2-master/dist/js/select2.js" type="text/javascript"></script>
+
+
+        <!-- Uploadify -->
+        <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
+        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
 
         <script type="text/javascript">
 
@@ -135,63 +146,6 @@
     </head>
 
     <body>
-        <!--<div class="container" style="margin-bottom:5%;">-->
-        <!--
-        <nav class="navbar navbar-default" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; background: #2a323b;">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="#menu-toggle" class="navbar-brand" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                    <a class="navbar-brand" style=" margin-top: 0px; padding-top: 10px;">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" height="24px" class="img img-circle"/>
-                    </a>
-                    <a class="navbar-brand" href="#" style=" font-family: Th;font-size:28px;">
-        <?php echo $shotname . $patient['name'] . " " . $patient['lname']; ?>
-                    </a>
-
-                </div>
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a><font id="font-th">หัตถการ : <?php echo $diag['diagname'] ?></font></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-signal"></span>
-                                <font id="font-th">รายงาน </font><b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"> - รายงานยอดขาย</a></li>
-                                <li><a href="#"> - รายงานการขายสินค้า</a></li>
-                                <li><a href="#"> - รายงานการขายสินค้า(แยกประเภท)</a></li>
-                                <li><a href="#"> - รายงานรายได้ กำไร ขาดทุน</a></li>
-                                <li><a href="#"> - รายงานการขายของพนักงาน</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="fa fa-gear"></span>
-                                <font id="font-th">ตั้งค่าระบบ </font><b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?php echo Yii::app()->createUrl('backend/typeproduct/from_add_type') ?>"> - ประเภทสินค้า</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('diag/index') ?>"> - หัตถการทางการแพทย์</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('occupation/index') ?>"> - อาชีพ</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>-->
-
         <div id="wrapper">
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
@@ -405,7 +359,7 @@
                 var url = "<?php echo Yii::app()->createUrl('appoint/formappoint') ?>" + "&seq=" + seq;
                 $("#patientappoint").load(url);
             }
-            
+
             function GetformDrug() {
                 var seq = "<?php echo $serviceSEQ ?>";
                 var url = "<?php echo Yii::app()->createUrl('servicedrug/formdrug') ?>" + "&seq=" + seq;

@@ -271,30 +271,6 @@
                         ห้องตรวจ
                     </div>
                 </a>
-
-
-                <!-- บทความ -->
-                <!--
-                <div class="panel panel-default" id="panel-head">
-                    <div class="panel-heading" id="panel">
-                        <img src="<?//= Yii::app()->baseUrl; ?>/images/blog-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px; width: 32px;">
-                        บทความ
-                        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
-                    </div>
-                    <div class="list-group">
-                        <a href="<?//php echo Yii::app()->createUrl('backend/article/create') ?>" class="list-group-item">
-                            <i class="fa fa-plus"></i> สร้างบทความ
-                        </a>
-                    </div>
-                    <div class="list-group">
-                        <a href="<?//php echo Yii::app()->createUrl('backend/article') ?>" class="list-group-item">
-                            <i class="fa fa-newspaper-o"></i> บทความทั้งหมด
-                        </a>
-                    </div>
-                </div>
-
-                <br/><br/>
-                -->
             </div>
             <!-- /#sidebar-wrapper -->
 
