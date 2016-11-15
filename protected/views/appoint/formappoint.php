@@ -1,7 +1,8 @@
 <?php
+$branchList = Branch::model()->findAll("active = '1'");
 if (empty($model['branch'])) {
     $branch = Yii::app()->session['branch'];
-    $branchList = Branch::model()->findAll("active = '1'");
+    
     if ($branch == "99") {
         $active = "";
         $disabled = "";
@@ -14,6 +15,7 @@ if (empty($model['branch'])) {
     $disabled = "disabled='disabled'";
 }
 
+
 if (!empty($model['appoint'])) {
     $defaultappoint = $model['appoint'];
 } else {
@@ -21,8 +23,10 @@ if (!empty($model['appoint'])) {
 }
 ?>
 
+
+
 <input type="hidden" id="service_id" value="<?php echo $seq ?>"/>
-<input type="text" id="id" value="<?php echo $model['id'] ?>"/>
+<input type="hidden" id="id" value="<?php echo $model['id'] ?>"/>
 <div class="panel panel-success" style=" border-top: none; border: none;">
     <div class="panel-heading"  style=" border-top: none; border-radius: 0px;">
         <i class="fa fa-calendar"></i> นัดลูกค้า
@@ -79,7 +83,7 @@ if (!empty($model['appoint'])) {
         var data = {id: id,appoint: appoint, service_id: service_id, branch: branch};
         $.post(url, data, function (success) {
             swal("Success", "บันทึกข้อมูลวันนัดสำเร็จ...", "success");
-            GetformAppoint();
+            //GetformAppoint();
         });
     }
 </script>

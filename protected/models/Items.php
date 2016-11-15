@@ -118,7 +118,7 @@ class Items extends CActiveRecord
         }
         
         public function CountItems($productID = null){
-            $sql = "SELECT COUNT(*) AS TOTAL FROM items WHERE product_id = '$productID' ";
+            $sql = "SELECT COUNT(*) AS TOTAL FROM items WHERE product_id = '$productID' AND  items.status='' ";
             $rs = Yii::app()->db->createCommand($sql)->queryRow();
             return $rs['TOTAL'];
         }

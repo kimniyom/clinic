@@ -116,5 +116,10 @@ class Checkbody extends CActiveRecord {
             return 0;
         }
     }
+    
+    public function Getdetail($patient_id,$date_serv){
+        $sql = "SELECT * FROM checkbody WHERE patient_id = '$patient_id' AND date_serv = '$date_serv'";
+        return Yii::app()->db->createCommand($sql)->queryRow();
+    }
 
 }

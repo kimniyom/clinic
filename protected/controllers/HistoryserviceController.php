@@ -30,7 +30,7 @@ class HistoryserviceController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index','Detailservice','test'),
+                'actions' => array('index', 'Detailservice', 'test', 'result'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -42,12 +42,12 @@ class HistoryserviceController extends Controller {
     public function actionIndex() {
         $patient_id = Yii::app()->request->getPost('patient_id');
         $diagcode = Yii::app()->request->getPost('diagcode');
-        $sql = "SELECT * FROM service WHERE patient_id = '$patient_id' AND diagcode = '$diagcode' ORDER BY service_date DESC";
+        $sql = "SELECT * FROM service WHERE patient_id = '$patient_id' AND diagcode = '$diagcode' ORDER BY id DESC";
         $data['history'] = Yii::app()->db->createCommand($sql)->queryAll();
         $this->renderPartial('history', $data);
     }
 
-    public function actionDetailservice($patient_id, $diagcode,$service) {
+    public function actionDetailservice($patient_id, $diagcode, $service) {
         //OpenService
         $data['patient_id'] = $patient_id;
         $data['serviceSEQ'] = $service;
@@ -57,8 +57,20 @@ class HistoryserviceController extends Controller {
         $data['diag'] = Diag::model()->find("diagcode = '$diagcode'");
         $this->renderPartial("detailservice", $data);
     }
-    
-    public function actionTest(){
+
+    public function actionTest() {
         echo "12345";
     }
+
+    public function actionResult() {
+        $CheckbodyModel = new Checkbody();
+        $service_id = Yii::app()->request->getPost('service_id');
+        
+        $service = Service::model()->find("id = '$service_id'");
+        $data['service'] = $service;
+        $data['patient'] = Patient::model()->find("id", $service['patient_id']);
+        $data['checkbody'] = $CheckbodyModel->Getdetail($service['patient_id'], $service['checkbody']);
+        $this->renderPartial('result', $data);
+    }
+
 }

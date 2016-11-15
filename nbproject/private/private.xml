@@ -28,13 +28,26 @@
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
         <group>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/dortorsearch.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/dortor/index.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/serviceDrug/formdrug.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/config/main.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/view.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/PatientController.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/index.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/product/detail_product.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/formappoint.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/backend/StockController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/historyservice/detailservice.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/service/detail.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/checkbody/view.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/HistoryserviceController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/ServiceDrugController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/serviceDrug/product.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/historyservice/result.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/serviceDrug/druglist.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/historyservice/history.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/models/Backend_product.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/AppointController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/models/Service.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/models/Checkbody.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/ServiceController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/models/Items.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireproduct.php</file>
         </group>
     </open-files>
 </project-private>

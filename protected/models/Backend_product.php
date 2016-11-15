@@ -286,7 +286,7 @@ class Backend_Product {
                 (
                         SELECT i.product_id,COUNT(*) AS TOTAL 
                         FROM items i INNER JOIN product p ON i.product_id = p.product_id
-                        WHERE $branchwhere
+                        WHERE $branchwhere AND i.status = '0'
                         GROUP BY i.product_id
                 ) Q
 
@@ -305,7 +305,7 @@ class Backend_Product {
 
         $sql = "SELECT COUNT(*) AS TOTAL
                 FROM items i INNER JOIN product p ON i.product_id = p.product_id
-                WHERE $branchwhere AND DATEDIFF(i.expire,NOW()) < 30 ";
+                WHERE $branchwhere AND DATEDIFF(i.expire,NOW()) < 30 AND  i.status = '0'";
         $result = Yii::app()->db->createCommand($sql)->queryRow();
         return $result['TOTAL'];
     }
@@ -319,7 +319,7 @@ class Backend_Product {
         }
         $sql = "SELECT p.*,COUNT(*) AS TOTAL 
                 FROM items i INNER JOIN product p ON i.product_id = p.product_id
-                WHERE p.branch = $branchwhere
+                WHERE p.branch = $branchwhere AND  i.status = '0'
                 GROUP BY i.product_id ";
 
         return Yii::app()->db->createCommand($sql)->queryAll();
@@ -334,7 +334,7 @@ class Backend_Product {
         }
         $sql = "SELECT p.product_name,i.itemcode,i.product_id,DATEDIFF(i.expire,NOW()) AS expire,i.expire AS dateexpire
                 FROM items i INNER JOIN product p ON i.product_id = p.product_id
-                WHERE DATEDIFF(i.expire,NOW()) < 30 AND $branchwhere
+                WHERE DATEDIFF(i.expire,NOW()) < 30 AND $branchwhere AND  i.status = '0'
                 ORDER BY DATEDIFF(i.expire,NOW()) ASC ";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }

@@ -165,11 +165,13 @@ class AppointController extends Controller {
     }
 
     public function actionSaveappoint() {
-        $id = Yii::app()->request->getPost('id');
-        if (empty($id)) {
+        $service_id = Yii::app()->request->getPost('service_id');
+        $checkappoint = Appoint::model()->find("service_id = '$service_id' ");
+        $id = $checkappoint['id'];
+        if (empty($checkappoint['id'])) {
             $columns = array(
                 "appoint" => Yii::app()->request->getPost('appoint'),
-                "service_id" => Yii::app()->request->getPost('service_id'),
+                "service_id" => $service_id,
                 "branch" => Yii::app()->request->getPost('branch'),
                 "create_date" => date("Y-m-d H:i:s")
             );
@@ -181,11 +183,11 @@ class AppointController extends Controller {
                 "appoint" => Yii::app()->request->getPost('appoint'),
                 //"service_id" => Yii::app()->request->getPost('service_id'),
                 "branch" => Yii::app()->request->getPost('branch'),
-                //"create_date" => date("Y-m-d H:i:s")
+                    //"create_date" => date("Y-m-d H:i:s")
             );
 
             Yii::app()->db->createCommand()
-                    ->update("appoint", $columns,"id = '$id' ");
+                    ->update("appoint", $columns, "id = '$id' ");
         }
     }
 

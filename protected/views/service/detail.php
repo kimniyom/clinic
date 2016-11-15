@@ -180,6 +180,9 @@
                                 <i class="fa fa-user-md"></i>
                                 ผู้ให้บริการ : <?php echo $Profile['name'] . " " . $Profile['lname']; ?></a>
                         </li>
+                        <li>
+                            <a href="javascript:window.location.reload();" class="btn btn-success"> <i class="fa fa-hospital-o"></i> ห้องตรวจ</a>
+                        </li>
                     </ul>
                     <ul class="nav nav-pills pull-right" style="margin:5px;">
                         <li>
@@ -192,15 +195,16 @@
                 <input type="hidden" id="patient_id" value="<?php echo $patient['id'] ?>"/>
                 <input type="hidden" id="diagcode" value="<?php echo $diag['diagcode'] ?>"/>
 
-                <div>
+                <div id="content-service">
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user"></i> ข้อมูลพื้นฐาน</a></li>
                         <li role="presentation"><a href="#checkbody" aria-controls="profile" role="tab" data-toggle="tab" onclick="Getcheckbody()"><i class="fa fa-child"></i> ผลตรวจร่างกาย</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" onclick="GetformServece('<?php echo $patient['id'] ?>')"><i class="fa fa-save"></i> บันทึกการตรวจ</a></li>
+                        <li role="presentation" id="tabservice"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" onclick="GetformServece('<?php echo $patient['id'] ?>')"><i class="fa fa-save"></i> บันทึกการตรวจ</a></li>
                         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" onclick="GetformAppoint()"><i class="fa fa-calendar"></i> นัดลูกค้า</a></li>
                         <li role="presentation"><a href="#drug" aria-controls="drug" role="tab" data-toggle="tab" onclick="GetformDrug()"><i class="fa fa-medkit"></i> จ่ายยา / สินค้า</a></li>
+                        <li role="presentation" class="pull-right"><a href=""><i class="fa fa-medkit"></i> สรุปผลการรักษา</a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -283,12 +287,10 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="checkbody"><div id="patientcheckbody"></div></div>
                         <div role="tabpanel" class="tab-pane" id="messages"><div id="patientservice"></div></div>
-                        <div role="tabpanel" class="tab-pane" id="settings"><div id="patientappoint"></div></div>
-                        <div role="tabpanel" class="tab-pane" id="drug"><div id="patientdrug"></div></div>
+                        <div role="tabpanel" class="tab-pane" id="settings"><div id="patientappoint"><h4 class="text-danger" style=" text-align: center;">นัดลูกค้า *ต้องบันทึกข้อมูลการตรวจก่อนทำรายการนี้</h4></div></div>
+                        <div role="tabpanel" class="tab-pane" id="drug"><div id="patientdrug"><h4 class="text-danger" style=" text-align: center;">จ่ายยา / สินค้า *ต้องบันทึกข้อมูลการตรวจก่อนทำรายการนี้</h4></div></div>
                     </div>
-
                 </div>
-
 
             </div>
             <!-- /#page-content-wrapper -->
@@ -356,14 +358,35 @@
 
             function GetformAppoint() {
                 var seq = "<?php echo $serviceSEQ ?>";
-                var url = "<?php echo Yii::app()->createUrl('appoint/formappoint') ?>" + "&seq=" + seq;
-                $("#patientappoint").load(url);
+                var url = "<?php echo Yii::app()->createUrl('service/checkresultservice') ?>";
+                var data = {service_id: seq};
+                $.post(url, data, function (result) {
+                    if (result.result === 0) {
+                        swal("Alert!", "ยังไม่ได้บันทึกผลการรักษา!", "warning");
+                        //window.location.reload();
+                    } else {
+                        var url = "<?php echo Yii::app()->createUrl('appoint/formappoint') ?>" + "&seq=" + seq;
+                        $("#patientappoint").load(url);
+                    }
+                }, 'json');
+
             }
 
             function GetformDrug() {
                 var seq = "<?php echo $serviceSEQ ?>";
-                var url = "<?php echo Yii::app()->createUrl('servicedrug/formdrug') ?>" + "&seq=" + seq;
-                $("#patientdrug").load(url);
+                var url = "<?php echo Yii::app()->createUrl('service/checkresultservice') ?>";
+                var data = {service_id: seq};
+                $.post(url, data, function (result) {
+                    if (result.result === 0) {
+                        swal("Alert!", "ยังไม่ได้บันทึกผลการรักษา!", "warning");
+                        //window.location.reload();
+                    } else {
+                        var url = "<?php echo Yii::app()->createUrl('servicedrug/formdrug') ?>" + "&seq=" + seq;
+                        $("#patientdrug").load(url);
+                    }
+                }, 'json');
+
+
             }
 
             function HistoryService() {
@@ -375,6 +398,7 @@
                     $("#historyservice").html(result);
                 });
             }
+
         </script>
     </body>
 </html>

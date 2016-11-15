@@ -18,7 +18,6 @@ return array(
         'application.models.*',
         'application.components.*',
     ),
-    
     'modules' => array(
         // uncomment the following to enable the Gii tool
 
@@ -31,7 +30,6 @@ return array(
     ),
     // application components
     'components' => array(
-
         //...
         'ePdf' => array(
             'class' => 'ext.yii-pdf.EYiiPdf',
@@ -84,7 +82,7 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=clinic',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'root',
+            'password' => '123456',
             'charset' => 'utf8',
         ),
         /*

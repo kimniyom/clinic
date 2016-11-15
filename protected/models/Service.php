@@ -118,4 +118,5 @@ class Service extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
 }

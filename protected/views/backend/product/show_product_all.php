@@ -87,8 +87,8 @@ $web = new Configweb_model();
                                     <li><a href="<?php echo Yii::app()->createUrl('backend/product/update', array('type_id' => $last['type_id'], 'product_id' => $last['product_id'])); ?>"><i class="fa fa-edit"></i> แก้ไข</a></li>
                                     <!--
                                     <li><a href="javascript:delete_product('<?//php echo $last['product_id'] ?>','<?//php echo $trid ?>')"><i class="fa fa-trash"></i> ลบ</a></li>
-                                -->
-                                    </ul>
+                                    -->
+                                </ul>
                             </div>
                         </td>
                         <td>

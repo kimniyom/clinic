@@ -30,7 +30,7 @@ class ServiceDrugController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'formdrug', 'getproduct', 'adddrug', 'cutstock','druglist'),
+                'actions' => array('create', 'update', 'formdrug', 'getproduct', 'adddrug', 'cutstock', 'druglist'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -161,16 +161,29 @@ class ServiceDrugController extends Controller {
     public function actionFormdrug($seq) {
         $data['type'] = ProductType::model()->findAll("active", '1');
         //$service_id = Yii::app()->request->getPost('seq');
+        $result = Service::model()->find("id", $seq);
+        if (empty($result['id'])) {
+            $service = $result['id'];
+            Yii::app()->db->createCommand()
+                    ->delete("service_drug", "service_id = '$service' ");
+        }
         $data['seq'] = $seq;
         $this->renderPartial('formdrug', $data);
     }
 
     public function actionGetproduct() {
         $type = Yii::app()->request->getPost('type');
-        $sql = "SELECT p.product_id,p.product_name,COUNT(*) AS total
-                FROM product p LEFT JOIN items i ON p.product_id = i.product_id
-                WHERE p.type_id = '$type' AND i.status = '0' 
-                GROUP BY p.product_id ";
+        $sql = "SELECT p.product_id,p.product_name,IFNULL(Q.total,0) AS total
+                    FROM product p 
+                    LEFT JOIN 
+                    (
+                            SELECT i.product_id,COUNT(*) AS total 
+                            FROM items i WHERE i.`status` = '0'
+                            GROUP BY i.product_id
+                    ) Q
+                    ON p.product_id = Q.product_id
+                    WHERE p.type_id = '$type'
+                    GROUP BY p.product_id ";
         $data['product'] = Yii::app()->db->createCommand($sql)->queryAll();
         $this->renderPartial("product", $data);
     }
@@ -198,10 +211,10 @@ class ServiceDrugController extends Controller {
         Yii::app()->db->createCommand()
                 ->insert("service_drug", $columns);
 
-        $this->actionCutstock($product, $branch, $number);
+        $this->actionCutstock($product, $branch, $number, $seq);
     }
 
-    public function actionCutstock($product, $branch, $number) {
+    public function actionCutstock($product, $branch, $number, $service_id) {
         //$product = Yii::app()->request->getPost('product');
         //$branch = Yii::app()->request->getPost('branch');
         //$number = Yii::app()->request->getPost('number');
@@ -215,17 +228,21 @@ class ServiceDrugController extends Controller {
             $itemcode = $rs['itemcode'];
             Yii::app()->db->createCommand()
                     ->update("items", array("status" => "1"), "itemcode = '$itemcode' ");
+
+            $columns = array("itemcode" => $itemcode, "product_id" => $product, "service_id" => $service_id, "d_update" => date("Y-m-d H:i:s"));
+            Yii::app()->db->createCommand()
+                    ->insert("logserviceproduct", $columns);
         endforeach;
     }
 
     public function actionDruglist() {
         $seq = Yii::app()->request->getPost('seq');
-        $sql = "SELECT p.product_id,p.product_name,SUM(s.number) AS number
+        $sql = "SELECT p.product_id,p.product_name,SUM(s.number) AS number,p.product_price
                 FROM service_drug s INNER JOIN product p ON s.drug = p.product_id
                 WHERE s.service_id = '$seq'
                 GROUP BY p.product_id ";
         $data['drug'] = Yii::app()->db->createCommand($sql)->queryAll();
-        $this->renderPartial("druglist",$data);
+        $this->renderPartial("druglist", $data);
     }
 
 }

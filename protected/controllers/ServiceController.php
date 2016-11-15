@@ -30,7 +30,7 @@ class ServiceController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'detail', 'formservice', 'uploadify', 'loadimages', 'CheckImages', 'Saveservice'),
+                'actions' => array('create', 'update', 'detail', 'formservice', 'uploadify', 'loadimages', 'checkImages', 'saveservice', 'checkresultservice', 'deleteitem'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -313,6 +313,37 @@ class ServiceController extends Controller {
             Yii::app()->db->createCommand()
                     ->insert("service", $columns);
         }
+    }
+
+    public function actionCheckresultservice() {
+        $service_id = Yii::app()->request->getPost('service_id');
+        $result = Service::model()->find("id = '$service_id'");
+        if (empty($result['id'])) {
+            $val = 0;
+        } else {
+            $val = 1;
+        }
+        $json = array("result" => $val);
+        echo json_encode($json);
+    }
+
+    public function actionDeleteitem() {
+        $service_id = Yii::app()->request->getPost('service_id');
+        $product_id = Yii::app()->request->getPost('product_id');
+
+        $sql = "SELECT * FROM logserviceproduct WHERE service_id = '$service_id' AND product_id = '$product_id' ";
+        $item = Yii::app()->db->createCommand($sql)->queryAll();
+        foreach ($item as $rs):
+            $itemcode = $rs['itemcode'];
+            Yii::app()->db->createCommand()
+                    ->update("items", array("status" => "0"), "itemcode = '$itemcode' ");
+        endforeach;
+
+        Yii::app()->db->createCommand()
+                ->delete("logserviceproduct", "service_id = '$service_id' AND product_id = '$product_id' ");
+
+        Yii::app()->db->createCommand()
+                ->delete("service_drug", "service_id = '$service_id' AND drug = '$product_id' ");
     }
 
 }
