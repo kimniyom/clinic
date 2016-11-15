@@ -64,12 +64,15 @@ class HistoryserviceController extends Controller {
 
     public function actionResult() {
         $CheckbodyModel = new Checkbody();
+        $drugModel = new ServiceDrug();
         $service_id = Yii::app()->request->getPost('service_id');
         
         $service = Service::model()->find("id = '$service_id'");
         $data['service'] = $service;
         $data['patient'] = Patient::model()->find("id", $service['patient_id']);
         $data['checkbody'] = $CheckbodyModel->Getdetail($service['patient_id'], $service['checkbody']);
+        $data['drug'] = $drugModel->Getservicedrug($service_id);
+        $data['appoint'] = Appoint::model()->find("service_id = '$service_id' ");
         $this->renderPartial('result', $data);
     }
 
