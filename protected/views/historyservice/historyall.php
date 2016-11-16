@@ -26,7 +26,7 @@ $web = new Configweb_model();
             $i++;
             $url = Yii::app()->createUrl('historyservice/historyresult', array("service_id" => $rs['id']));
             ?>
-            <tr onclick="javasript:OpenWindow('<?php echo $url ?>', 'ประวัติการรับบริการ')" style=" cursor: pointer;">
+            <tr onclick="javasript:PopupCenter('<?php echo $url ?>','ประวัติการรับบริการ')" style=" cursor: pointer;">
                 <td style=" text-align: center;"><?php echo $i ?></td>
                 <td style=" text-align: center;"><?php echo $web->thaidate($rs['service_date']) ?></td>
                 <td><?php echo $rs['diagname'] ?></td>
@@ -35,20 +35,6 @@ $web = new Configweb_model();
         <?php endforeach; ?>
     </tbody>
 </table>
-
-<script type="text/javascript">
-    function OpenWindow(url, title) {
-        var browser = navigator.appName;
-        if (browser == "Microsoft Internet Explorer")
-        {
-            window.opener = self;
-        }
-        window.open(url, title, 'width = 900, height = 750,toolbar = no, scrollbars = no, location = no, resizable = no');
-        window.moveTo(0, 0);
-        window.resizeTo(screen.width, screen.height - 100);
-        self.close();
-    }
-</script>
 
 
 

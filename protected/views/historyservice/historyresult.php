@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        
+
         <style type="text/css">
             html body{
                 overflow-x: hidden;
@@ -154,6 +154,7 @@
 
         $gradcustomer = Gradcustomer::model()->find($patient['type'])
         ?>
+        <button type="button" onclick="prints()" id="print"><i class="fa fa-print"></i></button>
     <center>
         <div class="well" style=" width: 90%; background: #ffffff; margin-top: 20px; border: none; border-radius: 0px;">
             <center>
@@ -270,26 +271,28 @@
                         echo "-";
                     ?></h4>
                 <hr/>
+                <div id="box-img">
+                    <h4><i class="fa fa-image"></i> รูปภาพ</h4>
+                    <div class="box-img-service">
+                        <div>
+                            <?php
+                            foreach ($images as $img):
+                                ?>
 
-                <h4><i class="fa fa-image"></i> รูปภาพ</h4>
-                <div class="box-img-service">
-                    <div>
-                        <?php
-                        foreach ($images as $img):
-                            ?>
-
-                            <a class="fancybox" rel="gallery1" href="<?php echo Yii::app()->baseUrl; ?>/uploads/img_service/<?php echo $img['images'] ?>">
-                                <figure>
-                                    <div class="img-wrapper">
-                                        <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/img_service/<?php echo $img['images'] ?>" alt="" class="img-responsive" id="img-service">
-                                    </div>
-                                </figure>
-                            </a>
-                        <?php endforeach; ?>
+                                <a class="fancybox" rel="gallery1" href="<?php echo Yii::app()->baseUrl; ?>/uploads/img_service/<?php echo $img['images'] ?>">
+                                    <figure>
+                                        <div class="img-wrapper">
+                                            <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/img_service/<?php echo $img['images'] ?>" alt="" class="img-responsive" id="img-service">
+                                        </div>
+                                    </figure>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
+                    <hr/>
                 </div>
             </div>
-            <hr/>
+            
             <center><h2>รวมค่าใช้จ่าย <?php echo number_format($service['price_total'] + $sum, 2) ?> บาท</h2></center>
         </div>
     </center>
@@ -303,5 +306,11 @@
         });
 
     });
+
+    function prints() {
+        $("#print").hide();
+        $("#box-img").hide();
+        window.print();
+    }
 </script>
 </html>
