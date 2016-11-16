@@ -1,4 +1,10 @@
-
+<style type="text/css">
+    .active-menu{
+        background: #e3efff;
+        color: #000;
+        font-weight: bold;
+    }
+</style>
 
 <?php $web = new Configweb_model() ?>
 <?php
@@ -27,4 +33,11 @@ foreach ($history as $rs):
             $("#content-service").html(datas);
         });
     }
+
+    $(document).ready(function () {
+        $("#historyservice a #listmenu").click(function () {
+            $('a #listmenu').removeClass("active-menu");
+            $(this).addClass("active-menu");
+        });
+    });
 </script>

@@ -16,6 +16,10 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
     #font-18{
         color: #339900;
     }
+    .modal-body{
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+    }
 </style>
 
 <input type="hidden" id="patient_id" value="<?php echo $model['id'] ?>"/>
@@ -42,14 +46,14 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
             <center>
                 <img src="<?php echo Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img-responsive img-thumbnail" id="img_profile" style=" margin-top: 5px; max-height: 200px;"/>
                 <br/><br/>
-                
+
             </center>
 
-            <button type="button" class="btn btn-default btn-block" onclick="popupcheckbody('<?php echo $model['pid']?>','<?php echo $model['name']?>','<?php echo $model['lname'] ?>')">ตรวจร่างกาย</button>
+            <button type="button" class="btn btn-default btn-block" onclick="popupcheckbody('<?php echo $model['pid'] ?>', '<?php echo $model['name'] ?>', '<?php echo $model['lname'] ?>')">ตรวจร่างกาย</button>
             <button type="button" class="btn btn-default btn-block" onclick="popupdiag()">หัตถการทางการแพทย์</button>
             <button type="button" class="btn btn-default btn-block" onclick="popupdrug()">อาการแพ้ยา</button>
             <button type="button" class="btn btn-default btn-block" onclick="popupdisease()">โรคประจำตัว</button>
-            <button type="button" class="btn btn-default btn-block">ประวัติการรับบริการ</button>
+            <button type="button" class="btn btn-default btn-block" onclick="popuphistoryserviceall()">ประวัติการรับบริการ</button>
 
         </div>
         <div class="col-md-9 col-lg-9" style="padding-right: 0px;">
@@ -251,7 +255,26 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                 <hr/>
                 <div id="result_checkbody"></div>
             </div>
-            
+
+        </div>
+    </div>
+</div>
+
+<!--
+    #### ประวัติการรักษาทั้งหมด ####
+-->
+<!-- Modal -->
+<div class="modal fade" id="popuphistoryall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-child"></i> ประวัติการรักษา</h4>
+            </div>
+            <div class="modal-body">
+                <div id="historyserviceall"></div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -320,8 +343,8 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
     }
 
     /*CheckBody*/
-    function popupcheckbody(pid,name,lname) {
-        $("#hradcheckbody").html("PID : "+ pid +" ลูกค้า " + name + " " + lname);
+    function popupcheckbody(pid, name, lname) {
+        $("#hradcheckbody").html("PID : " + pid + " ลูกค้า " + name + " " + lname);
         $("#popup_checkbody").modal();
         loadcheckbody();
     }
@@ -333,6 +356,20 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
         $.post(url, data, function (result) {
             $("#result_checkbody").html(result);
+        });
+    }
+
+    function popuphistoryserviceall() {
+        HistoryServiceAll();
+        $("#popuphistoryall").modal();
+    }
+
+    function HistoryServiceAll() {
+        var url = "<?php echo Yii::app()->createUrl('historyservice/historyall') ?>";
+        var patient_id = "<?php echo $model['id'] ?>";
+        var data = {patient_id: patient_id};
+        $.post(url, data, function (result) {
+            $("#historyserviceall").html(result);
         });
     }
 </script>

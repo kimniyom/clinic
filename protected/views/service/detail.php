@@ -141,6 +141,8 @@
                     newWindow.focus();
                 }
             }
+
+
         </script>
 
     </head>
@@ -152,6 +154,9 @@
                 <div style=" width: 100%; height: 55px; padding: 10px; padding-top: 20px; padding-bottom: 15px; color: #009cf4; font-weight: bold; text-align: center; border-bottom: #23467b solid 1px;;">
                     ประวัติการรับบริการ
                 </div>
+                <a href="javascript:window.location.reload();">
+                    <div id="listmenu" style=" background: #000; text-align: center; font-weight: bold;"><i class="fa fa-hospital-o"></i> ห้องตรวจ</div>
+                </a>
                 <!-- GetService -->
                 <div id="historyservice"></div>
 
@@ -180,9 +185,7 @@
                                 <i class="fa fa-user-md"></i>
                                 ผู้ให้บริการ : <?php echo $Profile['name'] . " " . $Profile['lname']; ?></a>
                         </li>
-                        <li>
-                            <a href="javascript:window.location.reload();" class="btn btn-success"> <i class="fa fa-hospital-o"></i> ห้องตรวจ</a>
-                        </li>
+
                     </ul>
                     <ul class="nav nav-pills pull-right" style="margin:5px;">
                         <li>
@@ -204,7 +207,7 @@
                         <li role="presentation" id="tabservice"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" onclick="GetformServece('<?php echo $patient['id'] ?>')"><i class="fa fa-save"></i> บันทึกการตรวจ</a></li>
                         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" onclick="GetformAppoint()"><i class="fa fa-calendar"></i> นัดลูกค้า</a></li>
                         <li role="presentation"><a href="#drug" aria-controls="drug" role="tab" data-toggle="tab" onclick="GetformDrug()"><i class="fa fa-medkit"></i> จ่ายยา / สินค้า</a></li>
-                        <li role="presentation" class="pull-right"><a href=""><i class="fa fa-medkit"></i> สรุปผลการรักษา</a></li>
+                        <li role="presentation" class="pull-right"><a href="javascript:closejob()" class=" text-danger"><i class="fa fa-close"></i> ออกจากห้องตรวจ</a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -397,6 +400,13 @@
                 $.post(url, data, function (result) {
                     $("#historyservice").html(result);
                 });
+            }
+
+            function closejob() {
+                var r = confirm("คุณต้องการออกจากห้องตรวจ ใช่ หรือ ไม่ ...");
+                if (r == true) {
+                    window.close();
+                }
             }
 
         </script>

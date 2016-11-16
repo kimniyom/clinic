@@ -29,6 +29,7 @@
         </group>
         <group>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/serviceDrug/formdrug.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/models/ServiceDrug.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/config/main.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/formappoint.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/controllers/backend/StockController.php</file>
@@ -43,7 +44,6 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/views/historyservice/history.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/models/Backend_product.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/controllers/AppointController.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/models/Service.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/models/Checkbody.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/controllers/ServiceController.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/models/Items.php</file>
