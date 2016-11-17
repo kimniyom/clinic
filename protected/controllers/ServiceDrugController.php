@@ -221,7 +221,8 @@ class ServiceDrugController extends Controller {
         $sql = "SELECT i.*
                 FROM items i 
                 INNER JOIN product p ON i.product_id = p.product_id 
-                WHERE i.product_id = '$product' AND p.branch = '$branch' ORDER BY i.date_input,i.expire ASC LIMIT $number";
+                WHERE i.product_id = '$product' AND p.branch = '$branch' AND i.status = '0'
+                ORDER BY i.date_input,i.expire ASC LIMIT $number";
 
         $result = Yii::app()->db->createCommand($sql)->queryAll();
         foreach ($result as $rs):

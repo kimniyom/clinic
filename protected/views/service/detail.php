@@ -80,11 +80,12 @@
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/fancyBox/source/jquery.fancybox.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/fancyBox/source/jquery.fancybox.js" type="text/javascript"></script>
 
-        <!-- DateTimPicker -->
+        <!-- DatePicker -->
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/css/bootstrap-datepicker.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/locales/bootstrap-datepicker.th.min.js" type="text/javascript"></script>
-
+        
+        
         <!-- Sweetalert -->
         <!-- FancyBox -->
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/sweet-alert/sweetalert.css" type="text/css" media="all" />

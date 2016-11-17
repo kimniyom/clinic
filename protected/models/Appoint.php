@@ -100,4 +100,52 @@ class Appoint extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function GetBranch(){
+            $branch = Yii::app()->session['branch'];
+            if($branch == "99"){
+                $b = " ";
+            } else {
+                $b = " AND a.branch = '$branch' ";
+            }
+            
+            return $b;
+        }
+        
+        public function Countover(){
+            $branch = $this->GetBranch();
+             $sql = "SELECT COUNT(*) AS total
+                    FROM appoint a 
+                    WHERE DATEDIFF(a.appoint,NOW()) <= 5 AND a.status = '0' $branch";
+            
+            $rs = Yii::app()->db->createCommand($sql)->queryRow();
+            return $rs['total'];
+        }
+        
+        public function Appointover(){
+            $branch = $this->GetBranch();
+            $sql = "SELECT a.id,s.patient_id,a.appoint,a.branch,s.diagcode,p.oid,p.`name`,p.lname,c.tel,d.diagname,pr.pername,a.timeappoint
+                    FROM appoint a INNER JOIN service s ON a.service_id = s.id
+                    INNER JOIN patient p ON s.patient_id = p.id
+                    INNER JOIN patient_contact c ON p.id = c.patient_id
+                    INNER JOIN diag d ON s.diagcode = d.diagcode
+                    INNER JOIN pername pr ON p.oid = pr.oid
+                    WHERE DATEDIFF(a.appoint,NOW()) <= 5 AND a.status = '0' $branch
+                    ORDER BY a.create_date,a.timeappoint ASC ";
+            
+            return Yii::app()->db->createCommand($sql)->queryAll();
+        }
+
+		public function AppointCurrent(){
+			$branch = $this->GetBranch();
+			$sql = "SELECT a.*,pr.pername,
+						p.`name`,p.lname,p.card,p.images,s.diagcode,s.service_date,s.service_result,d.diagname,p.sex,p.birth
+					FROM appoint a INNER JOIN service s ON a.service_id = s.id
+					INNER JOIN patient p ON s.patient_id = p.id
+					INNER JOIN pername pr ON p.oid = pr.oid
+					INNER JOIN diag d ON s.diagcode = d.diagcode
+					WHERE a.appoint = LEFT(NOW(),10) AND a.status = '0' $branch";
+			
+			return Yii::app()->db->createCommand($sql)->queryAll();
+		}
 }

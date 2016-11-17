@@ -15,6 +15,10 @@
             #font-18{
                 color: #009900;
             }
+
+            .well .label{
+                border: none;
+            }
         </style>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/service/css/system.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/service/bootstrap/css/bootstrap.css" type="text/css" media="all" />
@@ -292,8 +296,18 @@
                     <hr/>
                 </div>
             </div>
-            
-            <center><h2>รวมค่าใช้จ่าย <?php echo number_format($service['price_total'] + $sum, 2) ?> บาท</h2></center>
+            <?php $total = ($service['price_total'] + $sum) ?>
+            <center><h2>รวมค่าใช้จ่าย <?php echo number_format($total, 2) ?> บาท</h2></center>
+            <center><h2>ส่วนลด <?php echo number_format($gradcustomer['distcount'], 2) ?> บาท</h2></center>
+            <center><h2>รวมสุทธิ 
+                    <?php
+                    if ($total > 0) {
+                        echo number_format($total - $gradcustomer['distcount'], 2);
+                    } else {
+                        echo "0.00";
+                    }
+                    ?> บาท
+                </h2></center>
         </div>
     </center>
 </body>

@@ -74,7 +74,7 @@ class StockController extends Controller {
         $sql = "SELECT COUNT(*) AS total 
                 FROM items i 
                 INNER JOIN product p ON i.product_id = p.product_id 
-                WHERE i.product_id = '$product' AND p.branch = '$branch' ";
+                WHERE i.product_id = '$product' AND p.branch = '$branch' AND i.status = '0'";
         $result = Yii::app()->db->createCommand($sql)->queryRow();
         if ($number <= $result['total']) {
             echo 1;

@@ -30,7 +30,7 @@ class AppointController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'formappoint', 'Saveappoint'),
+                'actions' => array('create', 'update', 'formappoint', 'saveappoint', 'appointover','updateappoint','appointcurrent'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -161,6 +161,9 @@ class AppointController extends Controller {
     public function actionFormappoint($seq = null) {
         $data['seq'] = $seq;
         $data['model'] = Appoint::model()->find("service_id = '$seq'");
+        $time = $data['model']['timeappoint'];
+        $data['hs'] = trim(substr($time, 0, 2));
+        $data['ms'] = trim(substr($time, 3, 2));
         $this->renderPartial('formappoint', $data);
     }
 
@@ -171,8 +174,10 @@ class AppointController extends Controller {
         if (empty($checkappoint['id'])) {
             $columns = array(
                 "appoint" => Yii::app()->request->getPost('appoint'),
+                "timeappoint" => Yii::app()->request->getPost('time'),
                 "service_id" => $service_id,
                 "branch" => Yii::app()->request->getPost('branch'),
+                "status" => "0",
                 "create_date" => date("Y-m-d H:i:s")
             );
 
@@ -181,7 +186,7 @@ class AppointController extends Controller {
         } else {
             $columns = array(
                 "appoint" => Yii::app()->request->getPost('appoint'),
-                //"service_id" => Yii::app()->request->getPost('service_id'),
+                "timeappoint" => Yii::app()->request->getPost('time'),
                 "branch" => Yii::app()->request->getPost('branch'),
                     //"create_date" => date("Y-m-d H:i:s")
             );
@@ -189,6 +194,31 @@ class AppointController extends Controller {
             Yii::app()->db->createCommand()
                     ->update("appoint", $columns, "id = '$id' ");
         }
+    }
+
+    public function actionAppointover() {
+        $Model = new Appoint();
+        $data['appoint'] = $Model->Appointover();
+        $this->render('appointover', $data);
+    }
+
+    public function actionUpdateappoint() {
+        $id = Yii::app()->request->getPost('id');
+        $columns = array(
+            "appoint" => Yii::app()->request->getPost('appoint'),
+            "timeappoint" => Yii::app()->request->getPost('time'),
+                //"create_date" => date("Y-m-d H:i:s")
+        );
+
+        Yii::app()->db->createCommand()
+                ->update("appoint", $columns, "id = '$id' ");
+    }
+
+    public function actionAppointcurrent(){
+        $Model = new Appoint();
+        $data['appoints'] = $Model->AppointCurrent();
+        //print_r($data['appoint']);
+        $this->render('appointcurrent',$data);
     }
 
 }

@@ -30,7 +30,7 @@ class DortorController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','dortorsearch','patientview'),
+                'actions' => array('create', 'update', 'dortorsearch', 'patientview'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -52,8 +52,18 @@ class DortorController extends Controller {
     }
 
     public function actionDortorsearch() {
+
+        $branch = Yii::app()->session['branch'];
+        if ($branch == "99") {
+            $b = " ";
+        } else {
+            $b = " AND a.branch = '$branch' ";
+        }
+
         $card = Yii::app()->request->getPost('card');
-        $patient = Patient::model()->find("card = '$card' ");
+        //$patient = Patient::model()->find("card = '$card' ");
+        $sql = "SELECT * FROM patient WHERE card = '$card' $b";
+        $patient = Yii::app()->db->createCommand($sql)->queryRow();
         if ($patient['card']) {
             $this->renderPartial('dortorsearch', array("patient" => $patient));
         } else {
@@ -61,12 +71,20 @@ class DortorController extends Controller {
         }
     }
 
-    public function actionPatientview($id) {
+    public function actionPatientview($id, $appoint = null) {
+        if (!empty($appoint)) {
+            $columns = array("status" => '1');
+            Yii::app()->db->createCommand()
+                    ->update("appoint", $columns, "id = '$id'");
+        }
         $contact = PatientContact::model()->find("patient_id = '$id'");
         $model = Patient::model()->find("id = '$id'");
+        $checkbodyModel = new Checkbody();
+        $checkbody = $checkbodyModel->Checkbody($id);
         $this->render('patientview', array(
             'model' => $model,
             'contact' => $contact,
+            'checkbody' => $checkbody,
         ));
     }
 

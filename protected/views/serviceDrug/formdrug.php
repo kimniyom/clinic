@@ -33,7 +33,7 @@
         $BranchModel = new Branch();
         echo $BranchModel->ComboBranch();
         ?>
-        
+
         <hr/>
         <div id="druglist"></div>
     </div>
@@ -62,7 +62,7 @@
         }
         var data = {product: product, number: number, branch: branch};
         $.post(url, data, function (datas) {
-         
+            //alert(datas);
             if (datas === '1') {
                 adddrug(product, number, branch);
             } else {
@@ -77,14 +77,14 @@
         var patient_id = $("#patient_id").val();
         var seq = "<?php echo $seq ?>";
         var diagcode = $("#diagcode").val();
-  
-        var data = {patient_id: patient_id,seq: seq, product: product, number: number, branch: branch, diagcode: diagcode};
+
+        var data = {patient_id: patient_id, seq: seq, product: product, number: number, branch: branch, diagcode: diagcode};
         $.post(url, data, function (datas) {
             GetformDrug();
         });
     }
-    
-    function loaddruglist(){
+
+    function loaddruglist() {
         var url = "<?php echo Yii::app()->createUrl('servicedrug/druglist') ?>";
         var seq = "<?php echo $seq ?>";
         var data = {seq: seq};

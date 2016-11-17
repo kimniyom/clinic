@@ -10,6 +10,7 @@
             $product_model = new Backend_product();
             $order_model = new Backend_orders();
             $UserModel = new Masuser();
+            $AppointModel = new Appoint();
             $Profile = $UserModel->GetProfile();
             $web = new Configweb_model();
             $branchModel = new Branch();
@@ -30,8 +31,7 @@
 
         </style>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css" type="text/css"/>
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-cyborg.css" type="text/css" media="all" />
-
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-slate.css" type="text/css" media="all" />
 
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/gallery_img/dist/magnific-popup.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/DataTables-1.10.7/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
@@ -60,6 +60,16 @@
         <script src="<?//= Yii::app()->baseUrl; ?>/assets/highcharts/themes/dark-unica.js"></script>
         -->
         <script src="<?= Yii::app()->baseUrl; ?>/assets/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+        
+        <!-- DatePicker -->
+        <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/css/bootstrap-datepicker.css" type="text/css" media="all" />
+        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/locales/bootstrap-datepicker.th.min.js" type="text/javascript"></script>
+        
+        <!-- Sweetalert -->
+        <!-- FancyBox -->
+        <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/sweet-alert/sweetalert.css" type="text/css" media="all" />
+        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/sweet-alert/sweetalert.min.js" type="text/javascript"></script>
 
         <!-- Uploadify -->
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
@@ -196,7 +206,7 @@
 
         <div id="wrapper">
             <!-- Sidebar -->
-            <div id="sidebar-wrapper" style=" border-right: #000000 solid 1px;">
+            <div id="sidebar-wrapper" style=" border-right: #000000 solid 1px; padding-bottom: 50px;">
                 <!-- ###################### USER #################-->
                 <div class="panel panel-default" id="panel-head">
                     <div class=" panel-heading" id="panel" style=" padding-top: 15px;">
@@ -271,6 +281,16 @@
                         ห้องตรวจ
                     </div>
                 </a>
+                
+                <!-- ลูกค้ามาตามนัด -->
+                <a href="<?= Yii::app()->createUrl('appoint/appointcurrent') ?>">
+                    <div id="listmenu">
+                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/Time-Machine-icon.png"
+                             height="32px"
+                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                        ลูกค้านัดวันนี้
+                    </div>
+                </a>
             </div>
             <!-- /#sidebar-wrapper -->
 
@@ -290,9 +310,16 @@
                         else
                             $classalertitem = "fa fa-bell";
                         ?>
+                        
+                        <?php
+                        if ($AppointModel->Countover() > 0)
+                            $classalertover= "fa fa-bell faa-flash animated text-danger";
+                        else
+                            $classalertover = "fa fa-bell";
+                        ?>
                         <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"><i class="<?php echo $classalertproduct ?>"></i> สินค้าใกล้หมด <span class="badge"><?php echo $product_model->stockproductalert(); ?> </span></a></li>
                         <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"><i class="<?php echo $classalertitem ?>"></i> สินค้าใกล้หมดอายุ <span class="badge"><?php echo $product_model->stockitemalert(); ?> </span></a></li>
-                        <li><a href="#"><i class="fa fa-calendar text-success"></i> ลูกค้าใกล้ถึงวันนัด <span class="badge"><?php echo $order_model->count_wait_inform(); ?> </span></a></li>
+                        <li><a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"><i class="<?php echo $classalertover ?>"></i> ลูกค้าใกล้ถึงวันนัด <span class="badge"><?php echo $AppointModel->Countover(); ?> </span></a></li>
                     </ul>
                 </nav>
                 <div class="container-fluid">
