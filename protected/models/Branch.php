@@ -100,7 +100,39 @@ class Branch extends CActiveRecord {
                 $disabled = "";
             } else {
                 $active = $branch;
-                $disabled = "disabled='disabled'";
+                $disabled = 'disabled="disabled"';
+            }
+        } else {
+            $active = $branchactive;
+            $disabled = "";
+        }
+
+
+
+        $str = "";
+        $str.='<select id="branch" class="form-control">';
+        foreach ($branchList as $b):
+            $str.= '<option value="' . $b['id'] . '"';
+            if ($b['id'] == $active) {
+                $str.=' selected="selected"';
+            }
+            $str.= $disabled . '>' . $b['branchname'] . '</option>';
+        endforeach;
+        $str.= '</select>';
+        return $str;
+    }
+
+    public function ComboBranchDisabled($branchactive = null) {
+        $branchList = Branch::model()->findAll("active = '1'");
+
+        if (!empty($branchactive)) {
+            $branch = Yii::app()->session['branch'];
+            if ($branch == "99") {
+                $active = "";
+                $disabled = "";
+            } else {
+                $active = $branch;
+                $disabled = 'disabled="disabled"';
             }
         } else {
             $active = $branchactive;

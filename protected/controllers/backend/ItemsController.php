@@ -333,7 +333,7 @@ class ItemsController extends Controller {
 
     public function actionGenitemcode() {
         $config = new Configweb_model();
-        $ItemCode = $config->Randstrgen('10');
+        $ItemCode = $config->RandstrgenNumber('10');
 
         $json = array("itemcode" => $ItemCode);
         echo json_encode($json);
@@ -359,6 +359,18 @@ class ItemsController extends Controller {
         $id = Yii::app()->request->getPost('id');
         Yii::app()->db->createCommand()
                 ->delete("items", "id = '$id' ");
+    }
+
+    public function actionGetbarcode() {
+        //$data['itemcode'] = Yii::app()->request->getPost('itemcode');
+        $data['itemcode'] = "3243543";
+        $this->renderPartial('//backend/items/barcode',$data);
+    }
+    
+    public function actionComboitem(){
+        $items = new Items();
+        $data['itemlist'] = $items->GetItemSell();
+        $this->renderPartial('//backend/items/comboitem',$data);
     }
 
 }

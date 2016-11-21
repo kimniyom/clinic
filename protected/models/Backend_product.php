@@ -208,7 +208,7 @@ class Backend_Product {
         if ($branch == "99") {
             $WHEREBRACH = " AND 1=1";
         } else {
-            $WHEREBRACH = "AND brach = '$branch' ";
+            $WHEREBRACH = "AND branch = '$branch' ";
         }
         $sql = "SELECT * FROM product WHERE type_id = '$type_id' AND delete_flag != '1' $WHEREBRACH";
         return Yii::app()->db->createCommand($sql)->queryAll();

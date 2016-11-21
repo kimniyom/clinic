@@ -103,7 +103,26 @@ $web = new Configweb_model();
                             <img src="<?//php echo Yii::app()->baseUrl; ?>/uploads/<?//php echo $img; ?>" class="img-resize img-thumbnail" width=""/>
                             -->
                         </td>
-                        <td><?php echo $last['product_id']; ?></td>
+                        <td style=" width: 10%;">
+                          <?php
+                                echo '<div id="' . $last['product_id']. '" style="width:30px;"><div>'; //the same id should be given to the extension item id 
+
+                                $optionsArray = array(
+                                'elementId' => $last['product_id'], /* id of div or canvas */
+                                'value' => $last['product_id'], /* value for EAN 13 be careful to set right values for each barcode type */
+                                'type' => 'code128', /* supported types  ean8, ean13, upc, std25, int25, code11, code39, code93, code128, codabar, msi, datamatrix */
+                                'settings' => array(
+                   
+                                /* "1" Bars color */
+                                //'barWidth' => "1",
+                                'barHeight' => "30",
+                                
+                                ),
+                                );
+                                $this->widget('ext.Yii-Barcode-Generator.Barcode', $optionsArray);
+                                ?>
+                            <?php //echo $last['product_id']; ?>
+                        </td>
                         <td><?php echo $last['product_name']; ?></td>
                         <td style=" text-align: center; font-weight: bold;">
                             <?php echo number_format($last['product_price'], 2); ?>
@@ -137,6 +156,7 @@ $web = new Configweb_model();
 <!--
     ### POPUP MODAL ADD ITEMS
 -->
+
 
 <div class="modal fade" tabindex="-1" role="dialog" id="popupitems">
     <div class="modal-dialog" role="document">
@@ -185,9 +205,9 @@ $web = new Configweb_model();
                                 }
                                 ?>
                                 <option value="<?php echo $day; ?>" <?php
-                                if ($i == date('d')) {
-                                    echo "selected";
-                                }
+                            if ($i == date('d')) {
+                                echo "selected";
+                            }
                                 ?>><?php echo $day; ?></option>
                                     <?php } ?>
                         </select>
@@ -207,7 +227,7 @@ $web = new Configweb_model();
                             <option value="">ปี</option>
                             <?php
                             $yearnow = date("Y");
-                            for ($i = ($yearnow + 10); $i >= $yearnow - 10; $i--) {
+                            for ($i = ($yearnow + 10); $i >= $yearnow; $i--) {
                                 ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i + 543; ?></option>
                             <?php } ?>
@@ -257,8 +277,11 @@ $web = new Configweb_model();
         }, 'Json');
         $("#product_id").val(productID);
         $("#popuptitle").text(productName);
+
         $("#popupitems").modal();
     }
+
+    
 
     function SaveItems() {
         var url = "<?php echo Yii::app()->createUrl('backend/items/save') ?>";

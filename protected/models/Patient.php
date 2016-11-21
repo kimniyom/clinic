@@ -34,7 +34,7 @@ class Patient extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('card, oid, name, lname, birth, sex, type, branch, create_date,occupation','required'),
+            array('card, oid, name, lname, birth, sex, type, branch, create_date,occupation', 'required'),
             array('type, branch, emp_id', 'numerical', 'integerOnly' => true),
             array('pid', 'length', 'max' => 10),
             array('card', 'length', 'max' => 20),
@@ -125,6 +125,19 @@ class Patient extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
+    }
+
+    public function GetPatient() {
+        $branch = Yii::app()->session['branch'];
+        if ($branch == '99') {
+            $where = " 1=1";
+        } else {
+            $where = " branch = '$branch' ";
+        }
+        $sql = "SELECT card,CONCAT(name,' ',lname) AS name FROM patient WHERE $where";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+
+        return $result;
     }
 
 }

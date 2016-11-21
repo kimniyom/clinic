@@ -1,6 +1,7 @@
 <?php
 
 class SiteController extends Controller {
+    public $layout = 'template_backend';
 
     /**
      * Declares class-based actions.
@@ -93,7 +94,7 @@ class SiteController extends Controller {
                     $branch = $role->find("user_id = '$user_id' ");
                     Yii::app()->session['status'] = $status;
                     Yii::app()->session['branch'] = $branch['branch_id'];
-                    $this->redirect(array('backend/backend'));
+                    $this->redirect(array('site/index'));
                 } else {
                     $this->renderPartial('login', array('model' => $model));
                 }

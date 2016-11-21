@@ -135,4 +135,17 @@ class Items extends CActiveRecord
             
             return $status;
         }
+
+		public function GetItemSell(){
+			$branch = Yii::app()->session['branch'];
+			if($branch  == '99'){
+				$where = "";
+			} else {
+				$where = " AND p.branch = '$branch' ";
+			}
+			$sql = "SELECT i.itemcode,i.itemcode AS itemname FROM items i INNER JOIN product p ON i.product_id = p.product_id WHERE i.status = '0' $where";
+			$result = Yii::app()->db->createCommand($sql)->queryAll();
+			
+			return $result;
+		}
 }

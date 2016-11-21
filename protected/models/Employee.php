@@ -139,4 +139,6 @@ class Employee extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+
 }

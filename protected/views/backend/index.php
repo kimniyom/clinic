@@ -1,64 +1,25 @@
-<style type="text/css">
-    #card{
-        height: 50px;
-        font-size: 30px;
-    }
-    #bg-patient{
-        background: url("images/bg-patient.png") no-repeat right bottom fixed;
-    }
-</style>
-<script>
-    $(document).ready(function () {
-        $(".breadcrumb").hide();
-    });
-</script>
-
-<?php $config = new Configweb_model(); ?>
-
-<div id="bg-patient">
-    <br/><br/><br/>
+<div class="container">
     <div class="row">
-        <div class="col-lg-4">
-            <p style=" font-size: 24px; padding-top: 10px; text-align: center;"> เลขบัตรประชาชน 13 หลัก</p>
+        <div class="col-md-3 col-lg-3">
+            <div class="btn btn-primary btn-block">
+                <h2>จำนวน 5 </h2>
+                <hr/>
+                <h4>ลูกค้ามาตามนัดวันนี้</h4>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <?php
-            $this->widget("ext.maskedInput.MaskedInput", array(
-                //"model" => $model,
-                //"attribute" => "card",
-                "id" => 'card',
-                "name" => 'card',
-                "mask" => '9-9999-99999-99-9',
-                "clientOptions" => array("autoUnmask" => true), /* autoUnmask defaults to false */
-                "defaults" => array("removeMaskOnSubmit" => false),
-                    /* once defaults are set will be applied to all the masked fields  removeMaskOnSubmit defaults to true */
-            ));
-            ?>
+        <div class="col-md-3 col-lg-3">
+            <div class="btn btn-success btn-block">
+                <h2>จำนวน 5 </h2>
+                <hr/>
+                <h4>ลูกค้ารับบริการวันนี้</h4>
+            </div>
         </div>
-        <div class="col-lg-2">
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="Search()"><i class="fa fa-search"></i> ค้นหา</button>
+        <div class="col-md-3 col-lg-3">
+            <div class="btn btn-warning btn-block">
+                <h2>จำนวน 5 </h2>
+                <hr/>
+                <h4>สินค้าที่ขายได้</h4>
+            </div>
         </div>
     </div>
-
-    <div id="patient_result"></div>
 </div>
-<script type="text/javascript">
-    function Search() {
-        var url = "<?php echo Yii::app()->createUrl('patient/dortorsearch') ?>";
-        var card = $("#card").val();
-        var data = {card: card};
-
-        if (card == "") {
-            $("#card").focus();
-            return false;
-        }
-
-        $.post(url, data, function (result) {
-            if (result == 0) {
-                $("#patient_result").html("<hr/><p style='color:red;text-align:center; font-size:24px;'>ไม่พบข้อมูลลูกค้า</p>");
-            } else {
-                $("#patient_result").html(result);
-            }
-        });
-    }
-</script>

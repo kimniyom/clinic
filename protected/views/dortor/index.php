@@ -19,7 +19,7 @@
 
 <?php $config = new Configweb_model(); ?>
 <br/><br/><br/>
-<div id="bg-patient"></div>
+
 <h3 class=" text-info"><i class="fa fa-search"></i> ค้นหาข้อมูลลูกค้า</h3>
 <div class="well">
     <div class="row">

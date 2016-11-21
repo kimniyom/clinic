@@ -57,7 +57,7 @@ class DortorController extends Controller {
         if ($branch == "99") {
             $b = " ";
         } else {
-            $b = " AND a.branch = '$branch' ";
+            $b = " AND branch = '$branch' ";
         }
 
         $card = Yii::app()->request->getPost('card');

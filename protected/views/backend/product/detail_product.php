@@ -86,7 +86,7 @@ $Total = $ItemModel->CountItems($product_id);
 
             <button type="button" class="btn btn-success btn-sm" onclick="popup_add_items('<?php echo $product['product_id'] ?>', '<?php echo $product['product_name'] ?>')">
                 <i class="fa fa-plus"></i> เพิ่มจำนวน Item</button>
-                <br/><br/>
+            <br/><br/>
             <table class="table">
                 <thead>
                     <tr>
@@ -105,7 +105,24 @@ $Total = $ItemModel->CountItems($product_id);
                         ?>
                         <tr>
                             <td><?php echo $i ?></td>
-                            <td><?php echo $item['itemcode'] ?></td>
+                            <td>
+                                <?php
+                                echo '<div id="' . $item['itemcode'] . '"><div>'; //the same id should be given to the extension item id 
+
+                                $optionsArray = array(
+                                    'elementId' => $item['itemcode'], /* id of div or canvas */
+                                    'value' => $item['itemcode'], /* value for EAN 13 be careful to set right values for each barcode type */
+                                    'type' => 'code39', /* supported types  ean8, ean13, upc, std25, int25, code11, code39, code93, code128, codabar, msi, datamatrix */
+                                    'settings' => array(
+                                        /* "1" Bars color */
+                                        'barWidth' => "1",
+                                        'barHeight' => "30",
+                                    ),
+                                );
+                                $this->widget('ext.Yii-Barcode-Generator.Barcode', $optionsArray);
+                                ?>
+                                <?php //echo $item['itemcode'] ?>
+                            </td>
                             <td><?php echo $Web->thaidate($item['date_input']) ?></td>
                             <td><?php echo $Web->thaidate($item['expire']) ?></td>
                             <td style="text-align: center;">
@@ -121,7 +138,7 @@ $Total = $ItemModel->CountItems($product_id);
                 </tbody>
             </table>
         </div>
-
+        
         <div class="col-lg-6 col-md-12 col-xs-12" style=" padding-top: 20px;">
             <?php
             $product_model = new Product();
@@ -235,14 +252,16 @@ $Total = $ItemModel->CountItems($product_id);
                                     echo "selected";
                                 }
                                 ?>><?php echo $day; ?></option>
-                                    <?php } ?>
+                            <?php } ?>
                         </select>
                     </div>
 
                     <div class="col-sm-4">
                         <select id="month" name="month" class="form-control">
                             <option value="">เดือน</option>
-                            <?php for ($i = 0; $i <= 11; $i++) { ?>
+<?php
+for ($i = 0; $i <= 11; $i++) {
+    ?>
                                 <option value="<?php echo $monthval[$i]; ?>"><?php echo $monthname[$i]; ?></option>
                             <?php } ?>
                         </select>
@@ -251,10 +270,10 @@ $Total = $ItemModel->CountItems($product_id);
                     <div class="col-sm-4">
                         <select id="year" name="year" class="form-control">
                             <option value="">ปี</option>
-                            <?php
-                            $yearnow = date("Y");
-                            for ($i = ($yearnow + 10); $i >= $yearnow - 10; $i--) {
-                                ?>
+<?php
+$yearnow = date("Y");
+for ($i = ($yearnow + 10); $i >= $yearnow; $i--) {
+    ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i + 543; ?></option>
                             <?php } ?>
                         </select>

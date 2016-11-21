@@ -41,11 +41,13 @@
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/simple-sidebar.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/perfect-scrollbar/css/perfect-scrollbar.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/css/card-css/card-css.css"/>
+        
+        
         <!-- Bootstrap CheckBox
         <link rel="stylesheet" href="<?//php echo Yii::app()->baseUrl; ?>/css/bootstrap-checkbox/awesome-bootstrap-checkbox.css" type="text/css" media="all" />
         -->
         <!--
-        <script src="<?//= Yii::app()->baseUrl; ?>/themes/backend/js/jquery-1.9.1.js" type="text/javascript"></script>
+        
         <script src="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/js/bootstrap.js" type="text/javascript"></script>
         -->
         <!-- Magnific Popup core CSS file -->
@@ -60,12 +62,12 @@
         <script src="<?//= Yii::app()->baseUrl; ?>/assets/highcharts/themes/dark-unica.js"></script>
         -->
         <script src="<?= Yii::app()->baseUrl; ?>/assets/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-        
+
         <!-- DatePicker -->
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/css/bootstrap-datepicker.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/locales/bootstrap-datepicker.th.min.js" type="text/javascript"></script>
-        
+
         <!-- Sweetalert -->
         <!-- FancyBox -->
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/sweet-alert/sweetalert.css" type="text/css" media="all" />
@@ -74,7 +76,17 @@
         <!-- Uploadify -->
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
+        
+        <!--
+            SELECT2 Combobox
+        -->
 
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/select2-master/dist/css/select2.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/select2-bootstrap-theme-master/dist/select2-bootstrap.css" type="text/css" media="all" />
+        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/select2-master/dist/js/select2.js" type="text/javascript"></script>
+
+
+        
         <script type="text/javascript">
 
             $(document).ready(function () {
@@ -120,7 +132,7 @@
     <body style="/*background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;">-->
         <nav class="navbar navbar-default" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; /*background: #2a323b;*/">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; border-bottom: #000000 solid 1px; /*background: #2a323b;*/">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -144,7 +156,7 @@
                             echo "class='active'";
                         }
                         ?> onclick="set_navbar('1')">
-                            <a href="<?php echo Yii::app()->createUrl('backend/backend') ?>">
+                            <a href="<?php echo Yii::app()->createUrl('site/index') ?>">
                                 <span class="glyphicon glyphicon-home"></span>
                                 <font id="font-th">หน้าหลัก</font></a>
                         </li>
@@ -213,7 +225,7 @@
                         <img src="<?= Yii::app()->baseUrl; ?>/images/use-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px;"> ผู้ใช้งาน
                     </div>
                     <div class="panel-body">
-                        User : <?php echo Yii::app()->user->name ?><br>
+                        User : <?php echo Yii::app()->user->id." ".Yii::app()->user->name ?><br>
                         สถานะ : <?php echo Yii::app()->session['status'] . ' (' . $Profile['status'] . ')'; ?><br/>
                         สาขา ​: <?php echo Yii::app()->session['branch'] . " " . $branchModel->Getbranch(Yii::app()->session['branch']) ?>
                     </div>
@@ -281,7 +293,7 @@
                         ห้องตรวจ
                     </div>
                 </a>
-                
+
                 <!-- ลูกค้ามาตามนัด -->
                 <a href="<?= Yii::app()->createUrl('appoint/appointcurrent') ?>">
                     <div id="listmenu">
@@ -289,6 +301,17 @@
                              height="32px"
                              style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
                         ลูกค้านัดวันนี้
+                    </div>
+                </a>
+
+                <hr/>
+                <!-- ขายสินค้า -->
+                <a href="<?= Yii::app()->createUrl('sell/index') ?>">
+                    <div id="listmenu">
+                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/shopping-bag-icon.png"
+                             height="32px"
+                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                        ขายสินค้า
                     </div>
                 </a>
             </div>
@@ -310,10 +333,10 @@
                         else
                             $classalertitem = "fa fa-bell";
                         ?>
-                        
+
                         <?php
                         if ($AppointModel->Countover() > 0)
-                            $classalertover= "fa fa-bell faa-flash animated text-danger";
+                            $classalertover = "fa fa-bell faa-flash animated text-danger";
                         else
                             $classalertover = "fa fa-bell";
                         ?>
@@ -331,11 +354,11 @@
                                 <?php if (isset($this->breadcrumbs)): ?>
                                     <?php
                                     $this->widget('zii.widgets.CBreadcrumbs', array(
-                                        'homeLink' => CHtml::link('<i class=" glyphicon glyphicon-home"></i> หน้าหลัก', Yii::app()->createUrl('backend/backend')),
+                                        'homeLink' => CHtml::link('<i class=" glyphicon glyphicon-home"></i> หน้าหลัก', Yii::app()->createUrl('site/index')),
                                         'links' => $this->breadcrumbs,
                                     ));
                                     ?><!-- breadcrumbs -->
-                            <?php endif ?>
+                                <?php endif ?>
                             </ol>
                             <?php
                             echo $content;
