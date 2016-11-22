@@ -21,6 +21,21 @@
 		<?php echo $form->textField($model,'branchname',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'active'); ?>
+		<?php echo $form->textField($model,'active'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'address'); ?>
+		<?php echo $form->textArea($model,'address',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'contact'); ?>
+		<?php echo $form->textArea($model,'contact',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

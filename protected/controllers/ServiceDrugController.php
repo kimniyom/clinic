@@ -228,7 +228,7 @@ class ServiceDrugController extends Controller {
         foreach ($result as $rs):
             $itemcode = $rs['itemcode'];
             Yii::app()->db->createCommand()
-                    ->update("items", array("status" => "1"), "itemcode = '$itemcode' ");
+                    ->update("items", array("status" => "1","flag" => 'D'), "itemcode = '$itemcode' ");
 
             $columns = array("itemcode" => $itemcode, "product_id" => $product, "service_id" => $service_id, "d_update" => date("Y-m-d H:i:s"));
             Yii::app()->db->createCommand()

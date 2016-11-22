@@ -31,7 +31,7 @@
 
         </style>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css" type="text/css"/>
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-slate.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-cerulean.css" type="text/css" media="all" />
 
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/gallery_img/dist/magnific-popup.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/DataTables-1.10.7/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
@@ -131,8 +131,8 @@
 
     <body style="/*background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;">-->
-        <nav class="navbar navbar-default" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; border-bottom: #000000 solid 1px; /*background: #2a323b;*/">
+        <nav class="navbar navbar-inverse" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; border-bottom: #000000 solid 1px; /*background: #2a323b;*/">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -319,7 +319,7 @@
 
             <!-- Page Content -->
             <div id="page-content-wrapper" style="padding:0px;">
-                <nav class="navbar navbar-default" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px; border-left: none; border-right: none;">
+                <nav class="navbar navbar-inverse" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px; border-left: none; border-right: none;">
                     <ul class="nav nav-pills pull-right" style="margin:5px;">
                         <?php
                         if ($product_model->stockproductalert() > 0)

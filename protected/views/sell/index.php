@@ -57,9 +57,11 @@ $sell_id = $Config->RandstrgenNumber(10);
                     สาขา
                     <?php echo $brancList ?>
                 </div>
+                <div class="col-lg-6">
+                    <button type="button" class="btn btn-success btn-block" onclick="sell()" style="margin-top: 20px;"><i class="fa fa-plus"></i> เพิ่มสินค้า</button>
+                </div>
             </div>
             <br/>
-            <button type="button" class="btn btn-success" onclick="sell()"><i class="fa fa-plus"></i> เพิ่มสินค้า</button>
             <p style=" color: #ff3300;">*ห้าม refresh หน้าจอก่อนสิ้นสุดการขาย</p>
         </div>
 
@@ -74,13 +76,15 @@ $sell_id = $Config->RandstrgenNumber(10);
         </div>
 
         <div class="col-lg-3" style=" border-left: #999999 solid 1px;">
-            <div class="well" style=" text-align: center;">
-                <h2>ราคารวม</h2>
-                <input type="hidden" id="_total"/>
+            <div class="well" style=" text-align: center; background: #333333;">
+                <h2 style=" color: #FFFFFF;">ราคารวม</h2>
+                <input type="hidden" id="_total" value="0">
                 <h1 id="total" style=" color: #ffcc00;">0</h1>
             </div>
             <?php $url = Yii::app()->createUrl('sell/bill', array("sell_id" => $sell_id)) ?>
-            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php echo $url ?>', '<?php echo $sell_id ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
+            <!--
+            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url            ?>', '<?php //echo $sell_id            ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
+            -->
             <button type="button" class="btn btn-danger btn-block" onclick="javascript:window.location.reload()"><i class="fa fa-remove"></i> จบการขาย</button>
         </div>
     </div>
@@ -116,6 +120,29 @@ $sell_id = $Config->RandstrgenNumber(10);
         });
     }
 
+    function confirmOrder() {
+        var url = "<?php echo Yii::app()->createUrl('sell/logsell') ?>";
+        var itemcode = $("#itemcode").val();
+        var sellcode = $("#sellcode").val();
+        var branch = $("#branch").val();
+        var card = $("#card").val();
+        var total = $("#_total").val();
+        var income = $("#income").val();
+        var change = $("#change").val();
+        var data = {itemcode: itemcode, sellcode: sellcode, card: card, branch: branch, total: total, income: income, change: change};
+        $.post(url, data, function (datas) {
+            PrintBill(sellcode);
+            //$("#orderlist").html(datas);
+            //loaditems();
+            //loadorder();
+        });
+    }
+
+    function PrintBill(sellcode) {
+        var url = "<?php echo Yii::app()->createUrl('sell/bill') ?>" + "&sell_id=" + sellcode;
+        PopupBill(url, sellcode);
+    }
+
     function loaditems() {
         var url = "<?php echo Yii::app()->createUrl('backend/items/comboitem') ?>";
         var data = {};
@@ -143,7 +170,7 @@ $sell_id = $Config->RandstrgenNumber(10);
         $.post(url, data, function (response) {
             var datas = jQuery.parseJSON(response);
             $("#_total").val(datas.total);
-            $("#total").text(formatThousands(datas.total));
+            $("#total").text(formatThousands(datas.total) + ".-");
         });
     }
 
@@ -196,33 +223,36 @@ $sell_id = $Config->RandstrgenNumber(10);
             $("#income").focus();
             return false;
         }
-        
+
         if (isNaN(income) || income <= 0) {
             //alert("ยังไม่ได้รับเงินจากลูกค้า ใส่จำนวนเงินที่ช่องรับเงิน");
             swal("แจ้งเตือน!", "ยังไม่ได้รับเงินจากลูกค้า ใส่จำนวนเงินที่ช่องรับเงิน ...!", "warning");
             $("#income").focus();
             return false;
         }
-        
-        if(income < total){
+
+        if (income < total) {
             swal("แจ้งเตือน!", "ไม่พอจ่ายค่าสินค้า ...!", "warning");
             $("#income").focus();
             return false;
         }
+
+        confirmOrder();
+
         /*
-        var data = {
-            orderID: orderID,
-            total: total,
-            distcount: distcount,
-            income: income,
-            change: change
-        };
-        $.post(url, data, function (response) {
-            window.location.reload();
-            //var datas = jQuery.parseJSON(response);
-            //$("#total").val(datas.total);
-        });
-        */
+         var data = {
+         orderID: orderID,
+         total: total,
+         distcount: distcount,
+         income: income,
+         change: change
+         };
+         $.post(url, data, function (response) {
+         window.location.reload();
+         //var datas = jQuery.parseJSON(response);
+         //$("#total").val(datas.total);
+         });
+         */
     }
 
 

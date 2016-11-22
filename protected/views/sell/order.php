@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-default" onclick="loadorder()"><i class="fa fa-refresh"></i></button>
-<table class="table table-bordered">
+<table class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
             <th style="text-align: center; width: 5%;">#</th>

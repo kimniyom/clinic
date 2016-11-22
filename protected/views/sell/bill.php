@@ -77,9 +77,9 @@ $patient = Patient::model()->find("card = '$card' ");
             <tr>
                 <th style="text-align: center; width: 5%;">#</th>
                 <th>รายการ</th>
-                <th style=" text-align: center;">จำนวน</th>
-                <th style=" text-align: center;">ราคา / หน่วย</th>
-                <th style=" text-align: center;">รวม</th>
+                <th style=" text-align: center; width: 10%;">จำนวน</th>
+                <th style=" text-align: center; width: 10%;">ราคา / หน่วย</th>
+                <th style=" text-align: center; width: 10%;">รวม</th>
             </tr>
         </thead>
         <tbody>
@@ -102,9 +102,18 @@ $patient = Patient::model()->find("card = '$card' ");
         </tbody>
         <tfoot>
             <tr>
-                <td style=" text-align: center; font-weight: bold;" colspan="4">รวม</td>
+                <td style=" text-align: right; font-weight: bold;" colspan="4">รวม</td>
                 <td style="text-align: right;"><?php echo number_format($sum, 2); ?></td>
             </tr>
+            <tr>
+                <td style=" text-align: right; font-weight: bold;" colspan="4">รับเงิน</td>
+                <td style="text-align: right;"><?php echo number_format($logsell['income'], 2); ?></td>
+            </tr>
+            <tr>
+                <td style=" text-align: right; font-weight: bold;" colspan="4">เงินทอน</td>
+                <td style="text-align: right;"><?php echo number_format($logsell['change'], 2); ?></td>
+            </tr>
+
         </tfoot>
     </table>
     <br/>

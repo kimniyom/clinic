@@ -6,6 +6,9 @@
  * The followings are the available columns in table 'branch':
  * @property integer $id
  * @property string $branchname
+ * @property integer $active
+ * @property string $address
+ * @property string $contact
  */
 class Branch extends CActiveRecord {
 
@@ -23,11 +26,12 @@ class Branch extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('branchname', 'required'),
+            array('active', 'numerical', 'integerOnly' => true),
             array('branchname', 'length', 'max' => 255),
+            array('address, contact', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, branchname', 'safe', 'on' => 'search'),
+            array('id, branchname, active, address, contact', 'safe', 'on' => 'search'),
         );
     }
 
@@ -48,6 +52,9 @@ class Branch extends CActiveRecord {
         return array(
             'id' => 'รหัสสาขา',
             'branchname' => 'ชื่อสาขา',
+            'active' => 'แสดง',
+            'address' => 'ที่อยู่',
+            'contact' => 'ข้อมูลติดต่อ',
         );
     }
 
@@ -70,6 +77,9 @@ class Branch extends CActiveRecord {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('branchname', $this->branchname, true);
+        $criteria->compare('active', $this->active);
+        $criteria->compare('address', $this->address, true);
+        $criteria->compare('contact', $this->contact, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

@@ -1596,3 +1596,334 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
 HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/appointover
 ---
+2016/11/22 09:20:31 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.status' in 'where clause'. The SQL statement executed was: SELECT COUNT(*) AS total
+                    FROM appoint a 
+                    WHERE DATEDIFF(a.appoint,NOW()) <= 5 AND a.status = '0'  .
+in C:\xampp\htdocs\clinic\protected\models\Appoint.php (121)
+in C:\xampp\htdocs\clinic\protected\views\layouts\template_backend.php (338)
+in C:\xampp\htdocs\clinic\protected\controllers\SiteController.php (33)
+2016/11/22 09:20:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.status' in 'where clause'. The SQL statement executed was: SELECT COUNT(*) AS total
+                    FROM appoint a 
+                    WHERE DATEDIFF(a.appoint,NOW()) <= 5 AND a.status = '0'  ' in C:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\clinic\protected\models\Appoint.php(121): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\clinic\protected\views\layouts\template_backend.php(338): Appoint->Countover()
+#3 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\clinic\framework\web\CController.php(784): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\clinic\protected\controllers\SiteController.php(33): CController->render('index')
+#7 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\clinic\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('index')
+#12 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('site/index')
+#13 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=site/index
+HTTP_REFERER=http://localhost/clinic/
+---
+2016/11/22 09:23:22 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.status' in 'where clause'. The SQL statement executed was: SELECT COUNT(*) AS total
+                    FROM appoint a 
+                    WHERE DATEDIFF(a.appoint,NOW()) <= 5 AND a.status = '0'  .
+in C:\xampp\htdocs\clinic\protected\models\Appoint.php (121)
+in C:\xampp\htdocs\clinic\protected\views\layouts\template_backend.php (338)
+in C:\xampp\htdocs\clinic\protected\controllers\SiteController.php (33)
+2016/11/22 09:23:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.status' in 'where clause'. The SQL statement executed was: SELECT COUNT(*) AS total
+                    FROM appoint a 
+                    WHERE DATEDIFF(a.appoint,NOW()) <= 5 AND a.status = '0'  ' in C:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\clinic\protected\models\Appoint.php(121): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\clinic\protected\views\layouts\template_backend.php(338): Appoint->Countover()
+#3 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\clinic\framework\web\CController.php(784): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\clinic\protected\controllers\SiteController.php(33): CController->render('index')
+#7 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\clinic\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('index')
+#12 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('site/index')
+#13 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=site/index
+HTTP_REFERER=http://localhost/clinic/
+---
+2016/11/22 09:23:24 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.status' in 'where clause'. The SQL statement executed was: SELECT COUNT(*) AS total
+                    FROM appoint a 
+                    WHERE DATEDIFF(a.appoint,NOW()) <= 5 AND a.status = '0'  .
+in C:\xampp\htdocs\clinic\protected\models\Appoint.php (121)
+in C:\xampp\htdocs\clinic\protected\views\layouts\template_backend.php (338)
+in C:\xampp\htdocs\clinic\protected\controllers\SiteController.php (33)
+2016/11/22 09:23:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'a.status' in 'where clause'. The SQL statement executed was: SELECT COUNT(*) AS total
+                    FROM appoint a 
+                    WHERE DATEDIFF(a.appoint,NOW()) <= 5 AND a.status = '0'  ' in C:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\clinic\protected\models\Appoint.php(121): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\clinic\protected\views\layouts\template_backend.php(338): Appoint->Countover()
+#3 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\clinic\framework\web\CController.php(784): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\clinic\protected\controllers\SiteController.php(33): CController->render('index')
+#7 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\clinic\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('index')
+#12 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('site/index')
+#13 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=site/index
+HTTP_REFERER=http://localhost/clinic/
+---
+2016/11/22 10:51:02 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in C:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 C:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('logsell')
+#8 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('sell/logsell')
+#9 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=sell/logsell
+HTTP_REFERER=http://localhost/clinic/index.php?r=sell/index
+---
+2016/11/22 10:51:27 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'change' in 'field list'. The SQL statement executed was: INSERT INTO `logsell` (`card`, `sell_id`, `user_id`, `branch`, `total`, `income`, `change`, `date_sell`) VALUES (:card, :sell_id, :user_id, :branch, :total, :income, :change, :date_sell).
+in C:\xampp\htdocs\clinic\protected\controllers\SellController.php (139)
+in C:\xampp\htdocs\clinic\index.php (15)
+2016/11/22 10:51:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'change' in 'field list'. The SQL statement executed was: INSERT INTO `logsell` (`card`, `sell_id`, `user_id`, `branch`, `total`, `income`, `change`, `date_sell`) VALUES (:card, :sell_id, :user_id, :branch, :total, :income, :change, :date_sell)' in C:\xampp\htdocs\clinic\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\db\CDbCommand.php(1250): CDbCommand->execute(Array)
+#1 C:\xampp\htdocs\clinic\protected\controllers\SellController.php(139): CDbCommand->insert('logsell', Array)
+#2 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): SellController->actionLogsell()
+#3 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('logsell')
+#12 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('sell/logsell')
+#13 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=sell/logsell
+HTTP_REFERER=http://localhost/clinic/index.php?r=sell/index
+---
+2016/11/22 10:51:45 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'change' in 'field list'. The SQL statement executed was: INSERT INTO `logsell` (`card`, `sell_id`, `user_id`, `branch`, `total`, `income`, `change`, `date_sell`) VALUES (:card, :sell_id, :user_id, :branch, :total, :income, :change, :date_sell).
+in C:\xampp\htdocs\clinic\protected\controllers\SellController.php (139)
+in C:\xampp\htdocs\clinic\index.php (15)
+2016/11/22 10:51:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'change' in 'field list'. The SQL statement executed was: INSERT INTO `logsell` (`card`, `sell_id`, `user_id`, `branch`, `total`, `income`, `change`, `date_sell`) VALUES (:card, :sell_id, :user_id, :branch, :total, :income, :change, :date_sell)' in C:\xampp\htdocs\clinic\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\db\CDbCommand.php(1250): CDbCommand->execute(Array)
+#1 C:\xampp\htdocs\clinic\protected\controllers\SellController.php(139): CDbCommand->insert('logsell', Array)
+#2 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): SellController->actionLogsell()
+#3 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('logsell')
+#12 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('sell/logsell')
+#13 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=sell/logsell
+HTTP_REFERER=http://localhost/clinic/index.php?r=sell/index
+---
+2016/11/22 10:53:22 [error] [php] Undefined index: itemcode (C:\xampp\htdocs\clinic\protected\controllers\SellController.php:105)
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): SellController->runAction()
+#2 C:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): SellController->filterAccessControl()
+#5 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\clinic\framework\web\CController.php(265): SellController->runActionWithFilters()
+#8 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): SellController->run()
+#9 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=sell/logsell
+in C:\xampp\htdocs\clinic\protected\controllers\SellController.php (105)
+in C:\xampp\htdocs\clinic\protected\controllers\SellController.php (154)
+in C:\xampp\htdocs\clinic\index.php (15)
+2016/11/22 14:12:22 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'flag' in 'where clause'. The SQL statement executed was: DELETE FROM `sell` WHERE itemcode = 'zo7vbjs9ny' AND flag = 'E' .
+in C:\xampp\htdocs\clinic\protected\controllers\SellController.php (54)
+in C:\xampp\htdocs\clinic\index.php (15)
+2016/11/22 14:12:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'flag' in 'where clause'. The SQL statement executed was: DELETE FROM `sell` WHERE itemcode = 'zo7vbjs9ny' AND flag = 'E' ' in C:\xampp\htdocs\clinic\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\db\CDbCommand.php(1302): CDbCommand->execute(Array)
+#1 C:\xampp\htdocs\clinic\protected\controllers\SellController.php(54): CDbCommand->delete('sell', 'itemcode = 'zo7...')
+#2 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): SellController->actionIndex()
+#3 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('index')
+#12 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('sell/index')
+#13 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=sell/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=sell/index
+---
+2016/11/22 14:13:39 [error] [exception.CException] exception 'CException' with message 'ไม่พบข้อมูล "C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator/assets" ที่ถูกใช้งาน' in C:\xampp\htdocs\clinic\framework\web\CAssetManager.php:257
+Stack trace:
+#0 C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator\Barcode.php(50): CAssetManager->publish('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator\Barcode.php(40): Barcode->publishAssets()
+#2 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(147): Barcode->init()
+#3 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(172): CBaseController->createWidget('ext.Yii-Barcode...', Array)
+#4 C:\xampp\htdocs\clinic\protected\views\backend\product\show_product_all.php(122): CBaseController->widget('ext.Yii-Barcode...', Array)
+#5 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\clinic\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\htdocs\clinic\framework\web\CController.php(782): CController->renderPartial('//backend/produ...', Array, true)
+#9 C:\xampp\htdocs\clinic\protected\controllers\backend\ProductController.php(18): CController->render('//backend/produ...', Array)
+#10 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ProductController->actionGetproduct()
+#11 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\clinic\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('Getproduct')
+#15 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('backend/product...')
+#16 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#18 {main}
+REQUEST_URI=/clinic/index.php?r=backend/product/Getproduct/type_id/003
+HTTP_REFERER=http://localhost/clinic/index.php?r=producttype/index
+---
+2016/11/22 14:13:56 [error] [exception.CException] exception 'CException' with message 'ไม่พบข้อมูล "C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator/assets" ที่ถูกใช้งาน' in C:\xampp\htdocs\clinic\framework\web\CAssetManager.php:257
+Stack trace:
+#0 C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator\Barcode.php(50): CAssetManager->publish('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator\Barcode.php(40): Barcode->publishAssets()
+#2 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(147): Barcode->init()
+#3 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(172): CBaseController->createWidget('ext.Yii-Barcode...', Array)
+#4 C:\xampp\htdocs\clinic\protected\views\backend\product\show_product_all.php(122): CBaseController->widget('ext.Yii-Barcode...', Array)
+#5 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\clinic\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\htdocs\clinic\framework\web\CController.php(782): CController->renderPartial('//backend/produ...', Array, true)
+#9 C:\xampp\htdocs\clinic\protected\controllers\backend\ProductController.php(18): CController->render('//backend/produ...', Array)
+#10 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ProductController->actionGetproduct()
+#11 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\clinic\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('Getproduct')
+#15 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('backend/product...')
+#16 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#18 {main}
+REQUEST_URI=/clinic/index.php?r=backend/product/Getproduct/type_id/003
+HTTP_REFERER=http://localhost/clinic/index.php?r=producttype/index
+---
+2016/11/22 14:14:44 [error] [exception.CException] exception 'CException' with message 'ไม่พบข้อมูล "C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator/assets" ที่ถูกใช้งาน' in C:\xampp\htdocs\clinic\framework\web\CAssetManager.php:257
+Stack trace:
+#0 C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator\Barcode.php(50): CAssetManager->publish('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\clinic\protected\extensions\Yii-Barcode-Generator\Barcode.php(40): Barcode->publishAssets()
+#2 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(147): Barcode->init()
+#3 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(172): CBaseController->createWidget('ext.Yii-Barcode...', Array)
+#4 C:\xampp\htdocs\clinic\protected\views\backend\product\show_product_all.php(122): CBaseController->widget('ext.Yii-Barcode...', Array)
+#5 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\clinic\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\clinic\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\htdocs\clinic\framework\web\CController.php(782): CController->renderPartial('//backend/produ...', Array, true)
+#9 C:\xampp\htdocs\clinic\protected\controllers\backend\ProductController.php(18): CController->render('//backend/produ...', Array)
+#10 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ProductController->actionGetproduct()
+#11 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\clinic\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('Getproduct')
+#15 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('backend/product...')
+#16 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#18 {main}
+REQUEST_URI=/clinic/index.php?r=backend/product/Getproduct/type_id/003
+HTTP_REFERER=http://localhost/clinic/index.php?r=producttype/index
+---
+2016/11/22 15:11:50 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in C:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 C:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('set_navbar')
+#8 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=employee/update&id=1
+---
+2016/11/22 15:14:04 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in C:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 C:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('set_navbar')
+#8 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/product/detail_product&product_id=P20150914230331
+---
+2016/11/22 16:17:28 [error] [php] Undefined variable: branch (C:\xampp\htdocs\clinic\protected\views\branch\index.php:18)
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\web\CController.php(869): BranchController->renderFile()
+#1 C:\xampp\htdocs\clinic\framework\web\CController.php(782): BranchController->renderPartial()
+#2 C:\xampp\htdocs\clinic\protected\controllers\BranchController.php(119): BranchController->render()
+#3 C:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): BranchController->actionIndex()
+#4 C:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): BranchController->runAction()
+#6 C:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): BranchController->filterAccessControl()
+#9 C:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\clinic\framework\web\CController.php(265): BranchController->runActionWithFilters()
+#12 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): BranchController->run()
+#13 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=branch/index
+in C:\xampp\htdocs\clinic\protected\views\branch\index.php (18)
+in C:\xampp\htdocs\clinic\protected\controllers\BranchController.php (119)
+in C:\xampp\htdocs\clinic\index.php (15)
+2016/11/22 16:27:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "update".' in C:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('update')
+#1 C:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=update&id=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=branch/index
+---

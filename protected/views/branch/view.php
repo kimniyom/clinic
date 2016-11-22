@@ -23,5 +23,8 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'branchname',
+		'active',
+		'address',
+		'contact',
 	),
 )); ?>

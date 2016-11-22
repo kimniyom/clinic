@@ -30,7 +30,7 @@ class SellController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'Detailservice', 'test', 'result', 'loadorder','sell','calculator','bill','confirmorder'),
+                'actions' => array('index', 'Detailservice', 'test', 'result', 'loadorder', 'sell', 'calculator', 'bill', 'confirmorder', 'logsell'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -40,10 +40,24 @@ class SellController extends Controller {
     }
 
     public function actionIndex() {
+        //ลบสินค้าที่ยังไม่ Confirm
+        $sql = "SELECT * FROM sell 
+                    WHERE sell_id NOT IN(SELECT sell_id FROM logsell)";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+        foreach ($result as $rs):
+            $itemcode = $rs['itemcode'];
+            $columns = array("status" => "0");
+            Yii::app()->db->createCommand()
+                    ->update("items", $columns, "itemcode = '$itemcode' AND flag = 'E' ");
+
+            Yii::app()->db->createCommand()
+                    ->delete("sell", "itemcode = '$itemcode' ");
+        endforeach;
+
         $this->render('index');
     }
 
-    public function actionSell(){
+    public function actionSell() {
         $itemcode = Yii::app()->request->getPost('itemcode');
         $card = Yii::app()->request->getPost('card');
         $sellcode = Yii::app()->request->getPost('sellcode');
@@ -58,28 +72,27 @@ class SellController extends Controller {
             "date_sell" => date("Y-m-d")
         );
         Yii::app()->db->createCommand()
-            ->insert("sell",$columns);
+                ->insert("sell", $columns);
 
         //ตักสต๊อก
-        $stock = array("status" => "1");
+        $stock = array("status" => "1","flag" => "E");
         Yii::app()->db->createCommand()
-            ->update("items",$stock,"itemcode = '$itemcode'");
+                ->update("items", $stock, "itemcode = '$itemcode'");
     }
-    
-    public function actionLoadorder(){
+
+    public function actionLoadorder() {
         $sell_id = Yii::app()->request->getPost('sell_id');
         $sql = "SELECT p.product_name,COUNT(*) AS total,p.product_price
                     FROM sell s INNER JOIN items i ON s.itemcode = i.itemcode
                     INNER JOIN product p ON i.product_id = p.product_id
                     WHERE s.sell_id = '$sell_id' 
                     GROUP BY p.product_id";
-        
+
         $data['order'] = Yii::app()->db->createCommand($sql)->queryAll();
-        $this->renderPartial('order',$data);
-        
+        $this->renderPartial('order', $data);
     }
 
-    public function actionCalculator(){
+    public function actionCalculator() {
         $sell_id = Yii::app()->request->getPost('sell_id');
         $sql = "SELECT SUM(p.product_price) AS total
                     FROM sell s INNER JOIN items i ON s.itemcode = i.itemcode
@@ -90,27 +103,69 @@ class SellController extends Controller {
         echo json_encode($json);
     }
 
-    public function actionBill($sell_id){
+    public function actionBill($sell_id) {
         $Model = new sell();
         //$sell_id = Yii::app()->request->getPost('sell_id');
         $data['order'] = $Model->Getlistorder($sell_id);
         $data['detail'] = $Model->Detailorder($sell_id);
-        $this->renderPartial('bill',$data);
+        $data['logsell'] = Logsell::model()->find("sell_id = '$sell_id' ");
+        $this->renderPartial('bill', $data);
     }
 
-    public function actionConfirmorder($sell_id = null){
+    public function actionConfirmorder($sell_id = null) {
         $Model = new sell();
         $order = $Model->Getlistorder($sell_id);
-        foreach($order as $rs):
+        foreach ($order as $rs):
             $itemcode = $rs['itemcode'];
             $columns = array("status" => "1");
             Yii::app()->db->createCommand()
-                ->update("items",$columns,"itemcode = '$itemcode' ");
+                    ->update("items", $columns, "itemcode = '$itemcode' ");
         endforeach;
 
         $confirm = array("confirm" => '1');
         Yii::app()->db->createCommand()
-                ->update("sell",$confirm,"sell_id = '$sell_id' ");
+                ->update("sell", $confirm, "sell_id = '$sell_id' ");
+    }
+
+    public function actionLogsell() {
+        //$itemcode = Yii::app()->request->getPost('itemcode');
+
+        $card = Yii::app()->request->getPost('card');
+        $sellcode = Yii::app()->request->getPost('sellcode');
+        $branch = Yii::app()->request->getPost('branch');
+        $total = Yii::app()->request->getPost('total');
+        $income = Yii::app()->request->getPost('income');
+        $change = Yii::app()->request->getPost('change');
+
+        $CheckOrder = Logsell::model()->find("sell_id = '$sellcode' ");
+        if (empty($CheckOrder['sell_id'])) {
+            $columns = array(
+                "card" => $card,
+                "sell_id" => $sellcode,
+                "user_id" => Yii::app()->user->id,
+                "branch" => $branch,
+                "total" => $total,
+                "income" => $income,
+                "change" => $change,
+                "date_sell" => date("Y-m-d")
+            );
+            Yii::app()->db->createCommand()
+                    ->insert("logsell", $columns);
+        } else {
+            $columns = array(
+                "card" => $card,
+                "user_id" => Yii::app()->user->id,
+                "branch" => $branch,
+                "total" => $total,
+                "income" => $income,
+                "change" => $change,
+                "date_sell" => date("Y-m-d")
+            );
+            Yii::app()->db->createCommand()
+                    ->update("logsell", $columns, "sell_id = '$sellcode'");
+        }
+
+        //$this->actionConfirmorder($sellcode);
     }
 
 }
