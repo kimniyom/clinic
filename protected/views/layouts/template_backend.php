@@ -30,8 +30,9 @@
             }
 
         </style>
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css" type="text/css"/>
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
+        <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template.css"/>
+        <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css"/>
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
         <!--
         <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap-material/dist/css/bootstrap-material-design.css" type="text/css" media="all" />
         -->
@@ -250,12 +251,12 @@
                         </div>
                     </a>
                     <a href="<?= Yii::app()->createUrl('masuser/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/Login-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ผู้ใช้งานระบบ
-                    </div>
+                        <div id="listmenu">
+                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/Login-icon.png"
+                                 height="32px"
+                                 style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                            ผู้ใช้งานระบบ
+                        </div>
                     </a>
 
                     <a href="<?= Yii::app()->createUrl('employee/index') ?>">
@@ -325,27 +326,36 @@
                 <nav class="navbar navbar-inverse" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px; border-left: none; border-right: none;">
                     <ul class="nav nav-pills pull-right" style="margin:5px;">
                         <?php
-                        if ($product_model->stockproductalert() > 0)
+                        if ($product_model->stockproductalert() > 0){
                             $classalertproduct = "fa fa-bell faa-flash animated faa-slow text-danger";
-                        else
+                            $alertproduct = "bg-alert";
+                        } else {
                             $classalertproduct = "fa fa-bell";
+                            $alertproduct = "";
+                        }
                         ?>
                         <?php
-                        if ($product_model->stockitemalert() > 0)
+                        if ($product_model->stockitemalert() > 0){
                             $classalertitem = "fa fa-bell faa-flash animated text-danger";
-                        else
+                            $alertstock = "bg-alert";
+                        } else {
                             $classalertitem = "fa fa-bell";
+                            $alertstock = "";
+                        }
                         ?>
 
                         <?php
-                        if ($AppointModel->Countover() > 0)
+                        if ($AppointModel->Countover() > 0){ 
                             $classalertover = "fa fa-bell faa-flash animated text-danger";
-                        else
+                            $alertappoint = "bg-alert";
+                        } else {
                             $classalertover = "fa fa-bell";
+                            $alertappoint = "";
+                        }
                         ?>
-                        <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"><i class="<?php echo $classalertproduct ?>"></i> สินค้าใกล้หมด <span class="badge"><?php echo $product_model->stockproductalert(); ?> </span></a></li>
-                        <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"><i class="<?php echo $classalertitem ?>"></i> สินค้าใกล้หมดอายุ <span class="badge"><?php echo $product_model->stockitemalert(); ?> </span></a></li>
-                        <li><a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"><i class="<?php echo $classalertover ?>"></i> ลูกค้าใกล้ถึงวันนัด <span class="badge"><?php echo $AppointModel->Countover(); ?> </span></a></li>
+                        <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"><i class="<?php echo $classalertproduct ?>"></i> สินค้าใกล้หมด <span class="badge" id="<?php echo $alertproduct ?>"><?php echo $product_model->stockproductalert(); ?> </span></a></li>
+                        <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"><i class="<?php echo $classalertitem ?>"></i> สินค้าใกล้หมดอายุ <span class="badge" id="<?php echo $alertstock ?>"><?php echo $product_model->stockitemalert(); ?> </span></a></li>
+                        <li><a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"><i class="<?php echo $classalertover ?>"></i> ลูกค้าใกล้ถึงวันนัด <span class="badge" id="<?php echo $alertappoint ?>"><?php echo $AppointModel->Countover(); ?> </span></a></li>
                     </ul>
                 </nav>
                 <div class="container-fluid">

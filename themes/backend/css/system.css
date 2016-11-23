@@ -16,11 +16,13 @@
     src: url('supermarket/supermarket.ttf') format('truetype');
 }
 
+
 body {
     margin: 0;
     /*background:url('../images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/
     /*background:url('../images/bg.jpg');*/
 }
+
 
 #btn-menu-left{
     border-radius: 0px; border-right: none;
@@ -303,4 +305,6 @@ body a:link{
     background: #24282d;
     color: #FFFFFF;
 }
+
+
 

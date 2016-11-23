@@ -313,13 +313,13 @@ class Backend_Product {
     function Getstockproductalert() {
         $branch = Yii::app()->session['branch'];
         if ($branch == '99') {
-            $branchwhere = "1=1";
+            $branchwhere = " 1=1";
         } else {
             $branchwhere = "p.branch = '$branch' ";
         }
         $sql = "SELECT p.*,COUNT(*) AS TOTAL 
                 FROM items i INNER JOIN product p ON i.product_id = p.product_id
-                WHERE p.branch = $branchwhere AND  i.status = '0'
+                WHERE $branchwhere AND i.status = '0'
                 GROUP BY i.product_id ";
 
         return Yii::app()->db->createCommand($sql)->queryAll();
