@@ -43,8 +43,7 @@
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/simple-sidebar.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/perfect-scrollbar/css/perfect-scrollbar.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/css/card-css/card-css.css"/>
-        
-        
+
         <!-- Bootstrap CheckBox
         <link rel="stylesheet" href="<?//php echo Yii::app()->baseUrl; ?>/css/bootstrap-checkbox/awesome-bootstrap-checkbox.css" type="text/css" media="all" />
         -->
@@ -78,7 +77,7 @@
         <!-- Uploadify -->
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
-        
+
         <!--
             SELECT2 Combobox
         -->
@@ -87,10 +86,13 @@
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/select2-bootstrap-theme-master/dist/select2-bootstrap.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/select2-master/dist/js/select2.js" type="text/javascript"></script>
 
+        <!--
+            Notify
+        -->
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/css/animate.css" type="text/css" media="all" />
+        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/notify/bootstrap-notify/bootstrap-notify.js" type="text/javascript"></script>
 
-        
-        <script type="text/javascript">
-
+        <script type = "text/javascript" >
             $(document).ready(function () {
                 Ps.initialize(document.getElementById('sidebar-wrapper'));
                 /*
@@ -131,7 +133,7 @@
 
     </head>
 
-    <body style="/*background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
+    <body style="background: #fbfbfb;/* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;">-->
         <nav class="navbar navbar-inverse" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; border-bottom: #000000 solid 1px; /*background: #2a323b;*/">
@@ -227,7 +229,7 @@
                         <img src="<?= Yii::app()->baseUrl; ?>/images/use-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px;"> ผู้ใช้งาน
                     </div>
                     <div class="panel-body">
-                        User : <?php echo Yii::app()->user->id." ".Yii::app()->user->name ?><br>
+                        User : <?php echo Yii::app()->user->id . " " . Yii::app()->user->name ?><br>
                         สถานะ : <?php echo Yii::app()->session['status'] . ' (' . $Profile['status'] . ')'; ?><br/>
                         สาขา ​: <?php echo Yii::app()->session['branch'] . " " . $branchModel->Getbranch(Yii::app()->session['branch']) ?>
                     </div>
@@ -247,25 +249,24 @@
                             ข้อมูลสาขา
                         </div>
                     </a>
-                <?php } ?>
-
-                <a href="<?= Yii::app()->createUrl('masuser/index') ?>">
+                    <a href="<?= Yii::app()->createUrl('masuser/index') ?>">
                     <div id="listmenu">
                         <img src="<?php echo Yii::app()->baseUrl; ?>/images/Login-icon.png"
                              height="32px"
                              style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
                         ผู้ใช้งานระบบ
                     </div>
-                </a>
+                    </a>
 
-                <a href="<?= Yii::app()->createUrl('employee/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/users-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ข้อมูลพนักงาน
-                    </div>
-                </a>
+                    <a href="<?= Yii::app()->createUrl('employee/index') ?>">
+                        <div id="listmenu">
+                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/users-icon.png"
+                                 height="32px"
+                                 style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                            ข้อมูลพนักงาน
+                        </div>
+                    </a>
+                <?php } ?>
 
                 <!-- List รายชื่อ สินค้า -->
                 <a href="<?= Yii::app()->createUrl('producttype/index') ?>">

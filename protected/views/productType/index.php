@@ -24,7 +24,7 @@ $product_model = new Product();
     foreach ($type as $rs):
         ?>
         <div class="col-md-4 col-lg-4">
-            <a href="<?php echo Yii::app()->createUrl('backend/product/Getproduct/type_id/' . $rs['type_id']) ?>"
+            <a href="<?php echo Yii::app()->createUrl('backend/product/Getproduct/type_id/' . $rs['type_id']) ?>">
             <button type="button" class="btn btn-default btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/shipping-box-icon.png" 
                      style="border-radius:20px; padding:2px; border:#FFF solid 2px;"><br/>

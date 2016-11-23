@@ -30,7 +30,7 @@ class SellController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'Detailservice', 'test', 'result', 'loadorder', 'sell', 'calculator', 'bill', 'confirmorder', 'logsell'),
+                'actions' => array('index', 'Detailservice', 'test', 'result', 'loadorder', 'sell', 'calculator', 'bill', 'confirmorder', 'logsell',"patient"),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -75,7 +75,7 @@ class SellController extends Controller {
                 ->insert("sell", $columns);
 
         //ตักสต๊อก
-        $stock = array("status" => "1","flag" => "E");
+        $stock = array("status" => "1", "flag" => "E");
         Yii::app()->db->createCommand()
                 ->update("items", $stock, "itemcode = '$itemcode'");
     }
@@ -166,6 +166,25 @@ class SellController extends Controller {
         }
 
         //$this->actionConfirmorder($sellcode);
+    }
+
+    public function actionPatient() {
+        $card = Yii::app()->request->getPost('card');
+        $sql = "SELECT p.*,c.tel,c.email,g.grad,g.distcount
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.card = '$card' ";
+
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+
+        $str = "";
+         $str .= "PID : " . $rs['pid'];
+        $str .= "<br/>บัตรประชาชน : " . $rs['card'];
+        $str .= "<br/>คุณ : " . $rs['name'] . " " . $rs['lname'];
+        $str .= "<br/>เบอร์โทรศัพท์ : " . $rs['tel'];
+        $str .= "<br/>ประเภทลูกค้า : " . $rs['grad'];
+        
+        echo $str;
     }
 
 }

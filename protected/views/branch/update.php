@@ -2,20 +2,13 @@
 /* @var $this BranchController */
 /* @var $model Branch */
 
-$this->breadcrumbs=array(
-	'Branches'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List Branch', 'url'=>array('index')),
-	array('label'=>'Create Branch', 'url'=>array('create')),
-	array('label'=>'View Branch', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Branch', 'url'=>array('admin')),
+$this->breadcrumbs = array(
+    'ข้อมูลสาขา' => array('index'),
+    //$model->id => array('view', 'id' => $model->id),
+    'แก้ไข',
 );
 ?>
 
-<h1>Update Branch <?php echo $model->id; ?></h1>
+<h1>แก้ไขข้อมูลสาขา <?php echo $model->branchname; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model' => $model)); ?>

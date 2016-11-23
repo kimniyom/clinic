@@ -26,11 +26,11 @@ class PatientController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'checkpatient','save_upload'),
+                'actions' => array('index', 'view', 'checkpatient', 'save_upload'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','dortorsearch'),
+                'actions' => array('create', 'update', 'dortorsearch'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -124,7 +124,11 @@ class PatientController extends Controller {
      */
     public function actionIndex() {
         //$dataProvider=new CActiveDataProvider('Patient');
-        $patient = Patient::model()->findAll('');
+
+        $BranchModel = new Branch();
+        $WHER = $BranchModel->BracheUser();
+
+        $patient = Patient::model()->findAll($WHER);
         $this->render('index', array(
             'patient' => $patient,
         ));
@@ -180,7 +184,7 @@ class PatientController extends Controller {
             echo "0";
         }
     }
-    
+
     public function actionSave_upload() {
         $configWeb = new Configweb_model();
         $id = $_GET['id'];
@@ -247,14 +251,15 @@ class PatientController extends Controller {
           }
          */
     }
-    
-    public function actionDortorsearch(){
+
+    public function actionDortorsearch() {
         $card = Yii::app()->request->getPost('card');
         $patient = Patient::model()->find("card = '$card' ");
-        if($patient['card']){
-            $this->renderPartial('dortorsearch',array("patient" => $patient));
+        if ($patient['card']) {
+            $this->renderPartial('dortorsearch', array("patient" => $patient));
         } else {
             echo "0";
         }
     }
+
 }

@@ -88,7 +88,8 @@ class BranchController extends Controller {
         if (isset($_POST['Branch'])) {
             $model->attributes = $_POST['Branch'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('index'));
+            //$this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(

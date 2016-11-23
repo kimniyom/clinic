@@ -5,23 +5,23 @@
 $this->breadcrumbs = array(
     'Branches',
 );
-
-$this->menu = array(
-    array('label' => 'Create Branch', 'url' => array('create')),
-    array('label' => 'Manage Branch', 'url' => array('admin')),
-);
 ?>
 
 <h1>Branches</h1>
-
+<a href="<?php echo Yii::app()->createUrl('branch/create') ?>">
+    <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มสาขา</button></a><br/><br/>
 <div class="row">
     <?php foreach ($branch as $rs): ?>
         <div class="col-sm-6 col-md-4">
-            <div class="thumbnail" style=" text-align: center;">
-                <img src="<?php echo Yii::app()->baseUrl; ?>/images/clinic-icon.png" />
+            <div class="thumbnail">
+
                 <div class="caption">
-                    <h3>สาขา : <?php echo $rs['branchname'] ?></h3>
+                    <h3>
+                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/clinic-icon.png" />
+                        สาขา : <?php echo $rs['branchname'] ?>
+                    </h3>
                     <p><?php echo $rs['address'] ?></p>
+                    <p><?php echo $rs['contact'] ?></p>
                     <hr/>
                     <p><a href="<?php echo Yii::app()->createUrl('branch/update', array("id" => $rs['id'])) ?>" class="btn btn-primary" role="button">แก้ไข</a> 
                         <a href="#" class="btn btn-default" role="button">ลบ</a></p>

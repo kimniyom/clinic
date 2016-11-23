@@ -215,7 +215,14 @@ class Product {
     }
 
     function get_count_product_type($type_id = '') {
-        $sql = "SELECT COUNT(*) AS TOTAL FROM product WHERE type_id = '$type_id' AND status != '1' AND delete_flag != '1'";
+        $BranchModel = new Branch();
+        $Branchs = $BranchModel->BracheUser();
+        if(empty($Branchs)){
+            $Branch = " AND 1=1";
+        } else {
+            $Branch = " AND ".$Branchs;
+        }
+        $sql = "SELECT COUNT(*) AS TOTAL FROM product WHERE type_id = '$type_id' AND status != '1' AND delete_flag != '1' $Branch";
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         return $rs['TOTAL'];
     }

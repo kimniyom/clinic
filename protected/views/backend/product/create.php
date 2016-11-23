@@ -80,9 +80,9 @@ $BranchModel = new Branch();
 
                     <label for="textArea">รายละเอียด</label>
                     <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
-                    
+
                     <label>สาขา</label>
-                    <?php echo $BranchModel->ComboBranch() ?>
+                    <?php echo $BranchModel->ComboBranchDisabled(Yii::app()->session['branch']) ?>
                     <hr/>
                     <button type="button" class="btn btn-success" onclick="save_product()">
                         <i class="fa fa-save"></i>

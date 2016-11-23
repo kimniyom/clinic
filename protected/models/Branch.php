@@ -138,22 +138,25 @@ class Branch extends CActiveRecord {
         if (!empty($branchactive)) {
             $branch = Yii::app()->session['branch'];
             if ($branch == "99") {
+                $listdata = $branchList;
                 $active = "";
                 $disabled = "";
             } else {
+                $listdata = Branch::model()->findAll("active = '1' AND id = '$branchactive' ");
                 $active = $branch;
-                $disabled = 'disabled="disabled"';
+                //$disabled = 'disabled="disabled"';
+                $disabled = "";
             }
         } else {
+            $listdata = $branchList;
             $active = $branchactive;
             $disabled = "";
         }
 
 
-
         $str = "";
         $str.='<select id="branch" class="form-control">';
-        foreach ($branchList as $b):
+        foreach ($listdata as $b):
             $str.= '<option value="' . $b['id'] . '"';
             if ($b['id'] == $active) {
                 $str.=' selected="selected"';
@@ -162,6 +165,17 @@ class Branch extends CActiveRecord {
         endforeach;
         $str.= '</select>';
         return $str;
+    }
+
+    function BracheUser() {
+        $branch = Yii::app()->session['branch'];
+        if ($branch == "99") {
+            $W = "";
+        } else {
+            $W = " branch = '$branch' ";
+        }
+
+        return $W;
     }
 
 }
