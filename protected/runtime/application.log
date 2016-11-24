@@ -2483,3 +2483,257 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
 HTTP_REFERER=http://localhost/clinic/index.php?r=backend/product/detail_product&product_id=P20161123164509
 ---
+2016/11/24 09:44:37 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('reportinputprod...')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/reportin...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=report/reportinputproductmonth
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/24 09:44:52 [error] [php] Undefined variable: month (/Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php:4)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(58): ReportController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionReportinputproductmonth()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportinputproductmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php (4)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (58)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/24 09:45:06 [error] [php] Undefined variable: ra (/Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php:5)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(58): ReportController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionReportinputproductmonth()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportinputproductmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php (5)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (58)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/24 09:45:08 [error] [php] Undefined variable: ra (/Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php:5)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(58): ReportController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionReportinputproductmonth()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportinputproductmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php (5)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (58)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/24 10:36:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/product/Getproduct/type_id/003
+---
+2016/11/24 10:48:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/product/create&type_id=003
+---
+2016/11/24 14:14:01 [error] [php] Undefined variable: <select id="branch" class="form-control"><option value="1">เมืองตาก</option><option value="2">แม่สอด</option><option value="3">เชียงใหม่ (อัมมันตราคลินิก)</option></select> (/Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php:31)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(59): ReportController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionReportinputproductmonth()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportinputproductmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php (31)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (59)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/24 14:47:12 [error] [php] Illegal string offset 'id' (/Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php:36)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(60): ReportController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionReportinputproductmonth()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportinputproductmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php (36)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (60)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/24 14:55:54 [error] [php] Undefined variable: ReportModel (/Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php:73)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(63): ReportController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionReportinputproductmonth()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportinputproductmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php (73)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (63)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/24 15:16:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "alert/update".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('alert/update')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=alert/update&id=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/stock/expireproduct
+---
+2016/11/24 15:20:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /Applications/MAMP/htdocs/clinic/protected/controllers/AlertController.php:157
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/controllers/AlertController.php(89): AlertController->loadModel('1')
+#1 [internal function]: AlertController->actionUpdate('1')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AlertController), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AlertController), Object(ReflectionMethod), Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('update')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('alert/update')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=alert/update&id=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/stock/expireproduct
+---
+2016/11/24 15:20:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /Applications/MAMP/htdocs/clinic/protected/controllers/AlertController.php:157
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/controllers/AlertController.php(89): AlertController->loadModel('1')
+#1 [internal function]: AlertController->actionUpdate('1')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AlertController), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AlertController), Object(ReflectionMethod), Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('update')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('alert/update')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=alert/update&id=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/stock/expireproduct
+---
+2016/11/24 15:46:40 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('alert/view')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=alert/view
+HTTP_REFERER=http://localhost/clinic/index.php?r=alert/update&id=1
+---

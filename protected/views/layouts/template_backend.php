@@ -171,6 +171,7 @@
                                 <font id="font-th">รายงาน </font><b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a href="<?php echo Yii::app()->createUrl('report/reportinputproductmonth')?>"> - รายงานเปรียบเทียบ ซื้อเข้า,ขายออก ของสินค้า ในแต่ละเดือน</a></li>
                                 <li><a href="#"> - รายงานยอดขาย</a></li>
                                 <li><a href="#"> - รายงานการขายสินค้า</a></li>
                                 <li><a href="#"> - รายงานการขายสินค้า(แยกประเภท)</a></li>
@@ -191,6 +192,7 @@
                                 <li><a href="<?php echo Yii::app()->createUrl('gradcustomer/index') ?>"> - ประเภทลูกค้า</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('position/index') ?>"> - ตำแหน่งพนักงาน</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('statususer/index') ?>"> - สถานะผู้ใช้งานระบบ</a></li>
+                                <li><a href="<?php echo Yii::app()->createUrl('alert/view',array("id" => '1')) ?>"> - ตั้งค่าแจ้งเตือน</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('backend/logo') ?>"> - โลโก้</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('backend/web') ?>"> - ชื่อร้านค้า</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('backend/contact') ?>"> - ข้อมูลติดต่อ</a></li>
@@ -326,7 +328,7 @@
                 <nav class="navbar navbar-inverse" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px; border-left: none; border-right: none;">
                     <ul class="nav nav-pills pull-right" style="margin:5px;">
                         <?php
-                        if ($product_model->stockproductalert() > 0){
+                        if ($product_model->stockproductalert() > 0) {
                             $classalertproduct = "fa fa-bell faa-flash animated faa-slow text-danger";
                             $alertproduct = "bg-alert";
                         } else {
@@ -335,7 +337,7 @@
                         }
                         ?>
                         <?php
-                        if ($product_model->stockitemalert() > 0){
+                        if ($product_model->stockitemalert() > 0) {
                             $classalertitem = "fa fa-bell faa-flash animated text-danger";
                             $alertstock = "bg-alert";
                         } else {
@@ -345,7 +347,7 @@
                         ?>
 
                         <?php
-                        if ($AppointModel->Countover() > 0){ 
+                        if ($AppointModel->Countover() > 0) {
                             $classalertover = "fa fa-bell faa-flash animated text-danger";
                             $alertappoint = "bg-alert";
                         } else {

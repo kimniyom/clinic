@@ -155,7 +155,7 @@ class Branch extends CActiveRecord {
 
 
         $str = "";
-        $str.='<select id="branch" class="form-control">';
+        $str.='<select id="branch" name="branch" class="form-control">';
         foreach ($listdata as $b):
             $str.= '<option value="' . $b['id'] . '"';
             if ($b['id'] == $active) {

@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/order.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/dortor/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/bill.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
-        </group>
         <group>
             <file>file:/C:/xampp/htdocs/clinic/themes/backend/bootstrap/css/bootstrap.css</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/controllers/BranchController.php</file>
@@ -24,6 +16,12 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/views/layouts/template_backend.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/sell/bill.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/_form.php</file>
+        </group>
+        <group name="yii">
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/StockController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Backend_product.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/template.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
     </open-files>
 </project-private>
