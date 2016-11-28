@@ -95,6 +95,11 @@
 
         <script type = "text/javascript" >
             $(document).ready(function () {
+                var user = "<?php echo Yii::app()->user->id ?>";
+                if (user == '') {
+                    window.location = "<?php echo Yii::app()->createUrl('site/login') ?>";
+                }
+
                 Ps.initialize(document.getElementById('sidebar-wrapper'));
                 /*
                  $(document).bind("contextmenu", function (e) {
@@ -148,7 +153,7 @@
                     </button>
                     <a href="#menu-toggle" class="navbar-brand" id="menu-toggle"><i class="fa fa-bars"></i></a>
                     <a class="navbar-brand" style=" margin-top: 0px; padding-top: 10px;">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $web->get_logoweb(); ?>" height="24px"/>
+                        <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $web->get_logoweb(); ?>" height="32px"/>
                     </a>
                     <a class="navbar-brand" href="#" style=" font-family: Th;font-size:28px;">
                         <?php echo $web->get_webname(); ?>(Admin)
@@ -171,7 +176,7 @@
                                 <font id="font-th">รายงาน </font><b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo Yii::app()->createUrl('report/reportinputproductmonth')?>"> - รายงานเปรียบเทียบ ซื้อเข้า,ขายออก ของสินค้า ในแต่ละเดือน</a></li>
+                                <li><a href="<?php echo Yii::app()->createUrl('report/reportinputproductmonth') ?>"> - รายงานเปรียบเทียบ ซื้อเข้า,ขายออก ของสินค้า ในแต่ละเดือน</a></li>
                                 <li><a href="#"> - รายงานยอดขาย</a></li>
                                 <li><a href="#"> - รายงานการขายสินค้า</a></li>
                                 <li><a href="#"> - รายงานการขายสินค้า(แยกประเภท)</a></li>
@@ -192,7 +197,7 @@
                                 <li><a href="<?php echo Yii::app()->createUrl('gradcustomer/index') ?>"> - ประเภทลูกค้า</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('position/index') ?>"> - ตำแหน่งพนักงาน</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('statususer/index') ?>"> - สถานะผู้ใช้งานระบบ</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('alert/view',array("id" => '1')) ?>"> - ตั้งค่าแจ้งเตือน</a></li>
+                                <li><a href="<?php echo Yii::app()->createUrl('alert/view', array("id" => '1')) ?>"> - ตั้งค่าแจ้งเตือน</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('backend/logo') ?>"> - โลโก้</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('backend/web') ?>"> - ชื่อร้านค้า</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('backend/contact') ?>"> - ข้อมูลติดต่อ</a></li>
@@ -303,10 +308,21 @@
                 <!-- ลูกค้ามาตามนัด -->
                 <a href="<?= Yii::app()->createUrl('appoint/appointcurrent') ?>">
                     <div id="listmenu">
+                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/calendar-day-icon.png"
+                             height="32px"
+                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                        ตรวจลูกค้านัดวันนี้
+                    </div>
+                </a>
+
+
+                <!-- ลูกค้ามาตามนัด -->
+                <a href="<?= Yii::app()->createUrl('appoint/appointall') ?>">
+                    <div id="listmenu">
                         <img src="<?php echo Yii::app()->baseUrl; ?>/images/Time-Machine-icon.png"
                              height="32px"
                              style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ลูกค้านัดวันนี้
+                        ตรวจลูกค้าตามนัด
                     </div>
                 </a>
 
@@ -386,15 +402,10 @@
         </div>
         <!-- /#wrapper -->
 
-        <!-- popup -->
-        <div id="overlay_popup">
-            <center>
-                <div id="show_slip"></div><br/>
-            </center>
-        </div>
 
         <!-- Menu Toggle Script -->
         <script>
+
             $("#menu-toggle").click(function (e) {
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");

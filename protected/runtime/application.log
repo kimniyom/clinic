@@ -2737,3 +2737,423 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=alert/view
 HTTP_REFERER=http://localhost/clinic/index.php?r=alert/update&id=1
 ---
+2016/11/25 09:25:37 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser
+---
+2016/11/25 09:25:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 09:25:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 09:25:40 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 09:25:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 09:25:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 09:25:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 09:25:42 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 09:25:42 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 09:25:42 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'จะต้องเข้าสู่ระบบ' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CWebUser.php:394
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2016/11/25 10:24:10 [error] [php] Undefined index: ocer (/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointover.php:49)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): AppointController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): AppointController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php(202): AppointController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): AppointController->actionAppointover()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): AppointController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): AppointController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): AppointController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): AppointController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=appoint/appointover
+in /Applications/MAMP/htdocs/clinic/protected/views/appoint/appointover.php (49)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php (202)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/28 10:54:49 [error] [php] Undefined variable: logg (/Applications/MAMP/htdocs/clinic/protected/views/branch/index.php:25)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): BranchController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): BranchController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/BranchController.php(121): BranchController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): BranchController->actionIndex()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): BranchController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): BranchController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): BranchController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): BranchController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=branch/index
+in /Applications/MAMP/htdocs/clinic/protected/views/branch/index.php (25)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/BranchController.php (121)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/28 12:02:18 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/typeproduct/from_add_type
+---
+2016/11/28 14:07:24 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/appointcurrent
+---
+2016/11/28 14:26:02 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('appointall')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/appoint...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/appointall
+---
+2016/11/28 14:27:45 [error] [php] Undefined index: time_appoint (/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointall.php:37)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): AppointController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): AppointController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php(228): AppointController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): AppointController->actionAppointAll()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): AppointController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): AppointController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): AppointController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): AppointController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=appoint/appointall
+in /Applications/MAMP/htdocs/clinic/protected/views/appoint/appointall.php (37)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php (228)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/28 14:29:00 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.timeappoint) asc' at line 7. The SQL statement executed was: SELECT a.*,pr.pername,
+		p.`name`,p.lname,p.card,p.images,s.diagcode,s.service_date,s.service_result,d.diagname,p.sex,p.birth
+					FROM appoint a INNER JOIN service s ON a.service_id = s.id
+					INNER JOIN patient p ON s.patient_id = p.id
+					INNER JOIN pername pr ON p.oid = pr.oid
+					INNER JOIN diag d ON s.diagcode = d.diagcode
+					WHERE a.status = '0'  AND a.branch = '1'  ORDER BY (a.appoint.a.timeappoint) asc.
+in /Applications/MAMP/htdocs/clinic/protected/models/Appoint.php (160)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php (226)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/28 14:29:00 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.timeappoint) asc' at line 7. The SQL statement executed was: SELECT a.*,pr.pername,
+		p.`name`,p.lname,p.card,p.images,s.diagcode,s.service_date,s.service_result,d.diagname,p.sex,p.birth
+					FROM appoint a INNER JOIN service s ON a.service_id = s.id
+					INNER JOIN patient p ON s.patient_id = p.id
+					INNER JOIN pername pr ON p.oid = pr.oid
+					INNER JOIN diag d ON s.diagcode = d.diagcode
+					WHERE a.status = '0'  AND a.branch = '1'  ORDER BY (a.appoint.a.timeappoint) asc' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/models/Appoint.php(160): CDbCommand->queryAll()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php(226): Appoint->AppointAll()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): AppointController->actionAppointAll()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('appointall')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/appoint...')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/appointall
+---
+2016/11/28 14:29:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[21000]: Cardinality violation: 1241 Operand should contain 1 column(s). The SQL statement executed was: SELECT a.*,pr.pername,
+		p.`name`,p.lname,p.card,p.images,s.diagcode,s.service_date,s.service_result,d.diagname,p.sex,p.birth
+					FROM appoint a INNER JOIN service s ON a.service_id = s.id
+					INNER JOIN patient p ON s.patient_id = p.id
+					INNER JOIN pername pr ON p.oid = pr.oid
+					INNER JOIN diag d ON s.diagcode = d.diagcode
+					WHERE a.status = '0'  AND a.branch = '1'  ORDER BY (a.appoint,a.timeappoint) asc.
+in /Applications/MAMP/htdocs/clinic/protected/models/Appoint.php (160)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php (226)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/28 14:29:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[21000]: Cardinality violation: 1241 Operand should contain 1 column(s). The SQL statement executed was: SELECT a.*,pr.pername,
+		p.`name`,p.lname,p.card,p.images,s.diagcode,s.service_date,s.service_result,d.diagname,p.sex,p.birth
+					FROM appoint a INNER JOIN service s ON a.service_id = s.id
+					INNER JOIN patient p ON s.patient_id = p.id
+					INNER JOIN pername pr ON p.oid = pr.oid
+					INNER JOIN diag d ON s.diagcode = d.diagcode
+					WHERE a.status = '0'  AND a.branch = '1'  ORDER BY (a.appoint,a.timeappoint) asc' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/models/Appoint.php(160): CDbCommand->queryAll()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php(226): Appoint->AppointAll()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): AppointController->actionAppointAll()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('appointall')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/appoint...')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/appointall
+---
+2016/11/28 16:19:15 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getmenu')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('menu/getmenu')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=menu/getmenu
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/view&id=2
+---
+2016/11/28 16:19:27 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getmenu')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('menu/getmenu')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=menu/getmenu
+---
+2016/11/28 16:19:44 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getmenu')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('menu/getmenu')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=menu/getmenu
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/view&id=2
+---

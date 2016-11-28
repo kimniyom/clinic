@@ -4,15 +4,18 @@ class LogoController extends Controller {
 
     public $layout = "template_backend";
 
-    public function actionIndex() {
+    public function actionIndex($branch = null) {
         $model = new Backend_logo();
-        $data['logo'] = $model->get_logo();
+        $data['branch'] = $branch;
+        $data['logo'] = $model->get_logo($branch);
         $this->render('//backend/logo/index', $data);
     }
 
-    public function actionSaveupload() {
+    public function actionSaveupload($branch = null) {
         // Define a destination
         $targetFolder = Yii::app()->baseUrl . '/uploads/logo'; // Relative to the root
+        $sql = "SELECT * FROM logo WHERE branch = '$branch'";
+        $row = Yii::app()->db->createCommand($sql)->queryRow();
 
         if (!empty($_FILES)) {
             $tempFile = $_FILES['Filedata']['tmp_name'];
@@ -25,16 +28,32 @@ class LogoController extends Controller {
             $fileParts = pathinfo($_FILES['Filedata']['name']);
 
             if (in_array($fileParts['extension'], $fileTypes)) {
-                move_uploaded_file($tempFile, $targetFile);
+                if (empty($row['logo'])) {
+                    move_uploaded_file($tempFile, $targetFile);
+                    //สั่งอัพเดท
+                    $columns = array(
+                        "logo" => $FileName,
+                        "branch" => $branch,
+                        "d_update" => date('Y-m-d H:i:s')
+                    );
 
-                //สั่งอัพเดท
-                $columns = array(
-                    "logo" => $FileName,
-                    "d_update" => date('Y-m-d H:i:s')
-                );
+                    Yii::app()->db->createCommand()
+                            ->insert("logo", $columns);
+                } else {
+                    $filename = './uploads/logo/' . $row['logo'];
+                    if (file_exists($filename)) {
+                        unlink($filename);
+                    }
+                    move_uploaded_file($tempFile, $targetFile);
+                    //สั่งอัพเดท
+                    $columns = array(
+                        "logo" => $FileName,
+                        "d_update" => date('Y-m-d H:i:s')
+                    );
 
-                Yii::app()->db->createCommand()
-                        ->insert("logo", $columns);
+                    Yii::app()->db->createCommand()
+                            ->update("logo", $columns, "branch = '$branch'");
+                }
                 echo '1';
             } else {
                 echo 'Invalid file type.';

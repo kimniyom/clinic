@@ -1,4 +1,12 @@
-
+<style type="text/css">
+    .alam{
+        background: #ff9999;
+        /*color:#FFFFFF;*/
+    }
+    .alam a{
+        color: #FFFFFF;
+    }
+</style>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -18,11 +26,13 @@ $this->breadcrumbs = array(
 );
 
 $web = new Configweb_model();
+$Alert = new Alert();
+$alam = $Alert->Getalert()['alert_product'];
 ?>
 
 <div class="panel panel-danger">
     <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
-        <i class="fa fa-info-circle"></i> นัดหมาย *เตือนก่อน 5 วัน
+        <i class="fa fa-info-circle"></i> นัดหมาย *เตือนก่อน <?php echo $alam ?> วัน
     </div>
     <div class="panel-body">
         <p class="text-danger">*คลิกที่รายชื่อสินค้าเพื่อดูรายละเอียด</p>
@@ -31,6 +41,7 @@ $web = new Configweb_model();
             <thead>
                 <tr>
                     <th>#</th>
+                    <th></th>
                     <th>วันนัด</th>
                     <th>เวลา</th>
                     <th>ลูกค้า</th>
@@ -44,20 +55,28 @@ $web = new Configweb_model();
                 $i = 0;
                 foreach ($appoint as $last):
                     $i++;
+                    if ($last['over'] < 1) {
+                        $bg = " class='alam' ";
+                        $text = "ขาดนัด";
+                    } else {
+                        $bg = "";
+                        $text = "";
+                    }
                     ?>
-                    <tr>
+                    <tr <?php echo $bg ?>>
                         <td><?php echo $i ?></td>
+                        <td><?php echo $text ?></td>
                         <td><?php echo $web->thaidate($last['appoint']) ?></td>
                         <td><?php echo $last['timeappoint'] ?></td>
                         <td>
-                            <a href="<?php echo Yii::app()->createUrl('dortor/patientview',array('id' => $last['patient_id']))?>">
-                            <?php echo $last['pername'] . $last['name'] . " " . $last['lname']; ?></a>
+                            <a href="<?php echo Yii::app()->createUrl('dortor/patientview', array('id' => $last['patient_id'])) ?>">
+                                <?php echo $last['pername'] . $last['name'] . " " . $last['lname']; ?></a>
                         </td>
                         <td style=" text-align: center;"><?php echo $last['tel']; ?></a></td>
                         <td><?php echo $last['diagname'] ?></td>
                         <td style=" text-align: center;">
                             <button type="button" class="btn btn-primary btn-sm" 
-                                    onclick="Updateappoint('<?php echo $last['id'] ?>','<?php echo $last['name']?>')">เปลี่ยนวันนัด</button></td>
+                                    onclick="Updateappoint('<?php echo $last['id'] ?>', '<?php echo $last['name'] ?>')">เปลี่ยนวันนัด</button></td>
                     </tr>
                     <?php
                 endforeach;
@@ -66,7 +85,6 @@ $web = new Configweb_model();
         </table>
     </div>
 </div>
-
 
 <!-- 
     POPUP
@@ -133,7 +151,7 @@ $web = new Configweb_model();
 </div><!-- /.modal -->
 
 <script type="text/javascript">
-    function Updateappoint(id,name) {
+    function Updateappoint(id, name) {
         $("#id").val(id);
         $("#popupupdateappoint").modal();
         $("#head").text("เปลี่ยนวันนัด" + " " + name);
@@ -161,8 +179,8 @@ $web = new Configweb_model();
             swal("Alert", "กรุณาเลือกวันนัด...", "warning");
             return false;
         }
-        
-        if(h == '' || m == ''){
+
+        if (h == '' || m == '') {
             swal("Alert", "กรุณาเลือกเวลา...", "warning");
             return false;
         }

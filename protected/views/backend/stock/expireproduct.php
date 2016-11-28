@@ -26,11 +26,14 @@ $this->breadcrumbs = array(
 
 $stock = new Items();
 $web = new Configweb_model();
+
+$Alert = new Alert();
+$alam = $Alert->Getalert()['alert_product'];
 ?>
 
 <div class="panel panel-danger">
     <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
-        <i class="fa fa-info-circle"></i> สินค้าใกล้หมด *สินค้าเหลือน้อยกว่า 5 ชิ้น
+        <i class="fa fa-info-circle"></i> สินค้าใกล้หมด *สินค้าเหลือน้อยกว่า <?php echo $alam ?> ชิ้น
     </div>
     <div class="panel-body">
         <p class="text-danger">*คลิกที่รายชื่อสินค้าเพื่อดูรายละเอียด</p>
@@ -48,64 +51,65 @@ $web = new Configweb_model();
             </thead>
             <tbody>
                 <?php
+                
                 $product_model = new Product();
                 $i = 0;
                 foreach ($product as $last):
-                    if($last['TOTAL'] < 5):
-                    //$img_title = $product_model->get_images_product_title($last['product_id']);
-                    $productID = $last['product_id'];
-                    $Total = $stock->CountItems($productID);
-                    $firstImg = $product_model->firstpictures($last['product_id']);
-                    if (!empty($firstImg)) {
-                        $img = "uploads/product/" . $firstImg;
-                    } else {
-                        $img = "images/No_image_available.jpg";
-                    }
-                    $link = Yii::app()->createUrl('backend/product/detail_product&product_id=' . $last['product_id']);
-                    $i++;
-                    $trid = "td" . $i;
-                    ?>
-                    <tr id="<?php echo $trid; ?>">
-                        <td><?php echo $i ?></td>
-                        <td>
-                            <div class="center-cropped"
-                                 style="background: url('<?php echo Yii::app()->baseUrl; ?>/<?php echo $img; ?>')no-repeat top center;
-                                 -webkit-background-size: cover;
-                                 -moz-background-size: cover;
-                                 -o-background-size: cover;
-                                 background-size: cover;">
-                            </div>
-                            <!--
-                            <img src="<?//php echo Yii::app()->baseUrl; ?>/uploads/<?//php echo $img; ?>" class="img-resize img-thumbnail" width=""/>
-                            -->
-                        </td>
-                        <td>
-                            <?php echo $last['product_id']; ?><br/>
-                            <a href="<?php echo Yii::app()->createUrl('backend/product/detail_product',array('product_id' => $last['product_id']))?>"><?php echo $last['product_name']; ?></a>
-                        </td>
-                        <td style=" text-align: center; font-weight: bold;">
-                            <?php echo number_format($last['product_price'], 2); ?>
-                        </td>
-                        <td style=" text-align: center; font-weight: bold;" class=" text-danger"><i class="fa fa-arrow-right animated faa-tada"></i> <?php echo $Total ?></td>
-                        <td style=" text-align: center;">
-                            <?php
-                            if ($last['status'] == '1') {
-                                echo "<font style='color:red;'><i class='fa fa-ban'></i>ไม่พร้อมขาย</font>";
-                            } else {
-
-                                if ($Total <= '1') {
-                                    echo "<font style='color:orange;'><i class='fa fa-warning'></i>เหลือน้อย</font>";
+                    if ($last['TOTAL'] < $alam):
+                        //$img_title = $product_model->get_images_product_title($last['product_id']);
+                        $productID = $last['product_id'];
+                        $Total = $stock->CountItems($productID);
+                        $firstImg = $product_model->firstpictures($last['product_id']);
+                        if (!empty($firstImg)) {
+                            $img = "uploads/product/" . $firstImg;
+                        } else {
+                            $img = "images/No_image_available.jpg";
+                        }
+                        $link = Yii::app()->createUrl('backend/product/detail_product&product_id=' . $last['product_id']);
+                        $i++;
+                        $trid = "td" . $i;
+                        ?>
+                        <tr id="<?php echo $trid; ?>">
+                            <td><?php echo $i ?></td>
+                            <td>
+                                <div class="center-cropped"
+                                     style="background: url('<?php echo Yii::app()->baseUrl; ?>/<?php echo $img; ?>')no-repeat top center;
+                                     -webkit-background-size: cover;
+                                     -moz-background-size: cover;
+                                     -o-background-size: cover;
+                                     background-size: cover;">
+                                </div>
+                                <!--
+                                <img src="<?//php echo Yii::app()->baseUrl; ?>/uploads/<?//php echo $img; ?>" class="img-resize img-thumbnail" width=""/>
+                                -->
+                            </td>
+                            <td>
+                                <?php echo $last['product_id']; ?><br/>
+                                <a href="<?php echo Yii::app()->createUrl('backend/product/detail_product', array('product_id' => $last['product_id'])) ?>"><?php echo $last['product_name']; ?></a>
+                            </td>
+                            <td style=" text-align: center; font-weight: bold;">
+                                <?php echo number_format($last['product_price'], 2); ?>
+                            </td>
+                            <td style=" text-align: center; font-weight: bold;" class=" text-danger"><i class="fa fa-arrow-right animated faa-tada"></i> <?php echo $Total ?></td>
+                            <td style=" text-align: center;">
+                                <?php
+                                if ($last['status'] == '1') {
+                                    echo "<font style='color:red;'><i class='fa fa-ban'></i>ไม่พร้อมขาย</font>";
                                 } else {
-                                    echo "<font style='color:green;'><i class='fa fa-check'></i>พร้อมขาย</font>";
+
+                                    if ($Total <= '1') {
+                                        echo "<font style='color:orange;'><i class='fa fa-warning'></i>เหลือน้อย</font>";
+                                    } else {
+                                        echo "<font style='color:green;'><i class='fa fa-check'></i>พร้อมขาย</font>";
+                                    }
                                 }
-                            }
-                            ?>
-                        </td>
-                        
-                    </tr>
-                <?php 
-                endif;
-                endforeach; 
+                                ?>
+                            </td>
+
+                        </tr>
+                        <?php
+                    endif;
+                endforeach;
                 ?>
             </tbody>
         </table>

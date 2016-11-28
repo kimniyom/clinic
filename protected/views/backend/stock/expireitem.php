@@ -26,11 +26,13 @@ $this->breadcrumbs = array(
 
 $stock = new Items();
 $web = new Configweb_model();
+$Alert = new Alert();
+$alam = $Alert->Getalert()['alert_expire'];
 ?>
 
 <div class="panel panel-danger">
     <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
-        <i class="fa fa-info-circle"></i> สินค้าใกล้หมดอายุ *สินค้าเหลือน้อยกว่า 30 วัน
+        <i class="fa fa-info-circle"></i> สินค้าใกล้หมดอายุ *สินค้าเหลือน้อยกว่า <?php echo $alam ?> วัน
     </div>
     <div class="panel-body">
         <p class="text-danger">*คลิกที่รายชื่อสินค้าเพื่อดูรายละเอียด</p>
@@ -52,43 +54,43 @@ $web = new Configweb_model();
                 $product_model = new Product();
                 $i = 0;
                 foreach ($item as $last):
-                    if($last['expire'] > 5):
-                    //$img_title = $product_model->get_images_product_title($last['product_id']);
-                    $productID = $last['product_id'];
-                    $firstImg = $product_model->firstpictures($last['product_id']);
-                    if (!empty($firstImg)) {
-                        $img = "uploads/product/" . $firstImg;
-                    } else {
-                        $img = "images/No_image_available.jpg";
-                    }
-                    $link = Yii::app()->createUrl('backend/product/detail_product&product_id=' . $last['product_id']);
-                    $i++;
-                    $trid = "td" . $i;
-                    ?>
-                    <tr id="<?php echo $trid; ?>">
-                        <td><?php echo $i ?></td>
-                        <td>
-                            <div class="center-cropped"
-                                 style="background: url('<?php echo Yii::app()->baseUrl; ?>/<?php echo $img; ?>')no-repeat top center;
-                                 -webkit-background-size: cover;
-                                 -moz-background-size: cover;
-                                 -o-background-size: cover;
-                                 background-size: cover;">
-                            </div>
-                            <!--
-                            <img src="<?//php echo Yii::app()->baseUrl; ?>/uploads/<?//php echo $img; ?>" class="img-resize img-thumbnail" width=""/>
-                            -->
-                        </td>
-                        <td><?php echo $last['product_id']; ?></td>
-                        <td><a href="<?php echo Yii::app()->createUrl('backend/product/detail_product',array('product_id' => $last['product_id']))?>"><?php echo $last['product_name']; ?></a></td>
-                        <td><?php echo $last['itemcode'] ?></td>
-                        <td style="text-align: center;"><?php echo $web->thaidate($last['dateexpire']) ?></td>
-                        <td style=" text-align: center; font-weight: bold;" class=" text-danger"><i class="fa fa-arrow-right animated faa-tada"></i> <?php echo $last['expire'] ?></td>
-                        
-                    </tr>
-                <?php 
-                endif;
-                endforeach; 
+                    if ($last['expire'] > $alam):
+                        //$img_title = $product_model->get_images_product_title($last['product_id']);
+                        $productID = $last['product_id'];
+                        $firstImg = $product_model->firstpictures($last['product_id']);
+                        if (!empty($firstImg)) {
+                            $img = "uploads/product/" . $firstImg;
+                        } else {
+                            $img = "images/No_image_available.jpg";
+                        }
+                        $link = Yii::app()->createUrl('backend/product/detail_product&product_id=' . $last['product_id']);
+                        $i++;
+                        $trid = "td" . $i;
+                        ?>
+                        <tr id="<?php echo $trid; ?>">
+                            <td><?php echo $i ?></td>
+                            <td>
+                                <div class="center-cropped"
+                                     style="background: url('<?php echo Yii::app()->baseUrl; ?>/<?php echo $img; ?>')no-repeat top center;
+                                     -webkit-background-size: cover;
+                                     -moz-background-size: cover;
+                                     -o-background-size: cover;
+                                     background-size: cover;">
+                                </div>
+                                <!--
+                                <img src="<?//php echo Yii::app()->baseUrl; ?>/uploads/<?//php echo $img; ?>" class="img-resize img-thumbnail" width=""/>
+                                -->
+                            </td>
+                            <td><?php echo $last['product_id']; ?></td>
+                            <td><a href="<?php echo Yii::app()->createUrl('backend/product/detail_product', array('product_id' => $last['product_id'])) ?>"><?php echo $last['product_name']; ?></a></td>
+                            <td><?php echo $last['itemcode'] ?></td>
+                            <td style="text-align: center;"><?php echo $web->thaidate($last['dateexpire']) ?></td>
+                            <td style=" text-align: center; font-weight: bold;" class=" text-danger"><i class="fa fa-arrow-right animated faa-tada"></i> <?php echo $last['expire'] ?></td>
+
+                        </tr>
+                        <?php
+                    endif;
+                endforeach;
                 ?>
             </tbody>
         </table>

@@ -1,6 +1,6 @@
 <?php
 
-class AppointController extends Controller {
+class MenuController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -30,7 +30,7 @@ class AppointController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'formappoint', 'saveappoint', 'appointover','updateappoint','appointcurrent','appointall'),
+                'actions' => array('create', 'update','getmenu'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -58,13 +58,13 @@ class AppointController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Appoint;
+        $model = new Menu;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Appoint'])) {
-            $model->attributes = $_POST['Appoint'];
+        if (isset($_POST['Menu'])) {
+            $model->attributes = $_POST['Menu'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -85,8 +85,8 @@ class AppointController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Appoint'])) {
-            $model->attributes = $_POST['Appoint'];
+        if (isset($_POST['Menu'])) {
+            $model->attributes = $_POST['Menu'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -113,7 +113,7 @@ class AppointController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Appoint');
+        $dataProvider = new CActiveDataProvider('Menu');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -123,10 +123,10 @@ class AppointController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Appoint('search');
+        $model = new Menu('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Appoint']))
-            $model->attributes = $_GET['Appoint'];
+        if (isset($_GET['Menu']))
+            $model->attributes = $_GET['Menu'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -137,11 +137,11 @@ class AppointController extends Controller {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Appoint the loaded model
+     * @return Menu the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Appoint::model()->findByPk($id);
+        $model = Menu::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -149,83 +149,31 @@ class AppointController extends Controller {
 
     /**
      * Performs the AJAX validation.
-     * @param Appoint $model the model to be validated
+     * @param Menu $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'appoint-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'menu-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
     }
 
-    public function actionFormappoint($seq = null) {
-        $data['seq'] = $seq;
-        $data['model'] = Appoint::model()->find("service_id = '$seq'");
-        $time = $data['model']['timeappoint'];
-        $data['hs'] = trim(substr($time, 0, 2));
-        $data['ms'] = trim(substr($time, 3, 2));
-        $this->renderPartial('formappoint', $data);
+    public function actionGetmenu() {
+        $user = Yii::app()->request->getPost('user_id');
+        $sql = "SELECT *
+                    FROM menu m LEFT JOIN 
+                    (
+                            SELECT r.menu_id FROM role_menu r WHERE r.user_id = '$user'
+                    ) Q
+                    ON m.id = Q.menu_id ";
+
+        $data['menu'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial('menu', $data);
     }
 
-    public function actionSaveappoint() {
-        $service_id = Yii::app()->request->getPost('service_id');
-        $checkappoint = Appoint::model()->find("service_id = '$service_id' ");
-        $id = $checkappoint['id'];
-        if (empty($checkappoint['id'])) {
-            $columns = array(
-                "appoint" => Yii::app()->request->getPost('appoint'),
-                "timeappoint" => Yii::app()->request->getPost('time'),
-                "service_id" => $service_id,
-                "branch" => Yii::app()->request->getPost('branch'),
-                "status" => "0",
-                "create_date" => date("Y-m-d H:i:s")
-            );
-
-            Yii::app()->db->createCommand()
-                    ->insert("appoint", $columns);
-        } else {
-            $columns = array(
-                "appoint" => Yii::app()->request->getPost('appoint'),
-                "timeappoint" => Yii::app()->request->getPost('time'),
-                "branch" => Yii::app()->request->getPost('branch'),
-                    //"create_date" => date("Y-m-d H:i:s")
-            );
-
-            Yii::app()->db->createCommand()
-                    ->update("appoint", $columns, "id = '$id' ");
-        }
-    }
-
-    public function actionAppointover() {
-        $Model = new Appoint();
-        $data['appoint'] = $Model->Appointover();
-        $this->render('appointover', $data);
-    }
-
-    public function actionUpdateappoint() {
-        $id = Yii::app()->request->getPost('id');
-        $columns = array(
-            "appoint" => Yii::app()->request->getPost('appoint'),
-            "timeappoint" => Yii::app()->request->getPost('time'),
-                //"create_date" => date("Y-m-d H:i:s")
-        );
-
-        Yii::app()->db->createCommand()
-                ->update("appoint", $columns, "id = '$id' ");
-    }
-
-    public function actionAppointcurrent(){
-        $Model = new Appoint();
-        $data['appoints'] = $Model->AppointCurrent();
-        //print_r($data['appoint']);
-        $this->render('appointcurrent',$data);
-    }
-    
-    public function actionAppointAll(){
-        $Model = new Appoint();
-        $data['appoints'] = $Model->AppointAll();
-        //print_r($data['appoint']);
-        $this->render('appointall',$data);
+    public function actionAddmenu() {
+        $user = Yii::app()->request->getPost('user_id');
+        $menu_id = Yii::app()->request->getPost('menu_id');
     }
 
 }

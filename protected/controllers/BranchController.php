@@ -114,6 +114,7 @@ class BranchController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
+        
         $branch = Branch::model()->findAll("active = '1' ");
         $this->render('index', array(
             'branch' => $branch,
