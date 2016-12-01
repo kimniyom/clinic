@@ -14,7 +14,7 @@ $product_model = new Product();
          style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
     คลังสินค้า 
     <a href="<?php echo Yii::app()->createUrl('backend/typeproduct/from_add_type') ?>">
-        <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มประเภทสินค้า</button></a>
+        <button type="button" class="btn btn-default" id="btn-bg-default"><i class="fa fa-plus"></i> เพิ่มประเภทสินค้า</button></a>
 </h1>
 <hr/>
 

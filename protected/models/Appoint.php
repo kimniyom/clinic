@@ -98,7 +98,7 @@ class Appoint extends CActiveRecord {
     public function GetBranch() {
         $branch = Yii::app()->session['branch'];
         if ($branch == "99") {
-            $b = " ";
+            $b = " AND 1=1";
         } else {
             $b = " AND a.branch = '$branch' ";
         }

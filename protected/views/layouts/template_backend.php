@@ -173,38 +173,40 @@
                                 <span class="glyphicon glyphicon-home"></span>
                                 <font id="font-th">หน้าหลัก</font></a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-signal"></span>
-                                <font id="font-th">รายงาน </font><b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                $ReportMenu = $MenuReport->Getrolemenu($Profile['user_id']);
-                                foreach ($ReportMenu as $rp):
-                                    $reportLink = $rp['url'];
-                                    ?>
-                                    <li><a href="<?php echo Yii::app()->createUrl($reportLink) ?>"> - <?php echo $rp['report_name'] ?></a></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="fa fa-gear"></span>
-                                <font id="font-th">ตั้งค่าระบบ </font><b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                $Settingmenu = $MenuSetting->Getrolesetting($Profile['user_id']);
-                                foreach ($Settingmenu as $st):
-                                    $linlsetting = $st['url'];
-                                    ?>
-                                    <li><a href="<?php echo Yii::app()->createUrl($linlsetting) ?>"> - <?php echo $st['setting'] ?></a></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </li>
-
+                        <?php if (isset($ReportMenu)) { ?>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-signal"></span>
+                                    <font id="font-th">รายงาน </font><b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <?php
+                                    $ReportMenu = $MenuReport->Getrolemenu($Profile['user_id']);
+                                    foreach ($ReportMenu as $rp):
+                                        $reportLink = $rp['url'];
+                                        ?>
+                                        <li><a href="<?php echo Yii::app()->createUrl($reportLink) ?>"> - <?php echo $rp['report_name'] ?></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </li>
+                        <?php } ?>
+                        <?php if (isset($Settingmenu)) { ?>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="fa fa-gear"></span>
+                                    <font id="font-th">ตั้งค่าระบบ </font><b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <?php
+                                    $Settingmenu = $MenuSetting->Getrolesetting($Profile['user_id']);
+                                    foreach ($Settingmenu as $st):
+                                        $linlsetting = $st['url'];
+                                        ?>
+                                        <li><a href="<?php echo Yii::app()->createUrl($linlsetting) ?>"> - <?php echo $st['setting'] ?></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </li>
+                        <?php } ?>
                         <li <?php
                         if (Yii::app()->session['navmenu'] == '2') {
                             echo "class='active'";
@@ -231,18 +233,20 @@
 
         <div id="wrapper">
             <!-- Sidebar -->
-            <div id="sidebar-wrapper" style=" border-right: #000000 solid 1px; padding-bottom: 50px;">
+            <div id="sidebar-wrapper">
                 <!-- ###################### USER #################-->
-                <div class="panel panel-default" id="panel-head">
-                    <div class=" panel-heading" id="panel" style=" padding-top: 15px;">
+                <div class="panel panel-info" id="panel-head">
+                    <div class=" panel-heading" id="panel" style=" padding-top: 13px;">
                         <img src="<?= Yii::app()->baseUrl; ?>/images/use-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px;"> ผู้ใช้งาน
                     </div>
                     <div class="panel-body">
-                        User : <?php echo Yii::app()->user->id . " " . Yii::app()->user->name ?><br>
-                        สถานะ : <?php echo Yii::app()->session['status'] . ' (' . $Profile['status'] . ')'; ?><br/>
-                        สาขา ​: <?php echo Yii::app()->session['branch'] . " " . $branchModel->Getbranch(Yii::app()->session['branch']) ?>
+                        <div id="box-profile">
+                            User : <?php echo Yii::app()->user->id . " " . Yii::app()->user->name ?><br>
+                            สถานะ : <?php echo Yii::app()->session['status'] . ' (' . $Profile['status'] . ')'; ?><br/>
+                            สาขา ​: <?php echo Yii::app()->session['branch'] . " " . $branchModel->Getbranch(Yii::app()->session['branch']) ?>
+                        </div>
                     </div>
-                    <div class="panel-footer" style="border-bottom:solid 1px #000000; border-radius:0px;">
+                    <div class="panel-footer" style="border-bottom:solid 1px #e5e5e5; border-radius:0px;">
                         <a href="<?= Yii::app()->createUrl('employee/view', array('id' => $Profile['id'])); ?>">ข้อมูลส่วนตัว</a>
                     </div>
                 </div>
@@ -251,28 +255,36 @@
                 <!-- ตั้งค่าร้านค้า -->
                 <?php
                 $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
+                $i = 0;
                 foreach ($MenuSystem as $mn):
                     $linkmenu = $mn['link'];
                     $icon = $mn['icon'];
+                    $i ++;
+
+                    if (Yii::app()->session['leftmenu'] == $i) {
+                        $menuactove = "listmenuactive";
+                    } else {
+                        $menuactove = "";
+                    }
                     ?>
-                    <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>">
-                        <div id="listmenu">
+                    <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo $i ?>')">
+                        <div id="listmenu" class="<?php echo $menuactove; ?>">
                             <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
                                  height="32px"
                                  style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                            <?php echo $mn['menu'] ?>
+                                 <?php echo $mn['menu'] ?>
                         </div>
                     </a>
                 <?php endforeach; ?>
 
-                
+
                 </a>
             </div>
             <!-- /#sidebar-wrapper -->
 
             <!-- Page Content -->
             <div id="page-content-wrapper" style="padding:0px;">
-                <nav class="navbar navbar-inverse" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px; border-left: none; border-right: none;">
+                <nav class="navbar navbar-default" id="heading-panel" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px; border-left: none; border-right: none;">
                     <ul class="nav nav-pills pull-right" style="margin:5px;">
                         <?php
                         if ($product_model->stockproductalert() > 0) {
@@ -376,6 +388,14 @@
                     $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
                 }
             });
+            
+            function setactivemenu(id){
+                var url = "<?php echo Yii::app()->createUrl('site/setactivemenu') ?>";
+                var data = {menu: id};
+                $.post(url,data,function(){
+                    
+                });
+            }
         </script>
     </body>
 </html>

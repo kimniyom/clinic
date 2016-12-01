@@ -52,8 +52,18 @@ class EmployeeController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        $year = date("Y");
+        $Model = new Employee();
+        $sellmonth = $Model->Getsellmonth($id, $year);
+        foreach ($sellmonth as $sm):
+            //echo $sm['month_th']." ".$sm['total']."<br/>";
+            $category[] = "['" . $sm['month_th'] . "'," . $sm['total'] . "]";
+        endforeach;
+        $categorys = implode(",", $category);
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'categorys' => $categorys,
+            'year' => $year,
         ));
     }
 
@@ -111,15 +121,15 @@ class EmployeeController extends Controller {
     public function actionDelete() {
         $id = Yii::app()->request->getPost('id');
         $images = Employee::model()->find("id = '$id' ")['images'];
-        if(!$images){
-            unlink("./uploads/profile/".$images);
+        if (!$images) {
+            unlink("./uploads/profile/" . $images);
         }
         $this->loadModel($id)->delete();
-        
+
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         /*
-        if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+          if (!isset($_GET['ajax']))
+          $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
          * 
          */
     }

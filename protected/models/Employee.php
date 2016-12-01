@@ -140,5 +140,21 @@ class Employee extends CActiveRecord
 		return parent::model($className);
 	}
 
+	function Getsellmonth($user_id = null,$year = null){
+		$sql = "SELECT m.month_th,IFNULL(Q.total,0) AS total
+				FROM `month` m 
+
+				LEFT JOIN 
+				(
+					SELECT SUBSTR(l.date_sell,6,2) AS month,SUM(l.total) AS total
+					FROM logsell l 
+					WHERE LEFT(l.date_sell,4) = '$year' AND l.user_id = '$user_id'
+					GROUP BY SUBSTR(l.date_sell,6,2)
+				) Q 
+				ON m.id = Q.month ";
+
+		return Yii::app()->db->createCommand($sql)->queryAll();
+	}
+
 
 }

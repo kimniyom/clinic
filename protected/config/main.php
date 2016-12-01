@@ -31,6 +31,9 @@ return array(
     // application components
     'components' => array(
         //...
+        'session'=>array( 
+            'timeout' => 86400 //อยู่ได้นาน 1 วันต่อการ login
+        ),
         'ePdf' => array(
             'class' => 'ext.yii-pdf.EYiiPdf',
             'params' => array(

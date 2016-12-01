@@ -59,7 +59,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
                     <?php echo $brancList ?>
                 </div>
                 <div class="col-lg-6">
-                    <button type="button" class="btn btn-success btn-block" onclick="sell()" style="margin-top: 20px;"><i class="fa fa-plus"></i> เพิ่มสินค้า</button>
+                    <button type="button" class="btn btn-default btn-block" id="btn-bg-default" onclick="sell()" style="margin-top: 20px;"><i class="fa fa-plus"></i> เพิ่มสินค้า</button>
                 </div>
             </div>
             <br/>
@@ -72,7 +72,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             เงินทอน
             <input type="text" class="form-control" id="change" readonly="readonly" style=" text-align: center; color: #33cc00; font-weight: bold; font-size: 24px; background: #333333;"/>
             <hr style=" border-bottom: #999999 solid 1px;"/>
-            <button type="button" class="btn btn-info btn-block" onclick="Check_bill()">
+            <button type="button" class="btn btn-default btn-block" id="btn-bg-warning" onclick="Check_bill()">
                 <i class="fa fa-money"></i> ชำระเงิน</button>
         </div>
 
@@ -86,15 +86,15 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             <!--
             <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                           ?>', '<?php //echo $sell_id                                           ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
             -->
-            <button type="button" class="btn btn-danger btn-block" onclick="javascript:window.location.reload()"><i class="fa fa-remove"></i> จบการขาย</button>
+            <button type="button" class="btn btn-danger btn-block" id="btn-bg-danger" onclick="javascript:window.location.reload()"><i class="fa fa-remove"></i> จบการขาย</button>
         </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-8" style=" padding-right: 0px; border-right: none;">
-        <div class="panel panel-info" style="position: relative; " id="listorder">
-            <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-bars"></i> รายการขาย</div>
+        <div class="panel panel-info" style="position: relative; border-radius: 0px; " id="listorder">
+            <div class="panel-heading" style="border-radius: 0px;" id="heading-panel"><i class="fa fa-bars"></i> รายการขาย</div>
             <div id="orderlist" style="overflow: auto;"><h3 style=" text-align: center;">ยังไม่มีรายการขาย</h3></div>
             <div class="panel-footer" style=" position: absolute; bottom: 0px; width: 100%; border-radius: 0px;">
                 รวม
@@ -104,8 +104,8 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
     </div>
 
     <div class="col-lg-4" style=" padding-left: 0px; border-left: none;">
-        <div class="panel panel-info" style="position: relative;" id="patientbox">
-            <div class="panel-heading" style="border-radius: 0px;"><i class="fa fa-user"></i> ข้อมูลลูกค้า</div>
+        <div class="panel panel-info" style="position: relative; border-radius: 0px;" id="patientbox">
+            <div class="panel-heading" style="border-radius: 0px;" id="heading-panel"><i class="fa fa-user"></i> ข้อมูลลูกค้า</div>
             <div class="panel-body" id="font-22" >
                 <div id="patient"></div>
             </div>

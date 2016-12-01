@@ -11,13 +11,13 @@ $branchModel = new Branch();
 ?>
 <style type="text/css">
     #font-18{
-        color: #666666;
+        color: #00cc00;
     }
 </style>
 
 
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="panel panel-info">
+    <div class="panel-heading" id="heading-panel">
         <i class="fa fa-user"></i> ID <?php echo $model['pid'] ?>
     </div>
     <div class="row" style="margin:0px;">
@@ -39,7 +39,9 @@ $branchModel = new Branch();
                 <img src="<?php echo Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img-responsive img-thumbnail" id="img_profile" style=" margin-top: 5px; max-height: 200px;"/>
                 <br/><br/>
                 <div class="well" style="border-radius:0px; text-align: left; padding-left: 30px; padding-bottom: 0px;">
-                    <input type="file" name="file_upload" id="file_upload" />
+                    <div style=" padding-left: 30px;">
+                        <input type="file" name="file_upload" id="file_upload" />
+                    </div>
                     <p id="font-16" style=" color: #ff0000; text-align: center; margin-bottom: 0px;">(ไม่เกิน 2MB)</p>
                 </div>
             </center>
@@ -217,11 +219,13 @@ $branchModel = new Branch();
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">ประวัติการขายสินค้า</div>
+                <div id="sellmonth" style=" height: 250px;"></div>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">ประวัติการเข้าใช้งานระบบ</div>
+                <div id="loginsystem" style=" height: 250px;"></div>
             </div>
         </div>
     </div>
@@ -297,6 +301,149 @@ $branchModel = new Branch();
                     colorByPoint: true,
                     name: 'ยอดขาย',
                     data: [50000, 30000]
+                }]
+        });
+    });
+
+
+    $(function () {
+        Highcharts.chart('sellmonth', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'ยอดขายปี <?php echo $year ?>'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'จำนวนเงิน'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: 'ยอดขาย: <b>{point.y:.1f} บาท</b>'
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                    colorByPoint: true,
+                    name: 'Population',
+                    data: [<?php echo $categorys ?>
+                        /*
+                         ['Shanghai', 23.7],
+                         ['Lagos', 16.1],
+                         ['Istanbul', 14.2],
+                         ['Karachi', 14.0],
+                         ['Mumbai', 12.5],
+                         ['Moscow', 12.1],
+                         ['São Paulo', 11.8],
+                         ['Beijing', 11.7],
+                         ['Guangzhou', 11.1],
+                         ['Delhi', 11.1],
+                         ['Shenzhen', 10.5],
+                         ['Seoul', 10.4] 
+                         */
+                    ],
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        format: '{point.y:.1f}', // one decimal
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                }]
+        });
+    });
+
+    $(function () {
+        Highcharts.chart('loginsystem', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'ยอดขายปี <?php echo $year ?>'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'จำนวนเงิน'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: 'ยอดขาย: <b>{point.y:.1f} บาท</b>'
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                    //colorByPoint: true,
+                    name: 'Population',
+                    data: [<?php echo $categorys ?>
+                        /*
+                         ['Shanghai', 23.7],
+                         ['Lagos', 16.1],
+                         ['Istanbul', 14.2],
+                         ['Karachi', 14.0],
+                         ['Mumbai', 12.5],
+                         ['Moscow', 12.1],
+                         ['São Paulo', 11.8],
+                         ['Beijing', 11.7],
+                         ['Guangzhou', 11.1],
+                         ['Delhi', 11.1],
+                         ['Shenzhen', 10.5],
+                         ['Seoul', 10.4] 
+                         */
+                    ],
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        format: '{point.y:.1f}', // one decimal
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
                 }]
         });
     });

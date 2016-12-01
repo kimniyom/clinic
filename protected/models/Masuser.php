@@ -151,4 +151,5 @@ class Masuser extends CActiveRecord {
         return Yii::app()->db->createCommand($sql)->queryRow();
     }
 
+
 }

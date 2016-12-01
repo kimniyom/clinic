@@ -1,6 +1,7 @@
 <?php
 
 class SiteController extends Controller {
+
     public $layout = 'template_backend';
 
     /**
@@ -94,6 +95,11 @@ class SiteController extends Controller {
                     $branch = $role->find("user_id = '$user_id' ");
                     Yii::app()->session['status'] = $status;
                     Yii::app()->session['branch'] = $branch['branch_id'];
+
+                    $loglogin = array("user_id" => $user_id, "branch" => $branch['branch_id'], "date" => date("Y-m-d H:i:s"));
+                    Yii::app()->db->createCommand()
+                            ->insert("loglogin", $loglogin);
+
                     $this->redirect(array('site/index'));
                 } else {
                     $this->renderPartial('login', array('model' => $model));
@@ -122,14 +128,9 @@ class SiteController extends Controller {
         $this->render("//main/about", $data);
     }
 
-    public function actionHowtoorder() {
-        $rs = Yii::app()->db->createCommand()
-                ->select('*')
-                ->from('howtoorder')
-                ->queryRow();
-
-        $data['howtoorder'] = $rs;
-        $this->render("//main/howtoorder", $data);
-    }
+   public function actionSetactivemenu(){
+       $menu = Yii::app()->request->getPost('menu');
+       Yii::app()->session['leftmenu'] = $menu;
+   }
 
 }
