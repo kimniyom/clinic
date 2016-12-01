@@ -23,37 +23,34 @@ class MasuserController extends Controller {
      * This method is used by the 'accessControl' filter.
      * @return array access control rules
      */
-    /*
-      public function accessRules()
-      {
-      return array(
-      array('allow',  // allow all users to perform 'index' and 'view' actions
-      'actions'=>array('index','view'),
-      'users'=>array('*'),
-      ),
-      array('allow', // allow authenticated user to perform 'create' and 'update' actions
-      'actions'=>array('create','update'),
-      'users'=>array('@'),
-      ),
-      array('allow', // allow admin user to perform 'admin' and 'delete' actions
-      'actions'=>array('admin','delete'),
-      'users'=>array('admin'),
-      ),
-      array('deny',  // deny all users
-      'users'=>array('*'),
-      ),
-      );
-      }
-     * 
-     */
+    public function accessRules() {
+        return array(
+            array('allow', // allow all users to perform 'index' and 'view' actions
+                'actions' => array('index', 'view'),
+                'users' => array('*'),
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update','admin','getrole','setbranch','deletebranch'),
+                'users' => array('@'),
+            ),
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                'actions' => array('admin', 'delete'),
+                'users' => array('admin'),
+            ),
+            array('deny', // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
 
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+    public function actionView($id, $user_id) {
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'user_id' => $user_id
         ));
     }
 
@@ -87,7 +84,7 @@ class MasuserController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id,$user_id) {
         $model = $this->loadModel($id);
 
         // Uncomment the following line if AJAX validation is needed
@@ -98,11 +95,12 @@ class MasuserController extends Controller {
             $model->password = md5($_POST['Masuser']['password']);
             $model->d_update = date("Y-m-d H:i:s");
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('view', 'id' => $model->id,'user_id' => $user_id));
         }
 
         $this->render('update', array(
             'model' => $model,
+            'user_id' => $user_id,
         ));
     }
 
@@ -170,33 +168,42 @@ class MasuserController extends Controller {
             Yii::app()->end();
         }
     }
-    
-    public function actionGetrole(){
+
+    public function actionGetrole() {
         $user_id = Yii::app()->request->getPost('user_id');
         $sql = "SELECT r.id,b.branchname FROM role_branch r INNER JOIN branch b ON r.branch_id = b.id WHERE r.user_id = '$user_id' ";
         $data['branch'] = Yii::app()->db->createCommand($sql)->queryAll();
-        
-        $this->renderPartial('roleuser',$data);
+
+        $this->renderPartial('roleuser', $data);
     }
-    
-    public function actionSetbranch(){
+
+    public function actionSetbranch() {
         $user_id = Yii::app()->request->getPost('user_id');
         $branch = Yii::app()->request->getPost('branch');
-        
-        $columns = array(
-            "user_id" => $user_id,
-            "branch_id" => $branch
-        );
-        
-        Yii::app()->db->createCommand()
-                ->insert("role_branch", $columns);
+
+        $Check = RoleBranch::model()->count("user_id = '$user_id' ");
+        if ($Check <= 0) {
+            $columns = array(
+                "user_id" => $user_id,
+                "branch_id" => $branch
+            );
+            Yii::app()->db->createCommand()
+                    ->insert("role_branch", $columns);
+        } else {
+            $columns = array(
+                //"user_id" => $user_id,
+                "branch_id" => $branch
+            );
+            Yii::app()->db->createCommand()
+                    ->update("role_branch", $columns, "user_id = '$user_id' ");
+        }
     }
-    
-public function actionDeletebranch(){
+
+    public function actionDeletebranch() {
         $id = Yii::app()->request->getPost('id');
-        
+
         Yii::app()->db->createCommand()
                 ->delete("role_branch", "id = '$id' ");
     }
-    
+
 }

@@ -18,19 +18,12 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/_form.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Branch.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/alert/_form.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/AlertController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/report/reportinputproductmonth.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Backend_product.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/alert/view.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/template.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Alert.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/StockController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/alert/update.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/report.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Masuser.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/masuser/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/menu/menu.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/RoleMenuController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/masuser/view.php</file>
         </group>
     </open-files>
 </project-private>

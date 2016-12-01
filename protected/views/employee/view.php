@@ -2,9 +2,9 @@
 /* @var $this EmployeeController */
 /* @var $model Employee */
 
-$this->breadcrumbs=array(
-	'Employees'=>array('index'),
-	$model->name,
+$this->breadcrumbs = array(
+    'พนักงาน' => array('index'),
+    $model->name,
 );
 $config = new Configweb_model();
 $branchModel = new Branch();
@@ -50,17 +50,19 @@ $branchModel = new Branch();
         </div>
         <div class="col-md-9 col-lg-9" style="padding-right: 0px;">
             <div class="well" style="margin: 5px; background: none;" id="font-20">
-                <a href="<?php echo Yii::app()->createUrl('employee/update',array('id' => $model['id']))?>">
-                    <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14">แก้ไขข้อมูล</button></a>
-                    
-                ชื่อ - สกุล <p class="label" id="font-18"><?php echo $model['name'] . ' ' . $model['lname'] ?></p><br/>
+                <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14" 
+                        onclick="deletemployee('<?php echo $model['id'] ?>')"><i class="fa fa-trash"></i> ลบ</button>
+                <a href="<?php echo Yii::app()->createUrl('employee/update', array('id' => $model['id'])) ?>">
+                    <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14"><i class="fa fa-pencil"></i> แก้ไข</button></a>
+
+                ชื่อ - สกุล <p class="label" id="font-18"><?php echo $model['name'] . ' ' . $model['lname'] ?></p>
                 ชื่อเล่น <p class="label" id="font-18"><?php
                     if (isset($model['alias'])) {
                         echo $model['alias'];
                     } else {
                         echo "-";
                     }
-                    ?></p><br/>
+                    ?></p>
                 เพศ <p class="label" id="font-18"><?php
                     if ($model['sex'] == 'M') {
                         echo "ชาย";
@@ -68,27 +70,27 @@ $branchModel = new Branch();
                         echo "หญิง";
                     }
                     ?></p><br/>
-                   เกิดวันที่ <p class="label" id="font-18"><?php
+                เกิดวันที่ <p class="label" id="font-18"><?php
                     if (isset($model['birth'])) {
                         echo $config->thaidate($model['birth']);
                     } else {
                         echo "-";
                     }
-                    ?></p> ปี<br/>
+                    ?></p>
                 อายุ <p class="label" id="font-18"><?php
                     if (isset($model['birth'])) {
                         echo $config->get_age($model['birth']);
                     } else {
                         echo "-";
                     }
-                    ?></p><br/>
+                    ?></p>ปี <br/>
                 อีเมล์ <p class="label" id="font-18"><?php
                     if (isset($model['email'])) {
                         echo $model['email'];
                     } else {
                         echo "-";
                     }
-                    ?></p><br/>
+                    ?></p>
 
                 เบอร์โทรศัพท์ <p class="label" id="font-18"><?php
                     if (isset($model['tel'])) {
@@ -98,7 +100,7 @@ $branchModel = new Branch();
                     }
                     ?></p><br/>
                 สถานที่ปฏิบัติงาน <p class="label" id="font-18"><?php
-                        echo "สาขา ".$branchModel->Getbranch($model['branch']);
+                    echo "สาขา " . $branchModel->Getbranch($model['branch']);
                     ?></p><br/>
                 วันที่เข้าทำงาน <p class="label" id="font-18"><?php
                     if (isset($model['walking'])) {
@@ -108,19 +110,18 @@ $branchModel = new Branch();
                     }
                     ?></p><br/>
                 ตำแหน่ง <p class="label" id="font-18"><?php
-                        $position = $model['position'];
-                        echo Position::model()->find("id = '$position' ")['position'];
-
+                    $position = $model['position'];
+                    echo Position::model()->find("id = '$position' ")['position'];
                     ?></p><br/>
-                 เงินเดือน <p class="label" id="font-18"><?php
+                เงินเดือน <p class="label" id="font-18"><?php
                     if (isset($model['salary'])) {
-                        echo number_format($model['salary'],2);
+                        echo number_format($model['salary'], 2);
                     } else {
                         echo "-";
                     }
                     ?> </p>บาท<br/>
-                 
-                 ข้อมูลอัพเดทวันที่ <p class="label" id="font-18"><?php
+
+                ข้อมูลอัพเดทวันที่ <p class="label" id="font-18"><?php
                     if (isset($model['d_update'])) {
                         echo $config->thaidate($model['d_update']);
                     } else {
@@ -128,74 +129,104 @@ $branchModel = new Branch();
                     }
                     ?></p><br/>
                 <br/>
-                
+
                 <!--
                 ที่อยู่ <br/>
                 <div class="btn btn-default btn-sm pull-right" id="font-rsu-14" onclick="edit_address_profile();">แก้ไขที่อยู่</div>
                 <ul style=" padding-top: 5px;">
                 -->
-                    <?php
-                    /*
-                    echo "<li>เลขที่ ";
-                    if (isset($model['number'])) {
-                        echo ($model['number']);
-                    } else {
-                        echo "-";
-                    } "</li>";
-                    echo "<li>อาคาร ";
-                    if (isset($model['building'])) {
-                        echo ($model['building']);
-                    } else {
-                        echo "-";
-                    } "</li>";
-                    echo "<li>ชั้น ";
-                    if (isset($model['class'])) {
-                        echo ($model['class']);
-                    } else {
-                        echo "-";
-                    }
-                    echo " ห้อง ";
-                    if (isset($model['room'])) {
-                        echo ($model['room']);
-                    } else {
-                        echo "-";
-                    } "</li>";
-                    echo "<li>ต. ";
-                    if (isset($model['tambon_name'])) {
-                        echo ($model['tambon_name']);
-                    } else {
-                        echo "-";
-                    }
-                    echo " &nbsp;&nbsp;อ. ";
-                    if (isset($model['ampur_name'])) {
-                        echo ($model['ampur_name']);
-                    } else {
-                        echo "-";
-                    }
-                    echo " &nbsp;&nbsp;จ. ";
-                    if (isset($model['changwat_name'])) {
-                        echo ($model['changwat_name']);
-                    } else {
-                        echo "-";
-                    } "</li>";
-                    echo "<li>รหัสไปรษณีย์ ";
-                    if (isset($model['zipcode'])) {
-                        echo ($model['zipcode']);
-                    } else {
-                        echo "-";
-                    } "</li>";
-                     * 
-                     */
-                    ?>
+                <?php
+                /*
+                  echo "<li>เลขที่ ";
+                  if (isset($model['number'])) {
+                  echo ($model['number']);
+                  } else {
+                  echo "-";
+                  } "</li>";
+                  echo "<li>อาคาร ";
+                  if (isset($model['building'])) {
+                  echo ($model['building']);
+                  } else {
+                  echo "-";
+                  } "</li>";
+                  echo "<li>ชั้น ";
+                  if (isset($model['class'])) {
+                  echo ($model['class']);
+                  } else {
+                  echo "-";
+                  }
+                  echo " ห้อง ";
+                  if (isset($model['room'])) {
+                  echo ($model['room']);
+                  } else {
+                  echo "-";
+                  } "</li>";
+                  echo "<li>ต. ";
+                  if (isset($model['tambon_name'])) {
+                  echo ($model['tambon_name']);
+                  } else {
+                  echo "-";
+                  }
+                  echo " &nbsp;&nbsp;อ. ";
+                  if (isset($model['ampur_name'])) {
+                  echo ($model['ampur_name']);
+                  } else {
+                  echo "-";
+                  }
+                  echo " &nbsp;&nbsp;จ. ";
+                  if (isset($model['changwat_name'])) {
+                  echo ($model['changwat_name']);
+                  } else {
+                  echo "-";
+                  } "</li>";
+                  echo "<li>รหัสไปรษณีย์ ";
+                  if (isset($model['zipcode'])) {
+                  echo ($model['zipcode']);
+                  } else {
+                  echo "-";
+                  } "</li>";
+                 * 
+                 */
+                ?>
                 </ul>
             </div>
+
+            <div class="row" style=" padding: 5px;">
+                <div class="col-lg-4">
+                    <div class="btn btn-success btn-block">
+                        <h3>50,000</h3><hr/>
+                        <h4>ยอดขายปีนี้ </h4>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="btn btn-warning btn-block">
+                        <h3>30,000</h3><hr/>
+                        <h4>ยอดขายปีที่แล้ว </h4>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div id="sell" style=" height: 150px;"></div>
+                </div>
+            </div>
+
         </div>
 
     </div>
 
+    <div class="row" style=" padding: 15px;">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">ประวัติการขายสินค้า</div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">ประวัติการเข้าใช้งานระบบ</div>
+            </div>
+        </div>
+    </div>
 
 </div>
-
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -214,6 +245,60 @@ $branchModel = new Branch();
         });
     });
 
-    
+    function deletemployee(id) {
+        var r = confirm("คุณแน่ใจหรือไม่ ... ข้อมูลที่เกี่ยวข้องกับพนักงานจะถูกลบทั้งหมด ... ?");
+        if (r == true) {
+            var url = "<?php echo Yii::app()->createUrl('employee/delete') ?>";
+            var data = {id: id};
+            $.post(url, data, function (success) {
+                window.location.reload();
+            });
+        }
+    }
+
+    $(function () {
+        Highcharts.chart('sell', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['ปีนี้', 'ปีที่แล้ว'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' บาท'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                    colorByPoint: true,
+                    name: 'ยอดขาย',
+                    data: [50000, 30000]
+                }]
+        });
+    });
 </script>
 

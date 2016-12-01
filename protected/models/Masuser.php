@@ -119,7 +119,7 @@ class Masuser extends CActiveRecord {
     public function GetProfile() {
         $userID = Yii::app()->user->id;
         $sql = "
-        SELECT e.*,s.`status`,b.branchname
+        SELECT e.*,s.`status`,b.branchname,m.user_id
             FROM masuser m INNER JOIN employee e ON m.user_id = e.id
             INNER JOIN status_user s ON m.`status` = s.id
             INNER JOIN branch b ON e.branch = b.id
@@ -130,7 +130,7 @@ class Masuser extends CActiveRecord {
     
     public function GetDetailUser($userID) {
         $sql = "
-        SELECT p.pername,e.*,s.`status`,b.branchname
+        SELECT p.pername,e.*,s.`status`,b.branchname,m.user_id
             FROM masuser m INNER JOIN employee e ON m.user_id = e.id
             INNER JOIN pername p ON e.oid = p.oid
             INNER JOIN status_user s ON m.`status` = s.id
@@ -142,7 +142,7 @@ class Masuser extends CActiveRecord {
     
     public function GetProfileByID($id) {
         $sql = "
-        SELECT e.*,s.`status`,b.branchname
+        SELECT e.*,s.`status`,b.branchname,m.user_id
             FROM masuser m INNER JOIN employee e ON m.user_id = e.id
             INNER JOIN status_user s ON m.`status` = s.id
             INNER JOIN branch b ON e.branch = b.id

@@ -171,9 +171,5 @@ class MenuController extends Controller {
         $this->renderPartial('menu', $data);
     }
 
-    public function actionAddmenu() {
-        $user = Yii::app()->request->getPost('user_id');
-        $menu_id = Yii::app()->request->getPost('menu_id');
-    }
 
 }

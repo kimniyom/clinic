@@ -3157,3 +3157,559 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=menu/getmenu
 HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/view&id=2
 ---
+2016/11/30 00:28:59 [error] [php] Undefined index: report_name (/Applications/MAMP/htdocs/clinic/protected/views/menusetting/menusetting.php:19)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): MenuSettingController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/MenusettingController.php(178): MenuSettingController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): MenuSettingController->actionGetmenusetting()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): MenuSettingController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): MenuSettingController->filterAccessControl()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): MenuSettingController->runActionWithFilters()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): MenuSettingController->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=menusetting/getmenusetting
+in /Applications/MAMP/htdocs/clinic/protected/views/menusetting/menusetting.php (19)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/MenusettingController.php (178)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/30 00:31:09 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`clinic`.`role_report`, CONSTRAINT `report_id` FOREIGN KEY (`report_id`) REFERENCES `menu_report` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `role_report` (`user_id`, `report_id`) VALUES (:user_id, :report_id).
+in /Applications/MAMP/htdocs/clinic/protected/controllers/RolereportController.php (166)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/30 00:31:09 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`clinic`.`role_report`, CONSTRAINT `report_id` FOREIGN KEY (`report_id`) REFERENCES `menu_report` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `role_report` (`user_id`, `report_id`) VALUES (:user_id, :report_id)' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1250): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/RolereportController.php(166): CDbCommand->insert('role_report', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): RoleReportController->actionAdd()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('add')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('rolereport/add')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=rolereport/add
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/view&id=2&user_id=2
+---
+2016/11/30 00:31:12 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`clinic`.`role_report`, CONSTRAINT `report_id` FOREIGN KEY (`report_id`) REFERENCES `menu_report` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `role_report` (`user_id`, `report_id`) VALUES (:user_id, :report_id).
+in /Applications/MAMP/htdocs/clinic/protected/controllers/RolereportController.php (166)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/30 00:31:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`clinic`.`role_report`, CONSTRAINT `report_id` FOREIGN KEY (`report_id`) REFERENCES `menu_report` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `role_report` (`user_id`, `report_id`) VALUES (:user_id, :report_id)' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1250): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/RolereportController.php(166): CDbCommand->insert('role_report', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): RoleReportController->actionAdd()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('add')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('rolereport/add')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=rolereport/add
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/view&id=2&user_id=2
+---
+2016/11/30 00:54:05 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('masuser/view')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/view&id=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/update&id=1
+---
+2016/11/30 10:28:59 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('alert/view')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=alert/view
+---
+2016/11/30 11:40:35 [error] [php] Undefined index: url (/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php:255)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(784): MasuserController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php(58): MasuserController->render()
+#2 unknown(0): MasuserController->actionView()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): MasuserController->runAction()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): MasuserController->filterAccessControl()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): MasuserController->runActionWithFilters()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): MasuserController->run()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=Masuser/view&id=2&user_id=2
+in /Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php (255)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php (58)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/30 14:35:25 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('masuser/view')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/view&id=2
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/update&id=2
+---
+2016/11/30 14:35:33 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('masuser/view')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/view&id=2
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/update&id=2
+---
+2016/11/30 14:36:10 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('masuser/view')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/view&id=2
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/update&id=2
+---
+2016/11/30 14:38:56 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('update')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('Masuser/update')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=Masuser/update&id=2
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2016/11/30 14:40:12 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "Masuser.name" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(145): CComponent->__get('name')
+#1 /Applications/MAMP/htdocs/clinic/protected/views/masuser/update.php(7): CActiveRecord->__get('name')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php(104): CController->render('update', Array)
+#7 [internal function]: MasuserController->actionUpdate('2', '2')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MasuserController), Array)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MasuserController), Object(ReflectionMethod), Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('update')
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('Masuser/update')
+#20 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/clinic/index.php?r=Masuser/update&id=2&user_id=2
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2016/11/30 14:40:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php:157
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php(52): MasuserController->loadModel('demo')
+#1 [internal function]: MasuserController->actionView('demo', '2')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MasuserController), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MasuserController), Object(ReflectionMethod), Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('masuser/view')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/view&id=demo&user_id=2
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/update&id=2&user_id=2
+---
+2016/11/30 14:50:10 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EmployeeController.title" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(4): CComponent->__set('title', '\xE0\xB8\x9E\xE0\xB8\x99\xE0\xB8\xB1\xE0\xB8\x81\xE0\xB8\x87...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#17 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#19 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2016/11/30 14:51:08 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EmployeeController.title" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(4): CComponent->__set('title', '\xE0\xB8\x9E\xE0\xB8\x99\xE0\xB8\xB1\xE0\xB8\x81\xE0\xB8\x87...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#17 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#19 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2016/11/30 14:51:22 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EmployeeController.title" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(4): CComponent->__set('title', '')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#17 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#19 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2016/11/30 14:51:34 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EmployeeController.title" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(6): CComponent->__get('title')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#17 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#19 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2016/11/30 14:51:46 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EmployeeController.title" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(6): CComponent->__set('title', '\xE0\xB8\x9E\xE0\xB8\x99\xE0\xB8\xB1\xE0\xB8\x81\xE0\xB8\x87...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#17 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#19 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2016/11/30 15:05:03 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch' in 'where clause'. The SQL statement executed was: SELECT * FROM `branch` `t` WHERE branch = 'id'  LIMIT 1.
+in /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php (41)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php (130)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/30 15:05:03 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch' in 'where clause'. The SQL statement executed was: SELECT * FROM `branch` `t` WHERE branch = 'id'  LIMIT 1' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(41): CActiveRecord->find('branch = 'id' ')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#20 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=employee/view&id=1
+---
+2016/11/30 15:05:09 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch' in 'where clause'. The SQL statement executed was: SELECT * FROM `branch` `t` WHERE branch = 'id'  LIMIT 1.
+in /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php (41)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php (130)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/30 15:05:09 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch' in 'where clause'. The SQL statement executed was: SELECT * FROM `branch` `t` WHERE branch = 'id'  LIMIT 1' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(41): CActiveRecord->find('branch = 'id' ')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#20 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=employee/view&id=1
+---
+2016/11/30 15:09:06 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch' in 'where clause'. The SQL statement executed was: SELECT * FROM `branch` `t` WHERE branch = 'id'  LIMIT 1.
+in /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php (41)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php (130)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/30 15:09:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch' in 'where clause'. The SQL statement executed was: SELECT * FROM `branch` `t` WHERE branch = 'id'  LIMIT 1' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(41): CActiveRecord->find('branch = 'id' ')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#20 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=employee/view&id=1
+---
+2016/11/30 15:09:07 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch' in 'where clause'. The SQL statement executed was: SELECT * FROM `branch` `t` WHERE branch = 'id'  LIMIT 1.
+in /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php (41)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php (130)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/11/30 15:09:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'branch' in 'where clause'. The SQL statement executed was: SELECT * FROM `branch` `t` WHERE branch = 'id'  LIMIT 1' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(41): CActiveRecord->find('branch = 'id' ')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#20 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=employee/view&id=1
+---
+2016/11/30 15:09:57 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "Branch.branch_name" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(145): CComponent->__get('branch_name')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CModel.php(596): CActiveRecord->__get('branch_name')
+#2 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(42): CModel->offsetGet('branch_name')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#19 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#20 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#21 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=employee/view&id=1
+---
+2016/11/30 15:10:03 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "Branch.branch_name" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(145): CComponent->__get('branch_name')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CModel.php(596): CActiveRecord->__get('branch_name')
+#2 /Applications/MAMP/htdocs/clinic/protected/views/employee/index.php(42): CModel->offsetGet('branch_name')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php(130): CController->render('index', Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): EmployeeController->actionIndex()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('employee/index')
+#19 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#20 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#21 {main}
+REQUEST_URI=/clinic/index.php?r=employee/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=employee/view&id=1
+---

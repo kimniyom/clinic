@@ -10,6 +10,9 @@
             $product_model = new Backend_product();
             $order_model = new Backend_orders();
             $UserModel = new Masuser();
+            $MenuReport = new MenuReport();
+            $MenuSetting = new MenuSetting();
+            $MenuModel = new Menu();
             $AppointModel = new Appoint();
             $Profile = $UserModel->GetProfile();
             $web = new Configweb_model();
@@ -59,7 +62,8 @@
         <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/assets/DataTables-1.10.7/media/js/dataTables.bootstrap.js"></script>
         <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/assets/DataTables-1.10.7/extensions/TableTools/js/dataTables.tableTools.js"></script>
         <!-- highcharts -->
-        <script src="<?= Yii::app()->baseUrl; ?>/assets/highcharts/highcharts.js"></script>
+        <script src="<?= Yii::app()->baseUrl; ?>/lib/Highcharts-5.0.5/code/highcharts.js"></script>
+        <script src="<?= Yii::app()->baseUrl; ?>/lib/Highcharts-5.0.5/code/themes/grid-light.js"></script>
         <!--
         <script src="<?//= Yii::app()->baseUrl; ?>/assets/highcharts/themes/dark-unica.js"></script>
         -->
@@ -82,7 +86,6 @@
         <!--
             SELECT2 Combobox
         -->
-
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/select2-master/dist/css/select2.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/select2-bootstrap-theme-master/dist/select2-bootstrap.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/select2-master/dist/js/select2.js" type="text/javascript"></script>
@@ -151,7 +154,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="#menu-toggle" class="navbar-brand" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                    <a href="#menu-toggle" class="navbar-brand" id="menu-toggle"><i class="fa fa-bars"></i> menu</a>
                     <a class="navbar-brand" style=" margin-top: 0px; padding-top: 10px;">
                         <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $web->get_logoweb(); ?>" height="32px"/>
                     </a>
@@ -176,12 +179,13 @@
                                 <font id="font-th">รายงาน </font><b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo Yii::app()->createUrl('report/reportinputproductmonth') ?>"> - รายงานเปรียบเทียบ ซื้อเข้า,ขายออก ของสินค้า ในแต่ละเดือน</a></li>
-                                <li><a href="#"> - รายงานยอดขาย</a></li>
-                                <li><a href="#"> - รายงานการขายสินค้า</a></li>
-                                <li><a href="#"> - รายงานการขายสินค้า(แยกประเภท)</a></li>
-                                <li><a href="#"> - รายงานรายได้ กำไร ขาดทุน</a></li>
-                                <li><a href="#"> - รายงานการขายของพนักงาน</a></li>
+                                <?php
+                                $ReportMenu = $MenuReport->Getrolemenu($Profile['user_id']);
+                                foreach ($ReportMenu as $rp):
+                                    $reportLink = $rp['url'];
+                                    ?>
+                                    <li><a href="<?php echo Yii::app()->createUrl($reportLink) ?>"> - <?php echo $rp['report_name'] ?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                         </li>
 
@@ -191,16 +195,13 @@
                                 <font id="font-th">ตั้งค่าระบบ </font><b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo Yii::app()->createUrl('backend/typeproduct/from_add_type') ?>"> - ประเภทสินค้า</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('diag/index') ?>"> - หัตถการทางการแพทย์</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('occupation/index') ?>"> - อาชีพ</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('gradcustomer/index') ?>"> - ประเภทลูกค้า</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('position/index') ?>"> - ตำแหน่งพนักงาน</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('statususer/index') ?>"> - สถานะผู้ใช้งานระบบ</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('alert/view', array("id" => '1')) ?>"> - ตั้งค่าแจ้งเตือน</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('backend/logo') ?>"> - โลโก้</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('backend/web') ?>"> - ชื่อร้านค้า</a></li>
-                                <li><a href="<?php echo Yii::app()->createUrl('backend/contact') ?>"> - ข้อมูลติดต่อ</a></li>
+                                <?php
+                                $Settingmenu = $MenuSetting->Getrolesetting($Profile['user_id']);
+                                foreach ($Settingmenu as $st):
+                                    $linlsetting = $st['url'];
+                                    ?>
+                                    <li><a href="<?php echo Yii::app()->createUrl($linlsetting) ?>"> - <?php echo $st['setting'] ?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                         </li>
 
@@ -248,93 +249,23 @@
                 <!-- ส่วนของ ผู้ดูแลระบบ -->
 
                 <!-- ตั้งค่าร้านค้า -->
-                <?php if (Yii::app()->session['status'] == '1') { ?>
-                    <a href="<?php echo Yii::app()->createUrl('branch/index') ?>">
+                <?php
+                $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
+                foreach ($MenuSystem as $mn):
+                    $linkmenu = $mn['link'];
+                    $icon = $mn['icon'];
+                    ?>
+                    <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>">
                         <div id="listmenu">
-                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/clinic-icon.png"
-                                 height="32px"
-                                 style="border-radius:20px; padding:2px; border:#FFF solid 2px; background: #FFFFFF;"/>
-                            ข้อมูลสาขา
-                        </div>
-                    </a>
-                    <a href="<?= Yii::app()->createUrl('masuser/index') ?>">
-                        <div id="listmenu">
-                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/Login-icon.png"
+                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
                                  height="32px"
                                  style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                            ผู้ใช้งานระบบ
+                            <?php echo $mn['menu'] ?>
                         </div>
                     </a>
+                <?php endforeach; ?>
 
-                    <a href="<?= Yii::app()->createUrl('employee/index') ?>">
-                        <div id="listmenu">
-                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/users-icon.png"
-                                 height="32px"
-                                 style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                            ข้อมูลพนักงาน
-                        </div>
-                    </a>
-                <?php } ?>
-
-                <!-- List รายชื่อ สินค้า -->
-                <a href="<?= Yii::app()->createUrl('producttype/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?= Yii::app()->baseUrl; ?>/images/shipping-box-icon.png" 
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
-                        คลังสินค้า
-                    </div>
-                </a>
-
-                <!-- ทะเบียนผู้ป่วย-->
-                <a href="<?= Yii::app()->createUrl('patient/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/patients-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ทะเบียนลูกค้า
-                    </div>
-                </a>
-                <hr/>
-                <!-- ห้องตรวจ-->
-                <a href="<?= Yii::app()->createUrl('dortor/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/doctor-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ห้องตรวจ
-                    </div>
-                </a>
-
-                <!-- ลูกค้ามาตามนัด -->
-                <a href="<?= Yii::app()->createUrl('appoint/appointcurrent') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/calendar-day-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ตรวจลูกค้านัดวันนี้
-                    </div>
-                </a>
-
-
-                <!-- ลูกค้ามาตามนัด -->
-                <a href="<?= Yii::app()->createUrl('appoint/appointall') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/Time-Machine-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ตรวจลูกค้าตามนัด
-                    </div>
-                </a>
-
-                <hr/>
-                <!-- ขายสินค้า -->
-                <a href="<?= Yii::app()->createUrl('sell/index') ?>">
-                    <div id="listmenu">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/shopping-bag-icon.png"
-                             height="32px"
-                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                        ขายสินค้า
-                    </div>
+                
                 </a>
             </div>
             <!-- /#sidebar-wrapper -->

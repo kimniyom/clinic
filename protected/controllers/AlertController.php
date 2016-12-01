@@ -49,7 +49,7 @@ class AlertController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($id = '1')
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),

@@ -101,4 +101,12 @@ class Menu extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	function Getrolemenu($user_id = null){
+        $sql = "SELECT m.*
+                    FROM menu m INNER JOIN role_menu r ON m.id = r.menu_id
+					WHERE r.user_id = '$user_id' ";
+
+        return Yii::app()->db->createCommand($sql)->queryAll();
+	}
 }
