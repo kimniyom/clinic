@@ -30,7 +30,7 @@ class MasuserController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','admin','getrole','setbranch','deletebranch'),
+                'actions' => array('create', 'update', 'admin', 'getrole', 'setbranch', 'deletebranch','profile'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -84,7 +84,7 @@ class MasuserController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id,$user_id) {
+    public function actionUpdate($id, $user_id) {
         $model = $this->loadModel($id);
 
         // Uncomment the following line if AJAX validation is needed
@@ -95,7 +95,7 @@ class MasuserController extends Controller {
             $model->password = md5($_POST['Masuser']['password']);
             $model->d_update = date("Y-m-d H:i:s");
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id,'user_id' => $user_id));
+                $this->redirect(array('view', 'id' => $model->id, 'user_id' => $user_id));
         }
 
         $this->render('update', array(
@@ -204,6 +204,22 @@ class MasuserController extends Controller {
 
         Yii::app()->db->createCommand()
                 ->delete("role_branch", "id = '$id' ");
+    }
+
+    public function actionProfile($id) {
+        $year = date("Y");
+        $Model = new Employee();
+        $sellmonth = $Model->Getsellmonth($id, $year);
+        foreach ($sellmonth as $sm):
+            //echo $sm['month_th']." ".$sm['total']."<br/>";
+            $category[] = "['" . $sm['month_th'] . "'," . $sm['total'] . "]";
+        endforeach;
+        $categorys = implode(",", $category);
+        $this->render('//masuser/profile', array(
+            'model' => Employee::model()->find("id = '$id' "),
+            'categorys' => $categorys,
+            'year' => $year,
+        ));
     }
 
 }

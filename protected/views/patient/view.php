@@ -48,7 +48,6 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                 </div>
             </center>
 
-            <button type="button" class="btn btn-default btn-block" onclick="popupcheckbody('<?php echo $model['pid']?>','<?php echo $model['name']?>','<?php echo $model['lname'] ?>')">ตรวจร่างกาย</button>
             <button type="button" class="btn btn-default btn-block" onclick="popupdiag()">หัตถการทางการแพทย์</button>
             <button type="button" class="btn btn-default btn-block" onclick="popupdrug()">อาการแพ้ยา</button>
             <button type="button" class="btn btn-default btn-block" onclick="popupdisease()">โรคประจำตัว</button>

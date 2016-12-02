@@ -43,6 +43,7 @@
             }
         </style>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/service/css/system.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/css/button-color.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/service/bootstrap/css/bootstrap.css" type="text/css" media="all" />
 
         <!--

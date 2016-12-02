@@ -30,7 +30,7 @@ class AppointController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'formappoint', 'saveappoint', 'appointover','updateappoint','appointcurrent','appointall'),
+                'actions' => array('create', 'update', 'formappoint', 'saveappoint', 'appointover', 'updateappoint', 'appointcurrent', 'appointall', 'getappoint','getdayappoint'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -167,6 +167,50 @@ class AppointController extends Controller {
         $this->renderPartial('formappoint', $data);
     }
 
+    public function actionGetappoint() {
+        $branch = Yii::app()->request->getPost('branch');
+        $month = Yii::app()->request->getPost('month');
+
+        $sql = "SELECT a.*,SUBSTR(a.appoint,8,2) AS day
+                FROM appoint a 
+                WHERE SUBSTR(a.appoint,6,2) = '$month' 
+                AND a.branch = '$branch' AND a.`status` = '0' ";
+        $data['appoint'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial('getappoint', $data);
+    }
+
+    public function actionGetdayappoint() {
+        $branch = Yii::app()->request->getPost('branch');
+        $month = Yii::app()->request->getPost('month');
+        $day = Yii::app()->request->getPost('day');
+        $sql = "SELECT a.*,SUBSTR(a.appoint,6,2) AS m
+                FROM appoint a 
+                WHERE SUBSTR(a.appoint,6,2) = '$month' 
+                    AND SUBSTR(a.appoint,8,2) = '$day' 
+                    AND a.branch = '$branch' AND a.`status` = '0' ";
+        $appoint = Yii::app()->db->createCommand($sql)->queryAll();
+        //$this->renderPartial('getappoint', $data);
+
+        $str = "";
+        $str .= '<table class="table table-bordered table-hover">';
+        $str .= '<thead>
+                <tr>
+                    <th style=" width: 5%;">#</th>
+                    <th>เวลา</th>
+                </tr>
+            </thead>
+            <tbody> ';
+        $i = 0;
+        foreach ($appoint as $ap): $i++;
+            $str .= '<tr>
+                <td style=" text-align: center;">' . $i . '</td>';
+            $str .= '<td>' . $ap['timeappoint'] . '</td>
+            </tr>';
+        endforeach;
+        $str .= '</tbody></table>';
+        echo $str;
+    }
+
     public function actionSaveappoint() {
         $service_id = Yii::app()->request->getPost('service_id');
         $checkappoint = Appoint::model()->find("service_id = '$service_id' ");
@@ -188,7 +232,7 @@ class AppointController extends Controller {
                 "appoint" => Yii::app()->request->getPost('appoint'),
                 "timeappoint" => Yii::app()->request->getPost('time'),
                 "branch" => Yii::app()->request->getPost('branch'),
-                    //"create_date" => date("Y-m-d H:i:s")
+//"create_date" => date("Y-m-d H:i:s")
             );
 
             Yii::app()->db->createCommand()
@@ -207,25 +251,25 @@ class AppointController extends Controller {
         $columns = array(
             "appoint" => Yii::app()->request->getPost('appoint'),
             "timeappoint" => Yii::app()->request->getPost('time'),
-                //"create_date" => date("Y-m-d H:i:s")
+//"create_date" => date("Y-m-d H:i:s")
         );
 
         Yii::app()->db->createCommand()
                 ->update("appoint", $columns, "id = '$id' ");
     }
 
-    public function actionAppointcurrent(){
+    public function actionAppointcurrent() {
         $Model = new Appoint();
         $data['appoints'] = $Model->AppointCurrent();
-        //print_r($data['appoint']);
-        $this->render('appointcurrent',$data);
+//print_r($data['appoint']);
+        $this->render('appointcurrent', $data);
     }
-    
-    public function actionAppointAll(){
+
+    public function actionAppointAll() {
         $Model = new Appoint();
         $data['appoints'] = $Model->AppointAll();
-        //print_r($data['appoint']);
-        $this->render('appointall',$data);
+//print_r($data['appoint']);
+        $this->render('appointall', $data);
     }
 
 }

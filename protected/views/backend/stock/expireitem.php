@@ -37,7 +37,7 @@ $alam = $Alert->Getalert()['alert_expire'];
     <div class="panel-body">
         <p class="text-danger">*คลิกที่รายชื่อสินค้าเพื่อดูรายละเอียด</p>
         <hr/>
-        <table class="table" id="p_product">
+        <table class="table table-bordered" id="p_product">
             <thead>
                 <tr>
                     <th>#</th>

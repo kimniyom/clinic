@@ -87,15 +87,15 @@ $Total = $ItemModel->CountItems($product_id);
             <button type="button" class="btn btn-success btn-sm" onclick="popup_add_items('<?php echo $product['product_id'] ?>', '<?php echo $product['product_name'] ?>')">
                 <i class="fa fa-plus"></i> เพิ่มจำนวน Item</button>
             <br/><br/>
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td>#</td>
-                        <td>Itemcode</td>
-                        <td>Input</td>
-                        <td>Expire</td>
-                        <td style=" text-align: center;">หมดอายุ</td>
-                        <td></td>
+                        <th>#</th>
+                        <th>Itemcode</th>
+                        <th>Input</th>
+                        <th>Expire</th>
+                        <th style=" text-align: center;">หมดอายุ</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -138,7 +138,7 @@ $Total = $ItemModel->CountItems($product_id);
                 </tbody>
             </table>
         </div>
-        
+
         <div class="col-lg-6 col-md-12 col-xs-12" style=" padding-top: 20px;">
             <?php
             $product_model = new Product();
@@ -252,16 +252,16 @@ $Total = $ItemModel->CountItems($product_id);
                                     echo "selected";
                                 }
                                 ?>><?php echo $day; ?></option>
-                            <?php } ?>
+                                    <?php } ?>
                         </select>
                     </div>
 
                     <div class="col-sm-4">
                         <select id="month" name="month" class="form-control">
                             <option value="">เดือน</option>
-<?php
-for ($i = 0; $i <= 11; $i++) {
-    ?>
+                            <?php
+                            for ($i = 0; $i <= 11; $i++) {
+                                ?>
                                 <option value="<?php echo $monthval[$i]; ?>"><?php echo $monthname[$i]; ?></option>
                             <?php } ?>
                         </select>
@@ -270,10 +270,10 @@ for ($i = 0; $i <= 11; $i++) {
                     <div class="col-sm-4">
                         <select id="year" name="year" class="form-control">
                             <option value="">ปี</option>
-<?php
-$yearnow = date("Y");
-for ($i = ($yearnow + 10); $i >= $yearnow; $i--) {
-    ?>
+                            <?php
+                            $yearnow = date("Y");
+                            for ($i = ($yearnow + 10); $i >= $yearnow; $i--) {
+                                ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i + 543; ?></option>
                             <?php } ?>
                         </select>

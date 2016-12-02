@@ -1,10 +1,9 @@
 <?php
 $this->breadcrumbs = array(
-    "ลูกค้านัดวันนี้",
+    "นัดลูกค้า",
 );
 
 ?>
-
 
 <?php
 $config = new Configweb_model();

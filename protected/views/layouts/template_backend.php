@@ -248,7 +248,7 @@
                         </div>
                     </div>
                     <div class="panel-footer" style="border-bottom:solid 1px #e5e5e5; border-radius:0px;">
-                        <a href="<?= Yii::app()->createUrl('employee/view', array('id' => $Profile['id'])); ?>">ข้อมูลส่วนตัว</a>
+                        <a href="<?= Yii::app()->createUrl('masuser/profile', array('id' => $Profile['id'])); ?>">ข้อมูลส่วนตัว</a>
                     </div>
                 </div>
                 <!-- ส่วนของ ผู้ดูแลระบบ -->
@@ -389,12 +389,12 @@
                     $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
                 }
             });
-            
-            function setactivemenu(id){
+
+            function setactivemenu(id) {
                 var url = "<?php echo Yii::app()->createUrl('site/setactivemenu') ?>";
                 var data = {menu: id};
-                $.post(url,data,function(){
-                    
+                $.post(url, data, function () {
+
                 });
             }
         </script>

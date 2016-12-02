@@ -142,7 +142,34 @@ $alam = $Alert->Getalert()['alert_product'];
                         </select>
                     </div>
                 </div>
+                <hr/>
+
+                <div class="panel panel-primary">
+                    <div class=" panel-heading">เช็คคิวว่าง</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-2" style=" text-align: right;">
+                                <label>เดือน</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <select id="month" class="form-control">
+                                    <?php
+                                    $month = Month::model()->findAll('');
+                                    foreach ($month as $rs):
+                                        ?>
+                                        <option value="<?php echo $rs['id'] ?>"><?php echo $rs['month_th'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-lg-2">
+                                <button type="button" class="btn btn-default" onclick="getappoint()">ตกลง</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="appointlist"></div>
+                </div>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="Saveupdateappoint()">บันทึกข้อมูล</button>
             </div>
@@ -150,8 +177,26 @@ $alam = $Alert->Getalert()['alert_product'];
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- 
+    ### POPUP ###
+-->
+<div class="modal fade" tabindex="-1" role="dialog" id="popupday">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="headday">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div id="showappointday"></div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script type="text/javascript">
     function Updateappoint(id, name) {
+
         $("#id").val(id);
         $("#popupupdateappoint").modal();
         $("#head").text("เปลี่ยนวันนัด" + " " + name);
@@ -186,9 +231,21 @@ $alam = $Alert->Getalert()['alert_product'];
         }
         var data = {id: id, appoint: appoint, time: time};
         $.post(url, data, function (success) {
+            getappoint();
             window.location.reload();
         });
     }
+
+    function getappoint() {
+        var url = "<?php echo Yii::app()->createUrl('appoint/getappoint') ?>";
+        var branch = "<?php echo Yii::app()->session['branch'] ?>";
+        var month = $("#month").val();
+        var data = {branch: branch, month: month};
+        $.post(url, data, function (datas) {
+            $("#appointlist").html(datas);
+        });
+    }
+
 </script>
 
 

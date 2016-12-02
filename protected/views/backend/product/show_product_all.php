@@ -42,12 +42,12 @@ $web = new Configweb_model();
         </div>
     </div>
     <div class="panel-body">
-        <table class="table" id="p_product">
+        <table class="table table-bordered" id="p_product">
             <thead>
                 <tr>
                     <th>#</th>
                     <th style="text-align:center;"><i class="fa fa-cog"></i></th>
-                    <th>รูป</th>
+                    <th style=" text-align: center;">รูป</th>
                     <th>รหัส</th>
                     <th>ชื่อสินค้า</th>
                     <th style="text-align: center;">ราคา / หน่วย</th>
@@ -75,7 +75,7 @@ $web = new Configweb_model();
                     $trid = "td" . $i;
                     ?>
                     <tr id="<?php echo $trid; ?>">
-                        <td><?php echo $i ?></td>
+                        <td style=" text-align: center;"><?php echo $i ?></td>
                         <td style=" text-align: center;">
                             <div class="dropdown">
                                 <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -91,7 +91,7 @@ $web = new Configweb_model();
                                 </ul>
                             </div>
                         </td>
-                        <td>
+                        <td style=" text-align: center;">
                             <div class="center-cropped"
                                  style="background: url('<?php echo Yii::app()->baseUrl; ?>/<?php echo $img; ?>')no-repeat top center;
                                  -webkit-background-size: cover;

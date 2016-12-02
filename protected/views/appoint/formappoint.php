@@ -45,31 +45,41 @@ if (!empty($model['appoint'])) {
                 <label>ชั่วโมง</label>
                 <select id="h" class="form-control">
                     <option value="">== ชั่วโมง ==</option>
-                    <?php for($i = 0;$i<=24;$i++): 
-                        if(strlen($i) < 2){
-                            $h = "0".$i;
+                    <?php
+                    for ($i = 0; $i <= 24; $i++):
+                        if (strlen($i) < 2) {
+                            $h = "0" . $i;
                         } else {
                             $h = $i;
                         }
                         ?>
-                    <option value="<?php echo $h ?>" <?php if($h == $hs){ echo "selected"; }?>><?php echo $h ?></option>
-                    <?php endfor;?>
+                        <option value="<?php echo $h ?>" <?php
+                        if ($h == $hs) {
+                            echo "selected";
+                        }
+                        ?>><?php echo $h ?></option>
+                            <?php endfor; ?>
                 </select>
             </div>
-            
+
             <div class="col-md-2 col-lg-2">
                 <label>นาที</label>
                 <select id="m" class="form-control">
                     <option value="">== นาที ==</option>
-                    <?php for($a = 0;$a<=59;$a++): 
-                        if(strlen($a) < 2){
-                            $m = "0".$a;
+                    <?php
+                    for ($a = 0; $a <= 59; $a++):
+                        if (strlen($a) < 2) {
+                            $m = "0" . $a;
                         } else {
                             $m = $a;
                         }
                         ?>
-                    <option value="<?php echo $m ?>" <?php if($m == $ms){ echo "selected"; }?>><?php echo $m ?></option>
-                    <?php endfor;?>
+                        <option value="<?php echo $m ?>" <?php
+                        if ($m == $ms) {
+                            echo "selected";
+                        }
+                        ?>><?php echo $m ?></option>
+                            <?php endfor; ?>
                 </select>
             </div>
         </div>
@@ -88,10 +98,16 @@ if (!empty($model['appoint'])) {
             </div>
 
         </div>
+
+        <hr/>
+
+        <div id="appointlist"></div>
+
     </div>
 </div>
 
 <script type="text/javascript">
+    getappoint();
     $(function () {
         $('#sandbox-container .input-group.date').datepicker({
             language: 'th',
@@ -112,17 +128,27 @@ if (!empty($model['appoint'])) {
         var time = h + ":" + m;
         if (appoint == "") {
             swal("Alert", "กรุณาเลือกวันนัด...", "warning");
+            getappoint();
             return false;
         }
-        
-        if(h == '' || m == ''){
+
+        if (h == '' || m == '') {
             swal("Alert", "กรุณาเลือกเวลา...", "warning");
             return false;
         }
-        var data = {id: id, appoint: appoint, time: time,service_id: service_id, branch: branch};
+        var data = {id: id, appoint: appoint, time: time, service_id: service_id, branch: branch};
         $.post(url, data, function (success) {
             swal("Success", "บันทึกข้อมูลวันนัดสำเร็จ...", "success");
             //GetformAppoint();
+        });
+    }
+
+    function getappoint() {
+        var url = "<?php echo Yii::app()->createUrl('appoint/getappoint') ?>";
+        var branch = $("#branch").val();
+        var data = {branch: branch};
+        $.post(url, data, function (datas) {
+            $("#appointlist").html(datas);
         });
     }
 </script>

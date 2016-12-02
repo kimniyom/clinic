@@ -16,6 +16,12 @@
     src: url('supermarket/supermarket.ttf') format('truetype');
 }
 
+@font-face {
+    font-family:thaisanslite;
+    src: url('thaisanslite/thaisanslite_r1.ttf') format('truetype');
+}
+
+
 body {
     margin: 0;
     /*background:url('../images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/
@@ -170,11 +176,11 @@ div.img-resize {
 }
 
 #fontgreen14{ font-size: 14px; color:#33cc00; font-family: Th;}
-#font-14{font-size: 14px; font-family: Th;}
-#font-16{font-size: 16px; font-family: Th;}
-#font-18{font-size: 18px; font-family: Th;}
-#font-20{font-size: 20px; font-family: Th;}
-#font-22{font-size: 22px; font-family: Th;}
+#font-14{font-size: 14px; font-family: thaisanslite;}
+#font-16{font-size: 16px; font-family: thaisanslite;}
+#font-18{font-size: 18px; font-family: thaisanslite;}
+#font-20{font-size: 20px; font-family: thaisanslite;}
+#font-22{font-size: 22px; font-family: thaisanslite;}
 
 #font-rsu-14{font-size: 14px; font-family: RSU-Th;}
 #font-rsu-16{font-size: 16px; font-family: RSU-Th;}

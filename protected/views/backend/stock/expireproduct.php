@@ -38,10 +38,10 @@ $alam = $Alert->Getalert()['alert_product'];
     <div class="panel-body">
         <p class="text-danger">*คลิกที่รายชื่อสินค้าเพื่อดูรายละเอียด</p>
         <hr/>
-        <table class="table" id="p_product">
+        <table class="table table-bordered" id="p_product">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th style=" width: 5%;">#</th>
                     <th>รูป</th>
                     <th>สินค้า</th>
                     <th style="text-align: center;">ราคา / หน่วย</th>
@@ -70,14 +70,15 @@ $alam = $Alert->Getalert()['alert_product'];
                         $trid = "td" . $i;
                         ?>
                         <tr id="<?php echo $trid; ?>">
-                            <td><?php echo $i ?></td>
-                            <td>
+                            <td style="text-align: center;"><?php echo $i ?></td>
+                            <td style=" text-align: center;">
                                 <div class="center-cropped"
                                      style="background: url('<?php echo Yii::app()->baseUrl; ?>/<?php echo $img; ?>')no-repeat top center;
                                      -webkit-background-size: cover;
                                      -moz-background-size: cover;
                                      -o-background-size: cover;
-                                     background-size: cover;">
+                                     background-size: cover;
+                                     text-align:center;">
                                 </div>
                                 <!--
                                 <img src="<?//php echo Yii::app()->baseUrl; ?>/uploads/<?//php echo $img; ?>" class="img-resize img-thumbnail" width=""/>

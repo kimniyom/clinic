@@ -14,7 +14,7 @@ $MasuserModel = new Masuser();
 <a href="<?php echo Yii::app()->createUrl('masuser/create') ?>">
     <button type="button" class="btn btn-default"><i class="fa fa-user-plus"></i> เพิ่มผู้ใช้งาน</button></a>
 <hr/>
-<table class="table" id="tuser">
+<table class="table table-bordered" id="tuser">
     <thead>
         <tr>
             <th>#</th>
