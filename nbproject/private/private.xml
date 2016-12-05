@@ -22,18 +22,22 @@
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
         <group>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/getappoint.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/index.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/config/main.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireitem.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/appointall.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/formappoint.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/AppointController.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/themes/service/css/system.css</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/masuser/profile.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/view.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireproduct.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/EmployeeController.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/service/detail.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/appointover.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/employee/view.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/getappoint.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/index.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireitem.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/appointall.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/AppointController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/MasuserController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/layouts/template_backend.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireproduct.php</file>
         </group>
     </open-files>
 </project-private>
