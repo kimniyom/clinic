@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/masuser/update.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/update.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/productType/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/template.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/simple-sidebar.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/system.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/view.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/masuser/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Configweb_model.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/masuser/view.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
-        </group>
         <group>
             <file>file:/C:/xampp/htdocs/clinic/protected/config/main.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/formappoint.php</file>
@@ -38,6 +19,12 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/controllers/MasuserController.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/layouts/template_backend.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireproduct.php</file>
+        </group>
+        <group name="yii">
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Appoint.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointalluser.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/config/main.php</file>
         </group>
     </open-files>
 </project-private>

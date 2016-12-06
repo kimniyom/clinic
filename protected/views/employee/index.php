@@ -30,7 +30,7 @@ $system = new Configweb_model();
         <?php
         $i = 0;
         foreach ($employee as $rs): $i++;
-        $branch_id = $rs['branch'];
+            $branch_id = $rs['branch'];
             ?>
             <tr>
                 <td><?php echo $i ?></td>
@@ -39,11 +39,10 @@ $system = new Configweb_model();
                 <td><?php echo $rs['alias'] ?></td>
                 <td style=" text-align: center;"><?php echo $rs['tel'] ?></td>
                 <td style=" text-align: center;"><?php echo number_format($rs['salary'], 2) ?></td>
-                <td><?php echo Branch::model()->find("id = '$branch_id' ")['branchname']?></td>
+                <td><?php echo Branch::model()->find("id = '$branch_id' ")['branchname'] ?></td>
                 <td style="text-align: center;">
-                    <a href="<?php echo Yii::app()->createUrl('employee/view', array('id' => $rs['id'])) ?>"><i class="fa fa-eye text-info"></i></a>
-                    <a href="<?php echo Yii::app()->createUrl('employee/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil text-warning"></i></a>
-                    <a href="javascript:deletemployee('<?php echo $rs['id'] ?>')"><i class="fa fa-trash text-danger"></i></a>
+                    <a href="<?php echo Yii::app()->createUrl('employee/view', array('id' => $rs['id'])) ?>">
+                        <i class="fa fa-eye text-info"></i> รายละเอียด</a>
                 </td>
             </tr>
         <?php endforeach; ?>

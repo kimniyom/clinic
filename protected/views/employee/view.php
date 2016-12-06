@@ -196,13 +196,13 @@ $branchModel = new Branch();
             <div class="row" style=" padding: 5px;">
                 <div class="col-lg-4">
                     <div class="btn btn-success btn-block">
-                        <h3>50,000</h3><hr/>
+                        <h3><?php echo number_format($Selltotalyearnow) ?></h3><hr/>
                         <h4>ยอดขายปีนี้ </h4>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="btn btn-warning btn-block">
-                        <h3>30,000</h3><hr/>
+                        <h3><?php echo number_format($Selltotallastyear) ?></h3><hr/>
                         <h4>ยอดขายปีที่แล้ว </h4>
                     </div>
                 </div>
@@ -260,6 +260,7 @@ $branchModel = new Branch();
         }
     }
 
+
     $(function () {
         Highcharts.chart('sell', {
             chart: {
@@ -300,7 +301,7 @@ $branchModel = new Branch();
             series: [{
                     colorByPoint: true,
                     name: 'ยอดขาย',
-                    data: [50000, 30000]
+                    data: [<?php echo $Selltotalyearnow ?>, <?php echo $Selltotallastyear ?>]
                 }]
         });
     });
@@ -383,7 +384,7 @@ $branchModel = new Branch();
                 type: 'line'
             },
             title: {
-                text: 'ยอดขายปี <?php echo $year ?>'
+                text: 'จำนวนเข้าใช้งาน <?php echo $year ?>'
             },
             subtitle: {
                 text: ''
@@ -401,22 +402,22 @@ $branchModel = new Branch();
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'จำนวนเงิน'
+                    text: 'จำนวน'
                 }
             },
             legend: {
                 enabled: false
             },
             tooltip: {
-                pointFormat: 'ยอดขาย: <b>{point.y:.1f} บาท</b>'
+                pointFormat: 'จำนวน: <b>{point.y} ครั้ง</b>'
             },
             credits: {
                 enabled: false
             },
             series: [{
                     //colorByPoint: true,
-                    name: 'Population',
-                    data: [<?php echo $categorys ?>
+                    name: 'เข้าใช้งาน',
+                    data: [<?php echo $loglogin ?>
                         /*
                          ['Shanghai', 23.7],
                          ['Lagos', 16.1],
@@ -437,7 +438,7 @@ $branchModel = new Branch();
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y:.1f}', // one decimal
+                        format: '{point.y}', // one decimal
                         y: 10, // 10 pixels down from the top
                         style: {
                             fontSize: '13px',

@@ -174,7 +174,10 @@
                                 <span class="glyphicon glyphicon-home"></span>
                                 <font id="font-th">หน้าหลัก</font></a>
                         </li>
-                        <?php if (isset($ReportMenu)) { ?>
+                        <?php
+                        $ReportMenu = $MenuReport->Getrolemenu($Profile['user_id']);
+                        if ($ReportMenu) {
+                            ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-signal"></span>
@@ -182,7 +185,6 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <?php
-                                    $ReportMenu = $MenuReport->Getrolemenu($Profile['user_id']);
                                     foreach ($ReportMenu as $rp):
                                         $reportLink = $rp['url'];
                                         ?>
@@ -191,7 +193,9 @@
                                 </ul>
                             </li>
                         <?php } ?>
-                        <?php if (isset($Settingmenu)) { ?>
+                        <?php 
+                        $Settingmenu = $MenuSetting->Getrolesetting($Profile['user_id']);
+                        if ($Settingmenu) { ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="fa fa-gear"></span>
@@ -199,7 +203,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <?php
-                                    $Settingmenu = $MenuSetting->Getrolesetting($Profile['user_id']);
+                                    
                                     foreach ($Settingmenu as $st):
                                         $linlsetting = $st['url'];
                                         ?>

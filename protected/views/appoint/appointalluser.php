@@ -1,86 +1,51 @@
-<style type="text/css">
-    .alam{
-        background: #ff9999;
-        /*color:#FFFFFF;*/
-    }
-    .alam a{
-        color: #FFFFFF;
-    }
-</style>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#p_product").dataTable({
-            //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
-            "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
-            "iDisplayLength": 10, // กำหนดค่า default ของจำนวน record
-            "bFilter": true // แสดง search box
-                    //"sScrollY": "400px", // กำหนดความสูงของ ตาราง
-        });
-    });
-</script>
-
 <?php
 $this->breadcrumbs = array(
-    "นัดหมาย",
+    "นัดลูกค้า",
 );
-
-$web = new Configweb_model();
-$Alert = new Alert();
-$alam = $Alert->Getalert()['alert_product'];
 ?>
 
-<div class="panel panel-danger">
-    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
-        <i class="fa fa-info-circle"></i> นัดหมาย *เตือนก่อน <?php echo $alam ?> วัน
-    </div>
-    <div class="panel-body">
+<?php
+$config = new Configweb_model();
+foreach ($appoints as $appoint):
+    if (!empty($appoint['images'])) {
+        $img_profile = "uploads/profile/" . $appoint['images'];
+    } else {
+        if ($appoint['sex'] == 'M') {
+            $img_profile = "images/Big-user-icon.png";
+        } else if ($appoint['sex'] == 'F') {
+            $img_profile = "images/Big-user-icon-female.png";
+        } else {
+            $img_profile = "images/Big-user.png";
+        }
+    }
+    ?>
 
-        <table class="table" id="p_product">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th></th>
-                    <th>วันนัด</th>
-                    <th>เวลา</th>
-                    <th>ลูกค้า</th>
-                    <th style=" text-align: center;">เบอร์โทรศัพท์</th>
-                    <th>หัตถการ</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $i = 0;
-                foreach ($appoint as $last):
-                    $i++;
-                    if ($last['over'] < 1) {
-                        $bg = " class='alam' ";
-                        $text = "ขาดนัด";
-                    } else {
-                        $bg = "";
-                        $text = "";
-                    }
-                    ?>
-                    <tr <?php echo $bg ?>>
-                        <td><?php echo $i ?></td>
-                        <td><?php echo $text ?></td>
-                        <td><?php echo $web->thaidate($last['appoint']) ?></td>
-                        <td><?php echo $last['timeappoint'] ?></td>
-                        <td><?php echo $last['pername'] . $last['name'] . " " . $last['lname']; ?></td>
-                        <td style=" text-align: center;"><?php echo $last['tel']; ?></a></td>
-                        <td><?php echo $last['diagname'] ?></td>
-                        <td style=" text-align: center;">
-                            <button type="button" class="btn btn-primary btn-sm" 
-                                    onclick="Updateappoint('<?php echo $last['id'] ?>', '<?php echo $last['name'] ?>')">เปลี่ยนวันนัด</button></td>
-                    </tr>
-                    <?php
-                endforeach;
-                ?>
-            </tbody>
-        </table>
-    </div>
-</div>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td style=" width: 20%;">
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img-responsive img-thumbnail" id="img_profile"/>
+                </td>
+                <td id="font-20">
+                    ชื่อ - สกุล : 
+                    <?php echo $appoint['pername'] . $appoint['name'] . ' ' . $appoint['lname'] ?>
+                    อายุ: <?php echo $config->get_age($appoint['birth']) ?> ปี
+                    <font style=" color: #66cc00" class="pull-right"><i class="fa fa-phone"></i> เบอร์โทรศัพท์ : <?php echo $appoint['tel'] ?></font>
+                    <br/>
+                    หัตถการ: <?php echo $appoint['diagname'] ?><br/>
+                    วันที่รับบริการ : <?php echo $config->thaidate($appoint['service_date']) ?> <br/>
+                    <font style=" color: #ff0000">วันที่นัด : <?php echo $config->thaidate($appoint['appoint']) ?> 
+                    เวลา : <?php echo $appoint['timeappoint'] ?>
+                    </font><br/>
+                    ผลตรวจ : <?php echo $appoint['service_result'] ?>
+                    <button type="button" class="btn btn-success" onclick="Updateappoint('<?php echo $appoint['id'] ?>', '<?php echo $appoint['name'] ?>')">เปลี่ยนวันนัด</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+<?php endforeach; ?>
+
 
 <!-- 
     POPUP
@@ -145,7 +110,7 @@ $alam = $Alert->Getalert()['alert_product'];
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-2" style=" text-align: right;">
-                                <label>เดือน</label>
+                                เดือน
                             </div>
                             <div class="col-lg-4">
                                 <select id="month" class="form-control">
@@ -162,10 +127,9 @@ $alam = $Alert->Getalert()['alert_product'];
                             </div>
                             <div class="col-lg-3">
                                 <select id="year" class="form-control">
-                                    <?php $year = date("Y") + 1;
-                                    for ($i = $year; $i >= ($year - 1); $i--): ?>
-                                        <option value="<?php echo $i ?>" <?php if ($i == ($year - 1)) echo "selected"; ?>><?php echo ($i + 543) ?></option>
-<?php endfor; ?>
+                                    <?php $year = date("Y") + 1; for($i = $year;$i>=($year-1);$i--): ?>
+                                    <option value="<?php echo $i ?>" <?php if($i == ($year-1)) echo "selected";?>><?php echo ($i + 543) ?></option>
+                                    <?php endfor; ?>
                                 </select>
                             </div>
                             <div class="col-lg-2">
@@ -201,8 +165,8 @@ $alam = $Alert->Getalert()['alert_product'];
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
 <script type="text/javascript">
-    
     function Updateappoint(id, name) {
         getappoint();
         $("#id").val(id);
@@ -247,14 +211,16 @@ $alam = $Alert->Getalert()['alert_product'];
     function getappoint() {
         var url = "<?php echo Yii::app()->createUrl('appoint/getappoint') ?>";
         var branch = "<?php echo Yii::app()->session['branch'] ?>";
-        var month = $("#month").val();
         var year = $("#year").val();
-        var data = {branch: branch, month: month, year: year};
+        var month = $("#month").val();
+        var data = {branch: branch, month: month,year: year};
         $.post(url, data, function (datas) {
             $("#appointlist").html(datas);
         });
     }
-
 </script>
+
+
+
 
 

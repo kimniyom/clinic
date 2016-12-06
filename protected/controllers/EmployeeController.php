@@ -54,16 +54,31 @@ class EmployeeController extends Controller {
     public function actionView($id) {
         $year = date("Y");
         $Model = new Employee();
+        $LogloginModel = new Loglogin();
         $sellmonth = $Model->Getsellmonth($id, $year);
+
         foreach ($sellmonth as $sm):
             //echo $sm['month_th']." ".$sm['total']."<br/>";
             $category[] = "['" . $sm['month_th'] . "'," . $sm['total'] . "]";
         endforeach;
+
         $categorys = implode(",", $category);
+
+        $log = $LogloginModel->Getloglogin($id);
+        foreach ($log as $lg):
+            //echo $sm['month_th']." ".$sm['total']."<br/>";
+            $loglogin[] = "['" . $lg['month_th'] . "'," . $lg['total'] . "]";
+        endforeach;
+        $loglogins = implode(",", $loglogin);
+        $Selltotalyearnow = $Model->Selltotalyearnow($id);
+        $Selltotallastyear = $Model->Selltotallastyear($id);
         $this->render('view', array(
             'model' => $this->loadModel($id),
             'categorys' => $categorys,
             'year' => $year,
+            'loglogin' => $loglogins,
+            'Selltotalyearnow' => $Selltotalyearnow,
+            'Selltotallastyear' => $Selltotallastyear,
         ));
     }
 

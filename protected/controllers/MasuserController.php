@@ -209,16 +209,30 @@ class MasuserController extends Controller {
     public function actionProfile($id) {
         $year = date("Y");
         $Model = new Employee();
+        $LogloginModel = new Loglogin();
         $sellmonth = $Model->Getsellmonth($id, $year);
         foreach ($sellmonth as $sm):
             //echo $sm['month_th']." ".$sm['total']."<br/>";
             $category[] = "['" . $sm['month_th'] . "'," . $sm['total'] . "]";
         endforeach;
         $categorys = implode(",", $category);
+        
+        $log = $LogloginModel->Getloglogin($id);
+         foreach ($log as $lg):
+            //echo $sm['month_th']." ".$sm['total']."<br/>";
+            $loglogin[] = "['" . $lg['month_th'] . "'," . $lg['total'] . "]";
+        endforeach;
+        
+        $loglogins = implode(",", $loglogin);
+        $Selltotalyearnow = $Model->Selltotalyearnow($id);
+        $Selltotallastyear = $Model->Selltotallastyear($id);
         $this->render('//masuser/profile', array(
             'model' => Employee::model()->find("id = '$id' "),
             'categorys' => $categorys,
             'year' => $year,
+            'loglogin' => $loglogins,
+            'Selltotalyearnow' => $Selltotalyearnow,
+            'Selltotallastyear' => $Selltotallastyear,
         ));
     }
 

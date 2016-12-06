@@ -146,15 +146,17 @@ class Appoint extends CActiveRecord {
 
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
-    
-        public function AppointAll() {
+
+    public function AppointAll() {
         $branch = $this->GetBranch();
         $sql = "SELECT a.*,pr.pername,
-		p.`name`,p.lname,p.card,p.images,s.diagcode,s.service_date,s.service_result,d.diagname,p.sex,p.birth
+		p.`name`,p.lname,p.card,p.images,s.diagcode,s.service_date,s.service_result,d.diagname,p.sex,p.birth,
+                c.tel,c.email
 					FROM appoint a INNER JOIN service s ON a.service_id = s.id
 					INNER JOIN patient p ON s.patient_id = p.id
 					INNER JOIN pername pr ON p.oid = pr.oid
 					INNER JOIN diag d ON s.diagcode = d.diagcode
+                                        INNER JOIN patient_contact c ON p.id = c.patient_id
 					WHERE a.status = '0' $branch ORDER BY a.appoint,a.timeappoint asc";
 
         return Yii::app()->db->createCommand($sql)->queryAll();
