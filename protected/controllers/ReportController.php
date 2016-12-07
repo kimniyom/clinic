@@ -30,7 +30,7 @@ class ReportController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'reportinputproductmonth'),
+                'actions' => array('create', 'reportinputproductmonth', 'reportcostprofit', 'datareportcostprofit'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -61,6 +61,80 @@ class ReportController extends Controller {
 
         $data['product'] = $ReportModel->getproduct($data['branch']);
         $this->render('reportinputproductmonth', $data);
+    }
+
+    public function actionReportcostprofit() {
+        $this->render('reportcostprofit');
+    }
+
+    public function actionDatareportcostprofit() {
+        $year = Yii::app()->request->getPost('year');
+        $branch = Yii::app()->request->getPost('branch');
+        $ReportModel = new Report();
+        $data['Cost'] = $ReportModel->Getcostproduct($year, $branch);
+        $data['Sell'] = $ReportModel->Gettotalsell($year, $branch);
+
+        //ต้นทุน กำไรรายไตรมาส
+        $data['costperiod1'] = $ReportModel->GetcostproductPeriod($year, $branch, 1)['pricrtotal'];
+        $data['costperiod2'] = $ReportModel->GetcostproductPeriod($year, $branch, 2)['pricrtotal'];
+        $data['costperiod3'] = $ReportModel->GetcostproductPeriod($year, $branch, 3)['pricrtotal'];
+        $data['costperiod4'] = $ReportModel->GetcostproductPeriod($year, $branch, 4)['pricrtotal'];
+
+        $data['sellperiod1'] = $ReportModel->GettotalsellPeriod($year, $branch, 1)['totalprice'];
+        $data['sellperiod2'] = $ReportModel->GettotalsellPeriod($year, $branch, 2)['totalprice'];
+        $data['sellperiod3'] = $ReportModel->GettotalsellPeriod($year, $branch, 3)['totalprice'];
+        $data['sellperiod4'] = $ReportModel->GettotalsellPeriod($year, $branch, 4)['totalprice'];
+
+        //คิดกำไร
+        $profit1 = ($data['sellperiod1'] - $data['costperiod1']);
+        $profit2 = ($data['sellperiod2'] - $data['costperiod2']);
+        $profit3 = ($data['sellperiod3'] - $data['costperiod3']);
+        $profit4 = ($data['sellperiod4'] - $data['costperiod4']);
+        if ($profit1 < 0)
+            $data['profit1'] = 0;
+        else
+            $data['profit1'] = $profit1;
+        if ($profit2 < 0)
+            $data['profit2'] = 0;
+        else
+            $data['profit2'] = $profit2;
+        if ($profit3 < 0)
+            $data['profit3'] = 0;
+        else
+            $data['profit3'] = $profit3;
+        if ($profit4 < 0)
+            $data['profit4'] = 0;
+        else
+            $data['profit4'] = $profit4;
+
+        //กำไรขาดทุนรายเดือน
+        $CostMonth = $ReportModel->GetcostproductMonth($year, $branch);
+        $SellMonth = $ReportModel->GettotalsellMonth($year, $branch);
+        $ProfitMonth = $ReportModel->GetprofitMonth($year, $branch);
+        foreach ($CostMonth as $cm):
+            $Month[] = "'" . $cm['month_th'] . "'";
+            $CostMonthArr[] = $cm['pricrtotal'];
+        endforeach;
+
+        foreach ($SellMonth as $pm):
+            $SellMonthArr[] = $pm['totalprice'];
+        endforeach;
+        
+        foreach ($ProfitMonth as $pf):
+            if($pf['profit'] < 0){
+                $profit = 0;
+            } else {
+                $profit = $pf['profit'];
+            }
+            $ProfitMonthArr[] = $profit;
+        endforeach;
+
+        $data['CostMonth'] = implode(",", $CostMonthArr);
+        $data['SellMonth'] = implode(",", $SellMonthArr);
+        $data['ProfitMonth'] = implode(",", $ProfitMonthArr);
+        $data['month'] = implode(",", $Month);
+        $data['year'] = $year;
+        $this->renderPartial('datareportcostprofit', $data);
     }
 
 }

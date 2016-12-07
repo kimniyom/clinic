@@ -41,6 +41,16 @@
         </div>
     </div>
 
+<div class="row" style=" margin-top: 20px;">
+        <div class="col-md-2 col-lg-2">
+            <?php echo $form->labelEx($model, 'distcountsell'); ?>
+        </div>
+        <div class="col-md-10 col-lg-10">
+            <?php echo $form->textField($model, 'distcountsell',array('class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'distcountsell'); ?>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-2 col-lg-2"></div>
         <div class="col-md-10 col-lg-10">

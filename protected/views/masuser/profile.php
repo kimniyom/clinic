@@ -414,6 +414,7 @@ $branchModel = new Branch();
             },
             series: [{
                     //colorByPoint: true,
+                    color: 'red',
                     name: 'เข้าใช้งาน',
                     data: [<?php echo $loglogin ?>
                         /*

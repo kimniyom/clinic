@@ -193,9 +193,10 @@
                                 </ul>
                             </li>
                         <?php } ?>
-                        <?php 
+                        <?php
                         $Settingmenu = $MenuSetting->Getrolesetting($Profile['user_id']);
-                        if ($Settingmenu) { ?>
+                        if ($Settingmenu) {
+                            ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="fa fa-gear"></span>
@@ -203,7 +204,6 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <?php
-                                    
                                     foreach ($Settingmenu as $st):
                                         $linlsetting = $st['url'];
                                         ?>
@@ -242,7 +242,16 @@
                 <!-- ###################### USER #################-->
                 <div class="panel panel-info" id="panel-head">
                     <div class=" panel-heading" id="panel" style=" padding-top: 13px;">
-                        <img src="<?= Yii::app()->baseUrl; ?>/images/use-icon.png" style="border-radius:20px; padding:2px; border:#FFF solid 2px;"> ผู้ใช้งาน
+
+                        <?php
+                        if (!empty($Profile['images'])) {
+                            $img_profile = "uploads/profile/" . $Profile['images'];
+                        } else {
+                            $img_profile = "images/use-icon.png";
+                        }
+                        ?>
+                        
+                        <img src="<?= Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" style="border-radius:20px; padding:2px; border:#FFF solid 2px; width: 36px; background: #FFF;"> ผู้ใช้งาน
                     </div>
                     <div class="panel-body">
                         <div id="box-profile">
