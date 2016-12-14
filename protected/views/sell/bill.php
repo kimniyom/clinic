@@ -10,6 +10,7 @@ $Employee = $User->GetDetailUser($detail['user_id']);
 $Branch = $detail['branch'];
 $card = $detail['card'];
 $patient = Patient::model()->find("card = '$card' ");
+$logo = Logo::model()->find("branch = '$Branch '")['logo'];
 ?>
 
 <style type="text/css">
@@ -42,9 +43,14 @@ $patient = Patient::model()->find("card = '$card' ");
 </style>
 
 <div id="bill" style=" background: #ffffff; border: #000 solid 1px;padding: 20px;">
-    <div id="head-bill" style=" text-align: center;">
-        <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $Config->get_logoweb() ?>"/><br/>
-        <h2><?php echo $Config->get_webname(); ?></h2>
+    <div id="head-bill" style=" text-align: left;">
+        <div style=" float: left">
+            <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $logo ?>" style=" width: 48"/>
+        </div>
+        <div style=" float: left;">
+            <h4><?php echo $Config->get_webname(); ?></h4>
+            <?php echo Branch::model()->find("id = '$Branch' ")['address'] ?>
+        </div>
     </div>
     <hr/>
 
@@ -104,6 +110,14 @@ $patient = Patient::model()->find("card = '$card' ");
             <tr>
                 <td style=" text-align: right; font-weight: bold;" colspan="4">รวม</td>
                 <td style="text-align: right;"><?php echo number_format($sum, 2); ?></td>
+            </tr>
+            <tr>
+                <td style=" text-align: right; font-weight: bold;" colspan="4">ส่วนลด</td>
+                <td style="text-align: right;"><?php echo number_format($logsell['distcount'], 2); ?></td>
+            </tr>
+            <tr>
+                <td style=" text-align: right; font-weight: bold;" colspan="4">ราคาหักส่วนลด</td>
+                <td style="text-align: right;"><?php echo number_format($logsell['totalfinal'], 2); ?></td>
             </tr>
             <tr>
                 <td style=" text-align: right; font-weight: bold;" colspan="4">รับเงิน</td>

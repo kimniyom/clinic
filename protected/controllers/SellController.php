@@ -30,7 +30,7 @@ class SellController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'Detailservice', 'test', 'result', 'loadorder', 'sell', 'calculator', 'bill', 'confirmorder', 'logsell',"patient"),
+                'actions' => array('index', 'Detailservice', 'test', 'result', 'loadorder', 'sell', 'calculator', 'bill', 'confirmorder', 'logsell', "patient"),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -136,6 +136,8 @@ class SellController extends Controller {
         $total = Yii::app()->request->getPost('total');
         $income = Yii::app()->request->getPost('income');
         $change = Yii::app()->request->getPost('change');
+        $totalfinal = Yii::app()->request->getPost('totalfinal');
+        $distcount = Yii::app()->request->getPost('distcount');
 
         $CheckOrder = Logsell::model()->find("sell_id = '$sellcode' ");
         if (empty($CheckOrder['sell_id'])) {
@@ -147,6 +149,8 @@ class SellController extends Controller {
                 "total" => $total,
                 "income" => $income,
                 "change" => $change,
+                "totalfinal" => $totalfinal,
+                "distcount" => $distcount,
                 "date_sell" => date("Y-m-d")
             );
             Yii::app()->db->createCommand()
@@ -159,6 +163,8 @@ class SellController extends Controller {
                 "total" => $total,
                 "income" => $income,
                 "change" => $change,
+                "totalfinal" => $totalfinal,
+                "distcount" => $distcount,
                 "date_sell" => date("Y-m-d")
             );
             Yii::app()->db->createCommand()
@@ -170,7 +176,7 @@ class SellController extends Controller {
 
     public function actionPatient() {
         $card = Yii::app()->request->getPost('card');
-        $sql = "SELECT p.*,c.tel,c.email,g.grad,g.distcount
+        $sql = "SELECT p.*,c.tel,c.email,g.grad,g.distcount,g.distcountsell
                     FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
                     INNER JOIN patient_contact c ON p.id = c.patient_id
                     WHERE p.card = '$card' ";
@@ -178,13 +184,17 @@ class SellController extends Controller {
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
 
         $str = "";
-         $str .= "PID : " . $rs['pid'];
+        $str .= "PID : " . $rs['pid'];
         $str .= "<br/>บัตรประชาชน : " . $rs['card'];
         $str .= "<br/>คุณ : " . $rs['name'] . " " . $rs['lname'];
         $str .= "<br/>เบอร์โทรศัพท์ : " . $rs['tel'];
         $str .= "<br/>ประเภทลูกค้า : " . $rs['grad'];
-        
-        echo $str;
+        $str .= "<br/> ส่วนลด : ".$rs['distcountsell']." บาท";
+        //$str .= "<input type='hidden' id='distcount' class='form-control' value='".$rs['distcountsell']."'/>";
+        $str .= "<script>$(document).ready(function(){ $('#distcount').val(".$rs['distcountsell'].");});</script>";
+        if ($rs) {
+            echo $str;
+        }
     }
 
 }

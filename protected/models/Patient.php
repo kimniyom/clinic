@@ -134,7 +134,7 @@ class Patient extends CActiveRecord {
         } else {
             $where = " branch = '$branch' ";
         }
-        $sql = "SELECT card,CONCAT(name,' ',lname) AS name FROM patient WHERE $where";
+        $sql = "SELECT id,card,CONCAT(name,' ',lname) AS name FROM patient WHERE $where";
         $result = Yii::app()->db->createCommand($sql)->queryAll();
 
         return $result;

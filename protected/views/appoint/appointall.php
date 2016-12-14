@@ -4,7 +4,7 @@ $this->breadcrumbs = array(
 );
 
 ?>
-
+<?php if($appoints){ ?>
 <?php
 $config = new Configweb_model();
 foreach ($appoints as $appoint):
@@ -42,6 +42,10 @@ foreach ($appoints as $appoint):
 
 <?php endforeach; ?>
 
+<?php } else { ?>
 
+<h3 style=" text-align: center; color: #cc3300; ">=== ไม่มีข้อมูลการนัด ===</h3>
+
+<?php } ?>
 
 

@@ -4909,3 +4909,1313 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
 HTTP_REFERER=http://localhost/clinic/index.php?r=gradcustomer/create
 ---
+2016/12/07 16:34:49 [error] [php] include(Report.php): failed to open stream: No such file or directory (/Applications/MAMP/htdocs/clinic/framework/YiiBase.php:427)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(57): spl_autoload_call()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionReportinputproductmonth()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportinputproductmonth
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (57)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 01:00:50 [error] [php] Undefined variable: year (/Applications/MAMP/htdocs/clinic/protected/views/report/dataproductsalable.php:18)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(157): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionDataproductsalable()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/dataproductsalable
+in /Applications/MAMP/htdocs/clinic/protected/views/report/dataproductsalable.php (18)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (157)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 01:00:53 [error] [php] Undefined variable: year (/Applications/MAMP/htdocs/clinic/protected/views/report/dataproductsalable.php:18)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(157): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionDataproductsalable()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/dataproductsalable
+in /Applications/MAMP/htdocs/clinic/protected/views/report/dataproductsalable.php (18)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (157)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 01:01:08 [error] [php] Undefined variable: catArr (/Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php:154)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/dataproductsalable
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (154)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 01:01:57 [error] [php] Undefined variable: year (/Applications/MAMP/htdocs/clinic/protected/views/report/dataproductsalable.php:18)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(159): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionDataproductsalable()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/dataproductsalable
+in /Applications/MAMP/htdocs/clinic/protected/views/report/dataproductsalable.php (18)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (159)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 09:23:30 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/product/Getproduct/type_id/003
+---
+2016/12/08 09:30:44 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/product/create&type_id=003
+---
+2016/12/08 13:56:05 [error] [php] Undefined index: distcount (/Applications/MAMP/htdocs/clinic/protected/views/sell/bill.php:110)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): SellController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php(112): SellController->renderPartial()
+#2 unknown(0): SellController->actionBill()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): SellController->runAction()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): SellController->filterAccessControl()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SellController->runActionWithFilters()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SellController->run()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=sell/bill&sell_id=061111481180138
+in /Applications/MAMP/htdocs/clinic/protected/views/sell/bill.php (110)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php (112)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 14:20:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:21:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:22:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:22:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:23:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:23:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:24:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:25:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:34:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:34:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+---
+2016/12/08 14:35:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+---
+2016/12/08 14:35:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "datareportsellproduct" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('datareportsellp...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:36:08 [error] [php] Invalid argument supplied for foreach() (/Applications/MAMP/htdocs/clinic/protected/views/report/datareportsellproduct.php:16)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(173): ReportController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionDatareportsellproduct()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): ReportController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): ReportController->filterAccessControl()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportController->runActionWithFilters()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportController->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+in /Applications/MAMP/htdocs/clinic/protected/views/report/datareportsellproduct.php (16)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (173)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 14:41:14 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.branch' in 'where clause'. The SQL statement executed was: SELECT l.*,e.`name`,e.lname,e.alias
+                FROM logsell l INNER JOIN employee e ON l.user_id = e.id
+                WHERE l.date_sell BETWEEN '' AND '2016-12-07'  AND p.branch = '1' 
+                ORDER BY l.date_sell DESC.
+in /Applications/MAMP/htdocs/clinic/protected/models/Report.php (258)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php (172)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 14:41:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.branch' in 'where clause'. The SQL statement executed was: SELECT l.*,e.`name`,e.lname,e.alias
+                FROM logsell l INNER JOIN employee e ON l.user_id = e.id
+                WHERE l.date_sell BETWEEN '' AND '2016-12-07'  AND p.branch = '1' 
+                ORDER BY l.date_sell DESC' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/models/Report.php(258): CDbCommand->queryAll()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php(172): Report->ReportSellproduct(NULL, '2016-12-07', '1')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportController->actionDatareportsellproduct()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('datareportsellp...')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportsellproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportsellproduct
+---
+2016/12/08 14:54:59 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('masuser/view')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/view&id=5
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/create
+---
+2016/12/08 14:55:13 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('masuser/view')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/view&id=5
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/create
+---
+2016/12/08 14:59:02 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1116): CFilterChain->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('delete')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('Masuser/delete')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=Masuser/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2016/12/08 15:00:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php:157
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php(52): MasuserController->loadModel('6')
+#1 [internal function]: MasuserController->actionView('6', '5')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MasuserController), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MasuserController), Object(ReflectionMethod), Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('masuser/view')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/view&id=6&user_id=5
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/create
+---
+2016/12/08 18:20:36 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`clinic`.`role_report`, CONSTRAINT `report_id` FOREIGN KEY (`report_id`) REFERENCES `menu_report` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `role_report` (`user_id`, `report_id`) VALUES (:user_id, :report_id).
+in /Applications/MAMP/htdocs/clinic/protected/controllers/RolereportController.php (166)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/08 18:20:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`clinic`.`role_report`, CONSTRAINT `report_id` FOREIGN KEY (`report_id`) REFERENCES `menu_report` (`id`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `role_report` (`user_id`, `report_id`) VALUES (:user_id, :report_id)' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1250): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/RolereportController.php(166): CDbCommand->insert('role_report', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): RoleReportController->actionAdd()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('add')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('rolereport/add')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=rolereport/add
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/view&id=2&user_id=2
+---
+2016/12/09 11:50:07 [error] [exception.CException] exception 'CException' with message 'Alias "ext.yiicalendar.YiiCalendar" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /Applications/MAMP/htdocs/clinic/framework/YiiBase.php:322
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(146): YiiBase::import('ext.yiicalendar...', true)
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.yiicalendar...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.yiicalendar...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(11): CBaseController->widget('ext.yiicalendar...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:54:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2016-11-27&end=2017-01-08&_=1481259292432
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:55:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2017-01-01&end=2017-02-12&_=1481259321931
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:55:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2016-11-27&end=2017-01-08&_=1481259322609
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:55:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2016-10-30&end=2016-12-11&_=1481259323429
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:55:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2016-09-25&end=2016-11-06&_=1481259323893
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:55:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2016-08-28&end=2016-10-09&_=1481259324078
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:55:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2016-07-31&end=2016-09-11&_=1481259324245
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:55:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2016-08-28&end=2016-10-09&_=1481259324805
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 11:55:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "latihan/training/calendarEvents".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('latihan/trainin...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=latihan/training/calendarEvents&start=2016-09-25&end=2016-11-06&_=1481259324980
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 12:06:34 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EFullCalendarHeart.lang" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(161): CComponent->__set('lang', 'th')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.fullcalenda...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.fullcalenda...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(24): CBaseController->widget('ext.fullcalenda...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 12:06:52 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EFullCalendarHeart.language" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(161): CComponent->__set('language', 'th')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.fullcalenda...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.fullcalenda...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(24): CBaseController->widget('ext.fullcalenda...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 12:17:51 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EFullCalendarHeart.lang" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(161): CComponent->__set('lang', 'th')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.fullcalenda...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.fullcalenda...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(25): CBaseController->widget('ext.fullcalenda...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 12:21:28 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EFullCalendarHeart.lang" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(161): CComponent->__set('lang', 'th')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.fullcalenda...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.fullcalenda...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(26): CBaseController->widget('ext.fullcalenda...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 12:23:20 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EFullCalendarHeart.lang" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(161): CComponent->__set('lang', 'th')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.fullcalenda...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.fullcalenda...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(26): CBaseController->widget('ext.fullcalenda...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 12:23:21 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EFullCalendarHeart.lang" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(161): CComponent->__set('lang', 'th')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.fullcalenda...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.fullcalenda...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(26): CBaseController->widget('ext.fullcalenda...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 12:57:52 [error] [exception.CException] exception 'CException' with message 'ชื่อเสมือน "bootstrap.widgets.TbModal" ไม่ถูกต้อง กรุณาตรวจสอบความถูกต้องของไดเรกทอรี่หรือไฟล์' in /Applications/MAMP/htdocs/clinic/framework/YiiBase.php:347
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(146): YiiBase::import('bootstrap.widge...', true)
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(39): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 13:03:16 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/view/id1?a...')
+#5 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#7 {main}
+REQUEST_URI=/clinic/index.php?r=site/view/id1?asModal=true
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 13:03:18 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/view/id1?a...')
+#5 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#7 {main}
+REQUEST_URI=/clinic/index.php?r=site/view/id1?asModal=true
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 13:04:08 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/view/id1')
+#5 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#7 {main}
+REQUEST_URI=/clinic/index.php?r=site/view/id1
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 13:04:36 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/view/id=1')
+#5 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#7 {main}
+REQUEST_URI=/clinic/index.php?r=site/view/id=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 13:04:54 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:336
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('view')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/view/id1')
+#5 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#7 {main}
+REQUEST_URI=/clinic/index.php?r=site/view/id1
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/09 13:23:44 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-11-27&end=2017-01-08&_=1481264624750
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:48 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-01-01&end=2017-02-12&_=1481264628113
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:48 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-01-29&end=2017-03-12&_=1481264628791
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:49 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-02-26&end=2017-04-09&_=1481264629262
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:49 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-03-26&end=2017-05-07&_=1481264629447
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:49 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-04-30&end=2017-06-11&_=1481264629647
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:50 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-03-26&end=2017-05-07&_=1481264630502
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:50 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-02-26&end=2017-04-09&_=1481264630650
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:50 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-01-29&end=2017-03-12&_=1481264630797
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:50 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2017-01-01&end=2017-02-12&_=1481264630937
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:51 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-11-27&end=2017-01-08&_=1481264631067
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:51 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-10-30&end=2016-12-11&_=1481264631335
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:51 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-09-25&end=2016-11-06&_=1481264631729
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:51 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-08-28&end=2016-10-09&_=1481264631916
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:52 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-07-31&end=2016-09-11&_=1481264632495
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:52 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-06-26&end=2016-08-07&_=1481264632914
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:53 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-05-29&end=2016-07-10&_=1481264633109
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:53 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-05-01&end=2016-06-12&_=1481264633253
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:53 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-03-27&end=2016-05-08&_=1481264633378
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:53 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-02-28&end=2016-04-10&_=1481264633529
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:53 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-01-31&end=2016-03-13&_=1481264633685
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:54 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-02-28&end=2016-04-10&_=1481264634496
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:54 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-03-27&end=2016-05-08&_=1481264634652
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:54 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-05-01&end=2016-06-12&_=1481264634786
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:54 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-05-29&end=2016-07-10&_=1481264634921
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:55 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-06-26&end=2016-08-07&_=1481264635057
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:55 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-07-31&end=2016-09-11&_=1481264635200
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:55 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-08-28&end=2016-10-09&_=1481264635344
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:23:55 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-09-25&end=2016-11-06&_=1481264635495
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:24:42 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-11-27&end=2017-01-08&_=1481264682639
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 13:25:25 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): SiteController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): SiteController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/calendarEvents&start=2016-11-27&end=2017-01-08&_=1481264725722
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php (158)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/09 16:11:45 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EFullCalendarHeart.customButtons" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(161): CComponent->__set('customButtons', Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.fullcalenda...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.fullcalenda...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(49): CBaseController->widget('ext.fullcalenda...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/09 16:14:00 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "EFullCalendarHeart.customButtons" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWidgetFactory.php(161): CComponent->__set('customButtons', Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'ext.fullcalenda...', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.fullcalenda...', Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php(49): CBaseController->widget('ext.fullcalenda...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', NULL, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', NULL, true)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('carlendar', NULL, true)
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(137): CController->render('carlendar')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionCarlendar()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+---
+2016/12/13 21:25:34 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'patient' in 'field list'. The SQL statement executed was: INSERT INTO `appoint` (`appoint`, `type`, `patient`, `branch`) VALUES (:appoint, :type, :patient, :branch).
+in /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php (303)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/13 21:25:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'patient' in 'field list'. The SQL statement executed was: INSERT INTO `appoint` (`appoint`, `type`, `patient`, `branch`) VALUES (:appoint, :type, :patient, :branch)' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1250): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php(303): CDbCommand->insert('appoint', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): AppointController->actionAddeven()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('addeven')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/addeven')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/addeven
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/13 21:25:53 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'patient' in 'field list'. The SQL statement executed was: INSERT INTO `appoint` (`appoint`, `type`, `patient`, `branch`) VALUES (:appoint, :type, :patient, :branch).
+in /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php (303)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/13 21:25:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'patient' in 'field list'. The SQL statement executed was: INSERT INTO `appoint` (`appoint`, `type`, `patient`, `branch`) VALUES (:appoint, :type, :patient, :branch)' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1250): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php(303): CDbCommand->insert('appoint', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): AppointController->actionAddeven()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('addeven')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/addeven')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/addeven
+---
+2016/12/13 23:19:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "module/appoint/carlendar".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('module/appoint/...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=module/appoint/carlendar
+---
+2016/12/13 23:19:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "module/appoint/carlendar".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('module/appoint/...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=module/appoint/carlendar
+---
+2016/12/13 23:25:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "carlendar" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('carlendar')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/13 23:25:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "carlendar" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('carlendar')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('carlendar')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('site/carlendar')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=site/carlendar
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/carlendar
+---
+2016/12/13 23:51:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "viewcarlendae" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('viewcarlendae')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('viewcarlendae')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/viewcar...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/viewcarlendae/id/2016-12-07/type/3
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2016/12/13 23:51:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "viewcarlendae" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('viewcarlendae')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('viewcarlendae')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/viewcar...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/viewcarlendae/id/2016-12-07/type/2
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2016/12/13 23:51:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "viewcarlendae" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('viewcarlendae')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('viewcarlendae')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/viewcar...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/viewcarlendae/id/2016-12-07/type/1
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2016/12/14 00:03:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "viewcarlendae" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('viewcarlendae')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('viewcarlendae')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/viewcar...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/viewcarlendae/id/2016-12-07/type/3
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2016/12/14 00:04:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "viewcarlendae" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('viewcarlendae')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('viewcarlendae')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/viewcar...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/viewcarlendae/id/2016-12-07/type/2
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2016/12/14 00:04:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "viewcarlendae" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('viewcarlendae')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('viewcarlendae')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/viewcar...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/viewcarlendae/id/2016-12-07/type/3
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2016/12/14 00:05:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "viewcarlendae" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('viewcarlendae')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('viewcarlendae')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/viewcar...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/viewcarlendae/id/2016-12-07/type/3
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---

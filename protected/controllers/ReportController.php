@@ -30,7 +30,7 @@ class ReportController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'reportinputproductmonth', 'reportcostprofit', 'datareportcostprofit'),
+                'actions' => array('create', 'reportinputproductmonth', 'reportcostprofit', 'datareportcostprofit','reportproductsalable','dataproductsalable','reportsellproduct','datareportsellproduct'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -135,6 +135,42 @@ class ReportController extends Controller {
         $data['month'] = implode(",", $Month);
         $data['year'] = $year;
         $this->renderPartial('datareportcostprofit', $data);
+    }
+    
+     public function actionReportproductsalable() {
+        $this->render('reportproductsalable');
+    }
+    
+    public function actionDataproductsalable(){
+        $year = Yii::app()->request->getPost('year');
+        $branch = Yii::app()->request->getPost('branch');
+        $ReportModel = new Report();
+        $ProductSalable = $ReportModel->ProductSalable($year, $branch);
+        $catArr = array();
+        $valAll = array();
+        foreach($ProductSalable as $rs):
+            $catArr[] = "'".$rs['product_name']."'";
+            $valAll[] = $rs['total'];
+        endforeach;
+        
+        $data['category'] = implode(",", $catArr);
+        $data['value'] = implode(",", $valAll);
+        $data['year'] = $year;
+        $data['product'] = $ProductSalable;
+        $this->renderPartial('dataproductsalable',$data);
+    }
+    
+    public function actionReportsellproduct() {
+        $this->render('reportsellproduct');
+    }
+    
+    public function actionDatareportsellproduct() {
+        $branch = Yii::app()->request->getPost('branch');
+        $datestart = Yii::app()->request->getPost('datestart');
+        $dateend = Yii::app()->request->getPost('dateend');
+        $Model = new Report();
+        $data['sell'] = $Model->ReportSellproduct($datestart, $dateend, $branch);
+        $this->renderPartial('datareportsellproduct',$data);
     }
 
 }

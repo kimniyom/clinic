@@ -71,7 +71,7 @@ class MasuserController extends Controller {
             $model->d_update = date("Y-m-d H:i:s");
             $model->flag = "0";
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('view', 'id' => $model->id,'user_id' => $model->user_id));
         }
 
         $this->render('create', array(

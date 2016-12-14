@@ -30,7 +30,10 @@ class AppointController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'formappoint', 'saveappoint', 'appointover', 'updateappoint', 'appointcurrent', 'appointall', 'getappoint', 'getdayappoint','appointment','appointlist'),
+                'actions' => array('create', 'update', 'formappoint', 'saveappoint', 
+                    'appointover', 'updateappoint', 'appointcurrent', 'appointall', 
+                    'getappoint', 'getdayappoint','appointment','appointlist','addeven',
+                    'carlendar','carlendarevents','viewcarlendar'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -291,6 +294,62 @@ class AppointController extends Controller {
         $data['appoints'] = $Model->AppointAll();
 //print_r($data['appoint']);
         $this->render('appointalluser', $data);
+    }
+    
+    public function actionAddeven(){
+        $patient = Yii::app()->request->getPost('patient');
+        $appoint = Yii::app()->request->getPost('appoint');
+        $type = Yii::app()->request->getPost('type');
+        $branch = Yii::app()->session['branch'];
+        $columns = array("appoint" => $appoint,"type" => $type,"patient_id" => $patient,"branch" => $branch);
+        Yii::app()->db->createCommand()
+                ->insert("appoint", $columns);
+    }
+    
+    public function actionCarlendar() {
+        $this->render('carlendar');
+    }
+
+    public function actionCarlendarevents() {
+        $branch = Yii::app()->session['branch'];
+        $sql = "SELECT a.appoint,a.type,COUNT(*) AS total
+                FROM appoint a 
+                WHERE a.status = '0' AND a.branch = '$branch' 
+                GROUP BY a.appoint,a.type ";
+        $model = Yii::app()->db->createCommand($sql)->queryAll();
+        $items = array();
+        foreach ($model as $value) {
+            if($value['type'] == '1'){
+                $color = "green";
+                $title = "นัดหัตถการ จำนวน ".$value['total'];
+            } else if($value['type'] == '2'){
+                $color = "blue";
+                $title = "นัดพบแพทย์ จำนวน ".$value['total'];
+            } else {
+                $color = "red";
+                $title = "ทรีทเม็นท์ จำนวน ".$value['total'];
+            }
+        $items[] = array(
+            'id'=>$value['appoint'],
+            'title' => $title,
+            'type' => $value['type'],
+            'start' => $value['appoint'],
+            //'end' => date('Y-m-21'),
+            //'end' => date('Y-m-d', strtotime('+1 day', strtotime($value->finish))),
+            //'time' => date('H:i:s'),
+            'color' => $color,
+                //'allDay'=>true,
+                //'url'=>'http://anyurl.com'
+        );
+        }
+        echo CJSON::encode($items);
+        Yii::app()->end();
+    }
+
+    public function actionViewcarlendar($appoint = null,$type = null) {
+        $Model = new Appoint();
+        $data['appoint'] = $Model->Viewcarlendar($appoint, $type);
+        $this->renderPartial('viewcarlendar',$data);
     }
 
 }

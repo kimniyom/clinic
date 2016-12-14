@@ -21,13 +21,25 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireproduct.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/masuser/profile.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/view.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Loglogin.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointcurrent.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/gradcustomer/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointall.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/report/reportsellproduct.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Employee.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/service/detail.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/bill.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/ItemsController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/extensions/fullcalendar/EFullCalendarHeart.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/report/datareportsellproduct.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/StockController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/serviceDrug/formdrug.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/config/main.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/site/carlendar.php</file>
         </group>
     </open-files>
 </project-private>

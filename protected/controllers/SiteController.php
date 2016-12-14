@@ -128,9 +128,10 @@ class SiteController extends Controller {
         $this->render("//main/about", $data);
     }
 
-   public function actionSetactivemenu(){
-       $menu = Yii::app()->request->getPost('menu');
-       Yii::app()->session['leftmenu'] = $menu;
-   }
+    public function actionSetactivemenu() {
+        $menu = Yii::app()->request->getPost('menu');
+        Yii::app()->session['leftmenu'] = $menu;
+    }
 
+   
 }

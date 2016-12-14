@@ -161,5 +161,17 @@ class Appoint extends CActiveRecord {
 
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
+    
+    public function Viewcarlendar($appoint = null,$type = null){
+        $branch = Yii::app()->session['branch'];
+        $sql = "SELECT a.*,p.pid,p.`name`,p.lname
+                FROM appoint a INNER JOIN patient p ON a.patient_id = p.id
+                WHERE a.`status` = '0' 
+                AND a.appoint = '$appoint' 
+                AND a.type = '$type' 
+                AND a.branch = '$branch'
+                ORDER BY a.id ASC";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
 
 }

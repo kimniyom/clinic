@@ -1,3 +1,8 @@
+<style type="text/css">
+    table{
+        border: none;
+    }
+</style>
 <?php
 $UserModel = new Masuser();
 $BranchModel = new Branch();
@@ -32,6 +37,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
                         'options' => array(
                             'placeholder' => 'สมาชิก',
                             'width' => '100%',
+                            'allowClear' => true,
                         )
                             )
                     );
@@ -69,6 +75,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
         <div class="col-lg-3">
             รับเงิน
             <input type="text" class="form-control" id="income" onkeypress="return chkNumber()" style=" text-align: center; font-weight: bold; font-size: 24px;" onkeyup="Income(this.value)"/>
+            <input type="hidden" class="form-control" id="distcount" style=" text-align: center; font-weight: bold; font-size: 24px;" value="0"/>
             เงินทอน
             <input type="text" class="form-control" id="change" readonly="readonly" style=" text-align: center; color: #33cc00; font-weight: bold; font-size: 24px; background: #333333;"/>
             <hr style=" border-bottom: #999999 solid 1px;"/>
@@ -77,15 +84,21 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
         </div>
 
         <div class="col-lg-3" style=" border-left: #999999 solid 1px;">
-            <div class="well" style=" text-align: center; background: #333333;">
-                <h2 style=" color: #FFFFFF;">ราคารวม</h2>
-                <input type="hidden" id="_total" value="0">
+            <div class="well-sm" style=" text-align: center; background: #333333;">
+                <!--
+                <h3 style=" color: #FFFFFF; margin: 0px;">ราคารวม</h3>
                 <h1 id="total" style=" color: #ffcc00;">0</h1>
+                -->
+                <input type="hidden" id="_total" value="0">
+                <h2 style=" color: #FFFFFF;">ราคาหักส่วนลด</h2>
+                <input type="hidden" id="_totalfinal" value="0">
+                <h1 id="totalfinal" style=" color: #ffcc00;">0</h1>
             </div>
             <?php $url = Yii::app()->createUrl('sell/bill', array("sell_id" => $sell_id)) ?>
             <!--
-            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                           ?>', '<?php //echo $sell_id                                           ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
+            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                             ?>', '<?php //echo $sell_id                                             ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
             -->
+            <hr/>
             <button type="button" class="btn btn-danger btn-block" id="btn-bg-danger" onclick="javascript:window.location.reload()"><i class="fa fa-remove"></i> จบการขาย</button>
         </div>
     </div>
@@ -93,26 +106,27 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
 
 <div class="row">
     <div class="col-lg-8" style=" padding-right: 0px; border-right: none;">
-        <div class="panel panel-info" style="position: relative; border-radius: 0px; " id="listorder">
+        <div class="panel panel-info" style="border-radius: 0px; ">
             <div class="panel-heading" style="border-radius: 0px;" id="heading-panel"><i class="fa fa-bars"></i> รายการขาย</div>
-            <div id="orderlist" style="overflow: auto;"><h3 style=" text-align: center;">ยังไม่มีรายการขาย</h3></div>
-            <div class="panel-footer" style=" position: absolute; bottom: 0px; width: 100%; border-radius: 0px;">
+
+            <div id="orderlist" style=" position: relative;"><h3 style=" text-align: center;">ยังไม่มีรายการขาย</h3></div>
+
+            <div class="panel-footer" style=" position: absolute; bottom: 21px; width: 100%; border-radius: 0px;">
                 รวม
-                <div class="pull-right" id="showtotal" style=" color: #ff3300; font-weight: bold;">0.-</div>
+                <div class="pull-right" id="showtotal" style=" color: #ff3300; font-weight: bold; padding-right: 10px;">0.-</div>
             </div>
         </div>
     </div>
 
     <div class="col-lg-4" style=" padding-left: 0px; border-left: none;">
-        <div class="panel panel-info" style="position: relative; border-radius: 0px;" id="patientbox">
+        <div class="panel panel-info" style="border-radius: 0px;" id="patientbox">
             <div class="panel-heading" style="border-radius: 0px;" id="heading-panel"><i class="fa fa-user"></i> ข้อมูลลูกค้า</div>
-            <div class="panel-body" id="font-22" >
-                <div id="patient"></div>
+            <div class="panel-body" id="font-22" style=" padding: 0px;">
+                <div id="patient" style=" position: relative;"></div>
             </div>
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript">
     loaditems();
@@ -122,12 +136,13 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
         $(window).resize(function () {
             var boxsell = $("#box-sell").height();
             var contentboxsell = $("#content-boxsell").height();
-            var screenfull = ((contentboxsell - boxsell) - 157);
-            $("#listorder").css({'height': screenfull});
-            $("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            var screenfull = ((contentboxsell - boxsell) - 200);
+            $("#orderlist").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            $("#patient").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
             //alert(screenfull);
         });
-        
+
         $("#card").change(function () {
             var card = $("#card").val();
             var url = "<?php echo Yii::app()->createUrl('sell/patient') ?>";
@@ -137,15 +152,16 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             });
         });
     });
-    
+
     function Setscreen() {
         var boxsell = $("#box-sell").height();
         var contentboxsell = $("#content-boxsell").height();
-        var screenfull = ((contentboxsell - boxsell) - 157);
-        $("#listorder").css({'height': screenfull});
-        $("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        var screenfull = ((contentboxsell - boxsell) - 200);
+        $("#orderlist").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        $("#patient").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
     }
-    
+
     function sell() {
         var url = "<?php echo Yii::app()->createUrl('sell/sell') ?>";
         var itemcode = $("#itemcode").val();
@@ -164,7 +180,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             loadorder();
         });
     }
-    
+
     function confirmOrder() {
         var url = "<?php echo Yii::app()->createUrl('sell/logsell') ?>";
         var itemcode = $("#itemcode").val();
@@ -174,8 +190,20 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
         var total = $("#_total").val();
         var income = $("#income").val();
         var change = $("#change").val();
-        alert(branch);
-        var data = {itemcode: itemcode, sellcode: sellcode, card: card, branch: branch, total: total, income: income, change: change};
+        var distcount = $("#distcount").val();
+        var totalfinal = $("#_totalfinal").val();
+        //alert(branch);
+        var data = {
+            itemcode: itemcode,
+            sellcode: sellcode,
+            card: card,
+            branch: branch,
+            total: total,
+            income: income,
+            change: change,
+            distcount: distcount,
+            totalfinal: totalfinal
+        };
         $.post(url, data, function (datas) {
             PrintBill(sellcode);
             //$("#orderlist").html(datas);
@@ -183,12 +211,12 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             //loadorder();
         });
     }
-    
+
     function PrintBill(sellcode) {
         var url = "<?php echo Yii::app()->createUrl('sell/bill') ?>" + "&sell_id=" + sellcode;
         PopupBill(url, sellcode);
     }
-    
+
     function loaditems() {
         var url = "<?php echo Yii::app()->createUrl('backend/items/comboitem') ?>";
         var data = {};
@@ -196,7 +224,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             $("#_item").html(datas);
         });
     }
-    
+
     function loadorder() {
         //var loader = '<i class="fa-li fa fa-spinner fa-spin"></i>';
         var url = "<?php echo Yii::app()->createUrl('sell/loadorder') ?>";
@@ -208,31 +236,36 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             Calculator();
         });
     }
-    
+
     function Calculator() {
         var url = "<?php echo Yii::app()->createUrl('sell/calculator') ?>";
         var sellcode = $("#sellcode").val();
         var data = {sell_id: sellcode};
+        var distcount = $("#distcount").val();
+
         $.post(url, data, function (response) {
             var datas = jQuery.parseJSON(response);
             $("#_total").val(datas.total);
-            $("#total").text(formatThousands(datas.total) + ".-");
+            //$("#total").text(formatThousands(datas.total) + ".-");
             $("#showtotal").text(formatThousands(datas.total) + ".-");
+            $("#_totalfinal").val(datas.total - distcount);
+            $("#totalfinal").text(formatThousands(datas.total - distcount) + ".-");
+
         });
     }
-    
+
     function Income(value) {
-        var total = parseInt($("#_total").val());
+        var totalfinal = parseInt($("#_totalfinal").val());
         var income = parseInt(value);
-        
-        if (income < total || isNaN(income)) {
+
+        if (income < totalfinal || isNaN(income)) {
             $("#change").val(0);
         } else {
-            var changes = parseInt((income - total));
+            var changes = parseInt((income - totalfinal));
             $("#change").val(changes);
         }
     }
-    
+
     function formatThousands(n, dp) {
         var s = '' + (Math.floor(n)), d = n % 1, i = s.length, r = '';
         while ((i -= 3) > 0) {
@@ -240,7 +273,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
         }
         return s.substr(0, i + 3) + r + (d ? '.' + Math.round(d * Math.pow(10, dp || 2)) : '');
     }
-    
+
     //พิมพ์ใบเสร็จ
     function Bills() {
         var url = "<?php echo Yii::app()->createUrl('sell/bill') ?>";
@@ -254,38 +287,39 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             alert(datas);
         });
     }
-    
+
     //ชำระเงิน
     function Check_bill() {
         //var url = $("#Urlcheckbill").val();
         //var orderID = $("#orderID").val();
-        var total = parseInt($("#_total").val());
+        //var total = parseInt($("#_total").val());
+        var totalfinal = parseInt($("#_totalfinal").val());
         //var distcount = $("#distcount").val();
         var income = parseInt($("#income").val());
         //var change = $("#change").val();
-        
-        if (total <= 0) {
+
+        if (totalfinal <= 0) {
             //alert("ยังไม่มีรายการสินค้า ...");
             swal("แจ้งเตือน!", "ยังไม่มีรายการสินค้า ...!", "warning");
             $("#income").focus();
             return false;
         }
-        
+
         if (isNaN(income) || income <= 0) {
             //alert("ยังไม่ได้รับเงินจากลูกค้า ใส่จำนวนเงินที่ช่องรับเงิน");
             swal("แจ้งเตือน!", "ยังไม่ได้รับเงินจากลูกค้า ใส่จำนวนเงินที่ช่องรับเงิน ...!", "warning");
             $("#income").focus();
             return false;
         }
-        
-        if (income < total) {
+
+        if (income < totalfinal) {
             swal("แจ้งเตือน!", "ไม่พอจ่ายค่าสินค้า ...!", "warning");
             $("#income").focus();
             return false;
         }
-        
+
         confirmOrder();
-        
+
         /*
          var data = {
          orderID: orderID,
@@ -301,8 +335,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
          });
          */
     }
-    
-    
+
     function PopupBill(url, title) {
         // Fixes dual-screen position  
         //                        Most browsers      Firefox
@@ -310,20 +343,20 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
         var h = 600;
         var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
         var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
-        
+
         var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
         var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
-        
+
         var left = ((width / 2) - (w / 2)) + dualScreenLeft;
         var top = ((height / 2) - (h / 2)) + dualScreenTop;
         var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-        
+
         // Puts focus on the newWindow
         if (window.focus) {
             newWindow.focus();
         }
     }
-    
+
     function Notify(itemcode) {
         $.notify({
             // options
@@ -349,8 +382,8 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             timer: 1000
         });
     }
-    
-    
+
+
 </script>
 
 
