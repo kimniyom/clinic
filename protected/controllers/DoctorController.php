@@ -1,6 +1,6 @@
 <?php
 
-class DortorController extends Controller {
+class DoctorController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -30,7 +30,7 @@ class DortorController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'dortorsearch', 'patientview'),
+                'actions' => array('create', 'update', 'doctorsearch', 'patientview'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -51,7 +51,7 @@ class DortorController extends Controller {
         $this->render('index');
     }
 
-    public function actionDortorsearch() {
+    public function actionDoctorsearch() {
 
         $branch = Yii::app()->session['branch'];
         if ($branch == "99") {
@@ -65,7 +65,7 @@ class DortorController extends Controller {
         $sql = "SELECT * FROM patient WHERE card = '$card' $b";
         $patient = Yii::app()->db->createCommand($sql)->queryRow();
         if ($patient['card']) {
-            $this->renderPartial('dortorsearch', array("patient" => $patient));
+            $this->renderPartial('doctorsearch', array("patient" => $patient));
         } else {
             echo "0";
         }

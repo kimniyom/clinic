@@ -6219,3 +6219,153 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=appoint/viewcarlendae/id/2016-12-07/type/3
 HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
 ---
+2016/12/14 10:20:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'ระบบไม่สามารถดำเนินการ "แฟพสำืกฟพ" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:483
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(270): CController->missingAction('\xE0\xB9\x81\xE0\xB8\x9F\xE0\xB8\x9E\xE0\xB8\xAA\xE0\xB8\xB3...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('\xE0\xB9\x81\xE0\xB8\x9F\xE0\xB8\x9E\xE0\xB8\xAA\xE0\xB8\xB3...')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('appoint/\xE0\xB9\x81\xE0\xB8\x9F\xE0...')
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/clinic/index.php?r=appoint/%E0%B9%81%E0%B8%9F%E0%B8%9E%E0%B8%AA%E0%B8%B3%E0%B8%B7%E0%B8%81%E0%B8%9F%E0%B8%9E
+---
+2016/12/14 11:16:21 [error] [php] Undefined index: timeappoint (/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointover.php:69)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): AppointController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): AppointController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php(255): AppointController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): AppointController->actionAppointover()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): AppointController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): AppointController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): AppointController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): AppointController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=appoint/appointover
+in /Applications/MAMP/htdocs/clinic/protected/views/appoint/appointover.php (69)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php (255)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/14 11:17:14 [error] [php] Undefined index: diagname (/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointover.php:70)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): AppointController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): AppointController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php(255): AppointController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): AppointController->actionAppointover()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): AppointController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): AppointController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): AppointController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): AppointController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=appoint/appointover
+in /Applications/MAMP/htdocs/clinic/protected/views/appoint/appointover.php (70)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php (255)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/14 11:40:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "dortor/index".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('dortor/index')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=dortor/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2016/12/14 11:40:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "dortor/index".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('dortor/index')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=dortor/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2016/12/14 11:40:35 [error] [exception.CException] exception 'CException' with message 'DoctorController ไม่สามารถค้นหา "index" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:878
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/DoctorController.php(51): CController->render('index')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): DoctorController->actionIndex()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('doctor/index')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=doctor/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=dortor/index
+---
+2016/12/14 11:40:44 [error] [exception.CException] exception 'CException' with message 'DoctorController ไม่สามารถค้นหา "index" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:878
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/DoctorController.php(51): CController->render('index')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): DoctorController->actionIndex()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('doctor/index')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=doctor/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=dortor/index
+---
+2016/12/14 11:43:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "dortor/patientview".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('dortor/patientv...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=dortor/patientview&id=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=doctor/index
+---
+2016/12/14 11:43:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "dortor/patientview".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('dortor/patientv...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=dortor/patientview&id=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=doctor/index
+---
+2016/12/14 16:16:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "centerstore/index".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstore/ind...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=centerstore/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=Masuser/view&id=1&user_id=1
+---
+2016/12/14 16:34:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "centeritem/index".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centeritem/inde...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=centeritem/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=store/index
+---

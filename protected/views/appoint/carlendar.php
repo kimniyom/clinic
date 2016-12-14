@@ -7,12 +7,20 @@
     }
 </style>
 <?php
-
+$this->breadcrumbs = array(
+    "นัดลูกค้า",
+);
 $PatientModel = new Patient();
 $PatientList = $PatientModel->GetPatient();
 
 ?>
 <div id="ca">
+    <p class="text-danger">*นัดลูกค้าคลิกที่ว่างในช่องวันที่</p>
+    <p class="text-danger">*นัดลูกค้าได้เฉพาะสาขาที่ลูกค้าขึ้นทะเบียนไว้</p>
+    <button type="button" class="btn btn-danger">ทรีทเม็นท์</button>
+    <button type="button" class="btn btn-primary">นัดพบแพทย์</button>
+    <button type="button" class="btn btn-success">นัดหัตถการ</button>
+    <hr/>
 <?php
 $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
     //'themeCssFile'=>'cupertino/jquery-ui.min.css',
@@ -26,7 +34,7 @@ $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
         'header' => array(
             'left' => 'prev,next,today',
             'center' => 'title',
-            'right' => 'month,agendaWeek',
+            'right' => 'month,agendaDay',
             //'right' => 'month,agendaWeek,agendaDay',
             'lang' => 'th',
         ),
@@ -55,10 +63,6 @@ $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
             </div>
             <div class="modal-body" id="myModalBody">
                 <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -1,23 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "menu".
+ * This is the model class for table "center_stockunit".
  *
- * The followings are the available columns in table 'menu':
+ * The followings are the available columns in table 'center_stockunit':
  * @property integer $id
- * @property string $menu
- * @property string $link
- * @property integer $active
- * @property string $icon
+ * @property string $unit
  */
-class Menu extends CActiveRecord
+class CenterStockunit extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'menu';
+		return 'center_stockunit';
 	}
 
 	/**
@@ -28,12 +25,10 @@ class Menu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('active', 'numerical', 'integerOnly'=>true),
-			array('menu', 'length', 'max'=>100),
-			array('link, icon', 'length', 'max'=>255),
+			array('unit', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, menu, link, active, icon', 'safe', 'on'=>'search'),
+			array('id, unit', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,10 +50,7 @@ class Menu extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'menu' => 'เมนู',
-			'link' => 'ลิงค์',
-			'active' => 'Active',
-			'icon' => 'Icon',
+			'unit' => 'Unit',
 		);
 	}
 
@@ -81,10 +73,7 @@ class Menu extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('menu',$this->menu,true);
-		$criteria->compare('link',$this->link,true);
-		$criteria->compare('active',$this->active);
-		$criteria->compare('icon',$this->icon,true);
+		$criteria->compare('unit',$this->unit,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -95,18 +84,10 @@ class Menu extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Menu the static model class
+	 * @return CenterStockunit the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-
-	function Getrolemenu($user_id = null){
-        $sql = "SELECT m.*
-                    FROM menu m INNER JOIN role_menu r ON m.id = r.menu_id
-					WHERE r.user_id = '$user_id' ORDER BY m.order ASC";
-
-        return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 }

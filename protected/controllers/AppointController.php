@@ -33,7 +33,7 @@ class AppointController extends Controller {
                 'actions' => array('create', 'update', 'formappoint', 'saveappoint', 
                     'appointover', 'updateappoint', 'appointcurrent', 'appointall', 
                     'getappoint', 'getdayappoint','appointment','appointlist','addeven',
-                    'carlendar','carlendarevents','viewcarlendar'),
+                    'carlendar','carlendarevents','viewcarlendar','deleteappoint'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -321,13 +321,13 @@ class AppointController extends Controller {
         foreach ($model as $value) {
             if($value['type'] == '1'){
                 $color = "green";
-                $title = "นัดหัตถการ จำนวน ".$value['total'];
+                $title = "นัดหัตถการ จำนวน ".$value['total'].' ราย';
             } else if($value['type'] == '2'){
                 $color = "blue";
-                $title = "นัดพบแพทย์ จำนวน ".$value['total'];
+                $title = "นัดพบแพทย์ จำนวน ".$value['total'].' ราย';
             } else {
                 $color = "red";
-                $title = "ทรีทเม็นท์ จำนวน ".$value['total'];
+                $title = "ทรีทเม็นท์ จำนวน ".$value['total'].' ราย';
             }
         $items[] = array(
             'id'=>$value['appoint'],
@@ -350,6 +350,12 @@ class AppointController extends Controller {
         $Model = new Appoint();
         $data['appoint'] = $Model->Viewcarlendar($appoint, $type);
         $this->renderPartial('viewcarlendar',$data);
+    }
+    
+    public function actionDeleteappoint(){
+        $id = Yii::app()->request->getPost('id');
+        Yii::app()->db->createCommand()
+                ->delete("appoint","id = '$id' ");
     }
 
 }

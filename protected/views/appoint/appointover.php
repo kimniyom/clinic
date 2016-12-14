@@ -1,7 +1,7 @@
 <style type="text/css">
     .alam{
-        background: #ff9999;
-        /*color:#FFFFFF;*/
+        background: red;
+        color:#FFFFFF;
     }
     .alam a{
         color: #FFFFFF;
@@ -27,6 +27,7 @@ $this->breadcrumbs = array(
 
 $web = new Configweb_model();
 $Alert = new Alert();
+$AppointModel = new Appoint();
 $alam = $Alert->Getalert()['alert_product'];
 ?>
 
@@ -42,10 +43,9 @@ $alam = $Alert->Getalert()['alert_product'];
                     <th>#</th>
                     <th></th>
                     <th>วันนัด</th>
-                    <th>เวลา</th>
                     <th>ลูกค้า</th>
                     <th style=" text-align: center;">เบอร์โทรศัพท์</th>
-                    <th>หัตถการ</th>
+                    <th>ประเภทนัด</th>
                     <th></th>
                 </tr>
             </thead>
@@ -66,13 +66,12 @@ $alam = $Alert->Getalert()['alert_product'];
                         <td><?php echo $i ?></td>
                         <td><?php echo $text ?></td>
                         <td><?php echo $web->thaidate($last['appoint']) ?></td>
-                        <td><?php echo $last['timeappoint'] ?></td>
                         <td><?php echo $last['pername'] . $last['name'] . " " . $last['lname']; ?></td>
                         <td style=" text-align: center;"><?php echo $last['tel']; ?></a></td>
-                        <td><?php echo $last['diagname'] ?></td>
+                        <td><?php echo $AppointModel->Typeappoint($last['type']) ?></td>
                         <td style=" text-align: center;">
-                            <button type="button" class="btn btn-primary btn-sm" 
-                                    onclick="Updateappoint('<?php echo $last['id'] ?>', '<?php echo $last['name'] ?>')">เปลี่ยนวันนัด</button></td>
+                            <a href="<?php echo Yii::app()->createUrl('appoint/carlendar') ?>"><i class="fa fa-refresh"></i> เปลี่ยนวันนัด</a>
+                        </td>
                     </tr>
                     <?php
                 endforeach;
@@ -163,7 +162,8 @@ $alam = $Alert->Getalert()['alert_product'];
                             <div class="col-lg-3">
                                 <select id="year" class="form-control">
                                     <?php $year = date("Y") + 1;
-                                    for ($i = $year; $i >= ($year - 1); $i--): ?>
+                                    for ($i = $year; $i >= ($year - 1); $i--):
+                                        ?>
                                         <option value="<?php echo $i ?>" <?php if ($i == ($year - 1)) echo "selected"; ?>><?php echo ($i + 543) ?></option>
 <?php endfor; ?>
                                 </select>
@@ -202,7 +202,7 @@ $alam = $Alert->Getalert()['alert_product'];
 </div><!-- /.modal -->
 
 <script type="text/javascript">
-    
+
     function Updateappoint(id, name) {
         getappoint();
         $("#id").val(id);

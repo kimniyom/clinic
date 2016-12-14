@@ -24,7 +24,7 @@ if (!empty($patient['images'])) {
             </td>
             <td id="font-20">
                 ชื่อ - สกุล : 
-                <a href="<?php echo Yii::app()->createUrl('dortor/patientview', array('id' => $patient['id'])) ?>">
+                <a href="<?php echo Yii::app()->createUrl('doctor/patientview', array('id' => $patient['id'])) ?>">
                     <?php echo Pername::model()->find("oid", $patient['oid'])['pername'] . $patient['name'] . ' ' . $patient['lname'] ?></a><br/>
                 อายุ: <?php echo $config->get_age($patient['birth']) ?> ปี<br/>
                 ประเภทลูกค้า: <?php echo Gradcustomer::model()->find("id = '$type'")['grad']; ?><br/>

@@ -122,14 +122,13 @@ class Appoint extends CActiveRecord {
         $Alert = new Alert();
         $alam = $Alert->Getalert()['alert_appoint'];
         $branch = $this->GetBranch();
-        $sql = "SELECT a.id,s.patient_id,a.appoint,a.branch,s.diagcode,p.oid,p.`name`,p.lname,c.tel,d.diagname,pr.pername,a.timeappoint,DATEDIFF(a.appoint,NOW()) AS over
-                    FROM appoint a INNER JOIN service s ON a.service_id = s.id
-                    INNER JOIN patient p ON s.patient_id = p.id
+        $sql = "SELECT a.id,a.patient_id,a.appoint,a.branch,p.oid,p.`name`,p.lname,c.tel,pr.pername,DATEDIFF(a.appoint,NOW()) AS over,a.type
+                    FROM appoint a 
+                    INNER JOIN patient p ON a.patient_id = p.id
                     INNER JOIN patient_contact c ON p.id = c.patient_id
-                    INNER JOIN diag d ON s.diagcode = d.diagcode
                     INNER JOIN pername pr ON p.oid = pr.oid
-                    WHERE DATEDIFF(a.appoint,NOW()) <= $alam AND a.status = '0' $branch
-                    ORDER BY a.create_date,a.timeappoint ASC ";
+                    WHERE DATEDIFF(a.appoint,NOW()) <= '$alam' AND a.status = '0' $branch
+                    ORDER BY a.id ASC ";
 
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
@@ -172,6 +171,17 @@ class Appoint extends CActiveRecord {
                 AND a.branch = '$branch'
                 ORDER BY a.id ASC";
         return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+    
+    public function Typeappoint($type = null){
+        if($type == '1'){
+                $title = "นัดหัตถการ";
+            } else if($type == '2'){
+                $title = "นัดพบแพทย์";
+            } else {
+                $title = "ทรีทเม็นท์";
+            }
+            return $title;
     }
 
 }

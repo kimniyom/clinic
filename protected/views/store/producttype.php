@@ -3,7 +3,8 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'คลังสินค้า',
+    'คลังสินค้ากลาง'=>array('index'),
+    'ประเภทสินค้า',
 );
 
 $product_model = new Product();
@@ -12,26 +13,11 @@ $product_model = new Product();
 <h1>
     <img src="<?= Yii::app()->baseUrl; ?>/images/shipping-box-icon.png" 
          style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
-    คลังสินค้า 
-    <a href="<?php echo Yii::app()->createUrl('backend/typeproduct/from_add_type') ?>">
-        <button type="button" class="btn btn-default" id="btn-bg-default"><i class="fa fa-plus"></i> เพิ่มประเภทสินค้า</button></a>
-    <a href="<?php echo Yii::app()->createUrl('backend/typeproduct/from_add_type') ?>">
-        <button type="button" class="btn btn-default" id="btn-bg-default"><i class="fa fa-plus"></i> หน่วยนับ</button></a>
-        
+    คลังสินค้า      
 </h1>
 <hr/>
-<h4>คลังสินค้ากลาง</h4>
-<div class="row">
-    <div class="col-lg-4 col-md-4">
-        <button type="button" class="btn btn-success btn-block">
-            <img src="<?= Yii::app()->baseUrl; ?>/images/shipping-box-icon.png" 
-                         style="border-radius:20px; padding:2px; border:#FFF solid 2px;"><br/>
-            คลังสินค้ากลาง
-        </button>
-    </div>
-</div>
-<hr/>
-<h4>คลังสินค้าย่อย</h4>
+
+<h4>ประเภทสินค้า</h4>
 <div class="row">
     <?php
     foreach ($type as $rs):
