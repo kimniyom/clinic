@@ -6369,3 +6369,157 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=centeritem/index
 HTTP_REFERER=http://localhost/clinic/index.php?r=store/index
 ---
+2016/12/14 21:57:34 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "CenterStockitem.number" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(145): CComponent->__get('number')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('number')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(CenterStockitem), 'number')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(CenterStockitem), 'number', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(CenterStockitem), 'number', Array)
+#5 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/_form.php(32): CActiveForm->textField(Object(CenterStockitem), 'number')
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#9 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/create.php(18): CController->renderPartial('_form', Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#14 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(79): CController->render('create', Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterStockitemController->actionCreate()
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#23 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('create')
+#25 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#26 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#27 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/create
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/index
+---
+2016/12/14 21:57:59 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "CenterStockitem.number" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(145): CComponent->__get('number')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('number')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(CenterStockitem), 'number')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(CenterStockitem), 'number', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(CenterStockitem), 'number', Array)
+#5 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/_form.php(32): CActiveForm->textField(Object(CenterStockitem), 'number')
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#9 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/create.php(18): CController->renderPartial('_form', Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#14 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(79): CController->render('create', Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterStockitemController->actionCreate()
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#23 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('create')
+#25 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#26 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#27 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/create
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/index
+---
+2016/12/14 21:58:01 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "CenterStockitem.number" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(145): CComponent->__get('number')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('number')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(CenterStockitem), 'number')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(CenterStockitem), 'number', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(CenterStockitem), 'number', Array)
+#5 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/_form.php(32): CActiveForm->textField(Object(CenterStockitem), 'number')
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#9 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/create.php(18): CController->renderPartial('_form', Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#14 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(79): CController->render('create', Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterStockitemController->actionCreate()
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#23 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('create')
+#25 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#26 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#27 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/create
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/index
+---
+2016/12/14 21:59:37 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "CenterStockitem.number" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(145): CComponent->__get('number')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('number')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(CenterStockitem), 'number')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(CenterStockitem), 'number', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/widgets/CActiveForm.php(725): CHtml::activeTextField(Object(CenterStockitem), 'number', Array)
+#5 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/_form.php(32): CActiveForm->textField(Object(CenterStockitem), 'number')
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#9 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/create.php(18): CController->renderPartial('_form', Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#14 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(79): CController->render('create', Array)
+#15 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterStockitemController->actionCreate()
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#23 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('create')
+#25 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#26 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#27 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/create
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/index
+---
+2016/12/14 23:11:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stock/index".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('stock/index')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=stock/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockunit/update&id=3
+---
+2016/12/14 23:12:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "stock/index".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('stock/index')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=stock/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockunit/index
+---

@@ -1,20 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "center_stockunit".
+ * This is the model class for table "center_stockitem_name".
  *
- * The followings are the available columns in table 'center_stockunit':
+ * The followings are the available columns in table 'center_stockitem_name':
  * @property integer $id
- * @property string $unit
+ * @property string $itemcode
+ * @property string $itemname
+ * @property integer $price
+ * @property integer $unit
  */
-class CenterStockunit extends CActiveRecord
+class CenterStockitemName extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'center_stockunit';
+		return 'center_stockitem_name';
 	}
 
 	/**
@@ -25,11 +28,12 @@ class CenterStockunit extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                    array('unit','required'),
-			array('unit', 'length', 'max'=>255),
+			array('price, unit', 'numerical', 'integerOnly'=>true),
+			array('itemcode', 'length', 'max'=>10),
+			array('itemname', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, unit', 'safe', 'on'=>'search'),
+			array('id, itemcode, itemname, price, unit', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +55,9 @@ class CenterStockunit extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'itemcode' => 'รหัสitem',
+			'itemname' => 'ชื่อItem',
+			'price' => 'ราคา',
 			'unit' => 'หน่วยนับ',
 		);
 	}
@@ -74,7 +81,10 @@ class CenterStockunit extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('unit',$this->unit,true);
+		$criteria->compare('itemcode',$this->itemcode,true);
+		$criteria->compare('itemname',$this->itemname,true);
+		$criteria->compare('price',$this->price);
+		$criteria->compare('unit',$this->unit);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -85,7 +95,7 @@ class CenterStockunit extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return CenterStockunit the static model class
+	 * @return CenterStockitemName the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

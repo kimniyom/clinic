@@ -17,16 +17,22 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+            <div class="col-lg-2">
 		<?php echo $form->labelEx($model,'unit'); ?>
+            </div>
+            <div class="col-lg-5">
 		<?php echo $form->textField($model,'unit',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'unit'); ?>
+            </div>
 	</div>
-
+<hr/>
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-3">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-success')); ?>
+            </div>
 	</div>
 
 <?php $this->endWidget(); ?>

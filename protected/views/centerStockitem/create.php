@@ -3,7 +3,7 @@
 /* @var $model CenterStockitem */
 
 $this->breadcrumbs=array(
-	'Center Stockitems'=>array('index'),
+	'Item'=>array('index'),
 	'Create',
 );
 
@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create CenterStockitem</h1>
-
+<h1><img src="<?php echo Yii::app()->baseUrl;?>/images/text-plus-icon.png"/> เพิ่ม Item</h1>
+<hr/>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

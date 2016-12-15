@@ -3,8 +3,9 @@
 /* @var $model CenterStockitem */
 
 $this->breadcrumbs=array(
-	'Center Stockitems'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
+        'คลังสินค้า' => Yii::app()->createUrl('stock/index'),
+	'วัตถุดิบ'=>array('index'),
+	//$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
 
@@ -16,6 +17,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update CenterStockitem <?php echo $model->id; ?></h1>
-
+<h1>แก้ไขวัตถุดิบ <?php echo $model->itemname; ?></h1>
+<hr/>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
