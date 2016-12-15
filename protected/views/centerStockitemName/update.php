@@ -2,20 +2,13 @@
 /* @var $this CenterStockitemNameController */
 /* @var $model CenterStockitemName */
 
-$this->breadcrumbs=array(
-	'Center Stockitem Names'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List CenterStockitemName', 'url'=>array('index')),
-	array('label'=>'Create CenterStockitemName', 'url'=>array('create')),
-	array('label'=>'View CenterStockitemName', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage CenterStockitemName', 'url'=>array('admin')),
+$this->breadcrumbs = array(
+    'คลังสินค้า' => Yii::app()->createUrl('store/index'),
+    'รายการวัตถุดิบ' => array('index'),
+    'Update',
 );
 ?>
 
-<h1>Update CenterStockitemName <?php echo $model->id; ?></h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<h1>แก้ไขวัตถุดิบ <?php echo $model->itemname; ?></h1>
+<hr/>
+<?php $this->renderPartial('_form', array('model' => $model)); ?>

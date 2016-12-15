@@ -28,6 +28,7 @@ class CenterStockitemName extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('itemcode,itemname,price,unit','required'),
 			array('price, unit', 'numerical', 'integerOnly'=>true),
 			array('itemcode', 'length', 'max'=>10),
 			array('itemname', 'length', 'max'=>255),

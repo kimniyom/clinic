@@ -2,24 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/clinic/protected/config/main.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/formappoint.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/masuser/profile.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/view.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/EmployeeController.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/service/detail.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/appointover.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/employee/view.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/getappoint.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/patient/index.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireitem.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/appoint/appointall.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/AppointController.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/MasuserController.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/layouts/template_backend.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/backend/stock/expireproduct.php</file>
-        </group>
         <group name="yii">
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Appoint.php</file>
@@ -42,6 +24,17 @@
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/serviceDrug/formdrug.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/config/main.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/viewcarlendar.php</file>
+        </group>
+        <group>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/store/index.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/update.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/CenterStockitemNameController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/create.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/_form.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/CenterStockitemController.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/models/CenterStockitem.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/index.php</file>
+            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitemName/_form.php</file>
         </group>
     </open-files>
 </project-private>

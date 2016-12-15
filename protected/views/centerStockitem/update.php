@@ -9,14 +9,8 @@ $this->breadcrumbs=array(
 	'Update',
 );
 
-$this->menu=array(
-	array('label'=>'List CenterStockitem', 'url'=>array('index')),
-	array('label'=>'Create CenterStockitem', 'url'=>array('create')),
-	array('label'=>'View CenterStockitem', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage CenterStockitem', 'url'=>array('admin')),
-);
 ?>
 
-<h1>แก้ไขวัตถุดิบ <?php echo $model->itemname; ?></h1>
+<h1>แก้ไขวัตถุดิบ <?php echo $model->id; ?></h1>
 <hr/>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -5,12 +5,15 @@
  *
  * The followings are the available columns in table 'center_stockitem':
  * @property integer $id
- * @property string $itemcode
- * @property string $itemname
+ * @property integer $itemid
  * @property integer $total
  * @property integer $price
- * @property integer $unit
  * @property string $lotnumber
+ * @property integer $number
+ * @property string $create_date
+ * @property integer $numbercut
+ * @property integer $totalcut
+ * @property integer $unitcut
  */
 class CenterStockitem extends CActiveRecord {
 
@@ -28,14 +31,13 @@ class CenterStockitem extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('itemname,number,price,unit,lotnumber', 'required'),
-            array('total,number ,price, unit', 'numerical', 'integerOnly' => true),
-            array('itemcode', 'length', 'max' => 10),
-            array('itemname', 'length', 'max' => 255),
-            array('lotnumber', 'safe'),
+            array('itemid,number,price,lotnumber,numbercut,totalcut,unitcut', 'required'),
+            array('itemid, total, price, number, numbercut, totalcut, unitcut', 'numerical', 'integerOnly' => true),
+            array('lotnumber', 'length', 'max' => 10),
+            array('create_date', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, itemcode, itemname, total, number,price, unit, lotnumber', 'safe', 'on' => 'search'),
+            array('id, itemid, total, price, lotnumber, number, create_date, numbercut, totalcut, unitcut', 'safe', 'on' => 'search'),
         );
     }
 
@@ -55,13 +57,15 @@ class CenterStockitem extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'itemcode' => 'รหัสitem',
-            'itemname' => 'ชื่อItem',
-            'number' => 'จำนวน',
+            'itemid' => 'วัตถุดิบ',
             'total' => 'คงเหลือ',
             'price' => 'ราคา',
-            'unit' => 'หน่วยนับ',
-            'lotnumber' => 'ล๊อตที่',
+            'lotnumber' => 'ล๊อตเลขที่',
+            'number' => 'จำนวน',
+            'create_date' => 'วันที่นำเข้า',
+            'numbercut' => 'จำนวนที่ตัดได้',
+            'totalcut' => 'ยอดคงเหลือที่ตัดได้',
+            'unitcut' => 'หน่วยในการตัด',
         );
     }
 
@@ -83,12 +87,15 @@ class CenterStockitem extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('itemcode', $this->itemcode, true);
-        $criteria->compare('itemname', $this->itemname, true);
+        $criteria->compare('itemid', $this->itemid);
         $criteria->compare('total', $this->total);
         $criteria->compare('price', $this->price);
-        $criteria->compare('unit', $this->unit);
         $criteria->compare('lotnumber', $this->lotnumber, true);
+        $criteria->compare('number', $this->number);
+        $criteria->compare('create_date', $this->create_date, true);
+        $criteria->compare('numbercut', $this->numbercut);
+        $criteria->compare('totalcut', $this->totalcut);
+        $criteria->compare('unitcut', $this->unitcut);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -103,6 +110,14 @@ class CenterStockitem extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
+    }
+
+    public function Getstockitem() {
+        $sql = "SELECT s.*,n.itemcode,n.itemname,n.price,u.unit,us.unit AS unitcutstock
+                FROM center_stockitem s INNER JOIN center_stockitem_name n ON s.itemid = n.id
+                INNER JOIN center_stockunit u ON n.unit = u.id
+                INNER JOIN center_stockunit us ON s.unitcut = us.id";
+        return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
 }
