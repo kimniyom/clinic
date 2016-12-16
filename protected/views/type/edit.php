@@ -4,11 +4,16 @@
         var url = "<?php echo Yii::app()->createUrl('backend/typeproduct/save_edit_type') ?>";
         var id = "<?php echo $type['id'] ?>";
         var type_name = $("#type_name").val();
+        var upper = $("#upper").val();
+        var level = $('input[name=level]:checked').val();
+
         var active = $("#active").val();
         var data = {
             id: id,
             type_name: type_name,
-            active: active
+            active: active,
+            upper: upper,
+            level: level
         };
         if (type_name == "") {
             $("#type_name").focus();
@@ -17,14 +22,11 @@
 
         $.post(url, data, function (success) {
             $("#loading").addClass("fa fa-check");
-            window.location.reload();
+            window.location="<?php echo Yii::app()->createUrl('backend/typeproduct/from_add_type',array('upper' => $upper))?>";
         });
 
     }
 
-    function set_active(active) {
-        $("#active").val(active);
-    }
 
     function delete_type(type_id) {
         var r = confirm("ต้องการลบข้อมูล ใช่ หรือ ไม่ ...?");
@@ -55,10 +57,18 @@
 </script>
 
 <?php
+if(!empty($upper)){
 $this->breadcrumbs = array(
     'ประเภทสินค้า' => array("backend/typeproduct/from_add_type"),
+    $uppername => array("backend/typeproduct/from_add_type&upper=$upper"),
     $type['type_name']
 );
+} else {
+   $this->breadcrumbs = array(
+    'ประเภทสินค้า' => array("backend/typeproduct/from_add_type"),
+    $type['type_name']
+); 
+}
 ?>
 
 <div class="panel panel-primary">
@@ -79,23 +89,20 @@ $this->breadcrumbs = array(
         </div>
 
         <br/>
-        <label for="">สถานะ</label>
-        <input type="hidden" id="active" value="<?php echo $type['active'] ?>"/>
-        <input id="status" name="status" class="styled" type="radio"
+        <label for="">มีเมนูย่อย</label>
+        <input id="level" name="level" type="radio"
         <?php
-        if ($type['active'] == '1') {
+        if ($type['sublevel'] == '1') {
             echo "checked='checked'";
         }
-        ?>  onclick="set_active(1);">
-        <label for="radio">พร้อมขาย</label>
-
-        <input id="status" name="status" class="styled" type="radio"
+        ?> value="1">
+        <label for="">ไม่มีเมนูย่อย</label>
+        <input id="level" name="level" type="radio"
         <?php
-        if ($type['active'] == '0') {
+        if ($type['sublevel'] == '0') {
             echo "checked='checked'";
         }
-        ?>  onclick="set_active(0);">
-        <label for="radio">ไม่พร้อมขาย</label>
+        ?> value="0">
 
         <br/>
     </div>
@@ -105,39 +112,3 @@ $this->breadcrumbs = array(
             แก้ไขข้อมูล</div>
     </div>
 </div>
-
-<div class="panel panel-primary">
-    <div class="panel-heading">ประเภทสินค้า</div>
-        <table class="table table-bordered" id="product_type">
-            <thead>
-                <tr>
-                    <th>รหัส</th>
-                    <th>ประเภท</th>
-                    <th style="text-align: center;">Staus</th>
-                    <th style=" text-align: center;">เมนูจัดการ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($typeall as $rs): ?>
-                    <tr>
-                        <td><?php echo $rs['type_id'] ?></td>
-                        <td><?php echo $rs['type_name'] ?></td>
-                        <td style="text-align: center;">
-                            <?php if ($rs['active'] == 1) echo "<i class='fa fa-check text-success'></i> Active";
-                            else echo "<i class='fa fa-remove text-danger'></i> Unactive"; ?>
-                        </td>
-                        <td style=" text-align: center;">
-                            <a href="<?php echo Yii::app()->createUrl('backend/typeproduct/edit', array('id' => $rs['id'])) ?>">
-                                <div class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit"></i> แก้ไข</div></a>
-                            <div class="btn btn-danger btn-xs" onclick="Check('<?php echo $rs['type_id'] ?>')"><i class="glyphicon glyphicon-trash"></i> ลบ</div>
-                        </td>
-                    </tr>
-<?php endforeach; ?>
-            </tbody>
-        </table>
-
-</div>
-
-
-
-

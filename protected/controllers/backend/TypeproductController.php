@@ -5,11 +5,13 @@ class TypeproductController extends Controller {
     public $layout = "template_backend";
 
     //############################################## produce_type #######################################/
-    public function actionFrom_add_type() {
+    public function actionFrom_add_type($upper = null) {
         $type = new Type_product();
         $config = new Configweb_model();
         $data['type_id'] = $config->autoId("product_type", "type_id", "3");
-        $data['type'] = $type->Get_all();
+        $data['type'] = $type->Get_all($upper);
+        $data['upper'] = $upper;
+        $data['uppername'] = ProductType::model()->find("id = '$upper' ")['type_name'];
         $this->render("//type/create", $data);
     }
 
@@ -17,6 +19,8 @@ class TypeproductController extends Controller {
         $columns = array(
             'type_id' => $_POST['type_id'],
             'type_name' => $_POST['type_name'],
+            'upper' => $_POST['upper'],
+            'sublevel' => $_POST['level'],
             'active' => '1'
         );
 
@@ -24,22 +28,23 @@ class TypeproductController extends Controller {
                 ->insert("product_type", $columns);
     }
 
-    public function actionEdit() {
-        $id = $_GET['id'];
-
+    public function actionEdit($id = null,$upper = null) {
         $type = new Type_product();
 
         $result = $type->find("id = '$id' ");
-        $data['typeall'] = $type->findAll();
+        //$data['typeall'] = $type->findAll();
+        $data['upper'] = $upper;
+        $data['uppername'] = ProductType::model()->find("id = '$upper' ")['type_name'];
         $data['type'] = $result;
-
         $this->render('//type/edit', $data);
     }
 
     public function actionSave_edit_type() {
         $data = array(
             'type_name' => $_POST['type_name'],
-            'active' => $_POST['active'],
+            //'upper' => $_POST['upper'],
+            'sublevel' => $_POST['level'],
+            //'active' => $_POST['active'],
         );
         
         Yii::app()->db->createCommand()

@@ -20,57 +20,63 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-		<?php echo $form->error($model,'id'); ?>
+		<?php echo $form->labelEx($model,'product_id'); ?>
+		<?php echo $form->textField($model,'product_id',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'product_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'productcode'); ?>
-		<?php echo $form->textField($model,'productcode',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'productcode'); ?>
+		<?php echo $form->labelEx($model,'product_name'); ?>
+		<?php echo $form->textField($model,'product_name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'product_name'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'productname'); ?>
-		<?php echo $form->textField($model,'productname',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'productname'); ?>
+		<?php echo $form->labelEx($model,'costs'); ?>
+		<?php echo $form->textField($model,'costs'); ?>
+		<?php echo $form->error($model,'costs'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'cost'); ?>
-		<?php echo $form->textField($model,'cost'); ?>
-		<?php echo $form->error($model,'cost'); ?>
+		<?php echo $form->labelEx($model,'product_price'); ?>
+		<?php echo $form->textField($model,'product_price'); ?>
+		<?php echo $form->error($model,'product_price'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
-		<?php echo $form->error($model,'price'); ?>
+		<?php echo $form->labelEx($model,'product_detail'); ?>
+		<?php echo $form->textArea($model,'product_detail',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'product_detail'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'expire'); ?>
-		<?php echo $form->textField($model,'expire'); ?>
-		<?php echo $form->error($model,'expire'); ?>
+		<?php echo $form->labelEx($model,'type_id'); ?>
+		<?php echo $form->textField($model,'type_id',array('size'=>3,'maxlength'=>3)); ?>
+		<?php echo $form->error($model,'type_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'create_date'); ?>
-		<?php echo $form->textField($model,'create_date'); ?>
-		<?php echo $form->error($model,'create_date'); ?>
+		<?php echo $form->labelEx($model,'delete_flag'); ?>
+		<?php echo $form->textField($model,'delete_flag'); ?>
+		<?php echo $form->error($model,'delete_flag'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'number'); ?>
-		<?php echo $form->textField($model,'number'); ?>
-		<?php echo $form->error($model,'number'); ?>
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->textField($model,'status'); ?>
+		<?php echo $form->error($model,'status'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'d_update'); ?>
 		<?php echo $form->textField($model,'d_update'); ?>
 		<?php echo $form->error($model,'d_update'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'branch'); ?>
+		<?php echo $form->textField($model,'branch'); ?>
+		<?php echo $form->error($model,'branch'); ?>
 	</div>
 
 	<div class="row buttons">

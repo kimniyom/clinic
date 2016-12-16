@@ -29,10 +29,12 @@ class ProductType extends CActiveRecord
 		return array(
 			array('active', 'numerical', 'integerOnly'=>true),
 			array('type_id', 'length', 'max'=>3),
+			array('upper', 'length', 'max'=>5),
 			array('type_name', 'length', 'max'=>255),
+			array('sublevel', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, type_id, type_name, active', 'safe', 'on'=>'search'),
+			array('id, type_id, type_name, active,upper,sublevel', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +59,8 @@ class ProductType extends CActiveRecord
 			'type_id' => 'รหัสประเภท',
 			'type_name' => 'ประเภท',
 			'active' => 'สถนนะ',
+			'upper' => 'รหัสหลัก',
+			'sublevel' => 'เมนูย่อย',
 		);
 	}
 

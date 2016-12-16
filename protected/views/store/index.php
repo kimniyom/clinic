@@ -25,7 +25,7 @@ $product_model = new Product();
             </button></a>
     </div>
     <div class="col-lg-2 col-md-2">
-        <a href="<?php echo Yii::app()->createUrl('store/producttype') ?>">
+        <a href="<?php echo Yii::app()->createUrl('centerstockproduct/index') ?>">
             <button type="button" class="btn btn-success btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/Product-sale-report-icon.png"/><br/>
                 รายการสินค้า

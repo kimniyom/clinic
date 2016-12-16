@@ -7036,3 +7036,212 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=centerstockitem/index
 HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/create
 ---
+2016/12/16 09:43:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "เรร".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('\xE0\xB9\x80\xE0\xB8\xA3\xE0\xB8\xA3')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=%E0%B9%80%E0%B8%A3%E0%B8%A3
+---
+2016/12/16 10:30:42 [error] [php] Undefined variable: product_id (/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php:63)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterStockproductController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterStockproductController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php(28): CenterStockproductController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterStockproductController->actionCreate()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CenterStockproductController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterStockproductController->runActionWithFilters()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterStockproductController->run()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockproduct/create
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php (63)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php (28)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 10:42:38 [error] [php] Undefined variable: product_id (/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php:63)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterStockproductController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterStockproductController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php(28): CenterStockproductController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterStockproductController->actionCreate()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CenterStockproductController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterStockproductController->runActionWithFilters()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterStockproductController->run()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockproduct/create
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php (63)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php (28)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 10:44:16 [error] [php] Undefined variable: type_id (/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php:157)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterStockproductController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterStockproductController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php(28): CenterStockproductController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterStockproductController->actionCreate()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CenterStockproductController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterStockproductController->runActionWithFilters()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterStockproductController->run()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockproduct/create
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php (157)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php (28)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 14:14:55 [error] [php] Undefined index: level (/Applications/MAMP/htdocs/clinic/protected/views/type/create.php:111)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): TypeproductController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): TypeproductController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php(14): TypeproductController->render()
+#3 unknown(0): TypeproductController->actionFrom_add_type()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): TypeproductController->runAction()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): TypeproductController->runActionWithFilters()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): TypeproductController->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/from_add_type
+in /Applications/MAMP/htdocs/clinic/protected/views/type/create.php (111)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (14)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 14:20:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND upper = '21'  ORDER BY type_id' at line 1. The SQL statement executed was: SELECT * FROM product_type  AND upper = '21'  ORDER BY type_id.
+in /Applications/MAMP/htdocs/clinic/protected/models/Type_product.php (16)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (12)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 14:20:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND upper = '21'  ORDER BY type_id' at line 1. The SQL statement executed was: SELECT * FROM product_type  AND upper = '21'  ORDER BY type_id' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/models/Type_product.php(16): CDbCommand->queryAll()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php(12): Type_product->Get_all('21')
+#3 [internal function]: TypeproductController->actionFrom_add_type('21')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TypeproductController), Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TypeproductController), Object(ReflectionMethod), Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('from_add_type')
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/typepro...')
+#11 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#13 {main}
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/from_add_type&upper=21
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/typeproduct/from_add_type&upper=20
+---
+2016/12/16 14:37:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' ORDER BY type_id' at line 1. The SQL statement executed was: SELECT * FROM product_type  WHERE  upper = ' ORDER BY type_id.
+in /Applications/MAMP/htdocs/clinic/protected/models/Type_product.php (16)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (12)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 14:37:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' ORDER BY type_id' at line 1. The SQL statement executed was: SELECT * FROM product_type  WHERE  upper = ' ORDER BY type_id' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/models/Type_product.php(16): CDbCommand->queryAll()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php(12): Type_product->Get_all(NULL)
+#3 [internal function]: TypeproductController->actionFrom_add_type(NULL)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(TypeproductController), Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(TypeproductController), Object(ReflectionMethod), Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('from_add_type')
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/typepro...')
+#11 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#13 {main}
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/from_add_type
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/typeproduct/from_add_type&upper=20
+---
+2016/12/16 14:52:29 [error] [php] Undefined index: active (/Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php:43)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): TypeproductController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): TypeproductController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): TypeproductController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/save_edit_type
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (43)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 15:01:14 [error] [php] Undefined index: active (/Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php:45)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): TypeproductController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): TypeproductController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): TypeproductController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/save_edit_type
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (45)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 15:03:43 [error] [php] Undefined index: sublevel (/Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php:46)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): TypeproductController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): TypeproductController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): TypeproductController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/save_edit_type
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (46)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 15:03:53 [error] [php] Undefined index: type_name (/Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php:44)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): TypeproductController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): TypeproductController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): TypeproductController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/save_edit_type
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (44)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 15:05:37 [error] [php] Undefined index: sublevel (/Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php:46)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): TypeproductController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): TypeproductController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): TypeproductController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/save_edit_type
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (46)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 15:06:07 [error] [php] Undefined index: active (/Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php:47)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): TypeproductController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): TypeproductController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): TypeproductController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/save_edit_type
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (47)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 15:15:14 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '025' for key 'PRIMARY'. The SQL statement executed was: INSERT INTO `product_type` (`type_id`, `type_name`, `upper`, `sublevel`, `active`) VALUES (:type_id, :type_name, :upper, :sublevel, :active).
+in /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php (28)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2016/12/16 15:15:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '025' for key 'PRIMARY'. The SQL statement executed was: INSERT INTO `product_type` (`type_id`, `type_name`, `upper`, `sublevel`, `active`) VALUES (:type_id, :type_name, :upper, :sublevel, :active)' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1250): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/backend/TypeproductController.php(28): CDbCommand->insert('product_type', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): TypeproductController->actionSave_type()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('save_type')
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/typepro...')
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#10 {main}
+REQUEST_URI=/clinic/index.php?r=backend/typeproduct/save_type
+HTTP_REFERER=http://localhost/clinic/index.php?r=backend/typeproduct/from_add_type&upper=22
+---
