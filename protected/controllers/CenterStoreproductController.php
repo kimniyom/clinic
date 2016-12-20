@@ -1,6 +1,6 @@
 <?php
 
-class CenterStockitemNameController extends Controller {
+class CenterStoreproductController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -30,7 +30,9 @@ class CenterStockitemNameController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'getunit','getunitcut'),
+                'actions' => array('create', 'update', 'getdatastockproduct',
+                    'getsubproduct', 'getproductinsubtype', 'getproductinsubtype',
+                    'detailproduct','getunit','getimages'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -58,20 +60,7 @@ class CenterStockitemNameController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new CenterStockitemName;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['CenterStockitemName'])) {
-            $model->attributes = $_POST['CenterStockitemName'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
-        }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
+        $this->render('create');
     }
 
     /**
@@ -85,10 +74,10 @@ class CenterStockitemNameController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['CenterStockitemName'])) {
-            $model->attributes = $_POST['CenterStockitemName'];
+        if (isset($_POST['CenterStoreproduct'])) {
+            $model->attributes = $_POST['CenterStoreproduct'];
             if ($model->save())
-                $this->redirect(array('index'));
+                $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('update', array(
@@ -113,19 +102,17 @@ class CenterStockitemNameController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $data['item'] = CenterStockitemName::model()->findAll('');
-        //$dataProvider=new CActiveDataProvider('CenterStockitemName');
-        $this->render('index', $data);
+        $this->render("index");
     }
 
     /**
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new CenterStockitemName('search');
+        $model = new CenterStoreproduct('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['CenterStockitemName']))
-            $model->attributes = $_GET['CenterStockitemName'];
+        if (isset($_GET['CenterStoreproduct']))
+            $model->attributes = $_GET['CenterStoreproduct'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -136,11 +123,11 @@ class CenterStockitemNameController extends Controller {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return CenterStockitemName the loaded model
+     * @return CenterStoreproduct the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = CenterStockitemName::model()->findByPk($id);
+        $model = CenterStoreproduct::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -148,34 +135,60 @@ class CenterStockitemNameController extends Controller {
 
     /**
      * Performs the AJAX validation.
-     * @param CenterStockitemName $model the model to be validated
+     * @param CenterStoreproduct $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'center-stockitem-name-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'center-storeproduct-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
     }
 
-    public function actionGetunit() {
-        $itemid = Yii::app()->request->getPost('itemid');
-        $sql = "SELECT u.unit,us.unit AS unitcut
-                FROM center_stockitem_name s 
-                INNER JOIN center_stockunit u ON s.unit = u.id
-                INNER JOIN center_stockunit us ON s.unitcut = us.id
-                WHERE s.id = '$itemid'";
-        $result = Yii::app()->db->createCommand($sql)->queryRow();
-        $json = array("unit" => $result['unit'],"unitcut" => $result['unitcut']);
+    public function actionGetdatastockproduct() {
+        $type = Yii::app()->request->getPost('type_id');
+        $subproducttype = Yii::app()->request->getPost('subproducttype');
+        $Model = new CenterStockproduct();
+        $data['product'] = $Model->GetproductlistSearch($type, $subproducttype);
+
+        $this->renderPartial('datastockproduct', $data);
+    }
+
+    public function actionGetsubproduct() {
+        $upper = Yii::app()->request->getPost('type_id');
+        $data['type'] = ProductType::model()->findAll("upper = '$upper' ");
+        $this->renderPartial('subproducttype', $data);
+    }
+
+    public function actionGetproductinsubtype() {
+        $subproducttype = Yii::app()->request->getPost('subproducttype');
+        $data['product'] = CenterStockproduct::model()->findAll("subproducttype = '$subproducttype' ");
+        $this->renderPartial('comboproduct', $data);
+    }
+
+    public function actionDetailproduct() {
+        $product_id = Yii::app()->request->getPost('product_id');
+        $Model = CenterStockproduct::model()->find("product_id = '$product_id' ");
+        $unit = $this->actionGetunit($Model['unit']);
+        $json = array(
+            "detail" => $Model['product_detail'],
+            "costs" => $Model['costs'],
+            "price" => $Model['product_price'],
+            "product_id" => $Model['product_id'],
+            "unit" => $unit
+        );
+        
         echo json_encode($json);
     }
     
-    public function actionGetunitcut(){
-        $itemid = Yii::app()->request->getPost('itemid');
-        $Model = new CenterStockunit();
-        $unit = $Model->GetunitCutById($itemid);
-        echo $unit;
+    public function actionGetunit($unit = null){
+        return Unit::model()->find("id = '$unit' ")['unit'];
     }
-
     
+     public function actionGetimages() {
+        $product_id = Yii::app()->request->getPost('product_id');
+        $product = new CenterStockproduct();
+        $data['images'] = $product->get_images_product($product_id);
+        $this->renderPartial("getimages", $data);
+    }
 
 }

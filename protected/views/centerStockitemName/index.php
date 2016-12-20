@@ -21,6 +21,7 @@ $this->breadcrumbs = array(
             <th>วัตถุดิบ</th>
             <th>ราคา / หน่วย</th>
             <th>หน่วยนับ</th>
+            <th>หน่วยตัดสต๊อก</th>
             <th style=" text-align: center;">ตัวเลือก</th>
         </tr>
     </thead>
@@ -37,6 +38,10 @@ $this->breadcrumbs = array(
                 <td><?php
                     $unit = $rs['unit'];
                     echo CenterStockunit::model()->find("id = '$unit' ")['unit']
+                    ?></td>
+                <td><?php
+                    $unitcut = $rs['unitcut'];
+                    echo CenterStockunit::model()->find("id = '$unitcut' ")['unit']
                     ?></td>
                 <td style=" text-align: center; width: 10%;">
                     <a href="<?php echo Yii::app()->createUrl('centerstockitemname/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil"></i></a>

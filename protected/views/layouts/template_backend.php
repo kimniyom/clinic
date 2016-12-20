@@ -74,9 +74,10 @@
         <script src="<?= Yii::app()->baseUrl; ?>/assets/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 
         <!-- DatePicker -->
-        <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/css/bootstrap-datepicker.css" type="text/css" media="all" />
-        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-        <script src="<?php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/locales/bootstrap-datepicker.th.min.js" type="text/javascript"></script>
+        <!--
+        <link rel="stylesheet" href="<?//php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/css/bootstrap-datepicker.css" type="text/css" media="all" />
+        <script src="<?//php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+        <script src="<?//php echo Yii::app()->baseUrl; ?>/lib/bootstrap-datepicker/locales/bootstrap-datepicker.th.min.js" type="text/javascript"></script>-->
 
         <!-- Sweetalert -->
         <!-- FancyBox -->
@@ -244,7 +245,7 @@
             <div id="sidebar-wrapper">
                 <!-- ###################### USER #################-->
                 <div class="panel panel-info" id="panel-head">
-                    <div class=" panel-heading" id="panel" style=" padding-top: 13px;">
+                    <div class=" panel-heading" style="padding-top: 12px;">
 
                         <?php
                         if (!empty($Profile['images'])) {
@@ -254,7 +255,7 @@
                         }
                         ?>
                         
-                        <img src="<?= Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" style="border-radius:20px; padding:2px; border:#FFF solid 2px; width: 36px; background: #FFF;"> ผู้ใช้งาน
+                        <img src="<?= Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" style="border-radius:20px; padding:2px; border:#FFF solid 2px; height: 32px; background: #FFF;"> ผู้ใช้งาน
                     </div>
                     <div class="panel-body">
                         <div id="box-profile">

@@ -113,10 +113,10 @@ class CenterStockitem extends CActiveRecord {
     }
 
     public function Getstockitem() {
-        $sql = "SELECT s.*,n.itemcode,n.itemname,n.price,u.unit,us.unit AS unitcutstock
+        $sql = "SELECT s.*,n.itemcode,n.itemname,n.price AS priceunit,u.unit,us.unit AS unitcutstock
                 FROM center_stockitem s INNER JOIN center_stockitem_name n ON s.itemid = n.id
                 INNER JOIN center_stockunit u ON n.unit = u.id
-                INNER JOIN center_stockunit us ON s.unitcut = us.id";
+                INNER JOIN center_stockunit us ON n.unitcut = us.id";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 

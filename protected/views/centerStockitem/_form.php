@@ -11,6 +11,7 @@
 <div class="form">
 
     <?php
+    $ModelUnit = new CenterStockunit();
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'center-stockitem-form',
         // Please note: When you enable ajax validation, make sure the corresponding
@@ -57,7 +58,12 @@
             <?php echo $form->textField($model, 'number',array('class' => 'form-control')); ?>
             <?php echo $form->error($model, 'number'); ?>
         </div>
-        <div class="col-lg-1"><div id="unit"></div></div>
+        <div class="col-lg-1">
+            <div id="unit" style=" padding-top: 10px;">
+                <?php echo $ModelUnit->GetunitById($model->itemid)?>
+            </div>
+                
+        </div>
     </div>
 
     <div class="row">
@@ -76,7 +82,7 @@
             <?php echo $form->labelEx($model, 'lotnumber'); ?>
         </div>
         <div class="col-lg-3">
-            <?php $lot = date("Ym") ?>
+            <?php $lot = date("Ymd") ?>
             <?php echo $form->textField($model, 'lotnumber', array('value' => $lot, 'readonly' => 'readonly','class' => 'form-control')); ?>
             <?php echo $form->error($model, 'lotnumber'); ?>
         </div>
@@ -90,25 +96,9 @@
             <?php echo $form->error($model, 'numbercut'); ?>
         </div>
         <div class="col-lg-2">
-            <?php
-            $form->widget('booster.widgets.TbSelect2', array(
-                'model' => $model,
-                'asDropDownList' => true,
-                'attribute' => 'unitcut',
-                //'name' => 'oid',
-                'data' => CHtml::listData(CenterStockunit::model()->findAll(""), 'id', 'unit'),
-                //'value' => $model,
-                'options' => array(
-                    //$model,
-                    //'oid',
-                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                    'placeholder' => 'หน่วยตัดสต๊อก',
-                    'width' => '100%',
-                //'tokenSeparators' => array(',', ' ')
-                )
-            ));
-            ?>
-            <?php echo $form->error($model, 'unitcut'); ?>
+            <div id="unitcut" style=" padding-top: 10px;">
+                <?php echo $ModelUnit->GetunitCutById($model->itemid)?>
+            </div>
         </div>
     </div>
     <hr/>
@@ -130,8 +120,9 @@
             var url = "<?php echo Yii::app()->createUrl('centerstockitemname/getunit') ?>";
             var data = {itemid: itemid};
             $.post(url, data, function (datas) {
-                $("#unit").html(datas);
-            });
+                $("#unit").html(datas.unit);
+                $("#unitcut").html(datas.unitcut);
+            },'json');
         });
     });
 </script>

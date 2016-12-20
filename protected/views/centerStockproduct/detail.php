@@ -43,25 +43,75 @@ $product_id = $product['product_id'];
 ?>
 
 <?php $config = new Configweb_model(); ?>
-
-<div class="wells" style=" width:100%; margin-top:20px;text-align: left;">
+<?php if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '5') { ?>
+    <a href="<?php echo Yii::app()->createUrl('centerstockproduct/update', array('product_id' => $product['product_id'])) ?>">
+        <button type="button" class="btn btn-primary">แก้ไข</button></a>
+    <button type="button" class="btn btn-danger" onclick="deleteproduct('<?php echo $product['id'] ?>')">ลบ</button>
+<?php } ?>
+<div class="well" style=" width:100%; margin-top:20px;text-align: left; background: #FFF;">
     <div class="row">
 
-        <div class="col-lg-6 col-md-12 col-xs-12">
-
+        <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
             <font style=" color: #F00; font-size: 24px; font-weight: normal;">
             <img src="<?php echo Yii::app()->baseUrl; ?>/images/yellow-tag-icon.png"/>
             <?= $product['product_name'] ?>
             </font><br/>
             <b>รหัสสินค้า</b> <?= $product['product_id'] ?><br/>
-            <b>ประเภทสินค้า</b> <?= $product['type_name'] ?><br/>
+            <b>หมวดสินค้า</b> <?= $product['type_name'] ?><br/>
+            <b>ประเภทสินค้า</b> <?= $product['subtypename'] ?><br/>
             <b>อัพเดทล่าสุด</b> <?= $config->thaidate($product['d_update']); ?>
-            <font style=" font-size: 24px;">
-            ราคา <?= number_format($product['product_price']) ?>.-  บาท
+
+            <br/><font style=" font-size: 24px; color: #ffcc00;">
+            ต้นทุน <?= number_format($product['costs']) ?>.-  บาท
             </font>
+            <br/><font style=" font-size: 24px; color: #F00;">
+            ราคาขาย <?= number_format($product['product_price']) ?>.-  บาท
+            </font>
+            <br/>
+            <b>รายละเอียดสินค้า</b>
+            <?= $product['product_detail'] ?>
+
+            <hr/>
+            <div class="row">
+                <div class="col-lg-5">
+                    <label>ส่วนผสมวัตถุดิบ</label>
+                    <?php
+                    $this->widget('booster.widgets.TbSelect2', array(
+                        //'model' => $model,
+                        'asDropDownList' => true,
+                        //'attribute' => 'itemid',
+                        'name' => 'items',
+                        'id' => 'items',
+                        'data' => CHtml::listData(CenterStockitemName::model()->findAll(""), 'id', 'itemname'),
+                        //'value' => $model,
+                        'options' => array(
+                            'allowClear' => true,
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => '== วัตถุดิบ ==',
+                            'width' => '100%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?>
+                </div>
+                <div class="col-lg-3">
+                    <label>จำนวน</label>
+                    <input type="text" class="form-control" id="number" onkeypress="return chkNumber()"/>
+                </div>
+                <div class="col-lg-2">
+                    <div id="unit" style=" padding-top: 30px;"></div>
+                </div>
+                <div class="col-lg-2" style=" padding-top: 25px;">
+                    <button type="button" class="btn btn-default btn-block" onclick="Additems()"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div id="mixitem" style=" margin-top: 10px;"></div>
         </div>
 
-        <div class="col-lg-6 col-md-12 col-xs-12" style=" padding-top: 20px;">
+        <div class="col-lg-4 col-md-6 col-xs-12" style=" padding-top: 20px;" id="p-right">
             <?php
             $product_model = new Product();
             $img_title = $product_model->firstpictures($product['product_id']);
@@ -76,7 +126,7 @@ $product_id = $product['product_id'];
                     <img src="<?= Yii::app()->baseUrl ?>/<?= $img; ?>" class="img-responsive thumbnail" alt="Responsive image" id="img-cart"/>
                 </center>     
             <?php } else { ?>
-                <div id="img" style="width:400px; height:350px; background:#CCC; font-size:36px; text-align:center; padding-top:30px; margin-right:20px;">
+                <div id="img" style="width:200px; height:350px; background:#CCC; font-size:36px; text-align:center; padding-top:30px; margin-right:20px;">
                     NO<br />Images 
                 </div>
             <?php } ?>
@@ -94,7 +144,7 @@ $product_id = $product['product_id'];
                                         -->
                                         <a class="image-link" href="<?php echo Yii::app()->baseUrl; ?>/uploads/product/<?= $rs['images'] ?>">
                                             <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/product/<?= $rs['images'] ?>" class="btn btn-default" id="im-resize" style=" background: #FFF;"/></a>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
                                 </center>
                             </div>
                         <?php } ?>
@@ -103,17 +153,91 @@ $product_id = $product['product_id'];
             <?php } ?>
         </div>
     </div>
-
-    <hr/>
-    <h4 style="font-weight:bold; font-size: 24px; color: #F00;">
-        <i class="fa fa-tag"></i> รายละเอียด
-    </h4>
-    <div class="well" style=" background: #cccccc;">
-        <div class="row" id="etc_product">
-            <div class="col-lg-12 col-md-12">
-                <?= $product['product_detail'] ?>
-            </div>
-        </div>
-    </div>
 </div>
+
+<script type="text/javascript">
+    checkheight();
+    loadmix();
+    function deleteproduct(id) {
+        var r = confirm("Are you sure ...");
+        if (r == true) {
+            var url = "<?php echo Yii::app()->createUrl('centerstockproduct/delete') ?>";
+            var data = {id: id};
+            $.post(url, data, function (success) {
+                window.location = "<?php echo Yii::app()->createUrl('centerstockproduct/index') ?>";
+            });
+        }
+    }
+
+    function cleartextbox() {
+        $("#items").val("");
+        $("#number").val("");
+    }
+
+    $(document).ready(function () {
+        $("#items").change(function () {
+            var itemid = $(this).val();
+            var url = "<?php echo Yii::app()->createUrl('centerstockitemname/getunitcut') ?>";
+            var data = {itemid: itemid};
+            $.post(url, data, function (datas) {
+                $("#unit").html(datas);
+            });
+        });
+    });
+
+
+    function Additems() {
+        var url = "<?php echo Yii::app()->createUrl('centerstockmix/addmix') ?>";
+        var product_id = "<?php echo $product_id ?>";
+        var itemid = $("#items").val();
+        var number = $("#number").val();
+        var data = {product_id: product_id, itemid: itemid, number: number};
+        if (itemid == '') {
+            alert("ยังไม่ได้เลือกวัตถุดิบ");
+            return false;
+        }
+
+        if (number == '') {
+            alert("ยังไม่ระบุจำนวน");
+            return false;
+        }
+
+        $.post(url, data, function (datas) {
+            cleartextbox();
+            loadmix();
+        });
+    }
+
+    function loadmix() {
+        var url = "<?php echo Yii::app()->createUrl('centerstockmix/getmixer') ?>";
+        var product_id = "<?php echo $product_id ?>";
+        var data = {product_id: product_id};
+        $.post(url, data, function (datas) {
+            $("#mixitem").html(datas);
+        });
+    }
+
+    function checkheight() {
+        var p_left = $("#p-left").height();
+        var p_right = $("#p-right").height();
+        //alert(p_left + " - " + p_right);
+        if (p_left > p_right) {
+            $("#p-right").removeClass("p-right");
+            $("#p-left").addClass("p-left");
+        } else {
+            $("#p-left").removeClass("p-left");
+            $("#p-right").addClass("p-right");
+        }
+    }
+    
+    function deletemixer(id){
+        var url = "<?php echo Yii::app()->createUrl('centerstockmix/deletemixer') ?>";
+        var data = {id:id};
+        $.post(url,data,function(success){
+            loadmix();
+        });
+    }
+</script>
+
+
 

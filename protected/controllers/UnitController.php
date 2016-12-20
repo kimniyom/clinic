@@ -1,6 +1,6 @@
 <?php
 
-class CenterStockitemNameController extends Controller {
+class UnitController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -30,7 +30,7 @@ class CenterStockitemNameController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'getunit','getunitcut'),
+                'actions' => array('create', 'update'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -58,15 +58,15 @@ class CenterStockitemNameController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new CenterStockitemName;
+        $model = new Unit;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['CenterStockitemName'])) {
-            $model->attributes = $_POST['CenterStockitemName'];
+        if (isset($_POST['Unit'])) {
+            $model->attributes = $_POST['Unit'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('index'));
         }
 
         $this->render('create', array(
@@ -85,8 +85,8 @@ class CenterStockitemNameController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['CenterStockitemName'])) {
-            $model->attributes = $_POST['CenterStockitemName'];
+        if (isset($_POST['Unit'])) {
+            $model->attributes = $_POST['Unit'];
             if ($model->save())
                 $this->redirect(array('index'));
         }
@@ -101,20 +101,16 @@ class CenterStockitemNameController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete() {
+        $id = Yii::app()->request->getPost('id');
         $this->loadModel($id)->delete();
-
-        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 
     /**
      * Lists all models.
      */
     public function actionIndex() {
-        $data['item'] = CenterStockitemName::model()->findAll('');
-        //$dataProvider=new CActiveDataProvider('CenterStockitemName');
+        $data['unit'] = Unit::model()->findAll('');
         $this->render('index', $data);
     }
 
@@ -122,10 +118,10 @@ class CenterStockitemNameController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new CenterStockitemName('search');
+        $model = new Unit('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['CenterStockitemName']))
-            $model->attributes = $_GET['CenterStockitemName'];
+        if (isset($_GET['Unit']))
+            $model->attributes = $_GET['Unit'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -136,11 +132,11 @@ class CenterStockitemNameController extends Controller {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return CenterStockitemName the loaded model
+     * @return Unit the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = CenterStockitemName::model()->findByPk($id);
+        $model = Unit::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -148,34 +144,13 @@ class CenterStockitemNameController extends Controller {
 
     /**
      * Performs the AJAX validation.
-     * @param CenterStockitemName $model the model to be validated
+     * @param Unit $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'center-stockitem-name-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'unit-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
     }
-
-    public function actionGetunit() {
-        $itemid = Yii::app()->request->getPost('itemid');
-        $sql = "SELECT u.unit,us.unit AS unitcut
-                FROM center_stockitem_name s 
-                INNER JOIN center_stockunit u ON s.unit = u.id
-                INNER JOIN center_stockunit us ON s.unitcut = us.id
-                WHERE s.id = '$itemid'";
-        $result = Yii::app()->db->createCommand($sql)->queryRow();
-        $json = array("unit" => $result['unit'],"unitcut" => $result['unitcut']);
-        echo json_encode($json);
-    }
-    
-    public function actionGetunitcut(){
-        $itemid = Yii::app()->request->getPost('itemid');
-        $Model = new CenterStockunit();
-        $unit = $Model->GetunitCutById($itemid);
-        echo $unit;
-    }
-
-    
 
 }

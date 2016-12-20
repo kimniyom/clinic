@@ -36,7 +36,7 @@ $this->breadcrumbs = array(
             <th>รหัส</th>
             <th>วัตถุดิบ</th>
             <th>จำนวน</th>
-            <th>ราคา</th>
+            <th>ราคาซื้อเข้ารวม</th>
             <th id="cutstock">จำนวนที่ตัดได้</th>
             <th id="cutstock">จำนวนคงเหลือ</th>
             <th style=" text-align: center;">ตัวเลือก</th>

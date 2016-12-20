@@ -60,7 +60,7 @@ $BranchModel = new Branch();
                     <div id="load_images_product"></div>
                 </div>
                 <div class="col-md-9 col-lg-9" id="p-right">
-                    <label for="">ประเภทสินค้า</label><br/>
+                    <label for="">หมวดสินค้า*</label><br/>
                     <?php
                     $this->widget('booster.widgets.TbSelect2', array(
                         //'model' => $model,
@@ -68,28 +68,57 @@ $BranchModel = new Branch();
                         //'attribute' => 'itemid',
                         'name' => 'producttype',
                         'id' => 'producttype',
-                        'data' => CHtml::listData(ProductType::model()->findAll(""), 'type_id', 'type_name'),
+                        'data' => CHtml::listData(ProductType::model()->findAll("upper is null"), 'id', 'type_name'),
                         //'value' => $model,
                         'options' => array(
+                            'allowClear' => true,
                             //$model,
                             //'oid',
                             //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                            'placeholder' => '== ประเภทสินค้า ==',
+                            'placeholder' => '== หมวดสินค้า ==',
                             'width' => '50%',
                         //'tokenSeparators' => array(',', ' ')
                         )
                     ));
                     ?><br/>
-                    <label for="">รหัสสินค้า</label>
+                    <label for="">ประเภทสินค้า*</label><br/>
+                    <div id="boxsubproducttype" style=" width: 50%;">
+                        <select id="subproducttype" class="form-control">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <label for="">รหัสสินค้า*</label>
                     <input type="text" id="_product_id" name="product_id" class="form-control" style="width:40%;" onkeyup="setcode()"/>
                     <input type="hidden" id="product_id" name="product_id" class="form-control" style="width:40%;"/>
 
-                    <label for="">ชื่อสินค้า</label>
+                    <label for="">ชื่อสินค้า*</label>
                     <input type="text" id="product_name" name="product_name" class="form-control" style="width:100%;" required="required"/>
 
+                    <label for="">หน่วยนับ*</label><br/>
+                    <?php
+                    $this->widget('booster.widgets.TbSelect2', array(
+                        //'model' => $model,
+                        'asDropDownList' => true,
+                        //'attribute' => 'itemid',
+                        'name' => 'unit',
+                        'id' => 'unit',
+                        'data' => CHtml::listData(Unit::model()->findAll(""), 'id', 'unit'),
+                        //'value' => $model,
+                        'options' => array(
+                            'allowClear' => true,
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => '== หน่วยนับ ==',
+                            'width' => '50%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?><br/>
+
                     <div class="row">
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาขาย</label></div>
+                        <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน*</label></div>
+                        <div class="col-md-6 col-lg-3"><label for="">ราคาขาย*</label></div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
@@ -102,8 +131,6 @@ $BranchModel = new Branch();
 
                     <label for="textArea">รายละเอียด</label>
                     <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
-
-
                     <hr/>
                     <button type="button" class="btn btn-success" onclick="save_product()">
                         <i class="fa fa-save"></i>
@@ -167,6 +194,16 @@ $BranchModel = new Branch();
 <script type="text/javascript">
     checkheight();
     //loadimagesProduct();
+    $(document).ready(function () {
+        $("#producttype").change(function () {
+            var type_id = $("#producttype").val();
+            var url = "<?php echo Yii::app()->createUrl('producttype/getsubproduct') ?>";
+            var data = {type_id: type_id};
+            $.post(url, data, function (datas) {
+                $("#boxsubproducttype").html(datas);
+            });
+        });
+    });
 
     function setcode() {
         var _product_id = $("#_product_id").val();
@@ -186,12 +223,14 @@ $BranchModel = new Branch();
     function save_product() {
         var url = "<?php echo Yii::app()->createUrl('centerstockproduct/save_product') ?>";
         var product_name = $("#product_name").val();
-        var type_id = $("#type_id").val();
+        var type_id = $("#producttype").val();
+        var subproducttype = $("#subproducttype").val();
         var product_price = $("#product_price").val();
         var product_id = $("#product_id").val();
         var product_detail = CKEDITOR.instances.product_detail.getData();
         var costs = $("#costs").val();
-        if (type_id == '' || product_id == '' || product_name == '' || product_price == '' || costs == '' || product_detail == '') {
+        var unit = $("#unit").val();
+        if (subproducttype == '' || product_id == '' || product_name == '' || product_price == '' || costs == '' || product_detail == '' || unit == '') {
             $("#f_error").show().delay(5000).fadeOut(500);
             return false;
         }
@@ -200,9 +239,11 @@ $BranchModel = new Branch();
             product_id: product_id,
             product_name: product_name,
             type_id: type_id,
+            subproducttype: subproducttype,
             product_price: product_price,
             product_detail: product_detail,
-            costs: costs
+            costs: costs,
+            unit: unit
         };
 
         $.post(url, data, function (success) {
@@ -257,3 +298,4 @@ $BranchModel = new Branch();
         }
     }
 </script>
+

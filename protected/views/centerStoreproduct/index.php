@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
     "คลังสินค้า" => array('store/index'),
-    "รายการสินค้า"
+    "คลังสินค้า"
 );
 
 $web = new Configweb_model();
@@ -9,13 +9,13 @@ $web = new Configweb_model();
 
 <div class="panel panel-info">
     <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
-        รายการสินค้า  <span id="loading"></span>
+        คลังสินค้า  <span id="loading"></span>
         <div class="pull-right">
-            <a href="<?php echo Yii::app()->createUrl('centerstockproduct/create') ?>">
+            <a href="<?php echo Yii::app()->createUrl('centerstoreproduct/create') ?>">
                 <div class="btn btn-success btn-sm">
                     <i class="fa fa-plus"></i>
                     <i class="fa fa-cart-plus"></i>
-                    เพิ่มรายการสินค้า</div></a>
+                    เพิ่มสินค้าเข้าคลัง</div></a>
         </div>
     </div>
     <div class="panel-body">
@@ -81,7 +81,7 @@ $web = new Configweb_model();
         $("#loading").html(loading);
         var type_id = $("#producttype").val();
         var subproducttype = $("#subproducttype").val();
-        var url = "<?php echo Yii::app()->createUrl('centerstockproduct/getdata') ?>";
+        var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/getdatastockproduct') ?>";
         var data = {type_id: type_id,subproducttype: subproducttype};
         $.post(url, data, function (datas) {
             $("#loading").html('');

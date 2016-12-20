@@ -2,29 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ReportController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Appoint.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointcurrent.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/gradcustomer/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/appointall.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Patient.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/report/reportsellproduct.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/service/detail.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/bill.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/ItemsController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/carlendar.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/report/datareportsellproduct.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/StockController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/AppointController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/serviceDrug/formdrug.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/config/main.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/appoint/viewcarlendar.php</file>
-        </group>
         <group>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/store/index.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/update.php</file>
@@ -35,6 +12,20 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/models/CenterStockitem.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/index.php</file>
             <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitemName/_form.php</file>
+        </group>
+        <group name="yii">
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/unit/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ProductTypeController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/create.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/ProductType.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/unit/view.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStockproductController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/productType/subproducttype.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/unit/update.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/UnitController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/unit/create.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/store/index.php</file>
         </group>
     </open-files>
 </project-private>

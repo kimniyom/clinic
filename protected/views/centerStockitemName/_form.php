@@ -80,6 +80,33 @@
             <?php echo $form->error($model, 'unit'); ?>
         </div>
     </div>
+    
+        <div class="row">
+        <div class="col-lg-2">
+            <?php echo $form->labelEx($model, 'unitcut'); ?>
+        </div>
+        <div class="col-lg-4">
+            <?php
+            $form->widget('booster.widgets.TbSelect2', array(
+                'model' => $model,
+                'asDropDownList' => true,
+                'attribute' => 'unitcut',
+                //'name' => 'oid',
+                'data' => CHtml::listData(CenterStockunit::model()->findAll(""), 'id', 'unit'),
+                //'value' => $model,
+                'options' => array(
+                    //$model,
+                    //'oid',
+                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                    'placeholder' => 'หน่วยตัดสต๊อก',
+                //'width' => '40%',
+                //'tokenSeparators' => array(',', ' ')
+                )
+            ));
+            ?>
+            <?php echo $form->error($model, 'unitcut'); ?>
+        </div>
+    </div>
     <hr/>
     <div class="row buttons">
         <div class="col-lg-2"></div>

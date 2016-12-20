@@ -22,36 +22,44 @@ and open the template in the editor.
 #heading-panel {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ebf1f6+0,abd3ee+50,89c3eb+51,d5ebfb+100;Blue+Gloss+%234 */
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d7e6f6+0,ccddf4+50,b6ceef+51,c9dbf3+100 */
-    background: #d7e6f6;
-    /* Old browsers */
+    background: #FFFFFF;
+    box-shadow: none;
+    /*
     background: -moz-linear-gradient(top, #d7e6f6 0%, #ccddf4 50%, #b6ceef 51%, #c9dbf3 100%);
-    /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #d7e6f6 0%, #ccddf4 50%, #b6ceef 51%, #c9dbf3 100%);
-    /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #d7e6f6 0%, #ccddf4 50%, #b6ceef 51%, #c9dbf3 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#d7e6f6', endColorstr='#c9dbf3', GradientType=0);
-    /* IE6-9 */
+    filter:DXImageTransform.Microsoft.gradient( startColorstr='#d7e6f6', endColorstr='#c9dbf3', GradientType=0);
     color: #006599;
+    */
 }
 
+/*
 table thead tr th {
+    border-radius: 0px;
     background: #d7e6f6;
-    /* Old browsers */
     background: -moz-linear-gradient(top, #d7e6f6 0%, #ccddf4 50%, #b6ceef 51%, #c9dbf3 100%);
-    /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #d7e6f6 0%, #ccddf4 50%, #b6ceef 51%, #c9dbf3 100%);
-    /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #d7e6f6 0%, #ccddf4 50%, #b6ceef 51%, #c9dbf3 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#d7e6f6', endColorstr='#c9dbf3', GradientType=0);
-    /* IE6-9 */
     color: #0083b8;
 }
-
+*/
 table {
     border: #cccccc solid 1px;
     background: #FFFFFF;
     font-size: 12px;
+}
+
+#sidebar-wrapper .panel-heading{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d7e6f6+0,ccddf4+50,b6ceef+51,c9dbf3+100 */
+    background: #FFFFFF; /* Old browsers */
+    border-bottom: #eeeeee solid 1px;
+    /*
+    background: -moz-linear-gradient(top,  #d7e6f6 0%, #ccddf4 50%, #b6ceef 51%, #c9dbf3 100%);
+    background: -webkit-linear-gradient(top,  #d7e6f6 0%,#ccddf4 50%,#b6ceef 51%,#c9dbf3 100%); 
+    background: linear-gradient(to bottom,  #d7e6f6 0%,#ccddf4 50%,#b6ceef 51%,#c9dbf3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7e6f6', endColorstr='#c9dbf3',GradientType=0 );
+*/
+    /*color: #999999*/;
 }
 

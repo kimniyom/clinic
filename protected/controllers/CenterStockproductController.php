@@ -5,25 +5,10 @@ class CenterStockproductController extends Controller {
     public $layout = "template_backend";
 
     public function actionIndex() {
-        $data['product'] = CenterStockproduct::model()->findAll('');
-        $this->render('index', $data);
+        //$Model = new CenterStockproduct();
+        //$data['product'] = $Model->Getproductlist();
+        $this->render('index');
     }
-
-    /*
-      public function actionGetproduct() {
-      $type_id = $_GET['type_id'];
-      $product = new Backend_product();
-      $data['model'] = $product;
-      $data['type_id'] = $type_id;
-      $data['type_name'] = $product->get_type_name($type_id);
-      $data['product'] = $product->get_product_all($type_id);
-
-      $data['count_product_type'] = $product->get_count_product_type($type_id);
-
-      $this->render("//backend/product/show_product_all", $data);
-      }
-     * 
-     */
 
     public function actionCreate() {
         Yii::app()->db->createCommand()->delete("product_images", "product_id = '' ");
@@ -32,33 +17,30 @@ class CenterStockproductController extends Controller {
     }
 
     public function actionSave_product() {
+
         $data = array(
-            'product_id' => $_POST['product_id'],
-            'product_name' => $_POST['product_name'],
-            'product_detail' => $_POST['product_detail'],
-            'product_price' => $_POST['product_price'],
-            'costs' => $_POST['costs'],
-            'type_id' => $_POST['type_id'],
-            //'branch' => $_POST['branch'],
+            'product_id' => Yii::app()->request->getPost('product_id'),
+            'product_name' => Yii::app()->request->getPost('product_name'),
+            'product_detail' => Yii::app()->request->getPost('product_detail'),
+            'product_price' => Yii::app()->request->getPost('product_price'),
+            'costs' => Yii::app()->request->getPost('costs'),
+            'type_id' => Yii::app()->request->getPost('type_id'),
+            'subproducttype' => Yii::app()->request->getPost('subproducttype'),
+            'unit' => Yii::app()->request->getPost('unit'),
             'd_update' => date('Y-m-d H:i:s')
         );
 
         Yii::app()->db->createCommand()
-                ->insert('centerstockproduct', $data);
-
+                ->insert('center_stockproduct', $data);
         //echo $this->redirect(array('backend/product/detail_product&product_id=' . $_POST['product_id']));
     }
 
-    public function actionUpdate() {
-        $type_id = $_GET['type_id'];
-        $product_id = $_GET['product_id'];
-        $product = new Backend_product();
+    public function actionUpdate($product_id = null) {
+        $product = new CenterStockproduct();
 
         $data['product'] = $product->_get_detail_product($product_id);
-        $data['type_id'] = $type_id;
-        $data['type_name'] = $product->get_type_name($type_id);
 
-        $this->render("//backend/product/update", $data);
+        $this->render("update", $data);
     }
 
     public function actionSave_update() {
@@ -68,12 +50,15 @@ class CenterStockproductController extends Controller {
             'product_detail' => $_POST['product_detail'],
             'product_price' => $_POST['product_price'],
             'costs' => $_POST['costs'],
-            'branch' => $_POST['branch'],
+            'type_id' => Yii::app()->request->getPost('type_id'),
+            'subproducttype' => Yii::app()->request->getPost('subproducttype'),
+            'unit' => Yii::app()->request->getPost('unit'),
+            //'branch' => $_POST['branch'],
             'd_update' => date('Y-m-d H:i:s')
         );
 
         Yii::app()->db->createCommand()
-                ->update('product', $data, "product_id = '$product_id'");
+                ->update('center_stockproduct', $data, "product_id = '$product_id'");
     }
 
     public function actionDetail($product_id = null) {
@@ -88,7 +73,7 @@ class CenterStockproductController extends Controller {
         //$data['items'] = $Items->GetItem($product_id);
         //$data['near'] = $product->get_product_near($product_id);
 
-        $this->render("detailt", $data);
+        $this->render("detail", $data);
     }
 
     public function actionImages() {
@@ -337,5 +322,21 @@ class CenterStockproductController extends Controller {
 
         print json_encode($response);
     }
+
+    public function actionDelete() {
+        $id = Yii::app()->request->getPost('id');
+        Yii::app()->db->createCommand()
+                ->delete("centerstockproduct", "id = '$id' ");
+    }
+    
+    public function actionGetdata(){
+        $type = Yii::app()->request->getPost('type_id');
+        $subproducttype = Yii::app()->request->getPost('subproducttype');
+        $Model = new CenterStockproduct();
+        $data['product'] = $Model->GetproductlistSearch($type,$subproducttype);
+        
+        $this->renderPartial('data',$data);
+    }
+    
 
 }

@@ -30,7 +30,7 @@ class ProductTypeController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update','getsubproduct'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -156,5 +156,13 @@ class ProductTypeController extends Controller {
             Yii::app()->end();
         }
     }
+    
+    public function actionGetsubproduct(){
+        $upper = Yii::app()->request->getPost('type_id');
+        $data['type'] = ProductType::model()->findAll("upper = '$upper' ");
+        $this->renderPartial('subproducttype',$data);
+    }
+    
+    
 
 }
