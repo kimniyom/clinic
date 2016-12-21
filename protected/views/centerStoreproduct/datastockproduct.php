@@ -9,7 +9,9 @@
         });
     });
 </script>
-
+<?php 
+    $config = new Configweb_model();
+?>
 <table class="table table-bordered table-hover" id="p_product">
     <thead>
         <tr>
@@ -20,7 +22,10 @@
             <th style="text-align: center;">ราคา / หน่วย</th>
             <th style="text-align: center;">หมวด</th>
             <th style="text-align: center;">ประเภท</th>
-            <th>หน่วย</th>
+            <th>ล๊อตที่</th>
+            <th>ผลิต</th>
+            <th>หมดอายุ</th>
+             <th style=" text-align: right;">คงเหลือ</th>
             <th style=" text-align: center;">รายละเอียด</th>
         </tr>
     </thead>
@@ -45,7 +50,10 @@
                 </td>
                 <td><?php echo $last['category'] ?></td>
                 <td><?php echo $last['type_name'] ?></td>
-                <td><?php echo $last['unitname'] ?></td>
+                <td><?php echo $last['lotnumber'] ?></td>
+                <td><?php echo $config->thaidate($last['generate']) ?></td>
+                <td><?php echo $config->thaidate($last['expire']) ?></td>
+                <td style=" text-align: right;"><?php echo $last['total'].' '.$last['unit'] ?></td>
                 <td style="text-align: center;"><a href="<?php echo $link ?>">รายละเอียด</a></td>
             </tr>
         <?php endforeach; ?>

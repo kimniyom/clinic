@@ -20,8 +20,8 @@ $web = new Configweb_model();
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-1" style=" text-align: right;">
-                <label>ประเภท</label>
+            <div class="col-lg-2" style=" text-align: right;">
+                <label>หมวดสินค้า</label>
             </div>
             <div class="col-lg-3">
                 <?php

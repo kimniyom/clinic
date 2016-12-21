@@ -14,18 +14,24 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitemName/_form.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/unit/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ProductTypeController.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/create.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/ProductType.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/unit/view.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStockproductController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/productType/subproducttype.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/unit/update.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/UnitController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/unit/create.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/store/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStoreproduct/comboproduct.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/_form.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockmix/mixer.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStoreproduct/subproducttype.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStoreproduct/getimages.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/template.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/simple-sidebar.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/system.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStockitemNameController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStoreproduct/create.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStoreproduct/datastockproduct.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStoreproduct/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/detail.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStockmixController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStoreproductController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/data.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
     </open-files>
 </project-private>

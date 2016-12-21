@@ -11,7 +11,7 @@
  Target Server Version : 50542
  File Encoding         : utf-8
 
- Date: 12/20/2016 16:34:10 PM
+ Date: 12/21/2016 16:44:02 PM
 */
 
 SET NAMES utf8;
@@ -71,7 +71,7 @@ CREATE TABLE `appoint` (
   `type` int(3) DEFAULT NULL COMMENT 'ประเภทนัดหมาย',
   `patient_id` int(5) DEFAULT NULL COMMENT 'รหัสลูกค้า',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `appoint`
@@ -116,6 +116,26 @@ CREATE TABLE `branch` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `branch` VALUES ('1', 'เมืองตาก', '1', '939/3 ถ.ท่าเรือ ต.ระแหง อ.เมือง จ.ตาก', '<p>Tel : 055-540551, 095-3075326&nbsp;</p><p>Facebook :&nbsp;<span style=\"font-family:&quot;;font-size:small;color:#333333;;box-sizing: border-box;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; line-height: 1.42857;\"><span style=\"font-family:&quot;;color:#333333;;box-sizing: border-box;;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;\">&nbsp;</span></span><span style=\"font-family:&quot;;font-size:small;color:#333333;;box-sizing: border-box;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;\"><a href=\"https://www.facebook.com/pages/%E0%B8%84%E0%B8%A5%E0%B8%B5%E0%B8%99%E0%B8%B4%E0%B8%84%E0%B8%AB%E0%B8%A1%E0%B8%AD%E0%B8%9A%E0%B8%B4%E0%B8%A7-%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%AA%E0%B8%AD%E0%B8%94/726791597392601\" style=\"box-sizing: border-box; background: 0px 0px transparent; color: rgb(51, 122, 183); text-decoration: none;\" target=\"_blank\">คลีนิคหมอบิว</a></span></p>'), ('2', 'แม่สอด', '1', '84/26 ถ.อินทรคีรี ต.แม่สอด อ.แม่สอด จ.ตาก 63110', '<p><span style=\"font-size:small;line-height: 1.42857;\">055-535095 , 094-8230826</span></p><p><span style=\"font-size:small;line-height: 1.42857;\"><span style=\"font-family:&quot;;color:#333333;;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;\">Facebook :&nbsp;</span></span><span style=\"font-size:small;color:#333333;\"><a href=\"https://www.facebook.com/pages/คลีนิคหมอบิว-แม่สอด/726791597392601\" target=\"_blank\">คลีนิคหมอบิว-แม่สอด</a></span></p>'), ('3', 'เชียงใหม่ (อัมมันตราคลินิก)', '1', '<p><span style=\"font-size:small;\">เลขที่ 40 ถนนนิมมานเหมิน ซอย17 ต.สุเทพ จ.เชียงใหม่&nbsp;</span></p>', '<p><span style=\"font-size:small;\"><span style=\"line-height: 1.42857;\">Tel :&nbsp;</span>053-894466 , 099-5369105</span></p><p><span style=\"font-size:small;\">Facebook :</span><span style=\"font-size:small;color:#731842;\">&nbsp;</span><span style=\"font-size:small;color:#731842;\"><a href=\"https://www.facebook.com/pages/อัมมันตราคลินิก/194055890948729?fref=ts\" target=\"_blank\">อัมมันตราคลินิก</a></span></p>'), ('99', 'ทั้งหมดทุกสาขา', '0', null, null);
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `center_stockcompany`
+-- ----------------------------
+DROP TABLE IF EXISTS `center_stockcompany`;
+CREATE TABLE `center_stockcompany` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `company_id` varchar(10) DEFAULT NULL COMMENT 'รหัสบริษัท',
+  `company_name` varchar(255) DEFAULT NULL COMMENT 'ชื่อบริษัท',
+  `address` varchar(255) DEFAULT NULL COMMENT 'ที่อยู่',
+  `tel` varchar(20) DEFAULT NULL COMMENT 'ติดต่อ',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `center_stockcompany`
+-- ----------------------------
+BEGIN;
+INSERT INTO `center_stockcompany` VALUES ('1', 'Poa02', 'เอสเธติก  ซีเครท( แอท-ซี)', '', ''), ('2', 'PH074', 'บอล', null, null), ('3', 'Aqumarine', 'Premacare', null, null);
 COMMIT;
 
 -- ----------------------------
@@ -194,6 +214,7 @@ CREATE TABLE `center_stockproduct` (
   `id` int(7) NOT NULL AUTO_INCREMENT,
   `product_id` varchar(20) NOT NULL DEFAULT '0' COMMENT 'รหัสสินค้า',
   `clinicname` varchar(255) DEFAULT NULL COMMENT 'ชื่อที่คลินิกเรียก',
+  `product_namestore` varchar(255) DEFAULT NULL COMMENT 'ชื่อสินค้าส่วนกลาง',
   `product_name` varchar(255) DEFAULT NULL COMMENT 'ชื่อสินค้า',
   `costs` float DEFAULT NULL COMMENT 'ต้นทุน',
   `product_price` int(7) DEFAULT '0' COMMENT 'ราคา',
@@ -205,6 +226,8 @@ CREATE TABLE `center_stockproduct` (
   `branch` int(3) DEFAULT NULL COMMENT 'สาขา',
   `subproducttype` int(3) DEFAULT NULL COMMENT 'ประเภท',
   `unit` int(3) DEFAULT NULL COMMENT 'หน่วยนับ',
+  `company` varchar(5) DEFAULT NULL COMMENT 'รหัสบริษัทสั่งซื้อ',
+  `size` varchar(255) DEFAULT NULL COMMENT 'ขนาด',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`) USING BTREE,
   KEY `type_id` (`type_id`)
@@ -214,7 +237,7 @@ CREATE TABLE `center_stockproduct` (
 --  Records of `center_stockproduct`
 -- ----------------------------
 BEGIN;
-INSERT INTO `center_stockproduct` VALUES ('1', 'E1234567', null, 'Keto (S, L)', '50', '150', '<p><strong>สรรพคุณ</strong> :&nbsp;ลดอาการแพ้ ผื่น,เชื้อรา</p>\n\n<p><strong>วิธีใช้</strong> :&nbsp;ทาทั่วหน้า เช้า-เย็น</p>\n', '20', '0', '0', '2016-12-19 14:11:36', null, '23', '1'), ('2', 'S09123456', null, 'Ez I-Ez II (S,L)', '30', '90', '<p>สรรพคุณ : แก้แพ้,ลดการอักเสบ(Ez IIแรงกว่า)</p>\n\n<p>วิธีใช้งาน :&nbsp;ใช้ระยะสั้นตามแพทย์สั่ง</p>\n', '20', '0', '0', '2016-12-19 11:50:27', null, '23', '1');
+INSERT INTO `center_stockproduct` VALUES ('1', 'E1234567', null, null, 'Keto (S, L)', '50', '150', '<p><strong>สรรพคุณ</strong> :&nbsp;ลดอาการแพ้ ผื่น,เชื้อรา</p>\n\n<p><strong>วิธีใช้</strong> :&nbsp;ทาทั่วหน้า เช้า-เย็น</p>\n', '20', '0', '0', '2016-12-19 14:11:36', null, '23', '1', null, null), ('2', 'S09123456', null, null, 'Ez I-Ez II (S,L)', '30', '90', '<p>สรรพคุณ : แก้แพ้,ลดการอักเสบ(Ez IIแรงกว่า)</p>\n\n<p>วิธีใช้งาน :&nbsp;ใช้ระยะสั้นตามแพทย์สั่ง</p>\n', '20', '0', '0', '2016-12-19 11:50:27', null, '23', '1', null, null);
 COMMIT;
 
 -- ----------------------------
@@ -249,7 +272,14 @@ CREATE TABLE `center_storeproduct` (
   `total` int(5) DEFAULT NULL COMMENT 'คงเหลือ',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ตารางสินค้า';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='ตารางสินค้า';
+
+-- ----------------------------
+--  Records of `center_storeproduct`
+-- ----------------------------
+BEGIN;
+INSERT INTO `center_storeproduct` VALUES ('1', 'E1234567', '20161221', '2016-12-21', '2018-12-21', '2016-12-21 09:44:40', '100', '100'), ('2', 'S09123456', '20161221', '2016-12-21', '2018-12-21', '2016-12-21 11:50:35', '50', '50');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `changwat`
@@ -463,13 +493,13 @@ CREATE TABLE `loglogin` (
   `branch` int(3) DEFAULT NULL,
   `date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `loglogin`
 -- ----------------------------
 BEGIN;
-INSERT INTO `loglogin` VALUES ('1', '4', '1', '2016-12-01 14:05:04'), ('2', '1', '99', '2016-12-01 15:42:09'), ('3', '1', '99', '2016-12-02 08:57:44'), ('4', '1', '99', '2016-12-02 09:09:28'), ('5', '4', '1', '2016-12-02 13:58:12'), ('6', '4', '1', '2016-12-02 16:09:25'), ('7', '1', '99', '2016-12-02 16:30:25'), ('8', '4', '1', '2016-12-02 16:31:00'), ('9', '1', '99', '2016-12-02 16:40:42'), ('10', '1', '99', '2016-12-05 12:30:41'), ('11', '4', '1', '2016-12-05 12:34:01'), ('12', '1', '99', '2016-12-05 23:51:43'), ('13', '4', '1', '2016-12-05 23:54:21'), ('14', '4', '1', '2016-12-06 09:06:48'), ('15', '1', '99', '2016-12-06 14:18:42'), ('16', '3', '1', '2016-12-06 14:19:01'), ('17', '1', '99', '2016-12-06 14:22:07'), ('18', '3', '1', '2016-12-06 14:23:55'), ('19', '1', '99', '2016-12-07 08:58:34'), ('20', '4', '1', '2016-12-07 08:59:25'), ('21', '1', '99', '2016-12-07 23:47:00'), ('22', '4', '1', '2016-12-08 09:24:54'), ('23', '3', '1', '2016-12-08 14:51:20'), ('24', '5', null, '2016-12-08 15:01:17'), ('25', '5', '2', '2016-12-08 15:03:39'), ('26', '5', '2', '2016-12-08 15:10:20'), ('27', '2', '1', '2016-12-08 15:13:53'), ('28', '2', '1', '2016-12-08 15:34:01'), ('29', '2', '1', '2016-12-08 15:36:19'), ('30', '2', '1', '2016-12-08 16:35:10'), ('31', '1', '99', '2016-12-08 17:23:49'), ('32', '1', '99', '2016-12-09 11:49:59'), ('33', '4', '1', '2016-12-13 21:09:09'), ('34', '2', '1', '2016-12-14 11:24:19'), ('35', '1', '99', '2016-12-14 11:31:07'), ('36', '4', '1', '2016-12-14 14:25:01'), ('37', '1', '99', '2016-12-14 16:04:29'), ('38', '1', '99', '2016-12-15 09:25:39'), ('39', '1', '99', '2016-12-15 15:40:34'), ('40', '1', '99', '2016-12-16 09:27:54'), ('41', '1', '99', '2016-12-16 21:42:53'), ('42', '1', '99', '2016-12-19 09:13:30'), ('43', '1', '99', '2016-12-19 10:44:45'), ('44', '1', '99', '2016-12-20 15:18:02'), ('45', '4', '1', '2016-12-20 16:22:20'), ('46', '1', '99', '2016-12-20 16:33:14');
+INSERT INTO `loglogin` VALUES ('1', '4', '1', '2016-12-01 14:05:04'), ('2', '1', '99', '2016-12-01 15:42:09'), ('3', '1', '99', '2016-12-02 08:57:44'), ('4', '1', '99', '2016-12-02 09:09:28'), ('5', '4', '1', '2016-12-02 13:58:12'), ('6', '4', '1', '2016-12-02 16:09:25'), ('7', '1', '99', '2016-12-02 16:30:25'), ('8', '4', '1', '2016-12-02 16:31:00'), ('9', '1', '99', '2016-12-02 16:40:42'), ('10', '1', '99', '2016-12-05 12:30:41'), ('11', '4', '1', '2016-12-05 12:34:01'), ('12', '1', '99', '2016-12-05 23:51:43'), ('13', '4', '1', '2016-12-05 23:54:21'), ('14', '4', '1', '2016-12-06 09:06:48'), ('15', '1', '99', '2016-12-06 14:18:42'), ('16', '3', '1', '2016-12-06 14:19:01'), ('17', '1', '99', '2016-12-06 14:22:07'), ('18', '3', '1', '2016-12-06 14:23:55'), ('19', '1', '99', '2016-12-07 08:58:34'), ('20', '4', '1', '2016-12-07 08:59:25'), ('21', '1', '99', '2016-12-07 23:47:00'), ('22', '4', '1', '2016-12-08 09:24:54'), ('23', '3', '1', '2016-12-08 14:51:20'), ('24', '5', null, '2016-12-08 15:01:17'), ('25', '5', '2', '2016-12-08 15:03:39'), ('26', '5', '2', '2016-12-08 15:10:20'), ('27', '2', '1', '2016-12-08 15:13:53'), ('28', '2', '1', '2016-12-08 15:34:01'), ('29', '2', '1', '2016-12-08 15:36:19'), ('30', '2', '1', '2016-12-08 16:35:10'), ('31', '1', '99', '2016-12-08 17:23:49'), ('32', '1', '99', '2016-12-09 11:49:59'), ('33', '4', '1', '2016-12-13 21:09:09'), ('34', '2', '1', '2016-12-14 11:24:19'), ('35', '1', '99', '2016-12-14 11:31:07'), ('36', '4', '1', '2016-12-14 14:25:01'), ('37', '1', '99', '2016-12-14 16:04:29'), ('38', '1', '99', '2016-12-15 09:25:39'), ('39', '1', '99', '2016-12-15 15:40:34'), ('40', '1', '99', '2016-12-16 09:27:54'), ('41', '1', '99', '2016-12-16 21:42:53'), ('42', '1', '99', '2016-12-19 09:13:30'), ('43', '1', '99', '2016-12-19 10:44:45'), ('44', '1', '99', '2016-12-20 15:18:02'), ('45', '4', '1', '2016-12-20 16:22:20'), ('46', '1', '99', '2016-12-20 16:33:14'), ('47', '1', '99', '2016-12-21 09:21:51'), ('48', '4', '1', '2016-12-21 09:23:18'), ('49', '1', '99', '2016-12-21 09:24:42'), ('50', '1', '99', '2016-12-21 09:26:00'), ('51', '1', '99', '2016-12-21 09:27:45'), ('52', '1', '99', '2016-12-21 16:08:09');
 COMMIT;
 
 -- ----------------------------

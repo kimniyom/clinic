@@ -111,4 +111,22 @@ class CenterStoreproduct extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function Searchstore($type_id, $subproducttype){
+		if($type_id == '' && $subproducttype == ''){
+			$where = "1=1";
+		} else if($type_id != '' && $subproducttype == ''){
+			$where = "c.type_id = '$type_id' ";
+		} else {
+			$where = "c.subproducttype = '$subproducttype' ";
+		}
+		$sql = "SELECT s.*,c.product_name,c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name
+				FROM center_storeproduct s INNER JOIN center_stockproduct c ON s.product_id = c.product_id
+				INNER JOIN unit u ON c.unit = u.id
+				INNER JOIN product_type t ON c.type_id = t.id
+				INNER JOIN product_type pt ON c.subproducttype = pt.id 
+				WHERE $where
+				ORDER BY s.d_update,s.lotnumber";
+	   return Yii::app()->db->createCommand($sql)->queryAll();
+	}
 }

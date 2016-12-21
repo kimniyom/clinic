@@ -91,8 +91,11 @@ $BranchModel = new Branch();
                     <input type="text" id="_product_id" name="product_id" class="form-control" style="width:40%;" onkeyup="setcode()"/>
                     <input type="hidden" id="product_id" name="product_id" class="form-control" style="width:40%;"/>
 
-                    <label for="">ชื่อสินค้า*</label>
+                    <label for="">ชื่อสินค้าบริษัท*</label>
                     <input type="text" id="product_name" name="product_name" class="form-control" style="width:100%;" required="required"/>
+                    
+                    <label for="">ชื่อสินค้าคลินิก*</label>
+                    <input type="text" id="product_nameclinic" name="product_nameclinic" class="form-control" style="width:100%;" required="required"/>
 
                     <label for="">หน่วยนับ*</label><br/>
                     <?php
@@ -128,9 +131,33 @@ $BranchModel = new Branch();
                             <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required"/>
                         </div>
                     </div>
-
+                    
+                    <label for="">บริษัท</label><br/>
+                    <?php
+                    $this->widget('booster.widgets.TbSelect2', array(
+                        //'model' => $model,
+                        'asDropDownList' => true,
+                        //'attribute' => 'itemid',
+                        'name' => 'company',
+                        'id' => 'company',
+                        'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
+                        //'value' => $model,
+                        'options' => array(
+                            'allowClear' => true,
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => '== บริษัท ==',
+                            'width' => '50%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?><br/>
+                    
                     <label for="textArea">รายละเอียด</label>
                     <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
+                    
+                    
                     <hr/>
                     <button type="button" class="btn btn-success" onclick="save_product()">
                         <i class="fa fa-save"></i>

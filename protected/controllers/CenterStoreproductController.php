@@ -32,7 +32,7 @@ class CenterStoreproductController extends Controller {
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('create', 'update', 'getdatastockproduct',
                     'getsubproduct', 'getproductinsubtype', 'getproductinsubtype',
-                    'detailproduct','getunit','getimages'),
+                    'detailproduct','getunit','getimages','Saveproduct'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -147,8 +147,8 @@ class CenterStoreproductController extends Controller {
     public function actionGetdatastockproduct() {
         $type = Yii::app()->request->getPost('type_id');
         $subproducttype = Yii::app()->request->getPost('subproducttype');
-        $Model = new CenterStockproduct();
-        $data['product'] = $Model->GetproductlistSearch($type, $subproducttype);
+        $Model = new CenterStoreproduct();
+        $data['product'] = $Model->Searchstore($type, $subproducttype);
 
         $this->renderPartial('datastockproduct', $data);
     }
@@ -189,6 +189,24 @@ class CenterStoreproductController extends Controller {
         $product = new CenterStockproduct();
         $data['images'] = $product->get_images_product($product_id);
         $this->renderPartial("getimages", $data);
+    }
+
+    public function actionSaveproduct() {
+
+        $data = array(
+            'product_id' => Yii::app()->request->getPost('product_id'),
+            'lotnumber' => Yii::app()->request->getPost('lotnumber'),
+            'number' => Yii::app()->request->getPost('number'),
+            'total' => Yii::app()->request->getPost('number'),
+            'lotnumber' => Yii::app()->request->getPost('lotnumber'),
+            'generate' => Yii::app()->request->getPost('generate'),
+            'expire' => Yii::app()->request->getPost('expire'),
+            'd_update' => date('Y-m-d H:i:s')
+        );
+
+        Yii::app()->db->createCommand()
+                ->insert('center_storeproduct', $data);
+        //echo $this->redirect(array('backend/product/detail_product&product_id=' . $_POST['product_id']));
     }
 
 }

@@ -34,9 +34,17 @@ $product_model = new Product();
     
     <div class="col-lg-2 col-md-2">
         <a href="<?php echo Yii::app()->createUrl('unit/index') ?>">
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-default btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/unit-icon.png"><br/>
                 หน่วยนับ สินค้า
+            </button></a>
+    </div>
+    
+    <div class="col-lg-2 col-md-2">
+        <a href="<?php echo Yii::app()->createUrl('centerstockcompany/index') ?>">
+            <button type="button" class="btn btn-default btn-block">
+                <img src="<?= Yii::app()->baseUrl; ?>/images/company-building-icon.png"><br/>
+                บริษัท
             </button></a>
     </div>
 
@@ -61,7 +69,7 @@ $product_model = new Product();
 
     <div class="col-lg-2 col-md-2">
         <a href="<?php echo Yii::app()->createUrl('centerstockunit/index') ?>">
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-default btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/unit-icon.png"><br/>
                 หน่วยนับ วัตถุดิบ
             </button></a>

@@ -163,8 +163,6 @@ $BranchModel = new Branch();
     </form>
 </div>
 
-
-
 <script type="text/javascript">
     checkheight();
     settexbox();
@@ -193,13 +191,13 @@ $BranchModel = new Branch();
             $("#generate").removeAttr("disabled");
             $("#expire").removeAttr("disabled");
         }
-        
+
         if (product == '') {
             $("#number").attr("disabled", "disabled");
             $("#generate").attr("disabled", "disabled");
             $("#expire").attr("disabled", "disabled");
         }
-        
+
         if (product == null) {
             $("#number").attr("disabled", "disabled");
             $("#generate").attr("disabled", "disabled");
@@ -208,33 +206,28 @@ $BranchModel = new Branch();
     }
 
     function save_product() {
-        var url = "<?php echo Yii::app()->createUrl('centerstockproduct/save_product') ?>";
-        var product_name = $("#product_name").val();
-        var type_id = $("#producttype").val();
-        var subproducttype = $("#subproducttype").val();
-        var product_price = $("#product_price").val();
+        var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/saveproduct') ?>";
         var product_id = $("#product_id").val();
-        var product_detail = CKEDITOR.instances.product_detail.getData();
-        var costs = $("#costs").val();
-        var unit = $("#unit").val();
-        if (subproducttype == '' || product_id == '' || product_name == '' || product_price == '' || costs == '' || product_detail == '' || unit == '') {
+        var number = $("#number").val();
+        var lotnumber = $("#lotnumber").val();
+        var generate = $("#generate").val();
+        var expire = $("#expire").val();
+
+        if (number == '' || lotnumber == '' || generate == '' || expire == '') {
             $("#f_error").show().delay(5000).fadeOut(500);
             return false;
         }
 
         var data = {
             product_id: product_id,
-            product_name: product_name,
-            type_id: type_id,
-            subproducttype: subproducttype,
-            product_price: product_price,
-            product_detail: product_detail,
-            costs: costs,
-            unit: unit
+            number: number,
+            lotnumber: lotnumber,
+            generate: generate,
+            expire: expire
         };
 
         $.post(url, data, function (success) {
-            window.location = "<?php echo Yii::app()->createUrl('centerstockproduct/detail&product_id=') ?>" + product_id;
+            window.location = "<?php echo Yii::app()->createUrl('centerstoreproduct/index') ?>";
         });
     }
 
