@@ -11,6 +11,8 @@ class CenterStockproductController extends Controller {
     }
 
     public function actionCreate() {
+        $Config = new Configweb_model();
+        $data['productidAuto'] = "P".$Config->RandstrgenNumber(9);
         Yii::app()->db->createCommand()->delete("product_images", "product_id = '' ");
         $data['producttype'] = ProductType::model()->findAll('');
         $this->render("create", $data);
@@ -21,6 +23,8 @@ class CenterStockproductController extends Controller {
         $data = array(
             'product_id' => Yii::app()->request->getPost('product_id'),
             'product_name' => Yii::app()->request->getPost('product_name'),
+            'product_nameclinic' => Yii::app()->request->getPost('product_nameclinic'),
+            'company' => Yii::app()->request->getPost('company'),
             'product_detail' => Yii::app()->request->getPost('product_detail'),
             'product_price' => Yii::app()->request->getPost('product_price'),
             'costs' => Yii::app()->request->getPost('costs'),
@@ -44,16 +48,17 @@ class CenterStockproductController extends Controller {
     }
 
     public function actionSave_update() {
-        $product_id = $_POST['product_id'];
+        $product_id = Yii::app()->request->getPost('product_id');
         $data = array(
-            'product_name' => $_POST['product_name'],
-            'product_detail' => $_POST['product_detail'],
-            'product_price' => $_POST['product_price'],
-            'costs' => $_POST['costs'],
+            'product_name' => Yii::app()->request->getPost('product_name'),
+            'product_nameclinic' => Yii::app()->request->getPost('product_nameclinic'),
+            'company' => Yii::app()->request->getPost('company'),
+            'product_detail' => Yii::app()->request->getPost('product_detail'),
+            'product_price' => Yii::app()->request->getPost('product_price'),
+            'costs' => Yii::app()->request->getPost('costs'),
             'type_id' => Yii::app()->request->getPost('type_id'),
             'subproducttype' => Yii::app()->request->getPost('subproducttype'),
             'unit' => Yii::app()->request->getPost('unit'),
-            //'branch' => $_POST['branch'],
             'd_update' => date('Y-m-d H:i:s')
         );
 

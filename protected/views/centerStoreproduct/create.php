@@ -83,13 +83,12 @@ $BranchModel = new Branch();
                             <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" readonly="readonly"/>
                         </div>
                         <div class="col-md-6 col-lg-3">
-                            <input type="text" id="number" name="number" class="form-control" onkeypress="return chkNumber()" required="required" onkeydown="Calculator()"/>
+                            <input type="text" id="number" name="number" class="form-control" onkeypress="return chkNumber()" required="required" onkeyup="Calculator()"/>
                         </div>
                         <div class="col-md-6 col-lg-3">
                             <input type="text" id="total" name="total" class="form-control" readonly="readonly"/>
                         </div>
                     </div>
-
 
                     <div class="row">
                         <div class="col-md-6 col-lg-3"><label for="">ล๊อตที่</label></div>
@@ -145,6 +144,17 @@ $BranchModel = new Branch();
 
                     <label for="textArea">รายละเอียด</label>
                     <div class="well" id="product_detail" style=" min-height: 100px;"></div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">วัตถุดิบที่ต้องใช้</div>
+                        <div id="item"></div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-default" onclick="cutstock()">ตัดสต๊อก</button>
+                        </div>
+                    </div>
+
+
                     <hr/>
                     <button type="button" class="btn btn-success" onclick="save_product()">
                         <i class="fa fa-save"></i>
@@ -179,30 +189,57 @@ $BranchModel = new Branch();
     });
 
     function settexbox() {
+
         var product = $("#product").val();
         if (product != '') {
             $("#number").removeAttr("disabled");
             $("#generate").removeAttr("disabled");
             $("#expire").removeAttr("disabled");
+
+            setnulltextbox();
         }
 
         if (product != null) {
             $("#number").removeAttr("disabled");
             $("#generate").removeAttr("disabled");
             $("#expire").removeAttr("disabled");
+
+            setnulltextbox();
         }
 
         if (product == '') {
             $("#number").attr("disabled", "disabled");
             $("#generate").attr("disabled", "disabled");
             $("#expire").attr("disabled", "disabled");
+
+            setnulltextbox();
         }
 
         if (product == null) {
             $("#number").attr("disabled", "disabled");
             $("#generate").attr("disabled", "disabled");
             $("#expire").attr("disabled", "disabled");
+
+            setnulltextbox();
         }
+    }
+
+    function setnulltextbox() {
+        $("#number").val("");
+        $("#generate").val("");
+        $("#expire").val("");
+        $("#total").val("");
+
+        Calculator();
+    }
+
+    function getitem(number) {
+        var product_id = $("#product_id").val();
+        var url = "<?php echo Yii::app()->createUrl('centerstockmix/getitem') ?>";
+        var data = {product_id: product_id, number: number};
+        $.post(url, data, function (datas) {
+            $("#item").html(datas);
+        });
     }
 
     function save_product() {
@@ -263,6 +300,7 @@ $BranchModel = new Branch();
         var costs = parseInt($("#costs").val());
         var total = (costs * number);
         $("#total").val(total);
+        getitem(number);
     }
 
     function formatThousands(n, dp) {
@@ -271,6 +309,17 @@ $BranchModel = new Branch();
             r = ',' + s.substr(i, 3) + r;
         }
         return s.substr(0, i + 3) + r + (d ? '.' + Math.round(d * Math.pow(10, dp || 2)) : '');
+    }
+
+
+    function cutstock() {
+        var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/cutstock') ?>";
+        var productID = $("#product_id").val();
+        var number = $("#number").val();
+        var data = {product_id: productID,number: number};
+        $.post(url, data, function (datas) {
+            getitem(number);
+        });
     }
 </script>
 

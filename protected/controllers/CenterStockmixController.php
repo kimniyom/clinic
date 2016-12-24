@@ -30,7 +30,7 @@ class CenterStockmixController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','addmix','getmixer','deletemixer'),
+                'actions' => array('create', 'update','addmix','getmixer','deletemixer','getitem'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -182,6 +182,14 @@ class CenterStockmixController extends Controller {
         $Model = new CenterStockmix();
         $data['mixer'] = $Model->Getmixer($product_id);
         $this->renderPartial('mixer',$data);
+    }
+    
+    public function actionGetitem(){
+        $product_id = Yii::app()->request->getPost('product_id');
+        $data['number'] = Yii::app()->request->getPost('number');
+        $Model = new CenterStockmix();
+        $data['mixer'] = $Model->Getiteminproduct($product_id);
+        $this->renderPartial('getitem',$data);
     }
 
 }

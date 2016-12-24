@@ -53,8 +53,8 @@ $product_id = $product['product_id'];
 
         <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
             <font style=" color: #F00; font-size: 24px; font-weight: normal;">
-            <img src="<?php echo Yii::app()->baseUrl; ?>/images/yellow-tag-icon.png"/>
-            <?= $product['product_name'] ?>
+            ชื่อสามัญบริษัท : <?= $product['product_name'] ?><br/>
+            ชื่อใช้เรียกในคลินิก : <?= $product['product_nameclinic'] ?>
             </font><br/>
             <b>รหัสสินค้า</b> <?= $product['product_id'] ?><br/>
             <b>หมวดสินค้า</b> <?= $product['type_name'] ?><br/>

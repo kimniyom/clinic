@@ -1,13 +1,26 @@
 <script type="text/javascript">
-    $(document).ready(function () {
+
+    Setscreen();
+    function Setscreen() {
+        var boxsell = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (boxsell - 420);
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
-            "iDisplayLength": 10, // กำหนดค่า default ของจำนวน record
-            "bFilter": true // แสดง search box
-                    //"sScrollY": "400px", // กำหนดความสูงของ ตาราง
+            //"iDisplayLength": 50, // กำหนดค่า default ของจำนวน record
+            //"scrollCollapse": true,
+            "paging": false,
+            "bFilter": true, // แสดง search box
+            "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'print'
+            ]
         });
-    });
+    }
+
+
 </script>
 
 <table class="table table-bordered table-hover" id="p_product">
@@ -15,7 +28,8 @@
         <tr>
             <th style=" width: 5%;">#</th>
             <th>รหัส</th>
-            <th>ชื่อสินค้า</th>
+            <th>ชื่อสามัญบริษัท</th>
+            <th>ชื่อเรียกในคลินิก</th>
             <th style=" text-align: center;">ต้นทุน</th>
             <th style="text-align: center;">ราคา / หน่วย</th>
             <th style="text-align: center;">หมวด</th>
@@ -37,6 +51,7 @@
                 <td style=" text-align: center;"><?php echo $i ?></td>
                 <td><?php echo $last['product_id']; ?></td>
                 <td><?php echo $last['product_name']; ?></td>
+                <td><?php echo $last['product_nameclinic']; ?></td>
                 <td style=" text-align: center; font-weight: bold;">
                     <?php echo number_format($last['costs'], 2); ?>
                 </td>

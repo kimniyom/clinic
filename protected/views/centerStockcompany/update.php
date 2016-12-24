@@ -13,14 +13,8 @@ $this->breadcrumbs = array(
     'Update',
 );
 
-$this->menu = array(
-    array('label' => 'List CenterStockcompany', 'url' => array('index')),
-    array('label' => 'Create CenterStockcompany', 'url' => array('create')),
-    array('label' => 'View CenterStockcompany', 'url' => array('view', 'id' => $model->id)),
-    array('label' => 'Manage CenterStockcompany', 'url' => array('admin')),
-);
 ?>
 
 <h1>แก้ไข <?php echo $model->company_name; ?></h1>
-
+<hr/>
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

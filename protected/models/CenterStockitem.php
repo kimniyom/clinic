@@ -31,13 +31,13 @@ class CenterStockitem extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('itemid,number,price,lotnumber,numbercut,totalcut,unitcut', 'required'),
-            array('itemid, total, price, number, numbercut, totalcut, unitcut', 'numerical', 'integerOnly' => true),
+            array('itemid,number,price,lotnumber,numbercut,totalcut', 'required'),
+            array('itemid, total, price, number, numbercut, totalcut', 'numerical', 'integerOnly' => true),
             array('lotnumber', 'length', 'max' => 10),
             array('create_date', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, itemid, total, price, lotnumber, number, create_date, numbercut, totalcut, unitcut', 'safe', 'on' => 'search'),
+            array('id, itemid, total, price, lotnumber, number, create_date, numbercut, totalcut', 'safe', 'on' => 'search'),
         );
     }
 
@@ -95,7 +95,6 @@ class CenterStockitem extends CActiveRecord {
         $criteria->compare('create_date', $this->create_date, true);
         $criteria->compare('numbercut', $this->numbercut);
         $criteria->compare('totalcut', $this->totalcut);
-        $criteria->compare('unitcut', $this->unitcut);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -118,6 +117,13 @@ class CenterStockitem extends CActiveRecord {
                 INNER JOIN center_stockunit u ON n.unit = u.id
                 INNER JOIN center_stockunit us ON n.unitcut = us.id";
         return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
+    public function Gettotalitem($itemid = null) {
+        $sql = "SELECT i.itemid,SUM(i.totalcut) AS total
+                FROM center_stockitem i
+                WHERE i.itemid = '$itemid' ";
+        return Yii::app()->db->createCommand($sql)->queryRow()['total'];
     }
 
 }

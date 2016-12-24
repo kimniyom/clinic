@@ -14,8 +14,6 @@
         });
     });
     
-    
-    
     function Getdetailproduct(){
         //$("#load_images_product").html("<center><i class=\"fa fa-spinner fa-spin\"></i></center>");
         var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/detailproduct') ?>";

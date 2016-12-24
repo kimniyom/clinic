@@ -45,7 +45,7 @@
 
 	
 	<div class="row buttons">
-            <div class="col-lg-1"></div>
+            <div class="col-lg-2"></div>
             <div class="col-lg-4">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class' => 'btn btn-default')); ?>
             </div>

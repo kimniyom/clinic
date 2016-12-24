@@ -33,7 +33,7 @@ $title = "แก้ไขสินค้า " . $product['product_id'];
 $this->breadcrumbs = array(
     'คลังสินค้า' => Yii::app()->createUrl('store/index'),
     'รายการสินค้า' => array('index'),
-    $product['product_name'] => Yii::app()->createUrl('centerstockproduct/detail',array('product_id' => $product['product_id'])),
+    $product['product_name'] => Yii::app()->createUrl('centerstockproduct/detail', array('product_id' => $product['product_id'])),
     $title,
 );
 
@@ -76,64 +76,101 @@ $BranchModel = new Branch();
                                 <?php endforeach; ?>
                     </select>
 
-                    <br/><label for="">ประเภทสินค้า*</label><br/>
-                    <div id="boxsubproducttype" style=" width: 50%;">
-                        <select id="subproducttype">
-                            <?php
-                            $type = $product['type_id'];
-                            $subproducttype = ProductType::model()->findAll("upper = '$type' ");
-                            foreach ($subproducttype as $st):
-                                ?>
-                                <option value="<?php echo $st['id'] ?>" <?php
-                                if ($st['id'] == $product['subproducttype']) {
-                                    echo "selected";
-                                }
-                                ?>><?php echo $st['type_name'] ?></option>
-                                    <?php endforeach; ?>
-                        </select>
+
+                    <div class="row">
+                        <div class="col-lg-6"><label for="">ประเภทสินค้า*</label></div>
+                        <div class="col-lg-6"><label for="">รหัสสินค้า*</label></div>
                     </div>
 
-                    <label for="">รหัสสินค้า</label>
-                    <input type="text" id="product_id" name="product_id" class="form-control" value="<?php echo $product['product_id']; ?>" readonly style="width:40%;"/>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div id="boxsubproducttype" style=" width: 100%;">
+                                <select id="subproducttype" style=" width: 100%;">
+                                    <?php
+                                    $type = $product['type_id'];
+                                    $subproducttype = ProductType::model()->findAll("upper = '$type' ");
+                                    foreach ($subproducttype as $st):
+                                        ?>
+                                        <option value="<?php echo $st['id'] ?>" <?php
+                                        if ($st['id'] == $product['subproducttype']) {
+                                            echo "selected";
+                                        }
+                                        ?>><?php echo $st['type_name'] ?></option>
+                                            <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" id="product_id" name="product_id" class="form-control" value="<?php echo $product['product_id']; ?>" readonly style="width:40%;"/>
+                        </div>
+                    </div>
 
-                    <label for="" >ชื่อสินค้า</label>
+
+                    <label for="" >ชื่อสินค้าบริษัท</label>
                     <input type="text" id="product_name" name="product_name" class="form-control" value="<?php echo $product['product_name'] ?>"/>
+
+                    <label for="">ชื่อสินค้าคลินิก*</label>
+                    <input type="text" id="product_nameclinic" name="product_nameclinic" class="form-control" style="width:100%;" value="<?php echo $product['product_nameclinic'] ?>"/>
+
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3"><label for="">หน่วยนับ</label></div>
+                        <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน</label></div>
+                        <div class="col-md-6 col-lg-3"><label for="">ราคาขาย</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-lg-3">
+                            <?php
+                            $this->widget('booster.widgets.TbSelect2', array(
+                                //'model' => $model,
+                                'asDropDownList' => true,
+                                //'attribute' => 'itemid',
+                                'name' => 'unit',
+                                'id' => 'unit',
+                                'data' => CHtml::listData(Unit::model()->findAll(""), 'id', 'unit'),
+                                'value' => $product['unit_id'],
+                                'options' => array(
+                                    'allowClear' => true,
+                                    //$model,
+                                    //'oid',
+                                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                                    'placeholder' => '== หน่วยนับ ==',
+                                    'width' => '100%',
+                                //'tokenSeparators' => array(',', ' ')
+                                )
+                            ));
+                            ?>
+                        </div>
+                        <div class="col-md-4 col-lg-3">
+                            <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['costs'] ?>"/>
+                        </div>
+                        <div class="col-md-4 col-lg-3">
+                            <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['product_price'] ?>"/>
+                        </div>
+                    </div>
                     
-                    <label for="">หน่วยนับ*</label><br/>
+                    <label for="">บริษัท</label><br/>
                     <?php
-      
                     $this->widget('booster.widgets.TbSelect2', array(
                         //'model' => $model,
                         'asDropDownList' => true,
                         //'attribute' => 'itemid',
-                        'name' => 'unit',
-                        'id' => 'unit',
-                        'data' => CHtml::listData(Unit::model()->findAll(""), 'id', 'unit'),
-                        'value' => $product['unit_id'],
+                        'name' => 'company',
+                        'id' => 'company',
+                        'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
+                        'value' => $product['company'],
                         'options' => array(
                             'allowClear' => true,
                             //$model,
                             //'oid',
                             //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                            'placeholder' => '== หน่วยนับ ==',
+                            'placeholder' => '== บริษัท ==',
                             'width' => '50%',
                         //'tokenSeparators' => array(',', ' ')
                         )
                     ));
-                    ?><br/>
+                    ?>
                     
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาขาย</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['costs'] ?>"/>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['product_price'] ?>"/>
-                        </div>
-                    </div>
                     <br/>
                     <label for="textArea">รายละเอียด</label>
                     <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required">
@@ -214,7 +251,24 @@ $BranchModel = new Branch();
         //removeDialogTabs: 'link:upload;image:Upload',
         //filebrowserBrowseUrl: 'imgbrowse/imgbrowse.php',
         //filebrowserUploadUrl: 'ckupload.php',
-        //uiColor: '#AADC6E',
+        toolbar: [
+            //{ name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
+            //{ name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+            //{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+            //{ name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
+            '/',
+            {name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language']},
+            //{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+            //{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+            '/',
+            {name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize']},
+            {name: 'colors', items: ['TextColor', 'BGColor']},
+            {name: 'tools', items: ['Maximize', 'ShowBlocks']}
+            //{ name: 'others', items: [ '-' ] },
+            //{ name: 'about', items: [ 'About' ] }
+        ],
+        uiColor: '#eeeeee',
         filebrowserBrowseUrl: "<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckfinder/ckfinder.html",
         filebrowserImageBrowseUrl: "<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckfinder/ckfinder.html?Type=Images",
         filebrowserFlashBrowseUrl: "<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckfinder/ckfinder.html?Type=Flash",
@@ -259,7 +313,9 @@ $BranchModel = new Branch();
     function save_product() {
         var url = "<?php echo Yii::app()->createUrl('centerstockproduct/save_update') ?>";
         var product_name = $("#product_name").val();
-        var product_num = $("#product_num").val();
+        var product_nameclinic = $("#product_nameclinic").val();
+        var company = $("#company").val();
+        //var product_num = $("#product_num").val();
         var product_price = $("#product_price").val();
         var product_id = "<?php echo $product['product_id'] ?>";
         var product_detail = CKEDITOR.instances.product_detail.getData();
@@ -268,7 +324,7 @@ $BranchModel = new Branch();
         var type_id = $("#product_type").val();
         var subproducttype = $("#subproducttype").val();
         var unit = $("#unit").val();
-        if (type_id == '' || subproducttype == '' || product_name == '' || product_price == '' || costs == '' || product_detail == '' || product_num == '') {
+        if (type_id == '' || subproducttype == '' || product_name == '' || product_price == '' || costs == '' || unit == '') {
             $("#f_error").show().delay(5000).fadeOut(500);
             return false;
         }
@@ -276,7 +332,9 @@ $BranchModel = new Branch();
         var data = {
             product_id: product_id,
             product_name: product_name,
-            product_num: product_num,
+            product_nameclinic: product_nameclinic,
+            company: company,
+            //product_num: product_num,
             product_price: product_price,
             product_detail: product_detail,
             costs: costs,

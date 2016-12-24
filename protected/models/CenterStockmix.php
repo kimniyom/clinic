@@ -99,11 +99,19 @@ class CenterStockmix extends CActiveRecord {
         return parent::model($className);
     }
 
-    public function Getmixer($product_id = null){
+    public function Getmixer($product_id = null) {
         $sql = "SELECT x.*,n.itemcode AS itemscode,n.itemname,u.unit
                 FROM center_stockmix x 
                 INNER JOIN center_stockitem_name n ON x.itemid = n.id
                 INNER JOIN center_stockunit u ON n.unitcut = u.id 
+                WHERE x.product_id = '$product_id' ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
+    public function Getiteminproduct($product_id = null) {
+        $sql = "SELECT x.*,n.itemcode AS itemcodes,n.itemname,n.unitcut,u.unit
+                FROM center_stockmix x INNER JOIN center_stockitem_name n ON x.itemid = n.id
+                INNER JOIN center_stockunit u ON n.unitcut = u.id
                 WHERE x.product_id = '$product_id' ";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }

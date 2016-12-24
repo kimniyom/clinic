@@ -10,10 +10,15 @@ and open the template in the editor.
     Author     : apple
 */
 
-
+hr{
+    margin-top:10px;
+    margin-bottom:10px;
+}
 #bg-alert {
     background: #ff0000;
 }
+
+
 
 #wrapper #box-profile {
     color: #0083b8;

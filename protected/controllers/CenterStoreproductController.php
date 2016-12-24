@@ -32,7 +32,7 @@ class CenterStoreproductController extends Controller {
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('create', 'update', 'getdatastockproduct',
                     'getsubproduct', 'getproductinsubtype', 'getproductinsubtype',
-                    'detailproduct','getunit','getimages','Saveproduct'),
+                    'detailproduct', 'getunit', 'getimages', 'Saveproduct','cutstock','cutitems'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -176,15 +176,15 @@ class CenterStoreproductController extends Controller {
             "product_id" => $Model['product_id'],
             "unit" => $unit
         );
-        
+
         echo json_encode($json);
     }
-    
-    public function actionGetunit($unit = null){
+
+    public function actionGetunit($unit = null) {
         return Unit::model()->find("id = '$unit' ")['unit'];
     }
-    
-     public function actionGetimages() {
+
+    public function actionGetimages() {
         $product_id = Yii::app()->request->getPost('product_id');
         $product = new CenterStockproduct();
         $data['images'] = $product->get_images_product($product_id);
@@ -207,6 +207,50 @@ class CenterStoreproductController extends Controller {
         Yii::app()->db->createCommand()
                 ->insert('center_storeproduct', $data);
         //echo $this->redirect(array('backend/product/detail_product&product_id=' . $_POST['product_id']));
+    }
+
+    //Function ตัดสต๊อก
+    public function actionCutstock() {
+        $product_id = Yii::app()->request->getPost('product_id');
+        $number = Yii::app()->request->getPost('number');
+        $sql = "SELECT *
+                FROM center_stockmix m 
+                WHERE m.product_id = '$product_id'";
+        $item = Yii::app()->db->createCommand($sql)->queryAll();
+        //ดึงข้อมูลตารางitem
+
+        foreach ($item as $rs):
+            $totalitem = ($rs['number'] * $number);
+            $this->actionCutitems($rs['itemid'], $totalitem);
+        endforeach;
+    }
+
+    public function actionCutitems($itemid, $number) {
+        $sql = "SELECT *
+                FROM center_stockitem i
+                WHERE i.itemid = '$itemid' AND i.totalcut > 0
+                ORDER BY i.lotnumber,i.create_date ASC ";
+
+        $item = Yii::app()->db->createCommand($sql)->queryAll();
+        //ดึงข้อมูลตารางitem
+        $numbercut = 0;
+        foreach ($item as $rs):
+             $id = $rs['id'];
+            $totalinstock = $rs['totalcut']; //คงเหลือในสต๊อกที่ตัดได้
+            if ($totalinstock > $number) { //<==กรณีสินค้าในล๊อตนั้นมีมากกว่า
+                $totalstock = ($totalinstock - $number);
+                $numbercut = $totalstock;
+                $columns = array("totalcut" => $numbercut);
+                Yii::app()->db->createCommand()->update("center_stockitem",$columns,"id = '$id' ");
+                break;
+            } else if ($totalinstock < $number) {//<==กรณีสินค้าในล๊อตนั้นมีน้อยกว่า
+                $number = ($number - $totalinstock);
+                //$numbercut = $totalstock;
+                $columns = array("totalcut" => "0");
+                Yii::app()->db->createCommand()->update("center_stockitem",$columns,"id = '$id' ");
+            }
+            
+        endforeach;
     }
 
 }

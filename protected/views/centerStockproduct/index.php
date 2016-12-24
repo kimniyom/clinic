@@ -18,7 +18,7 @@ $web = new Configweb_model();
                     เพิ่มรายการสินค้า</div></a>
         </div>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" style="padding: 10px;">
         <div class="row">
             <div class="col-lg-1" style=" text-align: right;">
                 <label>ประเภท</label>

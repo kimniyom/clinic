@@ -129,4 +129,8 @@ class CenterStoreproduct extends CActiveRecord
 				ORDER BY s.d_update,s.lotnumber";
 	   return Yii::app()->db->createCommand($sql)->queryAll();
 	}
+        
+        
+        //Function ตัดสต๊อก
+        
 }

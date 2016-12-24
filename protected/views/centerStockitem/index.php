@@ -37,6 +37,7 @@ $this->breadcrumbs = array(
             <th>วัตถุดิบ</th>
             <th>จำนวน</th>
             <th>ราคาซื้อเข้ารวม</th>
+            <th style=" text-align: center;">วันที่นำเข้า</th>
             <th id="cutstock">จำนวนที่ตัดได้</th>
             <th id="cutstock">จำนวนคงเหลือ</th>
             <th style=" text-align: center;">ตัวเลือก</th>
@@ -54,6 +55,7 @@ $this->breadcrumbs = array(
                 <td><?php echo $rs['itemname'] ?></td>
                 <td><?php echo $rs['number'] ?> <?php echo $rs['unit'] ?></td>
                 <td><?php echo number_format($rs['price']) ?></td>
+                <td style=" text-align: center;"><?php echo $rs['create_date'] ?></td>
                 <td id="bcutstock" style=" text-align: right;"><?php echo number_format($rs['numbercut']) ?> <?php echo $rs['unitcutstock'] ?></td>
                 <td id="bcutstock" style=" text-align: right;"><?php echo number_format($rs['totalcut']) ?> <?php echo $rs['unitcutstock'] ?></td>
                 <td style=" text-align: center; width: 10%;">
@@ -69,7 +71,7 @@ $this->breadcrumbs = array(
     function Delete(id) {
         var r = confirm("Are you sure ..?");
         if (r == true) {
-            var url = "<?php echo Yii::app()->createUrl('centerstockitemname/delete') ?>";
+            var url = "<?php echo Yii::app()->createUrl('centerstockitem/delete') ?>";
             var data = {id: id};
             $.post(url, data, function (success) {
                 window.location.reload();
