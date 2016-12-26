@@ -148,30 +148,38 @@ $BranchModel = new Branch();
                             <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['product_price'] ?>"/>
                         </div>
                     </div>
-                    
-                    <label for="">บริษัท</label><br/>
-                    <?php
-                    $this->widget('booster.widgets.TbSelect2', array(
-                        //'model' => $model,
-                        'asDropDownList' => true,
-                        //'attribute' => 'itemid',
-                        'name' => 'company',
-                        'id' => 'company',
-                        'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
-                        'value' => $product['company'],
-                        'options' => array(
-                            'allowClear' => true,
-                            //$model,
-                            //'oid',
-                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                            'placeholder' => '== บริษัท ==',
-                            'width' => '50%',
-                        //'tokenSeparators' => array(',', ' ')
-                        )
-                    ));
-                    ?>
-                    
-                    <br/>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="">บริษัท</label><br/>
+                            <?php
+                            $this->widget('booster.widgets.TbSelect2', array(
+                                //'model' => $model,
+                                'asDropDownList' => true,
+                                //'attribute' => 'itemid',
+                                'name' => 'company',
+                                'id' => 'company',
+                                'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
+                                'value' => $product['company'],
+                                'options' => array(
+                                    'allowClear' => true,
+                                    //$model,
+                                    //'oid',
+                                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                                    'placeholder' => '== บริษัท ==',
+                                    'width' => '100%',
+                                //'tokenSeparators' => array(',', ' ')
+                                )
+                            ));
+                            ?>
+                        </div>
+                        <div class="col-lg-5" style=" padding-top: 22px;">
+                            <div class="well well-sm" style=" text-align: center;">
+                                <input type="radio" id="private" name="private" value="0" <?php if($product['private'] == '0'){ echo "checked='checked'"; }?>/> คลินิกมองเห็น
+                                &nbsp;&nbsp;<input type="radio" id="private" name="private" value="1" <?php if($product['private'] == '1'){ echo "checked='checked'"; }?>/> คลินิกมองไม่เห็น
+                            </div>
+                        </div>
+                    </div>
+
                     <label for="textArea">รายละเอียด</label>
                     <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required">
                         <?php echo $product['product_detail'] ?>
@@ -324,6 +332,7 @@ $BranchModel = new Branch();
         var type_id = $("#product_type").val();
         var subproducttype = $("#subproducttype").val();
         var unit = $("#unit").val();
+        var private = $("input:radio[name=private]:checked").val();
         if (type_id == '' || subproducttype == '' || product_name == '' || product_price == '' || costs == '' || unit == '') {
             $("#f_error").show().delay(5000).fadeOut(500);
             return false;
@@ -340,7 +349,8 @@ $BranchModel = new Branch();
             costs: costs,
             type_id: type_id,
             subproducttype: subproducttype,
-            unit: unit
+            unit: unit,
+            private: private
         };
 
         $.post(url, data, function (success) {

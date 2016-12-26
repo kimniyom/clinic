@@ -7,7 +7,7 @@
         background: #ccffff;
         font-weight: bold;
     }
-    
+
     table tbody tr td{
         padding: 5px;
     }
@@ -26,9 +26,10 @@ $this->breadcrumbs = array(
 <hr/>
 <a href="<?php echo Yii::app()->createUrl('centerstockitem/create') ?>">
     <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มวัตถุดิบเข้าคลัง</button></a>
+    <span class="pull-right" style=" margin-top: 5px;">*<i class="fa fa-lock"></i> <font style="color:red;">มีการตัดสต๊อกไม่สามารถแก้ไขหรือลบได้</font></span>
 <hr/>
 
-<table class="table-bordered table-hover">
+<table class="table table-bordered table-hover" id="stockitem">
     <thead>
         <tr>
             <th style=" width: 5%; text-align: center;">#</th>
@@ -47,23 +48,31 @@ $this->breadcrumbs = array(
         <?php
         $i = 0;
         foreach ($item as $rs): $i++;
-            ?>
-            <tr>
-                <td style=" text-align: center;"><?php echo $i ?></td>
-                 <td><?php echo $rs['lotnumber'] ?></td>
-                <td><?php echo $rs['itemcode'] ?></td>
-                <td><?php echo $rs['itemname'] ?></td>
-                <td><?php echo $rs['number'] ?> <?php echo $rs['unit'] ?></td>
-                <td><?php echo number_format($rs['price']) ?></td>
-                <td style=" text-align: center;"><?php echo $rs['create_date'] ?></td>
-                <td id="bcutstock" style=" text-align: right;"><?php echo number_format($rs['numbercut']) ?> <?php echo $rs['unitcutstock'] ?></td>
-                <td id="bcutstock" style=" text-align: right;"><?php echo number_format($rs['totalcut']) ?> <?php echo $rs['unitcutstock'] ?></td>
-                <td style=" text-align: center; width: 10%;">
-                    <a href="<?php echo Yii::app()->createUrl('centerstockitem/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil"></i> แก้ไข</a>
-                    <a href="javascript:Delete('<?php echo $rs['id'] ?>')"><i class="fa fa-trash"></i> ลบ</a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
+            if ($rs['totalcut'] > "0"):
+                ?>
+                <tr>
+                    <td style=" text-align: center;"><?php echo $i ?></td>
+                    <td><?php echo $rs['lotnumber'] ?></td>
+                    <td><?php echo $rs['itemcode'] ?></td>
+                    <td><?php echo $rs['itemname'] ?></td>
+                    <td><?php echo $rs['number'] ?> <?php echo $rs['unit'] ?></td>
+                    <td><?php echo number_format($rs['price']) ?></td>
+                    <td style=" text-align: center;"><?php echo $rs['create_date'] ?></td>
+                    <td id="bcutstock" style=" text-align: right;"><?php echo number_format($rs['numbercut']) ?> <?php echo $rs['unitcutstock'] ?></td>
+                    <td id="bcutstock" style=" text-align: right;"><?php echo number_format($rs['totalcut']) ?> <?php echo $rs['unitcutstock'] ?></td>
+                    <td style=" text-align: center; width: 10%;">
+                        <?php if ($rs['numbercut'] != $rs['totalcut']) { ?>
+                            <i class="fa fa-lock"></i>
+                        <?php } else { ?>
+                            <a href="<?php echo Yii::app()->createUrl('centerstockitem/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil"></i> แก้ไข</a>
+                            <a href="javascript:Delete('<?php echo $rs['id'] ?>')"><i class="fa fa-trash"></i> ลบ</a>
+                        <?php } ?>
+                    </td>
+                </tr>
+                <?php
+            endif;
+        endforeach;
+        ?>
     </tbody>
 </table>
 
@@ -78,6 +87,29 @@ $this->breadcrumbs = array(
             });
         }
     }
+
+
+    Setscreen();
+    function Setscreen() {
+        var boxsell = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (boxsell - 420);
+        $("#stockitem").dataTable({
+            //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
+            "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
+            //"iDisplayLength": 50, // กำหนดค่า default ของจำนวน record
+            //"scrollCollapse": true,
+            "paging": false,
+            "bFilter": true, // แสดง search box
+            "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'print'
+            ]
+        });
+    }
+
+
 </script>
 
 

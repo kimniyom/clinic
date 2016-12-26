@@ -132,7 +132,8 @@ class CenterStockproduct extends CActiveRecord
 	
 	function _get_detail_product($product_id = null) {
 		$sql = "SELECT p.id,p.subproducttype,p.product_id,product_name,product_nameclinic,company,product_detail,product_price,d_update,p.status,p.costs,
-						p.type_id,t.type_name,p.costs,u.id AS unit_id,u.unit,tp.type_name AS subtypename
+                                p.type_id,t.type_name,p.costs,u.id AS unit_id,u.unit,tp.type_name AS subtypename,
+                                p.private
                 FROM center_stockproduct p INNER JOIN product_type t ON p.type_id = t.id
 				INNER JOIN product_type tp ON p.subproducttype = tp.id 
 				INNER JOIN unit u ON p.unit = u.id

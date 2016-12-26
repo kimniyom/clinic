@@ -144,28 +144,37 @@ $BranchModel = new Branch();
                             <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required"/>
                         </div>
                     </div>
-
-                    <label for="">บริษัท</label><br/>
-                    <?php
-                    $this->widget('booster.widgets.TbSelect2', array(
-                        //'model' => $model,
-                        'asDropDownList' => true,
-                        //'attribute' => 'itemid',
-                        'name' => 'company',
-                        'id' => 'company',
-                        'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
-                        //'value' => $model,
-                        'options' => array(
-                            'allowClear' => true,
-                            //$model,
-                            //'oid',
-                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                            'placeholder' => '== บริษัท ==',
-                            'width' => '50%',
-                        //'tokenSeparators' => array(',', ' ')
-                        )
-                    ));
-                    ?><br/>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="">บริษัท</label><br/>
+                            <?php
+                            $this->widget('booster.widgets.TbSelect2', array(
+                                //'model' => $model,
+                                'asDropDownList' => true,
+                                //'attribute' => 'itemid',
+                                'name' => 'company',
+                                'id' => 'company',
+                                'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
+                                //'value' => $model,
+                                'options' => array(
+                                    'allowClear' => true,
+                                    //$model,
+                                    //'oid',
+                                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                                    'placeholder' => '== บริษัท ==',
+                                    'width' => '100%',
+                                //'tokenSeparators' => array(',', ' ')
+                                )
+                            ));
+                            ?>
+                        </div>
+                        <div class="col-lg-5" style=" padding-top: 22px;">
+                            <div class="well well-sm" style=" text-align: center;">
+                                <input type="radio" id="private" name="private" value="0" checked="checked"/> คลินิกมองเห็น
+                                &nbsp;&nbsp;<input type="radio" id="private" name="private" value="1"/> คลินิกมองไม่เห็น
+                            </div>
+                        </div>
+                    </div>
 
                     <label for="textArea">รายละเอียด</label>
                     <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
@@ -224,22 +233,22 @@ $BranchModel = new Branch();
         //filebrowserBrowseUrl: 'imgbrowse/imgbrowse.php',
         //filebrowserUploadUrl: 'ckupload.php',
         toolbar: [
-    //{ name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
-    //{ name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-    //{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
-    //{ name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
-    '/',
-    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
-    //{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-    //{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
-    '/',
-    { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-    { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] }
-    //{ name: 'others', items: [ '-' ] },
-    //{ name: 'about', items: [ 'About' ] }
-],
+            //{ name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
+            //{ name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+            //{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+            //{ name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
+            '/',
+            {name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language']},
+            //{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+            //{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+            '/',
+            {name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize']},
+            {name: 'colors', items: ['TextColor', 'BGColor']},
+            {name: 'tools', items: ['Maximize', 'ShowBlocks']}
+            //{ name: 'others', items: [ '-' ] },
+            //{ name: 'about', items: [ 'About' ] }
+        ],
         uiColor: '#eeeeee',
         filebrowserBrowseUrl: "<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckfinder/ckfinder.html",
         filebrowserImageBrowseUrl: "<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckfinder/ckfinder.html?Type=Images",
@@ -290,6 +299,7 @@ $BranchModel = new Branch();
         var product_detail = CKEDITOR.instances.product_detail.getData();
         var costs = $("#costs").val();
         var unit = $("#unit").val();
+        var private = $("input:radio[name=private]:checked").val();
         if (subproducttype == '' || product_id == '' || product_name == '' || product_price == '' || costs == '' || unit == '') {
             $("#f_error").show().delay(5000).fadeOut(500);
             return false;
@@ -305,7 +315,8 @@ $BranchModel = new Branch();
             product_price: product_price,
             product_detail: product_detail,
             costs: costs,
-            unit: unit
+            unit: unit,
+            private: private
         };
 
         $.post(url, data, function (success) {

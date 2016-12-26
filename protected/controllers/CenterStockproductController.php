@@ -31,6 +31,7 @@ class CenterStockproductController extends Controller {
             'type_id' => Yii::app()->request->getPost('type_id'),
             'subproducttype' => Yii::app()->request->getPost('subproducttype'),
             'unit' => Yii::app()->request->getPost('unit'),
+            'private' => Yii::app()->request->getPost('private'),
             'd_update' => date('Y-m-d H:i:s')
         );
 
@@ -59,6 +60,7 @@ class CenterStockproductController extends Controller {
             'type_id' => Yii::app()->request->getPost('type_id'),
             'subproducttype' => Yii::app()->request->getPost('subproducttype'),
             'unit' => Yii::app()->request->getPost('unit'),
+            'private' => Yii::app()->request->getPost('private'),
             'd_update' => date('Y-m-d H:i:s')
         );
 
