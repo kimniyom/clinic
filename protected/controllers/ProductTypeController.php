@@ -162,7 +162,5 @@ class ProductTypeController extends Controller {
         $data['type'] = ProductType::model()->findAll("upper = '$upper' ");
         $this->renderPartial('subproducttype',$data);
     }
-    
-    
-
+   
 }

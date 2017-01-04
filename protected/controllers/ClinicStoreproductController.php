@@ -158,8 +158,9 @@ class ClinicStoreproductController extends Controller {
     public function actionGetdatastockproduct() {
         $type = Yii::app()->request->getPost('type_id');
         $subproducttype = Yii::app()->request->getPost('subproducttype');
+        $branch = Yii::app()->request->getPost('branch');
         $Model = new ClinicStoreproduct();
-        $data['product'] = $Model->Searchstore($type, $subproducttype);
+        $data['product'] = $Model->Searchstore($type, $subproducttype,$branch);
 
         $this->renderPartial('datastockproduct', $data);
     }
