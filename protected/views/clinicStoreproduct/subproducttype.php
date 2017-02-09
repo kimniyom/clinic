@@ -9,8 +9,9 @@
 
         $("#subproducttype").change(function () {
             var subproducttype = $("#subproducttype").val();
-            var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/getproductinsubtype') ?>";
-            var data = {subproducttype: subproducttype};
+            var branch = $("#branch").val();
+            var url = "<?php echo Yii::app()->createUrl('clinicstoreproduct/getproductinsubtype') ?>";
+            var data = {subproducttype: subproducttype, branch: branch};
             $.post(url, data, function (datas) {
                 $("#boxproduct").html(datas);
             });
@@ -18,9 +19,10 @@
     });
 
     function Getcomboproduct() {
-    var subproducttype = $("#subproducttype").val();
-        var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/getproductinsubtype') ?>";
-        var data = {subproducttype: subproducttype};
+        var subproducttype = $("#subproducttype").val();
+        var branch = $("#branch").val();
+        var url = "<?php echo Yii::app()->createUrl('clinicstoreproduct/getproductinsubtype') ?>";
+        var data = {subproducttype: subproducttype, branch: branch};
         $.post(url, data, function (datas) {
             $("#boxproduct").html(datas);
         });

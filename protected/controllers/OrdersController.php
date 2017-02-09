@@ -1,6 +1,6 @@
 <?php
 
-class ClinicStoreproductController extends Controller {
+class OrdersController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -30,11 +30,11 @@ class ClinicStoreproductController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','saveproduct','getsubproduct','getproductinsubtype'),
+                'actions' => array('create', 'update', 'loaddata','save','search'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete', 'getdatastockproduct'),
+                'actions' => array('admin', 'delete'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -47,33 +47,40 @@ class ClinicStoreproductController extends Controller {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
+    public function actionView($order_id = null) {
+        $order = Orders::model()->find("order_id = '$order_id'");
+        $branchId = $order['branch'];
+        $data['BranchModel'] = Branch::model()->find("id = '$branchId'");
+        $OrderModel = new Orders();
+        $data['order'] = $order;
+        $data['orderlist'] = $OrderModel->Getlistorder($order_id);
+        $this->render('view',$data);
     }
 
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate($branch = null) {
-        $model = new ClinicStoreproduct;
-        $branchModel = new Branch();
+    public function actionCreate($branch) {
+
+        $model = new Orders;
+        $orderId = $model->autoId("orders", "order_id", "10");
+
+        Yii::app()->db->createCommand()->delete("listorder", "order_id = '$orderId' ");
+
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
-/*
-        if (isset($_POST['ClinicStoreproduct'])) {
-            $model->attributes = $_POST['ClinicStoreproduct'];
+
+        if (isset($_POST['Orders'])) {
+            $model->attributes = $_POST['Orders'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
- * 
- */ 
-        $branchname = $branchModel->Getbranch($branch);
+
         $this->render('create', array(
-            'branch' => $branch,
-            'branchname' => $branchname
+            'model' => $model,
+            'order_id' => $orderId,
+            'branch' => $branch
         ));
     }
 
@@ -82,20 +89,11 @@ class ClinicStoreproductController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
-        $model = $this->loadModel($id);
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['ClinicStoreproduct'])) {
-            $model->attributes = $_POST['ClinicStoreproduct'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
-        }
-
+    public function actionUpdate($order_id = null) {
+        $order = Orders::model()->find("order_id = '$order_id' ");
         $this->render('update', array(
-            'model' => $model,
+            'order_id' => $order_id,
+            'order' => $order
         ));
     }
 
@@ -116,20 +114,20 @@ class ClinicStoreproductController extends Controller {
      * Lists all models.
      */
     public function actionIndex($branch = null) {
-        $branchModel = new Branch();
-        $data['branchname'] = $branchModel->Getbranch($branch);
+        $Model = new Orders();
         $data['branch'] = $branch;
-        $this->render('index',$data);
+        $data['orders'] = $Model->GetorderInBranch($branch);
+        $this->render('index', $data);
     }
 
     /**
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new ClinicStoreproduct('search');
+        $model = new Orders('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['ClinicStoreproduct']))
-            $model->attributes = $_GET['ClinicStoreproduct'];
+        if (isset($_GET['Orders']))
+            $model->attributes = $_GET['Orders'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -140,11 +138,11 @@ class ClinicStoreproductController extends Controller {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return ClinicStoreproduct the loaded model
+     * @return Orders the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = ClinicStoreproduct::model()->findByPk($id);
+        $model = Orders::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -152,58 +150,47 @@ class ClinicStoreproductController extends Controller {
 
     /**
      * Performs the AJAX validation.
-     * @param ClinicStoreproduct $model the model to be validated
+     * @param Orders $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'clinic-storeproduct-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'orders-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
     }
 
-    public function actionGetdatastockproduct() {
-        $type = Yii::app()->request->getPost('type_id');
-        $subproducttype = Yii::app()->request->getPost('subproducttype');
-        $branch = Yii::app()->request->getPost('branch');
-        $Model = new ClinicStoreproduct();
-        $data['product'] = $Model->Searchstore($type, $subproducttype,$branch);
+    public function actionLoaddata() {
+        $orderId = Yii::app()->request->getPost('order_id');
 
-        $this->renderPartial('datastockproduct', $data);
+        $OrderModel = new Orders();
+        $data['order'] = $OrderModel->Getlistorder($orderId);
+        $this->renderPartial('listdata', $data);
     }
-    
-    public function actionSaveproduct() {
 
-        $data = array(
-            'product_id' => Yii::app()->request->getPost('product_id'),
-            'lotnumber' => Yii::app()->request->getPost('lotnumber'),
-            'number' => Yii::app()->request->getPost('number'),
-            'total' => Yii::app()->request->getPost('number'),
-            'lotnumber' => Yii::app()->request->getPost('lotnumber'),
-            'generate' => Yii::app()->request->getPost('generate'),
-            'expire' => Yii::app()->request->getPost('expire'),
-            'branch' => Yii::app()->request->getPost('branch'),
-            'd_update' => date('Y-m-d H:i:s')
+    public function actionSave() {
+        $branch = Yii::app()->request->getPost('branch');
+        $menager = Branch::model()->find("id = '$branch' ")['menagers'];
+        $order_id = Yii::app()->request->getPost('order_id');
+        $columns = array(
+            "order_id" => $order_id,
+            "branch" => $branch,
+            "author" => $menager,
+            "create_date" => date("Y-m-d"),
+            "d_update" => date("Y-m-d H:i:s")
         );
 
-        Yii::app()->db->createCommand()
-                ->insert('clinic_storeproduct', $data);
-        //echo $this->redirect(array('backend/product/detail_product&product_id=' . $_POST['product_id']));
+        Yii::app()->db->createCommand()->insert("orders", $columns);
     }
     
-    public function actionGetsubproduct() {
-        $upper = Yii::app()->request->getPost('type_id');
-        $data['type'] = ProductType::model()->findAll("upper = '$upper' ");
-        $this->renderPartial('subproducttype', $data);
-    }
-    
-    public function actionGetproductinsubtype() {
-        $subproducttype = Yii::app()->request->getPost('subproducttype');
+    public function actionSearch(){
+        $Model = new Orders();
+        $datestart = Yii::app()->request->getPost('datestart');
+        $dateend = Yii::app()->request->getPost('dateend');
+        $status =  Yii::app()->request->getPost('status');
         $branch = Yii::app()->request->getPost('branch');
         
-        $clinicstockModel = new ClinicStockproduct();
-        
-        $data['product'] = $clinicstockModel->comboproduct($subproducttype, $branch);
-        $this->renderPartial('comboproduct', $data);
+        $data['order'] = $Model->SearchOrder($datestart, $dateend, $status,$branch);
+        $this->renderPartial('resultsearch',$data);
     }
 
 }

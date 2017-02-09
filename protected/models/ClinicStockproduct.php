@@ -200,4 +200,12 @@ class ClinicStockproduct extends CActiveRecord
 		
 		return $result;
 	}
+
+	function comboproduct($subproduct,$branch){
+		$sql = "SELECT c.product_id,s.product_nameclinic
+				FROM clinic_stockproduct c INNER JOIN center_stockproduct s ON c.product_id = s.product_id
+				WHERE s.subproducttype = '$subproduct' AND c.branch = '$branch' ";
+		$result = Yii::app()->db->createCommand($sql)->queryAll();
+		return $result;
+	}
 }

@@ -3,8 +3,8 @@
 <?php
 $title = "เพิ่มสินค้า";
 $this->breadcrumbs = array(
-    "คลังสินค้ากลาง" => Yii::app()->createUrl('store/index'),
-    "คลังสินค้า" => array('index'),
+    "คลังสินค้าหลัก" => Yii::app()->createUrl('storeclinic/index'),
+    "คลังสินค้า (สาขา".$branchname.")" => array('index','branch' => $branch),
     $title,
 );
 
@@ -12,6 +12,7 @@ $web = new Configweb_model();
 $BranchModel = new Branch();
 ?>
 
+<input type="hidden" id="branch" value="<?php echo $branch ?>"/>
 <div class="wells" style="width:100%; margin-bottom: 10px;">
     <form class="form-horizontal">
         <fieldset>
@@ -145,7 +146,7 @@ $BranchModel = new Branch();
                     <label for="textArea">รายละเอียด</label>
                     <div class="well" id="product_detail" style=" min-height: 100px;"></div>
 
-
+                    <!--
                     <div class="panel panel-default">
                         <div class="panel-heading">วัตถุดิบที่ต้องใช้</div>
                         <div id="item"></div>
@@ -153,7 +154,7 @@ $BranchModel = new Branch();
                             <button type="button" class="btn btn-default" onclick="cutstock()">ตัดสต๊อก</button>
                         </div>
                     </div>
-
+                    -->
 
                     <hr/>
                     <button type="button" class="btn btn-success" onclick="save_product()">
@@ -180,7 +181,7 @@ $BranchModel = new Branch();
     $(document).ready(function () {
         $("#producttype").change(function () {
             var type_id = $("#producttype").val();
-            var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/getsubproduct') ?>";
+            var url = "<?php echo Yii::app()->createUrl('clinicstoreproduct/getsubproduct') ?>";
             var data = {type_id: type_id};
             $.post(url, data, function (datas) {
                 $("#boxsubproducttype").html(datas);
@@ -232,24 +233,26 @@ $BranchModel = new Branch();
 
         Calculator();
     }
-
+    
+    /*
     function getitem(number) {
         var product_id = $("#product_id").val();
-        var url = "<?php echo Yii::app()->createUrl('centerstockmix/getitem') ?>";
+        var url = "<?//php echo Yii::app()->createUrl('centerstockmix/getitem') ?>";
         var data = {product_id: product_id, number: number};
         $.post(url, data, function (datas) {
             $("#item").html(datas);
         });
     }
+    */
 
     function save_product() {
-        var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/saveproduct') ?>";
+        var url = "<?php echo Yii::app()->createUrl('clinicstoreproduct/saveproduct') ?>";
         var product_id = $("#product_id").val();
         var number = $("#number").val();
         var lotnumber = $("#lotnumber").val();
         var generate = $("#generate").val();
         var expire = $("#expire").val();
-
+        var branch = $("#branch").val();
         if (number == '' || lotnumber == '' || generate == '' || expire == '') {
             $("#f_error").show().delay(5000).fadeOut(500);
             return false;
@@ -260,11 +263,12 @@ $BranchModel = new Branch();
             number: number,
             lotnumber: lotnumber,
             generate: generate,
-            expire: expire
+            expire: expire,
+            branch: branch
         };
 
         $.post(url, data, function (success) {
-            window.location = "<?php echo Yii::app()->createUrl('centerstoreproduct/index') ?>";
+            window.location = "<?php echo Yii::app()->createUrl('clinicstoreproduct/index',array('branch' => $branch)) ?>";
         });
     }
 
@@ -300,7 +304,7 @@ $BranchModel = new Branch();
         var costs = parseInt($("#costs").val());
         var total = (costs * number);
         $("#total").val(total);
-        getitem(number);
+        //getitem(number);
     }
 
     function formatThousands(n, dp) {
@@ -311,9 +315,11 @@ $BranchModel = new Branch();
         return s.substr(0, i + 3) + r + (d ? '.' + Math.round(d * Math.pow(10, dp || 2)) : '');
     }
 
-
+    
+    /*
+    
     function cutstock() {
-        var url = "<?php echo Yii::app()->createUrl('centerstoreproduct/cutstock') ?>";
+        var url = "<?//php echo Yii::app()->createUrl('centerstoreproduct/cutstock') ?>";
         var productID = $("#product_id").val();
         var number = $("#number").val();
         var data = {product_id: productID,number: number};
@@ -321,5 +327,6 @@ $BranchModel = new Branch();
             getitem(number);
         });
     }
+    */
 </script>
 

@@ -20,7 +20,9 @@
     <p class="note">Fields with <span class="required">*</span> are required.</p>
 
     <?php echo $form->errorSummary($model); ?>
-
+<div class="row">
+        <h4>ข้อมูลสาขา</h4>
+    </div>
     <div class="row">
         <?php echo $form->labelEx($model, 'branchname'); ?>
         <?php echo $form->textField($model, 'branchname', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
@@ -66,12 +68,36 @@
         <?php echo $form->error($model, 'contact'); ?>
 
     </div>
+    
+    <div class="row">
+        <?php echo $form->labelEx($model, 'taxnumber'); ?>
+        <?php echo $form->textField($model, 'taxnumber', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'taxnumber'); ?>
+    </div>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'active'); ?>
         <?php echo $form->checkBox($model, 'active', array('value' => 1, 'uncheckValue' => null)); ?>
         <?php echo $form->error($model, 'active'); ?>
     </div>
+    <hr/>
+    <div class="row">
+        <h4>ส่วนผู้จัดการ</h4>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'menagers'); ?>
+        <?php echo $form->textField($model, 'menagers', array('size' => 60, 'maxlength' => 255, 'class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'menagers'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model, 'telmenager'); ?>
+        <?php echo $form->textField($model, 'telmenager', array('size' => 60, 'maxlength' => 10, 'class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'telmenager'); ?>
+    </div>
+
+    
+
     <hr/>
     <div class="row buttons" style=" margin-top: 20px;">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-success')); ?>

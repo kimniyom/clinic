@@ -39,8 +39,11 @@ $config = new Configweb_model();
                 <th>ล๊อตที่</th>
                 <th>ผลิต</th>
                 <th>หมดอายุ</th>
+                <th>นำเข้า</th>
                 <th style=" text-align: right;">คงเหลือ</th>
+                <!--
                 <th style=" text-align: center;">รายละเอียด</th>
+                -->
             </tr>
         </thead>
         <tbody>
@@ -49,7 +52,7 @@ $config = new Configweb_model();
             foreach ($product as $last):
                 //$img_title = $product_model->get_images_product_title($last['product_id']);
                 $productID = $last['product_id'];
-                $link = Yii::app()->createUrl('centerstockproduct/detail&product_id=' . $last['product_id']);
+                $link = Yii::app()->createUrl('clinicstockproduct/detail&product_id=' . $last['product_id']);
                 $i++;
                 ?>
                 <tr>
@@ -67,8 +70,11 @@ $config = new Configweb_model();
                     <td><?php echo $last['lotnumber'] ?></td>
                     <td><?php echo $config->thaidate($last['generate']) ?></td>
                     <td><?php echo $config->thaidate($last['expire']) ?></td>
-                    <td style=" text-align: right;"><?php echo $last['total'] . ' ' . $last['unit'] ?></td>
-                    <td style="text-align: center;"><a href="<?php echo $link ?>">รายละเอียด</a></td>
+                    <td style=" text-align: right;"><?php echo number_format($last['number']) . ' ' . $last['unit'] ?></td>
+                    <td style=" text-align: right;"><?php echo number_format($last['total']) . ' ' . $last['unit'] ?></td>
+                    <!--
+                    <td style="text-align: center;"><a href="<?//php echo $link ?>">รายละเอียด</a></td>
+                    -->
                 </tr>
             <?php endforeach; ?>
         </tbody>

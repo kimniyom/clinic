@@ -1,256 +1,117 @@
 <?php
 
-class Orders {
+/**
+ * This is the model class for table "orders".
+ *
+ * The followings are the available columns in table 'orders':
+ * @property integer $id
+ * @property string $order_id
+ * @property integer $branch
+ * @property double $distcount
+ * @property double $price
+ * @property integer $status
+ * @property integer $author
+ * @property string $create_date
+ * @property string $d_update
+ *
+ * The followings are the available model relations:
+ * @property Listorder[] $listorders
+ */
+class Orders extends CActiveRecord {
 
-    function Get_last_order($user_id = null) {
-        $sql = "SELECT MAX(id) AS id FROM orders WHERE pid = '$user_id' ";
-        $rs = Yii::app()->db->createCommand($sql)->queryRow();
-        return $rs['id'];
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName() {
+        return 'orders';
     }
 
-    function Get_status_last_order($user_id = null) {
-        $id = $this->Get_last_order($user_id);
-        $sql = "SELECT order_id,active FROM orders WHERE id = '$id' ";
-        $result = Yii::app()->db->createCommand($sql)->queryRow();
-        if ($result['active'] != '0' || empty($result)) {
-            $order_id = $this->autoId("orders", 'order_id', '7');
-            $columns = array(
-                "order_id" => $order_id,
-                "pid" => $user_id,
-                "order_date" => date("Y-m-d")
-            );
-            Yii::app()->db->createCommand()
-                    ->insert("orders", $columns);
-        } else {
-            $order_id = $result['order_id'];
-        }
-
-        return $order_id;
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules() {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('branch, status, author', 'numerical', 'integerOnly' => true),
+            array('distcount, price', 'numerical'),
+            array('order_id', 'length', 'max' => 10),
+            array('create_date, d_update', 'safe'),
+            // The following rule is used by search().
+            // @todo Please remove those attributes that should not be searched.
+            array('id, order_id, branch, distcount, price, status, author, create_date, d_update', 'safe', 'on' => 'search'),
+        );
     }
 
-    function duplicate_product($order_id = null, $product_id = null) {
-        $query = "SELECT COUNT(*) AS TOTAL
-                        FROM basket
-                        WHERE order_id = '$order_id' AND product_id = '$product_id' ";
-        $rs = Yii::app()->db->createCommand($query)->queryRow();
-
-        if ($rs['TOTAL'] > 0) {
-            $product = 1;
-        } else {
-            $product = 0;
-        }
-
-        return $product;
+    /**
+     * @return array relational rules.
+     */
+    public function relations() {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'listorders' => array(self::HAS_MANY, 'Listorder', 'order_id'),
+        );
     }
 
-    function get_duplicate_product($order_id = null, $product_id = null) {
-        $query = "SELECT id,product_num,product_price,product_price_sum
-                  FROM basket
-                  WHERE order_id = '$order_id' AND product_id = '$product_id' ";
-        $rs = Yii::app()->db->createCommand($query)->queryRow();
-        return $rs;
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels() {
+        return array(
+            'id' => 'ID',
+            'order_id' => 'รหัสรายการ',
+            'branch' => 'รหัสสาขา',
+            'distcount' => 'ส่วนลด',
+            'price' => 'ราคารวม',
+            'status' => 'สถานะสั่งซื่อ 0 = ยังไม่ได้ของ,1 = ปลายทางส่งของ,2 = ต้นทางรับของ',
+            'author' => 'ผู้สั่งของ',
+            'create_date' => 'วันที่สั่งของ',
+            'd_update' => 'D Update',
+        );
     }
 
-    function _get_list_order($order_id = null) {
-        $sql = "SELECT p.product_id,l.id,p.product_price,l.product_num,l.product_price_sum,p.product_name,p.product_detail
-                FROM basket l INNER JOIN product p ON l.product_id = p.product_id
-                WHERE order_id = '$order_id' ";
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     *
+     * Typical usecase:
+     * - Initialize the model fields with values from filter form.
+     * - Execute this method to get CActiveDataProvider instance which will filter
+     * models according to data in model fields.
+     * - Pass data provider to CGridView, CListView or any similar widget.
+     *
+     * @return CActiveDataProvider the data provider that can return the models
+     * based on the search/filter conditions.
+     */
+    public function search() {
+        // @todo Please modify the following code to remove attributes that should not be searched.
 
-        return Yii::app()->db->createCommand($sql)->queryAll();
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('order_id', $this->order_id, true);
+        $criteria->compare('branch', $this->branch);
+        $criteria->compare('distcount', $this->distcount);
+        $criteria->compare('price', $this->price);
+        $criteria->compare('status', $this->status);
+        $criteria->compare('author', $this->author);
+        $criteria->compare('create_date', $this->create_date, true);
+        $criteria->compare('d_update', $this->d_update, true);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
     }
 
-    //ดึงวิธีการขนส่งมาแสดง
-    function get_transport_in_order($order_id = null){
-      $query = "SELECT o.transport,t.price
-                FROM orders o INNER JOIN transport t ON o.transport = t.id
-                WHERE o.order_id = '$order_id' ";
-      return Yii::app()->db->createCommand($query)->queryRow();
+    /**
+     * Returns the static model of the specified AR class.
+     * Please note that you should have this exact method in all your CActiveRecord descendants!
+     * @param string $className active record class name.
+     * @return Orders the static model class
+     */
+    public static function model($className = __CLASS__) {
+        return parent::model($className);
     }
-
-    function get_order_user($pid = null) {
-        $query = "SELECT o.order_id,SUM(b.product_num) AS product_total,SUM(b.product_price_sum) AS price_total,o.order_date
-                        FROM orders o INNER JOIN basket b ON o.order_id = b.order_id
-                        WHERE pid = '$pid' AND (o.active = '4' OR o.active = '5')
-                        GROUP BY o.order_id";
-
-        $result = Yii::app()->db->createCommand($query)->queryAll();
-        return $result;
-    }
-
-    //หาจำนวนเงินการสั่งซื้อในแต่ละเดือน
-    function get_order_month($pid = null) {
-        $query = "SELECT m.id,m.month_th,
-                        IFNULL(Q1.PRICE_TOTAL,0) AS PRICE_TOTAL
-                        FROM `month` m
-                        LEFT JOIN
-                        (
-                        SELECT SUBSTR(o.order_date,6,2) AS id,
-                                SUM(b.product_num) AS PRODUCT_TOTAL,
-                                SUM(b.product_price_sum) AS PRICE_TOTAL
-                        FROM orders o
-                        INNER JOIN basket b ON o.order_id = b.order_id
-                        WHERE o.pid = '$pid' AND LEFT(o.order_date,4) = YEAR(NOW()) AND (active = '4' OR active = '5')
-                        GROUP BY SUBSTR(o.order_date,6,2)
-                        ) Q1 ON m.id = Q1.id
-
-                        ORDER BY m.id ";
-
-        $result = Yii::app()->db->createCommand($query)->queryAll();
-        return $result;
-    }
-
-    //หาจำนวนการสั่งซื้อในแต่ละเดือน
-    function get_order_month_visit($pid = null) {
-        $query = "SELECT m.id,m.month_th,
-                        IFNULL(Q1.TOTAL,0) AS TOTAL
-                        FROM `month` m
-                        LEFT JOIN
-                        (
-                        SELECT SUBSTR(o.order_date,6,2) AS id,
-                        COUNT(*) AS TOTAL
-                        FROM orders o
-                        WHERE o.pid = '$pid' AND LEFT(o.order_date,4) = YEAR(NOW()) AND (active = '4' OR active = '5')
-                        GROUP BY SUBSTR(o.order_date,6,2)
-                        ) Q1 ON m.id = Q1.id
-
-                        ORDER BY m.id ";
-
-        $result = Yii::app()->db->createCommand($query)->queryAll();
-        return $result;
-    }
-
-    //หาจำนวนการสั่งซื้อในแต่ประเภท
-    function get_order_type($pid = null) {
-        $query = "SELECT t.type_name,IFNULL(Q1.price_total,0) AS TOTAL
-                        FROM product_type t
-
-                        LEFT JOIN
-                        (
-                        SELECT p.type_id,SUM(b.product_price_sum) AS price_total
-                        FROM basket b INNER JOIN product p ON b.product_id = p.product_id
-                        INNER JOIN orders o ON b.order_id = o.order_id
-                        WHERE o.pid = '$pid' AND  LEFT(o.order_date,4) = YEAR(NOW()) AND (active = '4' OR active = '5')
-                        GROUP BY p.type_id
-                        ) Q1
-
-                        ON t.type_id = Q1.type_id
-                        ORDER BY t.type_id";
-
-        $result = Yii::app()->db->createCommand($query)->queryAll();
-        return $result;
-    }
-
-    //หารายการสั่งซื้อที่ยังไม่โอนเงิน
-    function get_order_payable($pid = null) {
-        $query = "SELECT o.order_id,o.order_date,
-                  SUM(b.product_num) AS PRODUCT_TOTAL,
-                  (SUM(b.product_price_sum) + t.price) AS PRICE_TOTAL
-                        FROM orders o INNER JOIN basket b ON o.order_id = b.order_id
-                        INNER JOIN transport t ON o.transport = t.id
-                        WHERE pid = '$pid' AND o.active = '1'
-                        GROUP BY o.order_id ORDER BY o.order_id DESC";
-        $result = Yii::app()->db->createCommand($query)->queryAll();
-        return $result;
-    }
-
-    //หารายการรอตรวจสอบยอดเงิน
-    function get_order_verify($pid = null) {
-        $query = "SELECT o.order_id,o.order_date,SUM(b.product_num) AS PRODUCT_TOTAL,(SUM(b.product_price_sum)+ t.price) AS PRICE_TOTAL
-                        FROM orders o INNER JOIN basket b ON o.order_id = b.order_id
-                        INNER JOIN transport t ON o.transport = t.id
-                        WHERE pid = '$pid ' AND o.active = '2'
-                        GROUP BY o.order_id ORDER BY o.order_id DESC";
-        $result = Yii::app()->db->createCommand($query)->queryAll();
-        return $result;
-    }
-
-    //หารายการรอจัดส่ง
-    function get_order_wait_send($pid = null) {
-        $query = "SELECT o.order_id,o.order_date,SUM(b.product_num) AS PRODUCT_TOTAL,SUM(b.product_price_sum) AS PRICE_TOTAL
-                        FROM orders o INNER JOIN basket b ON o.order_id = b.order_id
-                        WHERE pid = '$pid' AND (active = '3' OR active = '4')
-                        GROUP BY o.order_id ORDER BY o.order_id DESC";
-        $result = Yii::app()->db->createCommand($query)->queryAll();
-        return $result;
-    }
-
-    //รายการจัดส่งแล้ว
-    function get_send($pid = null) {
-        $query = "SELECT o.order_id,o.order_date,SUM(b.product_num) AS PRODUCT_TOTAL,SUM(b.product_price_sum) AS PRICE_TOTAL,
-                        date_send,postcode
-                        FROM orders o INNER JOIN basket b ON o.order_id = b.order_id
-                        WHERE pid = '$pid' AND active = '5'
-                        GROUP BY o.order_id ORDER BY o.order_id DESC";
-        $result = Yii::app()->db->createCommand($query)->queryAll();
-        return $result;
-    }
-
-    //นับจำนวนออเดอร์ที่ยังไม่ได้ชำระเงินของสมาชิกคนนั้น
-    function count_informpayment($pid = null) {
-        $rs = Yii::app()->db->createCommand()
-                ->select('COUNT(*) AS TOTAL')
-                ->from('orders')
-                ->where('pid=:pid AND active = 1', array(':pid' => $pid))
-                ->queryRow();
-
-        return $rs['TOTAL'];
-    }
-
-    //นับจำนวนออเดอร์ที่ชำระเงินรอการตรวจสอบ
-    function count_verify($pid = null) {
-        $rs = Yii::app()->db->createCommand()
-                ->select('COUNT(*) AS TOTAL')
-                ->from('orders')
-                ->where('pid=:pid AND active = 2', array(':pid' => $pid))
-                ->queryRow();
-
-        return $rs['TOTAL'];
-    }
-
-    //นับจำนวนออเดอร์ที่ชำระเงินตรวจสอบและรอการจัดส่ง
-    function count_wait_send($pid = null) {
-        $rs = Yii::app()->db->createCommand()
-                ->select('COUNT(*) AS TOTAL')
-                ->from('orders')
-                ->where('pid=:pid AND (active = 3 OR active = 4)', array(':pid' => $pid))
-                ->queryRow();
-
-        return $rs['TOTAL'];
-    }
-
-    //นับจำนวนออเดอร์ที่จัดส่งแล้ว
-    function count_send($pid = null) {
-        $rs = Yii::app()->db->createCommand()
-                ->select('COUNT(*) AS TOTAL')
-                ->from('orders')
-                ->where('pid=:pid AND active = 5', array(':pid' => $pid))
-                ->queryRow();
-
-        return $rs['TOTAL'];
-    }
-
-    function get_price_transport($order_id = null){
-      $rs = "SELECT t.price
-            FROM orders o INNER JOIN transport t ON o.transport = t.id
-            WHERE o.order_id = '$order_id' ";
-      $r = Yii::app()->db->createCommand($rs)->queryRow();
-      return $r['price'];
-    }
-
-    //เช็คร่ยการสั่งซื้อที่เลยเวลาชำระเงิน
-    function check_order_overtime($pid = null){
-        $query = "SELECT * FROM orders WHERE active IN('0','1') AND pid = '$pid' ";
-        $rs = Yii::app()->db->createCommand($query)->queryAll();
-        return $rs;
-    }
-
-    //เช็คว่ามีสินค้าในการสั่งหรือไม่
-    function check_product_inorder($order_id = null){
-        $query = "SELECT COUNT(*) AS total FROM basket WHERE order_id = '$order_id' ";
-        $rs = Yii::app()->db->createCommand($query)->queryRow();
-        return $rs['total'];
-    }
-    
 
     function autoId($table, $value, $number) {
         $rs = Yii::app()->db->createCommand("Select Max($value)+1 as MaxID from  $table")->queryRow(); //เลือกเอาค่า id ที่มากที่สุดในฐานข้อมูลและบวก 1 เข้าไปด้วยเลย
@@ -264,4 +125,47 @@ class Orders {
         return $std_id;
     }
 
+    function Getlistorder($order_id = null) {
+        $sql = "SELECT l.id,l.product_id,l.number,
+            l.distcountpercent,l.distcountprice,
+            c.product_price,c.costs,c.unit,p.product_name,p.product_nameclinic,u.unit AS unitname
+                FROM listorder l INNER JOIN clinic_stockproduct c ON l.product_id = c.product_id
+                INNER JOIN center_stockproduct p ON c.product_id = p.product_id
+                INNER JOIN unit u ON c.unit = u.id WHERE l.order_id = '$order_id' ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+    
+    function GetorderInBranch($branch){
+        $sql = "SELECT o.*,SUM(l.number) AS total,SUM(l.pricetotal) AS pricetotal
+                FROM orders o INNER JOIN listorder l ON o.order_id = l.order_id
+                WHERE o.branch = '$branch' 
+                GROUP BY o.order_id ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+    
+    function SearchOrder($datestart = null,$dateend = null,$status = null,$branch = null){
+        if(!empty($status)){
+            $WARESTATUS = " AND o.status = '$status' ";
+        } else {
+            $WARESTATUS = "";
+        }
+        
+        $sql = "SELECT o.*,SUM(l.number) AS total,SUM(l.pricetotal) AS pricetotal
+                FROM orders o INNER JOIN listorder l ON o.order_id = l.order_id
+                WHERE o.create_date BETWEEN '$datestart' AND '$dateend' AND o.branch = '$branch' $WARESTATUS 
+                GROUP BY o.order_id ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+    
+    function SetstatusOrder($status = null){
+        if($status == '0'){
+            $statusVal = "รอการยืนยันจากปลายทาง";
+        } else if($status == '1'){
+            $statusVal = "อยู่ระหว่างการจัดส่ง";
+        } else if($status == '2'){
+            $statusVal = "สินค้าถึงผู้รับ";
+        }
+        
+        return $statusVal;
+    }
 }

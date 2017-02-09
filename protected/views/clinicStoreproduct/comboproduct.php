@@ -1,6 +1,6 @@
 <select id="product" class="form-control" onchange="Getdetailproduct();">
     <?php foreach ($product as $rs): ?>
-        <option value="<?php echo $rs['product_id'] ?>"><?php echo $rs['product_name'] ?></option>
+        <option value="<?php echo $rs['product_id'] ?>"><?php echo $rs['product_nameclinic'] ?></option>
     <?php endforeach; ?>
 </select>
 

@@ -14,15 +14,18 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitemName/_form.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/CenterStockproduct.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/storeclinic/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/clinicStockproduct/data.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStockproductController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/clinicStockproduct/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/StoreclinicController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ClinicStockproductController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/ClinicStockproduct.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/companycenter/_form.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ListorderController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/companycenter/update.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/StoreController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/listdata.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/create.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Orders.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CompanycenterController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/OrdersController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/view.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/store/index.php</file>
         </group>
     </open-files>
 </project-private>

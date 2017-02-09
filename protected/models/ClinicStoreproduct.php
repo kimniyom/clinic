@@ -109,7 +109,7 @@ class ClinicStoreproduct extends CActiveRecord {
         return parent::model($className);
     }
 
-    public function Searchstore($type_id, $subproducttype) {
+    public function Searchstore($type_id, $subproducttype,$branch) {
         if ($type_id == '' && $subproducttype == '') {
             $where = "1=1";
         } else if ($type_id != '' && $subproducttype == '') {
@@ -117,12 +117,13 @@ class ClinicStoreproduct extends CActiveRecord {
         } else {
             $where = "c.subproducttype = '$subproducttype' ";
         }
+        
         $sql = "SELECT s.*,c.product_name,c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name
-				FROM center_storeproduct s INNER JOIN center_stockproduct c ON s.product_id = c.product_id
+				FROM clinic_storeproduct s INNER JOIN center_stockproduct c ON s.product_id = c.product_id
 				INNER JOIN unit u ON c.unit = u.id
 				INNER JOIN product_type t ON c.type_id = t.id
 				INNER JOIN product_type pt ON c.subproducttype = pt.id 
-				WHERE $where
+				WHERE $where AND s.branch = '$branch'
 				ORDER BY s.d_update,s.lotnumber";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }

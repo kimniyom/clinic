@@ -1,17 +1,17 @@
 <?php
 $this->breadcrumbs = array(
-    "คลังสินค้า" => array('store/index'),
-    "คลังสินค้า"
+    "คลังสินค้า" => array('storeclinic/index'),
+    "คลังสินค้า (สาขา" . $branchname . ")"
 );
 
 $web = new Configweb_model();
 ?>
-
+<input type="hidden" id="branch" value="<?php echo $branch ?>"/>
 <div class="panel panel-info">
     <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
         คลังสินค้า  <span id="loading"></span>
         <div class="pull-right">
-            <a href="<?php echo Yii::app()->createUrl('clinicstoreproduct/create') ?>">
+            <a href="<?php echo Yii::app()->createUrl('clinicstoreproduct/create', array('branch' => $branch)) ?>">
                 <div class="btn btn-success btn-sm">
                     <i class="fa fa-plus"></i>
                     <i class="fa fa-cart-plus"></i>
@@ -60,8 +60,8 @@ $web = new Configweb_model();
 
         <div id="showdata">
 
+        </div>
     </div>
-</div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -80,9 +80,13 @@ $web = new Configweb_model();
         var loading = '<i class="fa fa-spinner fa-spin fa-fw"></i>';
         $("#loading").html(loading);
         var type_id = $("#producttype").val();
+        var branch = $("#branch").val();
         var subproducttype = $("#subproducttype").val();
         var url = "<?php echo Yii::app()->createUrl('clinicstoreproduct/getdatastockproduct') ?>";
-        var data = {type_id: type_id,subproducttype: subproducttype};
+        var data = {
+            type_id: type_id,
+            subproducttype: subproducttype,
+            branch: branch};
         $.post(url, data, function (datas) {
             $("#loading").html('');
             $("#showdata").html(datas);

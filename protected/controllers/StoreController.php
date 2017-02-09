@@ -7,7 +7,8 @@ class StoreController extends Controller {
     public function actionIndex() {
         //$Type = new ProductType();
         //$data['type'] = ProductType::model()->findAll("");
-        $this->render('index');
+        $data['company'] = Companycenter::model()->find("id = '1'");
+        $this->render('index',$data);
     }
     
     public function actionProducttype() {
