@@ -125,5 +125,6 @@ class CenterStockitem extends CActiveRecord {
                 WHERE i.itemid = '$itemid' ";
         return Yii::app()->db->createCommand($sql)->queryRow()['total'];
     }
+    
 
 }

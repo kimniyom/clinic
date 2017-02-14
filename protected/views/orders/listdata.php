@@ -85,12 +85,12 @@ $Thaibath = new Thaibaht();
         <tr>
             <td colspan="6" style=" text-align: center;">
                 <?php
-                $pricetotal = number_format(($priceresult + $taxresult), 2);
+                $pricetotal = ($priceresult + $tax);
                 echo "(".$Thaibath->convert($pricetotal).")";
                 ?>
             </td>
             <td>รวมเงินทั้งสิ้น</td>
-            <td style=" text-align: right;"><?php echo $pricetotal ?></td>
+            <td style=" text-align: right;"><?php echo number_format(sprintf('%.2f',$pricetotal),2); ?></td>
             <td></td>
         </tr>
     </tfoot>

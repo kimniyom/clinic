@@ -24,7 +24,7 @@ $Thaibath = new Thaibaht();
     <i class="fa fa-print"></i> print
 </button>
 
-<div class="well" style=" border-radius: 0px; background: #FFFFFF; position: relative;" id="printorder">
+<div class="well" style=" border-radius: 0px; background: #FFFFFF; position: relative; max-width: 768px;" id="printorder">
     <div style=" text-align: center; margin-bottom: 10px;">
         <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
         <?php echo $BranchModel['address']; ?><br/>
@@ -96,7 +96,7 @@ $Thaibath = new Thaibaht();
                     <td><?php echo $i ?></td>
                     <td><?php echo $rs['product_id'] ?></td>
                     <td><?php echo $rs['product_nameclinic'] ?></td>
-                    <td><?php echo $rs['product_nameclinic'] ?></td>
+                    <td><?php echo $rs['product_name'] ?></td>
                     <td style=" text-align: center;"><?php echo number_format($rs['number']) ?></td>
                     <td style=" text-align: center;"><?php echo $rs['unitname'] ?></td>
                     <td style=" text-align: right;"><?php echo number_format($rs['costs'], 2) ?></td>
@@ -117,7 +117,7 @@ $Thaibath = new Thaibaht();
             </tr>
             <tr>
                 <td>ส่วนลดคิดเป็นเงิน</td>
-                <td style=" text-align: right;"><?php echo number_format($sumdistcount,2) ?></td>
+                <td style=" text-align: right;"><?php echo number_format($sumdistcount, 2) ?></td>
             </tr>
             <tr>
                 <td>ราคาหลังหักส่วนลด</td>
@@ -141,12 +141,12 @@ $Thaibath = new Thaibaht();
             <tr>
                 <td colspan="7" style=" text-align: center;">
                     <?php
-                    $pricetotal = ($priceresult + $taxresult);
+                    $pricetotal = ($priceresult + $tax);
                     echo "(" . $Thaibath->convert($pricetotal) . ")";
                     ?>
                 </td>
                 <td>รวมเงินทั้งสิ้น</td>
-                <td style=" text-align: right;"><?php echo number_format($pricetotal, 2) ?></td>
+                <td style=" text-align: right;"><?php echo number_format(sprintf('%.2f', $pricetotal), 2); ?></td>
             </tr>
         </tfoot>
     </table>

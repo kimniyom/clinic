@@ -30,7 +30,7 @@ class OrdersController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'loaddata','save','search'),
+                'actions' => array('create', 'update', 'loaddata', 'save', 'search', 'deleteorder','confirmorder','cutitems'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -48,13 +48,40 @@ class OrdersController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($order_id = null) {
+        Yii::app()->db->createCommand()->delete("temp_item");
+        $ModelMix = new CenterStockmix();
         $order = Orders::model()->find("order_id = '$order_id'");
         $branchId = $order['branch'];
         $data['BranchModel'] = Branch::model()->find("id = '$branchId'");
         $OrderModel = new Orders();
         $data['order'] = $order;
         $data['orderlist'] = $OrderModel->Getlistorder($order_id);
-        $this->render('view',$data);
+
+        if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '5') {
+            $ModelMix = new CenterStockmix();
+            $OrderModel = new Orders();
+            $productInorder = $OrderModel->GetlistorderSum($order_id);
+            foreach ($productInorder as $product) {
+                $product_id = $product['product_id'];
+                $number = $product['number'];
+                $mixer = $ModelMix->GetiteminproductTotal($product_id, $number);
+                foreach ($mixer as $rx):
+                    $columns = array(
+                        "itemid" => $rx['itemid'],
+                        "order_id" => $order_id,
+                        "itemcode" => $rx['itemcodes'],
+                        "number" => $rx['itemtotal'],
+                        "itemname" => $rx['itemname']
+                    );
+                    Yii::app()->db->createCommand()->insert("temp_item", $columns);
+                endforeach;
+            }
+            $sql = "SELECT t.*,SUM(t.number) AS number FROM temp_item t GROUP BY t.itemcode";
+            $data['items'] = Yii::app()->db->createCommand($sql)->queryAll();
+            $this->render('viewcenter', $data);
+        } else {
+            $this->render('view', $data);
+        }
     }
 
     /**
@@ -181,16 +208,65 @@ class OrdersController extends Controller {
 
         Yii::app()->db->createCommand()->insert("orders", $columns);
     }
-    
-    public function actionSearch(){
+
+    public function actionSearch() {
         $Model = new Orders();
         $datestart = Yii::app()->request->getPost('datestart');
         $dateend = Yii::app()->request->getPost('dateend');
-        $status =  Yii::app()->request->getPost('status');
+        $status = Yii::app()->request->getPost('status');
         $branch = Yii::app()->request->getPost('branch');
-        
-        $data['order'] = $Model->SearchOrder($datestart, $dateend, $status,$branch);
-        $this->renderPartial('resultsearch',$data);
+        $order_id = Yii::app()->request->getPost('order_id');
+
+        $data['order'] = $Model->SearchOrder($datestart, $dateend, $status, $branch,$order_id);
+        $this->renderPartial('resultsearch', $data);
+    }
+
+    public function actionDeleteorder() {
+        $order_id = Yii::app()->request->getPost('order_id');
+        Yii::app()->db->createCommand()
+                ->delete("orders", "order_id = '$order_id' ");
+    }
+
+    public function actionConfirmorder() {
+        $order_id = Yii::app()->request->getPost('order_id');
+        $columns = array("status" => '1');
+        Yii::app()->db->createCommand()->update("orders", $columns, "order_id = '$order_id' ");
+
+        $sql = "SELECT * FROM temp_item WHERE order_id = '$order_id' ";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+        foreach ($result as $rs):
+            $itemid = $rs['itemid'];
+            $number = $rs['number'];
+            $this->actionCutitems($itemid, $number);
+        endforeach;
+    }
+
+    public function actionCutitems($itemid, $number) {
+        $sql = "SELECT *
+                FROM center_stockitem i
+                WHERE i.itemid = '$itemid' AND i.totalcut > 0
+                ORDER BY i.lotnumber,i.create_date ASC ";
+
+        $item = Yii::app()->db->createCommand($sql)->queryAll();
+        //ดึงข้อมูลตารางitem
+        $numbercut = 0;
+        foreach ($item as $rs):
+            $id = $rs['id'];
+            $totalinstock = $rs['totalcut']; //คงเหลือในสต๊อกที่ตัดได้
+            if ($totalinstock > $number) { //<==กรณีสินค้าในล๊อตนั้นมีมากกว่า
+                $totalstock = ($totalinstock - $number);
+                $numbercut = $totalstock;
+                $columns = array("totalcut" => $numbercut);
+                Yii::app()->db->createCommand()->update("center_stockitem", $columns, "id = '$id' ");
+                break;
+            } else if ($totalinstock < $number) {//<==กรณีสินค้าในล๊อตนั้นมีน้อยกว่า
+                $number = ($number - $totalinstock);
+                //$numbercut = $totalstock;
+                $columns = array("totalcut" => "0");
+                Yii::app()->db->createCommand()->update("center_stockitem", $columns, "id = '$id' ");
+            }
+
+        endforeach;
     }
 
 }

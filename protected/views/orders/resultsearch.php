@@ -31,7 +31,8 @@ $Config = new Configweb_model();
                     <?php if ($rs['status'] == '0') { ?>
                     <a href="<?php echo Yii::app()->createUrl('orders/update',array('order_id' => $rs['order_id']))?>">
                         <i class="fa fa-pencil"></i> แก้ไข</a>
-                        <i class="fa fa-remove"></i> ยกเลิก
+                        <a href="javascript:Deleteorder('<?php echo $rs['order_id']?>')">
+                            <i class="fa fa-remove"></i> ยกเลิก</a>
                     <?php } else { ?>
                         -
                     <?php } ?>

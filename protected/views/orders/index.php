@@ -3,21 +3,21 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'Orders',
+    'ใบสั่งซื้อสินค้า',
 );
 
-$this->menu = array(
-    array('label' => 'Create Orders', 'url' => array('create')),
-    array('label' => 'Manage Orders', 'url' => array('admin')),
-);
 ?>
 
-<h1>Orders</h1>
+<h1>ใบสั่งซื้อสินค้า</h1>
 <a href="<?php echo Yii::app()->createUrl('orders/create', array('branch' => $branch)) ?>">
     <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> สร้างใบสั่งซื้อสินค้า</button>
 </a>
 <br/><br/>
 <div class="row">
+    <div class="col-md-3 col-lg-2">
+        <label>รหัสใบสั่งซื้อ</label>
+        <input type="text" id="ordercode" class="form-control" onkeypress="return chkNumber()" placeholder="กรอกเฉพาะตัวเลข ..."/>
+    </div>
     <div class="col-md-6 col-lg-3">
         <label>เริ่มต้นวันที่</label>
         <div>
@@ -87,11 +87,22 @@ $this->menu = array(
         var datestart = $("#datestart").val();
         var dateend = $("#dateend").val();
         var status = $("#status").val();
+        var ordercode = $("#ordercode").val();
         var branch = "<?php echo $branch ?>";
-        var data = {datestart: datestart, dateend: dateend, branch: branch,status: status};
+        var data = {datestart: datestart, dateend: dateend, branch: branch,status: status,order_id: ordercode};
         $.post(url, data, function (datas) {
             $("#result").html(datas);
         });
     }
     
+    function Deleteorder(order_id){
+        var r = confirm("Are yoou sure ...?");
+        if(r == true){
+            var url = "<?php echo Yii::app()->createUrl('orders/deleteorder')?>";
+            var data = {order_id: order_id};
+            $.post(url,data,function(datas){
+                searchOrders();
+            });
+        }
+    }
 </script>

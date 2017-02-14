@@ -30,7 +30,7 @@ class ClinicStoreproductController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','saveproduct','getsubproduct','getproductinsubtype'),
+                'actions' => array('create', 'update','saveproduct','getsubproduct','getproductinsubtype','getdatastockproduct'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions

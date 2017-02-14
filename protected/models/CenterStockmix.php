@@ -116,4 +116,12 @@ class CenterStockmix extends CActiveRecord {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
+    public function GetiteminproductTotal($product_id = null, $number = null) {
+        $sql = "SELECT x.*,(x.number * $number) AS itemtotal,n.itemcode AS itemcodes,n.itemname,n.unitcut,u.unit
+                FROM center_stockmix x INNER JOIN center_stockitem_name n ON x.itemid = n.id
+                INNER JOIN center_stockunit u ON n.unitcut = u.id
+                WHERE x.product_id = '$product_id' ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
 }

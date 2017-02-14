@@ -59,7 +59,7 @@ $branch = new Branch();
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">สิทธิ์การเข้าถึงสาขา</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">สิทธิ์การใช้งาน</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="menu()">สิทธิ์การใช้งาน</a></li>
         <li role="presentation"><a href="#menureport" aria-controls="menureport" role="tab" data-toggle="tab" onclick="getmenureport()">สิทธิ์การดูรายงาน</a></li>
         <li role="presentation"><a href="#menusetting" aria-controls="menusetting" role="tab" data-toggle="tab" onclick="getmenusetting()">สิทธิ์การตั้งค่า</a></li>
     </ul>

@@ -134,38 +134,52 @@ class Orders extends CActiveRecord {
                 INNER JOIN unit u ON c.unit = u.id WHERE l.order_id = '$order_id' ";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
-    
-    function GetorderInBranch($branch){
+
+    function GetlistorderSum($order_id = null) {
+        $sql = "SELECT l.product_id,SUM(l.number) AS number
+                FROM orders o INNER JOIN listorder l ON o.order_id = l.order_id
+                WHERE o.order_id = '$order_id'
+                GROUP BY l.product_id ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
+    function GetorderInBranch($branch) {
         $sql = "SELECT o.*,SUM(l.number) AS total,SUM(l.pricetotal) AS pricetotal
                 FROM orders o INNER JOIN listorder l ON o.order_id = l.order_id
                 WHERE o.branch = '$branch' 
                 GROUP BY o.order_id ";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
-    
-    function SearchOrder($datestart = null,$dateend = null,$status = null,$branch = null){
-        if(!empty($status)){
+
+    function SearchOrder($datestart = null, $dateend = null, $status = null, $branch = null,$order_id = null) {
+        if($order_id != ''){
+            $WAREORDER = "o.order_id = '$order_id'";
+        } else {
+            $WAREORDER = " 1=1";
+        }
+        if ($status != '') {
             $WARESTATUS = " AND o.status = '$status' ";
         } else {
             $WARESTATUS = "";
         }
-        
+
         $sql = "SELECT o.*,SUM(l.number) AS total,SUM(l.pricetotal) AS pricetotal
                 FROM orders o INNER JOIN listorder l ON o.order_id = l.order_id
-                WHERE o.create_date BETWEEN '$datestart' AND '$dateend' AND o.branch = '$branch' $WARESTATUS 
+                WHERE o.create_date BETWEEN '$datestart' AND '$dateend' AND $WAREORDER AND o.branch = '$branch' $WARESTATUS 
                 GROUP BY o.order_id ";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
-    
-    function SetstatusOrder($status = null){
-        if($status == '0'){
+
+    function SetstatusOrder($status = null) {
+        if ($status == '0') {
             $statusVal = "รอการยืนยันจากปลายทาง";
-        } else if($status == '1'){
+        } else if ($status == '1') {
             $statusVal = "อยู่ระหว่างการจัดส่ง";
-        } else if($status == '2'){
+        } else if ($status == '2') {
             $statusVal = "สินค้าถึงผู้รับ";
         }
-        
+
         return $statusVal;
     }
+
 }
