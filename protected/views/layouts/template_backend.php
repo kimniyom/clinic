@@ -39,7 +39,8 @@
        
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css"/>
         
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
+         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
         <!--
         <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap-material/dist/css/bootstrap-material-design.css" type="text/css" media="all" />
         -->
@@ -134,7 +135,7 @@
                 // Fixes dual-screen position  
                 //                        Most browsers      Firefox
                 var w = 1000;
-                var h = 600;
+                var h = 760;
                 var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
                 var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
 
@@ -421,6 +422,8 @@
 
                 });
             }
+            
+            
         </script>
     </body>
 </html>

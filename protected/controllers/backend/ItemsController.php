@@ -369,7 +369,11 @@ class ItemsController extends Controller {
     
     public function actionComboitem(){
         $items = new Items();
+        $data['itemlist'] = $items->GetProductSell();
+        /*
         $data['itemlist'] = $items->GetItemSell();
+         * 
+         */
         $this->renderPartial('//backend/items/comboitem',$data);
     }
 

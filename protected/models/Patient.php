@@ -139,5 +139,12 @@ class Patient extends CActiveRecord {
 
         return $result;
     }
+    
+    public function GetPatientAll() {
+        $sql = "SELECT id,card,CONCAT(name,' ',lname) AS name FROM patient";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+
+        return $result;
+    }
 
 }

@@ -30,7 +30,7 @@ class OrdersController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'loaddata', 'save', 'search', 'deleteorder','confirmorder','cutitems'),
+                'actions' => array('create', 'update', 'loaddata', 'save', 'search', 'deleteorder', 'confirmorder', 'cutitems', 'print','bill','updatestatus'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -71,7 +71,8 @@ class OrdersController extends Controller {
                         "order_id" => $order_id,
                         "itemcode" => $rx['itemcodes'],
                         "number" => $rx['itemtotal'],
-                        "itemname" => $rx['itemname']
+                        "itemname" => $rx['itemname'],
+                        "unit" => $rx['unit']
                     );
                     Yii::app()->db->createCommand()->insert("temp_item", $columns);
                 endforeach;
@@ -217,7 +218,7 @@ class OrdersController extends Controller {
         $branch = Yii::app()->request->getPost('branch');
         $order_id = Yii::app()->request->getPost('order_id');
 
-        $data['order'] = $Model->SearchOrder($datestart, $dateend, $status, $branch,$order_id);
+        $data['order'] = $Model->SearchOrder($datestart, $dateend, $status, $branch, $order_id);
         $this->renderPartial('resultsearch', $data);
     }
 
@@ -269,4 +270,61 @@ class OrdersController extends Controller {
         endforeach;
     }
 
+    public function actionPrint($order_id = null) { 
+            $order = Orders::model()->find("order_id = '$order_id'");
+            $branchId = $order['branch'];
+            $data['BranchModel'] = Branch::model()->find("id = '$branchId'");
+            $data['logo'] = Logo::model()->find("branch='$branchId'")['logo'];
+            $OrderModel = new Orders();
+            $data['order'] = $order;
+            $data['order_id'] = $order_id;
+            $data['orderlist'] = $OrderModel->Getlistorder($order_id);
+
+
+
+            # mPDF
+            $mPDF1 = Yii::app()->ePdf->mpdf();
+
+            # You can easily override default constructor's params
+            $mPDF1 = Yii::app()->ePdf->mpdf('order-' . $order_id, 'A4');
+
+            # render (full page)
+            //$mPDF1->WriteHTML($this->render('print', $data, true));
+            $mPDF1->WriteHTML($this->renderPartial('print', $data, true));
+            # Outputs ready PDF
+            $mPDF1->Output();
+        }
+        
+            public function actionBill($order_id = null) { 
+            $order = Orders::model()->find("order_id = '$order_id'");
+            $branchId = $order['branch'];
+            $data['BranchModel'] = Branch::model()->find("id = '$branchId'");
+            $data['logo'] = Logo::model()->find("branch='$branchId'")['logo'];
+            $OrderModel = new Orders();
+            $data['order'] = $order;
+            $data['order_id'] = $order_id;
+            $data['orderlist'] = $OrderModel->Getlistorder($order_id);
+
+
+
+            # mPDF
+            $mPDF1 = Yii::app()->ePdf->mpdf();
+
+            # You can easily override default constructor's params
+            $mPDF1 = Yii::app()->ePdf->mpdf('order-' . $order_id, 'A4');
+
+            # render (full page)
+            //$mPDF1->WriteHTML($this->render('print', $data, true));
+            $mPDF1->WriteHTML($this->renderPartial('bill', $data, true));
+            # Outputs ready PDF
+            $mPDF1->Output();
+        }
+    
+        public function actionUpdatestatus(){
+            $order_id = Yii::app()->request->getPost('order_id');
+            $status = Yii::app()->request->getPost('status');
+            $columns = array("status" => $status);
+            Yii::app()->db->createCommand()
+                    ->update("orders", $columns,"order_id = '$order_id' ");
+        }
 }

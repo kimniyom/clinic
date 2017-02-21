@@ -14,21 +14,37 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitemName/_form.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/create.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_report.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Sell.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/product/detail_product.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/bill.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/bill.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/listdata.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Orders.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStoreproductController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/store/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportincome.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/create.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/branch/index.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/viewcenter.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockmix/getitem.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/order.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/view.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/items/comboitem.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/ItemsController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/formreportincome.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStoreproduct/create.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/listdata.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/CenterStockmix.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ClinicStoreproductController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/Orders.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/print.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/view.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStockmixController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterStoreproductController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CompanycenterController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/index.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/OrdersController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/models/CenterStockitem.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/orders/resultsearch.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
     </open-files>
 </project-private>

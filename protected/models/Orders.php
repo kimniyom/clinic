@@ -176,6 +176,8 @@ class Orders extends CActiveRecord {
         } else if ($status == '1') {
             $statusVal = "อยู่ระหว่างการจัดส่ง";
         } else if ($status == '2') {
+            $statusVal = "จัดส่งสินค้าแล้ว";
+        } else if($status == '3'){
             $statusVal = "สินค้าถึงผู้รับ";
         }
 

@@ -64,9 +64,10 @@ $this->breadcrumbs = array(
         <label>สถานะ</label>
         <select class="form-control" id="status">
             <option value="">ทั้งหมด</option>
-            <option value="0">รอปลายทางตอบกลับ</option>
-            <option value="1">อยู่ระหว่างการจัดส่ง</option>
-            <option value="2">สินค้าถึงผู้รับ</option>
+            <option value="0">รอการยืนยันจากปลายทาง</option>
+            <option value="1">ยืนยันการสั่งซื้อ</option>
+            <option value="2">จัดส่งสินค้า</option>
+            <option value="3">สินค้าถึงผู้รับ</option>
         </select>
     </div>
     <div class="col-md-2 col-lg-1">

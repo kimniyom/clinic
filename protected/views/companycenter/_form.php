@@ -62,6 +62,16 @@
             <?php echo $form->error($model, 'memager'); ?>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col-md-2 col-lg-2">
+            <?php echo $form->labelEx($model, 'tax'); ?>
+        </div>
+        <div class="col-md-10 col-lg-10">
+            <?php echo $form->textField($model, 'tax', array('size' => 60, 'maxlength' => 20)); ?>
+            <?php echo $form->error($model, 'tax'); ?>
+        </div>
+    </div>
 
     <div class="row buttons">
         <div class="col-md-2 col-lg-2"></div>

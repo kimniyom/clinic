@@ -30,7 +30,10 @@ class SellController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'Detailservice', 'test', 'result', 'loadorder', 'sell', 'calculator', 'bill', 'confirmorder', 'logsell', "patient"),
+                'actions' => array('index', 'Detailservice', 'test',
+                    'result', 'loadorder', 'sell', 'calculator', 'bill',
+                    'confirmorder', 'logsell', 'patient', 'cutstock'
+                ),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -62,31 +65,37 @@ class SellController extends Controller {
         $card = Yii::app()->request->getPost('card');
         $sellcode = Yii::app()->request->getPost('sellcode');
         $branch = Yii::app()->request->getPost('branch');
+        $number = Yii::app()->request->getPost('number');
 
         $columns = array(
             "itemcode" => $itemcode,
+            "product_id" => $itemcode,
             "card" => $card,
             "sell_id" => $sellcode,
             "user_id" => Yii::app()->user->id,
             "branch" => $branch,
+            "number" => $number,
             "date_sell" => date("Y-m-d")
         );
         Yii::app()->db->createCommand()
                 ->insert("sell", $columns);
 
         //ตักสต๊อก
+        /*
         $stock = array("status" => "1", "flag" => "E");
         Yii::app()->db->createCommand()
                 ->update("items", $stock, "itemcode = '$itemcode'");
+         * 
+         */
     }
 
     public function actionLoadorder() {
         $sell_id = Yii::app()->request->getPost('sell_id');
-        $sql = "SELECT p.product_name,COUNT(*) AS total,p.product_price
-                    FROM sell s INNER JOIN items i ON s.itemcode = i.itemcode
-                    INNER JOIN product p ON i.product_id = p.product_id
-                    WHERE s.sell_id = '$sell_id' 
-                    GROUP BY p.product_id";
+        $sql = "SELECT p.product_id,c.product_nameclinic AS product_name,SUM(s.number) AS total,p.product_price
+                        FROM sell s INNER JOIN clinic_stockproduct p ON s.product_id = p.product_id
+                        INNER JOIN center_stockproduct c ON p.product_id = c.product_id
+                        WHERE s.sell_id = '$sell_id' 
+                        GROUP BY p.product_id";
 
         $data['order'] = Yii::app()->db->createCommand($sql)->queryAll();
         $this->renderPartial('order', $data);
@@ -94,10 +103,14 @@ class SellController extends Controller {
 
     public function actionCalculator() {
         $sell_id = Yii::app()->request->getPost('sell_id');
-        $sql = "SELECT SUM(p.product_price) AS total
-                    FROM sell s INNER JOIN items i ON s.itemcode = i.itemcode
-                    INNER JOIN product p ON i.product_id = p.product_id
-                    WHERE s.sell_id = '$sell_id' ";
+        $sql = "SELECT SUM(Q.total) AS total
+                FROM
+                (
+                        SELECT (SUM(s.number) * p.product_price) AS total
+                        FROM sell s INNER JOIN clinic_stockproduct p ON s.product_id = p.product_id
+                        WHERE s.sell_id = '$sell_id'
+                        GROUP BY s.product_id
+                ) Q ";
         $result = Yii::app()->db->createCommand($sql)->queryRow();
         $json = array("total" => $result['total']);
         echo json_encode($json);
@@ -116,15 +129,24 @@ class SellController extends Controller {
         $Model = new sell();
         $order = $Model->Getlistorder($sell_id);
         foreach ($order as $rs):
+            $product_id = $rs['product_id'];
+            $number = $rs['total'];
+            $this->actionCutstock($product_id, $number);
+            /*
             $itemcode = $rs['itemcode'];
             $columns = array("status" => "1");
             Yii::app()->db->createCommand()
                     ->update("items", $columns, "itemcode = '$itemcode' ");
+             * 
+             */
         endforeach;
-
+        
+        /*
         $confirm = array("confirm" => '1');
         Yii::app()->db->createCommand()
                 ->update("sell", $confirm, "sell_id = '$sell_id' ");
+         * 
+         */
     }
 
     public function actionLogsell() {
@@ -171,7 +193,7 @@ class SellController extends Controller {
                     ->update("logsell", $columns, "sell_id = '$sellcode'");
         }
 
-        //$this->actionConfirmorder($sellcode);
+        $this->actionConfirmorder($sellcode);
     }
 
     public function actionPatient() {
@@ -189,12 +211,40 @@ class SellController extends Controller {
         $str .= "<br/>คุณ : " . $rs['name'] . " " . $rs['lname'];
         $str .= "<br/>เบอร์โทรศัพท์ : " . $rs['tel'];
         $str .= "<br/>ประเภทลูกค้า : " . $rs['grad'];
-        $str .= "<br/> ส่วนลด : ".$rs['distcountsell']." บาท";
+        $str .= "<br/> ส่วนลด : " . $rs['distcountsell'] . " บาท";
         //$str .= "<input type='hidden' id='distcount' class='form-control' value='".$rs['distcountsell']."'/>";
-        $str .= "<script>$(document).ready(function(){ $('#distcount').val(".$rs['distcountsell'].");});</script>";
+        $str .= "<script>$(document).ready(function(){ $('#distcount').val(" . $rs['distcountsell'] . ");});</script>";
         if ($rs) {
             echo $str;
         }
+    }
+
+    public function actionCutstock($product_id, $number) {
+        $sql = "SELECT *
+                FROM clinic_storeproduct i
+                WHERE i.product_id = '$product_id' AND i.total > 0
+                ORDER BY i.lotnumber,i.d_update ASC ";
+
+        $item = Yii::app()->db->createCommand($sql)->queryAll();
+        //ดึงข้อมูลตารางitem
+        $numbercut = 0;
+        foreach ($item as $rs):
+            $id = $rs['id'];
+            $totalinstock = $rs['total']; //คงเหลือในสต๊อกที่ตัดได้
+            if ($totalinstock > $number) { //<==กรณีสินค้าในล๊อตนั้นมีมากกว่า
+                $totalstock = ($totalinstock - $number);
+                $numbercut = $totalstock;
+                $columns = array("total" => $numbercut);
+                Yii::app()->db->createCommand()->update("clinic_storeproduct", $columns, "id = '$id' ");
+                break;
+            } else if ($totalinstock < $number) {//<==กรณีสินค้าในล๊อตนั้นมีน้อยกว่า
+                $number = ($number - $totalinstock);
+                //$numbercut = $totalstock;
+                $columns = array("total" => "0");
+                Yii::app()->db->createCommand()->update("clinic_storeproduct", $columns, "id = '$id' ");
+            }
+
+        endforeach;
     }
 
 }

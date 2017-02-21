@@ -28,12 +28,14 @@ class Companycenter extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('companyname,memager,tel,tax,address','required'),
 			array('companyname, memager', 'length', 'max'=>255),
 			array('tel', 'length', 'max'=>15),
+			array('tax', 'length', 'max'=>20),
 			array('address', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, companyname, address, tel, memager', 'safe', 'on'=>'search'),
+			array('id, companyname, address, tel, memager, tax', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +61,7 @@ class Companycenter extends CActiveRecord
 			'address' => 'ที่อยู่',
 			'tel' => 'เบอร์โทรศัพท์',
 			'memager' => 'ผู้จัดการ',
+			'tax' => 'เลขประจำตัวผู้เสียภาษี'
 		);
 	}
 

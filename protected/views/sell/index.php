@@ -13,9 +13,9 @@ $branchactive = Yii::app()->session['branch'];
 $brancList = $BranchModel->ComboBranchDisabled($branchactive);
 $itemlist = $items->GetItemSell();
 $PatientModel = new Patient();
-$PatientList = $PatientModel->GetPatient();
+$PatientList = $PatientModel->GetPatientAll();
 
-$sell_id = $Config->RandstrgenNumber(5) . trim(time());
+$sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
 ?>
 <div id="content-boxsell" style=" background: #333333;  position: fixed; height: 100%; bottom: 0px;"></div>
 <div class="well" style="border-radius: 0px; padding: 10px; margin-bottom: 0px; border-bottom: none; box-shadow: none;" id="box-sell">
@@ -52,7 +52,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
                 </div>
                 <div class="col-lg-2">
                     จำนวน
-                    <input type="text" class="form-control" id="number" value="1" onkeypress="return chkNumber()" style=" text-align: center;" readonly="readonly"/>
+                    <input type="text" class="form-control" id="number" value="1" onkeypress="return chkNumber()" style=" text-align: center;"/>
                 </div>
                 <div class="col-lg-4">
                     พนักงานขาย
@@ -65,7 +65,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
                     <?php echo $brancList ?>
                 </div>
                 <div class="col-lg-6">
-                    <button type="button" class="btn btn-default btn-block" id="btn-bg-default" onclick="sell()" style="margin-top: 20px;"><i class="fa fa-plus"></i> เพิ่มสินค้า</button>
+                    <button type="button" class="btn btn-default btn-block" id="btnaddproduct" onclick="sell()" style="margin-top: 20px;"><i class="fa fa-plus"></i> เพิ่มสินค้า</button>
                 </div>
             </div>
             <br/>
@@ -79,8 +79,12 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             เงินทอน
             <input type="text" class="form-control" id="change" readonly="readonly" style=" text-align: center; color: #33cc00; font-weight: bold; font-size: 24px; background: #333333;"/>
             <hr style=" border-bottom: #999999 solid 1px;"/>
-            <button type="button" class="btn btn-default btn-block" id="btn-bg-warning" onclick="Check_bill()">
-                <i class="fa fa-money"></i> ชำระเงิน</button>
+            <div style=" text-align: center;">
+                <button type="button" class="btn btn-default" id="btncheckbill" onclick="Check_bill()">
+                    <i class="fa fa-money"></i> ชำระเงิน</button>
+                <button type="button" class="btn btn-default disabled" id="btnprintbill" onclick="PrintBill('<?php echo $sell_id ?>')">
+                    <i class="fa fa-file-archive-o"></i> ใบเสร็จ</button>
+            </div>
         </div>
 
         <div class="col-lg-3" style=" border-left: #999999 solid 1px;">
@@ -96,7 +100,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             </div>
             <?php $url = Yii::app()->createUrl('sell/bill', array("sell_id" => $sell_id)) ?>
             <!--
-            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                             ?>', '<?php //echo $sell_id                                             ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
+            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                              ?>', '<?php //echo $sell_id                                              ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
             -->
             <hr/>
             <button type="button" class="btn btn-danger btn-block" id="btn-bg-danger" onclick="javascript:window.location.reload()"><i class="fa fa-remove"></i> จบการขาย</button>
@@ -168,7 +172,8 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
         var sellcode = $("#sellcode").val();
         var branch = $("#branch").val();
         var card = $("#card").val();
-        var data = {itemcode: itemcode, sellcode: sellcode, card: card, branch: branch};
+        var number = $("#number").val();
+        var data = {itemcode: itemcode, sellcode: sellcode, card: card, branch: branch, number: number};
         if (itemcode == "") {
             alert("กรุณาเลือกสินค้า ...");
             return false;
@@ -178,6 +183,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
             $("#orderlist").html(datas);
             loaditems();
             loadorder();
+            $("#card").attr("disabled",true);
         });
     }
 
@@ -206,6 +212,18 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
         };
         $.post(url, data, function (datas) {
             PrintBill(sellcode);
+            $("#btncheckbill").removeClass("btn btn-default");
+            $("#btncheckbill").addClass("btn btn-default disabled");
+            $("#btnprintbill").removeClass("btn btn-default disabled");
+            $("#btnprintbill").addClass("btn btn-default");
+            $("#btnaddproduct").removeClass("btn btn-default btn-block");
+            $("#btnaddproduct").addClass("btn btn-default btn-block disabled");
+            $("#card").attr("disabled", true);
+            $("#itemcode").attr("disabled", true);
+            $("#number").attr("disabled", true);
+            $("#branch").attr("disabled", true);
+            $("#income").attr("disabled", true);
+
             //$("#orderlist").html(datas);
             //loaditems();
             //loadorder();
@@ -245,6 +263,7 @@ $sell_id = $Config->RandstrgenNumber(5) . trim(time());
 
         $.post(url, data, function (response) {
             var datas = jQuery.parseJSON(response);
+
             $("#_total").val(datas.total);
             //$("#total").text(formatThousands(datas.total) + ".-");
             $("#showtotal").text(formatThousands(datas.total) + ".-");

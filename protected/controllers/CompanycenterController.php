@@ -1,173 +1,197 @@
 <?php
 
-class CompanycenterController extends Controller
-{
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='template_backend';
+class CompanycenterController extends Controller {
 
-	/**
-	 * @return array action filters
-	 */
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);
-	}
+    /**
+     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
+     * using two-column layout. See 'protected/views/layouts/column2.php'.
+     */
+    public $layout = 'template_backend';
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
+    /**
+     * @return array action filters
+     */
+    public function filters() {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
+    /**
+     * Specifies the access control rules.
+     * This method is used by the 'accessControl' filter.
+     * @return array access control rules
+     */
+    public function accessRules() {
+        return array(
+            array('allow', // allow all users to perform 'index' and 'view' actions
+                'actions' => array('index', 'view'),
+                'users' => array('*'),
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update', 'upload'),
+                'users' => array('@'),
+            ),
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                'actions' => array('admin', 'delete'),
+                'users' => array('admin'),
+            ),
+            array('deny', // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
 
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate()
-	{
-		$model=new Companycenter;
+    /**
+     * Displays a particular model.
+     * @param integer $id the ID of the model to be displayed
+     */
+    public function actionView($id) {
+        $this->render('view', array(
+            'model' => $this->loadModel($id),
+        ));
+    }
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+    /**
+     * Creates a new model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     */
+    public function actionCreate() {
+        $model = new Companycenter;
 
-		if(isset($_POST['Companycenter']))
-		{
-			$model->attributes=$_POST['Companycenter'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
+        if (isset($_POST['Companycenter'])) {
+            $model->attributes = $_POST['Companycenter'];
+            if ($model->save())
+                $this->redirect(array('view', 'id' => $model->id));
+        }
 
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
+        $this->render('create', array(
+            'model' => $model,
+        ));
+    }
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+    /**
+     * Updates a particular model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id the ID of the model to be updated
+     */
+    public function actionUpdate($id) {
+        $model = $this->loadModel($id);
 
-		if(isset($_POST['Companycenter']))
-		{
-			$model->attributes=$_POST['Companycenter'];
-			if($model->save())
-				$this->redirect(Yii::app()->createUrl('store/index'));
-		}
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
+        if (isset($_POST['Companycenter'])) {
+            $model->attributes = $_POST['Companycenter'];
+            if ($model->save())
+                $this->redirect(Yii::app()->createUrl('store/index'));
+        }
 
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
-	public function actionDelete($id)
-	{
-		$this->loadModel($id)->delete();
+        $this->render('update', array(
+            'model' => $model,
+        ));
+    }
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-	}
+    /**
+     * Deletes a particular model.
+     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * @param integer $id the ID of the model to be deleted
+     */
+    public function actionDelete($id) {
+        $this->loadModel($id)->delete();
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Companycenter');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        if (!isset($_GET['ajax']))
+            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+    }
 
-	/**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new Companycenter('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Companycenter']))
-			$model->attributes=$_GET['Companycenter'];
+    /**
+     * Lists all models.
+     */
+    public function actionIndex() {
+        $dataProvider = new CActiveDataProvider('Companycenter');
+        $this->render('index', array(
+            'dataProvider' => $dataProvider,
+        ));
+    }
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
+    /**
+     * Manages all models.
+     */
+    public function actionAdmin() {
+        $model = new Companycenter('search');
+        $model->unsetAttributes();  // clear any default values
+        if (isset($_GET['Companycenter']))
+            $model->attributes = $_GET['Companycenter'];
 
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return Companycenter the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($id)
-	{
-		$model=Companycenter::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
+        $this->render('admin', array(
+            'model' => $model,
+        ));
+    }
 
-	/**
-	 * Performs the AJAX validation.
-	 * @param Companycenter $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='companycenter-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
+    /**
+     * Returns the data model based on the primary key given in the GET variable.
+     * If the data model is not found, an HTTP exception will be raised.
+     * @param integer $id the ID of the model to be loaded
+     * @return Companycenter the loaded model
+     * @throws CHttpException
+     */
+    public function loadModel($id) {
+        $model = Companycenter::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        return $model;
+    }
+
+    /**
+     * Performs the AJAX validation.
+     * @param Companycenter $model the model to be validated
+     */
+    protected function performAjaxValidation($model) {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'companycenter-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+    }
+
+    public function actionUpload() {
+        // Define a destination
+        $targetFolder = Yii::app()->baseUrl . '/uploads/logo'; // Relative to the root
+        $sql = "SELECT * FROM companycenter LIMIT 1";
+        $row = Yii::app()->db->createCommand($sql)->queryRow();
+
+        if (!empty($_FILES)) {
+            $tempFile = $_FILES['Filedata']['tmp_name'];
+            $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
+            $FileName = time() . $_FILES['Filedata']['name'];
+            $targetFile = rtrim($targetPath, '/') . '/' . $FileName;
+
+            // Validate the file type
+            $fileTypes = array('jpg', 'jpeg', 'png'); // File extensions
+            $fileParts = pathinfo($_FILES['Filedata']['name']);
+
+            if (in_array($fileParts['extension'], $fileTypes)) {
+                $filename = $targetFolder . '/' . $row['logo'];
+                if (file_exists($filename)) {
+                    unlink($filename);
+                }
+                move_uploaded_file($tempFile, $targetFile);
+                //สั่งอัพเดท
+                $columns = array(
+                    "logo" => $FileName
+                );
+
+                Yii::app()->db->createCommand()
+                        ->update("companycenter", $columns, "id = '1'");
+                echo '1';
+            } else {
+                echo 'Invalid file type.';
+            }
+        }
+    }
+
 }
