@@ -57,18 +57,36 @@ $Thaibath = new Thaibaht();
                     </table>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div style=" padding: 0px;height: 100px;">
-                        <table style=" border: #cccccc solid 2px; float: right; width: 100%;">
-                            <tr style=" border-bottom: #cccccc solid 2px;">
-                                <td>รหัสสั่งซื้อเลขที่ : </td>
-                                <td style=" text-align: right;"><?php echo $order['order_id'] ?></td>
-                            </tr>
-                            <tr>
-                                <td>วันที่สั่งซื้อ : </td>
-                                <td style=" text-align: right;"><?php echo $order['create_date'] ?></td>
-                            </tr>
-                        </table>
-                    </div>
+                    <div style=" padding: 0px;height: 100px; width: 200px;">
+                            <table style="border: #cccccc solid 2px; float: right; width: 100%;">
+                                <tr style=" border-bottom: #cccccc solid 2px;">
+
+                                    <td style=" text-align: center;" colspan="2">
+                                        รหัสสั่งซื้อเลขที่ :
+                                        <div style="text-align: center; margin-left: 10px;" id="<?php echo $order['order_id'] ?>"></div>
+                                        <?php
+                                        //echo $order['order_id'];
+
+                                        $optionsArray = array(
+                                            'elementId' => $order['order_id'], /* id of div or canvas */
+                                            'value' => $order['order_id'], /* value for EAN 13 be careful to set right values for each barcode type */
+                                            'type' => 'code39', /* supported types  ean8, ean13, upc, std25, int25, code11, code39, code93, code128, codabar, msi, datamatrix */
+                                            'settings' => array(
+                                                /* "1" Bars color */
+                                                'barWidth' => "1",
+                                                'barHeight' => "20",
+                                            ),
+                                        );
+                                        $this->widget('ext.Yii-Barcode-Generator.Barcode', $optionsArray);
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>วันที่สั่งซื้อ : </td>
+                                    <td style=" text-align: right;"><?php echo $order['create_date'] ?></td>
+                                </tr>
+                            </table>
+                        </div>
                 </div>
             </div>
             <hr/>
@@ -179,6 +197,10 @@ $Thaibath = new Thaibaht();
                 <h4><i class="fa fa-check text-success"></i> ยืนยันรายการ</h4>
                 <h4><i class="fa fa-check text-success"></i> จัดส่งสินค้า</h4>
                 <h4><i class="fa fa-check text-success"></i> สินค้าถึงผู้รับ</h4>
+            <?php } else { ?>
+                <h4><i class="fa fa-remove text-danger"></i> ยืนยันรายการ</h4>
+                <h4><i class="fa fa-remove text-danger"></i> จัดส่งสินค้า</h4>
+                <h4><i class="fa fa-remove text-danger"></i> สินค้าถึงผู้รับ</h4>
             <?php } ?>
         </div>
     </div>

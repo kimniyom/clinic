@@ -260,7 +260,6 @@ $branchModel = new Branch();
         }
     }
 
-
     $(function () {
         Highcharts.chart('sell', {
             chart: {

@@ -37,23 +37,30 @@ class ReportstorecenterController extends Controller {
             $valsumorder[] = "['" . $rss['branchname'] . "', " . $rss['pricetotal'] . "]";
         endforeach;
         $data['valsumorder'] = implode($valsumorder, ",");
-        
+
         //chart sumall
-        foreach($data['sumAll'] as $sumall):
-            $cat[] = "'".$sumall['month_th']."'";
+        foreach ($data['sumAll'] as $sumall):
+            $cat[] = "'" . $sumall['month_th'] . "'";
             $val[] = $sumall['pricetotal'];
             //$valsumorderAll[] = "['" . $sumall['month_th'] . "', " . $sumall['pricetotal'] . "]";
         endforeach;
         $data['catsumorderAll'] = implode($cat, ",");
         $data['valsumorderAll'] = implode($val, ",");
-        
+
         $this->renderPartial('reportincome', $data);
     }
-    
-    public function actionShowordermonth(){
+
+    public function actionShowordermonth() {
         $year = Yii::app()->request->getPost('year');
         $branch = Yii::app()->request->getPost('branch');
-        
+        $type = Yii::app()->request->getPost('type');
+        $Model = new ReportStoreCenter();
+        if ($type == '0') {
+            $data['datas'] = $Model->GetordermonthInyear($year, $branch);
+        } else {
+            $data['datas'] = $Model->GetordermonthPriceInyear($year, $branch);
+        }
+        $this->renderPartial('showordermonth', $data);
     }
 
     public function actionIncomemonth() {

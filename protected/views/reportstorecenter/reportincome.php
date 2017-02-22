@@ -29,7 +29,7 @@
                                     <tr>
                                         <td><?php echo $orders['branchname'] ?></td>
                                         <td style=" text-align: center;">
-                                            <a href="javascript:showordermonth('<?php echo $year ?>','<?php echo $orders['id'] ?>')"><?php echo $orders['total'] ?></a>
+                                            <a href="javascript:showordermonth('<?php echo $year ?>','<?php echo $orders['id'] ?>','0')"><?php echo $orders['total'] ?></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -69,7 +69,9 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $sellprice['branchname'] ?></td>
-                                        <td style=" text-align: right;"><?php echo number_format($sellprice['pricetotal'], 2) ?></td>
+                                        <td style=" text-align: right;">
+                                            <a href="javascript:showordermonth('<?php echo $year ?>','<?php echo $sellprice['id'] ?>','1')"><?php echo number_format($sellprice['pricetotal'], 2) ?></a>
+                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -124,19 +126,15 @@
 <!-- 
     POPUP SHOW ORDER
 -->
-<div class="modal fade" tabindex="-1" role="dialog" id="showordermonth">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="showordermonth">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">แยกรายเดือน</h4>
       </div>
       <div class="modal-body">
           <div id="resultshowordermonth"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -144,10 +142,11 @@
 
 
 <script type="text/javascript">
-    function showordermonth(year, branch) {
+    function showordermonth(year, branch,type) {
         var url = "<?php echo Yii::app()->createUrl('reportstorecenter/showordermonth') ?>";
-        var data = {year: year, branch: branch};
+        var data = {year: year, branch: branch,type: type};
         $.post(url, data, function (datas) {
+            $("#resultshowordermonth").html(datas);
             $("#showordermonth").modal();
         });
     }

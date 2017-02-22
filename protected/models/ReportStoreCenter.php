@@ -56,5 +56,32 @@
 					) Q ON m.id = Q.month ";
 			return Yii::app()->db->createCommand($sql)->QueryAll();
 		}
+
+		public function GetordermonthInyear($year = null,$branch = null){
+			$sql = "SELECT m.month_th,m.month_th_shot,IFNULL(Q.totalorder,0) AS total
+										FROM `month` m 
+										LEFT JOIN(
+											SELECT SUBSTR(o.create_date,6,2) AS month,COUNT(o.order_id) AS totalorder
+											FROM orders o 
+											WHERE (o.`status` = '2' OR o.`status` = '3')
+											AND LEFT(o.create_date,4) = '$year' AND o.branch = '$branch'
+											GROUP BY SUBSTR(o.create_date,6,2)
+										) Q ON m.id = Q.month ";
+
+			return Yii::app()->db->createCommand($sql)->QueryAll();
+		}
+
+		public function GetordermonthPriceInyear($year = null,$branch = null){
+			$sql = "SELECT m.month_th,m.month_th_shot,IFNULL(Q.pricetotal,0) AS total
+					FROM `month` m 
+					LEFT JOIN(
+						SELECT SUBSTR(o.create_date,6,2) AS month,SUM(l.pricetotal) AS pricetotal
+						FROM orders o INNER JOIN listorder l ON o.order_id = l.order_id
+						WHERE (o.`status` = '2' OR o.`status` = '3')
+						AND LEFT(o.create_date,4) = '$year' AND o.branch = '$branch'
+						GROUP BY SUBSTR(o.create_date,6,2)
+					) Q ON m.id = Q.month ";
+			return Yii::app()->db->createCommand($sql)->QueryAll();
+		}
 	}
 ?>
