@@ -30,7 +30,7 @@ class ReportController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'reportinputproductmonth', 'reportcostprofit', 'datareportcostprofit','reportproductsalable','dataproductsalable','reportsellproduct','datareportsellproduct'),
+                'actions' => array('create', 'reportinputproductmonth', 'reportcostprofit', 'datareportcostprofit','reportproductsalable','dataproductsalable','reportsellproduct','datareportsellproduct','formreportprofitcenter','reportprofitcenter'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -119,7 +119,7 @@ class ReportController extends Controller {
         foreach ($SellMonth as $pm):
             $SellMonthArr[] = $pm['totalprice'];
         endforeach;
-        
+
         foreach ($ProfitMonth as $pf):
             if($pf['profit'] < 0){
                 $profit = 0;
@@ -136,11 +136,11 @@ class ReportController extends Controller {
         $data['year'] = $year;
         $this->renderPartial('datareportcostprofit', $data);
     }
-    
+
      public function actionReportproductsalable() {
         $this->render('reportproductsalable');
     }
-    
+
     public function actionDataproductsalable(){
         $year = Yii::app()->request->getPost('year');
         $branch = Yii::app()->request->getPost('branch');
@@ -152,18 +152,18 @@ class ReportController extends Controller {
             $catArr[] = "'".$rs['product_name']."'";
             $valAll[] = $rs['total'];
         endforeach;
-        
+
         $data['category'] = implode(",", $catArr);
         $data['value'] = implode(",", $valAll);
         $data['year'] = $year;
         $data['product'] = $ProductSalable;
         $this->renderPartial('dataproductsalable',$data);
     }
-    
+
     public function actionReportsellproduct() {
         $this->render('reportsellproduct');
     }
-    
+
     public function actionDatareportsellproduct() {
         $branch = Yii::app()->request->getPost('branch');
         $datestart = Yii::app()->request->getPost('datestart');
@@ -171,6 +171,33 @@ class ReportController extends Controller {
         $Model = new Report();
         $data['sell'] = $Model->ReportSellproduct($datestart, $dateend, $branch);
         $this->renderPartial('datareportsellproduct',$data);
+    }
+
+    public function actionFormreportprofitcenter(){
+        $this->render('formreportprofitcenter');
+    }
+
+    public function actionReportprofitcenter(){
+        $year = Yii::app()->request->getPost('year');
+        $Model = new ReportStoreCenter();
+        $data['year'] = $year;
+        $data['head'] = "รายงาน กำไร ขาดทุน ปี พ.ศ. " .($year + 543);
+        $data['income'] = $Model->GetSumIncome($year)['total'];
+        $data['outcome'] = $Model->GetSumOutcome($year)['total'];
+        $Chart = $Model->GetchartProfit($year);
+        foreach ($Chart as $key) {
+            $incomeArr[] = $key['income'];
+            $outcomeArr[] = $key['outcome'];
+            $profitArr[] = $key['profit'];
+        }
+
+        $data['chartincome'] = implode(",", $incomeArr);
+        $data['chartoutcome'] = implode(",", $outcomeArr);
+        $data['chartprofit'] = implode(",", $profitArr);
+
+        $data['datas'] = $Chart;
+
+        $this->renderPartial('reportprofitcenter',$data);
     }
 
 }

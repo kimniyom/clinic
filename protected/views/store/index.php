@@ -99,7 +99,6 @@ $product_model = new Product();
     <div class="col-lg-4 col-md-2">
         <label>รายงาน</label>
         <button type="button" class="btn btn-default btn-block" onclick="PopupCenter('<?php echo Yii::app()->createUrl('reportstorecenter/formreportincome')?>','รายงานรายได้จากการขายสินค้า')">รายงานรายได้จากการขายสินค้า</button>
-        <button type="button" class="btn btn-default btn-block">รายงานการซื้อสินค้าแต่ละสาขา</button>
     </div>
 
 </div>
@@ -130,8 +129,8 @@ $product_model = new Product();
     </div>
     <div class="col-lg-4 col-md-2">
         <label>รายงาน</label>
-        <button type="button" class="btn btn-default btn-block">รายงานการนำเข้าวัตถุดิบ</button>
-        <button type="button" class="btn btn-default btn-block">รายงานการสั่งซื้อวัตถุดิบ</button>
+        <button type="button" class="btn btn-default btn-block" 
+                onclick="PopupCenter('<?php echo Yii::app()->createUrl('reportstorecenter/formreportinputitems')?>','รายงานการนำเข้าวัตถุดิบ')">รายงานการนำเข้าวัตถุดิบ</button>
     </div>
 </div>
 

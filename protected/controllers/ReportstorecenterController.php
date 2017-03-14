@@ -9,7 +9,7 @@ class ReportstorecenterController extends Controller {
     public $layout = 'template_report';
 
     public function actionIndex() {
-        
+
     }
 
     public function actionFormreportincome() {
@@ -63,8 +63,26 @@ class ReportstorecenterController extends Controller {
         $this->renderPartial('showordermonth', $data);
     }
 
-    public function actionIncomemonth() {
-        
+    public function actionFormreportinputitems() {
+        $this->render('formreportinputitems');
+    }
+
+    public function actionReportinputitemsperiod(){
+        $year = Yii::app()->request->getPost('year');
+        $Model = new ReportStoreCenter();
+        $data['tables'] = $Model->ReportInputItemPeriod($year);
+        $data['itemsprice'] = $Model->ReportInputItemPeriodPrice($year);
+        $data['year'] = $year;
+        $this->renderPartial('reportinputitemsperiod', $data);
+    }
+
+    public function actionReportinputitemsmonth(){
+        $year = Yii::app()->request->getPost('year');
+        $Model = new ReportStoreCenter();
+        $data['tables'] = $Model->ReportInputItemMonth($year);
+        $data['itemsprice'] = $Model->ReportInputItemMonthPrice($year);
+        $data['year'] = $year;
+        $this->renderPartial('reportinputitemsmonth', $data);
     }
 
 }
