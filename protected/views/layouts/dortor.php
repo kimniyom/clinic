@@ -319,7 +319,7 @@
 
             <!-- Page Content -->
             <div id="page-content-wrapper" style="padding:0px;">
-                <ol class="breadcrumb " style=" margin-bottom:0px; margin-top: 0px; border-radius: 0px; background: #ecf3ff; border-bottom: #95b8e7 solid 1px;">
+                <ol class="breadcrumb "id="breadcrumb">
 
                     <?php if (isset($this->breadcrumbs)): ?>
                         <?php

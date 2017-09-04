@@ -331,5 +331,15 @@ body a:link{
     border-radius:0px; margin-bottom:0px; border-bottom: #95b8e7 solid 1px;
 }
 
+#breadcrumb{
+     background: #ecf3ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#ecf3ff, #e3eeff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ecf3ff, #e3eeff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ecf3ff, #e3eeff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ecf3ff, #e3eeff); /* Standard syntax */
+    border-bottom: #95b8e7 solid 1px;
+    margin-bottom:0px; margin-top: 0px; border-radius: 0px; ;
+}
+
 
 

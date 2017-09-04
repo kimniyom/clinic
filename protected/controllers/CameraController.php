@@ -63,12 +63,25 @@ class CameraController extends Controller {
                 ->insert("service_images", $columns);
         echo $filepath . $filename;
     }
-    
-    public function actionLoadimages(){
+
+    public function actionLoadimages() {
         $service_id = Yii::app()->request->getPost('service_id');
         $sql = "SELECT * FROM service_images WHERE service_id = '$service_id' ";
         $data['images'] = Yii::app()->db->createCommand($sql)->queryAll();
-        $this->renderPartial('loadimages',$data);
+        $this->renderPartial('loadimages', $data);
+    }
+
+    public function actionDeleteimages() {
+        $id = Yii::app()->request->getPost('id');
+        $sql = "SELECT * FROM service_images WHERE id = '$id'";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        if ($rs['images']) {
+            if (file_exists("./uploads/saved_images/" . $rs['images'])) {
+                unlink("./uploads/saved_images/" . $rs['images']);
+            }
+            Yii::app()->db->createCommand()
+                    ->delete("service_images", "id = '$id'");
+        }
     }
 
 }
