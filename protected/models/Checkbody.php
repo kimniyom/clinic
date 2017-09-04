@@ -106,9 +106,8 @@ class Checkbody extends CActiveRecord {
         return parent::model($className);
     }
 
-    public function Checkbody($patient_id = null) {
-        $date = date("Y-m-d");
-        $sql = "SELECT * FROM checkbody WHERE patient_id = '$patient_id' AND date_serv = '$date'";
+    public function Checkbody($service_id = null) {
+        $sql = "SELECT * FROM checkbody WHERE service_id = '$service_id'";
         $checkbody = Yii::app()->db->createCommand($sql)->queryRow();
         if(!empty($checkbody['id'])){
             return 1;
@@ -117,8 +116,8 @@ class Checkbody extends CActiveRecord {
         }
     }
     
-    public function Getdetail($patient_id,$date_serv){
-        $sql = "SELECT * FROM checkbody WHERE patient_id = '$patient_id' AND date_serv = '$date_serv'";
+    public function Getdetail($servicd_id){
+        $sql = "SELECT * FROM checkbody WHERE service_id = '$servicd_id'";
         return Yii::app()->db->createCommand($sql)->queryRow();
     }
 

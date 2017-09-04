@@ -162,10 +162,16 @@ class Orders extends CActiveRecord {
         } else {
             $WARESTATUS = "";
         }
+        
+        if($branch == "99"){
+            $wherebranch = "";
+        } else {
+            $wherebranch = " AND o.branch = '$branch' ";
+        }
 
         $sql = "SELECT o.*,SUM(l.number) AS total,SUM(l.pricetotal) AS pricetotal
                 FROM orders o INNER JOIN listorder l ON o.order_id = l.order_id
-                WHERE o.create_date BETWEEN '$datestart' AND '$dateend' AND $WAREORDER AND o.branch = '$branch' $WARESTATUS 
+                WHERE o.create_date BETWEEN '$datestart' AND '$dateend' AND $WAREORDER $wherebranch $WARESTATUS 
                 GROUP BY o.order_id ";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }

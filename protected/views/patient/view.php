@@ -20,42 +20,43 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
 <input type="hidden" id="patient_id" value="<?php echo $model['id'] ?>"/>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="panel panel-default" style=" margin-bottom: 0px;">
+    <div class="panel-heading" style=" background: #ffffff;">
         <i class="fa fa-user"></i> ข้อมูลพื้นฐาน
     </div>
     <div class="row" style="margin:0px;">
-        <div class="col-md-3 col-lg-3" style="text-align: center;">
-            <?php
-            if (!empty($model['images'])) {
-                $img_profile = "uploads/profile/" . $model['images'];
-            } else {
-                if ($model['sex'] == 'M') {
-                    $img_profile = "images/Big-user-icon.png";
-                } else if ($model['sex'] == 'F') {
-                    $img_profile = "images/Big-user-icon-female.png";
+        <div class="col-md-2 col-lg-2" style="text-align: center; padding: 0px;" id="p-lefts">
+            <div id="box-img-profile" style=" padding: 5px;">
+                <?php
+                if (!empty($model['images'])) {
+                    $img_profile = "uploads/profile/" . $model['images'];
                 } else {
-                    $img_profile = "images/Big-user.png";
+                    if ($model['sex'] == 'M') {
+                        $img_profile = "images/Big-user-icon.png";
+                    } else if ($model['sex'] == 'F') {
+                        $img_profile = "images/Big-user-icon-female.png";
+                    } else {
+                        $img_profile = "images/Big-user.png";
+                    }
                 }
-            }
-            ?>
-            <center>
-                <img src="<?php echo Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img-responsive img-thumbnail" id="img_profile" style=" margin-top: 5px; max-height: 200px;"/>
-                <br/><br/>
-                <div class="well" style="border-radius:0px; text-align: left; padding-left: 30px; padding-bottom: 0px;">
-                    <input type="file" name="file_upload" id="file_upload"/>
-                    <p id="font-16" style=" color: #ff0000; text-align: center; margin-bottom: 0px;">(ไม่เกิน 2MB)</p>
-                </div>
-            </center>
+                ?>
+                <center>
+                    <img src="<?php echo Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img-responsive img-thumbnail" id="img_profile" style=" max-height: 200px;"/>
+                    <button type="button" class="btn btn-xs btn-default btn-block" onclick="popupprofile()">เปลี่ยนรูปภาพ</button>
+                </center>
+            </div>
 
-            <button type="button" class="btn btn-default btn-block" onclick="popupdiag()">หัตถการทางการแพทย์</button>
-            <button type="button" class="btn btn-default btn-block" onclick="popupdrug()">อาการแพ้ยา</button>
-            <button type="button" class="btn btn-default btn-block" onclick="popupdisease()">โรคประจำตัว</button>
-            <button type="button" class="btn btn-default btn-block">ประวัติการรับบริการ</button>
+            <div style=" background: #f9f9f9; border-bottom: #dddddd solid 1px; border-top: #dddddd solid 1px; padding: 5px; font-weight: bold;">
+                <i class="fa fa-shopping-cart"></i> ประวัติการซื้อสินค้า
+            </div>
+            <div id="sellhistory" style=" text-align: left;">
+
+            </div>
+
 
         </div>
-        <div class="col-md-9 col-lg-9" style="padding-right: 0px;">
-            <div class="well" style="margin: 5px; background: none;" id="font-20">
+        <div class="col-md-7 col-lg-7" style="padding-right: 0px; padding-left: 0px; border-left: #dddddd solid 1px; border-right: #dddddd solid 1px;" id="p-right">
+            <div class="wells" style="margin: 5px; background: none;">
                 <a href="<?php echo Yii::app()->createUrl('patient/update', array('id' => $model['id'])) ?>">
                     <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14">
                         <i class="fa fa-pencil"></i> แก้ไขข้อมูลพื้นฐาน
@@ -122,7 +123,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                     ?></p>
                 <br/>
 
-                <hr/>
+                <hr style=" margin: 5px;"/>
                 ข้มูลการติดต่อ
 
                 <?php if ($contact) { ?>
@@ -178,91 +179,75 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                         </center>
                     <?php } ?>
                 </ul>
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#drug" aria-controls="drug" role="tab" data-toggle="tab" onclick="loaddrug()" style=" padding: 5px;">อาการแพ้ยา</a></li>
+                        <li role="presentation"><a href="#disease" aria-controls="disease" role="tab" data-toggle="tab" style=" padding: 5px;" onclick="loaddisease()">โรคประจำตัว</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content" style=" padding-top: 10px;">
+                        <div role="tabpanel" class="tab-pane active" id="drug"><div id="result_drug"></div></div>
+                        <div role="tabpanel" class="tab-pane" id="disease"><div id="result_disease"></div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="col-md-3 col-lg-3" style=" padding: 0px;">
+            <div style=" background: #f9f9f9; border-bottom: #dddddd solid 1px; padding: 5px; font-weight: bold;">ประวัติการรับบริการ</div>
+            <div id="history"></div>
+
+            <div style=" background:#f9f9f9; border-bottom: #dddddd solid 1px;  border-top: #dddddd solid 1px; padding: 5px; font-weight: bold;">
+                การนัด | <a href="<?php echo Yii::app()->createUrl('appoint/carlendar') ?>"><i class="fa fa-plus"></i> เพิ่มวันนัด</a>
+            </div>
+            <div id="appoint"></div>
         </div>
     </div>
 </div>
 
-<!--
-    #### หัตถการทางการแพทย์ ####
--->
-<!-- Modal -->
-<div class="modal fade" id="popup_diag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
+<!-- แก้ไขโปรไฟล์ -->
+<div class="modal fade" tabindex="-1" role="dialog" id="popupprofile" data-backdrop='static'>
+    <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">รายการหัตถการ</h4>
-            </div>
-            <div class="modal-body" style=" padding-bottom: 0px;">
-                <div id="result_duag"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--
-    #### อาการแพ้ยา ####
--->
-<!-- Modal -->
-<div class="modal fade" id="popup_drug" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">อาการแพ้ยา</h4>
-            </div>
-            <div class="modal-body">
-                <div id="result_drug"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--
-    #### โรคประจำตัว ####
--->
-<!-- Modal -->
-<div class="modal fade" id="popup_disease" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">โรคประจำตัว</h4>
-            </div>
-            <div class="modal-body">
-                <div id="result_disease"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--
-    #### ตรวจร่างกาย ####
--->
-<!-- Modal -->
-<div class="modal fade" id="popup_checkbody" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-child"></i> ตรวจร่างกาย</h4>
+                <h4 class="modal-title">รูปภาพ</h4>
             </div>
-            <div class="modal-body" style=" background: url('images/Body-bg.png') center no-repeat">
-                <div class="well well-sm" style=" text-align: center;"><h4 id="hradcheckbody"></h4></div>
-                <hr/>
-                <div id="result_checkbody"></div>
+            <div class="modal-body">
+
+                <input type="file" name="file_upload" id="file_upload"/>
+                <p id="font-16" style=" color: #ff0000; margin-bottom: 0px;">(ขนาดไม่เกิน 2MB)</p>
+                <p id="font-16" style=" color: #ff0000; margin-bottom: 0px;">นามสกุล .jpg .png</p>
             </div>
-            
-        </div>
-    </div>
-</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- ข้อมูลวันนีด -->
+<div class="modal fade" tabindex="-1" role="dialog" id="popupviewappoint" data-backdrop='static'>
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <input type="hidden" id="appoint_id" />
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">ข้อมูลวันนัด</h4>
+            </div>
+            <div class="modal-body">
+                <div id="viewappoint"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning btn-block" onclick="deleteappoint()"><i class="fa fa-trash-o"></i> ลบ</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -275,31 +260,15 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
             'fileSizeLimit': '2MB',
             'fileTypeExts': ' *.jpg; *.png',
             'uploadLimit': 1,
-            'width': 180,
+            'width': 100,
             'onUploadSuccess': function (data) {
                 window.location.reload();
             }
         });
     });
 
-    function popupdiag() {
-        $("#popup_diag").modal();
-        loaddiag();
-    }
-
-    function loaddiag() {
-        var url = "<?php echo Yii::app()->createUrl('patientdiag/getdiag') ?>";
-        var patient_id = "<?php echo $model['id'] ?>";
-        var data = {patient_id: patient_id};
-
-        $.post(url, data, function (result) {
-            $("#result_duag").html(result);
-        });
-    }
-
-    function popupdrug() {
-        $("#popup_drug").modal();
-        loaddrug();
+    function popupprofile() {
+        $("#popupprofile").modal();
     }
 
     function loaddrug() {
@@ -312,11 +281,6 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
         });
     }
 
-    function popupdisease() {
-        $("#popup_disease").modal();
-        loaddisease();
-    }
-
     function loaddisease() {
         var url = "<?php echo Yii::app()->createUrl('patientdisease/getdisease') ?>";
         var patient_id = "<?php echo $model['id'] ?>";
@@ -327,20 +291,94 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
         });
     }
 
-    /*CheckBody*/
-    function popupcheckbody(pid,name,lname) {
-        $("#hradcheckbody").html("PID : "+ pid +" ลูกค้า " + name + " " + lname);
-        $("#popup_checkbody").modal();
-        loadcheckbody();
+    function loadhistory() {
+        var patient_id = "<?php echo $model['id'] ?>";
+        var url = "<?php echo Yii::app()->createUrl('patient/history') ?>";
+        var data = {patient_id: patient_id};
+        $.post(url, data, function (result) {
+            $("#history").html(result);
+        });
     }
 
-    function loadcheckbody() {
-        var url = "<?php echo Yii::app()->createUrl('checkbody/check') ?>";
+    function loadappoint() {
         var patient_id = "<?php echo $model['id'] ?>";
+        var url = "<?php echo Yii::app()->createUrl('patient/appoint') ?>";
         var data = {patient_id: patient_id};
-
         $.post(url, data, function (result) {
-            $("#result_checkbody").html(result);
+            $("#appoint").html(result);
         });
+    }
+
+    function loadsellhistory() {
+        var patient_id = "<?php echo $model['id'] ?>";
+        var url = "<?php echo Yii::app()->createUrl('patient/sellhistory') ?>";
+        var data = {patient_id: patient_id};
+        $.post(url, data, function (result) {
+            $("#sellhistory").html(result);
+        });
+    }
+
+    function viewappoint(appoint_id) {
+        $("#appoint_id").val(appoint_id);
+        var url = "<?php echo Yii::app()->createUrl('patient/getappointpatient') ?>";
+        var data = {appoint_id: appoint_id};
+        $.post(url, data, function (result) {
+            $("#viewappoint").html(result);
+            $("#popupviewappoint").modal();
+        });
+
+    }
+
+</script>
+
+<script type="text/javascript">
+    loadappoint();
+    loadhistory();
+    Setscreen();
+    SetBoxHistory();
+    loaddrug();
+    loadsellhistory();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 140);
+        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
+    function SetBoxHistory() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = ((screen - 205) / 2);
+        var sellhistory = (screen - 190);
+        $("#history").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#appoint").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+
+        $("#sellhistory").css({'height': sellhistory - 170, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#box-img-profile").css({'height': 190, 'overflow': 'auto', 'padding-bottom': '0px'});
+    }
+
+    function PopupBills(url, title) {
+        // Fixes dual-screen position  
+        //                        Most browsers      Firefox
+        var w = 800;
+        var h = 600;
+        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+        var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+        var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+        var top = ((height / 2) - (h / 2)) + dualScreenTop;
+        var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+        // Puts focus on the newWindow
+        if (window.focus) {
+            newWindow.focus();
+        }
     }
 </script>

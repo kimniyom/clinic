@@ -195,7 +195,7 @@
         <div class="col-lg-6">
             <?php
             if (Yii::app()->session['branch'] == '99') {
-                $where = "";
+                $where = " id != '99'";
             } else {
                 $branch_id = Yii::app()->session['branch'];
                 $where = "id = '$branch_id'";

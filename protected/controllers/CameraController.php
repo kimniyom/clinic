@@ -43,11 +43,11 @@ class CameraController extends Controller {
      * 
      */
 
-    public function actionSaveimage() {
+    public function actionSaveimage($service_id) {
         //set random name for the image, used time() for uniqueness
 
         $filename = time() . '.jpg';
-        $filepath =  "./uploads/saved_images/";
+        $filepath = "./uploads/saved_images/";
 
         //read the raw POST data and save the file with file_put_contents()
         $result = file_put_contents($filepath . $filename, file_get_contents('php://input'));
@@ -55,8 +55,20 @@ class CameraController extends Controller {
             print "ERROR: Failed to write data to $filename, check permissions\n";
             exit();
         }
-
-        echo $filepath.$filename;
+        $columns = array(
+            "images" => $filename,
+            "service_id" => $service_id
+        );
+        Yii::app()->db->createCommand()
+                ->insert("service_images", $columns);
+        echo $filepath . $filename;
+    }
+    
+    public function actionLoadimages(){
+        $service_id = Yii::app()->request->getPost('service_id');
+        $sql = "SELECT * FROM service_images WHERE service_id = '$service_id' ";
+        $data['images'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial('loadimages',$data);
     }
 
 }

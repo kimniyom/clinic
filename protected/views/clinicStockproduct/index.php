@@ -12,8 +12,8 @@ $this->breadcrumbs = array(
 $web = new Configweb_model();
 ?>
 
-<div class="panel panel-info">
-    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
+<div class="panel panel-default" style=" margin-bottom: 0px;">
+    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px; background: none;">
         รายการสินค้า  <span id="loading"></span>
         <div class="pull-right">
             <a href="<?php echo Yii::app()->createUrl('clinicstockproduct/create',array("branch" => $branch)) ?>">

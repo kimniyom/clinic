@@ -111,7 +111,7 @@ class ProductController extends Controller {
         //$text = 'movies ,  top movies ,watchlist  ,    top song';
         $cut = explode(',', $img);
         foreach ($cut as $single) {
-            $columns = array("product_id" => $product, "images" => trim($single));
+            $columns = array("product_id" => $product, "img_id" => trim($single));
             Yii::app()->db->createCommand()
                     ->insert("product_images", $columns);
         }

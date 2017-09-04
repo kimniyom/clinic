@@ -8,128 +8,128 @@
 /* @var $model Orders */
 $branch = $order['branch'];
 $this->breadcrumbs = array(
-    'Orders' => array('index', "branch" => $branch),
+    'ใบสั่งซื้อสินค้า' => array('index', "branch" => $branch),
     'แก้ไขใบสั่งซื้อ',
 );
-
-
 
 $companySell = Companycenter::model()->find("id = '1'");
 $BranchModel = Branch::model()->find("id = '$branch'");
 ?>
 
-<h1>Create Orders</h1>
-<div class="well" style=" border-radius: 0px; background: #FFFFFF; position: relative;">
-    <div style=" text-align: center;">
-        <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
-        <?php echo $BranchModel['address']; ?><br/>
-        <?php echo $BranchModel['contact']; ?><br/>
-        <h4 style=" margin: 0px;">ใบสั่งซื้อสินค้า</h4>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <table id="companysell">
-                <tr>
-                    <td>ผู้ขาย : <?php echo $companySell['companyname'] ?></td>
-                </tr>
-                <tr>
-                    <td>ที่อยู่ : <?php echo $companySell['address'] ?></td>
-                </tr>
-                <tr>
-                    <td>ติดต่อ : คุณ <?php echo $companySell['memager'] ?> โทร. <?php echo $companySell['tel'] ?></td>
-                </tr>
-            </table>
+<div class="panel panel-default">
+    <div class="panel-body" id="boxorders">
+        <div style=" text-align: center;">
+            <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
+            <?php echo $BranchModel['address']; ?><br/>
+            <?php echo $BranchModel['contact']; ?><br/>
+            <h4 style=" margin: 0px;">ใบสั่งซื้อสินค้า</h4>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <div style=" padding: 10px; position: relative; height: 100px;">
-                <table style=" border: #cccccc solid 1px; float: right;">
-                    <tr style=" border-bottom: #cccccc solid 1px;">
-                        <td>รหัสสั่งซื้อเลขที่ : </td>
-                        <td><?php echo $order_id ?></td>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <table id="companysell">
+                    <tr>
+                        <td>ผู้ขาย : <?php echo $companySell['companyname'] ?></td>
                     </tr>
                     <tr>
-                        <td>วันที่สั่งซื้อ : </td>
-                        <td><?php echo $order['create_date'] ?></td>
+                        <td>ที่อยู่ : <?php echo $companySell['address'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>ติดต่อ : คุณ <?php echo $companySell['memager'] ?> โทร. <?php echo $companySell['tel'] ?></td>
                     </tr>
                 </table>
-            </div
-        </div>
-    </div>
-</div>
-<hr/>
-<div>
-    <label>ชื่อผู้ติดต่อ</label> <?php echo $BranchModel['menagers'] ?> 
-    <label>โทรศัพท์</label> <?php echo $BranchModel['telmenager'] ?>
-</div>
-<div class="well">
-    <div class="row">
-        <div class="col-md-6 col-lg-3">
-            <label for="">หมวดสินค้า*</label><br/>
-            <?php
-            $this->widget('booster.widgets.TbSelect2', array(
-                //'model' => $model,
-                'asDropDownList' => true,
-                //'attribute' => 'itemid',
-                'name' => 'producttype',
-                'id' => 'producttype',
-                'data' => CHtml::listData(ProductType::model()->findAll("upper is null"), 'id', 'type_name'),
-                //'value' => $model,
-                'options' => array(
-                    'allowClear' => true,
-                    //$model,
-                    //'oid',
-                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                    'placeholder' => '== หมวดสินค้า ==',
-                    'width' => '100%',
-                //'tokenSeparators' => array(',', ' ')
-                )
-            ));
-            ?>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <label for="">ประเภทสินค้า*</label>
-            <div id="boxsubproducttype" style=" width: 100%;">
-                <select id="subproducttype" class="form-control">
-                    <option value=""></option>
-                </select>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div style=" padding: 10px; position: relative; height: 100px;">
+                    <table style=" border: #cccccc solid 1px; float: right;">
+                        <tr style=" border-bottom: #cccccc solid 1px;">
+                            <td>รหัสสั่งซื้อเลขที่ : </td>
+                            <td><?php echo $order_id ?></td>
+                        </tr>
+                        <tr>
+                            <td>วันที่สั่งซื้อ : </td>
+                            <td><?php echo $order['create_date'] ?></td>
+                        </tr>
+                    </table>
+                </div
             </div>
         </div>
+    </div>
+    <hr/>
+    <div>
+        <label>ชื่อผู้ติดต่อ</label> <?php echo $BranchModel['menagers'] ?> 
+        <label>โทรศัพท์</label> <?php echo $BranchModel['telmenager'] ?>
+    </div>
+    <div class="well">
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <label for="">หมวดสินค้า*</label><br/>
+                <?php
+                $this->widget('booster.widgets.TbSelect2', array(
+                    //'model' => $model,
+                    'asDropDownList' => true,
+                    //'attribute' => 'itemid',
+                    'name' => 'producttype',
+                    'id' => 'producttype',
+                    'data' => CHtml::listData(ProductType::model()->findAll("upper is null"), 'id', 'type_name'),
+                    //'value' => $model,
+                    'options' => array(
+                        'allowClear' => true,
+                        //$model,
+                        //'oid',
+                        //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                        'placeholder' => '== หมวดสินค้า ==',
+                        'width' => '100%',
+                    //'tokenSeparators' => array(',', ' ')
+                    )
+                ));
+                ?>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <label for="">ประเภทสินค้า*</label>
+                <div id="boxsubproducttype" style=" width: 100%;">
+                    <select id="subproducttype" class="form-control">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
 
-        <div class="col-lg-4 col-md-6">
-            <label for="">สินค้า*</label><br/>
-            <div id="boxproduct" style=" width: 100%;">
-                <select id="product" class="form-control">
-                    <option value=""></option>
-                </select>
+            <div class="col-lg-4 col-md-6">
+                <label for="">สินค้า*</label><br/>
+                <div id="boxproduct" style=" width: 100%;">
+                    <select id="product" class="form-control">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+
+            <!--
+            <div class="col-lg-6">
+                <label for="">รหัสสินค้า*</label>
+                <input type="text" id="product_id" name="product_id" class="form-control" style="width:40%;" readonly="readonly"/>
+            </div>
+            -->
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-6">
+                <label for="">จำนวน*</label><br/>
+                <input type="text" class="form-control" id="number" value="1"/>
+            </div>
+            <div class="col-md-3 col-lg-3">
+                <label for="">ส่วนลด%</label>
+                <input type="text" class="form-control" id="distcountpersent" value="0"/>
+            </div>
+            <div class="col-lg-1 col-md-2">
+                <button type="button" class="btn btn-block btn-success" style=" margin-top: 25px;" onclick="AddproductInlist()">เพิ่ม</button>
             </div>
         </div>
-
-        <!--
-        <div class="col-lg-6">
-            <label for="">รหัสสินค้า*</label>
-            <input type="text" id="product_id" name="product_id" class="form-control" style="width:40%;" readonly="readonly"/>
-        </div>
-        -->
     </div>
-    <div class="row">
-        <div class="col-lg-2 col-md-6">
-            <label for="">จำนวน*</label><br/>
-            <input type="text" class="form-control" id="number" value="1"/>
-        </div>
-        <div class="col-md-3 col-lg-3">
-            <label for="">ส่วนลด%</label>
-            <input type="text" class="form-control" id="distcountpersent" value="0"/>
-        </div>
-        <div class="col-lg-1 col-md-2">
-            <button type="button" class="btn btn-block btn-success" style=" margin-top: 25px;" onclick="AddproductInlist()">เพิ่ม</button>
-        </div>
+    <div id="orderlist">
+        ​​
     </div>
 </div>
-<div id="orderlist">
-    ​​
+<div class="panel-footer">
+    <button type="button" class="btn btn-success" onclick="Saveorder()"><i class="fa fa-pencil"></i> แก้ไขแบบฟอร์ม</button>
 </div>
-<hr/>
-<button type="button" class="btn btn-success" onclick="Saveorder()"><i class="fa fa-pencil"></i> แก้ไขแบบฟอร์ม</button>
 </div>
 
 <script type="text/javascript">
@@ -191,5 +191,21 @@ $BranchModel = Branch::model()->find("id = '$branch'");
         var url = "<?php echo Yii::app()->createUrl('orders/view', array('order_id' => $order_id)) ?>";
         window.location = url;
     }
+
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 175);
+        $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
 
 </script>

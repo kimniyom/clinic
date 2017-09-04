@@ -30,7 +30,7 @@ class OrdersController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'loaddata', 'save', 'search', 'deleteorder', 'confirmorder', 'cutitems', 'print','bill','updatestatus'),
+                'actions' => array('create', 'update', 'loaddata', 'save', 'search', 'deleteorder', 'confirmorder', 'cutitems', 'print','bill','updatestatus','checklistorder'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -93,7 +93,7 @@ class OrdersController extends Controller {
 
         $model = new Orders;
         $orderId = $model->autoId("orders", "order_id", "10");
-
+        $branchModel = Branch::model()->find($branch);
         Yii::app()->db->createCommand()->delete("listorder", "order_id = '$orderId' ");
 
         // Uncomment the following line if AJAX validation is needed
@@ -108,8 +108,16 @@ class OrdersController extends Controller {
         $this->render('create', array(
             'model' => $model,
             'order_id' => $orderId,
-            'branch' => $branch
+            'branch' => $branch,
+            'branchModel' => $branchModel
         ));
+    }
+    
+    public function actionChecklistorder(){
+        $order_id = Yii::app()->request->getPost('order_id');
+        $sql = "SELECT COUNT(*) AS total FROM listorder WHERE order_id = '$order_id'";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        echo $rs['total'];
     }
 
     /**
@@ -141,10 +149,18 @@ class OrdersController extends Controller {
     /**
      * Lists all models.
      */
-    public function actionIndex($branch = null) {
+    public function actionIndex() {
+        $branch = Yii::app()->session['branch'];
         $Model = new Orders();
+        $data['branchModel'] = Branch::model()->find('id=:id', array(':id'=>$branch));
         $data['branch'] = $branch;
         $data['orders'] = $Model->GetorderInBranch($branch);
+        if($branch == "99"){
+            $BranchList = Branch::model()->findAll();
+        } else {
+           $BranchList = Branch::model()->findAll("id = '$branch'");
+        }
+        $data['BranchList'] = $BranchList;
         $this->render('index', $data);
     }
 

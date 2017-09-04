@@ -9,7 +9,7 @@
         margin-bottom: 10px;
     }
 </style>
-<hr/>
+
 <div class="form">
 
     <?php

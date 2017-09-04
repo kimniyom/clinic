@@ -1,3 +1,4 @@
+<title>คลังสินค้ากลาง</title>
 <script src="<?= Yii::app()->baseUrl ?>/assets/uploadify/jquery.uploadify.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/assets/uploadify/uploadify.css">
 <script type="text/javascript">
@@ -34,12 +35,6 @@ $this->breadcrumbs = array(
 $product_model = new Product();
 ?>
 
-<h2>
-    <img src="<?= Yii::app()->baseUrl; ?>/images/shipping-box-icon.png" 
-         style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
-    คลังสินค้ากลาง     
-</h2>
-<hr/>
 <h4>ที่อยู่ / ข้อมูลติดต่อ</h4>
 <div class="row">
     <div class="col-lg-2 col-md-2">

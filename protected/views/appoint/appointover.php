@@ -31,13 +31,13 @@ $AppointModel = new Appoint();
 $alam = $Alert->Getalert()['alert_product'];
 ?>
 
-<div class="panel panel-danger">
-    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
+<div class="panel panel-default">
+    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px; background: none;">
         <i class="fa fa-info-circle"></i> นัดหมาย *เตือนก่อน <?php echo $alam ?> วัน
     </div>
     <div class="panel-body">
 
-        <table class="table" id="p_product">
+        <table class="table" id="p_appointover">
             <thead>
                 <tr>
                     <th>#</th>
@@ -54,7 +54,7 @@ $alam = $Alert->Getalert()['alert_product'];
                 $i = 0;
                 foreach ($appoint as $last):
                     $i++;
-                    if ($last['over'] < 1) {
+                    if ($last['over'] < 0) {
                         $bg = " class='alam' ";
                         $text = "ขาดนัด";
                     } else {
@@ -254,6 +254,32 @@ $alam = $Alert->Getalert()['alert_product'];
             $("#appointlist").html(datas);
         });
     }
+    
+
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var boxsell = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (boxsell - 370);
+        $("#p_appointover").dataTable({
+            //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
+            "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
+            //"iDisplayLength": 50, // กำหนดค่า default ของจำนวน record
+            //"scrollCollapse": true,
+            "paging": false,
+            "bFilter": true, // แสดง search box
+            "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            dom: 'Bfrtip',
+            buttons: [
+                'excel', 'print'
+            ]
+        });
+    }
+
 
 </script>
 

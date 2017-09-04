@@ -33,7 +33,7 @@ class AppointController extends Controller {
                 'actions' => array('create', 'update', 'formappoint', 'saveappoint', 
                     'appointover', 'updateappoint', 'appointcurrent', 'appointall', 
                     'getappoint', 'getdayappoint','appointment','appointlist','addeven',
-                    'carlendar','carlendarevents','viewcarlendar','deleteappoint'),
+                    'carlendar','carlendarevents','viewcarlendar','deleteappoint','print'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -300,21 +300,39 @@ class AppointController extends Controller {
         $patient = Yii::app()->request->getPost('patient');
         $appoint = Yii::app()->request->getPost('appoint');
         $type = Yii::app()->request->getPost('type');
-        $branch = Yii::app()->session['branch'];
-        $columns = array("appoint" => $appoint,"type" => $type,"patient_id" => $patient,"branch" => $branch);
+        $branch = Yii::app()->request->getPost('branch');
+        $etc = Yii::app()->request->getPost('etc');
+        $columns = array(
+            "appoint" => $appoint,
+            "type" => $type,
+            "patient_id" => $patient,
+            "branch" => $branch,
+            "etc" => $etc);
         Yii::app()->db->createCommand()
                 ->insert("appoint", $columns);
     }
     
     public function actionCarlendar() {
-        $this->render('carlendar');
+        $userBranch = Yii::app()->session['branch'];
+        if($userBranch == "99"){
+            $sql = "SELECT id,branchname FROM branch WHERE id != '99' ";
+        } else {
+            $sql = "SELECT id,branchname FROM branch WHERE id = '$userBranch' ";
+        }
+        $data['branch'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->render('carlendar',$data);
     }
 
     public function actionCarlendarevents() {
         $branch = Yii::app()->session['branch'];
+        if($branch == "99"){
+            $WHERE = "";
+        } else {
+            $WHERE = " AND a.branch = '$branch'";
+        }
         $sql = "SELECT a.appoint,a.type,COUNT(*) AS total
                 FROM appoint a 
-                WHERE a.status = '0' AND a.branch = '$branch' 
+                WHERE a.status = '0' $WHERE
                 GROUP BY a.appoint,a.type ";
         $model = Yii::app()->db->createCommand($sql)->queryAll();
         $items = array();
@@ -357,5 +375,16 @@ class AppointController extends Controller {
         Yii::app()->db->createCommand()
                 ->delete("appoint","id = '$id' ");
     }
+    
+    public function actionPrint($id = null){
+        $sql = "SELECT a.*,b.branchname,p.`name`,p.lname,p.birth
+                FROM appoint a INNER JOIN branch b ON a.branch = b.id
+                INNER JOIN patient p ON a.patient_id = p.id
+                WHERE a.id = '$id' ";
+        $data['appoint'] = Yii::app()->db->createCommand($sql)->queryRow();
+        $this->renderPartial('print',$data);
+    }
+    
+    
 
 }

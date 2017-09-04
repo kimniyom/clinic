@@ -153,14 +153,27 @@ class EmployeeController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        //$dataProvider = new CActiveDataProvider('Employee');
-        if (Yii::app()->session['branch'] == '99') {
+        $branch = Yii::app()->session['branch'];
+        $data['branch'] = $branch;
+        if ($branch == "99") {
+            $BranchList = Branch::model()->findAll();
+        } else {
+            $BranchList = Branch::model()->findAll("id = '$branch'");
+        }
+        $data['BranchList'] = $BranchList;
+
+        $this->render('index', $data);
+    }
+
+    public function actionDataemployee() {
+        $branch = Yii::app()->request->getPost('branch');
+        if ($branch == '99') {
             $data['employee'] = Employee::model()->findAll();
         } else {
-            $branch_id = Yii::app()->session['branch'];
-            $data['employee'] = Employee::model()->findAll("branch = '$branch_id' ");
+            $data['employee'] = Employee::model()->findAll("branch = '$branch' ");
         }
-        $this->render('index', $data);
+        $data['model'] = Branch::model()->find("id = :id", array(":id" => $branch));
+        $this->renderPartial('dataemployee', $data);
     }
 
     /**
@@ -267,6 +280,32 @@ class EmployeeController extends Controller {
           }
           }
          */
+    }
+
+    public function actionCommission() {
+        $branch = Yii::app()->session['branch'];
+        $data['branch'] = $branch;
+        if ($branch == "99") {
+            $BranchList = Branch::model()->findAll("id != '99'");
+        } else {
+            $BranchList = Branch::model()->findAll("id = '$branch'");
+        }
+        
+        $data['month'] = Month::model()->findAll();
+        $data['BranchList'] = $BranchList;
+        
+        $this->render('commission', $data);
+    }
+
+    public function actionDataemployeecommission() {
+        $branch = Yii::app()->request->getPost('branch');
+        if ($branch == '99') {
+            $data['employee'] = Employee::model()->findAll();
+        } else {
+            $data['employee'] = Employee::model()->findAll("branch = '$branch' ");
+        }
+        $data['model'] = Branch::model()->find("id = :id", array(":id" => $branch));
+        $this->renderPartial('dataemployeecommission', $data);
     }
 
 }

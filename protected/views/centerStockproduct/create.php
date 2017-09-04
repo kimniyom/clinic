@@ -41,161 +41,156 @@ $BranchModel = new Branch();
 ?>
 
 <div class="wells" style="width:100%; margin-bottom: 10px;">
-    <form class="form-horizontal">
-        <fieldset>
-            <legend>
-                <span class="label label-warning">
-                    <img src="<?php echo Yii::app()->baseUrl; ?>/images/add-product-icon.png"/>
-                    เพิ่มข้อมูลสินค้า
-                </span>
-            </legend>
+
+    <div class="row">
+        <div class="col-md-3 col-lg-3" id="p-left">
+            <div class="well" style=" border:#666666 dashed 2px; text-align: center; cursor: pointer;"
+                 onclick="GetImages();">
+                <i class="fa fa-image fa-5x" style=" color: #cccccc;"></i><br/>
+                <i class="fa fa-plus"></i> <font id="font-20">เพิ่มรูปสินค้า</font>
+            </div>
+            <div id="load_images_product"></div>
+        </div>
+        <div class="col-md-9 col-lg-9" id="p-right">
+            <label for="">หมวดสินค้า*</label><br/>
+            <?php
+            $this->widget('booster.widgets.TbSelect2', array(
+                //'model' => $model,
+                'asDropDownList' => true,
+                //'attribute' => 'itemid',
+                'name' => 'producttype',
+                'id' => 'producttype',
+                'data' => CHtml::listData(ProductType::model()->findAll("upper is null"), 'id', 'type_name'),
+                //'value' => $model,
+                'options' => array(
+                    'allowClear' => true,
+                    //$model,
+                    //'oid',
+                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                    'placeholder' => '== หมวดสินค้า ==',
+                    'width' => '50%',
+                //'tokenSeparators' => array(',', ' ')
+                )
+            ));
+            ?><br/>
+            <div class="row">
+                <div class="col-lg-6"><label for="">ประเภทสินค้า*</label></div>
+                <div class="col-lg-6"><label for="">รหัสสินค้า*</label></div>
+            </div>
 
             <div class="row">
-                <div class="col-md-3 col-lg-3" id="p-left">
-                    <div class="well" style=" border:#666666 dashed 2px; text-align: center; cursor: pointer;"
-                         onclick="GetImages();">
-                        <i class="fa fa-image fa-5x" style=" color: #cccccc;"></i><br/>
-                        <i class="fa fa-plus"></i> <font id="font-20">เพิ่มรูปสินค้า</font>
+                <div class="col-lg-6">
+                    <div id="boxsubproducttype" style=" width: 100%;">
+                        <select id="subproducttype" class="form-control">
+                            <option value=""></option>
+                        </select>
                     </div>
-                    <div id="load_images_product"></div>
                 </div>
-                <div class="col-md-9 col-lg-9" id="p-right">
-                    <label for="">หมวดสินค้า*</label><br/>
+                <div class="col-lg-6">
+                    <input type="text" id="_product_id" name="product_id" class="form-control" style="width:40%;" onkeyup="setcode()" value="<?php echo $productidAuto ?>"/>
+                    <input type="hidden" id="product_id" name="product_id" class="form-control" style="width:40%;" value="<?php echo $productidAuto ?>"/>
+
+                </div>
+            </div>
+
+            <label for="">ชื่อสินค้าบริษัท*</label>
+            <input type="text" id="product_name" name="product_name" class="form-control" style="width:100%;" required="required"/>
+
+            <label for="">ชื่อสินค้าคลินิก*</label>
+            <input type="text" id="product_nameclinic" name="product_nameclinic" class="form-control" style="width:100%;" required="required"/>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3"><label for="">หน่วยนับ*</label></div>
+                <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน*</label></div>
+                <div class="col-md-6 col-lg-3"><label for="">ราคาขาย*</label></div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
                     <?php
                     $this->widget('booster.widgets.TbSelect2', array(
                         //'model' => $model,
                         'asDropDownList' => true,
                         //'attribute' => 'itemid',
-                        'name' => 'producttype',
-                        'id' => 'producttype',
-                        'data' => CHtml::listData(ProductType::model()->findAll("upper is null"), 'id', 'type_name'),
+                        'name' => 'unit',
+                        'id' => 'unit',
+                        'data' => CHtml::listData(Unit::model()->findAll(""), 'id', 'unit'),
                         //'value' => $model,
                         'options' => array(
                             'allowClear' => true,
                             //$model,
                             //'oid',
                             //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                            'placeholder' => '== หมวดสินค้า ==',
-                            'width' => '50%',
+                            'placeholder' => '== หน่วยนับ ==',
+                            'width' => '100%',
                         //'tokenSeparators' => array(',', ' ')
                         )
                     ));
-                    ?><br/>
-                    <div class="row">
-                        <div class="col-lg-6"><label for="">ประเภทสินค้า*</label></div>
-                        <div class="col-lg-6"><label for="">รหัสสินค้า*</label></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div id="boxsubproducttype" style=" width: 100%;">
-                                <select id="subproducttype" class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <input type="text" id="_product_id" name="product_id" class="form-control" style="width:40%;" onkeyup="setcode()" value="<?php echo $productidAuto ?>"/>
-                            <input type="hidden" id="product_id" name="product_id" class="form-control" style="width:40%;" value="<?php echo $productidAuto ?>"/>
-
-                        </div>
-                    </div>
-
-                    <label for="">ชื่อสินค้าบริษัท*</label>
-                    <input type="text" id="product_name" name="product_name" class="form-control" style="width:100%;" required="required"/>
-
-                    <label for="">ชื่อสินค้าคลินิก*</label>
-                    <input type="text" id="product_nameclinic" name="product_nameclinic" class="form-control" style="width:100%;" required="required"/>
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3"><label for="">หน่วยนับ*</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน*</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาขาย*</label></div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <?php
-                            $this->widget('booster.widgets.TbSelect2', array(
-                                //'model' => $model,
-                                'asDropDownList' => true,
-                                //'attribute' => 'itemid',
-                                'name' => 'unit',
-                                'id' => 'unit',
-                                'data' => CHtml::listData(Unit::model()->findAll(""), 'id', 'unit'),
-                                //'value' => $model,
-                                'options' => array(
-                                    'allowClear' => true,
-                                    //$model,
-                                    //'oid',
-                                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                                    'placeholder' => '== หน่วยนับ ==',
-                                    'width' => '100%',
-                                //'tokenSeparators' => array(',', ' ')
-                                )
-                            ));
-                            ?>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required"/>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label for="">บริษัท</label><br/>
-                            <?php
-                            $this->widget('booster.widgets.TbSelect2', array(
-                                //'model' => $model,
-                                'asDropDownList' => true,
-                                //'attribute' => 'itemid',
-                                'name' => 'company',
-                                'id' => 'company',
-                                'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
-                                //'value' => $model,
-                                'options' => array(
-                                    'allowClear' => true,
-                                    //$model,
-                                    //'oid',
-                                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                                    'placeholder' => '== บริษัท ==',
-                                    'width' => '100%',
-                                //'tokenSeparators' => array(',', ' ')
-                                )
-                            ));
-                            ?>
-                        </div>
-                        <div class="col-lg-5" style=" padding-top: 22px;">
-                            <div class="well well-sm" style=" text-align: center;">
-                                <input type="radio" id="private" name="private" value="0" checked="checked"/> คลินิกมองเห็น
-                                &nbsp;&nbsp;<input type="radio" id="private" name="private" value="1"/> คลินิกมองไม่เห็น
-                            </div>
-                        </div>
-                    </div>
-
-                    <label for="textArea">รายละเอียด</label>
-                    <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
-
-
-                    <hr/>
-                    <button type="button" class="btn btn-success" onclick="save_product()">
-                        <i class="fa fa-save"></i>
-                        บันทึกข้อมูล
-                    </button>
-
-                    <font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font>
-                    <!--
-                    <button id="save_regis" name="save_regis" class="btn btn-success"
-                            onclick="save_product();">
-                        <span class="glyphicon glyphicon-save"></span> <b>บันทึกข้อมูล</b></button>
-                    -->
+                    ?>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required"/>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required"/>
                 </div>
             </div>
-        </fieldset>
-    </form>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="">บริษัท</label><br/>
+                    <?php
+                    $this->widget('booster.widgets.TbSelect2', array(
+                        //'model' => $model,
+                        'asDropDownList' => true,
+                        //'attribute' => 'itemid',
+                        'name' => 'company',
+                        'id' => 'company',
+                        'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
+                        //'value' => $model,
+                        'options' => array(
+                            'allowClear' => true,
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => '== บริษัท ==',
+                            'width' => '100%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?>
+                </div>
+                <div class="col-lg-5" style=" padding-top: 22px;">
+                    <div class="well well-sm" style=" text-align: center;">
+                        <input type="radio" id="private" name="private" value="0" checked="checked"/> คลินิกมองเห็น
+                        &nbsp;&nbsp;<input type="radio" id="private" name="private" value="1"/> คลินิกมองไม่เห็น
+                    </div>
+                </div>
+            </div>
+
+            <label for="textArea">รายละเอียด</label>
+            <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
+
+
+            <!--
+            <button id="save_regis" name="save_regis" class="btn btn-success"
+                    onclick="save_product();">
+                <span class="glyphicon glyphicon-save"></span> <b>บันทึกข้อมูล</b></button>
+            -->
+        </div>
+    </div>
+    <hr style=" margin-top: 0px; padding-top: 0px;"/>
+    <div class="row">
+        <div class="col-md-9 col-lg-9">
+            <center><font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font></center>
+        </div>
+        <div class="col-md-3 col-lg-3">
+            <button type="button" class="btn btn-success pull-right" onclick="save_product()" style=" margin-top: 0px;">
+                <i class="fa fa-save"></i>
+                บันทึกข้อมูล
+            </button>
+        </div>
+    </div>
 </div>
 
 <!--
@@ -370,5 +365,22 @@ $BranchModel = new Branch();
             $("#p-right").addClass("p-right");
         }
     }
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 165);
+        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
+
 </script>
 

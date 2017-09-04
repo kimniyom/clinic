@@ -1,31 +1,34 @@
+<script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/themes/dortor/assets/jquery-easyui/jquery.easyui.min.js"></script>
 
-<div class="row">
-    <div class="col-lg-10">
-        <input type="text" id="drug" class="form-control"/>
+<style type="text/css">
+    #tbdrug tbody tr td{
+        padding: 2px;
+    }
+</style>
+
+<div class="row" style=" margin: 0px;">
+    <div class="col-lg-2" style=" padding-top: 5px;">
+        แพ้ยา
     </div>
-    <div class="col-lg-2">
-        <button type="button" class="btn btn-success btn-block" onclick="Adddrug()">เพิ่ม</button>
+    <div class="col-lg-8">
+        <input type="text" id="druginsert" class="form-control" placeholder="รายละเอียดการแพ้ยา"/>
+    </div>
+    <div class="col-lg-2" style=" text-align: right;">
+        <button type="button" onclick="Adddrug()" class="btn btn-success"><i class="fa fa-plus"></i>เพิ่ม</button>
     </div>
 </div>
-<hr/>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>อาการแพ้ยา</th>
-            <th style="text-align: center;">Action</th>
-        </tr>
-    </thead>
+
+<table class="table table-bordered table-striped" style=" margin-top: 10px;" id="tbdrug">
     <tbody>
         <?php
         $i = 0;
         foreach ($patientdrug as $rs): $i++;
             ?>
             <tr>
-                <td><?php echo $i ?></td>
+                <td style=" text-align: center; width: 5%;"><?php echo $i ?></td>
                 <td><?php echo $rs['drug']; ?></td>
-                <td style=" text-align: center;">
+                <td style=" text-align: center; width: 5%;">
                     <a href="javascript:deletedrug('<?php echo $rs['id']?>')"><i class="fa fa-trash-o"></i></a>
                 </td>
             </tr>
@@ -38,9 +41,9 @@
     function Adddrug() {
         var url = "<?php echo Yii::app()->createUrl('patientdrug/adddrug') ?>";
         var patient_id = $("#patient_id").val();
-        var drug = $("#drug").val();
+        var drug = $("#druginsert").val();
         if(drug == ""){
-            $("#drug").focus();
+            $("#druginsert").focus();
             return false;
         }
         var data = {

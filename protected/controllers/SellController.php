@@ -32,7 +32,7 @@ class SellController extends Controller {
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('index', 'Detailservice', 'test',
                     'result', 'loadorder', 'sell', 'calculator', 'bill',
-                    'confirmorder', 'logsell', 'patient', 'cutstock'
+                    'confirmorder', 'logsell', 'patient', 'cutstock','checkstock','deleteitemsinorder'
                 ),
                 'users' => array('@'),
             ),
@@ -91,7 +91,7 @@ class SellController extends Controller {
 
     public function actionLoadorder() {
         $sell_id = Yii::app()->request->getPost('sell_id');
-        $sql = "SELECT p.product_id,c.product_nameclinic AS product_name,SUM(s.number) AS total,p.product_price
+        $sql = "SELECT s.id,p.product_id,c.product_nameclinic AS product_name,SUM(s.number) AS total,p.product_price
                         FROM sell s INNER JOIN clinic_stockproduct p ON s.product_id = p.product_id
                         INNER JOIN center_stockproduct c ON p.product_id = c.product_id
                         WHERE s.sell_id = '$sell_id' 
@@ -231,7 +231,7 @@ class SellController extends Controller {
         foreach ($item as $rs):
             $id = $rs['id'];
             $totalinstock = $rs['total']; //คงเหลือในสต๊อกที่ตัดได้
-            if ($totalinstock > $number) { //<==กรณีสินค้าในล๊อตนั้นมีมากกว่า
+            if ($totalinstock >= $number) { //<==กรณีสินค้าในล๊อตนั้นมีมากกว่า
                 $totalstock = ($totalinstock - $number);
                 $numbercut = $totalstock;
                 $columns = array("total" => $numbercut);
@@ -245,6 +245,23 @@ class SellController extends Controller {
             }
 
         endforeach;
+    }
+    
+    public function actionCheckstock(){
+        $product_id = Yii::app()->request->getPost('product_id');
+        $branch = Yii::app()->request->getPost('branch');
+        $sql = "SELECT IFNULL(SUM(p.total),0) AS total
+                FROM clinic_storeproduct p 
+                WHERE p.product_id = '$product_id' AND p.branch = '$branch' ";
+        
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        echo $rs['total'];
+    }
+    
+    public function actionDeleteitemsinorder(){
+        $id = Yii::app()->request->getPost('id');
+        Yii::app()->db->createCommand()
+                ->delete("sell", "id = '$id' ");
     }
 
 }

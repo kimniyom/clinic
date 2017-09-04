@@ -81,7 +81,7 @@
             foreach ($images as $rs):
                 ?>
                 <li class="col-sm-6 col-md-2 col-lg-2">
-                    <input type="checkbox" id="cb<?php echo $rs['id'] ?>" value="<?php echo $rs['images'] ?>"/>
+                    <input type="checkbox" id="cb<?php echo $rs['id'] ?>" value="<?php echo $rs['id'] ?>"/>
 
                     <label for="cb<?php echo $rs['id'] ?>">
                         <div class="img-wrapper">

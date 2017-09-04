@@ -1,40 +1,28 @@
 <?php
 $diag = Diag::model()->findAll('');
 ?>
-<?php
-if ($checkbody == 0) {
-    $class = "disabled";
-    ?>
-    <div class="alert alert-danger" style="text-align: center;">ยังไม่ได้รับการตรวจร่างกาย ... <i class="fa fa-info-circle"></i></div>
-    <?php
-} else {
-    $class = "";
-}
-?>
-<label>หัตถการ</label>
-<div class="row">
-    <div class="col-lg-10">
-        <select id="diag" class="form-control">
+
+<script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/themes/dortor/assets/jquery-easyui/jquery.easyui.min.js"></script>
+<style type="text/css">
+    #tbdiag tbody tr td{
+        padding: 2px;
+    }
+</style>
+<div class="row" style=" margin: 0px;">
+    <div class="col-lg-1" style=" padding-top: 5px;">หัตถการ</div>
+    <div class="col-lg-3">
+        <select id="diaginsert" class="easyui-combobox" name="dept" style=" width: 100%;">
             <?php foreach ($diag as $d): ?>
                 <option value="<?php echo $d['diagcode'] ?>"><?php echo $d['diagname'] ?></option>
             <?php endforeach; ?>
         </select>
     </div>
     <div class="col-lg-2">
-        <button type="button" class="btn btn-success btn-block" onclick="Adddiag()">เพิ่ม</button>
+        <button type="button" onclick="Adddiag()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">เพิ่ม</button>
     </div>
 </div>
-<hr/>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>หัตถการทางการแพทย์</th>
-            <th></th>
-            <th style="text-align: center;">Action</th>
-        </tr>
-    </thead>
+<table class="table table-bordered table-striped" style=" margin-top: 10px;" id="tbdiag">
     <tbody>
         <?php
         $i = 0;
@@ -42,32 +30,34 @@ if ($checkbody == 0) {
             $url = Yii::app()->createUrl('service/detail', array("patient_id" => $rs['patient_id'], "diagcode" => $rs['diag']));
             ?>
             <tr>
-                <td><?php echo $i ?></td>
+                <td style=" text-align: center;"><?php echo $i ?></td>
                 <td><?php
                     $diagcode = $rs['diag'];
                     echo Diag::model()->find("diagcode = '$diagcode' ")['diagname'];
                     ?></td>
+                <!--
                 <td style="text-align: center;">
-                    <button type="button" class="btn btn-info btn-xs <?php echo $class ?>" onclick="PopupCenter('<?php echo $url ?>', 'Service')">
+                    <!--
+                    <button type="button" class="btn btn-info btn-xs" onclick="PopupCenter('<?php //echo $url     ?>', 'Service')">
                         บันทึกการรักษา
                     </button>
+                    
                 </td>
-                <td style=" text-align: center;">
+                -->
+                <td style=" text-align: center; width: 5%;">
                     <a href="javascript:deletediag('<?php echo $rs['id'] ?>')"><i class="fa fa-trash-o"></i></a>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
-<p style=" color: #fb0303; margin-top: 10px;">
-    *ต้องทำการตรวจร่างกายก่อนทุกครั้งก่อนจะบันทึกรายการหัตถการ
-</p>
+
 
 <script type="text/javascript">
     function Adddiag() {
         var url = "<?php echo Yii::app()->createUrl('patientdiag/adddiag') ?>";
         var patient_id = $("#patient_id").val();
-        var diag = $("#diag").val();
+        var diag = $("#diaginsert").val();
         var data = {
             patient_id: patient_id,
             diag: diag
@@ -88,4 +78,6 @@ if ($checkbody == 0) {
             loaddiag();
         });
     }
+
+
 </script>

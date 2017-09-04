@@ -5,9 +5,7 @@ class ImagesController extends Controller {
     public $layout = "template_backend";
 
     public function actionIndex() {
-        $banner = new Backend_banner();
-        $data['banner'] = $banner->get_banner();
-        $this->render('//backend/banner/index', $data);
+        $this->render('//backend/images/index');
     }
 
     function Randstrgen() {
@@ -30,7 +28,6 @@ class ImagesController extends Controller {
          */
 
 // Define a destination
-
         $targetFolder = Yii::app()->baseUrl . '/uploads/product'; // Relative to the root
         if (!empty($_FILES)) {
 
@@ -68,7 +65,7 @@ class ImagesController extends Controller {
                         ->insert("images", $columns);
 
                 $width = 1280; //*** Fix Width & Heigh (Autu caculate) ***//
-                //$new_images = "Thumbnails_".$_FILES["Filedata"]["name"];
+//$new_images = "Thumbnails_".$_FILES["Filedata"]["name"];
                 $size = getimagesize($_FILES['Filedata']['tmp_name']);
                 $height = round($width * $size[1] / $size[0]);
                 $images_orig = imagecreatefromjpeg($tempFile);
@@ -80,7 +77,7 @@ class ImagesController extends Controller {
                 imagedestroy($images_orig);
                 imagedestroy($images_fin);
 
-                //move_uploaded_file($tempFile, $targetFile); เก่า
+//move_uploaded_file($tempFile, $targetFile); เก่า
                 echo '1';
             } else {
                 echo 'Invalid file type.';
@@ -89,11 +86,58 @@ class ImagesController extends Controller {
     }
 
     public function actionLoadimages() {
-        $sql = "SELECT * FROM images";
+        $sql = "SELECT * FROM images order by id DESC";
         $rs = Yii::app()->db->createCommand($sql)->queryAll();
         $data['images'] = $rs;
 
         $this->renderPartial('//backend/images/loadimages', $data);
+    }
+
+    public function actionLoadimagescontrol() {
+        $sql = "SELECT * FROM images order by id DESC";
+        $rs = Yii::app()->db->createCommand($sql)->queryAll();
+        $data['images'] = $rs;
+
+        $this->renderPartial('//backend/images/loadimagescontrol', $data);
+    }
+
+    public function actionDeleteimages() {
+        $img = Yii::app()->request->getPost('img');
+
+//$text = 'movies ,  top movies ,watchlist  ,    top song';
+        $cut = explode(',', $img);
+        foreach ($cut as $single) {
+            $id = trim($single);
+            $sql = "SELECT * FROM images WHERE id = '$id' ";
+            $result = Yii::app()->db->createCommand($sql)->queryRow();
+            if (file_exists("uploads/product/" . $result['images'])) {
+                unlink("uploads/product/" . $result['images']);
+            }
+
+            $img_id = $result['id'];
+            Yii::app()->db->createCommand()
+                    ->delete("product_images", "img_id = '$img_id' ");
+
+            Yii::app()->db->createCommand()
+                    ->delete("images", "id = '$img_id' ");
+        }
+    }
+
+    public function actionDeleteimagesall() {
+        $sql = "SELECT * FROM images";
+        $results = Yii::app()->db->createCommand($sql)->queryAll();
+        foreach ($results as $result) {
+            if (file_exists("uploads/product/" . $result['images'])) {
+                unlink("uploads/product/" . $result['images']);
+            }
+
+            $img_id = $result['id'];
+            Yii::app()->db->createCommand()
+                    ->delete("product_images", "img_id = '$img_id' ");
+
+            Yii::app()->db->createCommand()
+                    ->delete("images", "id = '$img_id' ");
+        }
     }
 
 }

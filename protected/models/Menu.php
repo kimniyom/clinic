@@ -105,7 +105,8 @@ class Menu extends CActiveRecord
 	function Getrolemenu($user_id = null){
         $sql = "SELECT m.*
                     FROM menu m INNER JOIN role_menu r ON m.id = r.menu_id
-					WHERE r.user_id = '$user_id' ORDER BY m.order ASC";
+					WHERE r.user_id = '$user_id' AND m.active = '1'
+                ORDER BY m.order ASC";
 
         return Yii::app()->db->createCommand($sql)->queryAll();
 	}

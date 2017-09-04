@@ -163,12 +163,17 @@ class Appoint extends CActiveRecord {
     
     public function Viewcarlendar($appoint = null,$type = null){
         $branch = Yii::app()->session['branch'];
-        $sql = "SELECT a.*,p.pid,p.`name`,p.lname
+        if($branch == "99"){
+            $WHERE = "";
+        } else {
+            $WHERE = " AND a.branch = '$branch'";
+        }
+        $sql = "SELECT a.*,p.pid,p.`name`,p.lname,c.tel
                 FROM appoint a INNER JOIN patient p ON a.patient_id = p.id
+                INNER JOIN patient_contact c ON p.id = c.patient_id
                 WHERE a.`status` = '0' 
                 AND a.appoint = '$appoint' 
-                AND a.type = '$type' 
-                AND a.branch = '$branch'
+                AND a.type = '$type' $WHERE
                 ORDER BY a.id ASC";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
@@ -182,6 +187,12 @@ class Appoint extends CActiveRecord {
                 $title = "ทรีทเม็นท์";
             }
             return $title;
+    }
+    
+    public function GetappointPatient($appoint_id){
+        $sql = "SELECT * FROM appoint a WHERE id = '$appoint_id' ";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        return $rs;
     }
 
 }

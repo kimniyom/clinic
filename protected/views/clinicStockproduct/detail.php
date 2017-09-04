@@ -31,13 +31,12 @@
 
 
 <?php
-
 $branchModel = new Branch();
-        $branchname = $branchModel->Getbranch($branch);
+$branchname = $branchModel->Getbranch($branch);
 
 $this->breadcrumbs = array(
     "คลังสินค้า" => Yii::app()->createUrl('clinicstore/index'),
-    "รายการสินค้า (สาขา ".$branchname.")" => array('index','branch' => $branch),
+    "รายการสินค้า (สาขา " . $branchname . ")" => array('index', 'branch' => $branch),
     $product['product_name']
 );
 
@@ -47,33 +46,34 @@ $product_id = $product['product_id'];
 ?>
 
 <?php $config = new Configweb_model(); ?>
-<?php if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '5') { ?>
-    <a href="<?php echo Yii::app()->createUrl('clinicstockproduct/update', array('id' => $product['id'])) ?>">
-        <button type="button" class="btn btn-primary">แก้ไข</button></a>
-    <button type="button" class="btn btn-danger" onclick="deleteproduct('<?php echo $product['id'] ?>')">ลบ</button>
-<?php } ?>
-<div class="well" style=" width:100%; margin-top:20px;text-align: left; background: #FFF;">
+
+<div class="well" id="font-th" style=" width:100%; margin-top:0px;text-align: left; background: #FFF; margin-bottom: 0px;">
     <div class="row">
 
         <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
+            <?php if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '5' || Yii::app()->session['status'] == '6') { ?>
+                <a href="<?php echo Yii::app()->createUrl('clinicstockproduct/update', array('id' => $product['id'])) ?>">
+                    <button type="button" class="btn btn-primary">แก้ไข</button></a>
+                <button type="button" class="btn btn-danger" onclick="deleteproduct('<?php echo $product['id'] ?>')">ลบ</button>
+            <?php } ?>
+            <br/>
             <font style=" color: #F00; font-size: 24px; font-weight: normal;">
             ชื่อสินค้า : <?= $product['product_nameclinic'] ?>
             </font><br/>
             <b>รหัสสินค้า</b> <?= $product['product_id'] ?><br/>
             <b>หมวดสินค้า</b> <?= $product['type_name'] ?><br/>
             <b>ประเภทสินค้า</b> <?= $product['subtypename'] ?><br/>
-            <b>อัพเดทล่าสุด</b> <?= $config->thaidate($product['d_update']); ?>
 
-            <br/><font style=" font-size: 24px; color: #ffcc00;">
+            <br/><font style=" font-size: 24px; color: #666666;">
             ต้นทุน <?= number_format($product['costs']) ?>.-  บาท
-            </font>
-            <br/><font style=" font-size: 24px; color: #F00;">
+            </font> , <font style=" font-size: 24px; color: #F00;">
             ราคาขาย <?= number_format($product['product_price']) ?>.-  บาท
             </font>
             <br/>
             <b>รายละเอียดสินค้า</b>
             <?= $product['product_detail'] ?>
-   
+            <hr/>
+            <b>อัพเดทล่าสุด</b> <?= $config->thaidate($product['d_update']); ?>
         </div>
 
         <div class="col-lg-4 col-md-6 col-xs-12" style=" padding-top: 20px;" id="p-right">
@@ -133,7 +133,7 @@ $product_id = $product['product_id'];
         }
     }
 
-   
+
     function checkheight() {
         var p_left = $("#p-left").height();
         var p_right = $("#p-right").height();
@@ -146,7 +146,25 @@ $product_id = $product['product_id'];
             $("#p-right").addClass("p-right");
         }
     }
-    
+
+
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 155);
+        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
+
 </script>
 
 

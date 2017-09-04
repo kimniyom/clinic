@@ -26,7 +26,7 @@ class PatientController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'checkpatient', 'save_upload'),
+                'actions' => array('index', 'view', 'checkpatient', 'save_upload', 'getdata', 'history', 'appoint', 'sellhistory','getappointpatient','deleteappoint','detailsell'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -123,15 +123,30 @@ class PatientController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        //$dataProvider=new CActiveDataProvider('Patient');
 
-        $BranchModel = new Branch();
-        $WHER = $BranchModel->BracheUser();
+        $branch = Yii::app()->session['branch'];
+        $data['branchModel'] = Branch::model()->find('id=:id', array(':id' => $branch));
+        $data['branch'] = $branch;
+        if ($branch == "99") {
+            $BranchList = Branch::model()->findAll();
+        } else {
+            $BranchList = Branch::model()->findAll("id = '$branch'");
+        }
 
-        $patient = Patient::model()->findAll($WHER);
-        $this->render('index', array(
-            'patient' => $patient,
-        ));
+        $data['BranchList'] = $BranchList;
+        $this->render('index', $data);
+    }
+
+    public function actionGetdata() {
+        $branch = Yii::app()->request->getPost('branch');
+        if ($branch == "99") {
+            $WHERE = "";
+        } else {
+            $WHERE = "branch = '$branch'";
+        }
+
+        $data['patient'] = Patient::model()->findAll($WHERE);
+        $this->renderPartial('getdata', $data);
     }
 
     /**
@@ -260,6 +275,65 @@ class PatientController extends Controller {
         } else {
             echo "0";
         }
+    }
+
+    public function actionHistory() {
+        $patient_id = Yii::app()->request->getPost('patient_id');
+        $sql = "SELECT s.*,b.branchname
+          FROM service s INNER JOIN branch b ON s.branch = b.id
+          WHERE s.patient_id = '$patient_id' AND s.status = '4' ORDER BY s.id DESC";
+        $data['history'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial('history', $data);
+    }
+
+    public function actionAppoint() {
+        $patient_id = Yii::app()->request->getPost('patient_id');
+        $sql = "SELECT a.id,a.appoint,b.branchname
+            FROM appoint a INNER JOIN branch b ON a.branch = b.id 
+            WHERE a.patient_id = '$patient_id' AND a.status = '0' ORDER BY a.id DESC";
+        $data['appoint'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial('appoint', $data);
+    }
+
+    public function actionSellhistory() {
+        $patient_id = Yii::app()->request->getPost('patient_id');
+        $sql = "SELECT s.*
+              FROM logsell s INNER JOIN patient p ON s.card = p.card
+              WHERE p.id = '$patient_id '
+              ORDER BY s.id ASC";
+        $data['sell'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial('sellhistory', $data);
+    }
+
+    public function actionGetappointpatient() {
+        $Model = new Appoint();
+        $appoint_id = Yii::app()->request->getPost('appoint_id');
+        $appoint = $Model->GetappointPatient($appoint_id);
+        
+        $str = "";
+        $str .= "<table class='table'><tr><td>วันที่นัด</td><td>".$appoint['appoint']."</td></tr>";
+        $str .= "<tr><td>ประเภทนัด</td><td>".$Model->Typeappoint($appoint['type'])."</td></tr>";
+        $str .= "<tr><td>อื่น ๆ</td><td>".$appoint['etc']."</td></tr>";
+        $str .="</table>";
+        
+        echo $str;
+    }
+    
+    public function actionDeleteappoint(){
+        $appoint_id = Yii::app()->request->getPost('appoint_id');
+        Yii::app()->db->createCommand()
+                ->delete("appoint","id = '$appoint_id'");
+    }
+    
+    public function actionDetailsell($sell_id) {
+        //$sell_id = Yii::app()->request->getPost('sell_id');
+        
+        $Model = new sell();
+        //$sell_id = Yii::app()->request->getPost('sell_id');
+        $data['order'] = $Model->Getlistorder($sell_id);
+        $data['detail'] = $Model->Detailorder($sell_id);
+        $data['logsell'] = Logsell::model()->find("sell_id = '$sell_id' ");
+        $this->renderPartial('detailsell', $data);
     }
 
 }

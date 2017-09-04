@@ -3,8 +3,8 @@
 /* @var $model Patient */
 
 $this->breadcrumbs=array(
-	'Patients'=>array('index'),
-	'Create',
+	'ทะเบียนลูกค้า'=>array('index'),
+	'ลงทะเบียนลูกค้า',
 );
 
 $this->menu=array(

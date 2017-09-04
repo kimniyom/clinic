@@ -44,12 +44,6 @@ $BranchModel = new Branch();
 <div class="wells" style="width:100%;">
     <form class="form-horizontal">
         <fieldset>
-            <legend>
-                <span class="label label-warning">
-                    <img src="<?php echo Yii::app()->baseUrl; ?>/images/add-product-icon.png"/>
-                    แก้ไขข้อมูลสินค้า
-                </span>
-            </legend>
             <div class="row">
                 <div class="col-md-3 col-lg-3" id="p-left">
                     <div class="well" style=" border:#666666 dashed 2px; text-align: center; cursor: pointer;"
@@ -174,8 +168,16 @@ $BranchModel = new Branch();
                         </div>
                         <div class="col-lg-5" style=" padding-top: 22px;">
                             <div class="well well-sm" style=" text-align: center;">
-                                <input type="radio" id="private" name="private" value="0" <?php if($product['private'] == '0'){ echo "checked='checked'"; }?>/> คลินิกมองเห็น
-                                &nbsp;&nbsp;<input type="radio" id="private" name="private" value="1" <?php if($product['private'] == '1'){ echo "checked='checked'"; }?>/> คลินิกมองไม่เห็น
+                                <input type="radio" id="private" name="private" value="0" <?php
+                                if ($product['private'] == '0') {
+                                    echo "checked='checked'";
+                                }
+                                ?>/> คลินิกมองเห็น
+                                &nbsp;&nbsp;<input type="radio" id="private" name="private" value="1" <?php
+                                if ($product['private'] == '1') {
+                                    echo "checked='checked'";
+                                }
+                                ?>/> คลินิกมองไม่เห็น
                             </div>
                         </div>
                     </div>
@@ -185,12 +187,8 @@ $BranchModel = new Branch();
                         <?php echo $product['product_detail'] ?>
                     </textarea>
 
-                    <hr/>
-                    <button type="button" class="btn btn-success" onclick="save_product()">
-                        <i class="fa fa-save"></i>
-                        แก้ไขข้อมูล
-                    </button>
-                    <font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font>
+
+
                     <!--
                     <button id="save_regis" name="save_regis" class="btn btn-success"
                             onclick="save_product();">
@@ -201,6 +199,15 @@ $BranchModel = new Branch();
         </fieldset>
     </form>
 </div>
+
+<hr/>
+<button type="button" class="btn btn-success pull-right" onclick="save_product()">
+    <i class="fa fa-save"></i>
+    แก้ไขข้อมูล
+</button>
+<center>
+    <font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font>
+</center>
 
 <!--
     ##### Model Images #####
@@ -384,5 +391,23 @@ $BranchModel = new Branch();
             $("#p-right").addClass("p-right");
         }
     }
+
+</script>
+
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 175);
+        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
 
 </script>

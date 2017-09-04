@@ -1,3 +1,4 @@
+<title>รายชื่อนัดลูดค้า</title>
 <style type="text/css">
     table{
         border: none;
@@ -12,7 +13,6 @@ $this->breadcrumbs = array(
 );
 $PatientModel = new Patient();
 $PatientList = $PatientModel->GetPatient();
-
 ?>
 <div id="ca">
     <p class="text-danger">*นัดลูกค้าคลิกที่ว่างในช่องวันที่</p>
@@ -21,36 +21,36 @@ $PatientList = $PatientModel->GetPatient();
     <button type="button" class="btn btn-primary">นัดพบแพทย์</button>
     <button type="button" class="btn btn-success">นัดหัตถการ</button>
     <hr/>
-<?php
-$this->widget('ext.fullcalendar.EFullCalendarHeart', array(
-    //'themeCssFile'=>'cupertino/jquery-ui.min.css',
-    //'id' => 'appoint',
-    'htmlOptions' => array(
-        'style' => 'border:#eeeeee solid 0px;'
-    ),
-    'options' => array(
-        'lang' => 'th',
-        'editable' => true,
-        'header' => array(
-            'left' => 'prev,next,today',
-            'center' => 'title',
-            'right' => 'month,agendaDay',
-            //'right' => 'month,agendaWeek,agendaDay',
-            'lang' => 'th',
+    <?php
+    $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
+        //'themeCssFile'=>'cupertino/jquery-ui.min.css',
+        //'id' => 'appoint',
+        'htmlOptions' => array(
+            'style' => 'border:#eeeeee solid 0px;'
         ),
-        //'timeFormat'=> 'H(:mm)',
-        'events' => $this->createUrl('appoint/carlendarevents'), // URL to get event
-        'eventClick' => 'js:function(calEvent, jsEvent, view) {
+        'options' => array(
+            'lang' => 'th',
+            'editable' => true,
+            'header' => array(
+                'left' => 'prev,next,today',
+                'center' => 'title',
+                'right' => 'month',
+                //'right' => 'month,agendaWeek,agendaDay',
+                'lang' => 'th',
+            ),
+            //'timeFormat'=> 'H(:mm)',
+            'events' => $this->createUrl('appoint/carlendarevents'), // URL to get event
+            'eventClick' => 'js:function(calEvent, jsEvent, view) {
             $("#myModalHeader").html(calEvent.title);
             $("#myModalBody").load("' . Yii::app()->createUrl("appoint/viewcarlendar/appoint") . '/"+calEvent.id+"/type/"+calEvent.type);
             $("#myModal").modal();
         }',
-        'dayClick' => "js:function(date, jsEvent, view) {
+            'dayClick' => "js:function(date, jsEvent, view) {
             $('#addappoint').modal();
             $('#date').val(date.format());
         }",
-)));
-?>
+    )));
+    ?>
 </div>
 
 
@@ -68,7 +68,7 @@ $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" tabindex="-1" role="dialog" id="addappoint">
+<div class="modal fade" tabindex="-1" role="dialog" id="addappoint" data-backdrop='static'>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,11 +76,10 @@ $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
                 <h4 class="modal-title" id="myModalHeader">นัดลูกค้า</h4>
             </div>
             <div class="modal-body" id="myModalBody">
-                วันที่นัด
-                <input type="text" class="form-control" id="date" readonly="readonly"/><br/>
+                <input type="hidden" class="form-control" id="date" readonly="readonly"/><br/>
                 <div class="row">
                     <div class="col-lg-6">
-                        ชื่อลูกค้า
+                        ชื่อลูกค้า *
                         <?php
                         $this->widget(
                                 'booster.widgets.TbSelect2', array(
@@ -96,11 +95,11 @@ $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
                         );
                         ?>
                     </div>
-                    
+
                     <div class="col-lg-6">
-                        ประเภทนัด
+                        ประเภทนัด *
                         <?php
-                        $Type = array("1" => "นัดหัตถการ","2" => "นัดพบแพทย์","3" => "ทรีทเม็นท์");
+                        $Type = array("1" => "นัดหัตถการ", "2" => "นัดพบแพทย์", "3" => "ทรีทเม็นท์");
                         $this->widget(
                                 'booster.widgets.TbSelect2', array(
                             'name' => 'type',
@@ -115,11 +114,38 @@ $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
                         );
                         ?>
                     </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        สาขา *
+                        <?php
+                        
+                        $this->widget(
+                                'booster.widgets.TbSelect2', array(
+                            'name' => 'branch',
+                            'id' => 'branch',
+                            'data' => CHtml::listData($branch, 'id', 'branchname'),
+                            'options' => array(
+                                'placeholder' => 'สาขานัด',
+                                'width' => '100%',
+                                'allowClear' => true,
+                            )
+                                )
+                        );
+                        ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <br/>อื่น ๆ
+                        <textarea id="etc" class="form-control" rows="5"></textarea>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="AddAppoint()">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" onclick="AddAppoint()">บันทึก</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -127,26 +153,33 @@ $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
 
 
 <script type="text/javascript">
-    function AddAppoint(){
-        var url = "<?php echo Yii::app()->createUrl('appoint/addeven')?>";
+    function AddAppoint() {
+        var url = "<?php echo Yii::app()->createUrl('appoint/addeven') ?>";
         var appoint = $("#date").val();
         var patient = $("#patient").val();
         var type = $("#type").val();
-        
-        if(patient == ''){
+        var branch = $("#branch").val();
+        var etc = $("#etc").val();
+        if (patient == '') {
             alert("ยังไม่ได้เลือกลูกค้า");
             $("#patient").focus();
             return false;
         }
-        
-        if(type == ''){
+
+        if (type == '') {
             alert("ยังไม่ได้เลือกประเภทนัด");
             $("#type").focus();
             return false;
         }
         
-        var data = {appoint: appoint,patient: patient,type: type};
-        $.post(url,data,function(datas){
+        if(branch == ''){
+            alert("ยังไม่ได้เลือกสาขา");
+            $("#branch").focus();
+            return false;
+        }
+
+        var data = {appoint: appoint, patient: patient, type: type, etc: etc,branch: branch};
+        $.post(url, data, function (datas) {
             window.location.reload();
         });
     }

@@ -30,7 +30,7 @@ class ClinicStoreproductController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','saveproduct','getsubproduct','getproductinsubtype','getdatastockproduct'),
+                'actions' => array('create', 'update', 'saveproduct', 'getsubproduct', 'getproductinsubtype', 'getdatastockproduct','searchproduct','datasearchproduct'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -62,14 +62,14 @@ class ClinicStoreproductController extends Controller {
         $branchModel = new Branch();
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
-/*
-        if (isset($_POST['ClinicStoreproduct'])) {
-            $model->attributes = $_POST['ClinicStoreproduct'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
-        }
- * 
- */ 
+        /*
+          if (isset($_POST['ClinicStoreproduct'])) {
+          $model->attributes = $_POST['ClinicStoreproduct'];
+          if ($model->save())
+          $this->redirect(array('view', 'id' => $model->id));
+          }
+         * 
+         */
         $branchname = $branchModel->Getbranch($branch);
         $this->render('create', array(
             'branch' => $branch,
@@ -119,7 +119,7 @@ class ClinicStoreproductController extends Controller {
         $branchModel = new Branch();
         $data['branchname'] = $branchModel->Getbranch($branch);
         $data['branch'] = $branch;
-        $this->render('index',$data);
+        $this->render('index', $data);
     }
 
     /**
@@ -166,11 +166,11 @@ class ClinicStoreproductController extends Controller {
         $subproducttype = Yii::app()->request->getPost('subproducttype');
         $branch = Yii::app()->request->getPost('branch');
         $Model = new ClinicStoreproduct();
-        $data['product'] = $Model->Searchstore($type, $subproducttype,$branch);
+        $data['product'] = $Model->Searchstore($type, $subproducttype, $branch);
 
         $this->renderPartial('datastockproduct', $data);
     }
-    
+
     public function actionSaveproduct() {
 
         $data = array(
@@ -189,21 +189,46 @@ class ClinicStoreproductController extends Controller {
                 ->insert('clinic_storeproduct', $data);
         //echo $this->redirect(array('backend/product/detail_product&product_id=' . $_POST['product_id']));
     }
-    
+
     public function actionGetsubproduct() {
         $upper = Yii::app()->request->getPost('type_id');
         $data['type'] = ProductType::model()->findAll("upper = '$upper' ");
         $this->renderPartial('subproducttype', $data);
     }
-    
+
     public function actionGetproductinsubtype() {
         $subproducttype = Yii::app()->request->getPost('subproducttype');
         $branch = Yii::app()->request->getPost('branch');
-        
+
         $clinicstockModel = new ClinicStockproduct();
-        
+
         $data['product'] = $clinicstockModel->comboproduct($subproducttype, $branch);
         $this->renderPartial('comboproduct', $data);
+    }
+
+    public function actionSearchproduct() {
+        $branch = Yii::app()->session['branch'];
+        $data['branchModel'] = Branch::model()->find('id=:id', array(':id' => $branch));
+        $data['branch'] = $branch;
+        if ($branch == "99") {
+            $BranchList = Branch::model()->findAll("id != '99'");
+        } else {
+            $BranchList = Branch::model()->findAll("id = '$branch'");
+        }
+        $data['BranchList'] = $BranchList;
+        $this->render('searchproduct',$data);
+    }
+    
+    public function actionDatasearchproduct() {
+        $type = Yii::app()->request->getPost('type_id');
+        $subproducttype = Yii::app()->request->getPost('subproducttype');
+        $branch = Yii::app()->request->getPost('branch');
+        $product_id = Yii::app()->request->getPost('product_id');
+        $Model = new ClinicStoreproduct();
+        $data['product'] = $Model->SearchProduct($type, $subproducttype, $branch,$product_id);
+        
+        //echo $data['product'];
+        $this->renderPartial('datasearchproduct', $data);
     }
 
 }

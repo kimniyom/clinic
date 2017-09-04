@@ -4,7 +4,7 @@
     function Setscreen() {
         var boxsell = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 420);
+        var screenfull = (boxsell - 385);
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -54,6 +54,7 @@ $config = new Configweb_model();
                 $productID = $last['product_id'];
                 $link = Yii::app()->createUrl('clinicstockproduct/detail&product_id=' . $last['product_id']);
                 $i++;
+                if($last['total'] > 0){
                 ?>
                 <tr>
                     <td style=" text-align: center;"><?php echo $i ?></td>
@@ -76,6 +77,7 @@ $config = new Configweb_model();
                     <td style="text-align: center;"><a href="<?//php echo $link ?>">รายละเอียด</a></td>
                     -->
                 </tr>
+                <?php } ?>
             <?php endforeach; ?>
         </tbody>
     </table>

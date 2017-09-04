@@ -227,12 +227,16 @@ class Backend_Product {
     }
 
     function get_images_product($product_id = '') {
-        $sql = "SELECT product_images.id,images FROM product_images WHERE product_id = '$product_id' AND active != '1'";
+        $sql = "SELECT p.id,i.images
+                 FROM product_images p INNER JOIN images i ON p.img_id = i.id
+                 WHERE p.product_id = '$product_id' AND p.active != '1' order by i.id DESC";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
     function get_images_product_title($product_id = '') {
-        $sql = "SELECT product_images.id,images FROM product_images WHERE product_id = '$product_id' AND active = '1' ";
+        $sql = "SELECT p.id,i.images 
+                FROM product_images p INNER JOIN images i ON p.img_id = i.id
+                WHERE p.product_id = '$product_id' AND p.active = '1' ";
         return Yii::app()->db->createCommand($sql)->queryRow();
     }
 

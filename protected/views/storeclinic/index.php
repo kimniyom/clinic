@@ -1,3 +1,4 @@
+<title>คลังสินค้า</title>
 <?php
 /* @var $this ProductTypeController */
 /* @var $dataProvider CActiveDataProvider */
@@ -17,24 +18,19 @@ $branchs = Branch::model()->findAll("active = '1' $WHERE");
 
 ?>
 
-<h1>
-    <img src="<?= Yii::app()->baseUrl; ?>/images/shipping-box-icon.png" 
-         style="border-radius:20px; padding:2px; border:#FFF solid 2px;">
-    คลังสินค้า      
-</h1>
-<hr/>
+
 <?php foreach($branchs as $rs): ?>
 
 <h3>สาขา <?php echo $rs['branchname']?></h3>
 <div class="row">
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-2 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('clinicstoreproduct/index',array("branch" => $rs['id'])) ?>">
             <button type="button" class="btn btn-success btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/box-icon.png"/><br/>
                 คลังสินค้า
             </button></a>
     </div>
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-2 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('clinicstockproduct/index',array("branch" => $rs['id'])) ?>">
             <button type="button" class="btn btn-warning btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/Product-sale-report-icon.png"/><br/>
@@ -42,7 +38,7 @@ $branchs = Branch::model()->findAll("active = '1' $WHERE");
             </button></a>
     </div>
     
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-2 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('orders/index',array("branch" => $rs['id'])) ?>">
             <button type="button" class="btn btn-default btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/text-richtext-icon.png"><br/>

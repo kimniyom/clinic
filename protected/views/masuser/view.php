@@ -1,9 +1,8 @@
+<style type="text/css">
+
+</style>
 <?php
 /* @var $this MasuserController */
-
-
-
-
 /* @var $model Masuser */
 
 $this->breadcrumbs = array(
@@ -17,58 +16,59 @@ $StatusModel = new StatusUser();
 $status = $StatusModel->find("id = '$model->status'")['status'];
 $branch = new Branch();
 ?>
-<input type="hidden" id="user_id" value="<?php echo $user_id ?>"/>
-<div class="panel panel-primary">
-    <div class="panel-heading">ข้อมูล <?php echo $model->username;
-?></div>
-    <div style="color:#000000;">
-        <?php
-        $this->widget('zii.widgets.CDetailView', array(
-            'data' => $model,
-            'attributes' => array(
-                'id',
-                'username',
-                array(// related city displayed as a link
-                    'label' => 'ชื่ผู้ใช้งาน',
-                    'type' => 'raw',
-                    'value' => $profile['name'] . ' ' . $profile['lname'],
-                ),
-                //'password',
-                array(// related city displayed as a link
-                    'label' => 'สถานะ',
-                    'type' => 'raw',
-                    'value' => $status,
-                ),
-                array(// related city displayed as a link
-                    'label' => 'วันที่บันทึกข้อมูล',
-                    'type' => 'raw',
-                    'value' => $model->create_date,
-                ),
-                array(// related city displayed as a link
-                    'label' => 'วันที่อัพเดืข้อมูล',
-                    'type' => 'raw',
-                    'value' => $model->d_update,
-                ),
-            //'flag',
-            ),
-        ));
-        ?>
+<div class="row">
+    <div class="col-md-4 col-lg-4" id="p-left">
+        <input type="hidden" id="user_id" value="<?php echo $user_id ?>"/>
+        <div class="panel panel-default">
+            <div class="panel-heading">ข้อมูล <?php echo $model->username; ?></div>
+            <div style="color:#000000;">
+                <?php
+                $this->widget('zii.widgets.CDetailView', array(
+                    'data' => $model,
+                    'attributes' => array(
+                        'id',
+                        'username',
+                        array(// related city displayed as a link
+                            'label' => 'ชื่ผู้ใช้งาน',
+                            'type' => 'raw',
+                            'value' => $profile['name'] . ' ' . $profile['lname'],
+                        ),
+                        //'password',
+                        array(// related city displayed as a link
+                            'label' => 'สถานะ',
+                            'type' => 'raw',
+                            'value' => $status,
+                        ),
+                        array(// related city displayed as a link
+                            'label' => 'วันที่บันทึกข้อมูล',
+                            'type' => 'raw',
+                            'value' => $model->create_date,
+                        ),
+                        array(// related city displayed as a link
+                            'label' => 'วันที่อัพเดืข้อมูล',
+                            'type' => 'raw',
+                            'value' => $model->d_update,
+                        ),
+                    //'flag',
+                    ),
+                ));
+                ?>
+            </div>
+        </div>
     </div>
-</div>
-<div>
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">สิทธิ์การเข้าถึงสาขา</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="menu()">สิทธิ์การใช้งาน</a></li>
-        <li role="presentation"><a href="#menureport" aria-controls="menureport" role="tab" data-toggle="tab" onclick="getmenureport()">สิทธิ์การดูรายงาน</a></li>
-        <li role="presentation"><a href="#menusetting" aria-controls="menusetting" role="tab" data-toggle="tab" onclick="getmenusetting()">สิทธิ์การตั้งค่า</a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
-            <div class="panel panel-default" style=" border-top: none;">
-                <div class="panel-body">
-                    <div class="row">
+    <div class="col-md-8 col-lg-8">
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">สิทธิ์การเข้าถึงสาขา</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="menu()">สิทธิ์การใช้งาน</a></li>
+                <li role="presentation"><a href="#menureport" aria-controls="menureport" role="tab" data-toggle="tab" onclick="getmenureport()">สิทธิ์การดูรายงาน</a></li>
+                <li role="presentation"><a href="#menusetting" aria-controls="menusetting" role="tab" data-toggle="tab" onclick="getmenusetting()">สิทธิ์การตั้งค่า</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content" id="p-right" style=" background: #ffffff; padding: 10px; border: #cccccc solid 1px; border-top: none;">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="row" style=" margin: 0px;">
                         <div class="col-lg-10">
                             <?php
                             $user_id = $profile['id'];
@@ -103,20 +103,16 @@ $branch = new Branch();
                     <br/>
                     <div id="branchs"></div>
                 </div>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="profile">
-            <div class="panel panel-default" style=" border-top: none;">
-                <div class="panel-body">
+                <div role="tabpanel" class="tab-pane" id="profile">
                     <div id="menu"></div>
                 </div>
+                <div role="tabpanel" class="tab-pane" id="menureport">
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="menusetting">
+
+                </div>
             </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="menureport">
-
-        </div>
-        <div role="tabpanel" class="tab-pane" id="menusetting">
-
         </div>
     </div>
 </div>
@@ -159,8 +155,8 @@ $branch = new Branch();
             $("#menu").html(datas);
         });
     }
-    
-    function getmenureport(){
+
+    function getmenureport() {
         var url = "<?php echo Yii::app()->createUrl('menureport/getmenureport') ?>";
         var user_id = "<?php echo $profile['id'] ?>";
         var data = {user_id: user_id};
@@ -168,13 +164,28 @@ $branch = new Branch();
             $("#menureport").html(datas);
         });
     }
-    
-    function getmenusetting(){
+
+    function getmenusetting() {
         var url = "<?php echo Yii::app()->createUrl('menusetting/getmenusetting') ?>";
         var user_id = "<?php echo $profile['id'] ?>";
         var data = {user_id: user_id};
         $.post(url, data, function (datas) {
             $("#menusetting").html(datas);
         });
+    }
+</script>
+
+<script type="text/javascript">
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 115);
+        var screenfullRight = (screen - 155);
+        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#p-right").css({'height': screenfullRight, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
     }
 </script>

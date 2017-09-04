@@ -3,8 +3,8 @@
 /* @var $model Employee */
 
 $this->breadcrumbs=array(
-	'Employees'=>array('index'),
-	'Create',
+	'ทะเบียนลูกค้า'=>array('index'),
+	'ละทะบียน',
 );
 
 $this->menu=array(
@@ -12,7 +12,5 @@ $this->menu=array(
 	array('label'=>'Manage Employee', 'url'=>array('admin')),
 );
 ?>
-
-<h1>Create Employee</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

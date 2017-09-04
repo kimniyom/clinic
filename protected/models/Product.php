@@ -228,12 +228,14 @@ class Product {
     }
 
     function get_images_product($product_id = '') {
-        $sql = "SELECT product_images.id,images FROM product_images WHERE product_id = '$product_id' AND active != '1' ";
+        $sql = "SELECT p.id,i.images FROM product_images p INNER JOIN images i ON p.img_id = i.id
+                WHERE p.product_id = '$product_id' AND p.active != '1' order by i.id DESC";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
     function get_images_product_title($product_id = '') {
-        $sql = "SELECT product_images.id,images FROM product_images WHERE product_id = '$product_id' AND active = '1' ";
+        $sql = "SELECT p.id,i.images FROM product_images p INNER JOIN images i ON p.img_id = i.id
+                WHERE p.product_id = '$product_id' AND p.active = '1' order by i.id DESC";
         return Yii::app()->db->createCommand($sql)->queryRow();
     }
 
@@ -276,7 +278,9 @@ class Product {
     }
     
     function firstpictures($id = null){
-        $sql = "SELECT * FROM product_images WHERE product_id = '$id' ORDER BY id ASC LIMIT 1";
+        $sql = "SELECT i.images
+            FROM product_images p INNER JOIN images i ON p.img_id = i.id
+            WHERE p.product_id = '$id' ORDER BY i.id ASC LIMIT 1";
         $re = Yii::app()->db->createCommand($sql)->queryRow();
         return $re['images'];
     }

@@ -7,6 +7,7 @@
             <th style=" text-align: center;">จำนวน</th>
             <th style=" text-align: right;">ราคา / หน่วย</th>
             <th style=" text-align: right;">รวม</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +25,19 @@
                 <td style=" text-align: center;"><?php echo $rs['total'] ?></td>
                 <td style="text-align: right;">​<?php echo number_format($rs['product_price'], 2) ?></td>
                 <td style="text-align: right;">​<?php echo number_format($priceRow, 2) ?></td>
+                <td style=" text-align: center;">
+                    <i class="fa fa-remove" onclick="deleteItems('<?php echo $rs['id'] ?>')" style=" cursor: pointer;"></i></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<script type="text/javascript">
+    function deleteItems(id) {
+        var url = "<?php echo Yii::app()->createUrl('sell/deleteitemsinorder') ?>";
+        var data = {id: id};
+        $.post(url, data, function (datas) {
+            loadorder();
+        });
+    }
+</script>

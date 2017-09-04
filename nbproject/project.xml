@@ -7,11 +7,13 @@
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>POPUP</word>
+            <word>ด</word>
             <word>ต</word>
             <word>บ</word>
             <word>รอบเอว</word>
             <word>วนลด</word>
             <word>สาขา</word>
+            <word>อน</word>
         </spellchecker-wordlist>
     </configuration>
 </project>

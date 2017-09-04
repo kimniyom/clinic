@@ -34,13 +34,15 @@
 
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template.css"/>
-        
+
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/css/button-color.css"/>
-       
+
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css"/>
-        
+
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
-        
+        <!--
+        <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
+        -->
         <!--
         <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap-material/dist/css/bootstrap-material-design.css" type="text/css" media="all" />
         -->
@@ -48,7 +50,7 @@
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.dataTables.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.bootstrap.css" type="text/css" media="all" />
-        
+
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/font-awesome-4.3.0/css/font-awesome.css"/>
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/font-awesome-4.3.0/css/font-awesome-animation.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/simple-sidebar.css"/>
@@ -63,17 +65,17 @@
         <script src="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/js/bootstrap.js" type="text/javascript"></script>
         -->
         <!-- Magnific Popup core CSS file -->
-        <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/assets/gallery_img/dist/jquery.magnific-popup.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/assets/gallery_img/dist/jquery.magnific-popup.js"></script>
         <!-- Data table  -->
-        <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/media/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/media/js/dataTables.bootstrap.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/media/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/media/js/dataTables.bootstrap.js"></script>
 
-        <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/buttons.html5.min.js"></script>
-        <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/buttons.print.min.js"></script>
-        <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/jszip.min.js"></script>
-        
-         <!-- highcharts -->
+        <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/buttons.html5.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/buttons.print.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/jszip.min.js"></script>
+
+        <!-- highcharts -->
         <script src="<?= Yii::app()->baseUrl; ?>/lib/Highcharts-5.0.5/code/highcharts.js"></script>
         <script src="<?= Yii::app()->baseUrl; ?>/lib/Highcharts-5.0.5/code/themes/grid-light.js"></script>
         <!--
@@ -108,10 +110,10 @@
         -->
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/css/animate.css" type="text/css" media="all" />
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/notify/bootstrap-notify/bootstrap-notify.js" type="text/javascript"></script>
-        
+
         <!-- Camera -->
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/php-webcamera/scripts/webcam.js" type="text/javascript"></script>
-        
+
         <script type = "text/javascript" >
             $(document).ready(function () {
                 var user = "<?php echo Yii::app()->user->id ?>";
@@ -154,13 +156,28 @@
                     newWindow.focus();
                 }
             }
+
+            function ascrollto() {
+                var MenuID = "<?php echo Yii::app()->session['leftmenu'] ?>";
+                if (MenuID != null) {
+                    var p = $('#' + MenuID);
+                    var offsets = p.offset();
+                    if (offsets.top > 500) {
+                        var etop = $('#' + MenuID).offset().top;
+                        $('#wrapper,#sidebar-wrapper,#m-left').animate({
+                            scrollTop: etop
+                        }, 1000);
+                    }
+                }
+
+            }
         </script>
 
     </head>
 
     <body style="background: #fbfbfb;/* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;"> #2a323b-->
-        <nav class="navbar navbar-inverse" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
+        <nav class="navbar navbar-default" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; border-bottom: #e5e5e5 solid 1px; background: #FFFFFF;">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -265,7 +282,7 @@
                             $img_profile = "images/use-icon.png";
                         }
                         ?>
-                        
+
                         <img src="<?= Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" style="border-radius:20px; padding:2px; border:#FFF solid 2px; height: 32px; background: #FFF;"> ผู้ใช้งาน
                     </div>
                     <div class="panel-body">
@@ -282,87 +299,63 @@
                 <!-- ส่วนของ ผู้ดูแลระบบ -->
 
                 <!-- ตั้งค่าร้านค้า -->
-                <?php
-                $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
-                $i = 0;
-                foreach ($MenuSystem as $mn):
-                    $linkmenu = $mn['link'];
-                    $icon = $mn['icon'];
-                    $i ++;
+                <div id="m-left" style=" margin-bottom: 50px;">
+                    <center><b><i class="fa fa-list"></i> เมนู</b></center>
+                    <?php
+                    $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
+                    $i = 0;
+                    foreach ($MenuSystem as $mn):
+                        $linkmenu = $mn['link'];
+                        $icon = $mn['icon'];
+                        $i ++;
 
-                    if (Yii::app()->session['leftmenu'] == $i) {
-                        $menuactove = "listmenuactive";
-                    } else {
-                        $menuactove = "";
-                    }
-                    ?>
-                    <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo $i ?>')">
-                        <div id="listmenu" class="<?php echo $menuactove; ?>">
-                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
-                                 height="32px"
-                                 style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                                 <?php echo $mn['menu'] ?>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
+                        if (Yii::app()->session['leftmenu'] == "M" . $i) {
+                            $menuactove = "listmenuactive";
+                        } else {
+                            $menuactove = "";
+                        }
+                        //echo Yii::app()->session['leftmenu'];
+                        ?>
+                        <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>">
+                            <div id="listmenu" class="<?php echo $menuactove; ?>">
+                                <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
+                                     height="32px"
+                                     style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                                     <?php echo $mn['menu'] ?>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
+                    <?php if (Yii::app()->session['branch'] != "99") { ?>
+                        <center><b><i class="fa fa-bell"></i> แจ้งเตือน</b></center>
+                        <a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"> 
+                            <div id="listmenu">สินค้าใกล้หมด <span class="badge pull-right"><?php echo $product_model->stockproductalert(); ?> </span></div></a>
+                        <a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"> 
+                            <div id="listmenu">สินค้าใกล้หมดอายุ <span class="badge pull-right"><?php echo $product_model->stockitemalert(); ?> </span></div></a>
+                        <a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"> 
+                            <div id="listmenu">ลูกค้าใกล้ถึงวันนัด <span class="badge pull-right"><?php echo $AppointModel->Countover(); ?> </span></div></a>
+                    <?php } ?>
+                </div>
 
 
-                </a>
             </div>
             <!-- /#sidebar-wrapper -->
 
             <!-- Page Content -->
             <div id="page-content-wrapper" style="padding:0px;">
-                <nav class="navbar navbar-default" id="heading-panel" role="navigation" style="margin-bottom:10px; border-radius: 0px; padding-top: 3px; border-left: none; border-right: none;">
-                    <ul class="nav nav-pills pull-right" style="margin:5px;">
-                        <?php
-                        if ($product_model->stockproductalert() > 0) {
-                            $classalertproduct = "fa fa-bell faa-flash animated faa-slow text-danger";
-                            $alertproduct = "bg-alert";
-                        } else {
-                            $classalertproduct = "fa fa-bell";
-                            $alertproduct = "";
-                        }
-                        ?>
-                        <?php
-                        if ($product_model->stockitemalert() > 0) {
-                            $classalertitem = "fa fa-bell faa-flash animated text-danger";
-                            $alertstock = "bg-alert";
-                        } else {
-                            $classalertitem = "fa fa-bell";
-                            $alertstock = "";
-                        }
-                        ?>
+                <ol class="breadcrumb " style=" margin-bottom: 0px; margin-top: 0px; border-radius: 0px; background: #FFFFFF; border-bottom: #eeeeee solid 1px;">
 
+                    <?php if (isset($this->breadcrumbs)): ?>
                         <?php
-                        if ($AppointModel->Countover() > 0) {
-                            $classalertover = "fa fa-bell faa-flash animated text-danger";
-                            $alertappoint = "bg-alert";
-                        } else {
-                            $classalertover = "fa fa-bell";
-                            $alertappoint = "";
-                        }
-                        ?>
-                        <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"><i class="<?php echo $classalertproduct ?>"></i> สินค้าใกล้หมด <span class="badge" id="<?php echo $alertproduct ?>"><?php echo $product_model->stockproductalert(); ?> </span></a></li>
-                        <li><a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"><i class="<?php echo $classalertitem ?>"></i> สินค้าใกล้หมดอายุ <span class="badge" id="<?php echo $alertstock ?>"><?php echo $product_model->stockitemalert(); ?> </span></a></li>
-                        <li><a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"><i class="<?php echo $classalertover ?>"></i> ลูกค้าใกล้ถึงวันนัด <span class="badge" id="<?php echo $alertappoint ?>"><?php echo $AppointModel->Countover(); ?> </span></a></li>
-                    </ul>
-                </nav>
-                <div class="container-fluid">
+                        $this->widget('zii.widgets.CBreadcrumbs', array(
+                            'homeLink' => CHtml::link('<i class=" glyphicon glyphicon-home"></i> หน้าหลัก', Yii::app()->createUrl('site/index')),
+                            'links' => $this->breadcrumbs,
+                        ));
+                        ?><!-- breadcrumbs -->
+                    <?php endif ?>
+                </ol>
+                <div class="container-fluid" style=" padding: 5px; padding-bottom: 0px;">
                     <div class="row">
                         <div class="col-lg-12">
-
-                            <ol class="breadcrumb " style=" margin-bottom: 10px; margin-top: 0px; border-radius: 0px; background: #FFFFFF;">
-
-                                <?php if (isset($this->breadcrumbs)): ?>
-                                    <?php
-                                    $this->widget('zii.widgets.CBreadcrumbs', array(
-                                        'homeLink' => CHtml::link('<i class=" glyphicon glyphicon-home"></i> หน้าหลัก', Yii::app()->createUrl('site/index')),
-                                        'links' => $this->breadcrumbs,
-                                    ));
-                                    ?><!-- breadcrumbs -->
-                                <?php endif ?>
-                            </ol>
                             <?php
                             echo $content;
                             ?>
@@ -425,8 +418,8 @@
 
                 });
             }
-            
-            
+
+            ascrollto();
         </script>
     </body>
 </html>

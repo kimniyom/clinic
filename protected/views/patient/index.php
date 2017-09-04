@@ -1,9 +1,10 @@
+<title>ทะเบียนลูกค้า</title>
 <?php
 /* @var $this EmployeeController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'Patient',
+    'ทะเบียนลูกค้า',
 );
 
 $system = new Configweb_model();
@@ -11,54 +12,60 @@ $branchModel = new Branch();
 $typeModel = new Gradcustomer();
 ?>
 
-<h1>ข้อมูลลูกค้า</h1>
-<a href="<?php echo Yii::app()->createUrl('patient/create') ?>"></a>
-<button type="button" class="btn btn-default"
-        onclick="CheckPatient()"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลลูกค้า</button>
-<hr/>
-<table class="table table-bordered" id="patient">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Pid</th>
-            <th>Card</th>
-            <th>Name - Lname</th>
-            <th>สาขา</th>
-            <th>ประเภท</th>
-            <th style="text-align: center;">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $i = 0;
-        foreach ($patient as $rs): $i++;
-            ?>
-            <tr>
-                <td><?php echo $i ?></td>
-                <td><?php echo $rs['pid'] ?></td>
-                <td><?php echo $rs['card'] ?></td>
-                <td><?php echo $rs['name'] . ' ' . $rs['lname'] ?></td>
-                <td>
-                    <?php 
-                        $branchId = $rs['branch'];
-                        echo $branchModel->find("id = '$branchId'")['branchname'];
-                    ?>
-                </td>
-                <td>
-                    <?php 
-                        $typeId = $rs['type'];
-                        echo $typeModel->find("id = '$typeId'")['grad'];
-                    ?>
-                </td>
-                <td style="text-align: center;">
-                    <a href="<?php echo Yii::app()->createUrl('patient/view', array('id' => $rs['id'])) ?>"><i class="fa fa-eye"></i></a>
-                    <a href="<?php echo Yii::app()->createUrl('patient/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil"></i></a>
-                    <a href="javascript:deletpatient('<?php echo $rs['id'] ?>')"><i class="fa fa-trash"></i></a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+<div class="panel panel-default" style=" margin-bottom: 0px;">
+    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px; background: none;">
+        <i class="fa fa-users"></i> ข้อมูลลูกค้า  <span id="loading"></span>
+        <div class="pull-right">
+            <button type="button" class="btn btn-default"
+                    onclick="CheckPatient()"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลลูกค้า</button>
+        </div>
+    </div>
+    <div class="panel-body" style="padding: 10px;">
+        <div class="row" style=" margin-top: 10px;">
+            <div class="col-xs-3 col-lg-1 col-md-1" style=" text-align: center;"><label>สาขา*</label></div>
+            <div class="col-xs-5 col-lg-3 col-md-3">
+                <?php
+                $this->widget('booster.widgets.TbSelect2', array(
+                    'name' => 'branch',
+                    'id' => 'branch',
+                    'data' => CHtml::listData($BranchList, 'id', 'branchname'),
+                    'value' => $branch,
+                    'options' => array(
+                        'placeholder' => 'เลือกสาขา',
+                        'width' => '100%',
+                        'allowClear' => true,
+                    )
+                        )
+                );
+                ?>
+            </div>
+            <div class="col-xs-3 col-md-3 col-lg-3">
+                <button type="button" class="btn btn-default" onclick="getdata();">ค้นหา</button>
+            </div>
+        </div>
+        <hr/>
+
+        <div id="showdata"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        getdata();
+    });
+
+    function getdata() {
+        var loading = '<i class="fa fa-spinner fa-spin fa-fw"></i>';
+        $("#loading").html(loading);
+        var branch = $("#branch").val();
+        var url = "<?php echo Yii::app()->createUrl('patient/getdata') ?>";
+        var data = {branch: branch};
+        $.post(url, data, function (datas) {
+            $("#loading").html('');
+            $("#showdata").html(datas);
+        });
+    }
+</script>
+
 
 <!-- 
     ####################
@@ -74,7 +81,7 @@ $typeModel = new Gradcustomer();
             </div>
             <div class="modal-body">
                 <label>รหัสบัตรประชาชน 13 หลัก</label>
-               
+
                 <?php
                 $this->widget("ext.maskedInput.MaskedInput", array(
                     //"model" => $model,
@@ -82,7 +89,7 @@ $typeModel = new Gradcustomer();
                     //"id" => 'card',
                     "name" => 'card',
                     "mask" => '9-9999-99999-99-9',
-                    "clientOptions" => array("autoUnmask" => true,"id" => "card"), /* autoUnmask defaults to false */
+                    "clientOptions" => array("autoUnmask" => true, "id" => "card"), /* autoUnmask defaults to false */
                     "defaults" => array("removeMaskOnSubmit" => false),
                         /* once defaults are set will be applied to all the masked fields  removeMaskOnSubmit defaults to true */
                 ));
@@ -98,10 +105,6 @@ $typeModel = new Gradcustomer();
 </div><!-- /.modal -->
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#patient").dataTable();
-    });
-    
     function deletpatient(id) {
         var r = confirm("คุณแน่ใจหรือไม่ ...");
         if (r == true) {

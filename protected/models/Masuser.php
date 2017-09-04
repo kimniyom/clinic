@@ -116,6 +116,21 @@ class Masuser extends CActiveRecord {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
+    public function GetUserBranch($branch) {
+        if($branch == "99"){
+            $WHERE = " AND 1=1";
+        } else {
+            $WHERE = " AND e.branch = '$branch'";
+        }
+        $sql = "SELECT m.*,s.`status` AS statusname,e.branch
+                    FROM masuser m 
+                    INNER JOIN status_user s ON m.`status` = s.id
+                    INNER JOIN employee e ON m.user_id = e.id
+                    WHERE m.flag = '0' $WHERE";
+        //return $sql;
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
     public function GetProfile() {
         $userID = Yii::app()->user->id;
         $sql = "

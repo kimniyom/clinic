@@ -30,7 +30,7 @@ class HistoryserviceController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'Detailservice', 'test', 'result', 'historyall','historyresult'),
+                'actions' => array('index', 'Detailservice', 'test', 'result', 'historyall','historyresult','historyallmain'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -85,6 +85,16 @@ class HistoryserviceController extends Controller {
                     WHERE s.patient_id = '$patient_id' ORDER BY s.id DESC";
         $data['service'] = Yii::app()->db->createCommand($sql)->queryAll();
         $this->renderPartial('historyall', $data);
+    }
+    
+    public function actionHistoryallmain() {
+        $patient_id = Yii::app()->request->getPost('patient_id');
+        $sql = "SELECT s.*,d.diagname,c.cc
+                    FROM service s INNER JOIN diag d ON s.diagcode = d.diagcode
+                    INNER JOIN checkbody c ON s.checkbody = c.date_serv
+                    WHERE s.patient_id = '$patient_id' ORDER BY s.id DESC";
+        $data['service'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial('historyallmain', $data);
     }
     
     public function actionHistoryresult($service_id) {

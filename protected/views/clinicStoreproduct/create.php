@@ -4,7 +4,7 @@
 $title = "เพิ่มสินค้า";
 $this->breadcrumbs = array(
     "คลังสินค้าหลัก" => Yii::app()->createUrl('storeclinic/index'),
-    "คลังสินค้า (สาขา".$branchname.")" => array('index','branch' => $branch),
+    "คลังสินค้า (สาขา" . $branchname . ")" => array('index', 'branch' => $branch),
     $title,
 );
 
@@ -14,164 +14,162 @@ $BranchModel = new Branch();
 
 <input type="hidden" id="branch" value="<?php echo $branch ?>"/>
 <div class="wells" style="width:100%; margin-bottom: 10px;">
-    <form class="form-horizontal">
-        <fieldset>
-            <legend>
-                <span class="label label-success">
-                    <img src="<?php echo Yii::app()->baseUrl; ?>/images/add-product-icon.png"/>
-                    เพิ่มสินค้าเข้าคลัง
-                </span>
-            </legend>
 
+    <div class="row">
+        <div class="col-md-3 col-lg-3" id="p-left">
+            <div id="load_images_product"></div>
+        </div>
+        <div class="col-md-9 col-lg-9" id="p-right" style=" padding-bottom: 0px;">
+            <label for="">หมวดสินค้า*</label><br/>
+            <?php
+            $this->widget('booster.widgets.TbSelect2', array(
+                //'model' => $model,
+                'asDropDownList' => true,
+                //'attribute' => 'itemid',
+                'name' => 'producttype',
+                'id' => 'producttype',
+                'data' => CHtml::listData(ProductType::model()->findAll("upper is null"), 'id', 'type_name'),
+                //'value' => $model,
+                'options' => array(
+                    'allowClear' => true,
+                    //$model,
+                    //'oid',
+                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                    'placeholder' => '== หมวดสินค้า ==',
+                    'width' => '50%',
+                //'tokenSeparators' => array(',', ' ')
+                )
+            ));
+            ?><br/>
+            <label for="">ประเภทสินค้า*</label><br/>
+            <div id="boxsubproducttype" style=" width: 50%;">
+                <select id="subproducttype" class="form-control">
+                    <option value=""></option>
+                </select>
+            </div>
             <div class="row">
-                <div class="col-md-3 col-lg-3" id="p-left">
-                    <div id="load_images_product"></div>
-                </div>
-                <div class="col-md-9 col-lg-9" id="p-right">
-                    <label for="">หมวดสินค้า*</label><br/>
-                    <?php
-                    $this->widget('booster.widgets.TbSelect2', array(
-                        //'model' => $model,
-                        'asDropDownList' => true,
-                        //'attribute' => 'itemid',
-                        'name' => 'producttype',
-                        'id' => 'producttype',
-                        'data' => CHtml::listData(ProductType::model()->findAll("upper is null"), 'id', 'type_name'),
-                        //'value' => $model,
-                        'options' => array(
-                            'allowClear' => true,
-                            //$model,
-                            //'oid',
-                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                            'placeholder' => '== หมวดสินค้า ==',
-                            'width' => '50%',
-                        //'tokenSeparators' => array(',', ' ')
-                        )
-                    ));
-                    ?><br/>
-                    <label for="">ประเภทสินค้า*</label><br/>
-                    <div id="boxsubproducttype" style=" width: 50%;">
-                        <select id="subproducttype" class="form-control">
+                <div class="col-lg-6">
+                    <label for="">สินค้า*</label><br/>
+                    <div id="boxproduct" style=" width: 100%;">
+                        <select id="product" class="form-control">
                             <option value=""></option>
                         </select>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label for="">สินค้า*</label><br/>
-                            <div id="boxproduct" style=" width: 100%;">
-                                <select id="product" class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <label for="">รหัสสินค้า*</label>
-                            <input type="text" id="product_id" name="product_id" class="form-control" style="width:40%;" readonly="readonly"/>
-                        </div>
+                </div>
+                <div class="col-lg-6">
+                    <label for="">รหัสสินค้า*</label>
+                    <input type="text" id="product_id" name="product_id" class="form-control" style="width:40%;" readonly="readonly"/>
+                </div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน*</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาขาย*</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">จำนวนนำเข้า*</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">ราคารวม</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required" readonly="readonly"/>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" readonly="readonly"/>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <input type="text" id="number" name="number" class="form-control" onkeypress="return chkNumber()" required="required" onkeyup="Calculator()"/>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <input type="text" id="total" name="total" class="form-control" readonly="readonly"/>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3"><label for="">ล๊อตที่</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">วันที่ผลิต</label></div>
-                        <div class="col-lg-1"></div>
-                        <div class="col-md-6 col-lg-3"><label for="">วันที่หมดอายุ</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <?php $lotnumber = date("Ymd") ?>
-                            <input type="text" id="lotnumber" name="lotnumber" class="form-control" required="required" readonly="readonly" value="<?php echo $lotnumber ?>"/>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div>
-                                <?php
-                                $this->widget(
-                                        'booster.widgets.TbDatePicker', array(
-                                    //'model' => $model,
-                                    //'attribute' => 'birth',
-                                    'id' => 'generate',
-                                    'name' => 'generate',
-                                    'options' => array(
-                                        'language' => 'th',
-                                        'type' => 'date',
-                                        'format' => 'yyyy-mm-dd',
-                                    )
-                                        )
-                                );
-                                ?>
-                            </div>
-                        </div>
-                        <div class="col-lg-1"></div>
-                        <div class="col-md-6 col-lg-3">
-                            <div>
-                                <?php
-                                $this->widget(
-                                        'booster.widgets.TbDatePicker', array(
-                                    //'model' => $model,
-                                    //'attribute' => 'birth',
-                                    'id' => 'expire',
-                                    'name' => 'expire',
-                                    'options' => array(
-                                        'language' => 'th',
-                                        'type' => 'date',
-                                        'format' => 'yyyy-mm-dd',
-                                    )
-                                        )
-                                );
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <label for="textArea">รายละเอียด</label>
-                    <div class="well" id="product_detail" style=" min-height: 100px;"></div>
-
-                    <!--
-                    <div class="panel panel-default">
-                        <div class="panel-heading">วัตถุดิบที่ต้องใช้</div>
-                        <div id="item"></div>
-                        <div class="panel-footer">
-                            <button type="button" class="btn btn-default" onclick="cutstock()">ตัดสต๊อก</button>
-                        </div>
-                    </div>
-                    -->
-
-                    <hr/>
-                    <button type="button" class="btn btn-success" onclick="save_product()">
-                        <i class="fa fa-save"></i>
-                        เพิ่มสินค้าเข้าคลัง
-                    </button>
-
-                    <font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font>
-                    <!--
-                    <button id="save_regis" name="save_regis" class="btn btn-success"
-                            onclick="save_product();">
-                        <span class="glyphicon glyphicon-save"></span> <b>บันทึกข้อมูล</b></button>
-                    -->
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน*</label></div>
+                <div class="col-md-6 col-lg-3"><label for="">ราคาขาย*</label></div>
+                <div class="col-md-6 col-lg-3"><label for="">จำนวนนำเข้า*</label></div>
+                <div class="col-md-6 col-lg-3"><label for="">ราคารวม</label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required" readonly="readonly"/>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" readonly="readonly"/>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <input type="text" id="number" name="number" class="form-control" onkeypress="return chkNumber()" required="required" onkeyup="Calculator()"/>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <input type="text" id="total" name="total" class="form-control" readonly="readonly"/>
                 </div>
             </div>
-        </fieldset>
-    </form>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3"><label for="">ล๊อตที่</label></div>
+                <div class="col-md-6 col-lg-3"><label for="">วันที่ผลิต</label></div>
+                <div class="col-lg-1"></div>
+                <div class="col-md-6 col-lg-3"><label for="">วันที่หมดอายุ</label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <?php $lotnumber = date("Ymd") ?>
+                    <input type="text" id="lotnumber" name="lotnumber" class="form-control" required="required" readonly="readonly" value="<?php echo $lotnumber ?>"/>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div>
+                        <?php
+                        $this->widget(
+                                'booster.widgets.TbDatePicker', array(
+                            //'model' => $model,
+                            //'attribute' => 'birth',
+                            'id' => 'generate',
+                            'name' => 'generate',
+                            'options' => array(
+                                'language' => 'th',
+                                'type' => 'date',
+                                'format' => 'yyyy-mm-dd',
+                            )
+                                )
+                        );
+                        ?>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-md-6 col-lg-3">
+                    <div>
+                        <?php
+                        $this->widget(
+                                'booster.widgets.TbDatePicker', array(
+                            //'model' => $model,
+                            //'attribute' => 'birth',
+                            'id' => 'expire',
+                            'name' => 'expire',
+                            'options' => array(
+                                'language' => 'th',
+                                'type' => 'date',
+                                'format' => 'yyyy-mm-dd',
+                            )
+                                )
+                        );
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <label for="textArea">รายละเอียด</label>
+            <div class="well" id="product_detail" style=" min-height: 100px;"></div>
+
+            <!--
+            <div class="panel panel-default">
+                <div class="panel-heading">วัตถุดิบที่ต้องใช้</div>
+                <div id="item"></div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-default" onclick="cutstock()">ตัดสต๊อก</button>
+                </div>
+            </div>
+            -->
+
+
+            <!--
+            <button id="save_regis" name="save_regis" class="btn btn-success"
+                    onclick="save_product();">
+                <span class="glyphicon glyphicon-save"></span> <b>บันทึกข้อมูล</b></button>
+            -->
+        </div>
+    </div>
+    <hr style=" margin-top: 0px; padding-top: 0px;"/>
+    <div class="row">
+        <div class="col-md-9 col-lg-9">
+            <center><font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font></center>
+        </div>
+        <div class="col-md-3 col-lg-3">
+            <button type="button" class="btn btn-success pull-right" onclick="save_product()" style=" margin-top: 0px;">
+                <i class="fa fa-save"></i>
+                เพิ่มสินค้าเข้าคลัง
+            </button>
+        </div>
+    </div>
+
+
 </div>
 
 <script type="text/javascript">
@@ -233,17 +231,17 @@ $BranchModel = new Branch();
 
         Calculator();
     }
-    
+
     /*
-    function getitem(number) {
-        var product_id = $("#product_id").val();
-        var url = "<?//php echo Yii::app()->createUrl('centerstockmix/getitem') ?>";
-        var data = {product_id: product_id, number: number};
-        $.post(url, data, function (datas) {
-            $("#item").html(datas);
-        });
-    }
-    */
+     function getitem(number) {
+     var product_id = $("#product_id").val();
+     var url = "<?//php echo Yii::app()->createUrl('centerstockmix/getitem') ?>";
+     var data = {product_id: product_id, number: number};
+     $.post(url, data, function (datas) {
+     $("#item").html(datas);
+     });
+     }
+     */
 
     function save_product() {
         var url = "<?php echo Yii::app()->createUrl('clinicstoreproduct/saveproduct') ?>";
@@ -268,7 +266,7 @@ $BranchModel = new Branch();
         };
 
         $.post(url, data, function (success) {
-            window.location = "<?php echo Yii::app()->createUrl('clinicstoreproduct/index',array('branch' => $branch)) ?>";
+            window.location = "<?php echo Yii::app()->createUrl('clinicstoreproduct/index', array('branch' => $branch)) ?>";
         });
     }
 
@@ -315,18 +313,35 @@ $BranchModel = new Branch();
         return s.substr(0, i + 3) + r + (d ? '.' + Math.round(d * Math.pow(10, dp || 2)) : '');
     }
 
-    
+
     /*
-    
-    function cutstock() {
-        var url = "<?//php echo Yii::app()->createUrl('centerstoreproduct/cutstock') ?>";
-        var productID = $("#product_id").val();
-        var number = $("#number").val();
-        var data = {product_id: productID,number: number};
-        $.post(url, data, function (datas) {
-            getitem(number);
-        });
+     
+     function cutstock() {
+     var url = "<?//php echo Yii::app()->createUrl('centerstoreproduct/cutstock') ?>";
+     var productID = $("#product_id").val();
+     var number = $("#number").val();
+     var data = {product_id: productID,number: number};
+     $.post(url, data, function (datas) {
+     getitem(number);
+     });
+     }
+     */
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 165);
+        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
     }
-    */
+
+
 </script>
 

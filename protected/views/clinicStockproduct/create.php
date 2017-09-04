@@ -46,16 +46,7 @@ $BranchModel = new Branch();
 
 <input type="hidden" id="branch" value="<?php echo $branch ?>"/>
 
-<div class="wells" style="width:100%; margin-bottom: 10px;">
-    <form class="form-horizontal">
-        <fieldset>
-            <legend>
-                <span class="label label-warning">
-                    <img src="<?php echo Yii::app()->baseUrl; ?>/images/add-product-icon.png"/>
-                    เพิ่มข้อมูลสินค้า
-                </span>
-            </legend>
-
+<div class="wells" style="width:100%; margin-bottom: 0px;">
             <div class="row">
                 <div class="col-md-3 col-lg-3" id="p-left">
                     <!--
@@ -156,18 +147,8 @@ $BranchModel = new Branch();
                         </div>
                     </div>
                     
-
                     <label for="textArea">รายละเอียด</label>
                     <div id="product_detail" class="well"></div>
-
-
-                    <hr/>
-                    <button type="button" class="btn btn-success" onclick="save_product()">
-                        <i class="fa fa-save"></i>
-                        บันทึกข้อมูล
-                    </button>
-
-                    <font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font>
                     <!--
                     <button id="save_regis" name="save_regis" class="btn btn-success"
                             onclick="save_product();">
@@ -175,8 +156,18 @@ $BranchModel = new Branch();
                     -->
                 </div>
             </div>
-        </fieldset>
-    </form>
+    <hr style=" margin-top: 0px; padding-top: 0px;"/>
+    <div class="row">
+        <div class="col-md-9 col-lg-9">
+            <center><font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font></center>
+        </div>
+        <div class="col-md-3 col-lg-3">
+            <button type="button" class="btn btn-success pull-right" onclick="save_product()" style=" margin-top: 0px;">
+                <i class="fa fa-save"></i>
+                เพิ่มสินค้าเข้าคลัง
+            </button>
+        </div>
+    </div>
 </div>
 
 <!--
@@ -313,4 +304,22 @@ $BranchModel = new Branch();
         }
     }
 </script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 165);
+        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
+
+</script>
+
 

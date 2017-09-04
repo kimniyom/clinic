@@ -15,6 +15,7 @@ $this->breadcrumbs = array(
 $WebConfig = new Configweb_model();
 ?>
 
+<button type="button" class="btn btn-default"><i class="fa fa-refresh"></i></button>
 <div class=" pull-right"><h4>วันที่ : <?php echo $WebConfig->thaidate(date("Y-m-d")) ?></h4></div>
 
 <table class="table table-striped table-bordered">
@@ -26,6 +27,7 @@ $WebConfig = new Configweb_model();
             <td style=" text-align: center;">รหัสบัตรประชาชน</td>
             <td>อาการที่มารักษา</td>
             <td style=" text-align: center;">ให้บริการ</td>
+            
         </tr>
     </thead>
     <tbody>
@@ -49,13 +51,14 @@ $WebConfig = new Configweb_model();
                 <td><?php echo $rs['comment'] ?></td>
                 <td style=" text-align: center;">
                     <?php if ($i == 1) { ?>
-                        <a href="<?php echo Yii::app()->createUrl('doctor/patientview',array('id' => $rs['patient_id'])) ?>">
+                        <a href="<?php echo Yii::app()->createUrl('doctor/patientview', array('id' => $rs['patient_id'],'service_id' => $rs['id'])) ?>">
                             <button type="button" class="btn btn-default btn-xs">ให้บริการ</button>
                         </a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-default btn-xs disabled">ให้บริการ</button>
                     <?php } ?>
                 </td>
+                
             </tr>
         <?php endforeach; ?>
     </tbody>

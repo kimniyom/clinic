@@ -30,7 +30,7 @@ class MasuserController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'getrole', 'setbranch', 'deletebranch','profile'),
+                'actions' => array('create', 'update', 'admin', 'getrole', 'setbranch', 'deletebranch','profile','getdata'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -121,13 +121,23 @@ class MasuserController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
+        $branch = Yii::app()->session['branch'];
+        $data['branchModel'] = Branch::model()->find('id=:id', array(':id' => $branch));
+        $data['branch'] = $branch;
+        if ($branch == "99") {
+            $BranchList = Branch::model()->findAll();
+        } else {
+            $BranchList = Branch::model()->findAll("id = '$branch'");
+        }
+        $data['BranchList'] = $BranchList;
+        $this->render('index',$data);
+    }
+
+    public function actionGetdata(){
+        $branch_id = Yii::app()->request->getPost('branch');
         $Model = new Masuser();
-        //$user = Masuser::model()->findAll("flag = '0'");
-        $user = $Model->GetUserAll();
-        //$dataProvider = new CActiveDataProvider('Masuser');
-        $this->render('index', array(
-            'user' => $user,
-        ));
+        $data['user'] = $Model->GetUserBranch($branch_id);
+        $this->renderPartial('datauser',$data);
     }
 
     /**

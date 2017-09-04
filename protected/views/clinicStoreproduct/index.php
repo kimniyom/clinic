@@ -7,8 +7,8 @@ $this->breadcrumbs = array(
 $web = new Configweb_model();
 ?>
 <input type="hidden" id="branch" value="<?php echo $branch ?>"/>
-<div class="panel panel-info">
-    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px;">
+<div class="panel panel-default">
+    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px; background: none;">
         คลังสินค้า  <span id="loading"></span>
         <div class="pull-right">
             <a href="<?php echo Yii::app()->createUrl('clinicstoreproduct/create', array('branch' => $branch)) ?>">

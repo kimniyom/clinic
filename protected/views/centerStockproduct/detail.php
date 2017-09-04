@@ -48,9 +48,8 @@ $product_id = $product['product_id'];
         <button type="button" class="btn btn-primary">แก้ไข</button></a>
     <button type="button" class="btn btn-danger" onclick="deleteproduct('<?php echo $product['id'] ?>')">ลบ</button>
 <?php } ?>
-<div class="well" style=" width:100%; margin-top:20px;text-align: left; background: #FFF;">
+<div class="well" style=" width:100%; margin-top:20px;text-align: left; background: #FFF; margin-bottom: 0px;">
     <div class="row">
-
         <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
             <font style=" color: #F00; font-size: 24px; font-weight: normal;">
             ชื่อสามัญบริษัท : <?= $product['product_name'] ?><br/>
@@ -64,7 +63,7 @@ $product_id = $product['product_id'];
             <br/><font style=" font-size: 24px; color: #ffcc00;">
             ต้นทุน <?= number_format($product['costs']) ?>.-  บาท
             </font>
-            <br/><font style=" font-size: 24px; color: #F00;">
+           <font style=" font-size: 24px; color: #F00;">
             ราคาขาย <?= number_format($product['product_price']) ?>.-  บาท
             </font>
             <br/>
@@ -239,5 +238,21 @@ $product_id = $product['product_id'];
     }
 </script>
 
+    <script type="text/javascript">
+
+        Setscreen();
+        function Setscreen() {
+            var screen = $(window).height();
+            //var contentboxsell = $("#content-boxsell").height();
+            var screenfull = (screen - 210);
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+        }
+
+
+    </script>
 
 

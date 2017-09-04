@@ -38,10 +38,23 @@ $LogoModel = new Backend_logo();
                     <p>
                         <a href="<?php echo Yii::app()->createUrl('branch/update', array("id" => $rs['id'])) ?>" class="btn btn-primary" role="button"><i class="fa fa-pencil"></i> แก้ไข</a> 
                         <a href="<?php echo Yii::app()->createUrl('backend/logo', array("branch" => $rs['id'])) ?>"><button type="button" class="btn btn-success"><i class="fa fa-photo"></i> โลโก้</button></a>
-                        <a href="#" class="btn btn-default" role="button"><i class="fa fa-trash"></i> ลบ</a>              
+                        <a href="javascript:deletebranch('<?php echo $rs['id'] ?>')" class="btn btn-default" role="button"><i class="fa fa-trash"></i> ลบ</a>              
                     </p>
                 </div>
             </div>
         </div>
     <?php endforeach; ?>
 </div>
+    
+    <script type="text/javascript">
+        function deletebranch(branch){
+            var r = confirm("Are you sure ... ข้อมูลที่เชื่อมโยงกับสาขานี้ทั้งหมดจะโดนลบไปด้วย ...?");
+            if(r == true){
+                var url = "<?php echo Yii::app()->createUrl('branch/deletebranch')?>";
+                var data = {branch: branch};
+                $.post(url,data,function(datas){
+                    window.location.reload();
+                });
+            }
+        }
+    </script>

@@ -8,52 +8,51 @@
 /* @var $model Orders */
 
 $this->breadcrumbs = array(
-    'Orders' => array('index', "branch" => $branch),
-    'สร้างใบสั่งซื้อ',
+    'ใบสั่งซื้อสินค้า (สาขา' . $branchModel->branchname . ")" => array('index', "branch" => $branch),
+    'สร้างใบสั่งซื้อ (สาขา' . $branchModel->branchname . ")",
 );
 
 $companySell = Companycenter::model()->find("id = '1'");
 $BranchModel = Branch::model()->find("id = '$branch'");
 ?>
-
-<h1>Create Orders</h1>
-<div class="well" style=" border-radius: 0px; background: #FFFFFF; position: relative;">
-    <div style=" text-align: center;">
-        <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
-        <?php echo $BranchModel['address']; ?><br/>
-        <?php echo $BranchModel['contact']; ?><br/>
-        <h4 style=" margin: 0px;">ใบสั่งซื้อสินค้า</h4>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <table id="companysell">
-                <tr>
-                    <td>ผู้ขาย : <?php echo $companySell['companyname']?></td>
-                </tr>
-                <tr>
-                    <td>ที่อยู่ : <?php echo $companySell['address']?></td>
-                </tr>
-                <tr>
-                    <td>ติดต่อ : คุณ <?php echo $companySell['memager']?> โทร. <?php echo $companySell['tel']?></td>
-                </tr>
-            </table>
+<div class="panel panel-default">
+    <div class="panel-body" style=" border-radius: 0px; background: #FFFFFF; position: relative;" id="boxorders">
+        <div style=" text-align: center;">
+            <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
+            <?php echo $BranchModel['address']; ?><br/>
+            <?php echo $BranchModel['contact']; ?><br/>
+            <h4 style=" margin: 0px;">ใบสั่งซื้อสินค้า</h4>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
-        <div style=" padding: 10px; position: relative; height: 100px;">
-            <table style=" border: #cccccc solid 1px; float: right;">
-                <tr style=" border-bottom: #cccccc solid 1px;">
-                    <td>รหัสสั่งซื้อเลขที่ : </td>
-                    <td><?php echo $order_id ?></td>
-                </tr>
-                <tr>
-                    <td>วันที่สั่งซื้อ : </td>
-                    <td><?php echo date('d/m/Y') ?></td>
-                </tr>
-            </table>
-        </div
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <table id="companysell">
+                    <tr>
+                        <td>ผู้ขาย : <?php echo $companySell['companyname'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>ที่อยู่ : <?php echo $companySell['address'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>ติดต่อ : คุณ <?php echo $companySell['memager'] ?> โทร. <?php echo $companySell['tel'] ?></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div style=" padding: 10px; position: relative; height: 100px;">
+                    <table style=" border: #cccccc solid 1px; float: right;">
+                        <tr style=" border-bottom: #cccccc solid 1px;">
+                            <td>รหัสสั่งซื้อเลขที่ : </td>
+                            <td><?php echo $order_id ?></td>
+                        </tr>
+                        <tr>
+                            <td>วันที่สั่งซื้อ : </td>
+                            <td><?php echo date('d/m/Y') ?></td>
+                        </tr>
+                    </table>
+                </div
+            </div>
         </div>
     </div>
-</div>
     <hr/>
     <div>
         <label>ชื่อผู้ติดต่อ</label> <?php echo $BranchModel['menagers'] ?> 
@@ -101,7 +100,7 @@ $BranchModel = Branch::model()->find("id = '$branch'");
                     </select>
                 </div>
             </div>
-            
+
             <!--
             <div class="col-lg-6">
                 <label for="">รหัสสินค้า*</label>
@@ -126,8 +125,12 @@ $BranchModel = Branch::model()->find("id = '$branch'");
     <div id="orderlist">
         ​​
     </div>
-    <hr/>
-    <button type="button" class="btn btn-default" onclick="Saveorder()"><i class="fa fa-save"></i> บันทึกแบบฟอร์ม</button>
+
+</div>
+<div class=" panel-footer">
+    <button type="button" class="btn btn-success" onclick="Saveorder()"><i class="fa fa-save"></i> บันทึกแบบฟอร์ม</button>
+    <button type="button" class="btn btn-warning" onclick="window.location.reload()"><i class="fa fa-remove"></i> ยกเลิก</button>
+</div>
 </div>
 
 <script type="text/javascript">
@@ -194,10 +197,37 @@ $BranchModel = Branch::model()->find("id = '$branch'");
             branch: branch
         };
 
-        $.post(url, data, function (success) {
-            var url = "<?php echo Yii::app()->createUrl('orders/view', array('order_id' => $order_id)) ?>";
-            window.location = url;
+        var urlcheck = "<?php echo Yii::app()->createUrl('orders/checklistorder') ?>";
+        var daracheck = {order_id: order_id};
+        $.post(urlcheck, daracheck, function (datas) {
+            if (datas > 0) {
+                $.post(url, data, function (success) {
+                    var url = "<?php echo Yii::app()->createUrl('orders/view', array('order_id' => $order_id)) ?>";
+                    window.location = url;
+                });
+            } else {
+                alert("ไม่มีรายการสินค้าในใบสั่งซื้อ");
+                return false;
+            }
         });
+
+
     }
+
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 229);
+        $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
 
 </script>

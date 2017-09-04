@@ -30,7 +30,7 @@ class BranchController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update','deletebranch'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -114,7 +114,7 @@ class BranchController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        
+
         $branch = Branch::model()->findAll("active = '1' ");
         $this->render('index', array(
             'branch' => $branch,
@@ -158,6 +158,12 @@ class BranchController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function actionDeletebranch() {
+        $branch = Yii::app()->request->getPost('branch');
+        Yii::app()->db->createCommand()
+                ->delete("branch", "id='$branch'");
     }
 
 }

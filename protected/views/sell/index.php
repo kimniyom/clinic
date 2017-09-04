@@ -100,7 +100,7 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
             </div>
             <?php $url = Yii::app()->createUrl('sell/bill', array("sell_id" => $sell_id)) ?>
             <!--
-            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                              ?>', '<?php //echo $sell_id                                              ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
+            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                                  ?>', '<?php //echo $sell_id                                                  ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
             -->
             <hr/>
             <button type="button" class="btn btn-danger btn-block" id="btn-bg-danger" onclick="javascript:window.location.reload()"><i class="fa fa-remove"></i> จบการขาย</button>
@@ -108,14 +108,14 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
     </div>
 </div>
 
-<div class="row">
+<div class="row" style=" margin-bottom: 0px;">
     <div class="col-lg-8" style=" padding-right: 0px; border-right: none;">
-        <div class="panel panel-info" style="border-radius: 0px; ">
+        <div class="panel panel-info" style="border-radius: 0px; margin-bottom: 0px;">
             <div class="panel-heading" style="border-radius: 0px;" id="heading-panel"><i class="fa fa-bars"></i> รายการขาย</div>
 
             <div id="orderlist" style=" position: relative;"><h3 style=" text-align: center;">ยังไม่มีรายการขาย</h3></div>
 
-            <div class="panel-footer" style=" position: absolute; bottom: 21px; width: 100%; border-radius: 0px;">
+            <div class="panel-footer" style=" position: absolute; bottom: 1px; width: 100%; border-radius: 0px;">
                 รวม
                 <div class="pull-right" id="showtotal" style=" color: #ff3300; font-weight: bold; padding-right: 10px;">0.-</div>
             </div>
@@ -123,7 +123,7 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
     </div>
 
     <div class="col-lg-4" style=" padding-left: 0px; border-left: none;">
-        <div class="panel panel-info" style="border-radius: 0px;" id="patientbox">
+        <div class="panel panel-info" style="border-radius: 0px; margin-bottom: 0px;" id="patientbox">
             <div class="panel-heading" style="border-radius: 0px;" id="heading-panel"><i class="fa fa-user"></i> ข้อมูลลูกค้า</div>
             <div class="panel-body" id="font-22" style=" padding: 0px;">
                 <div id="patient" style=" position: relative;"></div>
@@ -131,6 +131,8 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
         </div>
     </div>
 </div>
+
+
 
 <script type="text/javascript">
     loaditems();
@@ -160,31 +162,44 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
     function Setscreen() {
         var boxsell = $("#box-sell").height();
         var contentboxsell = $("#content-boxsell").height();
-        var screenfull = ((contentboxsell - boxsell) - 200);
+        var screenfull = ((contentboxsell - boxsell) - 123);
         $("#orderlist").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         $("#patient").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
     }
 
     function sell() {
+
         var url = "<?php echo Yii::app()->createUrl('sell/sell') ?>";
         var itemcode = $("#itemcode").val();
         var sellcode = $("#sellcode").val();
         var branch = $("#branch").val();
         var card = $("#card").val();
-        var number = $("#number").val();
+        var number = parseInt($("#number").val());
         var data = {itemcode: itemcode, sellcode: sellcode, card: card, branch: branch, number: number};
         if (itemcode == "") {
             alert("กรุณาเลือกสินค้า ...");
             return false;
         }
-        $.post(url, data, function (datas) {
-            Notify(itemcode);
-            $("#orderlist").html(datas);
-            loaditems();
-            loadorder();
-            $("#card").attr("disabled",true);
+
+        var UrlCheckStock = "<?php echo Yii::app()->createUrl('sell/checkstock') ?>";
+        var datacheck = {product_id: itemcode,branch: branch};
+        $.post(UrlCheckStock, datacheck, function (stock) {
+            if (parseInt(stock) >= number) {
+                $.post(url, data, function (datas) {
+                    Notify(itemcode);
+                    $("#orderlist").html(datas);
+                    loaditems();
+                    loadorder();
+                    $("#card").attr("disabled", true);
+                });
+            } else {
+                alert("ยอดคงเหลือในสต๊อกไม่พอกับจำนวนขาย คงเหลือทั้งหมดจำนวน " + stock);
+                return false;
+            }
         });
+
+
     }
 
     function confirmOrder() {

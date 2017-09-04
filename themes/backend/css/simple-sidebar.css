@@ -15,17 +15,17 @@
 }
 
 #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: 220px;
 }
 
 #sidebar-wrapper {
     font-size: 18px; font-family: thaisanslite;
     z-index: 1000;
     position: fixed;
-    left: 250px;
+    left: 220px;
     width: 0;
     height: 100%;
-    margin-left: -250px;
+    margin-left: -220px;
     overflow-y: auto;
     /*background: #2a323b;/*#2a323b*/
     -webkit-transition: all 0.5s ease;
@@ -76,7 +76,7 @@
 
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+    width: 220px;
 }
 
 #page-content-wrapper {
@@ -87,13 +87,13 @@
 
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
-    margin-right: -250px;
+    margin-right: -220px;
 }
 
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 250px;
+        padding-left: 220px;
     }
 
     #wrapper.toggled {
@@ -101,7 +101,7 @@
     }
 
     #sidebar-wrapper {
-        width: 250px;
+        width: 220px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
