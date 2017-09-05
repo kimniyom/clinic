@@ -2,23 +2,12 @@
     table{
         background: #FFFFFF;
     }
+    .modal.large {
+        width: 80%;
+    }
 </style>
 
-<?php
-/* @var $this ProductTypeController */
-/* @var $dataProvider CActiveDataProvider */
-
-$this->breadcrumbs = array(
-    'คิวการรักษา',
-);
-
-$WebConfig = new Configweb_model();
-?>
-
-<button type="button" class="btn btn-default"><i class="fa fa-refresh"></i></button>
-<div class=" pull-right"><h4>วันที่ : <?php echo $WebConfig->thaidate(date("Y-m-d")) ?></h4></div>
-
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered" style=" margin-top: 10px;">
     <thead>
         <tr>
             <td style=" width: 5%; text-align: center;">#</td>
@@ -26,7 +15,7 @@ $WebConfig = new Configweb_model();
             <td style=" text-align: center;">อายุ</td>
             <td style=" text-align: center;">รหัสบัตรประชาชน</td>
             <td>อาการที่มารักษา</td>
-            <td style=" text-align: center;">ให้บริการ</td>
+            <td style=" text-align: center;">ลบคิว</td>
         </tr>
     </thead>
     <tbody>
@@ -49,17 +38,21 @@ $WebConfig = new Configweb_model();
                 <td style=" text-align: center;"><?php echo $rs['card'] ?></td>
                 <td><?php echo $rs['comment'] ?></td>
                 <td style=" text-align: center;">
-                    <?php if ($i == 1) { ?>
-                        <a href="<?php echo Yii::app()->createUrl('doctor/patientview', array('id' => $rs['patient_id'],'service_id' => $rs['id'])) ?>">
-                            <button type="button" class="btn btn-default btn-xs">ให้บริการ</button>
-                        </a>
-                    <?php } else { ?>
-                        <button type="button" class="btn btn-default btn-xs disabled">ให้บริการ</button>
-                    <?php } ?>
-                </td>
-                
+                    <a href="javascript:deleteservice('<?php echo $rs['id']?>')"><i class="fa fa-trash-o"></i></a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
 
+<script type="text/javascript">
+    function deleteservice(id){
+        var r = confirm("Are you sure...?");
+        if(r == true){
+            var url = "<?php echo Yii::app()->createUrl('queue/deleteservice')?>";
+            var data = {id: id};
+            $.post(url,data,function(datas){
+                loadtable();
+            });
+        }
+    }
+</script>

@@ -119,11 +119,27 @@ class Service extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function Getseq(){
+	public function Getseq($branch){
 		$sql = "SELECT p.id AS patient_id,s.id,p.`name`,p.lname,TIMESTAMPDIFF(YEAR,p.birth,NOW()) AS age,p.card,p.pid,p.sex,g.grad,s.`comment`
 				FROM service s INNER JOIN patient p ON s.patient_id = p.id
 				INNER JOIN `gradcustomer` g ON p.type = g.id
-				WHERE s.`status` = '1' ";
+				WHERE s.branch = '$branch' AND s.`status` = '1' "; 
+		return Yii::app()->db->createCommand($sql)->queryAll();
+	}
+
+	public function GetseqSuccess($branch){
+		$sql = "SELECT p.id AS patient_id,s.id,p.`name`,p.lname,TIMESTAMPDIFF(YEAR,p.birth,NOW()) AS age,p.card,p.pid,p.sex,g.grad,s.`comment`
+				FROM service s INNER JOIN patient p ON s.patient_id = p.id
+				INNER JOIN `gradcustomer` g ON p.type = g.id
+				WHERE s.branch = '$branch' AND s.`status` = '3' ";
+		return Yii::app()->db->createCommand($sql)->queryAll();
+	}
+
+	public function GetseqConfirm($branch){
+		$sql = "SELECT p.id AS patient_id,s.id,p.`name`,p.lname,TIMESTAMPDIFF(YEAR,p.birth,NOW()) AS age,p.card,p.pid,p.sex,g.grad,s.`comment`
+				FROM service s INNER JOIN patient p ON s.patient_id = p.id
+				INNER JOIN `gradcustomer` g ON p.type = g.id
+				WHERE s.branch = '$branch' AND s.`status` = '4' ";
 		return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 

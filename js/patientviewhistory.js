@@ -4,14 +4,14 @@ loadimages();
 $(document).ready(function () {
     var service_id = $("#service_id").val();
     var height = $(window).height();
-    var heightlayout = (height - 90);
+    var heightlayout = (height - 2);
     $("#layouts").layout({
         height: heightlayout
     });
 
     $(window).resize(function () {
         var height = $(window).height();
-        var heightlayout = (height - 90);
+        var heightlayout = (height - 2);
         $("#layouts").layout({
             height: heightlayout
         });
@@ -61,7 +61,7 @@ function openpopupservicedetail() {
 
 function getdetailservice() {
     var service_id = $("#service_id").val();
-    var url = 'index.php?r=doctor/getdetailservice&service_id=' + service_id;
+    var url = 'index.php?r=doctor/getdetailserviceview&service_id=' + service_id;
     $('#bodydetailservice').load(url);
 }
 
@@ -97,7 +97,7 @@ function openpopupservicediag() {
 
 function loaddetaildiag() {
     var service_id = $("#service_id").val();
-    var url = 'index.php?r=patientdiag/getdetaildiag&service_id=' + service_id;
+    var url = 'index.php?r=patientdiag/getdetaildiagview&service_id=' + service_id;
     $('#bodydiagservice').load(url);
 }
 
@@ -110,7 +110,7 @@ function deletediagservice(id) {
 }
 
 function loaddrug() {
-    var url = "index.php?r=patientdrug/getdrug";
+    var url = "index.php?r=patientdrug/getdrugview";
     var patient_id = $("#patient_id").val();
     var data = {patient_id: patient_id};
 
@@ -121,7 +121,7 @@ function loaddrug() {
 
 
 function loaddisease() {
-    var url = "index.php?r=patientdisease/getdisease";
+    var url = "index.php?r=patientdisease/getdiseaseview";
     var patient_id = $("#patient_id").val();
     var data = {patient_id: patient_id};
 
@@ -278,7 +278,7 @@ function openpopupservicedrug() {
 
 function loaddetaildrug() {
     var service_id = $("#service_id").val();
-    var url = 'index.php?r=patientdrug/getdetailservicedrug&service_id=' + service_id;
+    var url = 'index.php?r=patientdrug/getdetailservicedrugview&service_id=' + service_id;
     $('#bodydrugservice').load(url);
 }
 
@@ -328,7 +328,7 @@ function openpopupservicedetaildrug() {
 
 function loaddetaildrug() {
     var service_id = $("#service_id").val();
-    var url = 'index.php?r=patientdrug/getdetailservicedrug&service_id=' + service_id;
+    var url = 'index.php?r=patientdrug/getdetailservicedrugview&service_id=' + service_id;
     $('#bodydrugservice').load(url);
 }
 
@@ -352,7 +352,7 @@ function saveetc() {
         service_id: service_id,
         patient_id: patient_id
     };
-
+    
     if (detail_etc == "" || price_etc == "") {
         sweetAlert("Oops...", "กรอกข้อมูล * ไม่ครบ!", "error");
         return false;
@@ -372,7 +372,7 @@ function openpopupservicedetailetc() {
 
 function loaddetailetc() {
     var service_id = $("#service_id").val();
-    var url = 'index.php?r=doctor/getdetailserviceetc&service_id=' + service_id;
+    var url = 'index.php?r=doctor/getdetailserviceetcview&service_id=' + service_id;
     $('#bodyetcservice').load(url);
 }
 
@@ -385,22 +385,13 @@ function deleteEtcService(id) {
 }
 
 function loadhistory() {
-    var patient_id = $("#patient_id").val();
-    var url = "index.php?r=patient/history";
-    var data = {patient_id: patient_id};
-    $.post(url, data, function (result) {
-        $("#history").html(result);
-    });
-}
-
-function doctorconfirm() {
-    var service_id = $("#service_id").val();
-    var url = "index.php?r=doctor/doctorconfirm";
-    var data = {service_id: service_id};
-    $.post(url, data, function (result) {
-        window.location="index.php?r=queue/index";
-    });
-}
+        var patient_id = $("#patient_id").val();
+        var url = "index.php?r=patient/history";
+        var data = {patient_id: patient_id};
+        $.post(url, data, function (result) {
+            $("#history").html(result);
+        });
+    }
 
 /*เมื่อทำรายการเสร็จ*/
 function Success() {

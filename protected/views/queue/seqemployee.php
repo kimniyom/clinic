@@ -25,7 +25,7 @@ $WebConfig = new Configweb_model();
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#seq" aria-controls="seq" role="tab" data-toggle="tab">คิวรอรับบริการ</a></li>
-        <li role="presentation"><a href="#end" aria-controls="end" role="tab" data-toggle="tab">คิวที่ได้รับการบริการแล้ว</a></li>
+        <li role="presentation"><a href="#end" aria-controls="end" role="tab" data-toggle="tab" onclick="loadservicesuccess()">คิวที่ได้รับการบริการแล้ว</a></li>
     </ul>
 
     <!-- Tab panes -->
@@ -35,7 +35,9 @@ $WebConfig = new Configweb_model();
             <button type="button" class="btn btn-default" onclick="AddseqFormAppoint()"><i class="fa fa-plus-circle"></i> เพิ่มคิวจากการนัด</button>
             <div id="datas"></div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="end">...</div>
+        <div role="tabpanel" class="tab-pane" id="end">
+            <div id="servicesuccess"></div>
+        </div>
     </div>
 </div>
 
@@ -347,6 +349,14 @@ $WebConfig = new Configweb_model();
         var data = {a:1};
         $.post(url,data,function(datas){
             $("#datas").html(datas);
+        });
+    }
+    
+    function loadservicesuccess(){
+        var url = "<?php echo Yii::app()->createUrl('queue/getservicesuccess')?>";
+        var data = {a:1};
+        $.post(url,data,function(datas){
+            $("#servicesuccess").html(datas);
         });
     }
 </script>

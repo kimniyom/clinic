@@ -30,7 +30,8 @@ class PatientDiagController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'getdiag', 'adddiag', 'deletediag', 'getpricediag','saveservicediag','getdetaildiag','deletediagservice'),
+                'actions' => array('create', 'update', 'getdiag', 'adddiag', 'deletediag', 'getpricediag',
+                    'saveservicediag','getdetaildiag','deletediagservice','getdetaildiagview'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -250,6 +251,32 @@ class PatientDiagController extends Controller {
 
         echo $grid;
     }
+    
+    public function actionGetdetaildiagview($service_id) {
+        $sql = "SELECT s.*,d.diagname FROM service_diag s INNER JOIN diag d ON s.diagcode = d.diagcode WHERE service_id = '$service_id' ";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+
+        $grid = "<table style='width:100%;' class='table table-striped'>
+                <thead>
+                    <tr>
+                        <th>หัตถการ</th>
+                        <th style='text-align:right;'>ราคา</th>
+                    </tr>
+                </thead>
+                <tbody>";
+        foreach ($result as $row):
+            $grid .= "<tr>
+                        <td style='padding:3px;'>" . $row['diagname'] . "</td>
+                        <td style='padding:3px;text-align:right;'>" . number_format($row['diagprice'], 2) . "</td>
+                        
+                    </tr>";
+        endforeach;
+        $grid .="</tbody></table>";
+
+        echo $grid;
+    }
+    
+    
     
     public function actionDeletediagservice() {
         $id = Yii::app()->request->getPost('id');

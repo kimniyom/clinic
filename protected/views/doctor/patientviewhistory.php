@@ -1,7 +1,6 @@
 <?php
 /* @var $this PatientController */
 /* @var $model Patient */
-
 $this->breadcrumbs = array(
     //'Patients' => array('index'),
     $model->name . " " . $model->lname,
@@ -55,7 +54,7 @@ if (isset($model['birth'])) {
 <input type="hidden" id="patient_id" value="<?php echo $model['id'] ?>"/>
 <input type="hidden" id="service_id" value="<?php echo $service_id ?>"/>
 <div class="easyui-layout" id="layouts" style=" width: 100%; margin: 0px;">
-    <div title="<?php echo 'คุณ ' . $model->name . " " . $model->lname . " | ลูกค้า " . Gradcustomer::model()->find($model['type'])['grad'] . ' | อายุ ' . $Age . ' ปี' ?>" 
+    <div title="ประวัติการรับบริการ | วันที่ <?php echo $config->thaidate($Modelservice->service_date) ?> | <?php echo 'คุณ ' . $model->name . " " . $model->lname . " | ลูกค้า " . Gradcustomer::model()->find($model['type'])['grad'] . ' | อายุ ' . $Age . ' ปี' ?>" 
          data-options="region:'north'" 
          style="height:110px; padding: 0px; padding-bottom: 0px; overflow: hidden;">
         <div class="row" style=" margin: 0px;">
@@ -108,65 +107,36 @@ if (isset($model['birth'])) {
         </div>
     </div>
 
-    <div data-options="region:'south',split:true" title="ภาพถ่าย" style="height:165px; padding: 0px;">
-                <div id="show_saved_img" style=" margin-left: 0px;"></div>
+    <div data-options="region:'south',split:true" title="ภาพถ่าย" style="height:145px; padding: 0px;">
+        <div id="show_saved_img" style=" margin-left: 0px;"></div>
     </div>
-    <div data-options="region:'east',split:false" title="ประวัติการรับบริการ" style="width:180px;">
-        <!--
-        <ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,dnd:true"></ul>
-        -->
-        <div id="history"></div>
-    </div>
+
     <div data-options="region:'west',split:false" title="เมนู" style="width:200px;">
 
         <div class="row" style=" margin: 0px;">
-            <div class="col-md-10 col-lg-10" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" onclick="$('#popupaddservice').dialog('open')" id="btn-left"><i class="fa fa-save text-primary"></i> บันทึกการรักษา</button>
-            </div>
-            <div class="col-md-2 col-lg-2" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" onclick="openpopupservicedetail()" id="btn-left"><i class="fa fa-ellipsis-v"></i></button>
+            <div class="col-md-12 col-lg-12" style=" padding: 0px;">
+                <button type="button" class="btn btn-default btn-block" onclick="openpopupservicedetail()" id="btn-left"><i class="fa fa-save text-primary"></i> การรักษา</button>
             </div>
         </div>
 
-        <div class="row" style=" margin: 0px;">
-            <div class="col-md-10 col-lg-10" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" onclick="$('#popupadddiag').dialog('open')" id="btn-left"><i class="fa fa-stethoscope text-danger"></i> หัตถการ</button>
-            </div>
-            <div class="col-md-2 col-lg-2" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" id="btn-left" onclick="openpopupservicediag()"><i class="fa fa-ellipsis-v"></i></button>
-            </div>
-        </div>
-
-        <div class="row" style=" margin: 0px;">
-            <div class="col-md-10 col-lg-10" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" onclick="$('#popupadddrug').window('open')" id="btn-left"><i class="fa fa-medkit text-success"></i> จ่ายยา / สินค้า</button>
-            </div>
-            <div class="col-md-2 col-lg-2" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" id="btn-left"  onclick="openpopupservicedetaildrug()"><i class="fa fa-ellipsis-v"></i></button>
-            </div>
-        </div>
-        <div class="row" style=" margin: 0px;">
-            <div class="col-md-10 col-lg-10" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" onclick="$('#popupaddetc').window('open')" id="btn-left"><i class="fa fa-money"></i>  ค่าใช้จ่ายอื่น ๆ</button>
-            </div>
-            <div class="col-md-2 col-lg-2" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" id="btn-left" onclick="openpopupservicedetailetc()"><i class="fa fa-ellipsis-v"></i></button>
-            </div>
-        </div>
-        
-        <button type="button" class="btn btn-default btn-block" onclick="camera()" id="btn-left"><i class="fa fa-camera text-danger"></i> ถ่ายรูป</button>
-        
         <div class="row" style=" margin: 0px;">
             <div class="col-md-12 col-lg-12" style=" padding: 0px;">
-                <button type="button" class="btn btn-warning btn-block" style=" border-radius: 0px;" onclick="doctorconfirm()">ยืนยันรายการ <img src="<?php echo Yii::app()->baseUrl ?>/images/Save-icon.png"/></button>
+                <button type="button" class="btn btn-default btn-block" onclick="openpopupservicediag()" id="btn-left"><i class="fa fa-stethoscope text-danger"></i> หัตถการ</button>
             </div>
-            
         </div>
-        <!--
-        <span class="easyui" style=" bottom: 0px; position: absolute; border-top: #cccccc solid 1px; width: 100%; padding: 5px; color: #ff0000;">
-            สัญลักษณ์ <i class="fa fa-ellipsis-v text-success"></i> คือ ดูข้อมูล
-        </span>
-        -->
+
+        <div class="row" style=" margin: 0px;">
+            <div class="col-md-12 col-lg-12" style=" padding: 0px;">
+                <button type="button" class="btn btn-default btn-block" onclick="openpopupservicedetaildrug()" id="btn-left"><i class="fa fa-medkit text-success"></i> ยา / สินค้า</button>
+            </div>
+        </div>
+
+        <div class="row" style=" margin: 0px;">
+            <div class="col-md-12 col-lg-12" style=" padding: 0px;">
+                <button type="button" class="btn btn-default btn-block" onclick="openpopupservicedetailetc()" id="btn-left"><i class="fa fa-money"></i>  ค่าใช้จ่ายอื่น ๆ</button>
+            </div>
+        </div>
+
     </div>
     <div data-options="region:'center',title:'ลูกค้า',iconCls:'icon-ok'">
         <div class="easyui-tabs" data-options="fit:true,border:false,plain:true" id="tt">
@@ -284,6 +254,7 @@ if (isset($model['birth'])) {
                     </ul>
                 </div>
             </div>
+
             <div title="ซักประวัติ" style="padding:10px">
                 <div id="font-18">
                     <?php if (!empty($checkbody)) { ?>
@@ -305,7 +276,6 @@ if (isset($model['birth'])) {
                             $usesave = $MasuserModel->GetDetailUser($checkbody['user_id']);
                             echo $usesave['name'] . " " . $usesave['lname'];
                             ?>
-
                         </p><br/>
                     <?php } else { ?>
                         <center>ยังไม่มีการตรวจร่างกาย</center>
@@ -325,150 +295,6 @@ if (isset($model['birth'])) {
             </div>
             -->
         </div>
-    </div>
-</div>
-
-<div id="popupaddservice" class="easyui-window" title="บันทึกการรักษา" style="width:700px;height:400px;padding:10px; top:50px;"
-     data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,minimizable:false,collapsible:false,footer:'#popupaddservice-footer'">
-    <div class="row" style=" margin: 0px 0px 10px 0px;">
-        <div class="col-md-3 col-lg-3" style=" text-align: right;"><font style="color: #ff0000;">*</font>การรักษา : </div>
-        <div class="col-md-9 col-lg-9">
-            <textarea type="text" class=" easyui-textbox" data-options="multiline:true,prompt:'ข้อมูลการรักษา...'" style="height:100px; width: 100%;" id="service_detail" rows="5"></textarea>
-        </div>
-    </div>
-    <div class="row" style=" margin: 0px 0px 10px 0px;">
-        <div class="col-md-3 col-lg-3" style=" text-align: right;">อื่น ๆ : </div>
-        <div class="col-md-9 col-lg-9">
-            <textarea type="text" class=" easyui-textbox" data-options="multiline:true,prompt:'อื่น ๆ...'" style="height:100px; width: 100%;" id="service_comment" rows="5"></textarea>
-        </div>
-    </div>
-    <div class="row" style=" margin: 0px 0px 10px 0px;">
-        <div class="col-md-3 col-lg-3" style=" text-align: right;"><font style="color: #ff0000;">*</font>ราคา : </div>
-        <div class="col-md-3 col-lg-3">
-            <input type="text" class="easyui-numberbox" id="service_price" data-options="min:0,precision:2,prompt:'กรอกตัวเลข...'"/> 
-        </div>
-        <div class="col-md-1 col-lg-1">บาท</div>
-    </div>
-    <div id="popupaddservice-footer" style="padding:5px; text-align: right;">
-        <a id="btn" href="javascript:saveserviceDetail()" class="easyui-linkbutton" data-options="iconCls:'icon-save'">บันทึก</a>
-        <a id="btn" href="javascript:resetserviceDetail()" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">ยกเลิก</a>
-    </div>
-</div>
-
-<!-- หัตถการ -->
-<div id="popupadddiag" class="easyui-window" title="บันทึกหัตถการ" style="width:500px;height:200px;padding:10px; top:50px;"
-     data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,minimizable:false,collapsible:false,footer:'#popupadddiag-footer'">
-    <div class="row" style=" margin: 0px 0px 10px 0px;">
-        <div class="col-md-3 col-lg-3" style=" text-align: right;"><font style="color:#ff0000;">*</font>หัตถการ : </div>
-        <div class="col-md-9 col-lg-9">
-            <?php
-            $diag = Diag::model()->findAll('');
-            ?>
-            <select id="diaginsert" class="easyui-combobox" name="diaginsert" style=" width: 100%;" required="required" data-options="required:true">
-                <option value="">== หัตถการ ==</option>
-                <?php foreach ($diag as $d): ?>
-                    <option value="<?php echo $d['diagcode'] ?>"><?php echo $d['diagname'] ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-    </div>
-
-    <div class="row" style=" margin: 0px; margin-top: 10px;">
-        <div class="col-md-3 col-lg-3" style=" text-align: right;"><font style="color:#ff0000;"> *</font>ราคา : </div>
-        <div class="col-md-3 col-lg-3">
-            <input type="text" class="easyui-numberbox" name="pricediag" id="pricediag" data-options="min:0,precision:2,prompt:'กรอกตัวเลข...'" value="0.00" required="required"/>
-        </div>
-    </div>
-    <div id="popupadddiag-footer" style="padding:5px; text-align: right;">
-        <a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="savediag()">บันทึก</a>
-        <a id="btn" type="reset" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="resetformdiag()">ยกเลิก</a>
-    </div>
-</div>
-
-<!-- จ่ายยา / สินค้า -->
-<div id="popupadddrug" class="easyui-window" title="บันทึกการจ่ายยา" style="width:700px;height:300px;padding:10px; top:50px;"
-     data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,minimizable:false,collapsible:false,footer:'#popupadddrug-footer'">
-
-    <div class="row" style=" margin: 0px;">
-        <div class="col-md-7 col-lg-7">
-            <div class="row" style=" margin: 0px 0px 10px 0px;">
-                <div class="col-md-3 col-lg-3" style=" text-align: right;"><font style="color:#ff0000;"> *</font>ยา / สินค้า : </div>
-                <div class="col-md-9 col-lg-9">
-                    <?php
-                    $items = new Items();
-                    $drug = $items->GetProductSell();
-                    ?>
-                    <select id="druginsert" class="easyui-combobox" name="druginsert" style=" width: 100%;" required="required" data-options="required:true,prompt:'พิมพ์ชื่อยา...'">
-                        <option value=""></option>
-                        <?php foreach ($drug as $drugs): ?>
-                            <option value="<?php echo $drugs['product_id'] ?>"><?php echo $drugs['product_name'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
-            <div class="row" style=" margin: 0px 0px 10px 0px;">
-                <div class="col-md-3 col-lg-3" style=" text-align: right;"><font style="color:#ff0000;"> *</font>จำนวน : </div>
-                <div class="col-md-4 col-lg-4">
-                    <input type="text" class=" easyui-numberbox" data-options="min:1,prompt:'กรอกตัวเลข...'"  id="drug_number" required="required" style=" width: 100%;"/>
-                </div>
-                <div class="col-md-3 col-lg-3">
-                    <p id="unit"></p>
-                </div>
-            </div>
-            <div class="row" style=" margin: 0px; margin-top: 10px;">
-                <div class="col-md-3 col-lg-3" style=" text-align: right;"><font style="color:#ff0000;"> *</font>ราคา: </div>
-                <div class="col-md-3 col-lg-3">
-                    <input type="text" class="easyui-numberbox" name="pricedrug" id="pricedrug" data-options="min:0,precision:2,prompt:'กรอกตัวเลข...'" value="0.00" required="required" style=" width: 100%;"/>
-                </div>
-                <div class="col-md-2 col-lg-3">
-                    ต่อหน่วย
-                </div>
-            </div>
-            <div class="row" style=" margin: 0px; margin-top: 10px;">
-                <div class="col-md-3 col-lg-3" style=" text-align: right;"><font style="color:#ff0000;"> *</font>ราคารวม: </div>
-                <div class="col-md-4 col-lg-4">
-                    <input type="text" class="easyui-numberbox" name="pricedrugtotal" id="pricedrugtotal" data-options="min:0,precision:2,prompt:'กรอกตัวเลข...'" value="0.00" required="required" style=" width: 100%;"/>
-                </div>
-                <div class="col-md-3 col-lg-3">
-                    <button class="btn btn-default btn-sm" onclick="calculatorDrug()">คำนวณ</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5 col-lg-5">
-            <b>ข้อมูลยา / สินค้า</b>
-            <hr/>
-            <div id="detaildrug"></div>
-        </div>
-    </div>
-
-    <div id="popupadddrug-footer" style="padding:5px; text-align: right;">
-        <a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveDrug()">บันทึก</a>
-        <a id="btn" type="reset" href="#" class="easyui-linkbutton" onclick="resetserviceDrug()" data-options="iconCls:'icon-cancel'">ยกเลิก</a>
-    </div>
-</div>
-
-<!-- อื่น ๆ -->
-<div id="popupaddetc" class="easyui-window" title="ค่าใช้จ่ายอื่น ๆ" style="width:700px;height:300px;padding:10px; top:50px;"
-     data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,minimizable:false,collapsible:false,footer:'#popupaddetc-footer'">
-
-    <div class="row" style=" margin: 0px;">
-        <div class="row" style=" margin: 0px 0px 10px 0px;">
-            <div class="col-md-3 col-lg-3" style=" text-align: right;">รายละเอียด : </div>
-            <div class="col-md-9 col-lg-9">
-                <textarea type="text" class=" easyui-textbox" data-options="multiline:true,prompt:'อื่น ๆ...'" style="height:100px; width: 100%;" id="detail_etc" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="row" style=" margin: 0px; margin-top: 10px;">
-            <div class="col-md-3 col-lg-3" style=" text-align: right;">ราคา : </div>
-            <div class="col-md-3 col-lg-3">
-                <input type="text" class="easyui-numberbox" name="price_etc" id="price_etc" data-options="min:0,precision:2,prompt:'กรอกตัวเลข...'" value="0.00" required="required"/>
-            </div>
-        </div>
-    </div>
-
-    <div id="popupaddetc-footer" style="padding:5px; text-align: right;">
-        <a id="btn" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveetc()">บันทึก</a>
-        <a id="btn" type="reset" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">ยกเลิก</a>
     </div>
 </div>
 
@@ -496,38 +322,9 @@ if (isset($model['birth'])) {
     <div id="bodyetcservice"></div>
 </div>
 
-
 <script>
-    $(function () {
-        //give the php file path
-        webcam.set_api_url('<?php echo Yii::app()->createUrl('camera/saveimage', array("service_id" => $service_id)) ?>');
-        webcam.set_swf_url('<?php echo Yii::app()->baseUrl; ?>/lib/php-webcamera/scripts/webcam.swf');//flash file (SWF) file path
-        webcam.set_quality(100); // Image quality (1 - 100)
-        webcam.set_shutter_sound(true, '<?php echo Yii::app()->baseUrl; ?>/sound/shutter.mp3'); // play shutter click sound
-        var camera = $('#camera');
-        camera.html(webcam.get_html(898, 600)); //generate and put the flash embed code on page
-
-        $('#capture_btn').click(function () {
-            //take snap
-            webcam.snap();
-            $('#show_saved_img').html('<h3>Please Wait...</h3>');
-        });
-
-
-        //after taking snap call show image
-        webcam.set_hook('onComplete', function (img) {
-            loadimages();
-            //alert(img);
-            //$('#show_saved_img').html('<img src="' + img + '" class="img-responsive">');
-            //reset camera for the next shot
-            webcam.reset();
-            $("#popupcamera").modal("hide");
-        });
-
-    });
-
     function loadimages() {
-        var url = "<?php echo Yii::app()->createUrl('camera/loadimages') ?>";
+        var url = "<?php echo Yii::app()->createUrl('camera/loadimagesview') ?>";
         var service_id = $("#service_id").val();
         var data = {service_id: service_id};
         $.post(url, data, function (datas) {
@@ -536,27 +333,4 @@ if (isset($model['birth'])) {
     }
 </script>
 
-
-<div class="modal fade modal-wide" tabindex="-1" role="dialog" id="popupcamera">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <center>
-                    <button class="btn btn-warning" id="capture_btn"><i class="fa fa-camera"></i> Capture</button>
-                </center>
-            </div>
-            <div class="modal-body" style="padding: 0px; text-align: center;">
-                <div id="camera"></div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-<script type="text/javascript">
-    function camera() {
-        $("#popupcamera").modal();
-    }
-</script>
-<script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/js/patientview.js"></script>
+<script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/js/patientviewhistory.js"></script>

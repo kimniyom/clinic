@@ -10,7 +10,8 @@ class QueueController extends Controller {
 
     public function actionIndex() {
         $Model = new Service();
-        $data['seq'] = $Model->Getseq();
+        $branch = Yii::app()->session['branch'];
+        $data['seq'] = $Model->Getseq($branch);
 
         if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '2') {
             $this->layout = "dortor";
@@ -23,8 +24,9 @@ class QueueController extends Controller {
     public function actionSeqemployee() {
         $Model = new Service();
         $Patient = new Patient();
+        $branch = Yii::app()->session['branch'];
         $data['PatientList'] = $Patient->GetPatient();
-        $data['seq'] = $Model->Getseq();
+        $data['seq'] = $Model->Getseq($branch);
         $this->render('seqemployee', $data);
     }
 
@@ -141,9 +143,17 @@ class QueueController extends Controller {
     }
 
     public function actionGetdata() {
+        $branch = Yii::app()->session['branch'];
         $Model = new Service();
-        $data['seq'] = $Model->Getseq();
+        $data['seq'] = $Model->Getseq($branch);
         $this->renderPartial('table', $data);
+    }
+    
+     public function actionGetservicesuccess() {
+        $branch = Yii::app()->session['branch'];
+        $Model = new Service();
+        $data['seq'] = $Model->GetseqSuccess($branch);
+        $this->renderPartial('servicesuccess', $data);
     }
 
     public function actionDeleteservice() {

@@ -30,7 +30,10 @@ class DoctorController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'doctorsearch', 'patientview', 'saveservicedetail', 'getdetailservice', 'deletedetailservice', 'saveetc','getdetailserviceetc'),
+                'actions' => array('create', 'update', 'doctorsearch', 'patientview', 
+                    'saveservicedetail', 'getdetailservice', 'deletedetailservice', 'saveetc',
+                    'getdetailserviceetc','deleteetcservice','patientviewhistory','getdetailserviceview',
+                    'getdetailserviceetcview','doctorconfirm'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -80,6 +83,9 @@ class DoctorController extends Controller {
           }
          * 
          */
+        
+        Yii::app()->db->createCommand()->update("service", array("status" => "2"),"id = '$service_id'");
+        
         $this->layout = "dortor";
         $data['contact'] = PatientContact::model()->find("patient_id = '$id'");
         $data['model'] = Patient::model()->find("id = '$id'");
@@ -94,8 +100,34 @@ class DoctorController extends Controller {
         //$data['contact'] = PatientContact::model()->find("patient_id = '$patient_id'");
         $data['patient'] = Patient::model()->find("id = '$id'");
 
-
         $this->render('patientview', $data);
+    }
+    
+    public function actionPatientviewhistory($id, $service_id = null) {
+        /*
+          if (!empty($appoint)) {
+          $columns = array("status" => '1');
+          Yii::app()->db->createCommand()
+          ->update("appoint", $columns, "id = '$id'");
+          }
+         * 
+         */
+        $this->layout = "template_history";
+        $data['contact'] = PatientContact::model()->find("patient_id = '$id'");
+        $data['model'] = Patient::model()->find("id = '$id'");
+        $checkbodyModel = new Checkbody();
+        $data['checkbody'] = $checkbodyModel->Checkbody($service_id);
+        $data['Modelservice'] = Service::model()->find("id = '$service_id'");
+        //OpenService
+        $data['patient_id'] = $id;
+        $data['serviceSEQ'] = ($service_id);
+        $data['service_id'] = $service_id;
+        //$this->actionCheckImages($data['serviceSEQ']);
+        //$data['contact'] = PatientContact::model()->find("patient_id = '$patient_id'");
+        $data['patient'] = Patient::model()->find("id = '$id'");
+
+
+        $this->render('patientviewhistory', $data);
     }
 
     public function actionCheckImages($id) {
@@ -173,6 +205,31 @@ class DoctorController extends Controller {
 
         echo $grid;
     }
+    
+    public function actionGetdetailserviceview($service_id) {
+        $sql = "SELECT * FROM service_detail WHERE service_id = '$service_id' ";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+
+        $grid = "<table style='width:100%;' class='table table-striped'>
+                <thead>
+                    <tr>
+                        <th>การรักษา</th>
+                        <th>อื่น ๆ</th>
+                        <th style='text-align:right;'>ราคา</th>
+                    </tr>
+                </thead>
+                <tbody>";
+        foreach ($result as $row):
+            $grid .= "<tr>
+                        <td style='padding:3px;'>" . $row['detail'] . "</td>
+                        <td style='padding:3px;'>" . $row['comment'] . "</td>
+                        <td style='padding:3px;text-align:right;'>" . number_format($row['price'], 2) . "</td>
+                    </tr>";
+        endforeach;
+        $grid .= "</tbody></table>";
+
+        echo $grid;
+    }
 
     public function actionSaveetc() {
         $patient_id = Yii::app()->request->getPost('patient_id');
@@ -216,13 +273,50 @@ class DoctorController extends Controller {
                         <td style='padding:3px;'>" . $row['detail'] . "</td>
                         <td style='padding:3px;text-align:right;'>" . number_format($row['price'], 2) . "</td>
                         <td style='padding:3px;text-align:center;'>
-                            <a href='javascript:deleteetcservice(" . $row['id'] . ")'><i class='fa fa-trash text-danger'></i></a>
+                            <a href='javascript:deleteEtcService(" . $row['id'] . ")'><i class='fa fa-trash text-danger'></i></a>
                         </td>
                     </tr>";
         endforeach;
         $grid .= "</tbody></table>";
 
         echo $grid;
+    }
+    
+    public function actionGetdetailserviceetcview($service_id) {
+        $sql = "SELECT s.* FROM service_etc s WHERE service_id = '$service_id' ";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+
+        $grid = "<table style='width:100%;' class='table table-striped'>
+                <thead>
+                    <tr>
+                        <th>รายการ</th>
+                        <th style='text-align:right;'>ราคา</th>
+                    </tr>
+                </thead>
+                <tbody>";
+        foreach ($result as $row):
+            $grid .= "<tr>
+                        <td style='padding:3px;'>" . $row['detail'] . "</td>
+                        <td style='padding:3px;text-align:right;'>" . number_format($row['price'], 2) . "</td>
+                        
+                    </tr>";
+        endforeach;
+        $grid .= "</tbody></table>";
+
+        echo $grid;
+    }
+    
+    public function actionDeleteetcservice(){
+        $id = Yii::app()->request->getPost('id');
+        Yii::app()->db->createCommand()
+                ->delete("service_etc","id = '$id'");
+    }
+    
+    public function actionDoctorconfirm(){
+        $service_id = Yii::app()->request->getPost('service_id');
+        $columns = array("status" => "3");
+        Yii::app()->db->createCommand()
+                ->update("service", $columns,"id = '$service_id'");
     }
 
 }

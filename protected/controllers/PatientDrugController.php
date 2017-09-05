@@ -30,7 +30,8 @@ class PatientDrugController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'getdrug', 'adddrug', 'deletedrug', 'getpricedrug', 'getdetaildrug', 'saveservicedrug', 'getdetailservicedrug','deletedrugservice'),
+                'actions' => array('create', 'update', 'getdrug', 'adddrug', 'deletedrug', 'getpricedrug','getdrugview',
+                    'getdetaildrug', 'saveservicedrug', 'getdetailservicedrug','deletedrugservice','getdetailservicedrugview'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -168,6 +169,13 @@ class PatientDrugController extends Controller {
 
         $this->renderPartial('getdrug', $data);
     }
+    
+    public function actionGetdrugview() {
+        $patient_id = Yii::app()->request->getPost('patient_id');
+        $data['patientdrug'] = PatientDrug::model()->findAll("patient_id = '$patient_id' ");
+
+        $this->renderPartial('getdrugview', $data);
+    }
 
     public function actionAdddrug() {
         $patient_id = Yii::app()->request->getPost('patient_id');
@@ -274,6 +282,39 @@ class PatientDrugController extends Controller {
 
         echo $grid;
     }
+    
+        public function actionGetdetailservicedrugview($service_id) {
+        $sql = "SELECT s.*,u.unit AS unitname,c.product_nameclinic,c.product_name AS productname
+                FROM service_drug s INNER JOIN clinic_stockproduct st ON s.drug = st.product_id
+                INNER JOIN unit u ON st.unit = u.id
+                INNER JOIN center_stockproduct c ON s.drug = c.product_id
+                WHERE service_id = '$service_id' ";
+        $result = Yii::app()->db->createCommand($sql)->queryAll();
+
+        $grid = "<table style='width:100%;' class='table table-striped'>
+                <thead>
+                    <tr>
+                        <th>รหัสยา</th>
+                        <th>ชื่อยา</th>
+                        <th style='text-align:center;'>จำนวน</th>
+                        <th style='text-align:center;'></th>
+                    </tr>
+                </thead>
+                <tbody>";
+        foreach ($result as $row):
+            $grid .= "<tr>
+                        <td style='padding:3px;'>" . $row['drug'] . "</td>
+                        <td style='padding:3px;'>" . $row['product_nameclinic'] . "</td>
+                        <td style='padding:3px;text-align:center;'>" . number_format($row['number']) . "</td>
+                        <td style='padding:3px;'>".$row['unitname']."</td>
+                        
+                    </tr>";
+        endforeach;
+        $grid .="</tbody></table>";
+
+        echo $grid;
+    }
+    
 
     public function actionDeletedrugservice() {
         $id = Yii::app()->request->getPost('id');

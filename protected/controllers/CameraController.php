@@ -83,5 +83,12 @@ class CameraController extends Controller {
                     ->delete("service_images", "id = '$id'");
         }
     }
+    
+    public function actionLoadimagesview() {
+        $service_id = Yii::app()->request->getPost('service_id');
+        $sql = "SELECT * FROM service_images WHERE service_id = '$service_id' ";
+        $data['images'] = Yii::app()->db->createCommand($sql)->queryAll();
+        $this->renderPartial('loadimagesview', $data);
+    }
 
 }

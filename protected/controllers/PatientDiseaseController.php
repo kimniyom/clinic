@@ -30,7 +30,7 @@ class PatientDiseaseController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','getdisease','adddisease','deletedisease'),
+                'actions' => array('create', 'update','getdisease','adddisease','deletedisease','getdiseaseview'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -168,6 +168,15 @@ class PatientDiseaseController extends Controller {
 
         $this->renderPartial('getdisease', $data);
     }
+    
+    public function actionGetdiseaseview() {
+        $patient_id = Yii::app()->request->getPost('patient_id');
+        $data['patientdisease'] = PatientDisease::model()->findAll("patient_id = '$patient_id' ");
+
+        $this->renderPartial('getdiseaseview', $data);
+    }
+    
+    
 
     public function actionAdddisease() {
         $patient_id = Yii::app()->request->getPost('patient_id');
