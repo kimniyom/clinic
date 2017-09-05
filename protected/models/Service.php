@@ -123,12 +123,12 @@ class Service extends CActiveRecord
 		$sql = "SELECT p.id AS patient_id,s.id,p.`name`,p.lname,TIMESTAMPDIFF(YEAR,p.birth,NOW()) AS age,p.card,p.pid,p.sex,g.grad,s.`comment`
 				FROM service s INNER JOIN patient p ON s.patient_id = p.id
 				INNER JOIN `gradcustomer` g ON p.type = g.id
-				WHERE s.branch = '$branch' AND s.`status` = '1' "; 
+				WHERE s.branch = '$branch' AND s.`status` = '1' ";
 		return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 
 	public function GetseqSuccess($branch){
-		$sql = "SELECT p.id AS patient_id,s.id,p.`name`,p.lname,TIMESTAMPDIFF(YEAR,p.birth,NOW()) AS age,p.card,p.pid,p.sex,g.grad,s.`comment`
+		$sql = "SELECT s.id AS service_id,p.id AS patient_id,s.id,p.`name`,p.lname,TIMESTAMPDIFF(YEAR,p.birth,NOW()) AS age,p.card,p.pid,p.sex,g.grad,s.`comment`
 				FROM service s INNER JOIN patient p ON s.patient_id = p.id
 				INNER JOIN `gradcustomer` g ON p.type = g.id
 				WHERE s.branch = '$branch' AND s.`status` = '3' ";
@@ -143,5 +143,71 @@ class Service extends CActiveRecord
 		return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 
-        
+	public function Listservice($service_id){
+		$sql = "SELECT s.service_id,s.detail,1 AS number,s.price,s.price AS total
+					FROM service_detail s
+					WHERE s.service_id = '$service_id'
+
+					UNION
+
+					SELECT d.service_id,CONCAT(d.drug,'(',c.product_nameclinic,')') AS detail,d.number,d.price,d.total
+					FROM service_drug d INNER JOIN center_stockproduct c ON d.drug = c.product_id
+					WHERE d.service_id = '$service_id'
+
+					UNION
+
+					SELECT a.service_id,d.diagname AS detail,1 AS number,a.diagprice,a.diagprice AS total
+					FROM service_diag a INNER JOIN diag d ON a.diagcode = d.diagcode
+					WHERE a.service_id = '$service_id'
+
+					UNION
+
+					SELECT s.service_id,s.detail,1 AS number,s.price,s.price AS total
+					FROM service_etc s
+					WHERE s.service_id = '$service_id' ";
+					return Yii::app()->db->createCommand($sql)->queryAll();
+	}
+
+	public function SUMservice($service_id){
+		$sql = "SELECT IFNULL(SUM(Q1.total),0) AS TOTAL
+						FROM(
+							SELECT s.service_id,s.detail,1 AS number,s.price,s.price AS total
+							FROM service_detail s
+							WHERE s.service_id = '$service_id'
+
+							UNION
+
+							SELECT d.service_id,CONCAT(d.drug,'(',c.product_nameclinic,')') AS detail,d.number,d.price,d.total
+							FROM service_drug d INNER JOIN center_stockproduct c ON d.drug = c.product_id
+							WHERE d.service_id = '$service_id'
+
+							UNION
+
+							SELECT a.service_id,d.diagname AS detail,1 AS number,a.diagprice,a.diagprice AS total
+							FROM service_diag a INNER JOIN diag d ON a.diagcode = d.diagcode
+							WHERE a.service_id = '$service_id'
+
+							UNION
+
+							SELECT s.service_id,s.detail,1 AS number,s.price,s.price AS total
+							FROM service_etc s
+							WHERE s.service_id = '$service_id'
+						) Q1 ";
+						$rs = Yii::app()->db->createCommand($sql)->queryRow();
+						return $rs['TOTAL'];
+	}
+
+	public function GetdetailBillservice($service_id){
+		$sql = "SELECT s.service_date,
+										p.card,p.`name`,p.lname,e.`name` AS empname,e.lname AS emplname,
+										ed.`name` AS doctorname,ed.lname AS doctorlname,
+										po.position AS positionemp,pod.position AS positiondoctor
+						FROM service s INNER JOIN patient p ON s.patient_id = p.id
+						INNER JOIN employee e ON s.user_bill = e.id
+						INNER JOIN employee ed ON s.doctor = ed.id
+						INNER JOIN position po ON e.position = po.id
+						INNER JOIN position pod ON ed.position = pod.id ";
+	}
+
+
 }

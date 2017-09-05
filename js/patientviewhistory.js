@@ -1,6 +1,7 @@
 //HistoryServiceAllmain();
 loadhistory();
 loadimages();
+sumservice();
 $(document).ready(function () {
     var service_id = $("#service_id").val();
     var height = $(window).height();
@@ -392,6 +393,18 @@ function loadhistory() {
             $("#history").html(result);
         });
     }
+
+
+
+function sumservice() {
+        var service_id = $("#service_id").val();
+        var url = "index.php?r=service/sumservice";
+        var data = {service_id: service_id};
+        $.post(url, data, function (result) {
+            $("#sumservice").html(result);
+        });
+    }
+
 
 /*เมื่อทำรายการเสร็จ*/
 function Success() {

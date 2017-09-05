@@ -13,6 +13,7 @@ $CheckBodyModel = new Checkbody();
 $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
 $checkbody = $CheckBodyModel->Getdetail($service_id);
+
 if (isset($model['birth'])) {
     $Age = $config->get_age($model['birth']);
 } else {
@@ -136,6 +137,18 @@ if (isset($model['birth'])) {
                 <button type="button" class="btn btn-default btn-block" onclick="openpopupservicedetailetc()" id="btn-left"><i class="fa fa-money"></i>  ค่าใช้จ่ายอื่น ๆ</button>
             </div>
         </div>
+
+        <div class="row" style=" margin: 0px;">
+            <div class="col-md-12 col-lg-12" style=" text-align: center; padding: 0px; background: #e6e6e6;">
+                <h3>รวมค่าใชจ่าย </h3>
+                <div id="sumservice" style=" font-weight: bold; color: #ff0000; font-size: 24px;"></div>
+            </div>
+        </div>
+        <div class="row" style=" margin: 0px;">
+            <div class="col-md-6 col-lg-6" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px;">บันทึก</button></div>
+            <div class="col-md-6 col-lg-6" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px;">ใบเสร็จ</button></div>
+        </div>
+
 
     </div>
     <div data-options="region:'center',title:'ลูกค้า',iconCls:'icon-ok'">

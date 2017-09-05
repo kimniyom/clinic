@@ -30,7 +30,8 @@ class ServiceController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'detail', 'formservice', 'uploadify', 'loadimages', 'checkImages', 'saveservice', 'checkresultservice', 'deleteitem'),
+                'actions' => array('create', 'update', 'detail', 'formservice', 'uploadify', 'loadimages', 'checkImages', 'saveservice',
+                    'checkresultservice', 'deleteitem', 'sumservice', 'bill'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -344,6 +345,19 @@ class ServiceController extends Controller {
 
         Yii::app()->db->createCommand()
                 ->delete("service_drug", "service_id = '$service_id' AND drug = '$product_id' ");
+    }
+
+    public function actionSumservice() {
+        $Model = new Service();
+        $service_id = Yii::app()->request->getPost('service_id');
+        $TOTAL = $Model->SUMservice($service_id);
+        echo number_format($TOTAL, 2);
+    }
+
+    public function actionBill($service_id) {
+        $Model = new Service();
+        $data['listdetail'] = $Model->Listservice($service_id);
+        $this->renderPartial('bill', $data);
     }
 
 }

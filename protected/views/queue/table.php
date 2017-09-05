@@ -7,7 +7,7 @@
     }
 </style>
 
-<table class="table table-striped table-bordered" style=" margin-top: 10px;">
+<table class="table table-striped table-bordered" id="tb-service">
     <thead>
         <tr>
             <td style=" width: 5%; text-align: center;">#</td>
@@ -54,5 +54,27 @@
                 loadtable();
             });
         }
+    }
+</script>
+
+<script type="text/javascript">
+    Setscreen();
+    function Setscreen() {
+        var boxsell = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (boxsell - 319);
+        $("#tb-service").dataTable({
+            //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
+            "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
+            //"iDisplayLength": 50, // กำหนดค่า default ของจำนวน record
+            //"scrollCollapse": true,
+            "paging": false,
+            "bFilter": true, // แสดง search box
+            "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'print'
+            ]
+        });
     }
 </script>
