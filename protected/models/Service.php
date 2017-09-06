@@ -156,7 +156,7 @@ class Service extends CActiveRecord
 
 					UNION
 
-					SELECT a.service_id,d.diagname AS detail,1 AS number,a.diagprice,a.diagprice AS total
+					SELECT a.service_id,d.diagname AS detail,1 AS number,a.diagprice AS price,a.diagprice AS total
 					FROM service_diag a INNER JOIN diag d ON a.diagcode = d.diagcode
 					WHERE a.service_id = '$service_id'
 
@@ -165,7 +165,7 @@ class Service extends CActiveRecord
 					SELECT s.service_id,s.detail,1 AS number,s.price,s.price AS total
 					FROM service_etc s
 					WHERE s.service_id = '$service_id' ";
-					return Yii::app()->db->createCommand($sql)->queryAll();
+		return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 
 	public function SUMservice($service_id){
@@ -198,15 +198,19 @@ class Service extends CActiveRecord
 	}
 
 	public function GetdetailBillservice($service_id){
-		$sql = "SELECT s.service_date,
+		$sql = "SELECT s.service_date,s.branch,s.id AS service_id,
 										p.card,p.`name`,p.lname,e.`name` AS empname,e.lname AS emplname,
 										ed.`name` AS doctorname,ed.lname AS doctorlname,
-										po.position AS positionemp,pod.position AS positiondoctor
+										po.position AS positionemp,pod.position AS positiondoctor,b.branchname
 						FROM service s INNER JOIN patient p ON s.patient_id = p.id
 						INNER JOIN employee e ON s.user_bill = e.id
 						INNER JOIN employee ed ON s.doctor = ed.id
 						INNER JOIN position po ON e.position = po.id
-						INNER JOIN position pod ON ed.position = pod.id ";
+						INNER JOIN position pod ON ed.position = pod.id 
+						INNER JOIN branch b ON s.branch = b.id
+						WHERE s.id = '$service_id' ";
+		$result = Yii::app()->db->createCommand($sql)->queryRow();
+		return $result;
 	}
 
 

@@ -357,6 +357,7 @@ class ServiceController extends Controller {
     public function actionBill($service_id) {
         $Model = new Service();
         $data['listdetail'] = $Model->Listservice($service_id);
+        $data['detail'] = $Model->GetdetailBillservice($service_id);
         $this->renderPartial('bill', $data);
     }
 

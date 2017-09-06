@@ -145,8 +145,12 @@ if (isset($model['birth'])) {
             </div>
         </div>
         <div class="row" style=" margin: 0px;">
-            <div class="col-md-6 col-lg-6" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px;">บันทึก</button></div>
-            <div class="col-md-6 col-lg-6" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px;">ใบเสร็จ</button></div>
+            <?php $link = Yii::app()->createUrl('service/bill', array("service_id" => $service_id)) ?>
+
+            <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px; border: none;" onclick="PopupCenter('<?php echo $link ?>', 'ใบเสร็จ')">ใบเสร็จ</button></div>
+        </div>
+        <div class="row" style=" margin: 0px;">
+            <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-success btn-block" style="border-radius: 0px;">บันทึก</button></div>
         </div>
 
 
