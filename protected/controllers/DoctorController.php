@@ -30,10 +30,10 @@ class DoctorController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'doctorsearch', 'patientview', 
+                'actions' => array('create', 'update', 'doctorsearch', 'patientview',
                     'saveservicedetail', 'getdetailservice', 'deletedetailservice', 'saveetc',
-                    'getdetailserviceetc','deleteetcservice','patientviewhistory','getdetailserviceview',
-                    'getdetailserviceetcview','doctorconfirm'),
+                    'getdetailserviceetc', 'deleteetcservice', 'patientviewhistory', 'getdetailserviceview',
+                    'getdetailserviceetcview', 'doctorconfirm'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -81,11 +81,11 @@ class DoctorController extends Controller {
           Yii::app()->db->createCommand()
           ->update("appoint", $columns, "id = '$id'");
           }
-         * 
+         *
          */
-        
-        Yii::app()->db->createCommand()->update("service", array("status" => "2"),"id = '$service_id'");
-        
+
+        Yii::app()->db->createCommand()->update("service", array("status" => "2"), "id = '$service_id'");
+
         $this->layout = "dortor";
         $data['contact'] = PatientContact::model()->find("patient_id = '$id'");
         $data['model'] = Patient::model()->find("id = '$id'");
@@ -102,15 +102,15 @@ class DoctorController extends Controller {
 
         $this->render('patientview', $data);
     }
-    
-    public function actionPatientviewhistory($id, $service_id = null) {
+
+    public function actionPatientviewhistory($id, $service_id = null, $flag) {
         /*
           if (!empty($appoint)) {
           $columns = array("status" => '1');
           Yii::app()->db->createCommand()
           ->update("appoint", $columns, "id = '$id'");
           }
-         * 
+         *
          */
         $this->layout = "template_history";
         $data['contact'] = PatientContact::model()->find("patient_id = '$id'");
@@ -125,8 +125,9 @@ class DoctorController extends Controller {
         //$this->actionCheckImages($data['serviceSEQ']);
         //$data['contact'] = PatientContact::model()->find("patient_id = '$patient_id'");
         $data['patient'] = Patient::model()->find("id = '$id'");
-
-
+        $data['flag'] = $flag;
+        $Modelservice = new Service();
+        $data['datalistservice'] = $Modelservice->Listservice($service_id);
         $this->render('patientviewhistory', $data);
     }
 
@@ -172,7 +173,7 @@ class DoctorController extends Controller {
         $data['itemlist'] = $items->GetProductSell();
         /*
           $data['itemlist'] = $items->GetItemSell();
-         * 
+         *
          */
         $this->renderPartial('comboitem', $data);
     }
@@ -205,7 +206,7 @@ class DoctorController extends Controller {
 
         echo $grid;
     }
-    
+
     public function actionGetdetailserviceview($service_id) {
         $sql = "SELECT * FROM service_detail WHERE service_id = '$service_id' ";
         $result = Yii::app()->db->createCommand($sql)->queryAll();
@@ -281,7 +282,7 @@ class DoctorController extends Controller {
 
         echo $grid;
     }
-    
+
     public function actionGetdetailserviceetcview($service_id) {
         $sql = "SELECT s.* FROM service_etc s WHERE service_id = '$service_id' ";
         $result = Yii::app()->db->createCommand($sql)->queryAll();
@@ -298,25 +299,26 @@ class DoctorController extends Controller {
             $grid .= "<tr>
                         <td style='padding:3px;'>" . $row['detail'] . "</td>
                         <td style='padding:3px;text-align:right;'>" . number_format($row['price'], 2) . "</td>
-                        
+
                     </tr>";
         endforeach;
         $grid .= "</tbody></table>";
 
         echo $grid;
     }
-    
-    public function actionDeleteetcservice(){
+
+    public function actionDeleteetcservice() {
         $id = Yii::app()->request->getPost('id');
         Yii::app()->db->createCommand()
-                ->delete("service_etc","id = '$id'");
+                ->delete("service_etc", "id = '$id'");
     }
-    
-    public function actionDoctorconfirm(){
+
+    public function actionDoctorconfirm() {
         $service_id = Yii::app()->request->getPost('service_id');
-        $columns = array("status" => "3");
+        $user_id = Yii::app()->user->id;
+        $columns = array("status" => "3", "doctor" => $user_id);
         Yii::app()->db->createCommand()
-                ->update("service", $columns,"id = '$service_id'");
+                ->update("service", $columns, "id = '$service_id'");
     }
 
 }

@@ -1,4 +1,4 @@
-//HistoryServiceAllmain();
+
 loadhistory();
 loadimages();
 sumservice();
@@ -21,9 +21,9 @@ $(document).ready(function () {
     $('#tt').tabs({
         border: false,
         onSelect: function (title, index) {
-            if (index == 2) {
+            if (index == 3) {
                 loaddrug();
-            } else if (index == 3) {
+            } else if (index == 4) {
                 loaddisease();
             }
         }
@@ -353,7 +353,7 @@ function saveetc() {
         service_id: service_id,
         patient_id: patient_id
     };
-    
+
     if (detail_etc == "" || price_etc == "") {
         sweetAlert("Oops...", "กรอกข้อมูล * ไม่ครบ!", "error");
         return false;
@@ -386,25 +386,33 @@ function deleteEtcService(id) {
 }
 
 function loadhistory() {
-        var patient_id = $("#patient_id").val();
-        var url = "index.php?r=patient/history";
-        var data = {patient_id: patient_id};
-        $.post(url, data, function (result) {
-            $("#history").html(result);
-        });
-    }
+    var patient_id = $("#patient_id").val();
+    var url = "index.php?r=patient/history";
+    var data = {patient_id: patient_id};
+    $.post(url, data, function (result) {
+        $("#history").html(result);
+    });
+}
 
 
 
 function sumservice() {
-        var service_id = $("#service_id").val();
-        var url = "index.php?r=service/sumservice";
-        var data = {service_id: service_id};
-        $.post(url, data, function (result) {
-            $("#sumservice").html(result);
-        });
-    }
+    var service_id = $("#service_id").val();
+    var url = "index.php?r=service/sumservice";
+    var data = {service_id: service_id};
+    $.post(url, data, function (result) {
+        $("#sumservice").html(result);
+    });
+}
 
+function confirmservice() {
+    var service_id = $("#service_id").val();
+    var url = "index.php?r=service/confirmservice";
+    var data = {service_id: service_id};
+    $.post(url, data, function (result) {
+        window.location.reload();
+    });
+}
 
 /*เมื่อทำรายการเสร็จ*/
 function Success() {

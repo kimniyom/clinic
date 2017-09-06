@@ -306,7 +306,6 @@ function saveDrug() {
         service_id: service_id,
         patient_id: patient_id
     };
-
     if (druginsert == "" || drug_number == "" || pricedrug == "" || pricedrugtotal == "") {
         sweetAlert("Oops...", "กรอกข้อมูล * ไม่ครบ!", "error");
         return false;
@@ -394,13 +393,18 @@ function loadhistory() {
 }
 
 function doctorconfirm() {
-    var service_id = $("#service_id").val();
-    var url = "index.php?r=doctor/doctorconfirm";
-    var data = {service_id: service_id};
-    $.post(url, data, function (result) {
-        window.location="index.php?r=queue/index";
-    });
+    var r = confirm("ยืนยันบันทึกข้อมูล");
+    if (r == true) {
+        var service_id = $("#service_id").val();
+        var url = "index.php?r=doctor/doctorconfirm";
+        var data = {service_id: service_id};
+        $.post(url, data, function (result) {
+            window.location = "index.php?r=queue/index";
+        });
+    }
 }
+
+
 
 /*เมื่อทำรายการเสร็จ*/
 function Success() {

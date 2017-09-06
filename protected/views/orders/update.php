@@ -16,7 +16,7 @@ $companySell = Companycenter::model()->find("id = '1'");
 $BranchModel = Branch::model()->find("id = '$branch'");
 ?>
 
-<div class="panel panel-default">
+<div class="panel panel-default" style=" margin-bottom: 0px;">
     <div class="panel-body" id="boxorders">
         <div style=" text-align: center;">
             <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
@@ -200,7 +200,7 @@ $BranchModel = Branch::model()->find("id = '$branch'");
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 175);
+        var screenfull = (screen - 155);
         $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});

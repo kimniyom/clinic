@@ -31,13 +31,15 @@ $WebConfig = new Configweb_model();
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="seq" style=" padding: 10px; border: #cccccc solid 1px; border-top:0px; background: #FFFFFF;">
-            <button type="button" class="btn btn-default" onclick="Addseq()"><i class="fa fa-plus"></i> เพิ่มคิว</button>
+            <button type="button" class="btn btn-success" onclick="Addseq()"><i class="fa fa-plus"></i> เพิ่มคิว</button>
+            <!--
             <button type="button" class="btn btn-default" onclick="AddseqFormAppoint()"><i class="fa fa-plus-circle"></i> เพิ่มคิวจากการนัด</button>
-            <button type="button" class="btn btn-default" onclick="loadtable()"><i class="fa fa-refresh"></i> </button>
+            -->
+            <button type="button" class="btn btn-warning" onclick="loadtable()"><i class="fa fa-refresh"></i> </button>
             <div id="datas" style=" margin-top: 10px;"></div>
         </div>
         <div role="tabpanel" class="tab-pane" id="end" style=" padding: 10px; border: #cccccc solid 1px; border-top:0px; background: #FFFFFF;">
-            <button type="button" class="btn btn-default" onclick="loadservicesuccess()"><i class="fa fa-refresh"></i> Refresh</button>
+            <button type="button" class="btn btn-warning" onclick="loadservicesuccess()"><i class="fa fa-refresh"></i> Refresh</button>
             <div id="servicesuccess" style=" margin-top: 10px;"></div>
         </div>
     </div>

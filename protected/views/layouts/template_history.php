@@ -164,19 +164,23 @@
 
     </head>
 
-    <body style="background: #fbfbfb;/* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
+    <body style="background: #fbfbfb; /* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
 
-            <!-- Page Content -->
-                <div class="container-fluid" style=" padding: 1px;">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <?php
-                            echo $content;
-                            ?>
-                        </div>
-                    </div>
+        <!-- Page Content -->
+        <div class="container-fluid" style=" padding: 1px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <?php
+                    echo $content;
+                    ?>
                 </div>
-            <!-- /#page-content-wrapper -->
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
         <!-- /#wrapper -->
+        
     </body>
 </html>
+
+
+

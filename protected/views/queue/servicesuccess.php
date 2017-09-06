@@ -28,7 +28,7 @@
         $i = 0;
         foreach ($seq as $rs):
             $i++;
-            $link = Yii::app()->createUrl('doctor/patientviewhistory', array("id" => $rs['id'], "service_id" => $rs['service_id']));
+            $link = Yii::app()->createUrl('doctor/patientviewhistory', array("id" => $rs['patient_id'], "service_id" => $rs['service_id'], "flag" => "counter"));
             ?>
             <tr>
                 <td style=" text-align:center;"><?php echo $rs['id'] ?></td>

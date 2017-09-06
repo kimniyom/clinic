@@ -31,7 +31,7 @@ class ServiceController extends Controller {
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('create', 'update', 'detail', 'formservice', 'uploadify', 'loadimages', 'checkImages', 'saveservice',
-                    'checkresultservice', 'deleteitem', 'sumservice', 'bill'),
+                    'checkresultservice', 'deleteitem', 'sumservice', 'bill', 'confirmservice', 'cutstock'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -359,6 +359,56 @@ class ServiceController extends Controller {
         $data['listdetail'] = $Model->Listservice($service_id);
         $data['detail'] = $Model->GetdetailBillservice($service_id);
         $this->renderPartial('bill', $data);
+    }
+
+    public function actionConfirmservice() {
+        $service_id = Yii::app()->request->getPost('service_id');
+        $user_id = Yii::app()->user->id;
+        $columns = array(
+            "status" => "4",
+            "user_bill" => $user_id
+        );
+        Yii::app()->db->createCommand()
+                ->update("service", $columns, "id = '$service_id'");
+
+        //ส่วนของตัดสต๊อก
+        $sql = "SELECT s.drug AS product_id,s.number
+                    FROM service_drug s
+                    WHERE s.service_id = '$service_id' ";
+        $listdetail = Yii::app()->db->createCommand($sql)->queryAll();
+        foreach ($listdetail as $rs):
+            $product_id = $rs['product_id'];
+            $number = $rs['number'];
+            $this->actionCutstock($product_id, $number);
+        endforeach;
+    }
+
+    public function actionCutstock($product_id, $number) {
+        $sql = "SELECT *
+                FROM clinic_storeproduct i
+                WHERE i.product_id = '$product_id' AND i.total > 0
+                ORDER BY i.lotnumber,i.d_update ASC ";
+
+        $item = Yii::app()->db->createCommand($sql)->queryAll();
+        //ดึงข้อมูลตารางitem
+        $numbercut = 0;
+        foreach ($item as $rs):
+            $id = $rs['id'];
+            $totalinstock = $rs['total']; //คงเหลือในสต๊อกที่ตัดได้
+            if ($totalinstock >= $number) { //<==กรณีสินค้าในล๊อตนั้นมีมากกว่า
+                $totalstock = ($totalinstock - $number);
+                $numbercut = $totalstock;
+                $columns = array("total" => $numbercut);
+                Yii::app()->db->createCommand()->update("clinic_storeproduct", $columns, "id = '$id' ");
+                break;
+            } else if ($totalinstock < $number) {//<==กรณีสินค้าในล๊อตนั้นมีน้อยกว่า
+                $number = ($number - $totalinstock);
+                //$numbercut = $totalstock;
+                $columns = array("total" => "0");
+                Yii::app()->db->createCommand()->update("clinic_storeproduct", $columns, "id = '$id' ");
+            }
+
+        endforeach;
     }
 
 }

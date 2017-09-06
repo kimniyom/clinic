@@ -13,7 +13,7 @@
 </script>
 <div class=" row" style=" margin: 0px;">
     <?php foreach ($images as $rs): ?>
-        <div class="col-lg-2 col-md-2" style="padding: 0px;">
+        <div class="col-sm-2  col-lg-2 col-md-2" style="padding: 0px;">
             <!-- Img -->
             <div class="img_zoom">
                 <a class="image-link" href="<?php echo Yii::app()->baseUrl; ?>/uploads/saved_images/<?= $rs['images'] ?>">

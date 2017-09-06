@@ -33,9 +33,9 @@ $Thaibath = new Thaibaht();
     </button>
 </a>
 
-<div class="row">
-    <div class="col-lg-9 col-md-12">
-        <div class="well" style=" border-radius: 0px; background: #FFFFFF; position: relative; max-width: 768px;" id="boxorders">
+<div class="row" style=" margin-bottom: 0px;">
+    <div class="col-lg-9 col-md-12" >
+        <div class="well" style=" border-radius: 0px; background: #FFFFFF; position: relative; max-width: 768px; margin-bottom: 0px;" id="boxorders">
             <div style=" text-align: center; margin-bottom: 10px;">
                 <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
                 <?php echo $BranchModel['address']; ?><br/>
@@ -238,19 +238,16 @@ $Thaibath = new Thaibaht();
 </script>
 
 <script type="text/javascript">
-
         Setscreen();
         function Setscreen() {
             var screen = $(window).height();
             //var contentboxsell = $("#content-boxsell").height();
-            var screenfull = (screen - 208);
+            var screenfull = (screen - 132);
             $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
             //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
 
         }
-
-
     </script>
 
 

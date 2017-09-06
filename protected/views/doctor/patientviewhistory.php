@@ -1,16 +1,19 @@
 <?php
 /* @var $this PatientController */
 /* @var $model Patient */
-$this->breadcrumbs = array(
-    //'Patients' => array('index'),
-    $model->name . " " . $model->lname,
-);
+/*
+  $this->breadcrumbs = array(
+  //'Patients' => array('index'),
+  $model->name . " " . $model->lname,
+  );
+ * 
+ */
 
 $MasuserModel = new Masuser();
 $config = new Configweb_model();
 $branchModel = new Branch();
 $CheckBodyModel = new Checkbody();
-$Author = $MasuserModel->GetDetailUser($model->emp_id);
+$Author = $MasuserModel->GetDetailUser($model['emp_id']);
 
 $checkbody = $CheckBodyModel->Getdetail($service_id);
 
@@ -50,12 +53,25 @@ if (isset($model['birth'])) {
         overflow-y: auto;
     }
 
+    #listservice table{
+        font-size: 16px;
+    }
+
+    #listservice table tbody tr td{
+        padding: 1px;
+        padding-right: 5px;
+    }
+
+    #listservice table thead tr th{
+        padding: 1px;
+    }
 </style>
+
 
 <input type="hidden" id="patient_id" value="<?php echo $model['id'] ?>"/>
 <input type="hidden" id="service_id" value="<?php echo $service_id ?>"/>
 <div class="easyui-layout" id="layouts" style=" width: 100%; margin: 0px;">
-    <div title="ประวัติการรับบริการ | วันที่ <?php echo $config->thaidate($Modelservice->service_date) ?> | <?php echo 'คุณ ' . $model->name . " " . $model->lname . " | ลูกค้า " . Gradcustomer::model()->find($model['type'])['grad'] . ' | อายุ ' . $Age . ' ปี' ?>" 
+    <div title="ประวัติการรับบริการ | วันที่ <?php echo $config->thaidate($Modelservice['service_date']) ?> | <?php echo 'คุณ ' . $model['name'] . " " . $model['lname'] . " | ลูกค้า " . Gradcustomer::model()->find($model['type'])['grad'] . ' | อายุ ' . $Age . ' ปี' ?>" 
          data-options="region:'north'" 
          style="height:110px; padding: 0px; padding-bottom: 0px; overflow: hidden;">
         <div class="row" style=" margin: 0px;">
@@ -90,7 +106,7 @@ if (isset($model['birth'])) {
                 </center>
             </div>
             <div class="col-md-10 col-lg-10 col-sm-8" id="font-18" >
-                คุณ <font id="font-16"><?php echo $model->name . " " . $model->lname ?></font><br/>
+                คุณ <font id="font-16"><?php echo $model['name'] . " " . $model['lname'] ?></font><br/>
                 อุณหภมูมิร่างกาย <p class="label" id="font-16"><?php echo $checkbody['btemp'] ?></p> องศา
                 อัตราการเต้นชองชีพจร <p class="label" id="font-16"><?php echo $checkbody['pr'] ?></p> ครั้ง / นาที
                 อัตราการหายใจ <p class="label" id="font-16"><?php echo $checkbody['rr'] ?></p> ครั้ง / นาที
@@ -144,19 +160,67 @@ if (isset($model['birth'])) {
                 <div id="sumservice" style=" font-weight: bold; color: #ff0000; font-size: 24px;"></div>
             </div>
         </div>
-        <div class="row" style=" margin: 0px;">
-            <?php $link = Yii::app()->createUrl('service/bill', array("service_id" => $service_id)) ?>
-
-            <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px; border: none;" onclick="PopupCenter('<?php echo $link ?>', 'ใบเสร็จ')">ใบเสร็จ</button></div>
-        </div>
-        <div class="row" style=" margin: 0px;">
-            <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-success btn-block" style="border-radius: 0px;">บันทึก</button></div>
-        </div>
-
+        <?php
+        if ($flag == "counter") {
+            if ($Modelservice['status'] == "4") {
+                $link = Yii::app()->createUrl('service/bill', array("service_id" => $service_id));
+                ?>
+                <div class="row" style=" margin: 0px;">
+                    <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px; border: none;" onclick="PopupCenter('<?php echo $link ?>', 'ใบเสร็จ')">ใบเสร็จ</button></div>
+                </div>
+            <?php } else { ?>
+                <div class="row" style=" margin: 0px;">
+                    <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px; border: none;" onclick="billfalse()">ใบเสร็จ</button></div>
+                </div>
+                <div class="row" style=" margin: 0px;">
+                    <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-success btn-block" style="border-radius: 0px;" onclick="confirmservice()">บันทึก</button></div>
+                </div>
+                <?php
+            }
+        }
+        ?>
 
     </div>
     <div data-options="region:'center',title:'ลูกค้า',iconCls:'icon-ok'">
         <div class="easyui-tabs" data-options="fit:true,border:false,plain:true" id="tt">
+            <div title="รายละเอียดค่าใช้จ่าย" style="padding:10px">
+                <div id="listservice">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center; width: 5%;">#</th>
+                                <th>รายการ</th>
+                                <th style=" text-align: center; width: 10%;">จำนวน</th>
+                                <th style=" text-align: right; width: 15%;">ราคา / หน่วย</th>
+                                <th style=" text-align: center; width: 10%;">รวม</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $sum = 0;
+                            $i = 0;
+                            foreach ($datalistservice as $rs):
+                                $i++;
+                                $sum = ($sum + $rs['total']);
+                                ?>
+                                <tr>
+                                    <td style=" text-align: center;"><?php echo $i ?></td>
+                                    <td><?php echo $rs['detail'] ?></td>
+                                    <td style=" text-align: center;"><?php echo $rs['number'] ?></td>
+                                    <td style="text-align: right;">​<?php echo number_format($rs['price'], 2) ?></td>
+                                    <td style="text-align: right;">​<?php echo number_format($rs['total'], 2) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td style=" text-align: right; font-weight: bold;" colspan="4">รวม</td>
+                                <td style="text-align: right; font-weight: bold; color: #ff0000;"><?php echo number_format($sum, 2); ?></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
             <div title="ข้อมูลลูกค้า" style="padding:10px">
                 <div style="margin: 0px; background: none;" id="font-18">
                     ID
@@ -165,7 +229,10 @@ if (isset($model['birth'])) {
                     </p>
                     ชื่อ - สกุล 
                     <p class="label" id="font-16">
-                        <?php echo Pername::model()->find("oid = '$model->oid'")['pername'] ?>
+                        <?php
+                        $oid = $model['oid'];
+                        echo Pername::model()->find("oid = '$oid'")['pername']
+                        ?>
                         <?php echo $model['name'] . ' ' . $model['lname'] ?></p><br/>
                     เลขบัตรประชาชน <p class="label" id="font-16"><?php echo $model['card'] ?></p>
                     เพศ <p class="label" id="font-16"><?php
@@ -263,7 +330,7 @@ if (isset($model['birth'])) {
                         <?php } else { ?>
                             <center>
                                 <p style="color: #ff0000;">ยังไม่ได้บันทึกข้อมูลส่วนนี้</p><br/>
-                                <a href="<?php echo Yii::app()->createUrl('patientcontact/create', array("id" => $model->id)) ?>">
+                                <a href="<?php echo Yii::app()->createUrl('patientcontact/create', array("id" => $model['id'])) ?>">
                                     <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มข้อมูลติดต่อ</button>
                                 </a>
                             </center>
@@ -347,6 +414,11 @@ if (isset($model['birth'])) {
         $.post(url, data, function (datas) {
             $("#show_saved_img").html(datas);
         });
+    }
+
+    function billfalse() {
+        alert("กดบันทึกก่อนพิมพ์ใบเสร็จ");
+        return false;
     }
 </script>
 

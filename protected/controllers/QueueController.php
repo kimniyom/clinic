@@ -20,6 +20,13 @@ class QueueController extends Controller {
             $this->actionSeqemployee();
         }
     }
+    
+    public function actionSeqdoctor() {
+        $Model = new Service();
+        $branch = Yii::app()->session['branch'];
+        $data['seq'] = $Model->Getseq($branch);
+        $this->renderPartial('seqdoctor', $data);
+    }
 
     public function actionSeqemployee() {
         $Model = new Service();
@@ -49,6 +56,7 @@ class QueueController extends Controller {
             "patient_id" => $patient,
             "comment" => $comment,
             "branch" => $branch,
+            "user_id" => $user_id = Yii::app()->user->id,
             "service_date" => date("Y-m-d")
         );
 
