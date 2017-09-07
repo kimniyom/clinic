@@ -109,7 +109,7 @@ if (isset($model['birth'])) {
     </div>
 
     <div data-options="region:'south',split:true" title="ภาพถ่าย" style="height:165px; padding: 0px;">
-                <div id="show_saved_img" style=" margin-left: 0px;"></div>
+        <div id="show_saved_img" style=" margin-left: 0px;"></div>
     </div>
     <div data-options="region:'east',split:false" title="ประวัติการรับบริการ" style="width:180px;">
         <!--
@@ -153,14 +153,14 @@ if (isset($model['birth'])) {
                 <button type="button" class="btn btn-default btn-block" id="btn-left" onclick="openpopupservicedetailetc()"><i class="fa fa-ellipsis-v"></i></button>
             </div>
         </div>
-        
+
         <button type="button" class="btn btn-default btn-block" onclick="camera()" id="btn-left"><i class="fa fa-camera text-danger"></i> ถ่ายรูป</button>
-        
+
         <div class="row" style=" margin: 0px;">
             <div class="col-md-12 col-lg-12" style=" padding: 0px;">
                 <button type="button" class="btn btn-warning btn-block" style=" border-radius: 0px;" onclick="doctorconfirm()">ยืนยันรายการ <img src="<?php echo Yii::app()->baseUrl ?>/images/Save-icon.png"/></button>
             </div>
-            
+
         </div>
         <!--
         <span class="easyui" style=" bottom: 0px; position: absolute; border-top: #cccccc solid 1px; width: 100%; padding: 5px; color: #ff0000;">
@@ -386,7 +386,7 @@ if (isset($model['birth'])) {
 </div>
 
 <!-- จ่ายยา / สินค้า -->
-<div id="popupadddrug" class="easyui-window" title="บันทึกการจ่ายยา" style="width:700px;height:300px;padding:10px; top:50px;"
+<div id="popupadddrug" class="easyui-window" title="บันทึกการจ่ายยา" style="width:700px;height:350px;padding:10px; top:50px;"
      data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,minimizable:false,collapsible:false,footer:'#popupadddrug-footer'">
 
     <div class="row" style=" margin: 0px;">
@@ -433,11 +433,20 @@ if (isset($model['birth'])) {
                     <button class="btn btn-default btn-sm" onclick="calculatorDrug()">คำนวณ</button>
                 </div>
             </div>
+            
+
         </div>
         <div class="col-md-5 col-lg-5">
             <b>ข้อมูลยา / สินค้า</b>
             <hr/>
             <div id="detaildrug"></div>
+        </div>
+    </div>
+<hr/>
+    <div class="row" style=" margin: 0px; margin-top: 10px;">
+        <div class="col-md-5 col-lg-5" style=" text-align: right;">สต๊อก: </div>
+        <div class="col-md-7 col-lg-7">
+            <input type="text" class="easyui-numberbox" name="stock" id="stock" data-options="min:0"/>
         </div>
     </div>
 

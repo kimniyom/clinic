@@ -31,7 +31,7 @@ $AppointModel = new Appoint();
 $alam = $Alert->Getalert()['alert_product'];
 ?>
 
-<div class="panel panel-default">
+<div class="panel panel-default" style=" margin-bottom: 0px;">
     <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px; background: none;">
         <i class="fa fa-info-circle"></i> นัดหมาย *เตือนก่อน <?php echo $alam ?> วัน
     </div>
@@ -161,7 +161,8 @@ $alam = $Alert->Getalert()['alert_product'];
                             </div>
                             <div class="col-lg-3">
                                 <select id="year" class="form-control">
-                                    <?php $year = date("Y") + 1;
+                                    <?php
+                                    $year = date("Y") + 1;
                                     for ($i = $year; $i >= ($year - 1); $i--):
                                         ?>
                                         <option value="<?php echo $i ?>" <?php if ($i == ($year - 1)) echo "selected"; ?>><?php echo ($i + 543) ?></option>
@@ -254,7 +255,7 @@ $alam = $Alert->Getalert()['alert_product'];
             $("#appointlist").html(datas);
         });
     }
-    
+
 
 </script>
 
@@ -264,7 +265,7 @@ $alam = $Alert->Getalert()['alert_product'];
     function Setscreen() {
         var boxsell = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 370);
+        var screenfull = (boxsell - 290);
         $("#p_appointover").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง

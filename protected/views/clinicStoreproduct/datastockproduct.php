@@ -4,7 +4,7 @@
     function Setscreen() {
         var boxsell = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 385);
+        var screenfull = (boxsell - 365);
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง

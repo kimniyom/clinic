@@ -25,10 +25,8 @@
             }
             // other options
         });
-
     });
 </script>
-
 
 <?php
 $branchModel = new Branch();
@@ -133,7 +131,6 @@ $product_id = $product['product_id'];
         }
     }
 
-
     function checkheight() {
         var p_left = $("#p-left").height();
         var p_right = $("#p-right").height();
@@ -151,20 +148,16 @@ $product_id = $product['product_id'];
 </script>
 
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 155);
+        var screenfull = (screen - 138);
         $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
     }
-
-
 </script>
 
 

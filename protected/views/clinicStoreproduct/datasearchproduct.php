@@ -4,7 +4,7 @@
     function Setscreen() {
         var boxsell = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 460);
+        var screenfull = (boxsell - 445);
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -20,10 +20,10 @@
         });
     }
 
-
 </script>
 <?php
 $config = new Configweb_model();
+$Clinic = new ClinicStoreproduct();
 ?>
 <div id="box-data">
     <table class="table table-bordered table-hover" id="p_product">
@@ -59,7 +59,12 @@ $config = new Configweb_model();
                     </td>
                     <td><?php echo $last['category'] ?></td>
                     <td><?php echo $last['type_name'] ?></td>
-                    <td style=" text-align: right;color: #009900; font-weight: bold;"><?php echo number_format($last['totalall']) . ' ' . $last['unit'] ?></td>
+                    <td style=" text-align: right;color: #009900; font-weight: bold;">
+                        <?php
+                        $total = $Clinic->Checkstock($last['product_id'], Yii::app()->session['branch']);
+                        echo number_format($total) . ' ' . $last['unit'] 
+                                ?>
+                    </td>
                     <!--
                     <td style="text-align: center;"><a href="<?//php echo $link ?>">รายละเอียด</a></td>
                     -->
