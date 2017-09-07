@@ -30,8 +30,8 @@ class PatientDrugController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'getdrug', 'adddrug', 'deletedrug', 'getpricedrug','getdrugview',
-                    'getdetaildrug', 'saveservicedrug', 'getdetailservicedrug','deletedrugservice','getdetailservicedrugview'),
+                'actions' => array('create', 'update', 'getdrug', 'adddrug', 'deletedrug', 'getpricedrug', 'getdrugview',
+                    'getdetaildrug', 'saveservicedrug', 'getdetailservicedrug', 'deletedrugservice', 'getdetailservicedrugview', 'checkstock'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -169,7 +169,7 @@ class PatientDrugController extends Controller {
 
         $this->renderPartial('getdrug', $data);
     }
-    
+
     public function actionGetdrugview() {
         $patient_id = Yii::app()->request->getPost('patient_id');
         $data['patientdrug'] = PatientDrug::model()->findAll("patient_id = '$patient_id' ");
@@ -272,18 +272,18 @@ class PatientDrugController extends Controller {
                         <td style='padding:3px;'>" . $row['drug'] . "</td>
                         <td style='padding:3px;'>" . $row['product_nameclinic'] . "</td>
                         <td style='padding:3px;text-align:center;'>" . number_format($row['number']) . "</td>
-                        <td style='padding:3px;'>".$row['unitname']."</td>
+                        <td style='padding:3px;'>" . $row['unitname'] . "</td>
                         <td style='padding:3px;text-align:center;'>
                             <a href='javascript:deletedrugservice(" . $row['id'] . ")'><i class='fa fa-trash text-danger'></i></a>
                         </td>
                     </tr>";
         endforeach;
-        $grid .="</tbody></table>";
+        $grid .= "</tbody></table>";
 
         echo $grid;
     }
-    
-        public function actionGetdetailservicedrugview($service_id) {
+
+    public function actionGetdetailservicedrugview($service_id) {
         $sql = "SELECT s.*,u.unit AS unitname,c.product_nameclinic,c.product_name AS productname
                 FROM service_drug s INNER JOIN clinic_stockproduct st ON s.drug = st.product_id
                 INNER JOIN unit u ON st.unit = u.id
@@ -306,20 +306,36 @@ class PatientDrugController extends Controller {
                         <td style='padding:3px;'>" . $row['drug'] . "</td>
                         <td style='padding:3px;'>" . $row['product_nameclinic'] . "</td>
                         <td style='padding:3px;text-align:center;'>" . number_format($row['number']) . "</td>
-                        <td style='padding:3px;'>".$row['unitname']."</td>
+                        <td style='padding:3px;'>" . $row['unitname'] . "</td>
                         
                     </tr>";
         endforeach;
-        $grid .="</tbody></table>";
+        $grid .= "</tbody></table>";
 
         echo $grid;
     }
-    
 
     public function actionDeletedrugservice() {
         $id = Yii::app()->request->getPost('id');
         Yii::app()->db->createCommand()
                 ->delete("service_drug", "id = $id");
+    }
+
+    public function actionCheckstock() {
+        $product_id = Yii::app()->request->getPost('product_id');
+        $branch = Yii::app()->session['branch'];
+        $sql = "SELECT c.product_id,IFNULL(SUM(c.total),0) AS TOTAL 
+                    FROM clinic_storeproduct c 
+                    WHERE c.product_id = '$product_id' AND c.branch = '$branch' 
+                    GROUP BY c.product_id ";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        if ($rs['TOTAL']) {
+            $stock = $rs['TOTAL'];
+        } else {
+            $stock = "0";
+        }
+        $json = array("stock" => $stock);
+        echo json_encode($json);
     }
 
 }

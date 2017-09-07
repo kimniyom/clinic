@@ -83,6 +83,19 @@ class StockController extends Controller {
         }
     }
 
-    
+    public function Countalertproduct() {
+        $sql = "SELECT COUNT(*) AS alert
+FROM(
+SELECT s.product_id,c.product_nameclinic,c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name,SUM(st.total) AS total
+	FROM clinic_stockproduct s 
+	INNER JOIN center_stockproduct c ON s.product_id = c.product_id 
+	INNER JOIN unit u ON c.unit = u.id 
+	INNER JOIN product_type t ON c.type_id = t.id 
+	INNER JOIN product_type pt ON c.subproducttype = pt.id 
+	INNER JOIN clinic_storeproduct st ON s.product_id = st.product_id
+	WHERE 1=1 AND s.branch = '1' 
+GROUP BY s.product_id 
+) Q WHERE Q.total < (SELECT alert_product FROM alert LIMIT 1) ";
+    }
 
 }
