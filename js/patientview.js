@@ -47,6 +47,7 @@ $(document).ready(function () {
         onChange: function (param) {
             getpricedrug(param);//ราคา
             getdetaildrug(param);//ข้อมูลยา
+            checkstock(param);//stock
             //param.id = 2;
             //param.language = 'js';
         }
@@ -255,6 +256,14 @@ function getpricedrug(productid) {
     }, 'json');
 }
 
+function checkstock(productid) {
+    var url = "index.php?r=patientdrug/checkstock";
+    var data = {product_id: productid};
+    $.post(url, data, function (datas) {
+        $("#stock").numberbox({value: datas.stock});
+    }, 'json');
+}
+
 function getdetaildrug(productid) {
     var url = "index.php?r=patientdrug/getdetaildrug";
     var data = {productid: productid};
@@ -287,17 +296,28 @@ function resetserviceDrug() {
     $('#drug_number').numberbox({value: ''});
     $('#pricedrug').numberbox({value: ''});
     $("#pricedrugtotal").numberbox({value: ''});
+    $("#stock").numberbox({value: ''});
 }
 
 function saveDrug() {
     calculatorDrug();
     var url = "index.php?r=patientdrug/saveservicedrug";
     var druginsert = $('#druginsert').val();
-    var drug_number = $('#drug_number').val();
+    var drug_number = parseInt($('#drug_number').val());
     var pricedrug = $('#pricedrug').val();
     var pricedrugtotal = $("#pricedrugtotal").val();
     var patient_id = $("#patient_id").val();
     var service_id = $("#service_id").val();
+    var stock = parseInt($("#stock").val());
+    if (stock == "" || stock == "0") {
+        alert("ไม่มีสินค้า");
+        return false;
+    }
+
+    if (drug_number > stock) {
+        alert("สินค้ามีจำนวนไม่พอ");
+        return false;
+    }
     var data = {
         drug: druginsert,
         number: drug_number,
