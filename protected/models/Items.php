@@ -150,7 +150,8 @@ class Items extends CActiveRecord {
         } else {
             $where = " i.branch = '$branch' ";
         }
-        $sql = "SELECT p.product_id,p.product_nameclinic AS product_name FROM clinic_stockproduct i INNER JOIN center_stockproduct p ON i.product_id = p.product_id WHERE $where";
+        $sql = "SELECT p.product_id,p.product_nameclinic AS product_name
+                FROM clinic_stockproduct i INNER JOIN center_stockproduct p ON i.product_id = p.product_id WHERE $where";
         $result = Yii::app()->db->createCommand($sql)->queryAll();
 
         return $result;

@@ -109,7 +109,7 @@ class ClinicStoreproduct extends CActiveRecord {
         return parent::model($className);
     }
 
-    public function Searchstore($type_id, $subproducttype,$branch) {
+    public function Searchstore($type_id, $subproducttype, $branch) {
         if ($type_id == '' && $subproducttype == '') {
             $where = "1=1";
         } else if ($type_id != '' && $subproducttype == '') {
@@ -117,7 +117,7 @@ class ClinicStoreproduct extends CActiveRecord {
         } else {
             $where = "c.subproducttype = '$subproducttype' ";
         }
-        
+
         $sql = "SELECT s.*,c.product_name,c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name
 				FROM clinic_storeproduct s INNER JOIN center_stockproduct c ON s.product_id = c.product_id
 				INNER JOIN unit u ON c.unit = u.id
@@ -128,7 +128,7 @@ class ClinicStoreproduct extends CActiveRecord {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
-    public function SearchProduct($type_id, $subproducttype,$branch,$product_id) {
+    public function SearchProduct($type_id, $subproducttype, $branch, $product_id) {
         if ($type_id == '' && $subproducttype == '') {
             $where = "1=1";
         } else if ($type_id != '' && $subproducttype == '') {
@@ -137,14 +137,14 @@ class ClinicStoreproduct extends CActiveRecord {
             $where = "c.subproducttype = '$subproducttype' ";
         }
 
-        if($product_id != ""){
+        if ($product_id != "") {
             $whereproduct = " AND s.product_id = '$product_id' ";
         } else {
             $whereproduct = "";
         }
-        
-        $sql = "SELECT IFNULL(SUM(s.total),0) AS totalall,s.*,c.product_name,c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name
-                FROM clinic_storeproduct s INNER JOIN center_stockproduct c ON s.product_id = c.product_id
+
+        $sql = "SELECT c.product_id,c.product_nameclinic AS product_name,c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name
+                FROM clinic_stockproduct s INNER JOIN center_stockproduct c ON s.product_id = c.product_id
                 INNER JOIN unit u ON c.unit = u.id
                 INNER JOIN product_type t ON c.type_id = t.id
                 INNER JOIN product_type pt ON c.subproducttype = pt.id 
@@ -152,6 +152,17 @@ class ClinicStoreproduct extends CActiveRecord {
                 GROUP BY s.product_id";
         //return $sql;
         return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
+    public function Checkstock($product_id, $branch) {
+        $sql = "SELECT SUM(total) AS TOTAL FROM clinic_storeproduct WHERE product_id = '$product_id' AND branch = '$branch'";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        if ($rs['TOTAL']) {
+            $total = $rs['TOTAL'];
+        } else {
+            $total = "0";
+        }
+        return $total;
     }
 
 }
