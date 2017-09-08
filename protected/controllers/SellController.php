@@ -252,7 +252,7 @@ class SellController extends Controller {
         $branch = Yii::app()->request->getPost('branch');
         $sql = "SELECT IFNULL(SUM(p.total),0) AS total
                 FROM clinic_storeproduct p 
-                WHERE p.product_id = '$product_id' AND p.branch = '$branch' ";
+                WHERE p.product_id = '$product_id' AND p.branch = '$branch' AND p.flag ='0'";
         
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         echo $rs['total'];

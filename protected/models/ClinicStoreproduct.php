@@ -123,7 +123,7 @@ class ClinicStoreproduct extends CActiveRecord {
 				INNER JOIN unit u ON c.unit = u.id
 				INNER JOIN product_type t ON c.type_id = t.id
 				INNER JOIN product_type pt ON c.subproducttype = pt.id 
-				WHERE $where AND s.branch = '$branch'
+				WHERE $where AND s.branch = '$branch' AND s.flag = '0'
 				ORDER BY s.d_update,s.lotnumber";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }

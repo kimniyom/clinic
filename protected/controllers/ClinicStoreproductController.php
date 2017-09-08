@@ -30,7 +30,8 @@ class ClinicStoreproductController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'saveproduct', 'getsubproduct', 'getproductinsubtype', 'getdatastockproduct','searchproduct','datasearchproduct'),
+                'actions' => array('create', 'update', 'saveproduct', 'getsubproduct', 'getproductinsubtype',
+                    'getdatastockproduct', 'searchproduct', 'datasearchproduct', 'deleteproductlot'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -216,19 +217,25 @@ class ClinicStoreproductController extends Controller {
             $BranchList = Branch::model()->findAll("id = '$branch'");
         }
         $data['BranchList'] = $BranchList;
-        $this->render('searchproduct',$data);
+        $this->render('searchproduct', $data);
     }
-    
+
     public function actionDatasearchproduct() {
         $type = Yii::app()->request->getPost('type_id');
         $subproducttype = Yii::app()->request->getPost('subproducttype');
         $branch = Yii::app()->request->getPost('branch');
         $product_id = Yii::app()->request->getPost('product_id');
         $Model = new ClinicStoreproduct();
-        $data['product'] = $Model->SearchProduct($type, $subproducttype, $branch,$product_id);
-        
+        $data['product'] = $Model->SearchProduct($type, $subproducttype, $branch, $product_id);
+
         //echo $data['product'];
         $this->renderPartial('datasearchproduct', $data);
+    }
+
+    public function actionDeleteproductlot() {
+        $id = Yii::app()->request->getPost('id');
+        Yii::app()->db->createCommand()
+                ->delete("clinic_storeproduct", "id = '$id'");
     }
 
 }

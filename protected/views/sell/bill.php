@@ -42,10 +42,11 @@ $logo = Logo::model()->find("branch = '$Branch '")['logo'];
     }
 </style>
 
-<div id="bill" style=" background: #ffffff; border: #000 solid 1px;padding: 20px;">
+<div id="bill" style=" background: #ffffff; border: #000 solid 1px;padding: 80px;">
+    <div style=" position: absolute; top: 50px; right: 75px; font-weight: bold;">ใบเสร็จ</div>
     <div id="head-bill" style=" text-align: left;">
         <div style=" float: left">
-            <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $logo ?>" style=" width: 48"/>
+            <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $logo ?>" style=" width: 48px"/>
         </div>
         <div style=" float: left;">
             <h4><?php echo $Config->get_webname(); ?></h4>
@@ -60,13 +61,18 @@ $logo = Logo::model()->find("branch = '$Branch '")['logo'];
             <tr>
                 <td style=" width: 60%; border-right: #cccccc solid 1px; padding: 5px;">
                     สาขา : <?php echo Branch::model()->find("id = '$Branch' ")['branchname'] ?><br/>
-                    ลูกค้า : คุณ <?php echo $patient['name'] . " " . $patient['lname'] ?>
+                    ลูกค้า :  <?php
+                    if (isset($patient['name'])) {
+                        echo "คุณ ".$patient['name'] . " " . $patient['lname'];
+                    }  else {
+                        echo "-";
+                    }
+                    ?>
                 </td>
                 <td style=" padding: 5px; text-align: right;">
                     <div class="pull-right">
                         วันที่ : <?php echo $Config->thaidate($detail['date_sell']) ?><br/>
                         รหัสบิล : <?php echo $detail['sell_id'] ?>
-
                     </div>
                 </td>
             </tr>
@@ -104,7 +110,7 @@ $logo = Logo::model()->find("branch = '$Branch '")['logo'];
                     <td style="text-align: right;">​<?php echo number_format($rs['product_price'], 2) ?></td>
                     <td style="text-align: right;">​<?php echo number_format($priceRow, 2) ?></td>
                 </tr>
-            <?php endforeach; ?>
+<?php endforeach; ?>
         </tbody>
         <tfoot>
             <tr>
@@ -130,11 +136,11 @@ $logo = Logo::model()->find("branch = '$Branch '")['logo'];
 
         </tfoot>
     </table>
-    <br/>
 
-    <div style=" text-align: right;">
-        พนักงานขาย<br/> 
+    <div style=" text-align: center; width: 150px; float: right;">
+        ผู้ออกใบเสร็จ<br/><br/> 
         <?php echo $Employee['pername'] . $Employee['name'] . " " . $Employee['lname'] ?><br/>
+        (<?php echo $Employee['positionname'] ?>)
     </div>
 </div>
 

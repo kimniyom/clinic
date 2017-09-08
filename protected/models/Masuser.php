@@ -144,12 +144,12 @@ class Masuser extends CActiveRecord {
     }
     
     public function GetDetailUser($userID) {
-        $sql = "
-        SELECT p.pername,e.*,s.`status`,b.branchname,m.user_id
+        $sql = "SELECT p.pername,e.*,s.`status`,b.branchname,m.user_id,po.position AS positionname
             FROM masuser m INNER JOIN employee e ON m.user_id = e.id
             INNER JOIN pername p ON e.oid = p.oid
             INNER JOIN status_user s ON m.`status` = s.id
             INNER JOIN branch b ON e.branch = b.id
+            INNER JOIN position po ON e.position = po.id
             WHERE m.id = '$userID' ";
 
         return Yii::app()->db->createCommand($sql)->queryRow();

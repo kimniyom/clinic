@@ -17,6 +17,7 @@
             $Profile = $UserModel->GetProfile();
             $web = new Configweb_model();
             $branchModel = new Branch();
+            $alet = new Alert();
             echo $web->get_webname();
             ?>
         </title>
@@ -328,11 +329,14 @@
                     <?php if (Yii::app()->session['branch'] != "99") { ?>
                         <center><b><i class="fa fa-bell"></i> แจ้งเตือน</b></center>
                         <a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"> 
-                            <div id="listmenu">สินค้าใกล้หมด <span class="badge pull-right"><?php echo $product_model->stockproductalert(); ?> </span></div></a>
+                            <div id="listmenu">สินค้าใกล้หมด <span class="badge pull-right"><?php echo $alet->Countalertproduct(Yii::app()->session['branch']); ?> </span></div></a>
                         <a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"> 
-                            <div id="listmenu">สินค้าใกล้หมดอายุ <span class="badge pull-right"><?php echo $product_model->stockitemalert(); ?> </span></div></a>
+                            <div id="listmenu">สินค้าใกล้หมดอายุ <span class="badge pull-right"><?php echo $alet->CountAlertExpire(); ?> </span></div></a>
+                        <a href="<?php echo Yii::app()->createUrl('backend/stock/expire') ?>"> 
+                            <div id="listmenu">สินค้าหมดอายุ <span class="badge pull-right"><?php echo $alet->CountExpire(); ?> </span></div></a>
                         <a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"> 
                             <div id="listmenu">ลูกค้าใกล้ถึงวันนัด <span class="badge pull-right"><?php echo $AppointModel->Countover(); ?> </span></div></a>
+                        
                     <?php } ?>
                 </div>
 
@@ -355,11 +359,7 @@
                 </ol>
                 <div class="container-fluid" style=" padding: 5px; padding-bottom: 0px;">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <?php
-                            echo $content;
-                            ?>
-                        </div>
+                        <div class="col-lg-12"><?php echo $content; ?></div>
                     </div>
                 </div>
             </div>
@@ -367,10 +367,8 @@
         </div>
         <!-- /#wrapper -->
 
-
         <!-- Menu Toggle Script -->
         <script>
-
             $("#menu-toggle").click(function (e) {
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
@@ -418,7 +416,6 @@
 
                 });
             }
-
             ascrollto();
         </script>
     </body>

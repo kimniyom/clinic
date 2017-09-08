@@ -169,7 +169,6 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
     }
 
     function sell() {
-
         var url = "<?php echo Yii::app()->createUrl('sell/sell') ?>";
         var itemcode = $("#itemcode").val();
         var sellcode = $("#sellcode").val();

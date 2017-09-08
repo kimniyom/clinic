@@ -32,7 +32,7 @@ class StockController extends Controller {
                 'users' => array('@'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'expireproduct', 'expireitem', 'checkstockproduct'),
+                'actions' => array('create', 'update', 'expireproduct', 'expireitem', 'checkstockproduct', 'delstock','expire'),
                 'users' => array('*'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -55,15 +55,21 @@ class StockController extends Controller {
     }
 
     public function actionExpireproduct() {
-        $ProductModel = new Backend_Product();
-        $data['product'] = $ProductModel->Getstockproductalert();
+        $Model = new Alert();
+        $data['product'] = $Model->ListAlertproduct();
         $this->render('//backend/stock/expireproduct', $data);
     }
 
     public function actionExpireitem() {
-        $ProductModel = new Backend_Product();
-        $data['item'] = $ProductModel->Getstockitemalert();
+        $Model = new Alert();
+        $data['item'] = $Model->ListAlertExpire();
         $this->render('//backend/stock/expireitem', $data);
+    }
+    
+    public function actionExpire() {
+        $Model = new Alert();
+        $data['expire'] = $Model->ListExpire();
+        $this->render('//backend/stock/expire', $data);
     }
 
     public function actionCheckstockproduct() {
@@ -83,19 +89,11 @@ class StockController extends Controller {
         }
     }
 
-    public function Countalertproduct() {
-        $sql = "SELECT COUNT(*) AS alert
-FROM(
-SELECT s.product_id,c.product_nameclinic,c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name,SUM(st.total) AS total
-	FROM clinic_stockproduct s 
-	INNER JOIN center_stockproduct c ON s.product_id = c.product_id 
-	INNER JOIN unit u ON c.unit = u.id 
-	INNER JOIN product_type t ON c.type_id = t.id 
-	INNER JOIN product_type pt ON c.subproducttype = pt.id 
-	INNER JOIN clinic_storeproduct st ON s.product_id = st.product_id
-	WHERE 1=1 AND s.branch = '1' 
-GROUP BY s.product_id 
-) Q WHERE Q.total < (SELECT alert_product FROM alert LIMIT 1) ";
+    public function actionDelstock() {
+        $id = Yii::app()->request->getPost('id');
+        $columns = array("flag" => "1");
+        Yii::app()->db->createCommand()
+                ->update("clinic_storeproduct", $columns, "id = '$id'");
     }
 
 }

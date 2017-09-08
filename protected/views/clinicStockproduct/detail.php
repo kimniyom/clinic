@@ -33,7 +33,7 @@ $branchModel = new Branch();
 $branchname = $branchModel->Getbranch($branch);
 
 $this->breadcrumbs = array(
-    "คลังสินค้า" => Yii::app()->createUrl('clinicstore/index'),
+    "คลังสินค้า" => Yii::app()->createUrl('storeclinic/index'),
     "รายการสินค้า (สาขา " . $branchname . ")" => array('index', 'branch' => $branch),
     $product['product_name']
 );

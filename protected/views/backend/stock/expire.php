@@ -1,37 +1,28 @@
-<style type="text/css">
-    .center-cropped {
-        width: 50px;
-        height: 50px;
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
-</style>
-
 <?php
 $this->breadcrumbs = array(
-    "สินค้าใกล้หมด",
+    "สินค้าหมดอายุ",
 );
 
 $stock = new Items();
 $web = new Configweb_model();
-
 $Alert = new Alert();
-$alam = $Alert->Getalert()['alert_product'];
 ?>
 
-<div class="panel panel-default" style="margin-bottom: 0px;">
+<div class="panel panel-default" style=" margin-bottom: 0px;">
     <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px; background: none;">
-        <i class="fa fa-info-circle"></i> สินค้าใกล้หมด *สินค้าเหลือน้อยกว่า <?php echo $alam ?> ชิ้น
+        <i class="fa fa-info-circle"></i> สินค้าหมดอายุ
         <span class="text-danger">*คลิกที่รายชื่อสินค้าเพื่อดูรายละเอียด</span>
     </div>
     <div class="panel-body">
-        <table class="table table-striped" id="p_product">
+        <table class="table table-bordered" id="p_product">
             <thead>
                 <tr>
-                    <th style=" width: 5%;">#</th>
+                    <th>#</th>
                     <th>สินค้า</th>
-                    <th style="text-align: center;">ราคา / หน่วย</th>
-                    <th style="text-align: center;">คงเหลือ</th>
+                    <th style=" text-align: center;">ล๊อตสินค้า</th>
+                    <th style=" text-align: center;">วันที่หมดอายุ</th>
+                    <th style="text-align: center;">คงเหลือ / วัน</th>
+                    <th style="text-align: center;"></th>
                 </tr>
             </thead>
             <tbody>
@@ -39,21 +30,23 @@ $alam = $Alert->Getalert()['alert_product'];
                 $product_model = new Product();
                 $i = 0;
                 $branch = Yii::app()->session['branch'];
-                foreach ($product as $last):
+                foreach ($expire as $last):
                     $productID = $last['product_id'];
+                    $link = Yii::app()->createUrl('clinicstockproduct/detail', array("product_id" => $last['product_id'], "branch" => $branch));
                     $i++;
                     $trid = "td" . $i;
                     ?>
                     <tr id="<?php echo $trid; ?>">
-                        <td style="text-align: center;"><?php echo $i ?></td><td>
-                            <a href="<?php echo Yii::app()->createUrl('clinicstockproduct/detail', array('product_id' => $last['product_id'], "branch" => $branch)) ?>">
+                        <td><?php echo $i ?></td>
+                        <td>
+                            <a href="<?php echo $link ?>">
                                 <?php echo $last['product_id']; ?> <?php echo $last['product_nameclinic']; ?></a>
                         </td>
+                        <td style="text-align: center;"><?php echo $last['lotnumber']; ?></td>
+                        <td style="text-align: center;"><?php echo $web->thaidate($last['expire']) ?></td>
+                        <td style=" text-align: center; font-weight: bold;" class=" text-danger"><?php echo $last['dayexpire'] ?></td>
                         <td style=" text-align: center; font-weight: bold;">
-                            <?php echo number_format($last['product_price'], 2); ?>
-                        </td>
-                        <td style=" text-align: center; font-weight: bold;" class=" text-danger">
-                            <?php echo $last['total'] ?>
+                            <a href="javascript:delstock('<?php echo $last['id'] ?>')"><i class="fa fa-trash-o"></i>ลบออกจากคลัง</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -82,5 +75,27 @@ $alam = $Alert->Getalert()['alert_product'];
             ]
         });
     }
+
+    function delstock(id) {
+        swal({
+            title: "Are you sure?",
+            text: "ลบสินค้าล๊อตนี้ออกจากคลังสินค้า",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#33cc00",
+            confirmButtonText: "ยืนยัน",
+            closeOnConfirm: false
+        },
+                function () {
+                    var url = "<?php echo Yii::app()->createUrl('backend/stock/delstock') ?>";
+                    var data = {id: id};
+                    $.post(url, data, function (datas) {
+                        window.location.reload();
+                    });
+                });
+
+    }
 </script>
+
+
 
