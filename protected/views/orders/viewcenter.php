@@ -86,9 +86,8 @@ $ItemModel = new CenterStockitem();
 <!--
     ##### ENDPOPUP  ListORder ######
 -->
-<div
 
-    <div class="row">
+<div class="row" style=" margin-bottom: 0px;">
         <div class="col-lg-9 col-md-12">
             <a href="<?php echo Yii::app()->createUrl('orders/print', array("order_id" => $order_id)) ?>" target="_blank">
                 <button type="button" class="btn btn-default">
@@ -123,7 +122,7 @@ $ItemModel = new CenterStockitem();
                 <?php } ?>
             </div>
             <div id="boxordersss">
-                <div class="well" style=" border-radius: 0px; background: #FFFFFF; position: relative; max-width: 768px;" id="boxorders">
+                <div class="well" style=" border-radius: 0px; background: #FFFFFF; margin-bottom: 0px; position: relative; max-width: 768px;" id="boxorders">
                     <div style=" text-align: center; margin-bottom: 10px;">
                         <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
                         <?php echo $BranchModel['address']; ?><br/>
@@ -342,7 +341,7 @@ $ItemModel = new CenterStockitem();
         function Setscreen() {
             var screen = $(window).height();
             //var contentboxsell = $("#content-boxsell").height();
-            var screenfull = (screen - 208);
+            var screenfull = (screen - 132);
             $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
             //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});

@@ -45,10 +45,12 @@ $product_id = $product['product_id'];
 <?php $config = new Configweb_model(); ?>
 <?php if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '5') { ?>
     <a href="<?php echo Yii::app()->createUrl('centerstockproduct/update', array('product_id' => $product['product_id'])) ?>">
-        <button type="button" class="btn btn-primary">แก้ไข</button></a>
-    <button type="button" class="btn btn-danger" onclick="deleteproduct('<?php echo $product['id'] ?>')">ลบ</button>
+        <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> แก้ไขข้อมูลสินค้า</button></a>
+        <!--
+    <button type="button" class="btn btn-danger" onclick="deleteproduct('<?//php echo $product['id'] ?>')">ลบ</button>
+        -->
 <?php } ?>
-<div class="well" style=" width:100%; margin-top:20px;text-align: left; background: #FFF; margin-bottom: 0px;">
+<div class="well well-sm" style=" width:100%; margin-top:0px;text-align: left; background: #FFF; margin-bottom: 0px;">
     <div class="row">
         <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
             <font style=" color: #F00; font-size: 24px; font-weight: normal;">
@@ -244,7 +246,7 @@ $product_id = $product['product_id'];
         function Setscreen() {
             var screen = $(window).height();
             //var contentboxsell = $("#content-boxsell").height();
-            var screenfull = (screen - 210);
+            var screenfull = (screen - 155);
             $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});

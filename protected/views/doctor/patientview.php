@@ -158,7 +158,7 @@ if (isset($model['birth'])) {
 
         <div class="row" style=" margin: 0px;">
             <div class="col-md-12 col-lg-12" style=" padding: 0px;">
-                <button type="button" class="btn btn-warning btn-block" style=" border-radius: 0px;" onclick="doctorconfirm()">ยืนยันรายการ <img src="<?php echo Yii::app()->baseUrl ?>/images/Save-icon.png"/></button>
+                <button type="button" class="btn btn-success btn-block" style=" border-radius: 0px;" onclick="doctorconfirm()">ยืนยันรายการ <img src="<?php echo Yii::app()->baseUrl ?>/images/Save-icon.png"/></button>
             </div>
 
         </div>

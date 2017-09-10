@@ -326,7 +326,7 @@ class PatientDrugController extends Controller {
         $branch = Yii::app()->session['branch'];
         $sql = "SELECT c.product_id,IFNULL(SUM(c.total),0) AS TOTAL 
                     FROM clinic_storeproduct c 
-                    WHERE c.product_id = '$product_id' AND c.branch = '$branch' 
+                    WHERE c.product_id = '$product_id' AND c.branch = '$branch' AND c.flag = '0'
                     GROUP BY c.product_id ";
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         if ($rs['TOTAL']) {

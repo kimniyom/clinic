@@ -113,10 +113,12 @@ $BranchModel = Branch::model()->find("id = '$branch'");
                 <label for="">จำนวน*</label><br/>
                 <input type="text" class="form-control" id="number" value="1"/>
             </div>
+            <!--
             <div class="col-md-3 col-lg-3">
                 <label for="">ส่วนลด%</label>
                 <input type="text" class="form-control" id="distcountpersent" value="0"/>
             </div>
+            -->
             <div class="col-lg-1 col-md-2">
                 <button type="button" class="btn btn-block btn-success" style=" margin-top: 25px;" onclick="AddproductInlist()">เพิ่ม</button>
             </div>
@@ -146,6 +148,17 @@ $BranchModel = Branch::model()->find("id = '$branch'");
         });
     });
 
+    function combotype() {
+        
+        var type_id = "";
+        var url = "<?php echo Yii::app()->createUrl('producttype/getsubproduct') ?>";
+        var data = {type_id: type_id};
+        $.post(url, data, function (datas) {
+            $('#producttype').select2("val", "");
+            $("#boxsubproducttype").html(datas);
+        });
+    }
+
     function loadimagesProduct() {
     }
 
@@ -169,7 +182,8 @@ $BranchModel = Branch::model()->find("id = '$branch'");
         var product = $("#product").val();
         var order_id = "<?php echo $order_id ?>";
         var number = $("#number").val();
-        var distcount = $("#distcountpersent").val();
+        //var distcount = $("#distcountpersent").val();
+        var distcount = 0;
         //var private = $("input:radio[name=private]:checked").val();
         if (product == '' || number == '' || product == null) {
             sweetAlert("แจ้งเตือน...", "กรอกข้อมูลไม่ครบ!", "warning");
@@ -185,6 +199,7 @@ $BranchModel = Branch::model()->find("id = '$branch'");
 
         $.post(url, data, function (success) {
             loaddata();
+            combotype();
         });
     }
 

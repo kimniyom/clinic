@@ -215,15 +215,32 @@ class OrdersController extends Controller {
         $branch = Yii::app()->request->getPost('branch');
         $menager = Branch::model()->find("id = '$branch' ")['menagers'];
         $order_id = Yii::app()->request->getPost('order_id');
+        $pricetotal = $this->actionCaculatororder($order_id);
         $columns = array(
             "order_id" => $order_id,
             "branch" => $branch,
             "author" => $menager,
+            "price" => $pricetotal,
             "create_date" => date("Y-m-d"),
             "d_update" => date("Y-m-d H:i:s")
         );
 
         Yii::app()->db->createCommand()->insert("orders", $columns);
+    }
+
+    public function actionCaculatororder($orderId){
+        $OrderModel = new Orders();
+        $order = $OrderModel->Getlistorder($orderId);
+        $sumdistcount = 0;
+        $sumproduct = 0;
+        foreach ($order as $rs):
+            $sumrow = ($rs['costs'] * $rs['number']);
+            $sumproduct = ($sumproduct + $sumrow);
+        endforeach;
+        $tax = ($sumproduct * 7) / 100;//ภาษี 7%
+        $total = ($sumproduct + $tax);
+        //$price = number_format($total, 2);
+        return $total;
     }
 
     public function actionSearch() {

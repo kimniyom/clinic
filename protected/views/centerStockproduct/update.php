@@ -41,11 +41,9 @@ $BranchModel = new Branch();
 ?>
 
 
-<div class="wells" style="width:100%;">
-    <form class="form-horizontal">
-        <fieldset>
-            <div class="row">
-                <div class="col-md-3 col-lg-3" id="p-left">
+<div class="wells" style="width:100%; margin-bottom: 0px;">
+    <div class="row" style=" margin-bottom: 0px;">
+        <div class="col-md-3 col-lg-3" id="p-left" style=" margin-bottom: 0px; border-right: #cccccc solid 1px;">
                     <div class="well" style=" border:#666666 dashed 2px; text-align: center; cursor: pointer;"
                          onclick="GetImages();">
                         <i class="fa fa-image fa-5x" style=" color: #cccccc;"></i><br/>
@@ -54,7 +52,7 @@ $BranchModel = new Branch();
                     <font id="font-20">รูปภาพสินค้า</font>
                     <div id="load_images_product"></div>
                 </div>
-                <div class="col-md-9 col-lg-9" id="p-right">
+        <div class="col-md-9 col-lg-9" id="p-right" style=" border-right:0px;">
 
                     <label for="">หมวดสินค้า*</label><br/>
                     <select id="product_type" style=" width: 50%;" onchange="Getsubproduct(this.value)">
@@ -182,25 +180,37 @@ $BranchModel = new Branch();
                         </div>
                     </div>
 
-                    <label for="textArea">รายละเอียด</label>
-                    <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required">
-                        <?php echo $product['product_detail'] ?>
-                    </textarea>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <label for="textArea">รายละเอียด</label>
+                            <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required">
+                                <?php echo $product['product_detail'] ?>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row" style=" margin-top: 10px;">
+                        <div class="col-md-5 col-lg-5">
+                            <div class="well well-sm" style=" text-align: left;">
+                                <input type="radio" id="status" name="status" value="0" <?php
+                                if ($product['status'] == '0') {
+                                    echo "checked='checked'";
+                                }
+                                ?>/> ผลิต
+                                &nbsp;&nbsp;<input type="radio" id="status" name="status" value="1" <?php
+                                if ($product['status'] == '1') {
+                                    echo "checked='checked'";
+                                }
+                                ?>/> เลิกผลิต
+                            </div>
+                        </div>
+                    </div>
 
 
-
-                    <!--
-                    <button id="save_regis" name="save_regis" class="btn btn-success"
-                            onclick="save_product();">
-                        <span class="glyphicon glyphicon-save"></span> <b>บันทึกข้อมูล</b></button>
-                    -->
                 </div>
             </div>
-        </fieldset>
-    </form>
 </div>
 
-<hr/>
+<hr style=" margin-top: 0px;"/>
 <button type="button" class="btn btn-success pull-right" onclick="save_product()">
     <i class="fa fa-save"></i>
     แก้ไขข้อมูล
@@ -321,7 +331,7 @@ $BranchModel = new Branch();
         var data = {product_id: productID};
         $.post(url, data, function (datas) {
             $("#load_images_product").html(datas);
-            checkheight();
+            //checkheight();
         });
     }
 
@@ -340,6 +350,7 @@ $BranchModel = new Branch();
         var subproducttype = $("#subproducttype").val();
         var unit = $("#unit").val();
         var private = $("input:radio[name=private]:checked").val();
+        var status = $("input:radio[name=status]:checked").val();
         if (type_id == '' || subproducttype == '' || product_name == '' || product_price == '' || costs == '' || unit == '') {
             $("#f_error").show().delay(5000).fadeOut(500);
             return false;
@@ -357,7 +368,8 @@ $BranchModel = new Branch();
             type_id: type_id,
             subproducttype: subproducttype,
             unit: unit,
-            private: private
+            private: private,
+            status: status
         };
 
         $.post(url, data, function (success) {
@@ -379,18 +391,7 @@ $BranchModel = new Branch();
         }
     }
 
-    function checkheight() {
-        var p_left = $("#p-left").height();
-        var p_right = $("#p-right").height();
-        //alert(p_left + " - " + p_right);
-        if (p_left > p_right) {
-            $("#p-right").removeClass("p-right");
-            $("#p-left").addClass("p-left");
-        } else {
-            $("#p-left").removeClass("p-left");
-            $("#p-right").addClass("p-right");
-        }
-    }
+    
 
 </script>
 
@@ -401,7 +402,7 @@ $BranchModel = new Branch();
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 175);
+        var screenfull = (screen - 170);
         $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});

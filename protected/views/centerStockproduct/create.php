@@ -167,17 +167,22 @@ $BranchModel = new Branch();
                     </div>
                 </div>
             </div>
-
-            <label for="textArea">รายละเอียด</label>
-            <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
-
-
-            <!--
-            <button id="save_regis" name="save_regis" class="btn btn-success"
-                    onclick="save_product();">
-                <span class="glyphicon glyphicon-save"></span> <b>บันทึกข้อมูล</b></button>
-            -->
+            <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <label for="textArea">รายละเอียด</label>
+                <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
+            </div>
         </div>
+            <div class="row" style=" margin-top: 10px;">
+            <div class="col-md-5 col-lg-5">
+                <div class="well well-sm" style=" text-align: left;">
+                    <input type="radio" id="status" name="status" value="0" checked="checked"/> ผลิต
+                    &nbsp;&nbsp;<input type="radio" id="status" name="status" value="1"/> เลิกผลิต
+                </div>
+            </div>
+        </div>
+        </div>
+        
     </div>
     <hr style=" margin-top: 0px; padding-top: 0px;"/>
     <div class="row">
@@ -295,6 +300,7 @@ $BranchModel = new Branch();
         var costs = $("#costs").val();
         var unit = $("#unit").val();
         var private = $("input:radio[name=private]:checked").val();
+        var status = $("input:radio[name=status]:checked").val();
         if (subproducttype == '' || product_id == '' || product_name == '' || product_price == '' || costs == '' || unit == '') {
             $("#f_error").show().delay(5000).fadeOut(500);
             return false;
@@ -311,7 +317,8 @@ $BranchModel = new Branch();
             product_detail: product_detail,
             costs: costs,
             unit: unit,
-            private: private
+            private: private,
+            status: status
         };
 
         $.post(url, data, function (success) {

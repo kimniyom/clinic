@@ -32,6 +32,7 @@ class CenterStockproductController extends Controller {
             'subproducttype' => Yii::app()->request->getPost('subproducttype'),
             'unit' => Yii::app()->request->getPost('unit'),
             'private' => Yii::app()->request->getPost('private'),
+            'status' => Yii::app()->request->getPost('status'),
             'd_update' => date('Y-m-d H:i:s')
         );
 
@@ -61,6 +62,7 @@ class CenterStockproductController extends Controller {
             'subproducttype' => Yii::app()->request->getPost('subproducttype'),
             'unit' => Yii::app()->request->getPost('unit'),
             'private' => Yii::app()->request->getPost('private'),
+            'status' => Yii::app()->request->getPost('status'),
             'd_update' => date('Y-m-d H:i:s')
         );
 
@@ -332,8 +334,9 @@ class CenterStockproductController extends Controller {
 
     public function actionDelete() {
         $id = Yii::app()->request->getPost('id');
+        $columns = array("delete_flag" => "1");
         Yii::app()->db->createCommand()
-                ->delete("centerstockproduct", "id = '$id' ");
+                ->update("center_stockproduct",$columns,"id = '$id'");
     }
     
     public function actionGetdata(){

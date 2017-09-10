@@ -31,7 +31,7 @@ return array(
     // application components
     'components' => array(
         //...
-        'session'=>array( 
+        'session' => array(
             'timeout' => 86400 //อยู่ได้นาน 1 วันต่อการ login
         ),
         'ePdf' => array(
@@ -85,7 +85,7 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=clinic',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
         ),
         /*

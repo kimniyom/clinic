@@ -14,33 +14,10 @@
             <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitemName/_form.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/camera/loadimages.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/product/detail_product.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CameraController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/patient/history.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/dortor.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/patient/view.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/HistoryserviceController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/patientDrug/getdrugview.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerStockproduct/detail.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/DoctorController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/dortor/css/simple-sidebar.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_history.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/PatientDiseaseController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/PatientController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/patientDisease/getdiseaseview.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/camera/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/PatientDrugController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/js/patientview.js</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/commission.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/doctor/patientview.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/js/patientviewhistory.js</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/dortor/css/system.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ServiceController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/service/bill.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/doctor/patientviewhistory.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/camera/loadimagesview.php</file>
         </group>
     </open-files>
 </project-private>

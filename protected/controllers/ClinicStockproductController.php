@@ -165,17 +165,13 @@ public function actionUpdate($id = null) {
     
     public function actionGetproductinsubtype() {
         $subproducttype = Yii::app()->request->getPost('subproducttype');
-        $branch = Yii::app()->request->getPost('branch');
+        $branch = Yii::app()->session['branch'];
         
         $sql = "SELECT s.*
-                FROM center_stockproduct s 
-
-                WHERE s.subproducttype = $subproducttype 
-                    AND s.product_id NOT IN(
-                        SELECT c.product_id
-                        FROM clinic_stockproduct c 
-                        WHERE c.branch = '$branch'
-                )";
+                FROM center_stockproduct s INNER JOIN clinic_stockproduct c ON s.product_id = c.product_id
+                WHERE s.subproducttype = '$subproducttype' 
+                    AND c.branch = '$branch '
+                    AND s.status = '0'";
         $data['product'] = Yii::app()->db->createCommand($sql)->queryAll();
         //$data['product'] = CenterStockproduct::model()->findAll("subproducttype = '$subproducttype' ");
         $this->renderPartial('comboproduct', $data);
