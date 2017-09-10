@@ -61,9 +61,9 @@ $Clinic = new ClinicStoreproduct();
                     <td><?php echo $last['type_name'] ?></td>
                     <td style=" text-align: right;color: #009900; font-weight: bold;">
                         <?php
-                        $total = $Clinic->Checkstock($last['product_id'], Yii::app()->session['branch']);
-                        echo number_format($total) . ' ' . $last['unit'] 
-                                ?>
+                        $total = $Clinic->Checkstock($last['product_id'], $branch);
+                        echo number_format($total) . ' ' . $last['unit']
+                        ?>
                     </td>
                     <!--
                     <td style="text-align: center;"><a href="<?//php echo $link ?>">รายละเอียด</a></td>
