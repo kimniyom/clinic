@@ -227,7 +227,7 @@ class ClinicStoreproductController extends Controller {
         $product_id = Yii::app()->request->getPost('product_id');
         $Model = new ClinicStoreproduct();
         $data['product'] = $Model->SearchProduct($type, $subproducttype, $branch, $product_id);
-
+        $data['branch'] = $branch;
         //echo $data['product'];
         $this->renderPartial('datasearchproduct', $data);
     }
