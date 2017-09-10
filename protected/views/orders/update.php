@@ -114,10 +114,12 @@ $BranchModel = Branch::model()->find("id = '$branch'");
                 <label for="">จำนวน*</label><br/>
                 <input type="text" class="form-control" id="number" value="1"/>
             </div>
+            <!--
             <div class="col-md-3 col-lg-3">
                 <label for="">ส่วนลด%</label>
                 <input type="text" class="form-control" id="distcountpersent" value="0"/>
             </div>
+            -->
             <div class="col-lg-1 col-md-2">
                 <button type="button" class="btn btn-block btn-success" style=" margin-top: 25px;" onclick="AddproductInlist()">เพิ่ม</button>
             </div>
@@ -188,6 +190,7 @@ $BranchModel = Branch::model()->find("id = '$branch'");
     }
 
     function Saveorder() {
+        
         var url = "<?php echo Yii::app()->createUrl('orders/view', array('order_id' => $order_id)) ?>";
         window.location = url;
     }

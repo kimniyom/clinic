@@ -30,7 +30,9 @@ class OrdersController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'loaddata', 'save', 'search', 'deleteorder', 'confirmorder', 'cutitems', 'print','bill','updatestatus','checklistorder'),
+                'actions' => array('create', 'update', 'loaddata', 'save', 'search',
+                 'deleteorder', 'confirmorder', 'cutitems', 'print','bill','updatestatus',
+                 'checklistorder','adddistcount'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -215,12 +217,12 @@ class OrdersController extends Controller {
         $branch = Yii::app()->request->getPost('branch');
         $menager = Branch::model()->find("id = '$branch' ")['menagers'];
         $order_id = Yii::app()->request->getPost('order_id');
-        $pricetotal = $this->actionCaculatororder($order_id);
+        $price = $this->actionCaculatororder($order_id);
         $columns = array(
             "order_id" => $order_id,
             "branch" => $branch,
             "author" => $menager,
-            "price" => $pricetotal,
+            "price" => $price,
             "create_date" => date("Y-m-d"),
             "d_update" => date("Y-m-d H:i:s")
         );
@@ -237,10 +239,11 @@ class OrdersController extends Controller {
             $sumrow = ($rs['costs'] * $rs['number']);
             $sumproduct = ($sumproduct + $sumrow);
         endforeach;
-        $tax = ($sumproduct * 7) / 100;//ภาษี 7%
-        $total = ($sumproduct + $tax);
+
+        //$tax = ($sumproduct * 7) / 100;//ภาษี 7%
+        //$total = ($sumproduct + $tax);
         //$price = number_format($total, 2);
-        return $total;
+        return $sumproduct;
     }
 
     public function actionSearch() {
@@ -359,5 +362,27 @@ class OrdersController extends Controller {
             $columns = array("status" => $status);
             Yii::app()->db->createCommand()
                     ->update("orders", $columns,"order_id = '$order_id' ");
+        }
+
+        public function actionAdddistcount(){
+            $order_id = Yii::app()->request->getPost('order_id');
+            $sql = "SELECT * FROM orders WHERE order_id = '$order_id' ";
+            $distcountpercent = Yii::app()->request->getPost('distcount');
+
+            $rs = Yii::app()->db->createCommand($sql)->queryRow();
+            $distcountprice = ($rs['price'] * $distcountpercent)/100;//ส่วนลดเป็นเงิน
+            $deldistcount = ($rs['price'] - $distcountprice);//ราคาหักส่วนลด
+            $vat = ($deldistcount * 7)/100;//ราคาสุทธิ์
+            $priceresult = ($deldistcount + $vat);
+            $columns = array(
+                "distcount" => $distcountpercent,
+                "distcountprice" => $distcountprice,
+                "priceresult" => $priceresult,
+                "vat" => $vat,
+                "pricedeldistcount" => $deldistcount
+            );
+
+            Yii::app()->db->createCommand()
+                        ->update("orders",$columns,"order_id = '$order_id'");
         }
 }

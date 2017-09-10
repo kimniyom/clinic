@@ -15,7 +15,6 @@ $Thaibath = new Thaibaht();
             <th style=" text-align: center;">จำนวน</th>
             <th style=" text-align: center;">หน่วยนับ</th>
             <th style=" text-align: center;">ราคา/หน่วย</th>
-            <th>ส่วนลด</th>
             <th>จำนวนเงิน</th>
             <th style=" text-align: center;">ยกเลิก</th>
         </tr>
@@ -38,7 +37,6 @@ $Thaibath = new Thaibaht();
                 <td style=" text-align: center;"><?php echo number_format($rs['number']) ?></td>
                 <td style=" text-align: center;"><?php echo $rs['unitname'] ?></td>
                 <td style=" text-align: right;"><?php echo number_format($rs['costs'],2) ?></td>
-                <td style=" text-align: center;"><?php echo $rs['distcountpercent'] ?> % </td>
                 <td style=" text-align: right;"><?php echo number_format($sumrow, 2) ?></td>
                 <td style=" text-align: center;">
                     <a href="javascript:deleteproduct('<?php echo $rs['id'] ?>')"><i class="fa fa-remove"></i></a></td>
@@ -47,7 +45,7 @@ $Thaibath = new Thaibaht();
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="6" rowspan="5">
+            <td colspan="5" rowspan="5">
                 หมายเหตุ
             </td>
         </tr>
@@ -83,14 +81,21 @@ $Thaibath = new Thaibaht();
             <td></td>
         </tr>
         <tr>
-            <td colspan="6" style=" text-align: center;">
+            <td colspan="5" style=" text-align: center;">
                 <?php
-                $pricetotal = ($priceresult + $tax);
-                echo "(".$Thaibath->convert($pricetotal).")";
+                $pricetotal = number_format(($priceresult + $tax),2);
+                $priceCovert = str_replace(",", "", $pricetotal);
+                if(substr($priceCovert,-2) == "00"){
+                    $priceCoverts  = str_replace(".00", "", $priceCovert);
+                } else {
+                    $priceCoverts = $priceCovert;
+                }
+                
+                echo "(".$Thaibath->convert($priceCoverts).")";
                 ?>
             </td>
             <td>รวมเงินทั้งสิ้น</td>
-            <td style=" text-align: right;"><?php echo number_format(sprintf('%.2f',$pricetotal),2); ?></td>
+            <td style=" text-align: right;"><?php echo number_format(sprintf('%.2f',$priceCovert),2); ?></td>
             <td></td>
         </tr>
     </tfoot>

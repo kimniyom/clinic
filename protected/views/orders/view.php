@@ -58,35 +58,35 @@ $Thaibath = new Thaibaht();
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div style=" padding: 0px;height: 100px; width: 200px;">
-                            <table style="border: #cccccc solid 2px; float: right; width: 100%;">
-                                <tr style=" border-bottom: #cccccc solid 2px;">
+                        <table style="border: #cccccc solid 2px; float: right; width: 100%;">
+                            <tr style=" border-bottom: #cccccc solid 2px;">
 
-                                    <td style=" text-align: center;" colspan="2">
-                                        รหัสสั่งซื้อเลขที่ :
-                                        <div style="text-align: center; margin-left: 10px;" id="<?php echo $order['order_id'] ?>"></div>
-                                        <?php
-                                        //echo $order['order_id'];
+                                <td style=" text-align: center;" colspan="2">
+                                    รหัสสั่งซื้อเลขที่ :
+                                    <div style="text-align: center; margin-left: 10px;" id="<?php echo $order['order_id'] ?>"></div>
+                                    <?php
+                                    //echo $order['order_id'];
 
-                                        $optionsArray = array(
-                                            'elementId' => $order['order_id'], /* id of div or canvas */
-                                            'value' => $order['order_id'], /* value for EAN 13 be careful to set right values for each barcode type */
-                                            'type' => 'code39', /* supported types  ean8, ean13, upc, std25, int25, code11, code39, code93, code128, codabar, msi, datamatrix */
-                                            'settings' => array(
-                                                /* "1" Bars color */
-                                                'barWidth' => "1",
-                                                'barHeight' => "20",
-                                            ),
-                                        );
-                                        $this->widget('ext.Yii-Barcode-Generator.Barcode', $optionsArray);
-                                        ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>วันที่สั่งซื้อ : </td>
-                                    <td style=" text-align: right;"><?php echo $order['create_date'] ?></td>
-                                </tr>
-                            </table>
-                        </div>
+                                    $optionsArray = array(
+                                        'elementId' => $order['order_id'], /* id of div or canvas */
+                                        'value' => $order['order_id'], /* value for EAN 13 be careful to set right values for each barcode type */
+                                        'type' => 'code39', /* supported types  ean8, ean13, upc, std25, int25, code11, code39, code93, code128, codabar, msi, datamatrix */
+                                        'settings' => array(
+                                            /* "1" Bars color */
+                                            'barWidth' => "1",
+                                            'barHeight' => "20",
+                                        ),
+                                    );
+                                    $this->widget('ext.Yii-Barcode-Generator.Barcode', $optionsArray);
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>วันที่สั่งซื้อ : </td>
+                                <td style=" text-align: right;"><?php echo $order['create_date'] ?></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
             <hr/>
@@ -106,7 +106,9 @@ $Thaibath = new Thaibaht();
                         <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">จำนวน</th>
                         <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">หน่วยนับ</th>
                         <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">ราคา/หน่วย</th>
+                        <!--
                         <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">ส่วนลด</th>
+                        -->
                         <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">จำนวนเงิน</th>
                     </tr>
                 </thead>
@@ -129,14 +131,16 @@ $Thaibath = new Thaibaht();
                             <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo number_format($rs['number']) ?></td>
                             <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo $rs['unitname'] ?></td>
                             <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($rs['costs'], 2) ?></td>
-                            <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo $rs['distcountpercent'] ?> % </td>
+                            <!--
+                            <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']  ?> % </td>
+                            -->
                             <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($sumrow, 2) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
                 <tfoot>
                     <tr style="border-top: #cccccc solid 2px;">
-                        <td colspan="6" rowspan="5" id="bold-right" valign="top" style=" border-right:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">
+                        <td colspan="5" rowspan="5" id="bold-right" valign="top" style=" border-right:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">
                             หมายเหตุ
                         </td>
                     </tr>
@@ -145,14 +149,14 @@ $Thaibath = new Thaibaht();
                         <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format($sumproduct, 2) ?></td>
                     </tr>
                     <tr>
-                        <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ส่วนลดคิดเป็นเงิน</td>
-                        <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format($sumdistcount, 2) ?></td>
+                        <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ส่วนลด <?php echo $order['distcount'] ?> %</td>
+                        <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format($order['distcountprice'], 2) ?></td>
                     </tr>
                     <tr>
                         <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ราคาหลังหักส่วนลด</td>
                         <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">
                             <?php
-                            $priceresult = ($sumproduct - $sumdistcount);
+                            $priceresult = ($sumproduct - $order['distcountprice']);
                             echo number_format($priceresult, 2);
                             ?>
                         </td>
@@ -168,14 +172,22 @@ $Thaibath = new Thaibaht();
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6" style=" text-align: center;border-right:#cccccc solid 2px; background: #f4f4f4;">
+                        <td colspan="5" style=" text-align: center;border-right:#cccccc solid 2px; background: #f4f4f4;">
                             <?php
-                            $pricetotal = ($priceresult + $tax);
-                            echo "(" . $Thaibath->convert($pricetotal) . ")";
+                            //$pricetotal = ($priceresult + $tax);
+                            $pricetotal = number_format(($priceresult + $tax), 2);
+                            $priceCovert = str_replace(",", "", $pricetotal);
+                            if (substr($priceCovert, -2) == "00") {
+                                $priceCoverts = str_replace(".00", "", $priceCovert);
+                            } else {
+                                $priceCoverts = $priceCovert;
+                            }
+                           
+                            echo "(" . $Thaibath->convert($priceCoverts) . ")";
                             ?>
                         </td>
                         <td colspan="2" style="background: #f4f4f4;">รวมเงินทั้งสิ้น</td>
-                        <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format(sprintf('%.2f', $pricetotal), 2); ?></td>
+                        <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format(sprintf('%.2f', $priceCovert), 2); ?></td>
                     </tr>
                 </tfoot>
             </table>
@@ -238,16 +250,16 @@ $Thaibath = new Thaibaht();
 </script>
 
 <script type="text/javascript">
-        Setscreen();
-        function Setscreen() {
-            var screen = $(window).height();
-            //var contentboxsell = $("#content-boxsell").height();
-            var screenfull = (screen - 132);
-            $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 132);
+        $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
 
-        }
-    </script>
+    }
+</script>
 
 

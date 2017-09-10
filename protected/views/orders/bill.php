@@ -112,7 +112,6 @@
                         <th style="text-align: center;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px;background: #f4f4f4;">จำนวน</th>
                         <th style="text-align: center;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px;background: #f4f4f4;">หน่วยนับ</th>
                         <th style="text-align: center;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px;background: #f4f4f4;">ราคา/หน่วย</th>
-                        <th style="text-align: center;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px;background: #f4f4f4;">ส่วนลด</th>
                         <th style="text-align: center;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px;background: #f4f4f4;">จำนวนเงิน</th>
                     </tr>
                 </thead>
@@ -135,14 +134,13 @@
                             <td style=" text-align: center;border-left:#999999 solid 2px;"><?php echo number_format($rs['number']) ?></td>
                             <td style=" text-align: center;border-left:#999999 solid 2px;"><?php echo $rs['unitname'] ?></td>
                             <td style=" text-align: right;border-left:#999999 solid 2px;"><?php echo number_format($rs['costs'], 2) ?></td>
-                            <td style=" text-align: center;border-left:#999999 solid 2px;"><?php echo $rs['distcountpercent'] ?> % </td>
                             <td style=" text-align: right;border-left:#999999 solid 2px;"><?php echo number_format($sumrow, 2) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6" rowspan="5" id="bold-right" valign="top" style=" border-right:#999999 solid 2px; border-top: #999999 solid 2px;">
+                        <td colspan="5" rowspan="5" id="bold-right" valign="top" style=" border-right:#999999 solid 2px; border-top: #999999 solid 2px;">
                             หมายเหตุ
                         </td>
                     </tr>
@@ -174,14 +172,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6" style=" text-align: center;border-right:#999999 solid 2px; background: #f4f4f4; border-top: #999999 solid 2px;">
+                        <td colspan="5" style=" text-align: center;border-right:#999999 solid 2px; background: #f4f4f4; border-top: #999999 solid 2px;">
                             <?php
-                            $pricetotal = ($priceresult + $tax);
-                            echo "(" . $Thaibath->convert($pricetotal) . ")";
+                            $pricetotal = number_format(($priceresult + $tax), 2);
+                                $priceCovert = str_replace(",", "", $pricetotal);
+                                if (substr($priceCovert, -2) == "00") {
+                                    $priceCoverts = str_replace(".00", "", $priceCovert);
+                                } else {
+                                    $priceCoverts = $priceCovert;
+                                }
+                                echo "(" . $Thaibath->convert($priceCoverts) . ")";
                             ?>
                         </td>
                         <td colspan="2" style="background: #f4f4f4;">รวมเงินทั้งสิ้น</td>
-                        <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;"><?php echo number_format(sprintf('%.2f', $pricetotal), 2); ?></td>
+                        <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;"><?php echo number_format(sprintf('%.2f', $priceCovert), 2); ?></td>
                     </tr>
                 </tfoot>
             </table>
