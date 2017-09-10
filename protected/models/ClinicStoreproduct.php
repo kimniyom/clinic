@@ -143,7 +143,8 @@ class ClinicStoreproduct extends CActiveRecord {
             $whereproduct = "";
         }
 
-        $sql = "SELECT c.product_id,c.product_nameclinic AS product_name,c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name
+        $sql = "SELECT c.product_id,c.product_nameclinic AS product_name,
+                        c.product_price,c.costs,u.unit,c.type_id,c.subproducttype,t.type_name AS category,pt.type_name
                 FROM clinic_stockproduct s INNER JOIN center_stockproduct c ON s.product_id = c.product_id
                 INNER JOIN unit u ON c.unit = u.id
                 INNER JOIN product_type t ON c.type_id = t.id
