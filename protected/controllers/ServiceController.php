@@ -363,10 +363,12 @@ class ServiceController extends Controller {
 
     public function actionConfirmservice() {
         $service_id = Yii::app()->request->getPost('service_id');
+        $price_total = Yii::app()->request->getPost('price_total');
         $user_id = Yii::app()->user->id;
         $columns = array(
             "status" => "4",
-            "user_bill" => $user_id
+            "user_bill" => $user_id,
+            "price_total" => $price_total
         );
         Yii::app()->db->createCommand()
                 ->update("service", $columns, "id = '$service_id'");

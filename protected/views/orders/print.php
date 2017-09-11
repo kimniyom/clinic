@@ -37,7 +37,7 @@
             #companysell tr td{
                 padding: 5px; font-size: 16px;
             }
-            
+
             #companysellbarcode tr td{
                 padding: 7px; font-size: 16px;
             }
@@ -61,7 +61,7 @@
 
             <div style=" text-align: center; margin-bottom: 10px; font-size: 18px;">
                 <h4 style=" margin-bottom: 0px; font-size: 24px; color: #000; font-weight: bold;"><?php echo $BranchModel['branchname']; ?></h4><br/>
-                    <?php echo $BranchModel['address']; ?><br/>
+                <?php echo $BranchModel['address']; ?><br/>
                 <?php echo $BranchModel['contact']; ?><br/>
                 <h4 style=" margin: 0px; font-size: 24px; color: #000; font-weight: bold;">ใบสั่งซื้อสินค้า</h4>
             </div>
@@ -151,14 +151,14 @@
                         <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;border-top: #999999 solid 2px;"><?php echo number_format($sumproduct, 2) ?></td>
                     </tr>
                     <tr style="border-top: #999999 solid 2px;">
-                        <td style="border-bottom: #999999 solid 2px; background: #f4f4f4;" colspan="2">ส่วนลดคิดเป็นเงิน</td>
-                        <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;"><?php echo number_format($sumdistcount, 2) ?></td>
+                        <td style="border-bottom: #999999 solid 2px; background: #f4f4f4;" colspan="2">ส่วนลด <?php echo $order['distcount'] ?> %</td>
+                        <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;"><?php echo number_format($order['distcountprice'], 2) ?></td>
                     </tr>
                     <tr>
                         <td style="border-bottom: #999999 solid 2px; background: #f4f4f4;" colspan="2">ราคาหลังหักส่วนลด</td>
                         <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;">
                             <?php
-                            $priceresult = ($sumproduct - $sumdistcount);
+                            $priceresult = ($sumproduct - $order['distcountprice']);
                             echo number_format($priceresult, 2);
                             ?>
                         </td>
@@ -176,7 +176,6 @@
                     <tr>
                         <td colspan="5" style=" text-align: center;border-right:#999999 solid 2px; background: #f4f4f4; border-top: #999999 solid 2px;">
                             <?php
-                            
                             $pricetotal = number_format(($priceresult + $tax), 2);
                             $priceCovert = str_replace(",", "", $pricetotal);
                             if (substr($priceCovert, -2) == "00") {

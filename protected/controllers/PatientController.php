@@ -26,11 +26,13 @@ class PatientController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'checkpatient', 'save_upload', 'getdata', 'history', 'appoint', 'sellhistory','getappointpatient','deleteappoint','detailsell'),
+                'actions' => array('index', 'view', 'checkpatient',
+                'save_upload', 'getdata', 'history', 'appoint', 'sellhistory','getappointpatient',
+                'deleteappoint','detailsell','delete'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'dortorsearch'),
+                'actions' => array('create', 'update', 'dortorsearch','delete'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -111,12 +113,12 @@ class PatientController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete() {
+        $id = Yii::app()->request->getPost('id');
         $this->loadModel($id)->delete();
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        //if (!isset($_GET['ajax'])) $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 
     /**
@@ -289,7 +291,7 @@ class PatientController extends Controller {
     public function actionAppoint() {
         $patient_id = Yii::app()->request->getPost('patient_id');
         $sql = "SELECT a.id,a.appoint,b.branchname
-            FROM appoint a INNER JOIN branch b ON a.branch = b.id 
+            FROM appoint a INNER JOIN branch b ON a.branch = b.id
             WHERE a.patient_id = '$patient_id' AND a.status = '0' ORDER BY a.id DESC";
         $data['appoint'] = Yii::app()->db->createCommand($sql)->queryAll();
         $this->renderPartial('appoint', $data);
@@ -309,25 +311,25 @@ class PatientController extends Controller {
         $Model = new Appoint();
         $appoint_id = Yii::app()->request->getPost('appoint_id');
         $appoint = $Model->GetappointPatient($appoint_id);
-        
+
         $str = "";
         $str .= "<table class='table'><tr><td>วันที่นัด</td><td>".$appoint['appoint']."</td></tr>";
         $str .= "<tr><td>ประเภทนัด</td><td>".$Model->Typeappoint($appoint['type'])."</td></tr>";
         $str .= "<tr><td>อื่น ๆ</td><td>".$appoint['etc']."</td></tr>";
         $str .="</table>";
-        
+
         echo $str;
     }
-    
+
     public function actionDeleteappoint(){
         $appoint_id = Yii::app()->request->getPost('appoint_id');
         Yii::app()->db->createCommand()
                 ->delete("appoint","id = '$appoint_id'");
     }
-    
+
     public function actionDetailsell($sell_id) {
         //$sell_id = Yii::app()->request->getPost('sell_id');
-        
+
         $Model = new sell();
         //$sell_id = Yii::app()->request->getPost('sell_id');
         $data['order'] = $Model->Getlistorder($sell_id);

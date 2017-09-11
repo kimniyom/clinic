@@ -3,7 +3,7 @@
 /* @var $model Patient */
 
 $this->breadcrumbs = array(
-    'Patients' => array('index'),
+    'ลูกค้า' => array('index'),
     $model->name,
 );
 
@@ -353,12 +353,12 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
         var screenfull = ((screen - 205) / 2);
-        var sellhistory = (screen - 190);
+        var sellhistory = (screen - 195);
         $("#history").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         $("#appoint").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
 
-        $("#sellhistory").css({'height': sellhistory - 170, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#box-img-profile").css({'height': 190, 'overflow': 'auto', 'padding-bottom': '0px'});
+        $("#sellhistory").css({'height': sellhistory - 200, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#box-img-profile").css({'height': 205, 'overflow': 'auto', 'padding-bottom': '0px'});
     }
 
     function PopupBills(url, title) {

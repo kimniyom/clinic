@@ -158,6 +158,7 @@ if (isset($model['birth'])) {
             <div class="col-md-12 col-lg-12" style=" text-align: center; padding: 0px; background: #e6e6e6;">
                 <h3>รวมค่าใชจ่าย </h3>
                 <div id="sumservice" style=" font-weight: bold; color: #ff0000; font-size: 24px;"></div>
+                <input type="hidden" id="price_total"/>
             </div>
         </div>
         <?php

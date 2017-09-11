@@ -255,7 +255,7 @@ $branchModel = new Branch();
             var url = "<?php echo Yii::app()->createUrl('employee/delete') ?>";
             var data = {id: id};
             $.post(url, data, function (success) {
-                window.location.reload();
+                window.location="<?php echo Yii::app()->createUrl('employee/index') ?>";
             });
         }
     }

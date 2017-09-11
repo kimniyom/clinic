@@ -1,21 +1,21 @@
-<hr/>
-<div class="row">
+
+<div class="row" style=" margin: 0px;">
     <div class="col-lg-4">
-        <div class="btn btn-success btn-block">
-            <h4>ต้นทุนสินค้า</h4>
-            <h3><?php echo number_format($Cost['itemstotal']) ?> รายการ <?php echo number_format($Cost['pricetotal']) ?> บาท</h3>
+        <div class="btn  btn-block" style=" border: #33cc00 solid 1px;background: #FFFFFF; color: #33cc00;">
+            <h4>รายได้</h4>
+            <h3><?php echo number_format($income, 2) ?>  บาท</h3>
         </div>
     </div>
     <div class="col-lg-4">
-        <div class="btn btn-primary btn-block">
-            <h4>ยอดขายสินค้า</h4>
-            <h3><?php echo number_format($Sell['totalitems']) ?> รายการ <?php echo number_format($Sell['totalprice']) ?> บาท</h3>
+        <div class="btn btn-block" style=" border: #ff0000 solid 1px;background: #FFFFFF; color: #ff0000;">
+            <h4>รายจ่าย</h4>
+            <h3> <?php echo number_format($outcome, 2) ?> บาท</h3>
         </div>
     </div>
     <div class="col-lg-4">
-        <div class="btn btn-danger btn-block">
+        <div class="btn  btn-block" style=" border: #0000FF solid 1px; background: #FFFFFF; color: #0000FF;">
             <h4>กำไร / ขาดทุน</h4>
-            <h3><?php echo number_format($Sell['totalprice'] - $Cost['pricetotal']) ?> บาท</h3>
+            <h3><?php echo number_format($income - $outcome, 2) ?> บาท</h3>
         </div>
     </div>
 </div>
@@ -66,9 +66,9 @@
                 }
             },
             series: [{
-                    name: 'ต้นทุน',
+                    name: 'รายรับ',
                     color: 'green',
-                    data: [<?php echo $costperiod1 ?>, <?php echo $costperiod2 ?>, <?php echo $costperiod3 ?>, <?php echo $costperiod4 ?>],
+                    data: [<?php echo $incomeperiod1 ?>, <?php echo $incomeperiod2 ?>, <?php echo $incomeperiod3 ?>, <?php echo $incomeperiod4 ?>],
                     dataLabels: {
                         enabled: true,
                         rotation: -90,
@@ -83,9 +83,9 @@
                     }
 
                 }, {
-                    name: 'ยอดขาย',
+                    name: 'รายจ่าย',
                     //color: 'blue',
-                    data: [<?php echo $sellperiod1 ?>, <?php echo $sellperiod2 ?>, <?php echo $sellperiod3 ?>, <?php echo $sellperiod4 ?>]
+                    data: [<?php echo $outcomeperiod1 ?>, <?php echo $outcomeperiod2 ?>, <?php echo $outcomeperiod3 ?>, <?php echo $outcomeperiod4 ?>]
                     , dataLabels: {
                         enabled: true,
                         rotation: -90,
@@ -97,15 +97,6 @@
                             fontSize: '13px',
                             fontFamily: 'Verdana, sans-serif'
                         }
-                    }
-                },
-                {
-                    name: 'กำไร',
-                    type: 'spline',
-                    color: 'red',
-                    data: [<?php echo $profit1 ?>, <?php echo $profit2 ?>, <?php echo $profit3 ?>, <?php echo $profit4 ?>],
-                    tooltip: {
-                        valueSuffix: '°C'
                     }
                 }]
         });

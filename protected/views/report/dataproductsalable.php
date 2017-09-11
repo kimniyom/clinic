@@ -1,7 +1,5 @@
-<hr/>
 
-
-<div id="reportsalable"></div>
+<div id="reportsalable" style=" margin: 0px; width: 95%;"></div>
 
 <table class="table table-bordered">
     <thead>
@@ -12,13 +10,14 @@
         </tr>
     </thead>
     <tbody>
-        <?php $i=0;foreach($product as $rs): $i++;?>
-        <tr>
-            <td style="text-align: center;"><?php echo $i ?></td>
-            <td><?php echo $rs['product_name'] ?></td>
-            <td style=" text-align: right;"><?php echo number_format($rs['total']) ?></td>
-        </tr>
-        <?php endforeach;?>
+        <?php $i = 0;
+        foreach ($product as $rs): $i++; ?>
+            <tr>
+                <td style="text-align: center;"><?php echo $i ?></td>
+                <td><?php echo $rs['product_name'] ?></td>
+                <td style=" text-align: right;"><?php echo number_format($rs['total']) ?></td>
+            </tr>
+<?php endforeach; ?>
     </tbody>
 </table>
 

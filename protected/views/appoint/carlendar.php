@@ -15,42 +15,49 @@ $PatientModel = new Patient();
 $PatientList = $PatientModel->GetPatient();
 ?>
 <div id="ca">
-    <p class="text-danger">*นัดลูกค้าคลิกที่ว่างในช่องวันที่</p>
-    <p class="text-danger">*นัดลูกค้าได้เฉพาะสาขาที่ลูกค้าขึ้นทะเบียนไว้</p>
-    <button type="button" class="btn btn-danger">ทรีทเม็นท์</button>
-    <button type="button" class="btn btn-primary">นัดพบแพทย์</button>
-    <button type="button" class="btn btn-success">นัดหัตถการ</button>
-    <hr/>
-    <?php
-    $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
-        //'themeCssFile'=>'cupertino/jquery-ui.min.css',
-        //'id' => 'appoint',
-        'htmlOptions' => array(
-            'style' => 'border:#eeeeee solid 0px;'
-        ),
-        'options' => array(
-            'lang' => 'th',
-            'editable' => true,
-            'header' => array(
-                'left' => 'prev,next,today',
-                'center' => 'title',
-                'right' => 'month',
-                //'right' => 'month,agendaWeek,agendaDay',
-                'lang' => 'th',
-            ),
-            //'timeFormat'=> 'H(:mm)',
-            'events' => $this->createUrl('appoint/carlendarevents'), // URL to get event
-            'eventClick' => 'js:function(calEvent, jsEvent, view) {
+    <div class="row">
+        <div class="col-md-4 col-lg-4">
+            <p class="text-danger">*นัดลูกค้าคลิกที่ว่างในช่องวันที่</p>
+            <p class="text-danger">*นัดลูกค้าได้เฉพาะสาขาที่ลูกค้าขึ้นทะเบียนไว้</p>
+            <button type="button" class="btn btn-danger">ทรีทเม็นท์</button>
+            <button type="button" class="btn btn-primary">นัดพบแพทย์</button>
+            <button type="button" class="btn btn-success">นัดหัตถการ</button>
+        </div>
+        <div class="col-md-8 col-lg-8" id="p-right">
+            <div style=" width: 100%;">
+                <?php
+                $this->widget('ext.fullcalendar.EFullCalendarHeart', array(
+                    //'themeCssFile'=>'cupertino/jquery-ui.min.css',
+                    //'id' => 'appoint',
+                    'htmlOptions' => array(
+                        'style' => 'border:#eeeeee solid 0px;'
+                    ),
+                    'options' => array(
+                        'lang' => 'th',
+                        'editable' => true,
+                        'header' => array(
+                            'left' => 'prev,next,today',
+                            'center' => 'title',
+                            'right' => 'month',
+                            //'right' => 'month,agendaWeek,agendaDay',
+                            'lang' => 'th',
+                        ),
+                        //'timeFormat'=> 'H(:mm)',
+                        'events' => $this->createUrl('appoint/carlendarevents'), // URL to get event
+                        'eventClick' => 'js:function(calEvent, jsEvent, view) {
             $("#myModalHeader").html(calEvent.title);
             $("#myModalBody").load("' . Yii::app()->createUrl("appoint/viewcarlendar/appoint") . '/"+calEvent.id+"/type/"+calEvent.type);
             $("#myModal").modal();
         }',
-            'dayClick' => "js:function(date, jsEvent, view) {
+                        'dayClick' => "js:function(date, jsEvent, view) {
             $('#addappoint').modal();
             $('#date').val(date.format());
         }",
-    )));
-    ?>
+                )));
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -120,7 +127,6 @@ $PatientList = $PatientModel->GetPatient();
                     <div class="col-lg-12">
                         สาขา *
                         <?php
-                        
                         $this->widget(
                                 'booster.widgets.TbSelect2', array(
                             'name' => 'branch',
@@ -171,18 +177,34 @@ $PatientList = $PatientModel->GetPatient();
             $("#type").focus();
             return false;
         }
-        
-        if(branch == ''){
+
+        if (branch == '') {
             alert("ยังไม่ได้เลือกสาขา");
             $("#branch").focus();
             return false;
         }
 
-        var data = {appoint: appoint, patient: patient, type: type, etc: etc,branch: branch};
+        var data = {appoint: appoint, patient: patient, type: type, etc: etc, branch: branch};
         $.post(url, data, function (datas) {
             window.location.reload();
         });
     }
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 120);
+        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
+
 </script>
 
 

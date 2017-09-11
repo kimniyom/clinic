@@ -401,14 +401,16 @@ function sumservice() {
     var url = "index.php?r=service/sumservice";
     var data = {service_id: service_id};
     $.post(url, data, function (result) {
+        $("#price_total").val(result);
         $("#sumservice").html(result);
     });
 }
 
 function confirmservice() {
     var service_id = $("#service_id").val();
+    var price_total = $("#price_total").val();
     var url = "index.php?r=service/confirmservice";
-    var data = {service_id: service_id};
+    var data = {service_id: service_id, price_total: price_total};
     $.post(url, data, function (result) {
         window.location.reload();
     });

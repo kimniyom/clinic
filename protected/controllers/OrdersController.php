@@ -31,8 +31,8 @@ class OrdersController extends Controller {
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('create', 'update', 'loaddata', 'save', 'search',
-                 'deleteorder', 'confirmorder', 'cutitems', 'print','bill','updatestatus',
-                 'checklistorder','adddistcount'),
+                    'deleteorder', 'confirmorder', 'cutitems', 'print', 'bill', 'updatestatus',
+                    'checklistorder', 'adddistcount'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -114,8 +114,8 @@ class OrdersController extends Controller {
             'branchModel' => $branchModel
         ));
     }
-    
-    public function actionChecklistorder(){
+
+    public function actionChecklistorder() {
         $order_id = Yii::app()->request->getPost('order_id');
         $sql = "SELECT COUNT(*) AS total FROM listorder WHERE order_id = '$order_id'";
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
@@ -154,13 +154,13 @@ class OrdersController extends Controller {
     public function actionIndex() {
         $branch = Yii::app()->session['branch'];
         $Model = new Orders();
-        $data['branchModel'] = Branch::model()->find('id=:id', array(':id'=>$branch));
+        $data['branchModel'] = Branch::model()->find('id=:id', array(':id' => $branch));
         $data['branch'] = $branch;
         $data['orders'] = $Model->GetorderInBranch($branch);
-        if($branch == "99"){
+        if ($branch == "99") {
             $BranchList = Branch::model()->findAll();
         } else {
-           $BranchList = Branch::model()->findAll("id = '$branch'");
+            $BranchList = Branch::model()->findAll("id = '$branch'");
         }
         $data['BranchList'] = $BranchList;
         $this->render('index', $data);
@@ -207,22 +207,31 @@ class OrdersController extends Controller {
 
     public function actionLoaddata() {
         $orderId = Yii::app()->request->getPost('order_id');
-
+        $order = Orders::model()->find("order_id = '$orderId'");
         $OrderModel = new Orders();
+        $data['orders'] = $order;
         $data['order'] = $OrderModel->Getlistorder($orderId);
         $this->renderPartial('listdata', $data);
     }
 
     public function actionSave() {
         $branch = Yii::app()->request->getPost('branch');
-        $menager = Branch::model()->find("id = '$branch' ")['menagers'];
+        //$menager = Branch::model()->find("id = '$branch' ")['menagers'];
+        $author = Yii::app()->user->id;
         $order_id = Yii::app()->request->getPost('order_id');
         $price = $this->actionCaculatororder($order_id);
+
+
+        $vat = ($price * 7) / 100; //ภาษี
+        $priceresult = ($price + $vat); //ราคาสุทธิ์
+
         $columns = array(
             "order_id" => $order_id,
             "branch" => $branch,
-            "author" => $menager,
+            "author" => $author,
             "price" => $price,
+            "vat" => $vat,
+            "priceresult" => $priceresult,
             "create_date" => date("Y-m-d"),
             "d_update" => date("Y-m-d H:i:s")
         );
@@ -230,7 +239,7 @@ class OrdersController extends Controller {
         Yii::app()->db->createCommand()->insert("orders", $columns);
     }
 
-    public function actionCaculatororder($orderId){
+    public function actionCaculatororder($orderId) {
         $OrderModel = new Orders();
         $order = $OrderModel->Getlistorder($orderId);
         $sumdistcount = 0;
@@ -290,7 +299,7 @@ class OrdersController extends Controller {
         foreach ($item as $rs):
             $id = $rs['id'];
             $totalinstock = $rs['totalcut']; //คงเหลือในสต๊อกที่ตัดได้
-            if ($totalinstock > $number) { //<==กรณีสินค้าในล๊อตนั้นมีมากกว่า
+            if ($totalinstock >= $number) { //<==กรณีสินค้าในล๊อตนั้นมีมากกว่า
                 $totalstock = ($totalinstock - $number);
                 $numbercut = $totalstock;
                 $columns = array("totalcut" => $numbercut);
@@ -306,83 +315,84 @@ class OrdersController extends Controller {
         endforeach;
     }
 
-    public function actionPrint($order_id = null) { 
-            $order = Orders::model()->find("order_id = '$order_id'");
-            $branchId = $order['branch'];
-            $data['BranchModel'] = Branch::model()->find("id = '$branchId'");
-            $data['logo'] = Logo::model()->find("branch='$branchId'")['logo'];
-            $OrderModel = new Orders();
-            $data['order'] = $order;
-            $data['order_id'] = $order_id;
-            $data['orderlist'] = $OrderModel->Getlistorder($order_id);
+    public function actionPrint($order_id = null) {
+        $order = Orders::model()->find("order_id = '$order_id'");
+        $branchId = $order['branch'];
+        $data['BranchModel'] = Branch::model()->find("id = '$branchId'");
+        $data['logo'] = Logo::model()->find("branch='$branchId'")['logo'];
+        $OrderModel = new Orders();
+        $data['order'] = $order;
+        $data['order_id'] = $order_id;
+        $data['orderlist'] = $OrderModel->Getlistorder($order_id);
 
 
 
-            # mPDF
-            $mPDF1 = Yii::app()->ePdf->mpdf();
+        # mPDF
+        $mPDF1 = Yii::app()->ePdf->mpdf();
 
-            # You can easily override default constructor's params
-            $mPDF1 = Yii::app()->ePdf->mpdf('order-' . $order_id, 'A4');
+        # You can easily override default constructor's params
+        $mPDF1 = Yii::app()->ePdf->mpdf('order-' . $order_id, 'A4');
 
-            # render (full page)
-            //$mPDF1->WriteHTML($this->render('print', $data, true));
-            $mPDF1->WriteHTML($this->renderPartial('print', $data, true));
-            # Outputs ready PDF
-            $mPDF1->Output();
-        }
-        
-            public function actionBill($order_id = null) { 
-            $order = Orders::model()->find("order_id = '$order_id'");
-            $branchId = $order['branch'];
-            $data['BranchModel'] = Branch::model()->find("id = '$branchId'");
-            $data['logo'] = Logo::model()->find("branch='$branchId'")['logo'];
-            $OrderModel = new Orders();
-            $data['order'] = $order;
-            $data['order_id'] = $order_id;
-            $data['orderlist'] = $OrderModel->Getlistorder($order_id);
+        # render (full page)
+        //$mPDF1->WriteHTML($this->render('print', $data, true));
+        $mPDF1->WriteHTML($this->renderPartial('print', $data, true));
+        # Outputs ready PDF
+        $mPDF1->Output();
+    }
+
+    public function actionBill($order_id = null) {
+        $order = Orders::model()->find("order_id = '$order_id'");
+        $branchId = $order['branch'];
+        $data['BranchModel'] = Branch::model()->find("id = '$branchId'");
+        $data['logo'] = Logo::model()->find("branch='$branchId'")['logo'];
+        $OrderModel = new Orders();
+        $data['order'] = $order;
+        $data['order_id'] = $order_id;
+        $data['orderlist'] = $OrderModel->Getlistorder($order_id);
 
 
 
-            # mPDF
-            $mPDF1 = Yii::app()->ePdf->mpdf();
+        # mPDF
+        $mPDF1 = Yii::app()->ePdf->mpdf();
 
-            # You can easily override default constructor's params
-            $mPDF1 = Yii::app()->ePdf->mpdf('order-' . $order_id, 'A4');
+        # You can easily override default constructor's params
+        $mPDF1 = Yii::app()->ePdf->mpdf('order-' . $order_id, 'A4');
 
-            # render (full page)
-            //$mPDF1->WriteHTML($this->render('print', $data, true));
-            $mPDF1->WriteHTML($this->renderPartial('bill', $data, true));
-            # Outputs ready PDF
-            $mPDF1->Output();
-        }
-    
-        public function actionUpdatestatus(){
-            $order_id = Yii::app()->request->getPost('order_id');
-            $status = Yii::app()->request->getPost('status');
-            $columns = array("status" => $status);
-            Yii::app()->db->createCommand()
-                    ->update("orders", $columns,"order_id = '$order_id' ");
-        }
+        # render (full page)
+        //$mPDF1->WriteHTML($this->render('print', $data, true));
+        $mPDF1->WriteHTML($this->renderPartial('bill', $data, true));
+        # Outputs ready PDF
+        $mPDF1->Output();
+    }
 
-        public function actionAdddistcount(){
-            $order_id = Yii::app()->request->getPost('order_id');
-            $sql = "SELECT * FROM orders WHERE order_id = '$order_id' ";
-            $distcountpercent = Yii::app()->request->getPost('distcount');
+    public function actionUpdatestatus() {
+        $order_id = Yii::app()->request->getPost('order_id');
+        $status = Yii::app()->request->getPost('status');
+        $columns = array("status" => $status);
+        Yii::app()->db->createCommand()
+                ->update("orders", $columns, "order_id = '$order_id' ");
+    }
 
-            $rs = Yii::app()->db->createCommand($sql)->queryRow();
-            $distcountprice = ($rs['price'] * $distcountpercent)/100;//ส่วนลดเป็นเงิน
-            $deldistcount = ($rs['price'] - $distcountprice);//ราคาหักส่วนลด
-            $vat = ($deldistcount * 7)/100;//ราคาสุทธิ์
-            $priceresult = ($deldistcount + $vat);
-            $columns = array(
-                "distcount" => $distcountpercent,
-                "distcountprice" => $distcountprice,
-                "priceresult" => $priceresult,
-                "vat" => $vat,
-                "pricedeldistcount" => $deldistcount
-            );
+    public function actionAdddistcount() {
+        $order_id = Yii::app()->request->getPost('order_id');
+        $sql = "SELECT * FROM orders WHERE order_id = '$order_id' ";
+        $distcountpercent = Yii::app()->request->getPost('distcount');
 
-            Yii::app()->db->createCommand()
-                        ->update("orders",$columns,"order_id = '$order_id'");
-        }
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        $distcountprice = ($rs['price'] * $distcountpercent) / 100; //ส่วนลดเป็นเงิน
+        $deldistcount = ($rs['price'] - $distcountprice); //ราคาหักส่วนลด
+        $vat = ($deldistcount * 7) / 100; //ราคาสุทธิ์
+        $priceresult = ($deldistcount + $vat);
+        $columns = array(
+            "distcount" => $distcountpercent,
+            "distcountprice" => $distcountprice,
+            "priceresult" => $priceresult,
+            "vat" => $vat,
+            "pricedeldistcount" => $deldistcount
+        );
+
+        Yii::app()->db->createCommand()
+                ->update("orders", $columns, "order_id = '$order_id'");
+    }
+
 }

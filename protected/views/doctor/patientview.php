@@ -4,14 +4,14 @@
 
 $this->breadcrumbs = array(
     //'Patients' => array('index'),
-    $model->name . " " . $model->lname,
+    $model['name'] . " " . $model['lname'],
 );
 
 $MasuserModel = new Masuser();
 $config = new Configweb_model();
 $branchModel = new Branch();
 $CheckBodyModel = new Checkbody();
-$Author = $MasuserModel->GetDetailUser($model->emp_id);
+$Author = $MasuserModel->GetDetailUser($model['emp_id']);
 
 $checkbody = $CheckBodyModel->Getdetail($service_id);
 if (isset($model['birth'])) {
@@ -55,7 +55,7 @@ if (isset($model['birth'])) {
 <input type="hidden" id="patient_id" value="<?php echo $model['id'] ?>"/>
 <input type="hidden" id="service_id" value="<?php echo $service_id ?>"/>
 <div class="easyui-layout" id="layouts" style=" width: 100%; margin: 0px;">
-    <div title="<?php echo 'คุณ ' . $model->name . " " . $model->lname . " | ลูกค้า " . Gradcustomer::model()->find($model['type'])['grad'] . ' | อายุ ' . $Age . ' ปี' ?>" 
+    <div title="<?php echo 'คุณ ' . $model['name'] . " " . $model['lname'] . " | ลูกค้า " . Gradcustomer::model()->find($model['type'])['grad'] . ' | อายุ ' . $Age . ' ปี' ?>" 
          data-options="region:'north'" 
          style="height:110px; padding: 0px; padding-bottom: 0px; overflow: hidden;">
         <div class="row" style=" margin: 0px;">
@@ -90,7 +90,7 @@ if (isset($model['birth'])) {
                 </center>
             </div>
             <div class="col-md-10 col-lg-10 col-sm-8" id="font-18" >
-                คุณ <font id="font-16"><?php echo $model->name . " " . $model->lname ?></font><br/>
+                คุณ <font id="font-16"><?php echo $model['name'] . " " . $model['lname'] ?></font><br/>
                 อุณหภมูมิร่างกาย <p class="label" id="font-16"><?php echo $checkbody['btemp'] ?></p> องศา
                 อัตราการเต้นชองชีพจร <p class="label" id="font-16"><?php echo $checkbody['pr'] ?></p> ครั้ง / นาที
                 อัตราการหายใจ <p class="label" id="font-16"><?php echo $checkbody['rr'] ?></p> ครั้ง / นาที
@@ -174,11 +174,14 @@ if (isset($model['birth'])) {
                 <div style="margin: 0px; background: none;" id="font-18">
                     ID
                     <p class="label" id="font-16">
-                        <?php echo $model['pid'] ?>
+                        <?php
+                        echo $model['pid'];
+                        $oid = $model['oid'];
+                        ?>
                     </p>
                     ชื่อ - สกุล 
                     <p class="label" id="font-16">
-                        <?php echo Pername::model()->find("oid = '$model->oid'")['pername'] ?>
+                        <?php echo Pername::model()->find("oid = '$oid'")['pername'] ?>
                         <?php echo $model['name'] . ' ' . $model['lname'] ?></p><br/>
                     เลขบัตรประชาชน <p class="label" id="font-16"><?php echo $model['card'] ?></p>
                     เพศ <p class="label" id="font-16"><?php
@@ -276,7 +279,7 @@ if (isset($model['birth'])) {
                         <?php } else { ?>
                             <center>
                                 <p style="color: #ff0000;">ยังไม่ได้บันทึกข้อมูลส่วนนี้</p><br/>
-                                <a href="<?php echo Yii::app()->createUrl('patientcontact/create', array("id" => $model->id)) ?>">
+                                <a href="<?php echo Yii::app()->createUrl('patientcontact/create', array("id" => $model['id'])) ?>">
                                     <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มข้อมูลติดต่อ</button>
                                 </a>
                             </center>
@@ -433,7 +436,7 @@ if (isset($model['birth'])) {
                     <button class="btn btn-default btn-sm" onclick="calculatorDrug()">คำนวณ</button>
                 </div>
             </div>
-            
+
 
         </div>
         <div class="col-md-5 col-lg-5">
@@ -442,7 +445,7 @@ if (isset($model['birth'])) {
             <div id="detaildrug"></div>
         </div>
     </div>
-<hr/>
+    <hr/>
     <div class="row" style=" margin: 0px; margin-top: 10px;">
         <div class="col-md-5 col-lg-5" style=" text-align: right;">สต๊อก: </div>
         <div class="col-md-7 col-lg-7">

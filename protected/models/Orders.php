@@ -169,8 +169,15 @@ class Orders extends CActiveRecord {
             $wherebranch = " AND o.branch = '$branch' ";
         }
 
-        $sql = "SELECT o.*,SUM(l.number) AS total,SUM(l.pricetotal) AS pricetotal
+        $sql = "SELECT o.*,
+                    SUM(l.number) AS total,
+                    SUM(l.pricetotal) AS pricetotal,
+                    e.name,
+                    e.lname,
+                    b.branchname
                 FROM orders o INNER JOIN listorder l ON o.order_id = l.order_id
+                INNER JOIN employee e ON o.author = e.id
+                INNER JOIN branch b ON o.branch = b.id
                 WHERE o.create_date BETWEEN '$datestart' AND '$dateend' AND $WAREORDER $wherebranch $WARESTATUS 
                 GROUP BY o.order_id ";
         return Yii::app()->db->createCommand($sql)->queryAll();
@@ -178,7 +185,7 @@ class Orders extends CActiveRecord {
 
     function SetstatusOrder($status = null) {
         if ($status == '0') {
-            $statusVal = "รอการยืนยันจากปลายทาง";
+            $statusVal = "รอยืนยัน";
         } else if ($status == '1') {
             $statusVal = "อยู่ระหว่างการจัดส่ง";
         } else if ($status == '2') {

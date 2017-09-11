@@ -1,13 +1,9 @@
 <?php
-
-$this->breadcrumbs=array(
-	//''=>array('index'),
-	'รายงานต้นทุน กำไร',
+$this->breadcrumbs = array(
+    //''=>array('index'),
+    'รายงานรายรับ  - รายจ่าย(สาขา)',
 );
-
-
 $yearnow = date("Y");
-$branchlist = Branch::model()->findAll("active = '1'");
 ?>
 <div class="row">
     <div class="col-lg-3">
@@ -21,7 +17,6 @@ $branchlist = Branch::model()->findAll("active = '1'");
     <div class="col-lg-3">
         เลือกสาขา
         <select id="branch" class="form-control">
-            <option value="">== ทั้งหมด ==</option>
             <?php foreach ($branchlist as $rs): ?>
                 <option value="<?php echo $rs['id'] ?>"><?php echo $rs['branchname'] ?></option>
             <?php endforeach; ?>
@@ -32,17 +27,34 @@ $branchlist = Branch::model()->findAll("active = '1'");
     </div>
 </div>
 
-<div id="showreport"></div>
-
+<div id="boxreport" class="well" style=" margin-top: 10px; background: #ffffff; margin-bottom: 0px;">
+    <div id="showreport"></div>
+</div>
 <script type="text/javascript">
     getreport();
     function getreport() {
         var url = "<?php echo Yii::app()->createUrl('report/datareportcostprofit') ?>";
         var year = $("#year").val();
         var branch = $("#branch").val();
-        var data = {year: year,branch: branch};
+        var data = {year: year, branch: branch};
         $.post(url, data, function (datas) {
             $("#showreport").html(datas);
         });
     }
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 163);
+        $("#boxreport").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
+
 </script>

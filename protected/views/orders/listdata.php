@@ -36,7 +36,7 @@ $Thaibath = new Thaibaht();
                 <td><?php echo $rs['product_nameclinic'] ?></td>
                 <td style=" text-align: center;"><?php echo number_format($rs['number']) ?></td>
                 <td style=" text-align: center;"><?php echo $rs['unitname'] ?></td>
-                <td style=" text-align: right;"><?php echo number_format($rs['costs'],2) ?></td>
+                <td style=" text-align: right;"><?php echo number_format($rs['costs'], 2) ?></td>
                 <td style=" text-align: right;"><?php echo number_format($sumrow, 2) ?></td>
                 <td style=" text-align: center;">
                     <a href="javascript:deleteproduct('<?php echo $rs['id'] ?>')"><i class="fa fa-remove"></i></a></td>
@@ -55,16 +55,16 @@ $Thaibath = new Thaibaht();
             <td></td>
         </tr>
         <tr>
-            <td>ส่วนลดคิดเป็นเงิน</td>
-            <td style=" text-align: right;"><?php echo number_format($sumdistcount,2) ?></td>
+            <td>ส่วนลด <?php echo $orders['distcount'] ?> %</td>
+            <td style=" text-align: right;"><?php echo number_format($orders['distcountprice'], 2) ?></td>
             <td></td>
         </tr>
         <tr>
             <td>ราคาหลังหักส่วนลด</td>
             <td style=" text-align: right;">
                 <?php
-                $priceresult = ($sumproduct - $sumdistcount);
-                echo number_format($priceresult,2);
+                $priceresult = ($sumproduct - $orders['distcountprice']);
+                echo number_format($priceresult, 2);
                 ?>
             </td>
             <td></td>
@@ -83,19 +83,19 @@ $Thaibath = new Thaibaht();
         <tr>
             <td colspan="5" style=" text-align: center;">
                 <?php
-                $pricetotal = number_format(($priceresult + $tax),2);
+                $pricetotal = number_format(($priceresult + $tax), 2);
                 $priceCovert = str_replace(",", "", $pricetotal);
-                if(substr($priceCovert,-2) == "00"){
-                    $priceCoverts  = str_replace(".00", "", $priceCovert);
+                if (substr($priceCovert, -2) == "00") {
+                    $priceCoverts = str_replace(".00", "", $priceCovert);
                 } else {
                     $priceCoverts = $priceCovert;
                 }
-                
-                echo "(".$Thaibath->convert($priceCoverts).")";
+
+                echo "(" . $Thaibath->convert($priceCoverts) . ")";
                 ?>
             </td>
             <td>รวมเงินทั้งสิ้น</td>
-            <td style=" text-align: right;"><?php echo number_format(sprintf('%.2f',$priceCovert),2); ?></td>
+            <td style=" text-align: right;"><?php echo number_format(sprintf('%.2f', $priceCovert), 2); ?></td>
             <td></td>
         </tr>
     </tfoot>

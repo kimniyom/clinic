@@ -30,7 +30,9 @@ class ReportController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'reportinputproductmonth', 'reportcostprofit', 'datareportcostprofit','reportproductsalable','dataproductsalable','reportsellproduct','datareportsellproduct','formreportprofitcenter','reportprofitcenter'),
+                'actions' => array('create', 'reportinputproductmonth', 'reportcostprofit',
+                    'datareportcostprofit', 'reportproductsalable', 'dataproductsalable', 'reportsellproduct',
+                    'datareportsellproduct', 'formreportprofitcenter', 'reportprofitcenter', 'reportbranch'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -64,49 +66,58 @@ class ReportController extends Controller {
     }
 
     public function actionReportcostprofit() {
-        $this->render('reportcostprofit');
+        $branch = Yii::app()->session['branch'];
+        if ($branch == "99") {
+            $data['branchlist'] = Branch::model()->findAll();
+        } else {
+            $data['branchlist'] = Branch::model()->findAll("id=:id", array(":id" => $branch));
+        }
+        $this->render('reportcostprofit', $data);
     }
 
     public function actionDatareportcostprofit() {
         $year = Yii::app()->request->getPost('year');
         $branch = Yii::app()->request->getPost('branch');
         $ReportModel = new Report();
+
         $data['Cost'] = $ReportModel->Getcostproduct($year, $branch);
         $data['Sell'] = $ReportModel->Gettotalsell($year, $branch);
 
+        $data['income'] = $ReportModel->GetIncome($year, $branch); //รายได้
+        $data['outcome'] = $ReportModel->GetOutcome($year, $branch); //รายจ่าย
         //ต้นทุน กำไรรายไตรมาส
-        $data['costperiod1'] = $ReportModel->GetcostproductPeriod($year, $branch, 1)['pricrtotal'];
-        $data['costperiod2'] = $ReportModel->GetcostproductPeriod($year, $branch, 2)['pricrtotal'];
-        $data['costperiod3'] = $ReportModel->GetcostproductPeriod($year, $branch, 3)['pricrtotal'];
-        $data['costperiod4'] = $ReportModel->GetcostproductPeriod($year, $branch, 4)['pricrtotal'];
-
-        $data['sellperiod1'] = $ReportModel->GettotalsellPeriod($year, $branch, 1)['totalprice'];
-        $data['sellperiod2'] = $ReportModel->GettotalsellPeriod($year, $branch, 2)['totalprice'];
-        $data['sellperiod3'] = $ReportModel->GettotalsellPeriod($year, $branch, 3)['totalprice'];
-        $data['sellperiod4'] = $ReportModel->GettotalsellPeriod($year, $branch, 4)['totalprice'];
-
+        $data['incomeperiod1'] = $ReportModel->GetIncomePeriod($year, $branch, 1);
+        $data['incomeperiod2'] = $ReportModel->GetIncomePeriod($year, $branch, 2);
+        $data['incomeperiod3'] = $ReportModel->GetIncomePeriod($year, $branch, 3);
+        $data['incomeperiod4'] = $ReportModel->GetIncomePeriod($year, $branch, 4);
+        
+        $data['outcomeperiod1'] = $ReportModel->GetOutcomePeriod($year, $branch, 1);
+        $data['outcomeperiod2'] = $ReportModel->GetOutcomePeriod($year, $branch, 2);
+        $data['outcomeperiod3'] = $ReportModel->GetOutcomePeriod($year, $branch, 3);
+        $data['outcomeperiod4'] = $ReportModel->GetOutcomePeriod($year, $branch, 4);
         //คิดกำไร
-        $profit1 = ($data['sellperiod1'] - $data['costperiod1']);
-        $profit2 = ($data['sellperiod2'] - $data['costperiod2']);
-        $profit3 = ($data['sellperiod3'] - $data['costperiod3']);
-        $profit4 = ($data['sellperiod4'] - $data['costperiod4']);
-        if ($profit1 < 0)
-            $data['profit1'] = 0;
-        else
-            $data['profit1'] = $profit1;
-        if ($profit2 < 0)
-            $data['profit2'] = 0;
-        else
-            $data['profit2'] = $profit2;
-        if ($profit3 < 0)
-            $data['profit3'] = 0;
-        else
-            $data['profit3'] = $profit3;
-        if ($profit4 < 0)
-            $data['profit4'] = 0;
-        else
-            $data['profit4'] = $profit4;
-
+        /*
+          $profit1 = ($data['sellperiod1'] - $data['incomeperiod1']);
+          $profit2 = ($data['sellperiod2'] - $data['incomeperiod2']);
+          $profit3 = ($data['sellperiod3'] - $data['incomeperiod3']);
+          $profit4 = ($data['sellperiod4'] - $data['incomeperiod4']);
+          if ($profit1 < 0)
+          $data['profit1'] = 0;
+          else
+          $data['profit1'] = $profit1;
+          if ($profit2 < 0)
+          $data['profit2'] = 0;
+          else
+          $data['profit2'] = $profit2;
+          if ($profit3 < 0)
+          $data['profit3'] = 0;
+          else
+          $data['profit3'] = $profit3;
+          if ($profit4 < 0)
+          $data['profit4'] = 0;
+          else
+          $data['profit4'] = $profit4;
+         */
         //กำไรขาดทุนรายเดือน
         $CostMonth = $ReportModel->GetcostproductMonth($year, $branch);
         $SellMonth = $ReportModel->GettotalsellMonth($year, $branch);
@@ -121,7 +132,7 @@ class ReportController extends Controller {
         endforeach;
 
         foreach ($ProfitMonth as $pf):
-            if($pf['profit'] < 0){
+            if ($pf['profit'] < 0) {
                 $profit = 0;
             } else {
                 $profit = $pf['profit'];
@@ -137,19 +148,19 @@ class ReportController extends Controller {
         $this->renderPartial('datareportcostprofit', $data);
     }
 
-     public function actionReportproductsalable() {
+    public function actionReportproductsalable() {
         $this->render('reportproductsalable');
     }
 
-    public function actionDataproductsalable(){
+    public function actionDataproductsalable() {
         $year = Yii::app()->request->getPost('year');
         $branch = Yii::app()->request->getPost('branch');
         $ReportModel = new Report();
         $ProductSalable = $ReportModel->ProductSalable($year, $branch);
         $catArr = array();
         $valAll = array();
-        foreach($ProductSalable as $rs):
-            $catArr[] = "'".$rs['product_name']."'";
+        foreach ($ProductSalable as $rs):
+            $catArr[] = "'" . $rs['product_name'] . "'";
             $valAll[] = $rs['total'];
         endforeach;
 
@@ -157,7 +168,7 @@ class ReportController extends Controller {
         $data['value'] = implode(",", $valAll);
         $data['year'] = $year;
         $data['product'] = $ProductSalable;
-        $this->renderPartial('dataproductsalable',$data);
+        $this->renderPartial('dataproductsalable', $data);
     }
 
     public function actionReportsellproduct() {
@@ -170,18 +181,18 @@ class ReportController extends Controller {
         $dateend = Yii::app()->request->getPost('dateend');
         $Model = new Report();
         $data['sell'] = $Model->ReportSellproduct($datestart, $dateend, $branch);
-        $this->renderPartial('datareportsellproduct',$data);
+        $this->renderPartial('datareportsellproduct', $data);
     }
 
-    public function actionFormreportprofitcenter(){
+    public function actionFormreportprofitcenter() {
         $this->render('formreportprofitcenter');
     }
 
-    public function actionReportprofitcenter(){
+    public function actionReportprofitcenter() {
         $year = Yii::app()->request->getPost('year');
         $Model = new ReportStoreCenter();
         $data['year'] = $year;
-        $data['head'] = "รายงาน กำไร ขาดทุน ปี พ.ศ. " .($year + 543);
+        $data['head'] = "รายงาน กำไร ขาดทุน ปี พ.ศ. " . ($year + 543);
         $data['income'] = $Model->GetSumIncome($year)['total'];
         $data['outcome'] = $Model->GetSumOutcome($year)['total'];
         $Chart = $Model->GetchartProfit($year);
@@ -197,7 +208,17 @@ class ReportController extends Controller {
 
         $data['datas'] = $Chart;
 
-        $this->renderPartial('reportprofitcenter',$data);
+        $this->renderPartial('reportprofitcenter', $data);
+    }
+
+    public function actionReportbranch() {
+        $branch = Yii::app()->session['branch'];
+        if ($branch == "99") {
+            $data['branchlist'] = Branch::model()->findAll();
+        } else {
+            $data['branchlist'] = Branch::model()->findAll("id=:id", array(":id" => $branch));
+        }
+        $this->render('reportbranch', $data);
     }
 
 }

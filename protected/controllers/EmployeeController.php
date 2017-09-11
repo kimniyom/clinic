@@ -11,13 +11,14 @@ class EmployeeController extends Controller {
     /**
      * @return array action filters
      */
+     /*
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
         );
     }
-
+*/
     /**
      * Specifies the access control rules.
      * This method is used by the 'accessControl' filter.
@@ -44,7 +45,7 @@ class EmployeeController extends Controller {
       ),
       );
       }
-     * 
+     *
      */
 
     /**
@@ -136,7 +137,7 @@ class EmployeeController extends Controller {
     public function actionDelete() {
         $id = Yii::app()->request->getPost('id');
         $images = Employee::model()->find("id = '$id' ")['images'];
-        if (!$images) {
+        if ($images) {
             unlink("./uploads/profile/" . $images);
         }
         $this->loadModel($id)->delete();
@@ -145,7 +146,7 @@ class EmployeeController extends Controller {
         /*
           if (!isset($_GET['ajax']))
           $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-         * 
+         *
          */
     }
 
@@ -290,10 +291,10 @@ class EmployeeController extends Controller {
         } else {
             $BranchList = Branch::model()->findAll("id = '$branch'");
         }
-        
+
         $data['month'] = Month::model()->findAll();
         $data['BranchList'] = $BranchList;
-        
+
         $this->render('commission', $data);
     }
 

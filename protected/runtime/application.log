@@ -10045,3 +10045,859 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=orders/view&order_id=0000000001
 HTTP_REFERER=http://localhost/clinic/index.php?r=orders/create&branch=1
 ---
+2017/09/11 09:40:12 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('Masuser/delete')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=Masuser/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2017/09/11 09:40:34 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('Masuser/delete')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=Masuser/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2017/09/11 09:47:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('patient/delete')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=patient/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=patient/index
+---
+2017/09/11 09:47:29 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('patient/delete')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=patient/delete
+---
+2017/09/11 09:48:33 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('patient/delete')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=patient/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=patient/index
+---
+2017/09/11 09:48:40 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:1118
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#9 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('patient/delete')
+#10 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=patient/delete
+---
+2017/09/11 09:50:59 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('patient/admin')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=patient/admin
+HTTP_REFERER=http://localhost/clinic/index.php?r=patient/index
+---
+2017/09/11 09:51:51 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('admin')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('patient/admin')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=patient/admin
+HTTP_REFERER=http://localhost/clinic/index.php?r=patient/index
+---
+2017/09/11 09:52:54 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('Masuser/delete')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=Masuser/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2017/09/11 09:54:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in D:\xampp\htdocs\clinic\protected\controllers\EmployeeController.php:203
+Stack trace:
+#0 D:\xampp\htdocs\clinic\protected\controllers\EmployeeController.php(76): EmployeeController->loadModel('4')
+#1 [internal function]: EmployeeController->actionView('4')
+#2 D:\xampp\htdocs\clinic\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(EmployeeController), Array)
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeeController), Object(ReflectionMethod), Array)
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('view')
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('employee/view')
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=employee/view&id=4
+HTTP_REFERER=http://localhost/clinic/index.php?r=employee/view&id=4
+---
+2017/09/11 09:59:20 [error] [php] unlink(./uploads/profile/): Permission denied (D:\xampp\htdocs\clinic\protected\controllers\EmployeeController.php:140)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): EmployeeController->runAction()
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): EmployeeController->filterPostOnly()
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): EmployeeController->filterAccessControl()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): EmployeeController->runActionWithFilters()
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): EmployeeController->run()
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=employee/delete
+in D:\xampp\htdocs\clinic\protected\controllers\EmployeeController.php (140)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 09:59:34 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:1118
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#9 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('employee/delete')
+#10 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=employee/delete
+---
+2017/09/11 10:00:08 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:1118
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#9 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('employee/delete')
+#10 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=employee/delete
+---
+2017/09/11 10:00:36 [error] [php] unlink(./uploads/profile/): Permission denied (D:\xampp\htdocs\clinic\protected\controllers\EmployeeController.php:141)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(286): EmployeeController->runAction()
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(265): EmployeeController->runActionWithFilters()
+#3 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): EmployeeController->run()
+#4 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=employee/delete
+in D:\xampp\htdocs\clinic\protected\controllers\EmployeeController.php (141)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 10:00:48 [error] [php] unlink(./uploads/profile/): Permission denied (D:\xampp\htdocs\clinic\protected\controllers\EmployeeController.php:141)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(286): EmployeeController->runAction()
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(265): EmployeeController->runActionWithFilters()
+#3 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): EmployeeController->run()
+#4 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=employee/delete
+in D:\xampp\htdocs\clinic\protected\controllers\EmployeeController.php (141)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 10:03:36 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitemname/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitemname/index
+---
+2017/09/11 10:03:49 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitemname/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitemname/index
+---
+2017/09/11 10:03:56 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitemname/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitemname/index
+---
+2017/09/11 10:05:07 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitemname/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitemname/index
+---
+2017/09/11 10:05:40 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1116): CFilterChain->run()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitemname/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitemname/index
+---
+2017/09/11 10:06:27 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in D:\xampp\htdocs\clinic\framework\web\CController.php:336
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('delete')
+#4 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#5 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#7 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitemname/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitemname/index
+---
+2017/09/11 10:08:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "unitdelete/delete".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('unitdelete/dele...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=unitdelete/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=unit/index
+---
+2017/09/11 10:09:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "unitdelete/delete".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('unitdelete/dele...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=unitdelete/delete
+HTTP_REFERER=http://localhost/clinic/index.php?r=unit/index
+---
+2017/09/11 11:10:50 [error] [php] Illegal string offset 'id' (D:\xampp\htdocs\clinic\protected\views\report\reportproductsalable.php:28)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): ReportController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): ReportController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(141): ReportController->render()
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionReportproductsalable()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportproductsalable
+in D:\xampp\htdocs\clinic\protected\views\report\reportproductsalable.php (28)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (141)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 11:11:57 [error] [php] Illegal string offset 'id' (D:\xampp\htdocs\clinic\protected\views\report\reportproductsalable.php:29)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): ReportController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): ReportController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(141): ReportController->render()
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionReportproductsalable()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportproductsalable
+in D:\xampp\htdocs\clinic\protected\views\report\reportproductsalable.php (29)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (141)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 11:11:59 [error] [php] Illegal string offset 'id' (D:\xampp\htdocs\clinic\protected\views\report\reportproductsalable.php:29)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): ReportController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): ReportController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(141): ReportController->render()
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionReportproductsalable()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/reportproductsalable
+in D:\xampp\htdocs\clinic\protected\views\report\reportproductsalable.php (29)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (141)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 11:53:09 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php:7)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): DoctorController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): DoctorController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php(103): DoctorController->render()
+#3 unknown(0): DoctorController->actionPatientview()
+#4 D:\xampp\htdocs\clinic\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): DoctorController->runAction()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): DoctorController->filterAccessControl()
+#11 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#13 D:\xampp\htdocs\clinic\framework\web\CController.php(265): DoctorController->runActionWithFilters()
+#14 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): DoctorController->run()
+#15 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=doctor/patientview&id=7&appoint=1
+in D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php (7)
+in D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php (103)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 11:54:28 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php:58)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): DoctorController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): DoctorController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php(103): DoctorController->render()
+#3 unknown(0): DoctorController->actionPatientview()
+#4 D:\xampp\htdocs\clinic\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): DoctorController->runAction()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): DoctorController->filterAccessControl()
+#11 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#13 D:\xampp\htdocs\clinic\framework\web\CController.php(265): DoctorController->runActionWithFilters()
+#14 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): DoctorController->run()
+#15 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=doctor/patientview&id=7&appoint=1
+in D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php (58)
+in D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php (103)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 11:56:11 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php:58)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): DoctorController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): DoctorController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php(103): DoctorController->render()
+#3 unknown(0): DoctorController->actionPatientview()
+#4 D:\xampp\htdocs\clinic\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): DoctorController->runAction()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): DoctorController->filterAccessControl()
+#11 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#13 D:\xampp\htdocs\clinic\framework\web\CController.php(265): DoctorController->runActionWithFilters()
+#14 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): DoctorController->run()
+#15 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=doctor/patientview&id=7&appoint=1
+in D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php (58)
+in D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php (103)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 11:56:38 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' LIMIT 1' at line 1. The SQL statement executed was: SELECT * FROM `pername` `t` WHERE oid = ' LIMIT 1.
+in D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php (184)
+in D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php (103)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 11:56:38 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' LIMIT 1' at line 1. The SQL statement executed was: SELECT * FROM `pername` `t` WHERE oid = ' LIMIT 1' in D:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 D:\xampp\htdocs\clinic\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 D:\xampp\htdocs\clinic\framework\db\ar\CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php(184): CActiveRecord->find('oid = '')
+#4 D:\xampp\htdocs\clinic\framework\web\CBaseController.php(126): require('D:\\xampp\\htdocs...')
+#5 D:\xampp\htdocs\clinic\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\xampp\\htdocs...', Array, true)
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(869): CBaseController->renderFile('D:\\xampp\\htdocs...', Array, true)
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(782): CController->renderPartial('patientview', Array, true)
+#8 D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php(103): CController->render('patientview', Array)
+#9 [internal function]: DoctorController->actionPatientview('7', NULL)
+#10 D:\xampp\htdocs\clinic\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(DoctorController), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(DoctorController), Object(ReflectionMethod), Array)
+#12 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#19 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('patientview')
+#21 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('doctor/patientv...')
+#22 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/clinic/index.php?r=doctor/patientview&id=7&appoint=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=appoint/carlendar
+---
+2017/09/11 11:57:05 [error] [php] Trying to get property of non-object (D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php:282)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): DoctorController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): DoctorController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php(103): DoctorController->render()
+#3 unknown(0): DoctorController->actionPatientview()
+#4 D:\xampp\htdocs\clinic\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): DoctorController->runAction()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): DoctorController->filterAccessControl()
+#11 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#13 D:\xampp\htdocs\clinic\framework\web\CController.php(265): DoctorController->runActionWithFilters()
+#14 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): DoctorController->run()
+#15 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=doctor/patientview&id=7&appoint=1
+in D:\xampp\htdocs\clinic\protected\views\doctor\patientview.php (282)
+in D:\xampp\htdocs\clinic\protected\controllers\DoctorController.php (103)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:01:22 [error] [php] Undefined variable: Cost (D:\xampp\htdocs\clinic\protected\views\report\datareportcostprofit.php:6)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): ReportController->renderFile()
+#1 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(146): ReportController->renderPartial()
+#2 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionDatareportcostprofit()
+#3 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+in D:\xampp\htdocs\clinic\protected\views\report\datareportcostprofit.php (6)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (146)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:01:46 [error] [php] Undefined variable: Cost (D:\xampp\htdocs\clinic\protected\views\report\datareportcostprofit.php:18)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): ReportController->renderFile()
+#1 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(146): ReportController->renderPartial()
+#2 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionDatareportcostprofit()
+#3 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+in D:\xampp\htdocs\clinic\protected\views\report\datareportcostprofit.php (18)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (146)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:01:55 [error] [php] Undefined variable: Cost (D:\xampp\htdocs\clinic\protected\views\report\datareportcostprofit.php:18)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): ReportController->renderFile()
+#1 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(146): ReportController->renderPartial()
+#2 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionDatareportcostprofit()
+#3 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+in D:\xampp\htdocs\clinic\protected\views\report\datareportcostprofit.php (18)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (146)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:23:21 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'o.totalfinal' in 'field list'. The SQL statement executed was: SELECT SUM(Q.total) AS income
+                    FROM(
+                                SELECT SUM(o.totalfinal) AS total
+		FROM logsell 
+		WHERE   branch = '1' AND LEFT(date_sell,4) = '2017'
+
+                                    UNION
+
+                                    SELECT SUM(price_total) AS total
+                                    FROM service 
+                                    WHERE  branch = '1' AND LEFT(service_date,4) = '2017'
+                    ) Q.
+in D:\xampp\htdocs\clinic\protected\models\Report.php (261)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (86)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:23:21 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'o.totalfinal' in 'field list'. The SQL statement executed was: SELECT SUM(Q.total) AS income
+                    FROM(
+                                SELECT SUM(o.totalfinal) AS total
+		FROM logsell 
+		WHERE   branch = '1' AND LEFT(date_sell,4) = '2017'
+
+                                    UNION
+
+                                    SELECT SUM(price_total) AS total
+                                    FROM service 
+                                    WHERE  branch = '1' AND LEFT(service_date,4) = '2017'
+                    ) Q' in D:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 D:\xampp\htdocs\clinic\protected\models\Report.php(261): CDbCommand->queryRow()
+#2 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(86): Report->GetIncome('2017', '1')
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionDatareportcostprofit()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('datareportcostp...')
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportcostprofit
+---
+2017/09/11 16:23:26 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'o.totalfinal' in 'field list'. The SQL statement executed was: SELECT SUM(Q.total) AS income
+                    FROM(
+                                SELECT SUM(o.totalfinal) AS total
+		FROM logsell 
+		WHERE   branch = '2' AND LEFT(date_sell,4) = '2017'
+
+                                    UNION
+
+                                    SELECT SUM(price_total) AS total
+                                    FROM service 
+                                    WHERE  branch = '2' AND LEFT(service_date,4) = '2017'
+                    ) Q.
+in D:\xampp\htdocs\clinic\protected\models\Report.php (261)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (86)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:23:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'o.totalfinal' in 'field list'. The SQL statement executed was: SELECT SUM(Q.total) AS income
+                    FROM(
+                                SELECT SUM(o.totalfinal) AS total
+		FROM logsell 
+		WHERE   branch = '2' AND LEFT(date_sell,4) = '2017'
+
+                                    UNION
+
+                                    SELECT SUM(price_total) AS total
+                                    FROM service 
+                                    WHERE  branch = '2' AND LEFT(service_date,4) = '2017'
+                    ) Q' in D:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 D:\xampp\htdocs\clinic\protected\models\Report.php(261): CDbCommand->queryRow()
+#2 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(86): Report->GetIncome('2017', '2')
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionDatareportcostprofit()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('datareportcostp...')
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportcostprofit
+---
+2017/09/11 16:23:27 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'o.totalfinal' in 'field list'. The SQL statement executed was: SELECT SUM(Q.total) AS income
+                    FROM(
+                                SELECT SUM(o.totalfinal) AS total
+		FROM logsell 
+		WHERE   1=1  AND LEFT(date_sell,4) = '2017'
+
+                                    UNION
+
+                                    SELECT SUM(price_total) AS total
+                                    FROM service 
+                                    WHERE  1=1  AND LEFT(service_date,4) = '2017'
+                    ) Q.
+in D:\xampp\htdocs\clinic\protected\models\Report.php (261)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (86)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:23:27 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'o.totalfinal' in 'field list'. The SQL statement executed was: SELECT SUM(Q.total) AS income
+                    FROM(
+                                SELECT SUM(o.totalfinal) AS total
+		FROM logsell 
+		WHERE   1=1  AND LEFT(date_sell,4) = '2017'
+
+                                    UNION
+
+                                    SELECT SUM(price_total) AS total
+                                    FROM service 
+                                    WHERE  1=1  AND LEFT(service_date,4) = '2017'
+                    ) Q' in D:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 D:\xampp\htdocs\clinic\protected\models\Report.php(261): CDbCommand->queryRow()
+#2 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(86): Report->GetIncome('2017', '99')
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionDatareportcostprofit()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('datareportcostp...')
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('report/datarepo...')
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/reportcostprofit
+---
+2017/09/11 16:38:49 [error] [php] Undefined index: costperiod1 (D:\xampp\htdocs\clinic\protected\controllers\ReportController.php:100)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (100)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:38:58 [error] [php] Undefined index: costperiod1 (D:\xampp\htdocs\clinic\protected\controllers\ReportController.php:100)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (100)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/11 16:42:16 [error] [php] Undefined variable: profit1 (D:\xampp\htdocs\clinic\protected\views\report\datareportcostprofit.php:106)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): ReportController->renderFile()
+#1 D:\xampp\htdocs\clinic\protected\controllers\ReportController.php(149): ReportController->renderPartial()
+#2 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ReportController->actionDatareportcostprofit()
+#3 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): ReportController->run()
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=report/datareportcostprofit
+in D:\xampp\htdocs\clinic\protected\views\report\datareportcostprofit.php (106)
+in D:\xampp\htdocs\clinic\protected\controllers\ReportController.php (149)
+in D:\xampp\htdocs\clinic\index.php (15)

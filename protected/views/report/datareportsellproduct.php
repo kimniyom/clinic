@@ -35,10 +35,6 @@
 </table>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-       $("#sell").dataTable(); 
-    });
-    
     function PrintBill(sellcode) {
         var url = "<?php echo Yii::app()->createUrl('sell/bill') ?>" + "&sell_id=" + sellcode;
         PopupBill(url, sellcode);
@@ -64,5 +60,29 @@
             newWindow.focus();
         }
     }
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var boxsell = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (boxsell - 307);
+        $("#sell").dataTable({
+            //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
+            "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
+            //"iDisplayLength": 50, // กำหนดค่า default ของจำนวน record
+            //"scrollCollapse": true,
+            "paging": false,
+            "bFilter": true, // แสดง search box
+            "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'print'
+            ]
+        });
+    }
+
 </script>
 

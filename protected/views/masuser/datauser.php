@@ -45,7 +45,7 @@ $MasuserModel = new Masuser();
     function deletuser(id) {
         var r = confirm("คุณแน่ใจหรือไม่ ...");
         if (r == true) {
-            var url = "<?php echo Yii::app()->createUrl('Masuser/delete') ?>";
+            var url = "<?php echo Yii::app()->createUrl('masuser/delete') ?>";
             var data = {id: id};
             $.post(url, data, function (success) {
                 window.location.reload();

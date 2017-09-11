@@ -149,14 +149,14 @@
                         <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;border-top: #999999 solid 2px;"><?php echo number_format($sumproduct, 2) ?></td>
                     </tr>
                     <tr style="border-top: #999999 solid 2px;">
-                        <td style="border-bottom: #999999 solid 2px; background: #f4f4f4;" colspan="2">ส่วนลดคิดเป็นเงิน</td>
-                        <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;"><?php echo number_format($sumdistcount, 2) ?></td>
+                        <td style="border-bottom: #999999 solid 2px; background: #f4f4f4;" colspan="2">ส่วนลด <?php echo $order['distcount'] ?> %</td>
+                        <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;"><?php echo number_format($order['distcountprice'], 2) ?></td>
                     </tr>
                     <tr>
                         <td style="border-bottom: #999999 solid 2px; background: #f4f4f4;" colspan="2">ราคาหลังหักส่วนลด</td>
                         <td style=" text-align: right;border-left:#999999 solid 2px; border-bottom: #999999 solid 2px; background: #f4f4f4;">
                             <?php
-                            $priceresult = ($sumproduct - $sumdistcount);
+                            $priceresult = ($sumproduct - $order['distcountprice']);
                             echo number_format($priceresult, 2);
                             ?>
                         </td>

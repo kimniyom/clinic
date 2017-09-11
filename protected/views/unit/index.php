@@ -40,7 +40,7 @@ $this->breadcrumbs = array(
     function Delete(id) {
         var r = confirm("Are you sure ..?");
         if (r == true) {
-            var url = "<?php echo Yii::app()->createUrl('unitdelete/delete') ?>";
+            var url = "<?php echo Yii::app()->createUrl('unit/delete') ?>";
             var data = {id: id};
             $.post(url, data, function (success) {
                 window.location.reload();

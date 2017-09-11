@@ -11,37 +11,7 @@ class CenterStockitemNameController extends Controller {
     /**
      * @return array action filters
      */
-    public function filters() {
-        return array(
-            'accessControl', // perform access control for CRUD operations
-            'postOnly + delete', // we only allow deletion via POST request
-        );
-    }
 
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules() {
-        return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
-                'users' => array('*'),
-            ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'getunit','getunitcut'),
-                'users' => array('@'),
-            ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
-            ),
-            array('deny', // deny all users
-                'users' => array('*'),
-            ),
-        );
-    }
 
     /**
      * Displays a particular model.
@@ -101,12 +71,12 @@ class CenterStockitemNameController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete() {
+      $id = Yii::app()->request->getPost('id');
         $this->loadModel($id)->delete();
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        //if (!isset($_GET['ajax'])) $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 
     /**
@@ -160,7 +130,7 @@ class CenterStockitemNameController extends Controller {
     public function actionGetunit() {
         $itemid = Yii::app()->request->getPost('itemid');
         $sql = "SELECT u.unit,us.unit AS unitcut
-                FROM center_stockitem_name s 
+                FROM center_stockitem_name s
                 INNER JOIN center_stockunit u ON s.unit = u.id
                 INNER JOIN center_stockunit us ON s.unitcut = us.id
                 WHERE s.id = '$itemid'";
@@ -168,7 +138,7 @@ class CenterStockitemNameController extends Controller {
         $json = array("unit" => $result['unit'],"unitcut" => $result['unitcut']);
         echo json_encode($json);
     }
-    
+
     public function actionGetunitcut(){
         $itemid = Yii::app()->request->getPost('itemid');
         $Model = new CenterStockunit();
@@ -176,6 +146,6 @@ class CenterStockitemNameController extends Controller {
         echo $unit;
     }
 
-    
+
 
 }

@@ -30,7 +30,7 @@ class MasuserController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'getrole', 'setbranch', 'deletebranch','profile','getdata'),
+                'actions' => array('create', 'update', 'admin', 'getrole', 'setbranch', 'deletebranch','profile','getdata','delete'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -109,12 +109,12 @@ class MasuserController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete() {
+      $id = Yii::app()->request->getPost('id');
         $this->loadModel($id)->delete();
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        //if (!isset($_GET['ajax']))$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 
     /**
@@ -226,13 +226,13 @@ class MasuserController extends Controller {
             $category[] = "['" . $sm['month_th'] . "'," . $sm['total'] . "]";
         endforeach;
         $categorys = implode(",", $category);
-        
+
         $log = $LogloginModel->Getloglogin($id);
          foreach ($log as $lg):
             //echo $sm['month_th']." ".$sm['total']."<br/>";
             $loglogin[] = "['" . $lg['month_th'] . "'," . $lg['total'] . "]";
         endforeach;
-        
+
         $loglogins = implode(",", $loglogin);
         $Selltotalyearnow = $Model->Selltotalyearnow($id);
         $Selltotallastyear = $Model->Selltotallastyear($id);

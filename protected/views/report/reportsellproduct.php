@@ -4,7 +4,12 @@ $this->breadcrumbs = array(
     'รายงานการขายสินค้า',
 );
 
-$branchlist = Branch::model()->findAll("active = '1'");
+$branch = Yii::app()->session['branch'];
+if (Yii::app()->session['branch'] == "99") {
+    $branchlist = Branch::model()->findAll();
+} else {
+    $branchlist = Branch::model()->findAll("id=:id", array(":id" => $branch));
+}
 ?>
 <div class="row">
     <div class="col-lg-3">
@@ -48,7 +53,6 @@ $branchlist = Branch::model()->findAll("active = '1'");
     <div class="col-lg-3">
         เลือกสาขา
         <select id="branch" class="form-control">
-            <option value="">== ทั้งหมด ==</option>
             <?php foreach ($branchlist as $rs): ?>
                 <option value="<?php echo $rs['id'] ?>"><?php echo $rs['branchname'] ?></option>
             <?php endforeach; ?>

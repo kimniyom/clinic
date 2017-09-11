@@ -6,10 +6,6 @@ $this->breadcrumbs=array(
 	'Positions',
 );
 
-$this->menu=array(
-	array('label'=>'Create Position', 'url'=>array('create')),
-	array('label'=>'Manage Position', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Positions</h1>
@@ -31,9 +27,22 @@ $this->menu=array(
             <td><?php echo $rs['position'] ?></td>
             <td style=" text-align: center;">
                 <a href="<?php echo Yii::app()->createUrl('position/update',array('id' => $rs['id']))?>"><i class="fa fa-pencil"></i></a>
-                <a href=""><i class="fa fa-trash-o"></i></a>
+                <a href="javascript:deleteposition('<?php echo $rs['id'] ?>')"><i class="fa fa-trash-o"></i></a>
             </td>
         </tr>
         <?php endforeach;?>
     </tbody>
 </table>
+
+<script type="text/javascript">
+    function deleteposition(id) {
+        var r = confirm("Are you sure");
+        if (r == true) {
+            var url = "<?php echo Yii::app()->createUrl('position/delete') ?>";
+            var data = {id: id};
+            $.post(url, data, function (datas) {
+                window.location.reload();
+            });
+        }
+    }
+</script>
