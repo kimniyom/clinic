@@ -2,22 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/store/index.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/update.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/CenterStockitemNameController.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/create.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/_form.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/controllers/CenterStockitemController.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/models/CenterStockitem.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitem/index.php</file>
-            <file>file:/C:/xampp/htdocs/clinic/protected/views/centerStockitemName/_form.php</file>
-        </group>
         <group name="yii">
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/DoctorController.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ServiceController.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/service/bill.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/doctor/patientviewhistory.php</file>
+        </group>
+        <group>
+            <file>file:/D:/xampp/htdocs/clinic/protected/controllers/ReportController.php</file>
+            <file>file:/D:/xampp/htdocs/clinic/protected/views/report/reportcostprofit.php</file>
         </group>
     </open-files>
 </project-private>
