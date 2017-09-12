@@ -32,7 +32,7 @@ class SellController extends Controller {
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array('index', 'Detailservice', 'test',
                     'result', 'loadorder', 'sell', 'calculator', 'bill',
-                    'confirmorder', 'logsell', 'patient', 'cutstock','checkstock','deleteitemsinorder'
+                    'confirmorder', 'logsell', 'patient', 'cutstock', 'checkstock', 'deleteitemsinorder'
                 ),
                 'users' => array('@'),
             ),
@@ -68,7 +68,7 @@ class SellController extends Controller {
         $number = Yii::app()->request->getPost('number');
 
         $columns = array(
-            "itemcode" => $itemcode,
+            "itemcode" => $itemcode, 
             "product_id" => $itemcode,
             "card" => $card,
             "sell_id" => $sellcode,
@@ -82,9 +82,9 @@ class SellController extends Controller {
 
         //ตักสต๊อก
         /*
-        $stock = array("status" => "1", "flag" => "E");
-        Yii::app()->db->createCommand()
-                ->update("items", $stock, "itemcode = '$itemcode'");
+          $stock = array("status" => "1", "flag" => "E");
+          Yii::app()->db->createCommand()
+          ->update("items", $stock, "itemcode = '$itemcode'");
          * 
          */
     }
@@ -117,7 +117,7 @@ class SellController extends Controller {
     }
 
     public function actionBill($sell_id) {
-        $Model = new sell();
+        $Model = new Sell();
         //$sell_id = Yii::app()->request->getPost('sell_id');
         $data['order'] = $Model->Getlistorder($sell_id);
         $data['detail'] = $Model->Detailorder($sell_id);
@@ -126,25 +126,25 @@ class SellController extends Controller {
     }
 
     public function actionConfirmorder($sell_id = null) {
-        $Model = new sell();
+        $Model = new Sell();
         $order = $Model->Getlistorder($sell_id);
         foreach ($order as $rs):
             $product_id = $rs['product_id'];
             $number = $rs['total'];
             $this->actionCutstock($product_id, $number);
             /*
-            $itemcode = $rs['itemcode'];
-            $columns = array("status" => "1");
-            Yii::app()->db->createCommand()
-                    ->update("items", $columns, "itemcode = '$itemcode' ");
+              $itemcode = $rs['itemcode'];
+              $columns = array("status" => "1");
+              Yii::app()->db->createCommand()
+              ->update("items", $columns, "itemcode = '$itemcode' ");
              * 
              */
         endforeach;
-        
+
         /*
-        $confirm = array("confirm" => '1');
-        Yii::app()->db->createCommand()
-                ->update("sell", $confirm, "sell_id = '$sell_id' ");
+          $confirm = array("confirm" => '1');
+          Yii::app()->db->createCommand()
+          ->update("sell", $confirm, "sell_id = '$sell_id' ");
          * 
          */
     }
@@ -246,19 +246,19 @@ class SellController extends Controller {
 
         endforeach;
     }
-    
-    public function actionCheckstock(){
+
+    public function actionCheckstock() {
         $product_id = Yii::app()->request->getPost('product_id');
         $branch = Yii::app()->request->getPost('branch');
         $sql = "SELECT IFNULL(SUM(p.total),0) AS total
                 FROM clinic_storeproduct p 
                 WHERE p.product_id = '$product_id' AND p.branch = '$branch' AND p.flag ='0'";
-        
+
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         echo $rs['total'];
     }
-    
-    public function actionDeleteitemsinorder(){
+
+    public function actionDeleteitemsinorder() {
         $id = Yii::app()->request->getPost('id');
         Yii::app()->db->createCommand()
                 ->delete("sell", "id = '$id' ");

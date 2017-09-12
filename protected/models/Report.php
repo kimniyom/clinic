@@ -365,6 +365,7 @@ class Report {
                         GROUP BY SUBSTR(s.service_date,6,2) 
                  ) Q ON m.id = Q.month
                 GROUP BY m.id ";
+        //return $sql;
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
     

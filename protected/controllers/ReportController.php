@@ -11,39 +11,6 @@ class ReportController extends Controller {
     /**
      * @return array action filters
      */
-    public function filters() {
-        return array(
-            'accessControl', // perform access control for CRUD operations
-            'postOnly + delete', // we only allow deletion via POST request
-        );
-    }
-
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules() {
-        return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
-                'users' => array('*'),
-            ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'reportinputproductmonth', 'reportcostprofit',
-                    'datareportcostprofit', 'reportproductsalable', 'dataproductsalable', 'reportsellproduct',
-                    'datareportsellproduct', 'formreportprofitcenter', 'reportprofitcenter', 'reportbranch'),
-                'users' => array('@'),
-            ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
-            ),
-            array('deny', // deny all users
-                'users' => array('*'),
-            ),
-        );
-    }
 
     /**
      * Displays a particular model.
@@ -90,37 +57,17 @@ class ReportController extends Controller {
         $data['incomeperiod2'] = $ReportModel->GetIncomePeriod($year, $branch, 2);
         $data['incomeperiod3'] = $ReportModel->GetIncomePeriod($year, $branch, 3);
         $data['incomeperiod4'] = $ReportModel->GetIncomePeriod($year, $branch, 4);
-        
+
         $data['outcomeperiod1'] = $ReportModel->GetOutcomePeriod($year, $branch, 1);
         $data['outcomeperiod2'] = $ReportModel->GetOutcomePeriod($year, $branch, 2);
         $data['outcomeperiod3'] = $ReportModel->GetOutcomePeriod($year, $branch, 3);
         $data['outcomeperiod4'] = $ReportModel->GetOutcomePeriod($year, $branch, 4);
-        //คิดกำไร
-        /*
-          $profit1 = ($data['sellperiod1'] - $data['incomeperiod1']);
-          $profit2 = ($data['sellperiod2'] - $data['incomeperiod2']);
-          $profit3 = ($data['sellperiod3'] - $data['incomeperiod3']);
-          $profit4 = ($data['sellperiod4'] - $data['incomeperiod4']);
-          if ($profit1 < 0)
-          $data['profit1'] = 0;
-          else
-          $data['profit1'] = $profit1;
-          if ($profit2 < 0)
-          $data['profit2'] = 0;
-          else
-          $data['profit2'] = $profit2;
-          if ($profit3 < 0)
-          $data['profit3'] = 0;
-          else
-          $data['profit3'] = $profit3;
-          if ($profit4 < 0)
-          $data['profit4'] = 0;
-          else
-          $data['profit4'] = $profit4;
-         */
+
         //กำไรขาดทุนรายเดือน
+
         $incomeMonth = $ReportModel->GetIncomeMonth($year, $branch);
         $outcomeMonth = $ReportModel->GetOutcomeMonth($year, $branch);
+
         foreach ($incomeMonth as $cm):
             $Month[] = "'" . $cm['month_th'] . "'";
             $IncomeMonthArr[] = $cm['total'];
@@ -134,6 +81,7 @@ class ReportController extends Controller {
         $data['OutcomeMonth'] = implode(",", $OutcomeMonthArr);
         $data['month'] = implode(",", $Month);
         $data['year'] = $year;
+
         $this->renderPartial('datareportcostprofit', $data);
     }
 

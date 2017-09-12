@@ -172,7 +172,7 @@ function HistoryServiceAllmain() {
 }
 
 function savediag() {
-    var url = "index.php?r=PatientDiag/saveservicediag";
+    var url = "index.php?r=patientdiag/saveservicediag";
     var diagcode = $("#diaginsert").val();
     var diagprice = $("#pricediag").val();
     var service_id = $("#service_id").val();

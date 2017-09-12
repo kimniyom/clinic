@@ -330,7 +330,7 @@ class PatientController extends Controller {
     public function actionDetailsell($sell_id) {
         //$sell_id = Yii::app()->request->getPost('sell_id');
 
-        $Model = new sell();
+        $Model = new Sell();
         //$sell_id = Yii::app()->request->getPost('sell_id');
         $data['order'] = $Model->Getlistorder($sell_id);
         $data['detail'] = $Model->Detailorder($sell_id);
