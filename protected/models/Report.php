@@ -340,4 +340,51 @@ class Report {
         return $rs['outcome'];
     }
 
+    function GetIncomeMonth($year = null, $branch = null) {
+        if ($branch != "99") {
+            $wheresell = "o.branch = '$branch'";
+            $whereservice = "s.branch = '$branch'";
+        } else {
+            $wheresell = " 1=1 ";
+            $whereservice = " 1=1 ";
+        }
+        $sql = "SELECT m.id,m.month_th,IFNULL(SUM(Q.total),0) AS total
+                FROM `month` m  
+                LEFT JOIN
+                (
+                    SELECT SUBSTR(o.date_sell,6,2) AS month,SUM(o.totalfinal) AS total
+                        FROM logsell o 
+                        WHERE $wheresell AND LEFT(o.date_sell,4) = '$year' 
+                        GROUP BY SUBSTR(o.date_sell,6,2)
+
+                        UNION
+
+                        SELECT SUBSTR(s.service_date,6,2) AS month,SUM(s.price_total) AS total
+                        FROM service s 
+                        WHERE $whereservice AND LEFT(s.service_date,4) = '$year'																		
+                        GROUP BY SUBSTR(s.service_date,6,2) 
+                 ) Q ON m.id = Q.month
+                GROUP BY m.id ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+    
+    function GetOutcomeMonth($year = null, $branch = null) {
+        if ($branch != "99") {
+            $where = "o.branch = '$branch'";
+        } else {
+            $where = " 1=1 ";
+        }
+        $sql = "SELECT m.id,m.month_th,IFNULL(SUM(Q.total),0) AS total
+                FROM `month` m  
+                LEFT JOIN
+                (
+                    SELECT SUBSTR(o.create_date,6,2) AS month,SUM(o.priceresult) AS total
+                        FROM orders o 
+                        WHERE $where AND LEFT(o.create_date,4) = '$year' 
+                        GROUP BY SUBSTR(o.create_date,6,2)
+                 ) Q ON m.id = Q.month
+                GROUP BY m.id ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
 }

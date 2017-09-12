@@ -119,30 +119,19 @@ class ReportController extends Controller {
           $data['profit4'] = $profit4;
          */
         //กำไรขาดทุนรายเดือน
-        $CostMonth = $ReportModel->GetcostproductMonth($year, $branch);
-        $SellMonth = $ReportModel->GettotalsellMonth($year, $branch);
-        $ProfitMonth = $ReportModel->GetprofitMonth($year, $branch);
-        foreach ($CostMonth as $cm):
+        $incomeMonth = $ReportModel->GetIncomeMonth($year, $branch);
+        $outcomeMonth = $ReportModel->GetOutcomeMonth($year, $branch);
+        foreach ($incomeMonth as $cm):
             $Month[] = "'" . $cm['month_th'] . "'";
-            $CostMonthArr[] = $cm['pricrtotal'];
+            $IncomeMonthArr[] = $cm['total'];
         endforeach;
 
-        foreach ($SellMonth as $pm):
-            $SellMonthArr[] = $pm['totalprice'];
+        foreach ($outcomeMonth as $pm):
+            $OutcomeMonthArr[] = $pm['total'];
         endforeach;
 
-        foreach ($ProfitMonth as $pf):
-            if ($pf['profit'] < 0) {
-                $profit = 0;
-            } else {
-                $profit = $pf['profit'];
-            }
-            $ProfitMonthArr[] = $profit;
-        endforeach;
-
-        $data['CostMonth'] = implode(",", $CostMonthArr);
-        $data['SellMonth'] = implode(",", $SellMonthArr);
-        $data['ProfitMonth'] = implode(",", $ProfitMonthArr);
+        $data['IncomeMonth'] = implode(",", $IncomeMonthArr);
+        $data['OutcomeMonth'] = implode(",", $OutcomeMonthArr);
         $data['month'] = implode(",", $Month);
         $data['year'] = $year;
         $this->renderPartial('datareportcostprofit', $data);

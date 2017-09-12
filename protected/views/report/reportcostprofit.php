@@ -23,11 +23,11 @@ $yearnow = date("Y");
         </select>
     </div>
     <div class="col-lg-2" style=" padding-top: 20px;">
-        <button type="button" class="btn btn-default btn-block" onclick="getreport()">ตกลง</button>
+        <button type="button" class="btn btn-primary btn-block" onclick="getreport()">ตกลง</button>
     </div>
 </div>
 
-<div id="boxreport" class="well" style=" margin-top: 10px; background: #ffffff; margin-bottom: 0px;">
+<div id="boxreport" class="well" style=" margin-top: 10px; background:none; margin-bottom: 0px;">
     <div id="showreport"></div>
 </div>
 <script type="text/javascript">

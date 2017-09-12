@@ -1,6 +1,6 @@
 
 <div class="row" style=" margin: 0px;">
-    <div class="col-lg-4">
+    <div class="col-lg-4" style=" padding: 0px;">
         <div class="btn  btn-block" style=" border: #33cc00 solid 1px;background: #FFFFFF; color: #33cc00;">
             <h4>รายได้</h4>
             <h3><?php echo number_format($income, 2) ?>  บาท</h3>
@@ -12,7 +12,7 @@
             <h3> <?php echo number_format($outcome, 2) ?> บาท</h3>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-4" style=" padding: 0px;">
         <div class="btn  btn-block" style=" border: #0000FF solid 1px; background: #FFFFFF; color: #0000FF;">
             <h4>กำไร / ขาดทุน</h4>
             <h3><?php echo number_format($income - $outcome, 2) ?> บาท</h3>
@@ -20,18 +20,89 @@
     </div>
 </div>
 
-<div id="reportperiod"></div>
 
-<div id="reportmonth"></div>
+<div class="panel panel-default" style=" margin-top: 10px;">
+    <div class="panel-heading" style=" background: none;">รายรับ-รายจ่าย รายไตรมาส</div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <div id="reportperiod"></div>
+        </div>
+        <div class="col-md-6 col-lg-6" style="padding-right: 20px;">
+            <table class="table table-bordered" style=" margin-top: 20px; border-right: 0px;">
+                <thead>
+                    <tr style=" font-weight: bold; background: #cccccc;">
+                        <th colspan="4" style=" text-align: center;">รายรับ-รายจ่าย รายไตรมาส ปี พ.ศ. <?php echo $year + 543 ?></th>
+                    </tr>
+                    <tr style=" font-weight: bold; background: #cccccc;">
+                        <th>ไตรมาส</th>
+                        <th style=" text-align: center;">รายรับ</th>
+                        <th style=" text-align: center;">รายจ่าย</th>
+                        <th style=" text-align: center;">กำไร / ขาดทุน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ไตรมาส 1</td>
+                        <td style=" text-align: right;"><?php echo number_format($incomeperiod1, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($outcomeperiod1, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($incomeperiod1 - $outcomeperiod1, 2) ?></td>
+                    </tr>
+                    <tr>
+                        <td>ไตรมาส 2</td>
+                        <td style=" text-align: right;"><?php echo number_format($incomeperiod2, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($outcomeperiod2, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($incomeperiod2 - $outcomeperiod2, 2) ?></td>
+                    </tr>
+                    <tr>
+                        <td>ไตรมาส 3</td>
+                        <td style=" text-align: right;"><?php echo number_format($incomeperiod3, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($outcomeperiod3, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($incomeperiod3 - $outcomeperiod3, 2) ?></td>
+                    </tr>
+                    <tr>
+                        <td>ไตรมาส 4</td>
+                        <td style=" text-align: right;"><?php echo number_format($incomeperiod4, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($outcomeperiod4, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($incomeperiod4 - $outcomeperiod4, 2) ?></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr style=" font-weight: bold; background: #cccccc;">
+                        <?php
+                        $sumincome = ($incomeperiod1 + $incomeperiod2 + $incomeperiod3 + $incomeperiod4);
+                        $sumoutcome = ($outcomeperiod1 + $outcomeperiod2 + $outcomeperiod3 + $outcomeperiod4);
+                        ?>
+                        <td style=" text-align: center;">รวม</td>
+                        <td style=" text-align: right;"><?php echo number_format($sumincome, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($sumoutcome, 2) ?></td>
+                        <td style=" text-align: right;"><?php echo number_format($sumincome - $sumoutcome, 2) ?></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
 
+<div class="panel panel-default" style=" margin-top: 10px;">
+    <div class="panel-heading" style="background: #FFFFFF;">รายรับ-รายจ่าย รายเดือน</div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div id="reportmonth"></div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     $(function () {
         Highcharts.chart('reportperiod', {
             chart: {
                 type: 'column'
             },
+            credits: {
+                enabled: false
+            },
+
             title: {
-                text: 'ต้นทุน กำไร แยกรายไตรมาส'
+                text: 'รายรับ-รายจ่าย รายไตรมาส'
             },
             subtitle: {
                 text: 'ปี พ.ศ. <?php echo $year + 543 ?>'
@@ -74,7 +145,7 @@
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y:.1f}', // one decimal
+                        format: '{point.y:.2f}', // one decimal
                         y: 10, // 10 pixels down from the top
                         style: {
                             fontSize: '13px',
@@ -84,14 +155,14 @@
 
                 }, {
                     name: 'รายจ่าย',
-                    //color: 'blue',
+                    color: 'red',
                     data: [<?php echo $outcomeperiod1 ?>, <?php echo $outcomeperiod2 ?>, <?php echo $outcomeperiod3 ?>, <?php echo $outcomeperiod4 ?>]
                     , dataLabels: {
                         enabled: true,
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y:.1f}', // one decimal
+                        format: '{point.y:.2f}', // one decimal
                         y: 10, // 10 pixels down from the top
                         style: {
                             fontSize: '13px',
@@ -108,8 +179,11 @@
             chart: {
                 type: 'column'
             },
+            credits: {
+                enabled: false
+            },
             title: {
-                text: 'ต้นทุน กำไร แยกรายเดือน'
+                text: 'รายรับ - รายจ่าย แยกรายเดือน'
             },
             subtitle: {
                 text: 'ปี พ.ศ. <?php echo $year + 543 ?>'
@@ -127,7 +201,7 @@
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:.1f} บาท</b></td></tr>',
+                        '<td style="padding:0"><b>{point.y:.2f} บาท</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -139,15 +213,15 @@
                 }
             },
             series: [{
-                    name: 'ต้นทุน',
+                    name: 'รายรับ',
                     color: 'green',
-                    data: [<?php echo $CostMonth ?>],
+                    data: [<?php echo $IncomeMonth ?>],
                     dataLabels: {
                         enabled: true,
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y:.1f}', // one decimal
+                        format: '{point.y:.2f}', // one decimal
                         y: 10, // 10 pixels down from the top
                         style: {
                             fontSize: '13px',
@@ -156,29 +230,21 @@
                     }
 
                 }, {
-                    name: 'ยอดขาย',
-                    //color: 'blue',
-                    data: [<?php echo $SellMonth ?>]
+                    name: 'รายจ่าย',
+                    color: 'red',
+                    type: 'line',
+                    data: [<?php echo $OutcomeMonth ?>]
                     , dataLabels: {
                         enabled: true,
-                        rotation: -90,
+                        rotation: -45,
                         color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y:.1f}', // one decimal
+                        format: '{point.y:.2f}', // one decimal
                         y: 10, // 10 pixels down from the top
                         style: {
                             fontSize: '13px',
                             fontFamily: 'Verdana, sans-serif'
                         }
-                    }
-                },
-                {
-                    name: 'กำไร',
-                    type: 'spline',
-                    color: 'red',
-                    data: [<?php echo $ProfitMonth ?>],
-                    tooltip: {
-                        valueSuffix: '°C'
                     }
                 }]
         });
