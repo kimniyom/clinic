@@ -1,6 +1,6 @@
 <?php
 
-class ProductypeController extends Controller {
+class ProducttypeController extends Controller {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -30,7 +30,7 @@ class ProductypeController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update','getsubproduct'),
+                'actions' => array('create', 'update','getsubproduct','getsubproductorder'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -161,6 +161,12 @@ class ProductypeController extends Controller {
         $upper = Yii::app()->request->getPost('type_id');
         $data['type'] = ProductType::model()->findAll("upper = '$upper' ");
         $this->renderPartial('subproducttype',$data);
+    }
+    
+    public function actionGetsubproductorder(){
+        $upper = Yii::app()->request->getPost('type_id');
+        $data['type'] = ProductType::model()->findAll("upper = '$upper' ");
+        $this->renderPartial('subproducttypeorder',$data);
     }
    
 }

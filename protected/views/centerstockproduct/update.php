@@ -30,10 +30,11 @@
 
 <?php
 $title = "แก้ไขสินค้า " . $product['product_id'];
+$product_name = $product['product_name'];
 $this->breadcrumbs = array(
     'คลังสินค้า' => Yii::app()->createUrl('store/index'),
     'รายการสินค้า' => array('index'),
-    $product['product_name'] => Yii::app()->createUrl('centerstockproduct/detail', array('product_id' => $product['product_id'])),
+    $product_name => array('centerstockproduct/detail&product_id='.$product['product_id']),
     $title,
 );
 

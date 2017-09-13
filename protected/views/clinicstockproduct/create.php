@@ -35,7 +35,7 @@ $branchMidel = new Branch();
 
 $title = "เพิ่มสินค้า";
 $this->breadcrumbs = array(
-    "คลังสินค้า" => Yii::app()->createUrl('clinicstore/index',array("branch" => $branch)),
+    "คลังสินค้า" => Yii::app()->createUrl('clinicstoreproduct/index',array("branch" => $branch)),
     "รายการสินค้า (สาขา".$branchMidel->Getbranch($branch).")" => array('index','branch' => $branch),
     $title,
 );

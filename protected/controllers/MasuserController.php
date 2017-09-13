@@ -30,7 +30,7 @@ class MasuserController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'getrole', 'setbranch', 'deletebranch','profile','getdata','delete'),
+                'actions' => array('create', 'update', 'admin', 'getrole', 'setbranch', 'deletebranch', 'profile', 'getdata', 'delete', 'privilege','getdataprilege'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -71,7 +71,7 @@ class MasuserController extends Controller {
             $model->d_update = date("Y-m-d H:i:s");
             $model->flag = "0";
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id,'user_id' => $model->user_id));
+                $this->redirect(array('view', 'id' => $model->id, 'user_id' => $model->user_id));
         }
 
         $this->render('create', array(
@@ -110,7 +110,7 @@ class MasuserController extends Controller {
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete() {
-      $id = Yii::app()->request->getPost('id');
+        $id = Yii::app()->request->getPost('id');
         $this->loadModel($id)->delete();
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -130,15 +130,36 @@ class MasuserController extends Controller {
             $BranchList = Branch::model()->findAll("id = '$branch'");
         }
         $data['BranchList'] = $BranchList;
-        $this->render('index',$data);
+        $this->render('index', $data);
     }
 
-    public function actionGetdata(){
+    public function actionPrivilege() {
+        $branch = Yii::app()->session['branch'];
+        $data['branchModel'] = Branch::model()->find('id=:id', array(':id' => $branch));
+        $data['branch'] = $branch;
+        if ($branch == "99") {
+            $BranchList = Branch::model()->findAll();
+        } else {
+            $BranchList = Branch::model()->findAll("id = '$branch'");
+        }
+        $data['BranchList'] = $BranchList;
+        $this->render('privilege', $data);
+    }
+
+    public function actionGetdata() {
         $branch_id = Yii::app()->request->getPost('branch');
         $Model = new Masuser();
         $data['user'] = $Model->GetUserBranch($branch_id);
-        $this->renderPartial('datauser',$data);
+        $this->renderPartial('datauser', $data);
     }
+    
+     public function actionGetdataprilege() {
+        $branch_id = Yii::app()->request->getPost('branch');
+        $Model = new Masuser();
+        $data['user'] = $Model->GetUserBranch($branch_id);
+        $this->renderPartial('dataprivilege', $data);
+    }
+    
 
     /**
      * Manages all models.
@@ -228,7 +249,7 @@ class MasuserController extends Controller {
         $categorys = implode(",", $category);
 
         $log = $LogloginModel->Getloglogin($id);
-         foreach ($log as $lg):
+        foreach ($log as $lg):
             //echo $sm['month_th']." ".$sm['total']."<br/>";
             $loglogin[] = "['" . $lg['month_th'] . "'," . $lg['total'] . "]";
         endforeach;

@@ -150,7 +150,7 @@ class Masuser extends CActiveRecord {
             INNER JOIN status_user s ON m.`status` = s.id
             INNER JOIN branch b ON e.branch = b.id
             INNER JOIN position po ON e.position = po.id
-            WHERE m.id = '$userID' ";
+            WHERE m.user_id = '$userID' ";
 
         return Yii::app()->db->createCommand($sql)->queryRow();
     }

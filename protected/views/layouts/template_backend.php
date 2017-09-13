@@ -41,9 +41,9 @@
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
 
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
-        
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
-        
+        <!--
+        <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
+        -->
         <!--
         <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap-material/dist/css/bootstrap-material-design.css" type="text/css" media="all" />
         -->
@@ -276,15 +276,7 @@
                         </div>
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
-                                <li <?php
-                                if (Yii::app()->session['navmenu'] == '1') {
-                                    echo "class='active'";
-                                }
-                                ?> onclick="set_navbar('1')">
-                                    <a href="<?php echo Yii::app()->createUrl('site/index') ?>">
-                                        <span class="glyphicon glyphicon-home"></span>
-                                        <font id="font-th">หน้าหลัก</font></a>
-                                </li>
+
                                 <?php
                                 $ReportMenu = $MenuReport->Getrolemenu($Profile['user_id']);
                                 if ($ReportMenu) {

@@ -10,13 +10,15 @@ $web = new Configweb_model();
 <div class="panel panel-default" style=" margin-bottom: 0px;">
     <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px; background: none;">
         คลังสินค้า  <span id="loading"></span>  <span style=" color: #ff3300;">*สินค้าล๊อตที่มีการตัดสต๊อกไปแล้วไม่สามารถลบได้</span>
-        <div class="pull-right">
-            <a href="<?php echo Yii::app()->createUrl('clinicstoreproduct/create', array('branch' => $branch)) ?>">
-                <div class="btn btn-success btn-sm">
-                    <i class="fa fa-plus"></i>
-                    <i class="fa fa-cart-plus"></i>
-                    เพิ่มสินค้าเข้าคลัง</div></a>
-        </div>
+        <?php if (Yii::app()->session['branch'] == $branch) { ?>
+            <div class="pull-right">
+                <a href="<?php echo Yii::app()->createUrl('clinicstoreproduct/create', array('branch' => $branch)) ?>">
+                    <div class="btn btn-success btn-sm">
+                        <i class="fa fa-plus"></i>
+                        <i class="fa fa-cart-plus"></i>
+                        เพิ่มสินค้าเข้าคลัง</div></a>
+            </div>
+        <?php } ?>
     </div>
     <div class="panel-body">
         <div class="row">

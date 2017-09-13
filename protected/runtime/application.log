@@ -1331,3 +1331,476 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
 HTTP_REFERER=http://localhost/clinic/index.php?r=patient/view&id=1
 ---
+2017/09/13 13:30:06 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('set_navbar')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/formreportprofitcenter
+---
+2017/09/13 13:42:29 [error] [php] Undefined variable: countอชvisit (D:\xampp\htdocs\clinic\protected\views\site\index.php:103)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): SiteController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): SiteController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\SiteController.php(39): SiteController->render()
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(286): SiteController->runAction()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): SiteController->run()
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/index
+in D:\xampp\htdocs\clinic\protected\views\site\index.php (103)
+in D:\xampp\htdocs\clinic\protected\controllers\SiteController.php (39)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/13 13:54:50 [error] [php] Undefined index: 09 (D:\xampp\htdocs\clinic\protected\views\site\index.php:104)
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CController.php(869): SiteController->renderFile()
+#1 D:\xampp\htdocs\clinic\framework\web\CController.php(782): SiteController->renderPartial()
+#2 D:\xampp\htdocs\clinic\protected\controllers\SiteController.php(39): SiteController->render()
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(286): SiteController->runAction()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): SiteController->run()
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=site/index
+in D:\xampp\htdocs\clinic\protected\views\site\index.php (104)
+in D:\xampp\htdocs\clinic\protected\controllers\SiteController.php (39)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/13 14:09:57 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('set_navbar')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2017/09/13 14:50:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "users/privilege".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('users/privilege')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=users/privilege
+HTTP_REFERER=http://localhost/clinic/index.php?r=report/formreportprofitcenter
+---
+2017/09/13 15:10:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "users/privilege".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('users/privilege')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=users/privilege
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2017/09/13 15:10:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "users/privilege".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('users/privilege')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=users/privilege
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2017/09/13 15:10:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "users/privilege".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('users/privilege')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=users/privilege
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/index
+---
+2017/09/13 15:10:49 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('getdataprilege')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('masuser/getdata...')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=masuser/getdataprilege
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/privilege
+---
+2017/09/13 15:43:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND m.active = '0'' at line 6. The SQL statement executed was: SELECT m.*,Q1.report_id
+				FROM menu_report m 
+
+				LEFT JOIN (SELECT r.report_id FROM role_report r WHERE r.user_id = '8') Q1 
+
+				ON m.id = Q1.report_id  WHERE AND m.active = '0'.
+in D:\xampp\htdocs\clinic\protected\models\MenuReport.php (108)
+in D:\xampp\htdocs\clinic\protected\controllers\MenureportController.php (177)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/13 15:43:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND m.active = '0'' at line 6. The SQL statement executed was: SELECT m.*,Q1.report_id
+				FROM menu_report m 
+
+				LEFT JOIN (SELECT r.report_id FROM role_report r WHERE r.user_id = '8') Q1 
+
+				ON m.id = Q1.report_id  WHERE AND m.active = '0'' in D:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\clinic\protected\models\MenuReport.php(108): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\clinic\protected\controllers\MenureportController.php(177): MenuReport->Getreportmenu('8')
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): MenureportController->actionGetmenureport()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('getmenureport')
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('menureport/getm...')
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=menureport/getmenureport
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/view&id=7&user_id=8
+---
+2017/09/13 15:43:26 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND m.active = '0'' at line 6. The SQL statement executed was: SELECT m.*,Q1.report_id
+				FROM menu_report m 
+
+				LEFT JOIN (SELECT r.report_id FROM role_report r WHERE r.user_id = '8') Q1 
+
+				ON m.id = Q1.report_id  WHERE AND m.active = '0'.
+in D:\xampp\htdocs\clinic\protected\models\MenuReport.php (108)
+in D:\xampp\htdocs\clinic\protected\controllers\MenureportController.php (177)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/13 15:43:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND m.active = '0'' at line 6. The SQL statement executed was: SELECT m.*,Q1.report_id
+				FROM menu_report m 
+
+				LEFT JOIN (SELECT r.report_id FROM role_report r WHERE r.user_id = '8') Q1 
+
+				ON m.id = Q1.report_id  WHERE AND m.active = '0'' in D:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\clinic\protected\models\MenuReport.php(108): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\clinic\protected\controllers\MenureportController.php(177): MenuReport->Getreportmenu('8')
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): MenureportController->actionGetmenureport()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('getmenureport')
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('menureport/getm...')
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=menureport/getmenureport
+HTTP_REFERER=http://localhost/clinic/index.php?r=masuser/view&id=7&user_id=8
+---
+2017/09/13 15:43:33 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND m.active = '0'' at line 6. The SQL statement executed was: SELECT m.*,Q1.report_id
+				FROM menu_report m 
+
+				LEFT JOIN (SELECT r.report_id FROM role_report r WHERE r.user_id = '') Q1 
+
+				ON m.id = Q1.report_id  WHERE AND m.active = '0'.
+in D:\xampp\htdocs\clinic\protected\models\MenuReport.php (108)
+in D:\xampp\htdocs\clinic\protected\controllers\MenureportController.php (177)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/13 15:43:33 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND m.active = '0'' at line 6. The SQL statement executed was: SELECT m.*,Q1.report_id
+				FROM menu_report m 
+
+				LEFT JOIN (SELECT r.report_id FROM role_report r WHERE r.user_id = '') Q1 
+
+				ON m.id = Q1.report_id  WHERE AND m.active = '0'' in D:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\clinic\protected\models\MenuReport.php(108): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\clinic\protected\controllers\MenureportController.php(177): MenuReport->Getreportmenu(NULL)
+#3 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): MenureportController->actionGetmenureport()
+#4 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#11 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('getmenureport')
+#13 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('menureport/getm...')
+#14 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=menureport/getmenureport
+---
+2017/09/13 15:54:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/create&branch=2
+---
+2017/09/13 15:54:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/create&branch=2
+---
+2017/09/13 15:54:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/create&branch=2
+---
+2017/09/13 15:55:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/create&branch=2
+---
+2017/09/13 15:55:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/create&branch=2
+---
+2017/09/13 15:56:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/index&branch=2
+---
+2017/09/13 15:56:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/index&branch=2
+---
+2017/09/13 15:56:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstoreproduct/index&branch=1
+---
+2017/09/13 15:56:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstoreproduct/index&branch=1
+---
+2017/09/13 15:56:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstoreproduct/index&branch=1
+---
+2017/09/13 16:00:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/create
+---
+2017/09/13 16:00:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/create
+---
+2017/09/13 16:00:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/create
+---
+2017/09/13 16:00:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/create
+---
+2017/09/13 16:00:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/create
+---
+2017/09/13 16:00:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/create
+---
+2017/09/13 16:01:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/create
+---
+2017/09/13 16:03:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "producttype/getsubproduct".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproduct
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/create
+---
+2017/09/13 16:10:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "clinic/index.php?r=centerstockproduct/detail".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('clinic/index.ph...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=clinic/index.php?r=centerstockproduct/detail&product_id=P309665648
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/update&product_id=P309665648
+---
+2017/09/13 16:11:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "clinic/index.php?r=store/index".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('clinic/index.ph...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=clinic/index.php?r=store/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockproduct/update&product_id=P309665648
+---
+2017/09/13 16:22:40 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND s.delete_flag = '0'' at line 4. The SQL statement executed was: SELECT s.*
+                FROM center_stockproduct s 
+                WHERE s.subproducttype = '42' 
+                    AND s.status = '0' AND s.private = '0' AND AND s.delete_flag = '0'.
+in D:\xampp\htdocs\clinic\protected\controllers\ClinicstockproductController.php (175)
+in D:\xampp\htdocs\clinic\index.php (15)
+2017/09/13 16:22:40 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND s.delete_flag = '0'' at line 4. The SQL statement executed was: SELECT s.*
+                FROM center_stockproduct s 
+                WHERE s.subproducttype = '42' 
+                    AND s.status = '0' AND s.private = '0' AND AND s.delete_flag = '0'' in D:\xampp\htdocs\clinic\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\clinic\protected\controllers\ClinicstockproductController.php(175): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\clinic\framework\web\actions\CInlineAction.php(49): ClinicstockproductController->actionGetproductinsubtype()
+#3 D:\xampp\htdocs\clinic\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#10 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('getproductinsub...')
+#12 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('clinicstockprod...')
+#13 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=clinicstockproduct/getproductinsubtype
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/create&branch=1
+---
+2017/09/13 16:23:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "clinicstore/index".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('clinicstore/ind...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=clinicstore/index&branch=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/create&branch=1
+---
+2017/09/13 16:23:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "clinicstore/index".' in D:\xampp\htdocs\clinic\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('clinicstore/ind...')
+#1 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=clinicstore/index&branch=1
+HTTP_REFERER=http://localhost/clinic/index.php?r=clinicstockproduct/create&branch=1
+---
+2017/09/13 16:39:52 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 D:\xampp\htdocs\clinic\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 D:\xampp\htdocs\clinic\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 D:\xampp\htdocs\clinic\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 D:\xampp\htdocs\clinic\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 D:\xampp\htdocs\clinic\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\clinic\framework\web\CController.php(291): CFilterChain->run()
+#6 D:\xampp\htdocs\clinic\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(282): CController->run('getsubproductor...')
+#8 D:\xampp\htdocs\clinic\framework\web\CWebApplication.php(141): CWebApplication->runController('producttype/get...')
+#9 D:\xampp\htdocs\clinic\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\clinic\index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=producttype/getsubproductorder
+HTTP_REFERER=http://localhost/clinic/index.php?r=orders/create&branch=1
+---

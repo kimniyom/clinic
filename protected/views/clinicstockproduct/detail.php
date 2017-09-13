@@ -50,9 +50,11 @@ $product_id = $product['product_id'];
 
         <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
             <?php if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '5' || Yii::app()->session['status'] == '6') { ?>
-                <a href="<?php echo Yii::app()->createUrl('clinicstockproduct/update', array('id' => $product['id'])) ?>">
-                    <button type="button" class="btn btn-primary">แก้ไข</button></a>
-                <button type="button" class="btn btn-danger" onclick="deleteproduct('<?php echo $product['id'] ?>')">ลบ</button>
+                <?php if (Yii::app()->session['branch'] == $branch) { ?>
+                    <a href="<?php echo Yii::app()->createUrl('clinicstockproduct/update', array('id' => $product['id'])) ?>">
+                        <button type="button" class="btn btn-primary">แก้ไข</button></a>
+                    <button type="button" class="btn btn-danger" onclick="deleteproduct('<?php echo $product['id'] ?>')">ลบ</button>
+                <?php } ?>
             <?php } ?>
             <br/>
             <font style=" color: #F00; font-size: 24px; font-weight: normal;">

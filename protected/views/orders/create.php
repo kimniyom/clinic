@@ -140,7 +140,7 @@ $BranchModel = Branch::model()->find("id = '$branch'");
     $(document).ready(function () {
         $("#producttype").change(function () {
             var type_id = $("#producttype").val();
-            var url = "<?php echo Yii::app()->createUrl('producttype/getsubproduct') ?>";
+            var url = "<?php echo Yii::app()->createUrl('producttype/getsubproductorder') ?>";
             var data = {type_id: type_id};
             $.post(url, data, function (datas) {
                 $("#boxsubproducttype").html(datas);
@@ -151,7 +151,7 @@ $BranchModel = Branch::model()->find("id = '$branch'");
     function combotype() {
         
         var type_id = "";
-        var url = "<?php echo Yii::app()->createUrl('producttype/getsubproduct') ?>";
+        var url = "<?php echo Yii::app()->createUrl('producttype/getsubproductorder') ?>";
         var data = {type_id: type_id};
         $.post(url, data, function (datas) {
             $('#producttype').select2("val", "");

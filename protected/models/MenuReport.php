@@ -104,7 +104,7 @@ class MenuReport extends CActiveRecord
 
 				LEFT JOIN (SELECT r.report_id FROM role_report r WHERE r.user_id = '$user_id') Q1 
 
-				ON m.id = Q1.report_id  ";
+				ON m.id = Q1.report_id  WHERE m.active = '0'";
 		return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 

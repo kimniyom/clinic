@@ -30,7 +30,7 @@ class ClinicstockproductController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'getdata','getproductinsubtype','save_product','detail','save_update'),
+                'actions' => array('create', 'update', 'getdata', 'getproductinsubtype','getproductinsubtypeorder', 'save_product', 'detail', 'save_update'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -66,7 +66,7 @@ class ClinicstockproductController extends Controller {
         if (isset($_POST['ClinicStockproduct'])) {
             $model->attributes = $_POST['ClinicStockproduct'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id,'branch' => $branch));
+                $this->redirect(array('view', 'id' => $model->id, 'branch' => $branch));
         }
 
         $this->render('create', array(
@@ -80,7 +80,7 @@ class ClinicstockproductController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-public function actionUpdate($id = null) {
+    public function actionUpdate($id = null) {
         $product = new ClinicStockproduct();
 
         $data['product'] = $product->_get_detail_productByid($id);
@@ -110,7 +110,7 @@ public function actionUpdate($id = null) {
         $this->render('index', array(
             'branch' => $branch,
             'branchname' => $branchname,
-            ));
+        ));
     }
 
     /**
@@ -158,20 +158,42 @@ public function actionUpdate($id = null) {
         $subproducttype = Yii::app()->request->getPost('subproducttype');
         $Model = new ClinicStockproduct();
         $data['branch'] = $branch;
-        $data['product'] = $Model->GetproductlistSearch($type, $subproducttype,$branch);
-        
+        $data['product'] = $Model->GetproductlistSearch($type, $subproducttype, $branch);
+
         $this->renderPartial('data', $data);
     }
-    
+
     public function actionGetproductinsubtype() {
         $subproducttype = Yii::app()->request->getPost('subproducttype');
         $branch = Yii::app()->session['branch'];
-        
+        //AND c.branch = '$branch '
+        //INNER JOIN clinic_stockproduct c ON s.product_id = c.product_id
+        //ดึงข้อมูลสินค้าที่ยังไม่มีในรายการสินค้าของแต่ละสาขา
         $sql = "SELECT s.*
-                FROM center_stockproduct s INNER JOIN clinic_stockproduct c ON s.product_id = c.product_id
-                WHERE s.subproducttype = '$subproducttype' 
-                    AND c.branch = '$branch '
-                    AND s.status = '0'";
+                    FROM center_stockproduct s 
+                    WHERE s.subproducttype = '$subproducttype' 
+                    AND s.status = '0' AND s.private = '0' AND s.delete_flag = '0'
+                    AND s.product_id NOT IN(
+                    SELECT c.product_id FROM clinic_stockproduct c WHERE c.branch = '$branch'
+                    )";
+        $data['product'] = Yii::app()->db->createCommand($sql)->queryAll();
+        //$data['product'] = CenterStockproduct::model()->findAll("subproducttype = '$subproducttype' ");
+        $this->renderPartial('comboproduct', $data);
+    }
+    
+    
+    
+        public function actionGetproductinsubtypeorder() {
+        $subproducttype = Yii::app()->request->getPost('subproducttype');
+        $branch = Yii::app()->session['branch'];
+        //AND c.branch = '$branch '
+        //INNER JOIN clinic_stockproduct c ON s.product_id = c.product_id
+        //ดึงข้อมูลสินค้าที่ยังไม่มีในรายการสินค้าของแต่ละสาขา
+        $sql = "SELECT s.*
+                    FROM center_stockproduct s INNER JOIN clinic_stockproduct c ON s.product_id = c.product_id
+                    WHERE s.subproducttype = '$subproducttype' 
+                    AND s.status = '0' AND s.private = '0' AND s.delete_flag = '0'
+                    AND c.branch = '$branch'";
         $data['product'] = Yii::app()->db->createCommand($sql)->queryAll();
         //$data['product'] = CenterStockproduct::model()->findAll("subproducttype = '$subproducttype' ");
         $this->renderPartial('comboproduct', $data);
@@ -199,8 +221,8 @@ public function actionUpdate($id = null) {
                 ->insert('clinic_stockproduct', $data);
         //echo $this->redirect(array('backend/product/detail_product&product_id=' . $_POST['product_id']));
     }
-    
-    public function actionDetail($product_id = null,$branch = null) {
+
+    public function actionDetail($product_id = null, $branch = null) {
         //$product_id = $_GET['product_id'];
 
         $product = new Backend_product();
@@ -208,14 +230,14 @@ public function actionUpdate($id = null) {
         //$Items = new Items();
 
         $data['images'] = $product->get_images_product($product_id);
-        $data['product'] = $Model->_get_detail_product($product_id,$branch);
+        $data['product'] = $Model->_get_detail_product($product_id, $branch);
         $data['branch'] = $branch;
         //$data['items'] = $Items->GetItem($product_id);
         //$data['near'] = $product->get_product_near($product_id);
 
         $this->render("detail", $data);
     }
-    
+
     public function actionSave_update() {
         $id = Yii::app()->request->getPost('id');
         $data = array(
@@ -235,6 +257,5 @@ public function actionUpdate($id = null) {
         Yii::app()->db->createCommand()
                 ->update('clinic_stockproduct', $data, "id = '$id'");
     }
-
 
 }

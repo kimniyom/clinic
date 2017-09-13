@@ -8,7 +8,6 @@
         margin-bottom: 10px;
     }
 </style>
-<hr/>
 <div class="form">
 
     <?php
@@ -22,7 +21,7 @@
     ));
     ?>
 
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
+    <p class="note">เครื่องหมาย <span class="required">*</span> ต้องไม่ว่าง.</p>
     <div style=" color: #ff0033;">
         <?php echo $form->errorSummary($model); ?>
     </div>
@@ -112,7 +111,7 @@
     <div class="row buttons">
         <div class="col-lg-2"></div>
         <div class="col-lg-10">
-            <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-success')); ?>
+            <?php echo CHtml::submitButton($model->isNewRecord ? 'บันทึก' : 'Save', array('class' => 'btn btn-success')); ?>
         </div>
     </div>
 

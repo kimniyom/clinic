@@ -165,7 +165,7 @@ class MenuController extends Controller {
                     (
                             SELECT r.menu_id FROM role_menu r WHERE r.user_id = '$user'
                     ) Q
-                    ON m.id = Q.menu_id ";
+                    ON m.id = Q.menu_id WHERE m.active = '1' ";
 
         $data['menu'] = Yii::app()->db->createCommand($sql)->queryAll();
         $this->renderPartial('menu', $data);

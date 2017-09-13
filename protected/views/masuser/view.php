@@ -6,7 +6,7 @@
 /* @var $model Masuser */
 
 $this->breadcrumbs = array(
-    'ผู้ใช้งาน' => array('index'),
+    'ผู้ใช้งาน' => array('privilege'),
     $model->username,
 );
 

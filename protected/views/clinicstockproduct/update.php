@@ -4,7 +4,7 @@ $BranchModel = new Branch();
 $this->breadcrumbs = array(
     'คลังสินค้า' => Yii::app()->createUrl('storeclinic/index'),
     'รายการสินค้า (สาขา' . $BranchModel->Getbranch($product['branch']) . ")" => array('index', "branch" => $product['branch']),
-    $product['product_name'] => Yii::app()->createUrl('clinicstockproduct/detail', array('product_id' => $product['product_id'], 'branch' => $product['branch'])),
+    $product['product_name'] => array('clinicstockproduct/detail&product_id=' . $product['product_id'] . '&branch=' . $product['branch']),
     $title,
 );
 ?>

@@ -3,13 +3,8 @@
 /* @var $model Employee */
 
 $this->breadcrumbs=array(
-	'ทะเบียนลูกค้า'=>array('index'),
+	'พนักงาน'=>array('index'),
 	'ละทะบียน',
-);
-
-$this->menu=array(
-	array('label'=>'List Employee', 'url'=>array('index')),
-	array('label'=>'Manage Employee', 'url'=>array('admin')),
 );
 ?>
 

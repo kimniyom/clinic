@@ -31,7 +31,34 @@ class SiteController extends Controller {
     public function actionIndex() {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
-        $this->render('index');
+
+        $rs = $this->CountService();
+        $data['countservice'] = $rs['c']['humen'];
+        $data['countvisit'] = $rs['c']['visit'];
+        
+        $this->render('index', $data);
+    }
+
+    function CountService() {
+        $branch = Yii::app()->session['branch'];
+        if ($branch == "99") {
+            $wherebranch = " 1=1";
+        } else {
+            $wherebranch = "s.branch = '1'";
+        }
+        $sql = "SELECT COUNT(DISTINCT(s.patient_id)) AS total
+                    FROM service s 
+                    WHERE $wherebranch ";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        $humen = $rs['total'];
+
+        $sqlvisit = "SELECT COUNT(*) AS total
+                    FROM service s 
+                    WHERE $wherebranch ";
+        $rsvisit = Yii::app()->db->createCommand($sqlvisit)->queryRow();
+        $visit = $rsvisit['total'];
+        $data['c'] = array("humen" => $humen, "visit" => $visit);
+        return $data;
     }
 
     /**
@@ -133,5 +160,4 @@ class SiteController extends Controller {
         Yii::app()->session['leftmenu'] = $menu;
     }
 
-   
 }
