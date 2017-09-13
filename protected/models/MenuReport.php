@@ -111,7 +111,7 @@ class MenuReport extends CActiveRecord
 	function Getrolemenu($user_id = null){
 		$sql = "SELECT m.*
 				FROM menu_report m INNER JOIN role_report r ON m.id = r.report_id
-				WHERE r.user_id = '$user_id' ";
+				WHERE r.user_id = '$user_id' AND active = '0'";
 		return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 }

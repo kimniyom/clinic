@@ -23,13 +23,73 @@ class ReportController extends Controller {
     }
 
     public function actionReportinputproductmonth() {
-        $ReportModel = new Report();
-        $data['years'] = Yii::app()->request->getPost('year');
-        $data['branch'] = Yii::app()->request->getPost('branch');
-        $data['month'] = Month::model()->findAll("");
+        $monthnow = date("m");
+        if(strlen($monthnow) < 2){
+            $monthactive = "0".$monthnow;
+        } else {
+            $monthactive = $monthnow;
+        }
+        $data['monthactive'] = $monthactive;
+        $data['month'] = Month::model()->findAll();
+        $this->render('reportinputproductmonth',$data);
+    }
 
-        $data['product'] = $ReportModel->getproduct($data['branch']);
-        $this->render('reportinputproductmonth', $data);
+    public function actionDatainputproductmonth() {
+        $year = Yii::app()->request->getPost('year');
+        $month = Yii::app()->request->getPost('month');
+        $branch = Yii::app()->request->getPost('branch');
+        $monthval = (int)$month;
+        if ($monthval == "1") {
+            $months = "01";
+            $monthlast = "12";
+            $yearsstart = ($year - 1);
+            $years = $year;
+        } else {
+            $months = $month;
+            $yearsstart = $year;
+            $years = $year;
+            $monthlasts = $monthval -1;
+            if(strlen($monthlasts) < 2){
+                $monthlast = "0".$monthlasts;
+            } else {
+                $monthlast = $monthlasts;
+            }
+        }
+        
+        //echo $yearsstart." last = ".$monthlast." ".$years."monthnow = ".$months;
+        $data['monthnow'] = $months;
+        $data['monthlast'] = $monthlast;
+        $data['yearnow'] = $years;
+        $data['yearlast'] = $yearsstart;
+        $data['sellmonthnow'] = $this->Getproductmonthnow($years, $months, $branch);
+        $data['sellmonthlast'] = $this->Getproductmonthnow($yearsstart, $monthlast, $branch);
+        
+        $this->renderPartial('datareportinputproductmonth',$data);
+    }
+
+    function Getproductmonthnow($year, $month, $branch) {
+        $sql = "SELECT Q1.product_id,Q1.product_name,Q1.product_nameclinic,IFNULL(Q2.total,0) AS total,Q1.unit,Q1.costs
+                FROM 
+                (
+                SELECT cs.product_id,cs.product_name,cs.product_nameclinic,st.costs,u.unit
+                 FROM clinic_stockproduct st INNER JOIN center_stockproduct cs ON st.product_id = cs.product_id
+                INNER JOIN unit u ON st.unit = u.id
+                ) Q1
+
+                LEFT JOIN 
+
+                (
+                        SELECT cs.product_id,cs.product_nameclinic,cs.product_name,SUM(c.number) AS total
+                        FROM clinic_stockproduct s INNER JOIN clinic_storeproduct c ON s.product_id = c.product_id
+                        INNER JOIN center_stockproduct cs ON s.product_id = cs.product_id
+                        WHERE LEFT(c.generate,4) = '$year' AND SUBSTR(c.generate,6,2) = '$month' AND s.branch = '$branch'
+                        GROUP BY cs.product_id
+                ) Q2 ON Q1.product_id = Q2.product_id ";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
+    public function actionGetproductmonthlast($branch, $month) {
+        
     }
 
     public function actionReportcostprofit() {
@@ -71,17 +131,21 @@ class ReportController extends Controller {
         foreach ($incomeMonth as $cm):
             $Month[] = "'" . $cm['month_th'] . "'";
             $IncomeMonthArr[] = $cm['total'];
+            $tablemonthIncome[$cm['id']] = $cm['total'];
         endforeach;
 
         foreach ($outcomeMonth as $pm):
             $OutcomeMonthArr[] = $pm['total'];
+            $tablemonthOutcome[$pm['id']] = $pm['total'];
         endforeach;
 
         $data['IncomeMonth'] = implode(",", $IncomeMonthArr);
         $data['OutcomeMonth'] = implode(",", $OutcomeMonthArr);
         $data['month'] = implode(",", $Month);
         $data['year'] = $year;
-
+        $data['masmonth'] = Month::model()->findAll();
+        $data['tablemonthIncome'] = $tablemonthIncome;
+        $data['tablemonthOutcome'] = $tablemonthOutcome;
         $this->renderPartial('datareportcostprofit', $data);
     }
 

@@ -1,0 +1,137 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 220px;
+}
+
+#sidebar-wrapper {
+    font-size: 18px; font-family: thaisanslite;
+    z-index: 1000;
+    position: fixed;
+    left: 220px;
+    width: 0;
+    height: 100%;
+    margin-left: -220px;
+    overflow-y: auto;
+    /*background: #2a323b;/*#2a323b*/
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    /*
+    border-right: solid 1px #000000;
+    */
+    margin-top: 0px;
+    border-right: #eeeeee solid 1px; 
+    padding-bottom: 50px;
+    background: #2a323b;
+}
+
+#sidebar-wrapper .panel-body{
+    /*background: #2a323b;*/
+    background: #2a323b;
+    color: #999999;
+}
+
+#sidebar-wrapper .list-group-item{
+    background: #2a323b;
+    color: #999999;
+    font-weight: normal;
+    font-size: 14px;
+    padding: 10px;
+    border-radius:0px;
+    padding-left: 25px;
+}
+
+#sidebar-wrapper .list-group-item:hover{
+    color: #FFFFFF;
+    /*background: #2b323b;*/
+}
+
+
+#sidebar-wrapper .panel-body{
+    color: #999999;
+}
+
+#sidebar-wrapper .panel{
+    border: none;
+}
+
+#sidebar-wrapper .list-group{
+    display: none;
+}
+
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 220px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -220px;
+}
+
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 220px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 220px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.clickable{
+    cursor: pointer; 
+    margin-top: 5px;
+}
+
+.listmenuactive{
+    /*background: #24282d*/;
+    background: #3c4754;
+    color: #FFFFFF;
+}
+
+
+
+
+

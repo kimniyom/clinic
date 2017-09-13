@@ -34,16 +34,16 @@
             }
 
         </style>
-        <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template.css"/>
-
-        <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/css/button-color.css"/>
-
-        <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system.css"/>
+        <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
+        <!--
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;  ?>/css/button-color.css"/>
+        -->
+        <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
 
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
-        <!--
-        <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
-        -->
+        
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
+        
         <!--
         <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap-material/dist/css/bootstrap-material-design.css" type="text/css" media="all" />
         -->
@@ -54,7 +54,7 @@
 
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/font-awesome-4.3.0/css/font-awesome.css"/>
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/font-awesome-4.3.0/css/font-awesome-animation.css"/>
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/simple-sidebar.css"/>
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/simple-sidebar-black.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/perfect-scrollbar/css/perfect-scrollbar.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/css/card-css/card-css.css"/>
 
@@ -178,103 +178,15 @@
 
     <body style="background: #fbfbfb;/* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;"> #2a323b-->
-        <nav class="navbar navbar-default" role="navigation" style="z-index:1; border-radius:0px; margin-bottom:0px;"></nav>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius:0px; margin-bottom:0px; border-bottom: #e5e5e5 solid 1px; background: #FFFFFF;">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="#menu-toggle" class="navbar-brand" id="menu-toggle"><i class="fa fa-bars"></i> menu</a>
-                    <a class="navbar-brand" style=" margin-top: 0px; padding-top: 10px;">
-                        <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $web->get_logoweb(); ?>" height="32px"/>
-                    </a>
-                    <a class="navbar-brand" href="#" style=" font-family: Th;font-size:28px;">
-                        <?php echo $web->get_webname(); ?>(Admin)
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav">
-                        <li <?php
-                        if (Yii::app()->session['navmenu'] == '1') {
-                            echo "class='active'";
-                        }
-                        ?> onclick="set_navbar('1')">
-                            <a href="<?php echo Yii::app()->createUrl('site/index') ?>">
-                                <span class="glyphicon glyphicon-home"></span>
-                                <font id="font-th">หน้าหลัก</font></a>
-                        </li>
-                        <?php
-                        $ReportMenu = $MenuReport->Getrolemenu($Profile['user_id']);
-                        if ($ReportMenu) {
-                            ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="glyphicon glyphicon-signal"></span>
-                                    <font id="font-th">รายงาน </font><b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <?php
-                                    foreach ($ReportMenu as $rp):
-                                        $reportLink = $rp['url'];
-                                        ?>
-                                        <li><a href="<?php echo Yii::app()->createUrl($reportLink) ?>"> - <?php echo $rp['report_name'] ?></a></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </li>
-                        <?php } ?>
-                        <?php
-                        $Settingmenu = $MenuSetting->Getrolesetting($Profile['user_id']);
-                        if ($Settingmenu) {
-                            ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="fa fa-gear"></span>
-                                    <font id="font-th">ตั้งค่าระบบ </font><b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <?php
-                                    foreach ($Settingmenu as $st):
-                                        $linlsetting = $st['url'];
-                                        ?>
-                                        <li><a href="<?php echo Yii::app()->createUrl($linlsetting) ?>"> - <?php echo $st['setting'] ?></a></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </li>
-                        <?php } ?>
-                        <li <?php
-                        if (Yii::app()->session['navmenu'] == '2') {
-                            echo "class='active'";
-                        }
-                        ?> onclick="set_navbar('2')">
-                            <a href="#">
-                                <span class="glyphicon glyphicon-book"></span>
-                                <font id="font-th">คู่มือการใช้งาน</font></a>
-                        </li>
-                    </ul>
-                    <?php if (!Yii::app()->user->isGuest) { ?>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="<?= Yii::app()->createUrl('site/logout/') ?>">
-                                    <span class="glyphicon glyphicon-off"></span>
-                                    <font id="font-th">ออกจากระบบ</font>
-                                </a>
-                            </li>
-                        </ul>
-                    <?php } ?>
-                </div><!-- /.navbar-collapse -->
-            </div>
-        </nav>
+
+
 
         <div id="wrapper">
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
                 <!-- ###################### USER #################-->
                 <div class="panel panel-info" id="panel-head">
-                    <div class=" panel-heading" style="padding-top: 12px;">
+                    <div class=" panel-heading" style="padding-top: 12px; border-radius: 0px;">
 
                         <?php
                         if (!empty($Profile['images'])) {
@@ -293,7 +205,7 @@
                             สาขา ​: <?php echo Yii::app()->session['branch'] . " " . $branchModel->Getbranch(Yii::app()->session['branch']) ?>
                         </div>
                     </div>
-                    <div class="panel-footer" style="border-bottom:solid 1px #e5e5e5; border-radius:0px;">
+                    <div class="panel-footer">
                         <a href="<?= Yii::app()->createUrl('masuser/profile', array('id' => $Profile['id'])); ?>">ข้อมูลส่วนตัว</a>
                     </div>
                 </div>
@@ -301,7 +213,6 @@
 
                 <!-- ตั้งค่าร้านค้า -->
                 <div id="m-left" style=" margin-bottom: 50px;">
-                    <center><b><i class="fa fa-list"></i> เมนู</b></center>
                     <?php
                     $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
                     $i = 0;
@@ -336,7 +247,7 @@
                             <div id="listmenu">สินค้าหมดอายุ <span class="badge pull-right"><?php echo $alet->CountExpire(); ?> </span></div></a>
                         <a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"> 
                             <div id="listmenu">ลูกค้าใกล้ถึงวันนัด <span class="badge pull-right"><?php echo $AppointModel->Countover(); ?> </span></div></a>
-                        
+
                     <?php } ?>
                 </div>
 
@@ -346,6 +257,95 @@
 
             <!-- Page Content -->
             <div id="page-content-wrapper" style="padding:0px;">
+                <nav class="navbar navbar-default" role="navigation" id="nav-bar">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href="#menu-toggle" class="navbar-brand" id="menu-toggle"><i class="fa fa-bars"></i> menu</a>
+                            <a class="navbar-brand" style=" margin-top: 0px; padding-top: 10px;">
+                                <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $web->get_logoweb(); ?>" height="32px"/>
+                            </a>
+                            <a class="navbar-brand" href="#" style=" font-family: Th;font-size:28px;">
+                                <?php echo $web->get_webname(); ?>
+                            </a>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav">
+                                <li <?php
+                                if (Yii::app()->session['navmenu'] == '1') {
+                                    echo "class='active'";
+                                }
+                                ?> onclick="set_navbar('1')">
+                                    <a href="<?php echo Yii::app()->createUrl('site/index') ?>">
+                                        <span class="glyphicon glyphicon-home"></span>
+                                        <font id="font-th">หน้าหลัก</font></a>
+                                </li>
+                                <?php
+                                $ReportMenu = $MenuReport->Getrolemenu($Profile['user_id']);
+                                if ($ReportMenu) {
+                                    ?>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-signal"></span>
+                                            <font id="font-th">รายงาน </font><b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <?php
+                                            foreach ($ReportMenu as $rp):
+                                                $reportLink = $rp['url'];
+                                                ?>
+                                                <li><a href="<?php echo Yii::app()->createUrl($reportLink) ?>"> - <?php echo $rp['report_name'] ?></a></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </li>
+                                <?php } ?>
+                                <?php
+                                $Settingmenu = $MenuSetting->Getrolesetting($Profile['user_id']);
+                                if ($Settingmenu) {
+                                    ?>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="fa fa-gear"></span>
+                                            <font id="font-th">ตั้งค่าระบบ </font><b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <?php
+                                            foreach ($Settingmenu as $st):
+                                                $linlsetting = $st['url'];
+                                                ?>
+                                                <li><a href="<?php echo Yii::app()->createUrl($linlsetting) ?>"> - <?php echo $st['setting'] ?></a></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </li>
+                                <?php } ?>
+                                <li <?php
+                                if (Yii::app()->session['navmenu'] == '2') {
+                                    echo "class='active'";
+                                }
+                                ?> onclick="set_navbar('2')">
+                                    <a href="#">
+                                        <span class="glyphicon glyphicon-book"></span>
+                                        <font id="font-th">คู่มือการใช้งาน</font></a>
+                                </li>
+                            </ul>
+                            <?php if (!Yii::app()->user->isGuest) { ?>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        <a href="<?= Yii::app()->createUrl('site/logout/') ?>">
+                                            <span class="glyphicon glyphicon-off"></span>
+                                            <font id="font-th">ออกจากระบบ</font>
+                                        </a>
+                                    </li>
+                                </ul>
+                            <?php } ?>
+                        </div><!-- /.navbar-collapse -->
+                    </div>
+                </nav>
                 <ol class="breadcrumb " style=" margin-bottom: 0px; margin-top: 0px; border-radius: 0px; background: #FFFFFF; border-bottom: #eeeeee solid 1px;">
 
                     <?php if (isset($this->breadcrumbs)): ?>

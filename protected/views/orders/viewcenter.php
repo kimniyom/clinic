@@ -130,12 +130,21 @@ $ItemModel = new CenterStockitem();
             </div>
             <div class="col-md-2 col-lg-1" style=" padding: 0px; padding-top: 5px;">
                 ส่วนลด %
+                <?php 
+                    if($order['status'] >= '2'){ 
+                        $disabled = "disabled";
+                        $rtextbox = "readonly";
+                    } else {
+                        $disabled = "";
+                        $rtextbox = "";
+                    }
+                ?>
             </div>
             <div class="col-md-2 col-lg-1" style=" padding: 0px;">
-                <input type="number" id="distcount" class="form-control" placeholder="%" value="<?php echo $order['distcount'] ?>"/>
+                <input type="number" id="distcount" class="form-control" <?php echo $rtextbox ?> placeholder="%" value="<?php echo $order['distcount'] ?>" style=" text-align: center;"/>
             </div>
             <div class="col-md-2 col-lg-1" style=" padding: 0px;">
-                <button type="button" class="btn btn-success" onclick="Adddistcount()">เพิ่ม</button>
+                <button type="button" class="btn btn-success" onclick="Adddistcount()" <?php echo $disabled ?>>เพิ่ม</button>
             </div>
         </div>
 

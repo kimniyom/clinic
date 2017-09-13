@@ -44,7 +44,7 @@ hr{
 
 
 #wrapper #box-profile {
-    color: #0083b8;
+    color: #FFFFFF;
 }
 
 #heading-panel {
@@ -81,8 +81,9 @@ table {
 
 #sidebar-wrapper .panel-heading{
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d7e6f6+0,ccddf4+50,b6ceef+51,c9dbf3+100 */
-    background: #FFFFFF; /* Old browsers */
-    border-bottom: #eeeeee solid 1px;
+    background: #2a323b; /* Old browsers */
+    border-bottom: #3c4754 solid 1px;
+    color: #FFFFFF;
     /*
     background: -moz-linear-gradient(top,  #d7e6f6 0%, #ccddf4 50%, #b6ceef 51%, #c9dbf3 100%);
     background: -webkit-linear-gradient(top,  #d7e6f6 0%,#ccddf4 50%,#b6ceef 51%,#c9dbf3 100%); 
@@ -94,9 +95,9 @@ table {
 
 #sidebar-wrapper .panel-footer{
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d7e6f6+0,ccddf4+50,b6ceef+51,c9dbf3+100 */
-    background: #3c4754; /* Old browsers */
-    border-bottom: #2a323b solid 1px;
-    border-top: #2a323b solid 1px;
+    background: #2a323b; /* Old browsers */
+    border-bottom: #3c4754 solid 1px;
+    border-top: #3c4754 solid 1px;
     color: #FFFFFF;
     border-radius:0px;
     /*
@@ -108,7 +109,16 @@ table {
     /*color: #999999*/;
 }
 
-#nav-bar{
-    border-radius:0px; margin-bottom:0px; border-bottom: #e5e5e5 solid 1px; background: #FFFFFF;
+#sidebar-wrapper .panel-footer a{
+    color: #FFFFFF;
 }
+
+#nav-bar{
+    border-radius:0px; margin-bottom:0px; border-bottom: #e1e1e1 solid 1px; border-top: none; 
+    border-left: none;
+    border-right: none;
+    background: #FFFFFF;
+}
+
+
 

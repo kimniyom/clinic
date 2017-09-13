@@ -82,10 +82,10 @@ return array(
         // uncomment the following to use a MySQL database
         //'dsn' => 'mysql:host=122.154.239.67;dbname=coffeeshop',
         'db' => array(
-            'connectionString' => 'mysql:host=192.168.0.19;dbname=clinic',
+            'connectionString' => 'mysql:host=localhost;dbname=clinic',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'mysqldroot',
+            'password' => 'root',
             'charset' => 'utf8',
         ),
         /*

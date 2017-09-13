@@ -1,3 +1,11 @@
+<style type="text/css">
+    #t-month thead tr th{
+        padding: 2px;
+    }
+    #t-month tbody tr td{
+        padding: 2px;
+    }
+</style>
 
 <div class="row" style=" margin: 0px;">
     <div class="col-lg-4" style=" padding: 0px;">
@@ -86,8 +94,33 @@
 <div class="panel panel-default" style=" margin-top: 10px;">
     <div class="panel-heading" style="background: #FFFFFF;">รายรับ-รายจ่าย รายเดือน</div>
     <div class="row">
-        <div class="col-md-12 col-lg-12">
+        <div class="col-md-6 col-lg-6">
             <div id="reportmonth"></div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            <table class="table table-striped table-bordered" id="t-month">
+                <thead>
+                    <tr style=" font-weight: bold; background: #cccccc;">
+                        <th style="text-align: center;">เดือน</th>
+                        <th style=" text-align: right;">รายรับ</th>
+                        <th style=" text-align: right;">รายจ่าย</th>
+                        <th style=" text-align: right;">กำไร / ขาดทุน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($masmonth as $m):
+                        $mtotal = ($tablemonthIncome[$m['id']] - $tablemonthOutcome[$m['id']]);
+                        ?>
+                        <tr>
+                            <td style=" padding-left: 20px;"><?php echo $m['month_th'] ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($tablemonthIncome[$m['id']], 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($tablemonthOutcome[$m['id']], 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($mtotal, 2) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -173,14 +206,87 @@
         });
     });
 
-
+    /*
+     $(function () {
+     Highcharts.chart('reportmonths', {
+     chart: {
+     type: 'column'
+     },
+     credits: {
+     enabled: false
+     },
+     title: {
+     text: 'รายรับ - รายจ่าย แยกรายเดือน'
+     },
+     subtitle: {
+     text: 'ปี พ.ศ. <?php //echo $year + 543   ?>'
+     },
+     xAxis: {
+     categories: [<?php //echo $month   ?>],
+     crosshair: true
+     },
+     yAxis: {
+     min: 0,
+     title: {
+     text: 'จำนวน (บาท)'
+     }
+     },
+     tooltip: {
+     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+     '<td style="padding:0"><b>{point.y:.2f} บาท</b></td></tr>',
+     footerFormat: '</table>',
+     shared: true,
+     useHTML: true
+     },
+     plotOptions: {
+     column: {
+     pointPadding: 0.2,
+     borderWidth: 0
+     }
+     },
+     series: [{
+     name: 'รายรับ',
+     color: 'green',
+     data: [<?php //echo $IncomeMonth   ?>],
+     dataLabels: {
+     enabled: true,
+     rotation: -90,
+     color: '#FFFFFF',
+     align: 'right',
+     format: '{point.y:.2f}', // one decimal
+     y: 10, // 10 pixels down from the top
+     style: {
+     fontSize: '13px',
+     fontFamily: 'Verdana, sans-serif'
+     }
+     }
+     
+     }, {
+     name: 'รายจ่าย',
+     color: 'red',
+     type: 'line',
+     data: [<?php //echo $OutcomeMonth   ?>]
+     , dataLabels: {
+     enabled: true,
+     rotation: -45,
+     color: '#FFFFFF',
+     align: 'right',
+     format: '{point.y:.2f}', // one decimal
+     y: 10, // 10 pixels down from the top
+     style: {
+     fontSize: '13px',
+     fontFamily: 'Verdana, sans-serif'
+     }
+     }
+     }]
+     });
+     });
+     */
     $(function () {
         Highcharts.chart('reportmonth', {
             chart: {
-                type: 'column'
-            },
-            credits: {
-                enabled: false
+                type: 'bar'
             },
             title: {
                 text: 'รายรับ - รายจ่าย แยกรายเดือน'
@@ -190,61 +296,61 @@
             },
             xAxis: {
                 categories: [<?php echo $month ?>],
-                crosshair: true
+                title: {
+                    text: null
+                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'จำนวน (บาท)'
+                    text: 'จำนวน (บาท)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
                 }
             },
             tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:.2f} บาท</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
+                valueSuffix: ' บาท'
             },
             plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
                 }
             },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 80,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
             series: [{
-                    name: 'รายรับ',
                     color: 'green',
-                    data: [<?php echo $IncomeMonth ?>],
+                    name: 'รายรับ',
+                    data: [<?php echo $IncomeMonth ?>]
+                }, {
+                    type: 'line',
+                    color: 'red',
+                    name: 'รายจ่าย',
+                    data: [<?php echo $OutcomeMonth ?>],
                     dataLabels: {
                         enabled: true,
-                        rotation: -90,
-                        color: '#FFFFFF',
+                        rotation: 0,
+                        //color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y:.2f}', // one decimal
-                        y: 10, // 10 pixels down from the top
-                        style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
-                        }
-                    }
-
-                }, {
-                    name: 'รายจ่าย',
-                    color: 'red',
-                    type: 'line',
-                    data: [<?php echo $OutcomeMonth ?>]
-                    , dataLabels: {
-                        enabled: true,
-                        rotation: -45,
-                        color: '#FFFFFF',
-                        align: 'right',
-                        format: '{point.y:.2f}', // one decimal
-                        y: 10, // 10 pixels down from the top
-                        style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
-                        }
+                        //format: '{point.y:.2f}', // one decimal
+                        y: 10 // 10 pixels down from the top
+                        
                     }
                 }]
         });
