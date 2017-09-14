@@ -13,7 +13,7 @@ class QueueController extends Controller {
         $branch = Yii::app()->session['branch'];
         $data['seq'] = $Model->Getseq($branch);
 
-        if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '2') {
+        if (Yii::app()->session['status'] == '2') {
             $this->layout = "dortor";
             $this->render('index', $data);
         } else {

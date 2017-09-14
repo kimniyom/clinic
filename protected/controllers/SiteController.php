@@ -35,7 +35,7 @@ class SiteController extends Controller {
         $rs = $this->CountService();
         $data['countservice'] = $rs['c']['humen'];
         $data['countvisit'] = $rs['c']['visit'];
-        
+
         $this->render('index', $data);
     }
 

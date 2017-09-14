@@ -35,7 +35,7 @@ $web = new Configweb_model();
 $BranchModel = new Branch();
 ?>
 
-<div class="well well-sm" style="width:100%; margin-bottom:10px; background: #ffffff;">
+<div class="well well-sm" style="width:100%; margin-bottom:0px; background: #ffffff;">
     <div class="row">
         <div class="col-xs-6 col-md-3 col-lg-3" id="p-left">
             <input id="Filedata" name="Filedata" type="file" multiple="true">
@@ -92,8 +92,8 @@ $BranchModel = new Branch();
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 130);
-        var screenfullRight = (screen - 170);
+        var screenfull = (screen - 120);
+        var screenfullRight = (screen - 160);
         $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         $("#p-rights").css({'height': screenfullRight, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});

@@ -5,122 +5,137 @@
     #t-month tbody tr td{
         padding: 2px;
     }
+    .well{
+        font-size: 24px;
+    }
+
 </style>
 
+
 <div class="row" style=" margin: 0px;">
-    <div class="col-lg-4" style=" padding: 0px;">
-        <div class="btn  btn-block" style=" border: #33cc00 solid 1px;background: #FFFFFF; color: #33cc00;">
-            <h4>รายได้</h4>
-            <h3><?php echo number_format($income, 2) ?>  บาท</h3>
+    <div class="col-md-4 col-lg-4" style=" padding: 0px;">
+        <div class="well btn btn-block" style=" text-align: center;color: #FFFFFF; background: url('<?php echo Yii::app()->baseUrl ?>/images/income-icon.png') #69b829 no-repeat bottom right;">
+            รายรับ<hr/>
+            <?php echo number_format($income, 2) ?>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="btn btn-block" style=" border: #ff0000 solid 1px;background: #FFFFFF; color: #ff0000;">
-            <h4>รายจ่าย</h4>
-            <h3> <?php echo number_format($outcome, 2) ?> บาท</h3>
+    <div class="col-md-4 col-lg-4">
+        <div class="well btn btn-block" style=" text-align: center; color: #FFFFFF;  background: url('<?php echo Yii::app()->baseUrl ?>/images/outcome-icon.png') #de1870 no-repeat bottom right;">
+            รายจ่าย<hr/>
+            <?php echo number_format($outcome, 2) ?>
         </div>
     </div>
-    <div class="col-lg-4" style=" padding: 0px;">
-        <div class="btn  btn-block" style=" border: #0000FF solid 1px; background: #FFFFFF; color: #0000FF;">
-            <h4>กำไร / ขาดทุน</h4>
-            <h3><?php echo number_format($income - $outcome, 2) ?> บาท</h3>
+    <div class="col-md-4 col-lg-4" style=" padding: 0px;">
+        <div class="well btn btn-block" style=" text-align: center; color: #FFFFFF;background: url('<?php echo Yii::app()->baseUrl ?>/images/money-Bag-icon.png') #4f8ef7 no-repeat bottom right;">
+            กำไร / ขาดทุน<hr/>
+            <?php
+            $profit = ($income - $outcome);
+            if (substr($profit, 0, 1) == "-") {
+                echo "-" . number_format($profit, 2);
+            } else {
+                echo "+" . number_format($profit, 2);
+            }
+            ?>
         </div>
     </div>
 </div>
 
-
 <div class="panel panel-default" style=" margin-top: 10px;">
     <div class="panel-heading" style=" background: none;">รายรับ-รายจ่าย รายไตรมาส</div>
-    <div class="row">
-        <div class="col-md-6 col-lg-6">
-            <div id="reportperiod"></div>
-        </div>
-        <div class="col-md-6 col-lg-6" style="padding-right: 20px;">
-            <table class="table table-bordered" style=" margin-top: 20px; border-right: 0px;">
-                <thead>
-                    <tr style=" font-weight: bold; background: #cccccc;">
-                        <th colspan="4" style=" text-align: center;">รายรับ-รายจ่าย รายไตรมาส ปี พ.ศ. <?php echo $year + 543 ?></th>
-                    </tr>
-                    <tr style=" font-weight: bold; background: #cccccc;">
-                        <th>ไตรมาส</th>
-                        <th style=" text-align: center;">รายรับ</th>
-                        <th style=" text-align: center;">รายจ่าย</th>
-                        <th style=" text-align: center;">กำไร / ขาดทุน</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ไตรมาส 1</td>
-                        <td style=" text-align: right;"><?php echo number_format($incomeperiod1, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($outcomeperiod1, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($incomeperiod1 - $outcomeperiod1, 2) ?></td>
-                    </tr>
-                    <tr>
-                        <td>ไตรมาส 2</td>
-                        <td style=" text-align: right;"><?php echo number_format($incomeperiod2, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($outcomeperiod2, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($incomeperiod2 - $outcomeperiod2, 2) ?></td>
-                    </tr>
-                    <tr>
-                        <td>ไตรมาส 3</td>
-                        <td style=" text-align: right;"><?php echo number_format($incomeperiod3, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($outcomeperiod3, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($incomeperiod3 - $outcomeperiod3, 2) ?></td>
-                    </tr>
-                    <tr>
-                        <td>ไตรมาส 4</td>
-                        <td style=" text-align: right;"><?php echo number_format($incomeperiod4, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($outcomeperiod4, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($incomeperiod4 - $outcomeperiod4, 2) ?></td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr style=" font-weight: bold; background: #cccccc;">
-                        <?php
-                        $sumincome = ($incomeperiod1 + $incomeperiod2 + $incomeperiod3 + $incomeperiod4);
-                        $sumoutcome = ($outcomeperiod1 + $outcomeperiod2 + $outcomeperiod3 + $outcomeperiod4);
-                        ?>
-                        <td style=" text-align: center;">รวม</td>
-                        <td style=" text-align: right;"><?php echo number_format($sumincome, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($sumoutcome, 2) ?></td>
-                        <td style=" text-align: right;"><?php echo number_format($sumincome - $sumoutcome, 2) ?></td>
-                    </tr>
-                </tfoot>
-            </table>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div id="reportperiod"></div>
+            </div>
+            <div class="col-md-6 col-lg-6" style="padding-right: 20px;">
+                <table class="table table-bordered" style=" margin-top: 20px; border-right: 0px;">
+                    <thead>
+                        <tr style=" font-weight: bold; background: #cccccc;">
+                            <th colspan="4" style=" text-align: center;">รายรับ-รายจ่าย รายไตรมาส ปี พ.ศ. <?php echo $year + 543 ?></th>
+                        </tr>
+                        <tr style=" font-weight: bold; background: #cccccc;">
+                            <th>ไตรมาส</th>
+                            <th style=" text-align: center;">รายรับ</th>
+                            <th style=" text-align: center;">รายจ่าย</th>
+                            <th style=" text-align: center;">กำไร / ขาดทุน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ไตรมาส 1</td>
+                            <td style=" text-align: right;"><?php echo number_format($incomeperiod1, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($outcomeperiod1, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($incomeperiod1 - $outcomeperiod1, 2) ?></td>
+                        </tr>
+                        <tr>
+                            <td>ไตรมาส 2</td>
+                            <td style=" text-align: right;"><?php echo number_format($incomeperiod2, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($outcomeperiod2, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($incomeperiod2 - $outcomeperiod2, 2) ?></td>
+                        </tr>
+                        <tr>
+                            <td>ไตรมาส 3</td>
+                            <td style=" text-align: right;"><?php echo number_format($incomeperiod3, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($outcomeperiod3, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($incomeperiod3 - $outcomeperiod3, 2) ?></td>
+                        </tr>
+                        <tr>
+                            <td>ไตรมาส 4</td>
+                            <td style=" text-align: right;"><?php echo number_format($incomeperiod4, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($outcomeperiod4, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($incomeperiod4 - $outcomeperiod4, 2) ?></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style=" font-weight: bold; background: #cccccc;">
+                            <?php
+                            $sumincome = ($incomeperiod1 + $incomeperiod2 + $incomeperiod3 + $incomeperiod4);
+                            $sumoutcome = ($outcomeperiod1 + $outcomeperiod2 + $outcomeperiod3 + $outcomeperiod4);
+                            ?>
+                            <td style=" text-align: center;">รวม</td>
+                            <td style=" text-align: right;"><?php echo number_format($sumincome, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($sumoutcome, 2) ?></td>
+                            <td style=" text-align: right;"><?php echo number_format($sumincome - $sumoutcome, 2) ?></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="panel panel-default" style=" margin-top: 10px;">
     <div class="panel-heading" style="background: #FFFFFF;">รายรับ-รายจ่าย รายเดือน</div>
-    <div class="row">
-        <div class="col-md-6 col-lg-6">
-            <div id="reportmonth"></div>
-        </div>
-        <div class="col-md-6 col-lg-6">
-            <table class="table table-striped table-bordered" id="t-month">
-                <thead>
-                    <tr style=" font-weight: bold; background: #cccccc;">
-                        <th style="text-align: center;">เดือน</th>
-                        <th style=" text-align: right;">รายรับ</th>
-                        <th style=" text-align: right;">รายจ่าย</th>
-                        <th style=" text-align: right;">กำไร / ขาดทุน</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($masmonth as $m):
-                        $mtotal = ($tablemonthIncome[$m['id']] - $tablemonthOutcome[$m['id']]);
-                        ?>
-                        <tr>
-                            <td style=" padding-left: 20px;"><?php echo $m['month_th'] ?></td>
-                            <td style=" text-align: right;"><?php echo number_format($tablemonthIncome[$m['id']], 2) ?></td>
-                            <td style=" text-align: right;"><?php echo number_format($tablemonthOutcome[$m['id']], 2) ?></td>
-                            <td style=" text-align: right;"><?php echo number_format($mtotal, 2) ?></td>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div id="reportmonth"></div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <table class="table table-striped table-bordered" id="t-month">
+                    <thead>
+                        <tr style=" font-weight: bold; background: #cccccc;">
+                            <th style="text-align: center;">เดือน</th>
+                            <th style=" text-align: right;">รายรับ</th>
+                            <th style=" text-align: right;">รายจ่าย</th>
+                            <th style=" text-align: right;">กำไร / ขาดทุน</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($masmonth as $m):
+                            $mtotal = ($tablemonthIncome[$m['id']] - $tablemonthOutcome[$m['id']]);
+                            ?>
+                            <tr>
+                                <td style=" padding-left: 20px;"><?php echo $m['month_th'] ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($tablemonthIncome[$m['id']], 2) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($tablemonthOutcome[$m['id']], 2) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($mtotal, 2) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -219,10 +234,10 @@
      text: 'รายรับ - รายจ่าย แยกรายเดือน'
      },
      subtitle: {
-     text: 'ปี พ.ศ. <?php //echo $year + 543   ?>'
+     text: 'ปี พ.ศ. <?php //echo $year + 543     ?>'
      },
      xAxis: {
-     categories: [<?php //echo $month   ?>],
+     categories: [<?php //echo $month     ?>],
      crosshair: true
      },
      yAxis: {
@@ -248,7 +263,7 @@
      series: [{
      name: 'รายรับ',
      color: 'green',
-     data: [<?php //echo $IncomeMonth   ?>],
+     data: [<?php //echo $IncomeMonth     ?>],
      dataLabels: {
      enabled: true,
      rotation: -90,
@@ -266,7 +281,7 @@
      name: 'รายจ่าย',
      color: 'red',
      type: 'line',
-     data: [<?php //echo $OutcomeMonth   ?>]
+     data: [<?php //echo $OutcomeMonth     ?>]
      , dataLabels: {
      enabled: true,
      rotation: -45,
@@ -350,7 +365,7 @@
                         align: 'right',
                         //format: '{point.y:.2f}', // one decimal
                         y: 10 // 10 pixels down from the top
-                        
+
                     }
                 }]
         });

@@ -9,10 +9,11 @@ class ReportstorecenterController extends Controller {
     public $layout = 'template_report';
 
     public function actionIndex() {
-
+        
     }
 
     public function actionFormreportincome() {
+        $this->layout = 'template_backend';
         $this->render('formreportincome');
     }
 
@@ -20,11 +21,11 @@ class ReportstorecenterController extends Controller {
         $year = Yii::app()->request->getPost('year');
         $data['year'] = $year;
         $Model = new ReportStoreCenter();
-        $data['datas'] = $Model->GetTotalIncome($year);
-        $data['orderbranch'] = $Model->GetSumorderBranch($year);
-        $data['countorder'] = $Model->Countorder($year);
-        $data['sellorderbranch'] = $Model->Getsumpricebranch($year);
-        $data['sumAll'] = $Model->Getsumordermonth($year);
+        $data['datas'] = $Model->GetTotalIncome($year); //ยอดรวม
+        $data['orderbranch'] = $Model->GetSumorderBranch($year); //จำนวนออเด้อแต่ละสาขา
+        $data['countorder'] = $Model->Countorder($year); //ออเด้อทั้งหมด
+        $data['sellorderbranch'] = $Model->Getsumpricebranch($year); //ยอดซื้อแต่ละสาขา
+        $data['sumAll'] = $Model->Getsumordermonth($year); //ยอดซื้อรวมในแต่ละเดือน
         //chart sumorder
         foreach ($data['orderbranch'] as $rs):
             $valoder[] = "{name: '" . $rs['branchname'] . "',y: " . $rs['total'] . "}";
@@ -47,7 +48,24 @@ class ReportstorecenterController extends Controller {
         $data['catsumorderAll'] = implode($cat, ",");
         $data['valsumorderAll'] = implode($val, ",");
 
+        $branch = Branch::model()->findAll("id != '99'");
+        foreach ($branch as $b):
+            $Arr[] = $this->Getval($year, $b['id']);
+        endforeach;
+        $data['chartline'] = implode($Arr, ",");
         $this->renderPartial('reportincome', $data);
+    }
+
+    function Getval($year, $branch) {
+        $brancName = Branch::model()->find("id = '$branch'")['branchname'];
+        $Model = new ReportStoreCenter();
+        $resultbranch = $Model->Getsumordermonthbranch($year, $branch);
+        foreach ($resultbranch as $rs):
+            $varbranch[] = $rs['pricetotal'];
+        endforeach;
+        $varlue = implode($varbranch, ",");
+        $result = "{ name: '$brancName',data: [$varlue] }";
+        return $result;
     }
 
     public function actionShowordermonth() {
@@ -64,10 +82,11 @@ class ReportstorecenterController extends Controller {
     }
 
     public function actionFormreportinputitems() {
+        $this->layout = 'template_backend';
         $this->render('formreportinputitems');
     }
 
-    public function actionReportinputitemsperiod(){
+    public function actionReportinputitemsperiod() {
         $year = Yii::app()->request->getPost('year');
         $Model = new ReportStoreCenter();
         $data['tables'] = $Model->ReportInputItemPeriod($year);
@@ -76,7 +95,7 @@ class ReportstorecenterController extends Controller {
         $this->renderPartial('reportinputitemsperiod', $data);
     }
 
-    public function actionReportinputitemsmonth(){
+    public function actionReportinputitemsmonth() {
         $year = Yii::app()->request->getPost('year');
         $Model = new ReportStoreCenter();
         $data['tables'] = $Model->ReportInputItemMonth($year);

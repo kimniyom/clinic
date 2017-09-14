@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style=" margin: 0px;">
     <div class="col-lg-12 col-md-12">
         <div class="panel panel-inverse">
             <div class="panel-heading">จำนวนนำเข้าวัตถุดิบ ปี <?php echo $year ?></div>
@@ -20,7 +20,7 @@
                             $sum = $rs['period1'] + $rs['period2'] + $rs['period3'] + $rs['period4'];
                             ?>
                             <tr>
-                                <td><?php echo $rs['itemcode'].' '.$rs['itemname'] ?></td>
+                                <td><?php echo $rs['itemcode'] . ' ' . $rs['itemname'] ?></td>
                                 <td style=" text-align: right;"><a href=""><?php echo number_format($rs['period1']) ?></a></td>
                                 <td style=" text-align: right;"><a href=""><?php echo number_format($rs['period2']) ?></a></td>
                                 <td style=" text-align: right;"><a href=""><?php echo number_format($rs['period3']) ?></a></td>
@@ -33,8 +33,8 @@
             </div>
         </div>
 
-        <div class="panel panel-danger">
-            <div class="panel-heading">รายงานการซื้อเข้าวัตถุดิบ ปี. <?php echo $year ?></div>
+        <div class="panel panel-inverse">
+             <div class="panel-heading">รายงานการซื้อเข้าวัตถุดิบ ปี. <?php echo $year ?></div>
             <div class="panel-body">
                 <table class="table table-bordered" style=" width: 100%;" id="ordersumalls">
                     <thead>
@@ -63,7 +63,7 @@
                             $sumPAll = $sumP1 + $sumprice;
                             ?>
                             <tr>
-                                <td><?php echo $rss['itemcode'].' '.$rss['itemname'] ?></td>
+                                <td><?php echo $rss['itemcode'] . ' ' . $rss['itemname'] ?></td>
                                 <td style=" text-align: right;"><a href=""><?php echo number_format($rss['period1']) ?></a></td>
                                 <td style=" text-align: right;"><a href=""><?php echo number_format($rss['period2']) ?></a></td>
                                 <td style=" text-align: right;"><a href=""><?php echo number_format($rss['period3']) ?></a></td>
@@ -75,11 +75,11 @@
                     <tfoot>
                         <tr>
                             <td style=" text-align:  center; font-weight: bold;">รวม</td>
-                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumP1)?></td>
-                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumP2)?></td>
-                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumP3)?></td>
-                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumP4)?></td>
-                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumPAll)?></td>
+                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumP1) ?></td>
+                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumP2) ?></td>
+                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumP3) ?></td>
+                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumP4) ?></td>
+                            <td style=" text-align: right;font-weight: bold;"><?php echo number_format($sumPAll) ?></td>
                         </tr>
                     </tfoot>
                 </table>

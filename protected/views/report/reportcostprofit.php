@@ -27,8 +27,8 @@ $yearnow = date("Y");
     </div>
 </div>
 
-<div id="boxreport" class="well" style=" margin-top: 10px; background:none; margin-bottom: 0px;">
-    <div id="showreport"></div>
+<div id="boxreport" class="wells" style=" margin-top: 10px; background: none;margin-bottom: 0px; border: 0px; box-shadow: 0px; padding: 0px;">
+    <div id="showreport" style=" margin: 0px;"></div>
 </div>
 <script type="text/javascript">
     getreport();

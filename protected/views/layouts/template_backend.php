@@ -36,7 +36,7 @@
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
         <!--
-                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;  ?>/css/button-color.css"/>
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;           ?>/css/button-color.css"/>
         -->
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
 
@@ -51,7 +51,8 @@
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.dataTables.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.bootstrap.css" type="text/css" media="all" />
-
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/FixedColumns/css/fixedColumns.bootstrap.css" type="text/css" media="all" />
+        
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/font-awesome-4.3.0/css/font-awesome.css"/>
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/font-awesome-4.3.0/css/font-awesome-animation.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/simple-sidebar-black.css"/>
@@ -75,6 +76,7 @@
         <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/buttons.html5.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/buttons.print.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/jszip.min.js"></script>
+        <script type="text/javascript" charset="utf-8"src="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/FixedColumns/js/dataTables.fixedColumns.js"></script>
 
         <!-- highcharts -->
         <script src="<?= Yii::app()->baseUrl; ?>/lib/Highcharts-5.0.5/code/highcharts.js"></script>
@@ -288,11 +290,32 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <?php
-                                            foreach ($ReportMenu as $rp):
-                                                $reportLink = $rp['url'];
+                                            $ReportMenubranch = $MenuReport->Getrolemenubranch($Profile['user_id']);
+                                            $ReportMenucenter = $MenuReport->Getrolemenucenter($Profile['user_id']);
+                                            if ($ReportMenubranch) {
                                                 ?>
-                                                <li><a href="<?php echo Yii::app()->createUrl($reportLink) ?>"> - <?php echo $rp['report_name'] ?></a></li>
-                                            <?php endforeach; ?>
+                                                <li class=" active" style=" padding-left: 10px; font-weight: bold;">รายงานสาขา</li>
+                                                <?php
+                                                foreach ($ReportMenubranch as $rp):
+                                                    $reportLink = $rp['url'];
+                                                    ?>
+                                                    <li><a href="<?php echo Yii::app()->createUrl($reportLink) ?>"> - <?php echo $rp['report_name'] ?></a></li>
+                                                    <?php
+                                                endforeach;
+                                            }
+                                            ?>
+                                            <?php if ($ReportMenucenter) { ?>
+                                                <li class=" divider"></li>
+                                                <li class=" active" style=" padding-left: 10px; font-weight: bold;">รายงานคลังสินค้าหลัก</li>
+                                                <?php
+                                                foreach ($ReportMenucenter as $rpc):
+                                                    $reportLinks = $rpc['url'];
+                                                    ?>
+                                                    <li><a href="<?php echo Yii::app()->createUrl($reportLinks) ?>"> - <?php echo $rpc['report_name'] ?></a></li>
+                                                    <?php
+                                                endforeach;
+                                                ?>
+                                            <?php } ?>
                                         </ul>
                                     </li>
                                 <?php } ?>

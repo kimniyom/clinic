@@ -10,7 +10,7 @@
         white-space: nowrap;
     }
 </style>
-<div class="row">
+<div class="row" style=" margin: 0px;">
     <div class="col-lg-12 col-md-12">
         <div class="panel panel-inverse">
             <div class="panel-heading">จำนวนนำเข้าวัตถุดิบ ปี <?php echo $year ?> (จำนวน)</div>
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="panel panel-danger">
+        <div class="panel panel-inverse">
             <div class="panel-heading">รายงานการซื้อเข้าวัตถุดิบ ปี. <?php echo $year ?> (ราคา)</div>
             <div class="panel-body">
                 <table class="table table-bordered table-responsive" style=" width: 100%;" id="ordersumalls">

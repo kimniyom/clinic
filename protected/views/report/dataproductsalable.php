@@ -11,7 +11,8 @@
     </thead>
     <tbody>
         <?php $i = 0;
-        foreach ($product as $rs): $i++; ?>
+        foreach ($product as $rs): $i++;
+            ?>
             <tr>
                 <td style="text-align: center;"><?php echo $i ?></td>
                 <td><?php echo $rs['product_name'] ?></td>
@@ -30,6 +31,9 @@
             },
             title: {
                 text: 'สินค้าขายดี'
+            },
+            credits: {
+                enabled: false
             },
             subtitle: {
                 text: 'ปี พ.ศ. <?php echo $year + 543 ?>'

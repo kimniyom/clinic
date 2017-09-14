@@ -193,7 +193,7 @@ class ReportController extends Controller {
         $year = Yii::app()->request->getPost('year');
         $Model = new ReportStoreCenter();
         $data['year'] = $year;
-        $data['head'] = "รายงาน กำไร ขาดทุน ปี พ.ศ. " . ($year + 543);
+        $data['head'] = "รายงานรายรับ - รายจ่าย ปี พ.ศ. " . ($year + 543);
         $data['income'] = $Model->GetSumIncome($year)['total'];
         $data['outcome'] = $Model->GetSumOutcome($year)['total'];
         $Chart = $Model->GetchartProfit($year);

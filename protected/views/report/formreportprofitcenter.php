@@ -5,10 +5,9 @@
 </style>
 
 <?php
-
-$this->breadcrumbs=array(
-	//''=>array('index'),
-	'รายงาน กำไร ขาดทุนคลังสินค้ากลาง',
+$this->breadcrumbs = array(
+    //''=>array('index'),
+    'รายงานรายรับ - รายจ่าย คลังสินค้ากลาง',
 );
 
 
@@ -29,7 +28,9 @@ $branchlist = Branch::model()->findAll("active = '1'");
     </div>
 </div>
 
-<div id="showreport"></div>
+<div id="boxreport" style=" margin-top: 10px; margin-bottom: 0px; margin-right: 0px; padding-right: 5px;">
+    <div id="showreport" style=" margin-bottom: 0px;"></div>
+</div>
 
 <script type="text/javascript">
     getreport();
@@ -42,4 +43,20 @@ $branchlist = Branch::model()->findAll("active = '1'");
             $("#showreport").html(datas);
         });
     }
+</script>
+
+<script type="text/javascript">
+
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var screenfull = (screen - 163);
+        $("#boxreport").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+
+    }
+
+
 </script>
