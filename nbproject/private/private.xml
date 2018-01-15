@@ -6,8 +6,6 @@
             <file>file:/D:/xampp/htdocs/clinic/protected/controllers/ReportController.php</file>
             <file>file:/D:/xampp/htdocs/clinic/protected/views/report/reportcostprofit.php</file>
         </group>
-        <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/config/main.php</file>
-        </group>
+        <group name="yii"/>
     </open-files>
 </project-private>
