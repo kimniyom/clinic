@@ -27,7 +27,7 @@ $branchs = Branch::model()->findAll("active = '1' $WHERE");
         <a href="<?php echo Yii::app()->createUrl('clinicstoreproduct/index',array("branch" => $rs['id'])) ?>">
             <button type="button" class="btn btn-success btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/box-icon.png"/><br/>
-                คลังสินค้า
+                สต๊อกสินค้า
             </button></a>
     </div>
     <div class="col-lg-2 col-md-2 col-xs-6" style=" margin-bottom: 10px;">

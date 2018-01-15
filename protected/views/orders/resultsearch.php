@@ -2,7 +2,7 @@
 $orderModel = new Orders();
 $Config = new Configweb_model();
 ?>    
-<table class="table table-striped" id="tb-orderssearch">
+<table class="table table-striped" id="tb-orderssearch" style=" width: 100%;">
     <thead>
         <tr>
             <th style="text-align: center;">#</th>
@@ -50,9 +50,14 @@ $Config = new Configweb_model();
 <script type="text/javascript">
     Setscreen();
     function Setscreen() {
-        var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 435);
+        var boxsell = window.innerHeight;
+        var w = window.innerWidth;
+        var screenfull;
+        if (w > 786) {
+            screenfull = (boxsell - 435);
+        } else {
+            screenfull = false;
+        }
         $("#tb-orderssearch").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -61,6 +66,7 @@ $Config = new Configweb_model();
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            "sScrollX": true,
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'

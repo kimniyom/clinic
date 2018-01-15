@@ -73,20 +73,18 @@ $BranchModel = new Branch();
                 )
             ));
             ?><br/>
-            <div class="row">
-                <div class="col-lg-6"><label for="">ประเภทสินค้า*</label></div>
-                <div class="col-lg-6"><label for="">รหัสสินค้า*</label></div>
-            </div>
 
             <div class="row">
                 <div class="col-lg-6">
                     <div id="boxsubproducttype" style=" width: 100%;">
+                        <label for="">ประเภทสินค้า*</label>
                         <select id="subproducttype" class="form-control">
                             <option value=""></option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-6">
+                    <label for="">รหัสสินค้า*</label>
                     <input type="text" id="_product_id" name="product_id" class="form-control" style="width:40%;" onkeyup="setcode()" value="<?php echo $productidAuto ?>"/>
                     <input type="hidden" id="product_id" name="product_id" class="form-control" style="width:40%;" value="<?php echo $productidAuto ?>"/>
 
@@ -99,15 +97,10 @@ $BranchModel = new Branch();
             <label for="">ชื่อสินค้าคลินิก*</label>
             <input type="text" id="product_nameclinic" name="product_nameclinic" class="form-control" style="width:100%;" required="required"/>
 
-            <div class="row">
-                <div class="col-md-6 col-lg-3"><label for="">หน่วยนับ*</label></div>
-                <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน*</label></div>
-                <div class="col-md-6 col-lg-3"><label for="">ราคาขาย*</label></div>
-
-            </div>
-
+           
             <div class="row">
                 <div class="col-md-6 col-lg-3">
+                    <label for="">หน่วยนับ*</label>
                     <?php
                     $this->widget('booster.widgets.TbSelect2', array(
                         //'model' => $model,
@@ -130,9 +123,11 @@ $BranchModel = new Branch();
                     ?>
                 </div>
                 <div class="col-md-6 col-lg-3">
+                    <label for="">ราคาต้นทุน*</label>
                     <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required"/>
                 </div>
                 <div class="col-md-6 col-lg-3">
+                    <label for="">ราคาขาย*</label>
                     <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required"/>
                 </div>
             </div>
@@ -168,21 +163,21 @@ $BranchModel = new Branch();
                 </div>
             </div>
             <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <label for="textArea">รายละเอียด</label>
-                <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
+                <div class="col-md-12 col-lg-12">
+                    <label for="textArea">รายละเอียด</label>
+                    <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required"></textarea>
+                </div>
             </div>
-        </div>
             <div class="row" style=" margin-top: 10px;">
-            <div class="col-md-5 col-lg-5">
-                <div class="well well-sm" style=" text-align: left;">
-                    <input type="radio" id="status" name="status" value="0" checked="checked"/> ผลิต
-                    &nbsp;&nbsp;<input type="radio" id="status" name="status" value="1"/> เลิกผลิต
+                <div class="col-md-5 col-lg-5">
+                    <div class="well well-sm" style=" text-align: left;">
+                        <input type="radio" id="status" name="status" value="0" checked="checked"/> ผลิต
+                        &nbsp;&nbsp;<input type="radio" id="status" name="status" value="1"/> เลิกผลิต
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-        
+
     </div>
     <hr style=" margin-top: 0px; padding-top: 0px;"/>
     <div class="row">
@@ -375,19 +370,17 @@ $BranchModel = new Branch();
 </script>
 
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
+        var w = window.innerWidth;
         var screenfull = (screen - 165);
-        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        if (w > 786) {
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        }
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
     }
-
-
 </script>
 

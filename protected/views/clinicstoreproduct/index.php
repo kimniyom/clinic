@@ -22,10 +22,8 @@ $web = new Configweb_model();
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-2" style=" text-align: right;">
+            <div class="col-lg-3 col-md-3">
                 <label>หมวดสินค้า</label>
-            </div>
-            <div class="col-lg-3">
                 <?php
                 $this->widget('booster.widgets.TbSelect2', array(
                     //'model' => $model,
@@ -47,15 +45,16 @@ $web = new Configweb_model();
                 ));
                 ?>
             </div>
-            <div class="col-lg-3">
+             <div class="col-lg-3 col-md-3">
                 <div id="boxsubproducttype">
+                    <label>ประเภทสินค้า</label>
                     <select id="subproducttype" class="form-control">
                         <option value=""></option>
                     </select>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <button type="button" class="btn btn-default" onclick="getdata();">ค้นหา</button>
+            <div class="col-lg-3 col-md-2 col-sm-2 col-xs-3">
+                <button type="button" class="btn btn-primary" style=" margin-top: 25px;" onclick="getdata();"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
         </div>
         <hr/>

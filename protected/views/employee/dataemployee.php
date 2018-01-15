@@ -16,6 +16,7 @@
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            "scrollX": true,
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'
@@ -26,7 +27,7 @@
 
 </script>
 
-<table class="table table-bordered" id="temployee">
+<table class="table table-bordered" id="temployee" style=" width: 100%;">
     <thead>
         <tr>
             <th>#</th>

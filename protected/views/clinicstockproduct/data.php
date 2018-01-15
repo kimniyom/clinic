@@ -3,8 +3,13 @@
     Setscreen();
     function Setscreen() {
         var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 355);
+        var w = window.innerWidth;
+        var screenfull;
+        if (w > 786) {
+            screenfull = (boxsell - 385);
+        } else {
+            screenfull = false;
+        }
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -13,6 +18,7 @@
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            "scrollX": true,
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'
@@ -23,7 +29,7 @@
 
 </script>
 
-<table class="table table-bordered table-hover" id="p_product">
+<table class="table table-bordered table-hover" id="p_product" style=" width: 100%;">
     <thead>
         <tr>
             <th style=" width: 5%;">#</th>

@@ -31,10 +31,10 @@ $system = new Configweb_model();
             <button type="button" class="btn btn-default"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลพนักงาน</button></a>
     </legend>
     <div class="row">
-        <div class="col-md-3 col-lg-2" style=" text-align: center;">
+        <div class="col-md-3 col-lg-2 col-sm-3 col-xs-3">
             <label>สาขา</label>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-3 col-sm-6 col-xs-5">
 
             <?php
             $this->widget(
@@ -52,7 +52,7 @@ $system = new Configweb_model();
             );
             ?>
         </div>
-        <div class="col-md-2 col-lg-2">
+        <div class="col-md-2 col-lg-2 col-sm-3 col-xs-4">
             <button type="button" class="btn btn-success btn-block" onclick="Getemployee()">ตกลง</button>
         </div>
     </div>

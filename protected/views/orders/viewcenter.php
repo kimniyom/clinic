@@ -1,14 +1,15 @@
-<style type="text/css" media="print">
+<style type="text/css">
     #tablelistorder tr th{
         background-color: #000000;
     }
-
+    
+    #tablelistorder tr td{
+        padding: 1px;
+        font-size: 16px;
+    }
 </style>
 
 <?php
-/* @var $this OrdersController */
-/* @var $model Orders */
-
 $this->breadcrumbs = array(
     'Orders' => array('index', 'branch' => $order['branch']),
     $order['order_id'],
@@ -18,7 +19,6 @@ $Thaibath = new Thaibaht();
 $order_id = $order['order_id'];
 $ItemModel = new CenterStockitem();
 ?>
-
 
 <!--
     ##### POPUP ListORder ######
@@ -87,31 +87,31 @@ $ItemModel = new CenterStockitem();
     ##### ENDPOPUP  ListORder ######
 -->
 
-<div class="row" style=" margin-bottom: 0px;">
-    <div class="col-lg-9 col-md-12">
-        <div class="row">
-            <div class="col-md-3 col-lg-2" style=" padding-right: 0px;">
+<div class="row" style=" margin: 0px; background: #e9e9e9; padding-top: 5px;">
+    <div class="col-md-9 col-lg-9" style=" margin: 0px; padding: 0px;">
+        <div class="row" style=" margin: 0px; padding: 0px;">
+            <div class="col-md-3 col-lg-3 col-sm-6" style=" margin-bottom: 5px;">
                 <a href="<?php echo Yii::app()->createUrl('orders/print', array("order_id" => $order_id)) ?>" target="_blank">
-                    <button type="button" class="btn btn-default btn-block">
+                    <button type="button" class="btn btn-primary btn-block">
                         <i class="fa fa-print"></i> พิมพ์ใบสั่งซื้อ
                     </button>
                 </a>
             </div>
-            <div class="col-md-3 col-lg-2" style=" padding: 0px;">
+            <div class="col-md-3 col-lg-3 col-sm-6" style=" margin-bottom: 5px;">
                 <a href="<?php echo Yii::app()->createUrl('orders/bill', array("order_id" => $order_id)) ?>" target="_blank">
-                    <button type="button" class="btn btn-default btn-block">
+                    <button type="button" class="btn btn-primary btn-block">
                         <i class="fa fa-print"></i> พิมพ์ใบส่งของ
                     </button>
                 </a>
             </div>
-            <div class="col-md-3 col-lg-2" style=" padding: 0px;">
-                <button type="button" class="btn btn-default btn-block" onclick="checkitem()">
+            <div class="col-md-3 col-lg-3 col-sm-6" style=" margin-bottom: 5px;">
+                <button type="button" class="btn btn-primary btn-block" onclick="checkitem()">
                     <i class="fa fa-check"></i> วัตถุดิบที่ต้องใช้ 
                 </button>
             </div>
-            <div class="col-md-3 col-lg-2" style=" padding: 0px;">
-                <div class="dropdown" style=" float: left; margin-right: 5px;">
-                    <button class="btn btn-default btn-block dropdown-toggle" type="button" id="btnstatus" data-toggle="dropdown">
+            <div class="col-md-3 col-lg-3 col-sm-6" style=" margin-bottom: 5px;">
+                <div class="dropdown">
+                    <button class="btn btn-danger btn-block dropdown-toggle" type="button" id="btnstatus" data-toggle="dropdown">
                         อัพเดทสถานะ
                         <span class="caret"></span>
                     </button>
@@ -128,36 +128,46 @@ $ItemModel = new CenterStockitem();
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-md-2 col-lg-1" style=" padding: 0px; padding-top: 5px;">
+        </div>
+    </div>
+    <div class="col-md-3 col-lg-3">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4" style=" padding-top: 5px; text-align: center;">
                 ส่วนลด %
-                <?php 
-                    if($order['status'] >= '2'){ 
-                        $disabled = "disabled";
-                        $rtextbox = "readonly";
-                    } else {
-                        $disabled = "";
-                        $rtextbox = "";
-                    }
+                <?php
+                if ($order['status'] >= '2') {
+                    $disabled = "disabled";
+                    $rtextbox = "readonly";
+                } else {
+                    $disabled = "";
+                    $rtextbox = "";
+                }
                 ?>
             </div>
-            <div class="col-md-2 col-lg-1" style=" padding: 0px;">
+            <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
                 <input type="number" id="distcount" class="form-control" <?php echo $rtextbox ?> placeholder="%" value="<?php echo $order['distcount'] ?>" style=" text-align: center;"/>
             </div>
-            <div class="col-md-2 col-lg-1" style=" padding: 0px;">
+            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
                 <button type="button" class="btn btn-success" onclick="Adddistcount()" <?php echo $disabled ?>>เพิ่ม</button>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row" style=" margin-bottom: 0px;">
+    <div class="col-lg-9 col-md-12">
 
         <div id="boxordersss">
-            <div class="well" style=" border-radius: 0px; background: #FFFFFF; margin-bottom: 0px; position: relative; max-width: 768px;" id="boxorders">
+            <div class="well table-responsive" style=" border-radius: 0px; background: #FFFFFF; margin-bottom: 0px; position: relative;" id="boxorders">
                 <div style=" text-align: center; margin-bottom: 10px;">
                     <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
                     <?php echo $BranchModel['address']; ?><br/>
                     <?php echo $BranchModel['contact']; ?><br/>
                     <h4 style=" margin: 0px;">ใบสั่งซื้อสินค้า</h4>
                 </div>
+
                 <div class="row">
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
                         <div>
                             <table id="companysell" style=" width: 100%; border: #cccccc solid 2px;">
                                 <tr>
@@ -172,12 +182,11 @@ $ItemModel = new CenterStockitem();
                             </table>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <div style=" padding: 0px;height: 100px; width: 200px;">
-                            <table style="border: #cccccc solid 2px; float: right; width: 100%;">
-                                <tr style=" border-bottom: #cccccc solid 2px;">
-
-                                    <td style=" text-align: center;" colspan="2">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div style=" padding: 0px;height: 100px; width: 200px; float: right;" id="box-ordercode-right">
+                            <table style="border: #cccccc solid 2px; width: 100%;" id="box-ordercode">
+                                <tr>
+                                    <td style=" text-align: center;" colspan="2" class="barcodes">
                                         รหัสสั่งซื้อเลขที่ :
                                         <div style="text-align: center; margin-left: 10px;" id="<?php echo $order['order_id'] ?>"></div>
                                         <?php
@@ -211,21 +220,19 @@ $ItemModel = new CenterStockitem();
                     <label>โทรศัพท์</label> <?php echo $BranchModel['telmenager'] ?>
                 </div>
 
-
                 <table style=" width: 100%; border: #cccccc solid 2px;" class="" id="tablelistorder">
                     <thead>
                         <tr>
-                            <th style="border-bottom: #cccccc solid 2px;background-color: #f4f4f4;">#</th>
-                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background-color: #f4f4f4; -webkit-print-color-adjust: exact; ">รหัสสินค้า</th>
-                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">ชื่อทางการตลาด</th>
+                            <th style="border-bottom: #cccccc solid 2px;background-color: #f4f4f4; text-align: center;">#</th>
+                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background-color: #f4f4f4; -webkit-print-color-adjust: exact; text-align: center;">รหัสสินค้า</th>
                             <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">สินค้า</th>
                             <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">จำนวน</th>
                             <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">หน่วยนับ</th>
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">ราคา/หน่วย</th>
+                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4; text-align: right;">ราคา/หน่วย</th>
                             <!--
                             <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">ส่วนลด</th>
                             -->
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">จำนวนเงิน</th>
+                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4; text-align: right;">จำนวนเงิน</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -240,15 +247,19 @@ $ItemModel = new CenterStockitem();
                             $sumdistcount = ($sumdistcount + $rs['distcountprice']);
                             ?>
                             <tr>
-                                <td><?php echo $i ?></td>
-                                <td style="border-left:#cccccc solid 2px;"><?php echo $rs['product_id'] ?></td>
-                                <td style="border-left:#cccccc solid 2px;"><?php echo $rs['product_nameclinic'] ?></td>
-                                <td style="border-left:#cccccc solid 2px;"><?php echo $rs['product_name'] ?></td>
+                                <td style=" text-align: center;"><?php echo $i ?></td>
+                                <td style="border-left:#cccccc solid 2px; text-align: center;">
+                                    <?php echo $rs['product_id'] ?>
+                                </td>
+                                <td style="border-left:#cccccc solid 2px;">
+                                    <?php echo $rs['product_name'] ?><br/>
+                                    (ชื่อทางการตลาด : <?php echo $rs['product_nameclinic'] ?>)
+                                </td>
                                 <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo number_format($rs['number']) ?></td>
                                 <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo $rs['unitname'] ?></td>
                                 <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($rs['costs'], 2) ?></td>
                                 <!--
-                                <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']     ?> % </td>
+                                <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']          ?> % </td>
                                 -->
                                 <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($sumrow, 2) ?></td>
                             </tr>
@@ -256,7 +267,7 @@ $ItemModel = new CenterStockitem();
                     </tbody>
                     <tfoot>
                         <tr style="border-top: #cccccc solid 2px;">
-                            <td colspan="5" rowspan="5" id="bold-right" valign="top" style=" border-right:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">
+                            <td colspan="4" rowspan="5" id="bold-right" valign="top" style=" border-right:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">
                                 หมายเหตุ
                             </td>
                         </tr>
@@ -288,7 +299,7 @@ $ItemModel = new CenterStockitem();
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" style=" text-align: center;border-right:#cccccc solid 2px; background: #f4f4f4;">
+                            <td colspan="4" style=" text-align: center;border-right:#cccccc solid 2px; background: #f4f4f4;">
                                 <?php
                                 $pricetotal = number_format(($priceresult + $tax), 2);
                                 $priceCovert = str_replace(",", "", $pricetotal);
@@ -376,13 +387,16 @@ $ItemModel = new CenterStockitem();
 
     Setscreen();
     function Setscreen() {
-        var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 132);
-        $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
+        var screen = window.innerHeight;
+        var w = window.innerWidth;
+        if (w > 786) {
+            var screenfull = (screen - 140);
+            $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        } else {
+            $(".barcodes").css({'text-align': 'left'});
+            $("#box-ordercode-right").css({'float': 'left', 'width': '100%', 'border-top': 'none'});
+            $("#box-ordercode").css({'border-top': 'none'});
+        }
     }
 
     function Adddistcount() {

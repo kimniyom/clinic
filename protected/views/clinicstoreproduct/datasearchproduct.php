@@ -13,6 +13,7 @@
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            "scrollX": true,
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'
@@ -26,7 +27,7 @@ $config = new Configweb_model();
 $Clinic = new ClinicStoreproduct();
 ?>
 <div id="box-data">
-    <table class="table table-bordered table-hover" id="p_product">
+    <table class="table table-bordered table-hover" id="p_product" style=" width: 100%;">
         <thead>
             <tr>
                 <th style=" width: 5%;">#</th>

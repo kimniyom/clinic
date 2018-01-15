@@ -33,7 +33,7 @@ $this->breadcrumbs = array(
         <?php } ?>
     </legend>
     <div class="row">
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-3 col-sm-6">
             <label>สาขา</label>
             <?php
             $this->widget(
@@ -51,7 +51,7 @@ $this->breadcrumbs = array(
             );
             ?>
         </div>
-        <div class="col-md-3 col-lg-2">
+        <div class="col-md-3 col-lg-2 col-sm-6">
             <label>รหัสใบสั่งซื้อ</label>
             <input type="text" id="ordercode" class="form-control" onkeypress="return chkNumber()" placeholder="กรอกเฉพาะตัวเลข ..."/>
         </div>

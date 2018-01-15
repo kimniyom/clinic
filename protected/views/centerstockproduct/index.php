@@ -19,11 +19,9 @@ $web = new Configweb_model();
         </div>
     </div>
     <div class="panel-body" style="padding: 10px;">
-        <div class="row">
-            <div class="col-lg-1" style=" text-align: right;">
-                <label>ประเภท</label>
-            </div>
+        <div class="row" style=" margin: 0px;">
             <div class="col-lg-3">
+                <label>หมวด</label>
                 <?php
                 $this->widget('booster.widgets.TbSelect2', array(
                     //'model' => $model,
@@ -47,21 +45,20 @@ $web = new Configweb_model();
             </div>
             <div class="col-lg-3">
                 <div id="boxsubproducttype">
+                    <label>ประเภทสินค้า</label>
                     <select id="subproducttype" class="form-control">
                         <option value=""></option>
                     </select>
                 </div>
             </div>
             <div class="col-lg-3">
-                <button type="button" class="btn btn-default" onclick="getdata();">ค้นหา</button>
+                <button type="button" class="btn btn-primary" onclick="getdata();" style=" margin-top: 25px;"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
         </div>
         <hr/>
 
-        <div id="showdata">
-
+        <div id="showdata"></div>
     </div>
-</div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -82,7 +79,7 @@ $web = new Configweb_model();
         var type_id = $("#producttype").val();
         var subproducttype = $("#subproducttype").val();
         var url = "<?php echo Yii::app()->createUrl('centerstockproduct/getdata') ?>";
-        var data = {type_id: type_id,subproducttype: subproducttype};
+        var data = {type_id: type_id, subproducttype: subproducttype};
         $.post(url, data, function (datas) {
             $("#loading").html('');
             $("#showdata").html(datas);

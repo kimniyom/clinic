@@ -26,12 +26,10 @@ $this->breadcrumbs = array(
     <div class="panel-heading" style=" background: none; padding-top: 10px; padding-bottom: 15px; padding-right: 5px;">
         <b>คลังวัตถุดิบ</b>
         <a href="<?php echo Yii::app()->createUrl('centerstockitem/create') ?>" class=" pull-right">
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> เพิ่มวัตถุดิบเข้าคลัง</button></a>
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> เพิ่มวัตถุดิบเข้าคลัง</button></a>
         <span style=" margin-top: 5px;">*<i class="fa fa-lock"></i> <font style="color:red;">มีการตัดสต๊อกไม่สามารถแก้ไขหรือลบได้</font></span>
-
     </div>
     <div class="panel-body">
-
         <table class="table table-bordered table-hover" id="stockitem">
             <thead>
                 <tr>
@@ -50,7 +48,7 @@ $this->breadcrumbs = array(
             <tbody>
                 <?php
                 $i = 0;
-                foreach ($item as $rs): 
+                foreach ($item as $rs):
                     if ($rs['totalcut'] > "0"):
                         $i++;
                         ?>
@@ -98,7 +96,13 @@ $this->breadcrumbs = array(
     function Setscreen() {
         var boxsell = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 295);
+        var screenfull;
+        var w = window.innerWidth;
+        if (w > 786) {
+            screenfull = (boxsell - 295);
+        } else {
+            screenfull = false;
+        }
         $("#stockitem").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -107,6 +111,7 @@ $this->breadcrumbs = array(
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            "scrollX": true,
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'

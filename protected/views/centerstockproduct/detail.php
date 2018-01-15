@@ -46,72 +46,12 @@ $product_id = $product['product_id'];
 <?php if (Yii::app()->session['status'] == '1' || Yii::app()->session['status'] == '5') { ?>
     <a href="<?php echo Yii::app()->createUrl('centerstockproduct/update', array('product_id' => $product['product_id'])) ?>">
         <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> แก้ไขข้อมูลสินค้า</button></a>
-        <!--
+    <!--
     <button type="button" class="btn btn-danger" onclick="deleteproduct('<?//php echo $product['id'] ?>')">ลบ</button>
-        -->
+    -->
 <?php } ?>
 <div class="well well-sm" style=" width:100%; margin-top:0px;text-align: left; background: #FFF; margin-bottom: 0px;">
     <div class="row">
-        <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
-            <font style=" color: #F00; font-size: 24px; font-weight: normal;">
-            ชื่อสามัญบริษัท : <?= $product['product_name'] ?><br/>
-            ชื่อใช้เรียกในคลินิก : <?= $product['product_nameclinic'] ?>
-            </font><br/>
-            <b>รหัสสินค้า</b> <?= $product['product_id'] ?><br/>
-            <b>หมวดสินค้า</b> <?= $product['type_name'] ?><br/>
-            <b>ประเภทสินค้า</b> <?= $product['subtypename'] ?><br/>
-            <b>อัพเดทล่าสุด</b> <?= $config->thaidate($product['d_update']); ?>
-
-            <br/><font style=" font-size: 24px; color: #ffcc00;">
-            ต้นทุน <?= number_format($product['costs']) ?>.-  บาท
-            </font>
-           <font style=" font-size: 24px; color: #F00;">
-            ราคาขาย <?= number_format($product['product_price']) ?>.-  บาท
-            </font>
-            <br/>
-            <b>รายละเอียดสินค้า</b>
-            <?= $product['product_detail'] ?>
-
-            <hr/>
-            <div class="row">
-                <div class="col-lg-5">
-                    <label>ส่วนผสมวัตถุดิบ</label>
-                    <?php
-                    $this->widget('booster.widgets.TbSelect2', array(
-                        //'model' => $model,
-                        'asDropDownList' => true,
-                        //'attribute' => 'itemid',
-                        'name' => 'items',
-                        'id' => 'items',
-                        'data' => CHtml::listData(CenterStockitemName::model()->findAll(""), 'id', 'itemname'),
-                        //'value' => $model,
-                        'options' => array(
-                            'allowClear' => true,
-                            //$model,
-                            //'oid',
-                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                            'placeholder' => '== วัตถุดิบ ==',
-                            'width' => '100%',
-                        //'tokenSeparators' => array(',', ' ')
-                        )
-                    ));
-                    ?>
-                </div>
-                <div class="col-lg-3">
-                    <label>จำนวน</label>
-                    <input type="text" class="form-control" id="number" onkeypress="return chkNumber()"/>
-                </div>
-                <div class="col-lg-2">
-                    <div id="unit" style=" padding-top: 30px;"></div>
-                </div>
-                <div class="col-lg-2" style=" padding-top: 25px;">
-                    <button type="button" class="btn btn-default btn-block" onclick="Additems()"><i class="fa fa-plus"></i></button>
-                </div>
-            </div>
-
-            <div id="mixitem" style=" margin-top: 10px;"></div>
-        </div>
-
         <div class="col-lg-4 col-md-6 col-xs-12" style=" padding-top: 20px;" id="p-right">
             <?php
             $product_model = new Product();
@@ -145,7 +85,7 @@ $product_id = $product['product_id'];
                                         -->
                                         <a class="image-link" href="<?php echo Yii::app()->baseUrl; ?>/uploads/product/<?= $rs['images'] ?>">
                                             <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/product/<?= $rs['images'] ?>" class="btn btn-default" id="im-resize" style=" background: #FFF;"/></a>
-                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </center>
                             </div>
                         <?php } ?>
@@ -153,6 +93,66 @@ $product_id = $product['product_id'];
                 </div>
             <?php } ?>
         </div>
+
+        <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
+            <font style=" color: #F00; font-size: 24px; font-weight: normal;">
+            ชื่อสามัญบริษัท : <?= $product['product_name'] ?><br/>
+            ชื่อใช้เรียกในคลินิก : <?= $product['product_nameclinic'] ?>
+            </font><br/>
+            <b>รหัสสินค้า</b> <?= $product['product_id'] ?><br/>
+            <b>หมวดสินค้า</b> <?= $product['type_name'] ?><br/>
+            <b>ประเภทสินค้า</b> <?= $product['subtypename'] ?><br/>
+            <b>อัพเดทล่าสุด</b> <?= $config->thaidate($product['d_update']); ?>
+
+            <br/><font style=" font-size: 24px; color: #ffcc00;">
+            ต้นทุน <?= number_format($product['costs']) ?>.-  บาท
+            </font>
+            <font style=" font-size: 24px; color: #F00;">
+            ราคาขาย <?= number_format($product['product_price']) ?>.-  บาท
+            </font>
+            <br/>
+            <b>รายละเอียดสินค้า</b>
+            <?= $product['product_detail'] ?>
+
+            <hr/>
+            <div class="row">
+                <div class="col-lg-5">
+                    <label>ส่วนผสมวัตถุดิบ</label>
+                    <?php
+                    $this->widget('booster.widgets.TbSelect2', array(
+                        //'model' => $model,
+                        'asDropDownList' => true,
+                        //'attribute' => 'itemid',
+                        'name' => 'items',
+                        'id' => 'items',
+                        'data' => CHtml::listData(CenterStockitemName::model()->findAll(""), 'id', 'itemname'),
+                        //'value' => $model,
+                        'options' => array(
+                            'allowClear' => true,
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => '== วัตถุดิบ ==',
+                            'width' => '100%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?>
+                </div>
+                <div class="col-lg-3">
+                    <label>จำนวน <font id="unit"></font></label>
+                    <input type="text" class="form-control" id="number" onkeypress="return chkNumber()"/>
+                </div>
+                
+                <div class="col-lg-2">
+                    <button type="button" class="btn btn-success btn-block" id="btn-add-item" onclick="Additems()"><i class="fa fa-plus"></i> เพิ่ม</button>
+                </div>
+            </div>
+
+            <div id="mixitem" style=" margin-top: 10px;"></div>
+        </div>
+
+
     </div>
 </div>
 
@@ -181,7 +181,7 @@ $product_id = $product['product_id'];
             var url = "<?php echo Yii::app()->createUrl('centerstockitemname/getunitcut') ?>";
             var data = {itemid: itemid};
             $.post(url, data, function (datas) {
-                $("#unit").html(datas);
+                $("#unit").html(" (" + datas + ")");
             });
         });
     });
@@ -230,31 +230,34 @@ $product_id = $product['product_id'];
             $("#p-right").addClass("p-right");
         }
     }
-    
-    function deletemixer(id){
+
+    function deletemixer(id) {
         var url = "<?php echo Yii::app()->createUrl('centerstockmix/deletemixer') ?>";
-        var data = {id:id};
-        $.post(url,data,function(success){
+        var data = {id: id};
+        $.post(url, data, function (success) {
             loadmix();
         });
     }
 </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        Setscreen();
-        function Setscreen() {
-            var screen = $(window).height();
-            //var contentboxsell = $("#content-boxsell").height();
+    Setscreen();
+    function Setscreen() {
+        var screen = $(window).height();
+        //var contentboxsell = $("#content-boxsell").height();
+        var w = window.innerWidth;
+        if (w > 786) {
             var screenfull = (screen - 155);
             $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#btn-add-item").css({'margin-top':'25px'});
             //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
             //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
         }
+    }
 
 
-    </script>
+</script>
 
 

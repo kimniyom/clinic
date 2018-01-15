@@ -27,7 +27,7 @@
         });
     }
 </script>
-
+<label for="">ประเภทสินค้า*</label>
 <select id="subproducttype" class="form-control">
     <?php foreach ($type as $rs): ?>
         <option value="<?php echo $rs['id'] ?>"><?php echo $rs['type_name'] ?></option>

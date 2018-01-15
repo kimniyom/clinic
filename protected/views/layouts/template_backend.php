@@ -36,7 +36,7 @@
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
         <!--
-                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;           ?>/css/button-color.css"/>
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;            ?>/css/button-color.css"/>
         -->
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
 
@@ -52,7 +52,7 @@
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.dataTables.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.bootstrap.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/FixedColumns/css/fixedColumns.bootstrap.css" type="text/css" media="all" />
-        
+
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/font-awesome-4.3.0/css/font-awesome.css"/>
         <link rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/font-awesome-4.3.0/css/font-awesome-animation.css"/>
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/simple-sidebar-black.css"/>
@@ -338,15 +338,7 @@
                                         </ul>
                                     </li>
                                 <?php } ?>
-                                <li <?php
-                                if (Yii::app()->session['navmenu'] == '2') {
-                                    echo "class='active'";
-                                }
-                                ?> onclick="set_navbar('2')">
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-book"></span>
-                                        <font id="font-th">คู่มือการใช้งาน</font></a>
-                                </li>
+
                             </ul>
                             <?php if (!Yii::app()->user->isGuest) { ?>
                                 <ul class="nav navbar-nav navbar-right">
@@ -372,8 +364,8 @@
                         ?><!-- breadcrumbs -->
                     <?php endif ?>
                 </ol>
-                <div class="container-fluid" style=" padding: 5px; padding-bottom: 0px;">
-                    <div class="row">
+                <div class="container-fluid" style="padding: 0px; padding-bottom: 0px;">
+                    <div class="row" style="margin: 5px 0px 0px 0px;">
                         <div class="col-lg-12"><?php echo $content; ?></div>
                     </div>
                 </div>
@@ -388,7 +380,7 @@
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
-
+            
             function set_navbar(id) {
                 var url = "<?php echo Yii::app()->createUrl('backend/backend/set_navbar') ?>";
                 var data = {id: id};
@@ -396,7 +388,8 @@
                     //window.location.reload();
                 });
             }
-
+            
+            /*
             $(function () {
                 $(".dropdown").hover(
                         function () {
@@ -410,7 +403,8 @@
                             $('b', this).toggleClass("caret caret-up");
                         });
             });
-
+            */
+           
             $(document).on('click', '.panel-heading span.clickable', function (e) {
                 var $this = $(this);
                 if (!$this.hasClass('panel-collapsed')) {

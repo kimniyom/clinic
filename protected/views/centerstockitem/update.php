@@ -3,7 +3,7 @@
 /* @var $model CenterStockitem */
 
 $this->breadcrumbs=array(
-        'คลังสินค้า' => Yii::app()->createUrl('stock/index'),
+        'คลังสินค้า' => Yii::app()->createUrl('store/index'),
 	'วัตถุดิบ'=>array('index'),
 	//$model->id=>array('view','id'=>$model->id),
 	'Update',

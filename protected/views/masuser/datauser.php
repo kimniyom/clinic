@@ -2,7 +2,7 @@
 $system = new Configweb_model();
 $MasuserModel = new Masuser();
 ?>
-<table class="table table-bordered" id="tuser">
+<table class="table table-bordered" id="tuser" style=" width: 100%;">
     <thead>
         <tr>
             <th style=" text-align: center;">#</th>
@@ -68,6 +68,7 @@ $MasuserModel = new Masuser();
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            "scrollX": true,
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'

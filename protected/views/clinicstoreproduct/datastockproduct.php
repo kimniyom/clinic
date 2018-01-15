@@ -2,9 +2,14 @@
 
     Setscreen();
     function Setscreen() {
-        var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 365);
+        var boxsell = window.innerHeight;
+        var w = window.innerWidth;
+        var screenfull;
+        if (w > 786) {
+            screenfull = (boxsell - 395);
+        } else {
+            screenfull = false;
+        }
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -13,6 +18,7 @@
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            "scrollX": true,
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'
@@ -28,7 +34,7 @@ $Alert = new Alert();
 $alam = $Alert->Getalert()['alert_product'];
 ?>
 <div id="box-data">
-    <table class="table table-bordered table-hover" id="p_product">
+    <table class="table table-bordered table-hover" id="p_product" style=" width: 100%;">
         <thead>
             <tr>
                 <th style=" width: 5%;">#</th>
@@ -80,7 +86,7 @@ $alam = $Alert->Getalert()['alert_product'];
                         <td><?php echo $last['type_name'] ?></td>
                         <td><?php echo $last['lotnumber'] ?></td>
                         <!--
-                        <td><?php //echo $config->thaidate($last['generate'])              ?></td>
+                        <td><?php //echo $config->thaidate($last['generate'])               ?></td>
                         -->
                         <td><?php echo $config->thaidate($last['expire']) ?></td>
                         <td style=" text-align: right;">

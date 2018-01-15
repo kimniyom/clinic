@@ -1,10 +1,20 @@
-<script type="text/javascript">
+<style type="text/css">
+    #p_product tbody tr td b{
+        color: #006699;
+    }
+</style>
 
+<script type="text/javascript">
     Setscreen();
     function Setscreen() {
         var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 357);
+        var screenfull;
+        var w = window.innerWidth;
+        if (w <= 786) {
+            screenfull = false;
+        } else {
+            screenfull = (boxsell - 357);
+        }
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -12,7 +22,7 @@
             //"scrollCollapse": true,
             "paging": false,
             "bFilter": true, // แสดง search box
-            "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            //"sScrollY": screenfull, // กำหนดความสูงของ ตาราง
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'
@@ -23,20 +33,11 @@
 
 </script>
 
-<table class="table table-bordered table-hover" id="p_product">
+<table class="table table-bordered" id="p_product">
     <thead>
         <tr>
-            <th style=" width: 5%;">#</th>
-            <th>รหัส</th>
-            <th>ชื่อสามัญบริษัท</th>
-            <th>ชื่อเรียกในคลินิก</th>
-            <th style=" text-align: center;">ต้นทุน</th>
-            <th style="text-align: center;">ราคา / หน่วย</th>
-            <th style="text-align: center;">หมวด</th>
-            <th style="text-align: center;">ประเภท</th>
-            <th>หน่วย</th>
-            <th style=" text-align: center;">รายละเอียด</th>
-            <th style=" text-align: center;">Status</th>
+            <th style=" display: none;"></th>
+            <th>ข้อมูลสินค้า</th>
         </tr>
     </thead>
     <tbody>
@@ -54,28 +55,30 @@
             $i++;
             ?>
             <tr style=" color: <?php echo $textcolor ?>">
-                <td style=" text-align: center;"><?php echo $i ?></td>
-                <td><?php echo $last['product_id']; ?></td>
-                <td><?php echo $last['product_name']; ?></td>
-                <td><?php echo $last['product_nameclinic']; ?></td>
-                <td style=" text-align: center; font-weight: bold;">
-                    <?php echo number_format($last['costs'], 2); ?>
-                </td>
-                <td style=" text-align: center; font-weight: bold;">
-                    <?php echo number_format($last['product_price'], 2); ?>
-                </td>
-                <td><?php echo $last['category'] ?></td>
-                <td><?php echo $last['type_name'] ?></td>
-                <td><?php echo $last['unitname'] ?></td>
-                <td style="text-align: center;"><a href="<?php echo $link ?>">รายละเอียด</a></td>
-                <td style=" text-align: center;">
-                    <?php if ($last['status'] == "1") { ?>
-                        <font style="color: #cc0033;"><i class="fa fa-remove"></i> เลิกผลิต</font>
-                    <?php } else { ?>
-                        <font style="color: #669900;"><i class="fa fa-check"></i> ยังผลิต</font>
-                    <?php } ?>
-                </td>
+                <td style=" display: none;"><?php echo $i ?></td>
+                <td>
+                    <font style=" color: #669900; font-size: 20px;">
+                    รหัส: <?php echo $last['product_id']; ?>
+                    ชื่อสามัญบริษัท: <?php echo $last['product_name']; ?>
+                    </font>
+                    <br/>
+
+                    <b>ชื่อเรียกในคลินิก:</b> <?php echo $last['product_nameclinic']; ?><br/>
+                    <b>หมวด:</b> <?php echo $last['category'] ?>
+                    <b>ประเภท:</b> <?php echo $last['type_name'] ?><br/>
+                    <b>ต้นทุน:</b> <label class=" badge" style=" font-size: 20px;"><?php echo number_format($last['costs'], 2); ?></label>
+                    <b>ราคาขาย / หน่วย:</b> <label class=" badge" style=" font-size: 20px;"><?php echo number_format($last['product_price'], 2); ?></label><br/>
+                    <b>หน่วยนับ:</b> <?php echo $last['unitname'] ?>
+                        <b>สถานะ:</b> <?php if ($last['status'] == "1") { ?>
+                            <font style="color: #cc0033;"><i class="fa fa-remove"></i> เลิกผลิต</font>
+                        <?php } else { ?>
+                            <font style="color: #669900;"><i class="fa fa-check"></i> ยังผลิต</font>
+                        <?php } ?>
+                    <div class="pull-right">
+                        <a href="<?php echo $link ?>" class="btn btn-success btn-lg"><i class="fa fa-file"></i> รายละเอียด</a>
+                    </div>
             </tr>
         <?php endforeach; ?>
     </tbody>
-</table>
+
+</div>

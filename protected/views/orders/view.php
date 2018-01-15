@@ -132,7 +132,7 @@ $Thaibath = new Thaibaht();
                             <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo $rs['unitname'] ?></td>
                             <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($rs['costs'], 2) ?></td>
                             <!--
-                            <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']  ?> % </td>
+                            <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']   ?> % </td>
                             -->
                             <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($sumrow, 2) ?></td>
                         </tr>
@@ -182,7 +182,7 @@ $Thaibath = new Thaibaht();
                             } else {
                                 $priceCoverts = $priceCovert;
                             }
-                           
+
                             echo "(" . $Thaibath->convert($priceCoverts) . ")";
                             ?>
                         </td>
@@ -252,12 +252,12 @@ $Thaibath = new Thaibaht();
 <script type="text/javascript">
     Setscreen();
     function Setscreen() {
-        var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 132);
-        $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        var screen = window.innerHeight;
+        var w = window.innerWidth;
+        if (w > 786) {
+            var screenfull = (screen - 132);
+            $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        }
 
     }
 </script>

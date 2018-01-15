@@ -15,7 +15,7 @@ $this->breadcrumbs = array(
             <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i> เพิ่มรายการวัตถุดิบ</button></a>
     </div>
     <div class="panel-body">
-        <table class="table-bordered table-hover" id="tb-items">
+        <table class="table-bordered table-hover" id="tb-items" style=" width: 100%;">
             <thead>
                 <tr>
                     <th style=" width: 5%; text-align: center;">#</th>
@@ -46,8 +46,8 @@ $this->breadcrumbs = array(
                             echo CenterStockunit::model()->find("id = '$unitcut' ")['unit']
                             ?></td>
                         <td style=" text-align: center; width: 10%;">
-                            <a href="<?php echo Yii::app()->createUrl('centerstockitemname/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil"></i></a>
-                            <a href="javascript:Delete('<?php echo $rs['id'] ?>')"><i class="fa fa-trash"></i></a>
+                            <a href="<?php echo Yii::app()->createUrl('centerstockitemname/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil"></i> แก้ไข</a>
+                            <a href="javascript:Delete('<?php echo $rs['id'] ?>')"><i class="fa fa-trash"></i> ลบ</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -73,8 +73,14 @@ $this->breadcrumbs = array(
     Setscreen();
     function Setscreen() {
         var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 295);
+        var w = window.innerWidth;
+        var screenfull;
+        if (w > 786) {
+            screenfull = (boxsell - 295);
+        } else {
+            screenfull = false;
+        }
+        
         $("#tb-items").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -83,6 +89,7 @@ $this->breadcrumbs = array(
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
+            "sScrollX": true, // กำหนดความสูงของ ตาราง
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'

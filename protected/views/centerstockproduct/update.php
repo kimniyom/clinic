@@ -34,181 +34,172 @@ $product_name = $product['product_name'];
 $this->breadcrumbs = array(
     'คลังสินค้า' => Yii::app()->createUrl('store/index'),
     'รายการสินค้า' => array('index'),
-    $product_name => array('centerstockproduct/detail&product_id='.$product['product_id']),
+    $product_name => array('centerstockproduct/detail&product_id=' . $product['product_id']),
     $title,
 );
 
 $BranchModel = new Branch();
 ?>
 
-
 <div class="wells" style="width:100%; margin-bottom: 0px;">
     <div class="row" style=" margin-bottom: 0px;">
         <div class="col-md-3 col-lg-3" id="p-left" style=" margin-bottom: 0px; border-right: #cccccc solid 1px;">
-                    <div class="well" style=" border:#666666 dashed 2px; text-align: center; cursor: pointer;"
-                         onclick="GetImages();">
-                        <i class="fa fa-image fa-5x" style=" color: #cccccc;"></i><br/>
-                        <i class="fa fa-plus"></i> <font id="font-20">เพิ่มรูปสินค้า</font>
-                    </div>
-                    <font id="font-20">รูปภาพสินค้า</font>
-                    <div id="load_images_product"></div>
-                </div>
+            <div class="well" style=" border:#666666 dashed 2px; text-align: center; cursor: pointer;"
+                 onclick="GetImages();">
+                <i class="fa fa-image fa-5x" style=" color: #cccccc;"></i><br/>
+                <i class="fa fa-plus"></i> <font id="font-20">เพิ่มรูปสินค้า</font>
+            </div>
+            <font id="font-20">รูปภาพสินค้า</font>
+            <div id="load_images_product"></div>
+        </div>
         <div class="col-md-9 col-lg-9" id="p-right" style=" border-right:0px;">
 
-                    <label for="">หมวดสินค้า*</label><br/>
-                    <select id="product_type" style=" width: 50%;" onchange="Getsubproduct(this.value)">
-                        <?php
-                        $producttype = ProductType::model()->findAll("upper is null");
-                        foreach ($producttype as $pt):
-                            ?>
-                            <option value="<?php echo $pt['id'] ?>" <?php
-                            if ($pt['id'] == $product['type_id']) {
-                                echo "selected";
-                            }
-                            ?>><?php echo $pt['type_name'] ?></option>
-                                <?php endforeach; ?>
-                    </select>
+            <label for="">หมวดสินค้า*</label><br/>
+            <select id="product_type" style=" width: 50%;" onchange="Getsubproduct(this.value)">
+                <?php
+                $producttype = ProductType::model()->findAll("upper is null");
+                foreach ($producttype as $pt):
+                    ?>
+                    <option value="<?php echo $pt['id'] ?>" <?php
+                    if ($pt['id'] == $product['type_id']) {
+                        echo "selected";
+                    }
+                    ?>><?php echo $pt['type_name'] ?></option>
+                        <?php endforeach; ?>
+            </select>
 
-
-                    <div class="row">
-                        <div class="col-lg-6"><label for="">ประเภทสินค้า*</label></div>
-                        <div class="col-lg-6"><label for="">รหัสสินค้า*</label></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div id="boxsubproducttype" style=" width: 100%;">
-                                <select id="subproducttype" style=" width: 100%;">
-                                    <?php
-                                    $type = $product['type_id'];
-                                    $subproducttype = ProductType::model()->findAll("upper = '$type' ");
-                                    foreach ($subproducttype as $st):
-                                        ?>
-                                        <option value="<?php echo $st['id'] ?>" <?php
-                                        if ($st['id'] == $product['subproducttype']) {
-                                            echo "selected";
-                                        }
-                                        ?>><?php echo $st['type_name'] ?></option>
-                                            <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <input type="text" id="product_id" name="product_id" class="form-control" value="<?php echo $product['product_id']; ?>" readonly style="width:40%;"/>
-                        </div>
-                    </div>
-
-
-                    <label for="" >ชื่อสินค้าบริษัท</label>
-                    <input type="text" id="product_name" name="product_name" class="form-control" value="<?php echo $product['product_name'] ?>"/>
-
-                    <label for="">ชื่อสินค้าคลินิก*</label>
-                    <input type="text" id="product_nameclinic" name="product_nameclinic" class="form-control" style="width:100%;" value="<?php echo $product['product_nameclinic'] ?>"/>
-
-
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3"><label for="">หน่วยนับ</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน</label></div>
-                        <div class="col-md-6 col-lg-3"><label for="">ราคาขาย</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 col-lg-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="">ประเภทสินค้า*</label>
+                    <div id="boxsubproducttype" style=" width: 100%;">
+                        <select id="subproducttype" style=" width: 100%;">
                             <?php
-                            $this->widget('booster.widgets.TbSelect2', array(
-                                //'model' => $model,
-                                'asDropDownList' => true,
-                                //'attribute' => 'itemid',
-                                'name' => 'unit',
-                                'id' => 'unit',
-                                'data' => CHtml::listData(Unit::model()->findAll(""), 'id', 'unit'),
-                                'value' => $product['unit_id'],
-                                'options' => array(
-                                    'allowClear' => true,
-                                    //$model,
-                                    //'oid',
-                                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                                    'placeholder' => '== หน่วยนับ ==',
-                                    'width' => '100%',
-                                //'tokenSeparators' => array(',', ' ')
-                                )
-                            ));
-                            ?>
-                        </div>
-                        <div class="col-md-4 col-lg-3">
-                            <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['costs'] ?>"/>
-                        </div>
-                        <div class="col-md-4 col-lg-3">
-                            <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['product_price'] ?>"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label for="">บริษัท</label><br/>
-                            <?php
-                            $this->widget('booster.widgets.TbSelect2', array(
-                                //'model' => $model,
-                                'asDropDownList' => true,
-                                //'attribute' => 'itemid',
-                                'name' => 'company',
-                                'id' => 'company',
-                                'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
-                                'value' => $product['company'],
-                                'options' => array(
-                                    'allowClear' => true,
-                                    //$model,
-                                    //'oid',
-                                    //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                                    'placeholder' => '== บริษัท ==',
-                                    'width' => '100%',
-                                //'tokenSeparators' => array(',', ' ')
-                                )
-                            ));
-                            ?>
-                        </div>
-                        <div class="col-lg-5" style=" padding-top: 22px;">
-                            <div class="well well-sm" style=" text-align: center;">
-                                <input type="radio" id="private" name="private" value="0" <?php
-                                if ($product['private'] == '0') {
-                                    echo "checked='checked'";
+                            $type = $product['type_id'];
+                            $subproducttype = ProductType::model()->findAll("upper = '$type' ");
+                            foreach ($subproducttype as $st):
+                                ?>
+                                <option value="<?php echo $st['id'] ?>" <?php
+                                if ($st['id'] == $product['subproducttype']) {
+                                    echo "selected";
                                 }
-                                ?>/> คลินิกมองเห็น
-                                &nbsp;&nbsp;<input type="radio" id="private" name="private" value="1" <?php
-                                if ($product['private'] == '1') {
-                                    echo "checked='checked'";
-                                }
-                                ?>/> คลินิกมองไม่เห็น
-                            </div>
-                        </div>
+                                ?>><?php echo $st['type_name'] ?></option>
+                                    <?php endforeach; ?>
+                        </select>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                            <label for="textArea">รายละเอียด</label>
-                            <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required">
-                                <?php echo $product['product_detail'] ?>
-                            </textarea>
-                        </div>
-                    </div>
-                    <div class="row" style=" margin-top: 10px;">
-                        <div class="col-md-5 col-lg-5">
-                            <div class="well well-sm" style=" text-align: left;">
-                                <input type="radio" id="status" name="status" value="0" <?php
-                                if ($product['status'] == '0') {
-                                    echo "checked='checked'";
-                                }
-                                ?>/> ผลิต
-                                &nbsp;&nbsp;<input type="radio" id="status" name="status" value="1" <?php
-                                if ($product['status'] == '1') {
-                                    echo "checked='checked'";
-                                }
-                                ?>/> เลิกผลิต
-                            </div>
-                        </div>
-                    </div>
-
-
+                </div>
+                <div class="col-lg-6">
+                    <label for="">รหัสสินค้า*</label>
+                    <input type="text" id="product_id" name="product_id" class="form-control" value="<?php echo $product['product_id']; ?>" readonly style="width:40%;"/>
                 </div>
             </div>
+
+
+            <label for="" >ชื่อสินค้าบริษัท</label>
+            <input type="text" id="product_name" name="product_name" class="form-control" value="<?php echo $product['product_name'] ?>"/>
+
+            <label for="">ชื่อสินค้าคลินิก*</label>
+            <input type="text" id="product_nameclinic" name="product_nameclinic" class="form-control" style="width:100%;" value="<?php echo $product['product_nameclinic'] ?>"/>
+            <div class="row">
+                <div class="col-md-4 col-lg-3">
+                    <label for="">หน่วยนับ</label>
+                    <?php
+                    $this->widget('booster.widgets.TbSelect2', array(
+                        //'model' => $model,
+                        'asDropDownList' => true,
+                        //'attribute' => 'itemid',
+                        'name' => 'unit',
+                        'id' => 'unit',
+                        'data' => CHtml::listData(Unit::model()->findAll(""), 'id', 'unit'),
+                        'value' => $product['unit_id'],
+                        'options' => array(
+                            'allowClear' => true,
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => '== หน่วยนับ ==',
+                            'width' => '100%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <label for="">ราคาต้นทุน</label>
+                    <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['costs'] ?>"/>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <label for="">ราคาขาย</label>
+                    <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['product_price'] ?>"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="">บริษัท</label><br/>
+                    <?php
+                    $this->widget('booster.widgets.TbSelect2', array(
+                        //'model' => $model,
+                        'asDropDownList' => true,
+                        //'attribute' => 'itemid',
+                        'name' => 'company',
+                        'id' => 'company',
+                        'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
+                        'value' => $product['company'],
+                        'options' => array(
+                            'allowClear' => true,
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => '== บริษัท ==',
+                            'width' => '100%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?>
+                </div>
+                <div class="col-lg-5" style=" padding-top: 22px;">
+                    <div class="well well-sm" style=" text-align: center;">
+                        <input type="radio" id="private" name="private" value="0" <?php
+                        if ($product['private'] == '0') {
+                            echo "checked='checked'";
+                        }
+                        ?>/> คลินิกมองเห็น
+                        &nbsp;&nbsp;<input type="radio" id="private" name="private" value="1" <?php
+                        if ($product['private'] == '1') {
+                            echo "checked='checked'";
+                        }
+                        ?>/> คลินิกมองไม่เห็น
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <label for="textArea">รายละเอียด</label>
+                    <textarea id="product_detail" name="product_detail" rows="3" class="form-control input-sm" required="required">
+                        <?php echo $product['product_detail'] ?>
+                    </textarea>
+                </div>
+            </div>
+            <div class="row" style=" margin-top: 10px;">
+                <div class="col-md-5 col-lg-5">
+                    <div class="well well-sm" style=" text-align: left;">
+                        <input type="radio" id="status" name="status" value="0" <?php
+                        if ($product['status'] == '0') {
+                            echo "checked='checked'";
+                        }
+                        ?>/> ผลิต
+                        &nbsp;&nbsp;<input type="radio" id="status" name="status" value="1" <?php
+                        if ($product['status'] == '1') {
+                            echo "checked='checked'";
+                        }
+                        ?>/> เลิกผลิต
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 </div>
 
 <hr style=" margin-top: 0px;"/>
@@ -392,7 +383,7 @@ $BranchModel = new Branch();
         }
     }
 
-    
+
 
 </script>
 
@@ -403,9 +394,12 @@ $BranchModel = new Branch();
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 170);
-        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        var w = window.innerWidth;
+        if (w > 786) {
+            var screenfull = (screen - 170);
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        }
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
 

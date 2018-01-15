@@ -1,6 +1,7 @@
 <title>คลังสินค้ากลาง</title>
 <script src="<?= Yii::app()->baseUrl ?>/assets/uploadify/jquery.uploadify.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/assets/uploadify/uploadify.css">
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#Filedata').uploadify({
@@ -37,7 +38,7 @@ $product_model = new Product();
 
 <h4>ที่อยู่ / ข้อมูลติดต่อ</h4>
 <div class="row">
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-2 col-sm-6">
         <?php if (empty($company['logo'])) { ?>
             <img src="<?php echo Yii::app()->baseUrl; ?>/images/No_image_available.jpg" width="50" style="margin: 0px;"/>
         <?php } else { ?>
@@ -68,7 +69,7 @@ $product_model = new Product();
             </button></a>
     </div>
     -->
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('centerstockproduct/index') ?>">
             <button type="button" class="btn btn-success btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/Product-sale-report-icon.png"/><br/>
@@ -76,7 +77,7 @@ $product_model = new Product();
             </button></a>
     </div>
 
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('unit/index') ?>">
             <button type="button" class="btn btn-default btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/unit-icon.png"><br/>
@@ -84,30 +85,26 @@ $product_model = new Product();
             </button></a>
     </div>
 
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('centerstockcompany/index') ?>">
             <button type="button" class="btn btn-default btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/company-building-icon.png"><br/>
                 บริษัทสั่งซื้อวัตถุดิบ
             </button></a>
     </div>
-    <div class="col-lg-4 col-md-2">
-        <label>รายงาน</label>
-        <button type="button" class="btn btn-default btn-block" onclick="PopupCenter('<?php echo Yii::app()->createUrl('reportstorecenter/formreportincome')?>','รายงานรายได้จากการขายสินค้า')">รายงานรายได้จากการขายสินค้า</button>
-    </div>
-
+    
 </div>
 <hr/>
 <h4>วัตถุดิบ</h4>
 <div class="row">
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('centerstockitem/index') ?>">
             <button type="button" class="btn btn-primary btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/store-icon.png"/><br/>
-                คลังวัตถุดิบ
+                สต๊อกวัตถุดิบ
             </button></a>
     </div>
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('centerstockitemname/index') ?>">
             <button type="button" class="btn btn-primary btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/product-icon.png"/><br/>
@@ -115,18 +112,14 @@ $product_model = new Product();
             </button></a>
     </div>
 
-    <div class="col-lg-2 col-md-2">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
         <a href="<?php echo Yii::app()->createUrl('centerstockunit/index') ?>">
             <button type="button" class="btn btn-default btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/unit-icon.png"><br/>
                 หน่วยนับ วัตถุดิบ
             </button></a>
     </div>
-    <div class="col-lg-4 col-md-2">
-        <label>รายงาน</label>
-        <button type="button" class="btn btn-default btn-block" 
-                onclick="PopupCenter('<?php echo Yii::app()->createUrl('reportstorecenter/formreportinputitems')?>','รายงานการนำเข้าวัตถุดิบ')">รายงานการนำเข้าวัตถุดิบ</button>
-    </div>
+    
 </div>
 
 
