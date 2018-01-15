@@ -120,5 +120,12 @@ table {
     background: #FFFFFF;
 }
 
+body table thead th{
+    /*white-space: nowrap;*/
+}
+
+body table tbody td{
+    /*white-space: nowrap;*/
+}
 
 
