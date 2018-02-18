@@ -1966,3 +1966,539 @@ Stack trace:
 REQUEST_URI=/clinic/index.php?r=stock/index
 HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/update&id=21
 ---
+2018/01/15 13:44:35 [error] [php] Trying to get property of non-object (/Applications/MAMP/htdocs/clinic/protected/views/orders/index.php:21)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): OrdersController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): OrdersController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/OrdersController.php(166): OrdersController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): OrdersController->actionIndex()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): OrdersController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): OrdersController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): OrdersController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): OrdersController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=orders/index
+in /Applications/MAMP/htdocs/clinic/protected/views/orders/index.php (21)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/OrdersController.php (166)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/15 13:44:42 [error] [php] Trying to get property of non-object (/Applications/MAMP/htdocs/clinic/protected/views/orders/index.php:21)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): OrdersController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): OrdersController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/OrdersController.php(166): OrdersController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): OrdersController->actionIndex()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): OrdersController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): OrdersController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): OrdersController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): OrdersController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=orders/index
+in /Applications/MAMP/htdocs/clinic/protected/views/orders/index.php (21)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/OrdersController.php (166)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/15 16:28:42 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('set_navbar')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('backend/backend...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=backend/backend/set_navbar
+HTTP_REFERER=http://172.17.3.169/clinic/index.php?r=queue/index
+---
+2018/01/31 13:48:41 [error] [exception.CException] exception 'CException' with message 'TbDatePicker จะต้องทำการระบุค่า "model" และ "attribute" หรือ "name" เหล่านี้ด้วย' in /Applications/MAMP/htdocs/clinic/framework/web/widgets/CInputWidget.php:61
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/extensions/yiibooster/widgets/TbDatePicker.php(62): CInputWidget->resolveNameID()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(173): TbDatePicker->run()
+#2 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/_form.php(122): CBaseController->widget('booster.widgets...', Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/create.php(13): CController->renderPartial('_form', Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#11 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(76): CController->render('create', Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionCreate()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#20 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('create')
+#22 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#23 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#24 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#25 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/create
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/create
+---
+2018/01/31 14:42:50 [error] [php] Undefined offset: 1 (/Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/index.php:72)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterstockitemController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterstockitemController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(121): CenterstockitemController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionIndex()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CenterstockitemController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CenterstockitemController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockitemController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockitemController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockitem/index
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/index.php (72)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (121)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/31 15:09:47 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('outstock')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/index
+---
+2018/01/31 15:09:54 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('outstock')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+---
+2018/01/31 15:20:36 [error] [php] Missing argument 1 for CHttpRequest::getPost(), called in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php on line 111 and defined (/Applications/MAMP/htdocs/clinic/framework/web/CHttpRequest.php:197)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(164): CHttpRequest->__call()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(164): CHttpRequest->post()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionOutstock()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CenterstockitemController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CenterstockitemController->filterAccessControl()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockitemController->runActionWithFilters()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockitemController->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (164)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (164)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/31 15:20:45 [error] [php] Missing argument 1 for CHttpRequest::getPost(), called in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php on line 111 and defined (/Applications/MAMP/htdocs/clinic/framework/web/CHttpRequest.php:197)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(164): CHttpRequest->__call()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(164): CHttpRequest->post()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionOutstock()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CenterstockitemController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CenterstockitemController->filterAccessControl()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockitemController->runActionWithFilters()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockitemController->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (164)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (164)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/31 15:21:05 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: UPDATE `CenterStockitem` SET `outstock`=:outstock WHERE id = .
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (167)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/31 15:21:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: UPDATE `CenterStockitem` SET `outstock`=:outstock WHERE id = ' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1285): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(167): CDbCommand->update('CenterStockitem', Array, 'id = ')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionOutstock()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('outstock')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+---
+2018/01/31 15:21:25 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'clinic.centerstockitem' doesn't exist. The SQL statement executed was: UPDATE `CenterStockitem` SET `outstock`=:outstock WHERE id = ''.
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (167)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/31 15:21:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'clinic.centerstockitem' doesn't exist. The SQL statement executed was: UPDATE `CenterStockitem` SET `outstock`=:outstock WHERE id = ''' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1285): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(167): CDbCommand->update('CenterStockitem', Array, 'id = ''')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionOutstock()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('outstock')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+---
+2018/01/31 15:22:09 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'clinic.centerstockitem' doesn't exist. The SQL statement executed was: UPDATE `CenterStockitem` SET `outstock`=:outstock WHERE id = '17'.
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (167)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/31 15:22:09 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'clinic.centerstockitem' doesn't exist. The SQL statement executed was: UPDATE `CenterStockitem` SET `outstock`=:outstock WHERE id = '17'' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1285): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(167): CDbCommand->update('CenterStockitem', Array, 'id = '17'')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionOutstock()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('outstock')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/index
+---
+2018/01/31 15:23:00 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'clinic.centerstockitem' doesn't exist. The SQL statement executed was: UPDATE `centerstockitem` SET `outstock`=:outstock WHERE id = '17'.
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (167)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/31 15:23:00 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'clinic.centerstockitem' doesn't exist. The SQL statement executed was: UPDATE `centerstockitem` SET `outstock`=:outstock WHERE id = '17'' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1285): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(167): CDbCommand->update('centerstockitem', Array, 'id = '17'')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionOutstock()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('outstock')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/index
+---
+2018/01/31 15:23:09 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'clinic.centerstockitem' doesn't exist. The SQL statement executed was: UPDATE `centerstockitem` SET `outstock`=:outstock WHERE id = ''.
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (167)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/01/31 15:23:09 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'clinic.centerstockitem' doesn't exist. The SQL statement executed was: UPDATE `centerstockitem` SET `outstock`=:outstock WHERE id = ''' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(1285): CDbCommand->execute(Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(167): CDbCommand->update('centerstockitem', Array, 'id = ''')
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionOutstock()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('outstock')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/outstock
+---
+2018/01/31 16:39:43 [error] [php] Object of class TbSelect2 could not be converted to string (/Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/_form.php:149)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterstockitemController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/create.php(13): CenterstockitemController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CenterstockitemController->renderInternal()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterstockitemController->renderFile()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterstockitemController->renderPartial()
+#6 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(76): CenterstockitemController->render()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionCreate()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CenterstockitemController->runAction()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CenterstockitemController->filterAccessControl()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#15 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockitemController->runActionWithFilters()
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockitemController->run()
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#18 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockitem/create
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/_form.php (149)
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/create.php (13)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (76)
+2018/02/01 02:33:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "enterstockcompany/create".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('enterstockcompa...')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=enterstockcompany/create
+HTTP_REFERER=http://localhost/clinic/index.php?r=centerstockitem/create
+---
+2018/02/01 11:28:54 [error] [php] Use of undefined constant php - assumed 'php' (/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php:158)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterstockproductController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterstockproductController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php(18): CenterstockproductController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockproductController->actionCreate()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CenterstockproductController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockproductController->runActionWithFilters()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockproductController->run()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockproduct/create
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php (158)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php (18)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/02 15:44:52 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'คุณไม่ได้รับอนุญาตให้ดำเนินการดังกล่าว' in /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), '\xE0\xB8\x84\xE0\xB8\xB8\xE0\xB8\x93\xE0\xB9\x84\xE0\xB8\xA1...')
+#1 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('listexpirecente...')
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#9 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#11 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/listexpirecenterstockitem
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2018/02/02 15:45:16 [error] [exception.CException] exception 'CException' with message 'Alert and its behaviors do not have a method or closure named "Listexpirecenterstockitem".' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:266
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(227): CComponent->__call('Listexpirecente...', Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(192): CActiveRecord->__call('Listexpirecente...', Array)
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(192): Alert->Listexpirecenterstockitem()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionListexpirecenterstockitem()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('listexpirecente...')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/listexpirecenterstockitem
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2018/02/02 15:46:14 [error] [exception.CException] exception 'CException' with message 'Alert and its behaviors do not have a method or closure named "Listexpirecenterstockitem".' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:266
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(227): CComponent->__call('Listexpirecente...', Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(192): CActiveRecord->__call('Listexpirecente...', Array)
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(192): Alert->Listexpirecenterstockitem()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionListexpirecenterstockitem()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('listexpirecente...')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('centerstockitem...')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=centerstockitem/listexpirecenterstockitem
+HTTP_REFERER=http://localhost/clinic/index.php?r=site/index
+---
+2018/02/02 15:46:23 [error] [php] Undefined index: total (/Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/listexpire.php:41)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterstockitemController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterstockitemController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(193): CenterstockitemController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionListexpirecenterstockitem()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CenterstockitemController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CenterstockitemController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockitemController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockitemController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockitem/listexpirecenterstockitem
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/listexpire.php (41)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (193)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/02 16:19:58 [error] [php] Undefined variable: class (/Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/listexpire.php:38)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterstockitemController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterstockitemController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(193): CenterstockitemController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionListexpirecenterstockitem()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CenterstockitemController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CenterstockitemController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockitemController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockitemController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockitem/listexpirecenterstockitem
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/listexpire.php (38)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (193)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/02 16:20:14 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/listexpire.php:38)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterstockitemController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterstockitemController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(193): CenterstockitemController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionListexpirecenterstockitem()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CenterstockitemController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CenterstockitemController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockitemController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockitemController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockitem/listexpirecenterstockitem
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/listexpire.php (38)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (193)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/02 16:20:49 [error] [php] Undefined index: id (/Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/listexpire.php:38)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CenterstockitemController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CenterstockitemController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php(193): CenterstockitemController->render()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): CenterstockitemController->actionListexpirecenterstockitem()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CenterstockitemController->runAction()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CenterstockitemController->filterAccessControl()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CenterstockitemController->runActionWithFilters()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CenterstockitemController->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=centerstockitem/listexpirecenterstockitem
+in /Applications/MAMP/htdocs/clinic/protected/views/centerstockitem/listexpire.php (38)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockitemController.php (193)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/18 19:28:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "เรร".' in /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('\xE0\xB9\x80\xE0\xB8\xA3\xE0\xB8\xA3')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#3 {main}
+REQUEST_URI=/clinic/index.php?r=%E0%B9%80%E0%B8%A3%E0%B8%A3
+---
+2018/02/18 19:34:44 [error] [exception.CException] exception 'CException' with message 'RepairController ไม่สามารถค้นหา "admin" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:878
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('admin', Array, true)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/RepairController.php(143): CController->render('admin', Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): RepairController->actionAdmin()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('admin')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('repair/admin')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=repair/admin
+HTTP_REFERER=http://localhost/clinic/index.php?r=repair/create
+---
