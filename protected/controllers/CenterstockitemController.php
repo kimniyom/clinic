@@ -30,7 +30,7 @@ class CenterstockitemController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update','outstock','listalertcenterstockitem','listexpirecenterstockitem'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -65,6 +65,13 @@ class CenterstockitemController extends Controller {
 
         if (isset($_POST['CenterStockitem'])) {
             $model->attributes = $_POST['CenterStockitem'];
+            $expire = $model->expire;
+            if($expire != ""){
+                $expires = $expire;
+            } else {
+                $expires = "";
+            }
+            $model->expire =$expires;
             $model->create_date = date("Y-m-d H:i:s");
             $model->totalcut = $model->numbercut;
             if ($model->save())
@@ -89,6 +96,13 @@ class CenterstockitemController extends Controller {
 
         if (isset($_POST['CenterStockitem'])) {
             $model->attributes = $_POST['CenterStockitem'];
+            $expire = $model->expire;
+            if($expire != ""){
+                $expires = $expire;
+            } else {
+                $expires = "";
+            }
+            $model->expire =$expires;
             $model->totalcut = $model->numbercut;
             if ($model->save())
                 $this->redirect(array('index'));
@@ -158,6 +172,25 @@ class CenterstockitemController extends Controller {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function actionOutstock(){
+        $id = Yii::app()->request->getPost('id');
+        $columns = array("outstock" => "T");
+        Yii::app()->db->createCommand()
+                ->update('center_stockitem',$columns,"id = '$id'");
+    }
+
+    public function actionListalertcenterstockitem(){
+        $Model = new Alert();
+        $data['listalert'] = $Model->Listalertcenterstockitem();
+        $this->render('listalert',$data);
+    }
+
+    public function actionListexpirecenterstockitem(){
+        $Model = new Alert();
+        $data['listexpire'] = $Model->Listexpirecenterstockitem();
+        $this->render('listexpire',$data);
     }
 
 }
