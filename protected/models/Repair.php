@@ -1,23 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "center_stockitem_name".
+ * This is the model class for table "repair".
  *
- * The followings are the available columns in table 'center_stockitem_name':
+ * The followings are the available columns in table 'repair':
  * @property integer $id
- * @property string $itemcode
- * @property string $itemname
- * @property integer $price
- * @property integer $unit
+ * @property string $object
+ * @property string $detail
+ * @property string $price
+ * @property integer $user
+ * @property string $d_update
+ * @property string $date_alert
+ * @property integer $status
  */
-class CenterStockitemName extends CActiveRecord
+class Repair extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'center_stockitem_name';
+		return 'repair';
 	}
 
 	/**
@@ -28,13 +31,13 @@ class CenterStockitemName extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('itemcode,itemname,price,unit,unitcut,alert','required'),
-			array('price, unit,unitcut', 'numerical', 'integerOnly'=>true),
-			array('itemcode,alert', 'length', 'max'=>10),
-			array('itemname', 'length', 'max'=>255),
+			array('user, status', 'numerical', 'integerOnly'=>true),
+			array('object, detail', 'length', 'max'=>255),
+			array('price', 'length', 'max'=>10),
+			array('d_update, date_alert', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, itemcode, itemname, price, unit,unitcut', 'safe', 'on'=>'search'),
+			array('id, object, detail, price, user, d_update, date_alert, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,12 +59,13 @@ class CenterStockitemName extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'itemcode' => 'รหัสitem',
-			'itemname' => 'ชื่อItem',
-			'price' => 'ราคา / หน่วย',
-			'unit' => 'หน่วยนับ',
-            'unitcut' => 'หน่วยตัดสต๊อก',
-            'alert' => 'แจ้งเตือนใกล้หมด'
+			'object' => 'อุปกรณ์ซ่อม',
+			'detail' => 'อาการ',
+			'price' => 'ราคา',
+			'user' => 'ผู้บันทึก',
+			'd_update' => 'วันที่บันทึก',
+			'date_alert' => 'วันที่แจ้งเตือนการซ่อม',
+			'status' => '0=ยังไม่ซ่อม,1=ซ่อมแล้ว',
 		);
 	}
 
@@ -84,11 +88,13 @@ class CenterStockitemName extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('itemcode',$this->itemcode,true);
-		$criteria->compare('itemname',$this->itemname,true);
-		$criteria->compare('price',$this->price);
-		$criteria->compare('unit',$this->unit);
-                $criteria->compare('unitcut',$this->unitcut);
+		$criteria->compare('object',$this->object,true);
+		$criteria->compare('detail',$this->detail,true);
+		$criteria->compare('price',$this->price,true);
+		$criteria->compare('user',$this->user);
+		$criteria->compare('d_update',$this->d_update,true);
+		$criteria->compare('date_alert',$this->date_alert,true);
+		$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -99,7 +105,7 @@ class CenterStockitemName extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return CenterStockitemName the static model class
+	 * @return Repair the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -271,4 +271,56 @@ class Alert extends CActiveRecord {
         return $rs;
     }
 
+    public function Alertcenterstockitem(){
+        $sql = "SELECT COUNT(*) AS total
+                FROM center_stockitem_name i 
+
+                INNER JOIN 
+                (
+                    SELECT c.itemid,SUM(c.totalcut) AS total
+                    FROM center_stockitem c
+                    WHERE c.outstock = 'F' AND c.totalcut > 0
+                    GROUP BY c.itemid
+                ) Q ON i.id = Q.itemid
+
+                WHERE i.alert > Q.total ";
+        return Yii::app()->db->createCommand($sql)->queryRow()['total'];
+    }
+
+    public function Listalertcenterstockitem(){
+        $sql = "SELECT i.id,i.itemcode,i.itemname,Q.total,i.alert,u.unit
+                FROM center_stockitem_name i 
+
+                INNER JOIN 
+
+                (
+                    SELECT c.itemid,SUM(c.totalcut) AS total
+                    FROM center_stockitem c
+                    WHERE c.outstock = 'F' AND c.totalcut > 0
+                    GROUP BY c.itemid
+                ) Q ON i.id = Q.itemid
+
+                INNER JOIN center_stockunit u ON i.unitcut = u.id
+                WHERE i.alert > Q.total";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
+    public function Alertexpirecenterstockitem(){
+        $sql = "SELECT COUNT(*) AS total
+                FROM center_stockitem c INNER JOIN center_stockitem_name n ON c.itemid = n.id
+                INNER JOIN center_stockunit u ON n.unitcut = u.id
+                WHERE c.outstock = 'F' AND c.totalcut > 0 AND c.expire != ''
+                AND DATE(NOW()) > c.expire ";
+        return Yii::app()->db->createCommand($sql)->queryRow()['total'];
+    }
+
+    public function Listexpirecenterstockitem(){
+        $sql = "SELECT c.id,c.itemid,n.itemcode,c.lotnumber,n.itemname,c.totalcut,c.expire,u.unit
+                FROM center_stockitem c INNER JOIN center_stockitem_name n ON c.itemid = n.id
+                INNER JOIN center_stockunit u ON n.unitcut = u.id
+                WHERE c.outstock = 'F' AND c.totalcut > 0 AND c.expire != ''
+                AND DATE(NOW()) > c.expire";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
 }

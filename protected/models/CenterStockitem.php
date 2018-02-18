@@ -32,12 +32,12 @@ class CenterStockitem extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('itemid,number,price,lotnumber,numbercut,totalcut', 'required'),
-            array('itemid, total, price, number, numbercut, totalcut', 'numerical', 'integerOnly' => true),
+            array('itemid, total, price, number, numbercut, totalcut,company_id', 'numerical', 'integerOnly' => true),
             array('lotnumber', 'length', 'max' => 10),
-            array('create_date', 'safe'),
+            array('create_date,expire', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, itemid, total, price, lotnumber, number, create_date, numbercut, totalcut', 'safe', 'on' => 'search'),
+            array('id, itemid, total, price, lotnumber, number, create_date, numbercut, totalcut,expire', 'safe', 'on' => 'search'),
         );
     }
 
@@ -59,13 +59,15 @@ class CenterStockitem extends CActiveRecord {
             'id' => 'ID',
             'itemid' => 'วัตถุดิบ',
             'total' => 'คงเหลือ',
-            'price' => 'ราคา',
+            'price' => 'ราคารวม',
             'lotnumber' => 'ล๊อตเลขที่',
             'number' => 'จำนวน',
             'create_date' => 'วันที่นำเข้า',
             'numbercut' => 'จำนวนที่ตัดได้',
             'totalcut' => 'ยอดคงเหลือที่ตัดได้',
             'unitcut' => 'หน่วยในการตัด',
+            'expire' => 'วันที่หมดอายุ * ถ้ามี',
+            'company_id' => 'บริษัทที่ซื้อ'
         );
     }
 
@@ -95,6 +97,7 @@ class CenterStockitem extends CActiveRecord {
         $criteria->compare('create_date', $this->create_date, true);
         $criteria->compare('numbercut', $this->numbercut);
         $criteria->compare('totalcut', $this->totalcut);
+        $criteria->compare('expire', $this->expire);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
