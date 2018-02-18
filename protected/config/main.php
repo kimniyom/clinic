@@ -7,7 +7,7 @@
 //Yii::setPathOfAlias('mPrint', dirname(__FILE__).'/../extensions/mPrint');
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'Kimniyom Shopping',
+    'name' => 'Clinic Dr.Bill',
     'defaultController' => 'site/login',
     // preloading 'log' component
     'timeZone' => 'Asia/Bangkok',
