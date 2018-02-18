@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs = array(
-    "คลังสินค้า" => array('store/index'),
+    //"คลังสินค้า" => array('store/index'),
     "รายการสินค้า"
 );
 

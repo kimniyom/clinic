@@ -3,16 +3,12 @@
 /* @var $model CenterStockcompany */
 
 $this->breadcrumbs=array(
-	'Center Stockcompanies'=>array('index'),
-	'Create',
+	'บริษัทสั่งซื้อวัตถุดิบ'=>array('index'),
+	'เพิ่ม',
 );
 
-$this->menu=array(
-	array('label'=>'List CenterStockcompany', 'url'=>array('index')),
-	array('label'=>'Manage CenterStockcompany', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Create CenterStockcompany</h1>
+<h1>เพิ่มบริษัทสั่งซื้อวัตถุดิบ</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

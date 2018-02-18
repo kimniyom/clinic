@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
-    "คลังสินค้า" => array('store/index'),
-    "บริษัท"
+    //"คลังสินค้า" => array('store/index'),
+    "บริษัทสั่งซื้อวัตถุดิบ"
 );
 
 $web = new Configweb_model();
@@ -19,7 +19,7 @@ $web = new Configweb_model();
             <th style=" width: 5%;">#</th>
             <th>รหัส</th>
             <th>ชื่อบริษัท</th>
-            <th style=" text-align: center;">ตัวเลือก</th>
+            <th style=" text-align: center;" colspan="2">ตัวเลือก</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +34,8 @@ $web = new Configweb_model();
                 <td><?php echo $last['company_name']; ?></td>
                 <td style=" text-align: center; font-weight: bold;">
                     <a href="<?php echo Yii::app()->createUrl('centerstockcompany/update', array('id' => $last['id'])) ?>"><i class="fa fa-pencil"></i></a>
+                </td>
+                <td style=" text-align: center; font-weight: bold;">
                     <a href="javascript:Delete('<?php echo $last['id'] ?>')"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>

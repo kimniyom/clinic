@@ -38,8 +38,8 @@ $BranchModel = Branch::model()->find("id = '$branch'");
                 </table>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <div style=" padding: 10px; position: relative; height: 100px;">
-                    <table style=" border: #cccccc solid 1px; float: right;">
+                <div style=" padding: 10px; position: relative; height: 100px;" class="box-codenumber">
+                    <table style=" border: #cccccc solid 1px; float: right;" class="box-codenumber">
                         <tr style=" border-bottom: #cccccc solid 1px;">
                             <td>รหัสสั่งซื้อเลขที่ : </td>
                             <td><?php echo $order_id ?></td>
@@ -120,18 +120,22 @@ $BranchModel = Branch::model()->find("id = '$branch'");
             </div>
             -->
             <div class="col-lg-1 col-md-2">
-                <button type="button" class="btn btn-block btn-success" style=" margin-top: 25px;" onclick="AddproductInlist()">เพิ่ม</button>
+                <button type="button" class="btn btn-block btn-primary" style=" margin-top: 25px;" onclick="AddproductInlist()"><i class="fa fa-plus"></i> เพิ่ม</button>
             </div>
         </div>
     </div>
-    <div id="orderlist">
-        ​​
-    </div>
+    <div id="orderlist" class="table table-responsive"></div>
 
 </div>
-<div class=" panel-footer">
-    <button type="button" class="btn btn-success" onclick="Saveorder()"><i class="fa fa-save"></i> บันทึกแบบฟอร์ม</button>
-    <button type="button" class="btn btn-warning" onclick="window.location.reload()"><i class="fa fa-remove"></i> ยกเลิก</button>
+<div class=" panel-footer" style=" padding: 5px;">
+    <div class="row" style=" margin: 0px;">
+        <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+            <button type="button" class="btn btn-success btn-block" onclick="Saveorder()"><i class="fa fa-save"></i> บันทึกแบบฟอร์ม</button>
+        </div>
+        <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+            <button type="button" class="btn btn-danger btn-block" onclick="window.location.reload()"><i class="fa fa-remove"></i> ยกเลิก</button>
+        </div>
+    </div>
 </div>
 </div>
 
@@ -149,7 +153,7 @@ $BranchModel = Branch::model()->find("id = '$branch'");
     });
 
     function combotype() {
-        
+
         var type_id = "";
         var url = "<?php echo Yii::app()->createUrl('producttype/getsubproductorder') ?>";
         var data = {type_id: type_id};
@@ -232,16 +236,17 @@ $BranchModel = Branch::model()->find("id = '$branch'");
 </script>
 
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
         var screenfull = (screen - 157);
         $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
 
+        var w = window.innerWidth;
+        if (w <= 786) {
+            $("#companysell").css({'width': '100%'});
+            $(".box-codenumber").css({'width': '100%', 'margin': '0px', 'padding': '0px', 'border-top': '0px'});
+        }
     }
 
 

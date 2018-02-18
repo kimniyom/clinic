@@ -8,9 +8,9 @@ $this->breadcrumbs = array(
       $model->id=>array('view','id'=>$model->id),
      * 
      */
-    "คลังสินค้า" => array('store/index'),
-    "บริษัท" => array('centerstockcompany/index'),
-    'Update',
+    //"คลังสินค้า" => array('store/index'),
+    "บริษัทสั่งซื้อวัตถุดิบ" => array('centerstockcompany/index'),
+    'แก้ไข',
 );
 
 ?>

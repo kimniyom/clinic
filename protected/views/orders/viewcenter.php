@@ -2,16 +2,19 @@
     #tablelistorder tr th{
         background-color: #000000;
     }
-    
+
     #tablelistorder tr td{
         padding: 1px;
         font-size: 16px;
+    }
+    #tablelistorder tfoot tr td{
+        font-weight: bold;
     }
 </style>
 
 <?php
 $this->breadcrumbs = array(
-    'Orders' => array('index', 'branch' => $order['branch']),
+    'ใบสั่งซื้อสินค้า' => array('index', 'branch' => $order['branch']),
     $order['order_id'],
 );
 $companySell = Companycenter::model()->find("id = '1'");
@@ -145,7 +148,7 @@ $ItemModel = new CenterStockitem();
                 ?>
             </div>
             <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
-                <input type="number" id="distcount" class="form-control" <?php echo $rtextbox ?> placeholder="%" value="<?php echo $order['distcount'] ?>" style=" text-align: center;"/>
+                <input type="text" id="distcount" class="form-control" <?php echo $rtextbox ?> placeholder="%" value="<?php echo $order['distcount'] ?>" style=" text-align: center;" onKeyUp="if(isNaN(this.value)){ alert('กรุณากรอกตัวเลข'); this.value='';}"/>
             </div>
             <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
                 <button type="button" class="btn btn-success" onclick="Adddistcount()" <?php echo $disabled ?>>เพิ่ม</button>
@@ -158,7 +161,7 @@ $ItemModel = new CenterStockitem();
     <div class="col-lg-9 col-md-12">
 
         <div id="boxordersss">
-            <div class="well table-responsive" style=" border-radius: 0px; background: #FFFFFF; margin-bottom: 0px; position: relative;" id="boxorders">
+            <div class="well" style=" border-radius: 0px; background: #FFFFFF; margin-bottom: 0px; position: relative;" id="boxorders">
                 <div style=" text-align: center; margin-bottom: 10px;">
                     <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
                     <?php echo $BranchModel['address']; ?><br/>
@@ -219,104 +222,104 @@ $ItemModel = new CenterStockitem();
                     <label>ชื่อผู้ติดต่อ</label> <?php echo $BranchModel['menagers'] ?> 
                     <label>โทรศัพท์</label> <?php echo $BranchModel['telmenager'] ?>
                 </div>
-
-                <table style=" width: 100%; border: #cccccc solid 2px;" class="" id="tablelistorder">
-                    <thead>
-                        <tr>
-                            <th style="border-bottom: #cccccc solid 2px;background-color: #f4f4f4; text-align: center;">#</th>
-                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background-color: #f4f4f4; -webkit-print-color-adjust: exact; text-align: center;">รหัสสินค้า</th>
-                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">สินค้า</th>
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">จำนวน</th>
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">หน่วยนับ</th>
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4; text-align: right;">ราคา/หน่วย</th>
-                            <!--
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">ส่วนลด</th>
-                            -->
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4; text-align: right;">จำนวนเงิน</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $sumdistcount = 0;
-                        $sumproduct = 0;
-                        $i = 0;
-                        foreach ($orderlist as $rs):
-                            $i++;
-                            $sumrow = ($rs['costs'] * $rs['number']);
-                            $sumproduct = ($sumproduct + $sumrow);
-                            $sumdistcount = ($sumdistcount + $rs['distcountprice']);
-                            ?>
+                <div class="table-responsive">
+                    <table style=" width: 100%; border: #cccccc solid 2px;" class="" id="tablelistorder">
+                        <thead>
                             <tr>
-                                <td style=" text-align: center;"><?php echo $i ?></td>
-                                <td style="border-left:#cccccc solid 2px; text-align: center;">
-                                    <?php echo $rs['product_id'] ?>
-                                </td>
-                                <td style="border-left:#cccccc solid 2px;">
-                                    <?php echo $rs['product_name'] ?><br/>
-                                    (ชื่อทางการตลาด : <?php echo $rs['product_nameclinic'] ?>)
-                                </td>
-                                <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo number_format($rs['number']) ?></td>
-                                <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo $rs['unitname'] ?></td>
-                                <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($rs['costs'], 2) ?></td>
+                                <th style="border-bottom: #cccccc solid 2px;background-color: #f4f4f4; text-align: center;">#</th>
+                                <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background-color: #f4f4f4; -webkit-print-color-adjust: exact; text-align: center;">รหัสสินค้า</th>
+                                <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">สินค้า</th>
+                                <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">จำนวน</th>
+                                <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">หน่วยนับ</th>
+                                <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4; text-align: right;">ราคา/หน่วย</th>
                                 <!--
-                                <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']          ?> % </td>
+                                <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">ส่วนลด</th>
                                 -->
-                                <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($sumrow, 2) ?></td>
+                                <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4; text-align: right;">จำนวนเงิน</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                    <tfoot>
-                        <tr style="border-top: #cccccc solid 2px;">
-                            <td colspan="4" rowspan="5" id="bold-right" valign="top" style=" border-right:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">
-                                หมายเหตุ
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4; border-top: #cccccc solid 2px;" colspan="2">รวมเงิน</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4; border-top: #cccccc solid 2px;"><?php echo number_format($sumproduct, 2) ?></td>
-                        </tr>
-                        <tr>
-                            <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ส่วนลด <?php echo $order['distcount'] ?> %</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format($order['distcountprice'], 2) ?></td>
-                        </tr>
-                        <tr>
-                            <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ราคาหลังหักส่วนลด</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">
-                                <?php
-                                $priceresult = ($sumproduct - $order['distcountprice']);
-                                echo number_format($priceresult, 2);
+                        </thead>
+                        <tbody>
+                            <?php
+                            $sumdistcount = 0;
+                            $sumproduct = 0;
+                            $i = 0;
+                            foreach ($orderlist as $rs):
+                                $i++;
+                                $sumrow = ($rs['costs'] * $rs['number']);
+                                $sumproduct = ($sumproduct + $sumrow);
+                                $sumdistcount = ($sumdistcount + $rs['distcountprice']);
                                 ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="border-bottom: #cccccc solid 2px;background: #f4f4f4;" colspan="2">ภาษี 7%</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">
-                                <?php
-                                $tax = ($priceresult * 7) / 100;
-                                $taxresult = number_format($tax, 2);
-                                echo $taxresult;
-                                ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style=" text-align: center;border-right:#cccccc solid 2px; background: #f4f4f4;">
-                                <?php
-                                $pricetotal = number_format(($priceresult + $tax), 2);
-                                $priceCovert = str_replace(",", "", $pricetotal);
-                                if (substr($priceCovert, -2) == "00") {
-                                    $priceCoverts = str_replace(".00", "", $priceCovert);
-                                } else {
-                                    $priceCoverts = $priceCovert;
-                                }
-                                echo "(" . $Thaibath->convert($priceCoverts) . ")";
-                                ?>
-                            </td>
-                            <td colspan="2" style="background: #f4f4f4;">รวมเงินทั้งสิ้น</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format(sprintf('%.2f', $priceCovert), 2); ?></td>
-                        </tr>
-                    </tfoot>
-                </table>
-
+                                <tr>
+                                    <td style=" text-align: center;"><?php echo $i ?></td>
+                                    <td style="border-left:#cccccc solid 2px; text-align: center;">
+                                        <?php echo $rs['product_id'] ?>
+                                    </td>
+                                    <td style="border-left:#cccccc solid 2px;">
+                                        <?php echo $rs['product_name'] ?><br/>
+                                        (ชื่อทางการตลาด : <?php echo $rs['product_nameclinic'] ?>)
+                                    </td>
+                                    <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo number_format($rs['number']) ?></td>
+                                    <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo $rs['unitname'] ?></td>
+                                    <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($rs['costs'], 2) ?></td>
+                                    <!--
+                                    <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']            ?> % </td>
+                                    -->
+                                    <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($sumrow, 2) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr style="border-top: #cccccc solid 2px;">
+                                <td colspan="4" rowspan="5" id="bold-right" valign="top" style=" border-right:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">
+                                    หมายเหตุ
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4; border-top: #cccccc solid 2px;" colspan="2">รวมเงิน</td>
+                                <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4; border-top: #cccccc solid 2px;"><?php echo number_format($sumproduct, 2) ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ส่วนลด <?php echo $order['distcount'] ?> %</td>
+                                <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format($order['distcountprice'], 2) ?></td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ราคาหลังหักส่วนลด</td>
+                                <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">
+                                    <?php
+                                    $priceresult = ($sumproduct - $order['distcountprice']);
+                                    echo number_format($priceresult, 2);
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-bottom: #cccccc solid 2px;background: #f4f4f4;" colspan="2">ภาษี 7%</td>
+                                <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">
+                                    <?php
+                                    $tax = ($priceresult * 7) / 100;
+                                    $taxresult = number_format($tax, 2);
+                                    echo $taxresult;
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style=" text-align: center;border-right:#cccccc solid 2px; background: #f4f4f4;">
+                                    <?php
+                                    $pricetotal = number_format(($priceresult + $tax), 2);
+                                    $priceCovert = str_replace(",", "", $pricetotal);
+                                    if (substr($priceCovert, -2) == "00") {
+                                        $priceCoverts = str_replace(".00", "", $priceCovert);
+                                    } else {
+                                        $priceCoverts = $priceCovert;
+                                    }
+                                    echo "(" . $Thaibath->convert($priceCoverts) . ")";
+                                    ?>
+                                </td>
+                                <td colspan="2" style="background: #f4f4f4;">รวมเงินทั้งสิ้น</td>
+                                <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format(sprintf('%.2f', $priceCovert), 2); ?></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

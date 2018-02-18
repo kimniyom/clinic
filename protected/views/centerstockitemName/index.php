@@ -1,16 +1,26 @@
+<style type="text/css">
+.centerstockitemname table thead tr th{
+    white-space: nowrap;
+}
+    
+.centerstockitemname table tbody tr td{
+    white-space: nowrap;
+}
+</style>
 <?php
 /* @var $this CenterStockunitController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'คลังสินค้า' => Yii::app()->createUrl('store/index'),
+    //'คลังสินค้า' => Yii::app()->createUrl('store/index'),
     'รายการวัตถุดิบ',
 );
 ?>
-
+<div class="centerstockitemname">
 <div class="panel panel-default" style=" margin-bottom: 0px;">
     <div class="panel-heading" style=" background: none; padding-top: 10px; padding-bottom: 15px; padding-right: 5px;">
         รายการวัตถุดิบ
+         <span style=" margin-top: 5px;">*</i> <font style="color:red;">คลิกที่แถวเพื่อจัดการข้อมูล</font></span>
         <a href="<?php echo Yii::app()->createUrl('centerstockitemname/create') ?>" class=" pull-right" style=" margin-top: 0px;">
             <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i> เพิ่มรายการวัตถุดิบ</button></a>
     </div>
@@ -21,10 +31,10 @@ $this->breadcrumbs = array(
                     <th style=" width: 5%; text-align: center;">#</th>
                     <th>รหัส</th>
                     <th>วัตถุดิบ</th>
-                    <th>ราคา / หน่วย</th>
+                    <th style="text-align:right;">ราคา / หน่วย</th>
                     <th>หน่วยนับ</th>
                     <th>หน่วยตัดสต๊อก</th>
-                    <th style=" text-align: center;">ตัวเลือก</th>
+                    <th style="text-align:center;">แจ้งเตือนใกล้หมด</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,31 +42,65 @@ $this->breadcrumbs = array(
                 $i = 0;
                 foreach ($item as $rs): $i++;
                     ?>
-                    <tr>
+                    <tr onclick="action('<?php echo $rs['id'] ?>')" style="cursor: pointer;">
                         <td style=" text-align: center;"><?php echo $i ?></td>
                         <td><?php echo $rs['itemcode'] ?></td>
                         <td><?php echo $rs['itemname'] ?></td>
-                        <td><?php echo number_format($rs['price']) ?></td>
-                        <td><?php
+                        <td style="text-align:right;"><?php echo number_format($rs['price']) ?></td>
+                        <td>
+                            <?php
                             $unit = $rs['unit'];
                             echo CenterStockunit::model()->find("id = '$unit' ")['unit']
-                            ?></td>
-                        <td><?php
+                            ?>
+                        </td>
+                        <td>
+                            <?php
                             $unitcut = $rs['unitcut'];
                             echo CenterStockunit::model()->find("id = '$unitcut' ")['unit']
-                            ?></td>
-                        <td style=" text-align: center; width: 10%;">
-                            <a href="<?php echo Yii::app()->createUrl('centerstockitemname/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil"></i> แก้ไข</a>
-                            <a href="javascript:Delete('<?php echo $rs['id'] ?>')"><i class="fa fa-trash"></i> ลบ</a>
+                            ?>
                         </td>
+                        <td style="text-align:center;">
+                            <?php echo $rs['alert'] ?>
+                        </div>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
+</div>
+
+<!-- Action -->
+<div class="modal fade" tabindex="-1" role="dialog" id="action" style="margin-top:20%;">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <input type="hidden" id="_id">
+        <div class="row" style="margin-top:10px;" id="editupdate">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <button class="btn btn-default btn-block btn-lg" onclick="edit()"><i class="fa fa-pencil"></i> แก้ไข</button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <button class="btn btn-default btn-block btn-lg" onclick="Delete()"><i class="fa fa-trash"></i> ลบ</button>
+            </div>
+        </div>
+        <hr/>
+        <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Close</button>
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script type="text/javascript">
-    function Delete(id) {
+function edit(){
+        var id = $("#_id").val();
+        var url = "<?php echo Yii::app()->createUrl('centerstockitemname/update') ?>" + "&id=" + id;
+        window.location=url;
+    }
+
+    function Delete() {
+        var id = $("#_id").val();
         var r = confirm("Are you sure ..?");
         if (r == true) {
             var url = "<?php echo Yii::app()->createUrl('centerstockitemname/delete') ?>";
@@ -95,6 +139,11 @@ $this->breadcrumbs = array(
                 'copy', 'excel', 'print'
             ]
         });
+    }
+
+    function action(id){
+        $("#_id").val(id);
+        $("#action").modal();
     }
 
 </script>

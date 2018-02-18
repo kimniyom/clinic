@@ -2,10 +2,14 @@
     #tablelistorder tfoot tr td{
         font-weight: bold;
     }
+    #tablelistorder thead tr th{
+        white-space: nowrap;
+    }
 </style>
 <?php
 $Thaibath = new Thaibaht();
 ?>
+
 <table style=" width: 100%;" class="table table-bordered" id="tablelistorder">
     <thead>
         <tr>

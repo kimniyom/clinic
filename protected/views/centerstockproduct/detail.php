@@ -32,7 +32,7 @@
 
 <?php
 $this->breadcrumbs = array(
-    "คลังสินค้า" => Yii::app()->createUrl('store/index'),
+    //"คลังสินค้า" => Yii::app()->createUrl('store/index'),
     "รายการสินค้า" => array('index'),
     $product['product_name']
 );
@@ -50,9 +50,10 @@ $product_id = $product['product_id'];
     <button type="button" class="btn btn-danger" onclick="deleteproduct('<?//php echo $product['id'] ?>')">ลบ</button>
     -->
 <?php } ?>
+
 <div class="well well-sm" style=" width:100%; margin-top:0px;text-align: left; background: #FFF; margin-bottom: 0px;">
     <div class="row">
-        <div class="col-lg-4 col-md-6 col-xs-12" style=" padding-top: 20px;" id="p-right">
+        <div class="col-lg-4 col-md-6 col-xs-12" style=" padding-top: 20px;" id="p-left">
             <?php
             $product_model = new Product();
             $img_title = $product_model->firstpictures($product['product_id']);
@@ -94,7 +95,7 @@ $product_id = $product['product_id'];
             <?php } ?>
         </div>
 
-        <div class="col-lg-8 col-md-6 col-xs-12" id="p-left">
+        <div class="col-lg-8 col-md-6 col-xs-12" id="p-right">
             <font style=" color: #F00; font-size: 24px; font-weight: normal;">
             ชื่อสามัญบริษัท : <?= $product['product_name'] ?><br/>
             ชื่อใช้เรียกในคลินิก : <?= $product['product_nameclinic'] ?>
@@ -254,6 +255,8 @@ $product_id = $product['product_id'];
             $("#btn-add-item").css({'margin-top':'25px'});
             //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
             //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        } else {
+            $("#btn-add-item").css({'margin-top':'25px'});
         }
     }
 

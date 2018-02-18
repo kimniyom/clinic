@@ -58,8 +58,10 @@ $product_model = new Product();
 
 </div>
 <hr/>
+<!--
 <h4>สินค้า</h4>
 <div class="row">
+-->
     <!--
     <div class="col-lg-2 col-md-2">
         <a href="<?//php echo Yii::app()->createUrl('centerstoreproduct/index') ?>">
@@ -69,27 +71,20 @@ $product_model = new Product();
             </button></a>
     </div>
     -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
-        <a href="<?php echo Yii::app()->createUrl('centerstockproduct/index') ?>">
-            <button type="button" class="btn btn-success btn-block">
-                <img src="<?= Yii::app()->baseUrl; ?>/images/Product-sale-report-icon.png"/><br/>
+    <!--
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style=" margin-bottom: 10px;">
+        <a href="<?php //echo Yii::app()->createUrl('centerstockproduct/index') ?>">
+            <button type="button" class="btn btn-default btn-block">
+                <img src="<?php //echo Yii::app()->baseUrl; ?>/images/Product-sale-report-icon.png"/><br/>
                 รายการสินค้า
             </button></a>
     </div>
 
-    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
-        <a href="<?php echo Yii::app()->createUrl('unit/index') ?>">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style=" margin-bottom: 10px;">
+        <a href="<?php //echo Yii::app()->createUrl('unit/index') ?>">
             <button type="button" class="btn btn-default btn-block">
-                <img src="<?= Yii::app()->baseUrl; ?>/images/unit-icon.png"><br/>
+                <img src="<?php //echo Yii::app()->baseUrl; ?>/images/unit-icon.png"><br/>
                 หน่วยนับ สินค้า
-            </button></a>
-    </div>
-
-    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
-        <a href="<?php echo Yii::app()->createUrl('centerstockcompany/index') ?>">
-            <button type="button" class="btn btn-default btn-block">
-                <img src="<?= Yii::app()->baseUrl; ?>/images/company-building-icon.png"><br/>
-                บริษัทสั่งซื้อวัตถุดิบ
             </button></a>
     </div>
     
@@ -97,29 +92,39 @@ $product_model = new Product();
 <hr/>
 <h4>วัตถุดิบ</h4>
 <div class="row">
-    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
-        <a href="<?php echo Yii::app()->createUrl('centerstockitem/index') ?>">
-            <button type="button" class="btn btn-primary btn-block">
-                <img src="<?= Yii::app()->baseUrl; ?>/images/store-icon.png"/><br/>
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style=" margin-bottom: 10px;">
+        <a href="<?php //echo Yii::app()->createUrl('centerstockitem/index') ?>">
+            <button type="button" class="btn btn-default btn-block">
+                <img src="<?php //echo Yii::app()->baseUrl; ?>/images/store-icon.png"/><br/>
                 สต๊อกวัตถุดิบ
             </button></a>
     </div>
-    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
-        <a href="<?php echo Yii::app()->createUrl('centerstockitemname/index') ?>">
-            <button type="button" class="btn btn-primary btn-block">
-                <img src="<?= Yii::app()->baseUrl; ?>/images/product-icon.png"/><br/>
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style=" margin-bottom: 10px;">
+        <a href="<?php //echo Yii::app()->createUrl('centerstockitemname/index') ?>">
+            <button type="button" class="btn btn-default btn-block">
+                <img src="<?php //echo Yii::app()->baseUrl; ?>/images/product-icon.png"/><br/>
                 รายการวัตถุดิบ
             </button></a>
     </div>
 
-    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6" style=" margin-bottom: 10px;">
-        <a href="<?php echo Yii::app()->createUrl('centerstockunit/index') ?>">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style=" margin-bottom: 10px;">
+        <a href="<?php //echo Yii::app()->createUrl('centerstockunit/index') ?>">
             <button type="button" class="btn btn-default btn-block">
-                <img src="<?= Yii::app()->baseUrl; ?>/images/unit-icon.png"><br/>
+                <img src="<?php //echo Yii::app()->baseUrl; ?>/images/unit-icon.png"><br/>
                 หน่วยนับ วัตถุดิบ
             </button></a>
     </div>
-    
+
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style=" margin-bottom: 10px;">
+        <a href="<?php //echo Yii::app()->createUrl('centerstockcompany/index') ?>">
+            <button type="button" class="btn btn-default btn-block">
+                <img src="<?php //echo Yii::app()->baseUrl; ?>/images/company-building-icon.png"><br/>
+                บริษัทสั่งซื้อวัตถุดิบ
+            </button></a>
+    </div>
+    -->
+    <!--
 </div>
+-->
 
 

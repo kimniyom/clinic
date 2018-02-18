@@ -4,7 +4,7 @@
 
 $this->breadcrumbs = array(
     'คลังวัตถุดิบ' => array('index'),
-    'Create',
+    'เพิ่มวัตถุดิบเข้าคลัง',
 );
 ?>
 

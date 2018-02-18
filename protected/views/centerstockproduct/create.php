@@ -31,7 +31,7 @@
 <?php
 $title = "เพิ่มสินค้า";
 $this->breadcrumbs = array(
-    "คลังสินค้า" => Yii::app()->createUrl('store/index'),
+    //"คลังสินค้า" => Yii::app()->createUrl('store/index'),
     "รายการสินค้า" => array('index'),
     $title,
 );
@@ -131,10 +131,13 @@ $BranchModel = new Branch();
                     <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required"/>
                 </div>
             </div>
+
             <div class="row">
+<!--
                 <div class="col-lg-4">
                     <label for="">บริษัท</label><br/>
                     <?php
+/*
                     $this->widget('booster.widgets.TbSelect2', array(
                         //'model' => $model,
                         'asDropDownList' => true,
@@ -153,8 +156,10 @@ $BranchModel = new Branch();
                         //'tokenSeparators' => array(',', ' ')
                         )
                     ));
-                    ?>
+                    */
+                ?>
                 </div>
+-->
                 <div class="col-lg-5" style=" padding-top: 22px;">
                     <div class="well well-sm" style=" text-align: center;">
                         <input type="radio" id="private" name="private" value="0" checked="checked"/> คลินิกมองเห็น

@@ -36,7 +36,7 @@
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
         <!--
-                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;            ?>/css/button-color.css"/>
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;              ?>/css/button-color.css"/>
         -->
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
 
@@ -182,7 +182,7 @@
         <!--<div class="container" style="margin-bottom:5%;"> #2a323b-->
 
 
-
+        <nav class="navbar navbar-default" role="navigation" id="nav-head" style=" display: none; margin-bottom: 0px;"></nav>
         <div id="wrapper">
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
@@ -375,12 +375,13 @@
         <!-- /#wrapper -->
 
         <!-- Menu Toggle Script -->
-        <script>
+        <script type="text/javascript">
+            setnavbar();
             $("#menu-toggle").click(function (e) {
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
-            
+
             function set_navbar(id) {
                 var url = "<?php echo Yii::app()->createUrl('backend/backend/set_navbar') ?>";
                 var data = {id: id};
@@ -388,23 +389,23 @@
                     //window.location.reload();
                 });
             }
-            
+
             /*
-            $(function () {
-                $(".dropdown").hover(
-                        function () {
-                            $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
-                            $(this).toggleClass('open');
-                            $('b', this).toggleClass("caret caret-up");
-                        },
-                        function () {
-                            $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
-                            $(this).toggleClass('open');
-                            $('b', this).toggleClass("caret caret-up");
-                        });
-            });
-            */
-           
+             $(function () {
+             $(".dropdown").hover(
+             function () {
+             $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+             $(this).toggleClass('open');
+             $('b', this).toggleClass("caret caret-up");
+             },
+             function () {
+             $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+             $(this).toggleClass('open');
+             $('b', this).toggleClass("caret caret-up");
+             });
+             });
+             */
+
             $(document).on('click', '.panel-heading span.clickable', function (e) {
                 var $this = $(this);
                 if (!$this.hasClass('panel-collapsed')) {
@@ -425,6 +426,15 @@
 
                 });
             }
+
+            function setnavbar() {
+                var w = window.innerWidth;
+                if (w <= 786) {
+                    $("#nav-bar").addClass('navbar-fixed-top');
+                    $("#nav-head").show();
+                }
+            }
+
             ascrollto();
         </script>
     </body>

@@ -29,7 +29,7 @@
             <?php echo $form->labelEx($model, 'itemcode'); ?>
         </div>
         <div class="col-lg-3">
-            <?php echo $form->textField($model, 'itemcode', array('size' => 10, 'maxlength' => 10)); ?>
+            <?php echo $form->textField($model, 'itemcode', array('size' => 20, 'maxlength' => 10)); ?>
             <?php echo $form->error($model, 'itemcode'); ?>
         </div>
     </div>
@@ -51,6 +51,9 @@
         <div class="col-lg-2">
             <?php echo $form->textField($model, 'price'); ?>
             <?php echo $form->error($model, 'price'); ?>
+        </div>
+        <div class="col-lg-2">
+            บาท
         </div>
     </div>
 
@@ -78,10 +81,12 @@
             ));
             ?>
             <?php echo $form->error($model, 'unit'); ?>
+            <a href='<?php echo Yii::app()->createUrl('unit/create') ?>'>
+            <button type="button"><i class='fa fa-plus'></i> เพิ่มหน่วยนับ</button></a>
         </div>
     </div>
     
-        <div class="row">
+    <div class="row">
         <div class="col-lg-2">
             <?php echo $form->labelEx($model, 'unitcut'); ?>
         </div>
@@ -105,8 +110,22 @@
             ));
             ?>
             <?php echo $form->error($model, 'unitcut'); ?>
+            <a href='<?php echo Yii::app()->createUrl('centerstockunit/create') ?>'>
+            <button type="button"><i class='fa fa-plus'></i> เพิ่มหน่วยตัดสต๊อก</button></a>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col-lg-2">
+            <?php echo $form->labelEx($model, 'alert'); ?>
+        </div>
+        <div class="col-lg-4">
+            <?php echo $form->textField($model, 'alert', array('size' => 10, 'maxlength' => 10)); ?>
+            <?php echo $form->error($model, 'alert'); ?>
+        </div>
+    </div>
+    
     <hr/>
     <div class="row buttons">
         <div class="col-lg-2"></div>

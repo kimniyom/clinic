@@ -60,8 +60,8 @@ $this->breadcrumbs = array(
                 ?>
             </div>
             <div class="col-lg-3 col-md-3">
-                <label>ประเภท</label>
                 <div id="boxsubproducttype">
+                    <label>ประเภท</label>
                     <select id="subproducttype" class="form-control">
                         <option value=""></option>
                     </select>

@@ -24,10 +24,10 @@
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
     <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-sm-12 col-xs-12">
             <?php echo $form->labelEx($model, 'itemid'); ?>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
             <?php
             $form->widget('booster.widgets.TbSelect2', array(
                 'model' => $model,
@@ -46,7 +46,12 @@
                 )
             ));
             ?>
+            
             <?php echo $form->error($model, 'itemid'); ?>
+        </div>
+        <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
+            <a href="<?php echo Yii::app()->createUrl('centerstockitemname/create') ?>">
+            <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มรายการวัตถุดิบ</button></a>
         </div>
     </div>
 
@@ -54,11 +59,11 @@
         <div class="col-lg-2">
             <?php echo $form->labelEx($model, 'number'); ?>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
             <?php echo $form->textField($model, 'number',array('class' => 'form-control')); ?>
             <?php echo $form->error($model, 'number'); ?>
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-1 col-md-2 col-sm-6 col-xs-6">
             <div id="unit" style=" padding-top: 10px;">
                 <?php echo $ModelUnit->GetunitById($model->itemid)?>
             </div>
@@ -70,11 +75,11 @@
         <div class="col-lg-2">
             <?php echo $form->labelEx($model, 'price'); ?>
         </div>
-        <div class="col-lg-2">
+         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-8">
             <?php echo $form->textField($model, 'price',array('class' => 'form-control')); ?>
             <?php echo $form->error($model, 'price'); ?>
         </div>
-        <div class="col-lg-1">บาท</div>
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">บาท</div>
     </div>
 
     <div class="row">
@@ -91,16 +96,70 @@
         <div class="col-lg-2">
             <?php echo $form->labelEx($model, 'numbercut'); ?>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-8">
             <?php echo $form->textField($model, 'numbercut',array('class' => 'form-control')); ?>
             <?php echo $form->error($model, 'numbercut'); ?>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
             <div id="unitcut" style=" padding-top: 10px;">
                 <?php echo $ModelUnit->GetunitCutById($model->itemid)?>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-2"> <?php echo $form->labelEx($model, 'expire'); ?></div>
+        <div class="col-lg-4">
+            <div>
+                <?php
+                $form->widget(
+                        'booster.widgets.TbDatePicker', array(
+                    'model' => $model,
+                    'attribute' => 'expire',
+                    //'value' => date("Y-m-d"),
+                    //'id' => 'datestart',
+                    //'name' => 'datestart',
+                    'options' => array(
+                        'language' => 'th',
+                        'type' => 'date',
+                        'format' => 'yyyy-mm-dd',
+                    )
+                        )
+                );
+                ?>
+        </div>
+        <?php echo $form->error($model, 'expire'); ?>
+    </div>
+</div>
+<div class="row">
+        <div class="col-lg-2"> <?php echo $form->labelEx($model, 'company_id'); ?></div>
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-8">
+            <?php
+                    $form->widget('booster.widgets.TbSelect2', array(
+                        'model' => $model,
+                        'asDropDownList' => true,
+                        'attribute' => 'company_id',
+                        //'name' => 'company_id',
+                        //'id' => 'company',
+                        'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
+                        //'value' => $model,
+                        'options' => array(
+                            'allowClear' => true,
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => '== บริษัท ==',
+                            'width' => '100%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?>
+                </div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-4">
+                <a href="<?php echo Yii::app()->createUrl('centerstockcompany/create') ?>">
+                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มบริษัท</button></a>
+            </div>
+            </div>
+
     <hr/>
     <div class="row buttons">
         <div class="col-lg-2"></div>

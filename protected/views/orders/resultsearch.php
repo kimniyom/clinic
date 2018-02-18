@@ -1,18 +1,17 @@
+<style type="text/css">
+    #label{
+        color: #006666;
+    }
+</style>
 <?php
 $orderModel = new Orders();
 $Config = new Configweb_model();
 ?>    
-<table class="table table-striped" id="tb-orderssearch" style=" width: 100%;">
+<table class="table table-striped" id="tb-orderssearch" style=" width: 100%; background: #ffffff;">
     <thead>
         <tr>
-            <th style="text-align: center;">#</th>
-            <th>เลขที่สั่งซื้อ</th>
-            <th>วันที่สั่งซื้อ</th>
-            <th>จำนวน</th>
-            <th>ผู้สั่งซื้อ</th>
-            <th>สาขา</th>
-            <th>สถานะ</th>
-            <th></th>
+            <th style="text-align: center; display: none;">#</th>
+            <th>ใบสั่งซื้อสินค้า</th>
         </tr>
     </thead>
     <tbody>
@@ -21,26 +20,33 @@ $Config = new Configweb_model();
         foreach ($order as $rs):$i++;
             ?>
             <tr>
-                <td style=" text-align: center;"><?php echo $i ?></td>
-                <td><a href="<?php echo Yii::app()->createUrl('orders/view', array('order_id' => $rs['order_id'])) ?>">
-                        <?php echo $rs['order_id'] ?></a>
-                </td>
-                <td><?php echo $Config->thaidate($rs['create_date']) ?></td>
-                <td><?php echo number_format($rs['total']) ?></td>
-                <td><?php echo $rs['name']." ".$rs['lname'] ?></td>
-                <td><?php echo $rs['branchname'] ?></td>
-                <td style=" color: #000; font-weight: bold;"><?php echo $orderModel->SetstatusOrder($rs['status']) ?></td>
-                <td style=" text-align: center;">
-                    <?php if ($rs['status'] == '0') { ?>
-                        <?php if (Yii::app()->session['branch'] != "99") { ?>
-                            <a href="<?php echo Yii::app()->createUrl('orders/update', array('order_id' => $rs['order_id'])) ?>">
-                                <i class="fa fa-pencil"></i> แก้ไข</a>
+                <td style=" text-align: center; display: none;"><?php echo $i ?></td>
+                <td>
+                    <label id="label">เลขที่สั่งซื้อ:</label> <?php echo $rs['order_id'] ?>
+                    <label id="label">วันที่สั่งซื้อ:</label> <?php echo $Config->thaidate($rs['create_date']) ?><br/>
+                    <label id="label">จำนวน:</label> <?php echo number_format($rs['total']) ?> <label id="label">ชิ้น</label><br/>
+                    <label id="label">ผู้สั่งซื้อ:</label> <?php echo $rs['name'] . " " . $rs['lname'] ?>
+                    <label id="label">สาขา:</label> <?php echo $rs['branchname'] ?><br/>
+                    <label id="label">สถานะ:</label> <?php echo $orderModel->SetstatusOrder($rs['status']) ?>
+                    <hr style="margin-top: 0px;"/>
+                    <div class="row" style=" margin: 2px 0px 0px 0px">
+                        <div class="col-lg-2 col-md-2 col-sm-4">
+                            <a href="<?php echo Yii::app()->createUrl('orders/view', array('order_id' => $rs['order_id'])) ?>">
+                                <button type="botton" class="btn btn-primary btn-block">รายละเอียด</button></a>
+                        </div>
+                        <?php if ($rs['status'] == '0') { ?>
+                            <?php if (Yii::app()->session['branch'] != "99") { ?>
+                                <div class="col-lg-2 col-md-2 col-sm-4">
+                                    <a href="<?php echo Yii::app()->createUrl('orders/update', array('order_id' => $rs['order_id'])) ?>">
+                                        <button type="botton" class="btn btn-warning btn-block"><i class="fa fa-pencil"></i> แก้ไข</button></a>
+                                </div>
+                            <?php } ?>
+                            <div class="col-lg-2 col-md-2 col-sm-4">
+                                <a href="javascript:Deleteorder('<?php echo $rs['order_id'] ?>')">
+                                    <button type="botton" class="btn btn-danger btn-block"><i class="fa fa-remove"></i> ยกเลิก</button></a>
+                            </div>
                         <?php } ?>
-                        <a href="javascript:Deleteorder('<?php echo $rs['order_id'] ?>')">
-                            <i class="fa fa-remove"></i> ยกเลิก</a>
-                        <?php } else { ?>
-                        -
-                    <?php } ?>
+                    </div>
                 </td>
             </tr>
         <?php endforeach; ?>

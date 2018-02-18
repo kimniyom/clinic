@@ -3,9 +3,9 @@
 /* @var $model CenterStockitemName */
 
 $this->breadcrumbs = array(
-    'คลังสินค้า' => Yii::app()->createUrl('store/index'),
+    //'คลังสินค้า' => Yii::app()->createUrl('store/index'),
     'รายการวัตถุดิบ' => array('index'),
-    'Update',
+    'แก้ไข',
 );
 ?>
 

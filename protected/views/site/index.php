@@ -9,7 +9,7 @@
     });
 </script>
 <div id="p-box">
-    <div class="row" style=" margin: 0px;">
+    <div class="row" style=" margin: 0px; padding: 0px;">
         <div class="col-md-12 col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading"><i class="fa fa-cog"></i> เมนู</div>
@@ -34,7 +34,7 @@
                                     <div class="btn btn-default btn-block">
                                         <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
                                              height="48px"/><br/>
-                                        <h4><?php echo $mn['menu'] ?></h4>
+                                        <?php echo $mn['menu'] ?>
                                     </div>
                                 </a>
                             </div>
@@ -92,6 +92,41 @@
                                     <div class="btn btn-default btn-block">
                                         <img src="<?php echo Yii::app()->baseUrl; ?>/images/alert-icon.png" height="48px"/><br/>
                                         นัดลูกค้า
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="panel panel-warning">
+                    <div class="panel-heading"><i class="fa fa-bell-o"></i> แจ้งเตือน</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-xs-6" style=" margin-bottom: 20px;">
+                                <?php 
+                                $itemalert = $alet->Alertcenterstockitem(); 
+                                ?>
+                                <a href="<?php echo Yii::app()->createUrl('centerstockitem/listalertcenterstockitem') ?>">
+                                    <span class="badge" style=" position: absolute;top:0px; right: 0px; background: <?php echo $itemalert > 0 ? "#ff0033" : "#eeeeee" ?>;">
+                                        <?php echo $itemalert ?>
+                                    </span>
+                                    <div class="btn btn-default btn-block">
+                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/alert-icon.png" height="48px"/><br/>
+                                        วัตถุดิบใกล้หมด
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xs-6" style=" margin-bottom: 20px;">
+                                <a href="<?php echo Yii::app()->createUrl('centerstockitem/listexpirecenterstockitem') ?>">
+                                    <span class="badge" style=" position: absolute;top:0px; right: 0px; background: #ff0033;">
+                                        <?php echo $alet->Alertexpirecenterstockitem(); ?>
+                                    </span>
+                                    <div class="btn btn-default btn-block">
+                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/alert-icon.png"
+                                             height="48px" /><br/>
+                                        วัตถุดิบหมดอายุ
                                     </div>
                                 </a>
                             </div>
