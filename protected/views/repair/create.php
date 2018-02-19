@@ -3,16 +3,12 @@
 /* @var $model Repair */
 
 $this->breadcrumbs=array(
-	'Repairs'=>array('index'),
-	'Create',
+	'ซ่อม - บำรุง'=>array('index'),
+	'เพิ่ม',
 );
 
-$this->menu=array(
-	array('label'=>'List Repair', 'url'=>array('index')),
-	array('label'=>'Manage Repair', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Create Repair</h1>
+<h1>เพิ่มข้อมูลซ่อม - บำรุง(ครั้งต่อไป)</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'datealert' => $datealert)); ?>

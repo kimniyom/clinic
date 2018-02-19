@@ -3,17 +3,10 @@
 /* @var $model Repair */
 
 $this->breadcrumbs=array(
-	'Repairs'=>array('index'),
+	'ซ่อม - บำรุง'=>array('index'),
 	$model->id,
 );
 
-$this->menu=array(
-	array('label'=>'List Repair', 'url'=>array('index')),
-	array('label'=>'Create Repair', 'url'=>array('create')),
-	array('label'=>'Update Repair', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Repair', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Repair', 'url'=>array('admin')),
-);
 ?>
 
 <h1>View Repair #<?php echo $model->id; ?></h1>

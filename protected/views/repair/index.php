@@ -3,13 +3,9 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Repairs',
+	'ซ่อม - บำรุง',
 );
 
-$this->menu=array(
-	array('label'=>'Create Repair', 'url'=>array('create')),
-	array('label'=>'Manage Repair', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Repairs</h1>

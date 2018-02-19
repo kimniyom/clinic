@@ -19,6 +19,7 @@ $this->widget('zii.widgets.CDetailView', array(
         'alert_appoint',
         'alert_product',
         'alert_expire',
+        'alert_repair'
     ),
 ));
 ?>

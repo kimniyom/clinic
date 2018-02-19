@@ -57,6 +57,17 @@
         </div>
         <div class="col-lg-3">วัน</div>
     </div>
+    
+    <div class="row">
+        <div class="col-lg-3">
+            <?php echo $form->labelEx($model, 'alert_repair'); ?>
+        </div>
+        <div class="col-lg-2">
+            <?php echo $form->textField($model, 'alert_repair', array("class" => 'form-control')); ?>
+            <?php echo $form->error($model, 'alert_repair'); ?>
+        </div>
+        <div class="col-lg-3">วัน</div>
+    </div>
     <hr/>
     <div class="row buttons">
         <div class="col-lg-3">
