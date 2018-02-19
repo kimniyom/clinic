@@ -25,11 +25,11 @@ class Alert extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('alert_appoint,alert_product,alert_expire', 'required'),
-            array('alert_appoint, alert_product, alert_expire', 'numerical', 'integerOnly' => true),
+            array('alert_appoint,alert_product,alert_expire,alert_repair', 'required'),
+            array('alert_appoint, alert_product, alert_expire,alert_repair', 'numerical', 'integerOnly' => true),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, alert_appoint, alert_product, alert_expire', 'safe', 'on' => 'search'),
+            array('id, alert_appoint, alert_product, alert_expire,alert_repair', 'safe', 'on' => 'search'),
         );
     }
 
@@ -52,6 +52,7 @@ class Alert extends CActiveRecord {
             'alert_appoint' => 'แจ้งเตือนก่อนถึงวันนัด',
             'alert_product' => 'แจ้งเตือนสินค้าใกล้หมด',
             'alert_expire' => 'แจ้งเตือนสินค้าใกล้หมดอายุ',
+            'alert_repair' => 'แจ้งเตือนการซ่อม - บำรุง'
         );
     }
 
@@ -271,7 +272,7 @@ class Alert extends CActiveRecord {
         return $rs;
     }
 
-    public function Alertcenterstockitem(){
+    public function Alertcenterstockitem() {
         $sql = "SELECT COUNT(*) AS total
                 FROM center_stockitem_name i 
 
@@ -287,7 +288,7 @@ class Alert extends CActiveRecord {
         return Yii::app()->db->createCommand($sql)->queryRow()['total'];
     }
 
-    public function Listalertcenterstockitem(){
+    public function Listalertcenterstockitem() {
         $sql = "SELECT i.id,i.itemcode,i.itemname,Q.total,i.alert,u.unit
                 FROM center_stockitem_name i 
 
@@ -305,7 +306,7 @@ class Alert extends CActiveRecord {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
-    public function Alertexpirecenterstockitem(){
+    public function Alertexpirecenterstockitem() {
         $sql = "SELECT COUNT(*) AS total
                 FROM center_stockitem c INNER JOIN center_stockitem_name n ON c.itemid = n.id
                 INNER JOIN center_stockunit u ON n.unitcut = u.id
@@ -314,7 +315,7 @@ class Alert extends CActiveRecord {
         return Yii::app()->db->createCommand($sql)->queryRow()['total'];
     }
 
-    public function Listexpirecenterstockitem(){
+    public function Listexpirecenterstockitem() {
         $sql = "SELECT c.id,c.itemid,n.itemcode,c.lotnumber,n.itemname,c.totalcut,c.expire,u.unit
                 FROM center_stockitem c INNER JOIN center_stockitem_name n ON c.itemid = n.id
                 INNER JOIN center_stockunit u ON n.unitcut = u.id

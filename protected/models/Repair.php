@@ -31,7 +31,8 @@ class Repair extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user, status', 'numerical', 'integerOnly'=>true),
+                    array('object,detail','required'),
+			array('user, status,branch', 'numerical', 'integerOnly'=>true),
 			array('object, detail', 'length', 'max'=>255),
 			array('price', 'length', 'max'=>10),
 			array('d_update, date_alert', 'safe'),
@@ -64,7 +65,8 @@ class Repair extends CActiveRecord
 			'price' => 'ราคา',
 			'user' => 'ผู้บันทึก',
 			'd_update' => 'วันที่บันทึก',
-			'date_alert' => 'วันที่แจ้งเตือนการซ่อม',
+			'date_alert' => 'วันที่ซ่อม',
+                    'branch' => 'สาขา',
 			'status' => '0=ยังไม่ซ่อม,1=ซ่อมแล้ว',
 		);
 	}
