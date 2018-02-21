@@ -240,7 +240,8 @@ class Report {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
-    /*หารายได้จากการให้บริการและการขายสินค้า*/
+    /* หารายได้จากการให้บริการและการขายสินค้า */
+
     function GetIncome($year, $branch) {
         if ($branch != "99") {
             $wheresell = "o.branch = '$branch'";
@@ -274,12 +275,12 @@ class Report {
         }
 
         /*
-        $sql = "SELECT IFNULL(SUM(o.priceresult),0) AS outcome
-                FROM orders o 
-                WHERE $where AND LEFT(o.create_date,4) = '$year' ";
-        */
-                /*แก้ไข 2018-02-19*/
-        
+          $sql = "SELECT IFNULL(SUM(o.priceresult),0) AS outcome
+          FROM orders o
+          WHERE $where AND LEFT(o.create_date,4) = '$year' ";
+         */
+        /* แก้ไข 2018-02-19 */
+
         $sql = "SELECT IFNULL(SUM(Q.outcome),0) AS outcome
                 FROM(
 
@@ -352,13 +353,13 @@ class Report {
         }
 
         //AND SUBSTR(i.date_input,6,2) $PERIOD
-        /*รายจ่ายคำนวนจากการซ่อมบำรุง แก้ไขเมื่อ 2018-02-19*/
+        /* รายจ่ายคำนวนจากการซ่อมบำรุง แก้ไขเมื่อ 2018-02-19 */
         /*
-        $sql = "SELECT IFNULL(SUM(o.priceresult),0) AS outcome
-                    FROM orders o 
-                    WHERE $where AND LEFT(o.create_date,4) = '$year' 
-                        AND SUBSTR(o.create_date,6,2) $PERIODS";
-        */
+          $sql = "SELECT IFNULL(SUM(o.priceresult),0) AS outcome
+          FROM orders o
+          WHERE $where AND LEFT(o.create_date,4) = '$year'
+          AND SUBSTR(o.create_date,6,2) $PERIODS";
+         */
         $sql = "SELECT IFNULL(SUM(Q.outcome),0) AS outcome
                 FROM(
                     SELECT IFNULL(SUM(o.price),0) AS outcome
@@ -404,7 +405,7 @@ class Report {
         //return $sql;
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
-    
+
     function GetOutcomeMonth($year = null, $branch = null) {
         if ($branch != "99") {
             $where = "o.branch = '$branch'";
@@ -412,17 +413,17 @@ class Report {
             $where = " 1=1 ";
         }
         /*
-        $sql = "SELECT m.id,m.month_th,IFNULL(SUM(Q.total),0) AS total
-                FROM `month` m  
-                LEFT JOIN
-                (
-                    SELECT SUBSTR(o.create_date,6,2) AS month,SUM(o.priceresult) AS total
-                        FROM orders o 
-                        WHERE $where AND LEFT(o.create_date,4) = '$year' 
-                        GROUP BY SUBSTR(o.create_date,6,2)
-                 ) Q ON m.id = Q.month
-                GROUP BY m.id ";
-        */
+          $sql = "SELECT m.id,m.month_th,IFNULL(SUM(Q.total),0) AS total
+          FROM `month` m
+          LEFT JOIN
+          (
+          SELECT SUBSTR(o.create_date,6,2) AS month,SUM(o.priceresult) AS total
+          FROM orders o
+          WHERE $where AND LEFT(o.create_date,4) = '$year'
+          GROUP BY SUBSTR(o.create_date,6,2)
+          ) Q ON m.id = Q.month
+          GROUP BY m.id ";
+         */
         $sql = "SELECT m.id,m.month_th,IFNULL(SUM(Q.total),0) AS total
                 FROM `month` m  
                 LEFT JOIN
