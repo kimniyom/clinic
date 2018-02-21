@@ -301,18 +301,21 @@
                     } else {
                         $menuactove = "";
                     }
-                    
-                    //echo Yii::app()->session['leftmenu'];
-                    ?>
-                    <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>">
-                        <div id="listmenu" class="<?php echo $menuactove; ?>">
-                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
-                                 height="32px"
-                                 style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                                 <?php echo $mn['menu'] ?>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
+                    if ($mn['id'] == $mn['menu_id']) {
+                        //echo Yii::app()->session['leftmenu'];
+                        ?>
+                        <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>">
+                            <div id="listmenu" class="<?php echo $menuactove; ?>">
+                                <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
+                                     height="32px"
+                                     style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                                     <?php echo $mn['menu'] ?>
+                            </div>
+                        </a>
+                        <?php
+                    }
+                endforeach;
+                ?>
 
             </div>
             <!-- /#sidebar-wrapper -->
@@ -328,7 +331,7 @@
                             'links' => $this->breadcrumbs,
                         ));
                         ?><!-- breadcrumbs -->
-                    <?php endif ?>
+<?php endif ?>
                 </ol>
                 <div class="container-fluid" style=" padding: 1px;">
                     <div class="row">

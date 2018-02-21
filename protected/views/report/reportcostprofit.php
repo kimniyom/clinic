@@ -44,7 +44,6 @@ $yearnow = date("Y");
 </script>
 
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
@@ -55,6 +54,4 @@ $yearnow = date("Y");
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
 
     }
-
-
 </script>

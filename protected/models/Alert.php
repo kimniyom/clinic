@@ -324,4 +324,32 @@ class Alert extends CActiveRecord {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
+    public function AlertRepair() {
+        $branch = Yii::app()->session['branch'];
+        if($branch == "99"){
+            $branchs = "";
+        } else {
+            $branchs = " AND r.branch = '$branch' ";
+        }
+        $sql = "SELECT COUNT(*) AS total
+                FROM `repair` r 
+                WHERE r.`status` = '0' $branchs
+                AND DATEDIFF(r.date_alert,DATE(NOW())) < (SELECT a.alert_repair FROM alert a LIMIT 1) ";
+        return Yii::app()->db->createCommand($sql)->queryRow()['total'];
+    }
+    
+    public function ListAlertRepair() {
+        $branch = Yii::app()->session['branch'];
+        if($branch == "99"){
+            $branchs = "";
+        } else {
+            $branchs = " AND r.branch = '$branch' ";
+        }
+        $sql = "SELECT *
+                FROM `repair` r 
+                WHERE r.`status` = '0' $branchs
+                AND DATEDIFF(r.date_alert,DATE(NOW())) < (SELECT a.alert_repair FROM alert a LIMIT 1) AND DATEDIFF(r.date_alert,DATE(NOW())) > 0";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
 }

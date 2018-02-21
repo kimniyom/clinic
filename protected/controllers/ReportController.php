@@ -107,11 +107,11 @@ class ReportController extends Controller {
         $branch = Yii::app()->request->getPost('branch');
         $ReportModel = new Report();
 
-        $data['Cost'] = $ReportModel->Getcostproduct($year, $branch);
-        $data['Sell'] = $ReportModel->Gettotalsell($year, $branch);
+        //$data['Cost'] = $ReportModel->Getcostproduct($year, $branch);
+        //$data['Sell'] = $ReportModel->Gettotalsell($year, $branch);
 
-        $data['income'] = $ReportModel->GetIncome($year, $branch); //รายได้
-        $data['outcome'] = $ReportModel->GetOutcome($year, $branch); //รายจ่าย
+        $data['income'] = $ReportModel->GetIncome($year, $branch); //รายได้,คำนวนจากการรักษาการขายสินค้าแต่ละสาขา
+        $data['outcome'] = $ReportModel->GetOutcome($year, $branch); //รายจ่าย,คำนวนจากค่าซ่อมบำรุงแต่ละสาขา
         //ต้นทุน กำไรรายไตรมาส
         $data['incomeperiod1'] = $ReportModel->GetIncomePeriod($year, $branch, 1);
         $data['incomeperiod2'] = $ReportModel->GetIncomePeriod($year, $branch, 2);

@@ -1,6 +1,6 @@
-<?php 
-    $config = new Configweb_model();
-    $month = date("m");
+<?php
+$config = new Configweb_model();
+$month = date("m");
 ?>
 <script>
     $(document).ready(function () {
@@ -29,15 +29,25 @@
                             $icon = $mn['icon'];
                             $i ++;
                             ?>
-                            <div class="col-md-3 col-lg-3 col-xs-6" style=" margin-bottom: 20px;">
-                                <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')">
-                                    <div class="btn btn-default btn-block">
+                            <?php if ($mn['id'] == $mn['menu_id']) { ?>
+                                <div class="col-md-3 col-lg-3 col-xs-6" style=" margin-bottom: 20px;">
+                                    <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')">
+                                        <div class="btn btn-default btn-block">
+                                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
+                                                 height="48px"/><br/>
+                                                 <?php echo $mn['menu'] ?>
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php } else { ?>
+                                <div class="col-md-3 col-lg-3 col-xs-6" style=" margin-bottom: 20px;opacity: 0.4;">
+                                    <div class="btn btn-default btn-block disabled">
                                         <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
                                              height="48px"/><br/>
-                                        <?php echo $mn['menu'] ?>
+                                             <?php echo $mn['menu'] ?>
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+                            <?php } ?>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -96,6 +106,19 @@
                                 </a>
                             </div>
 
+                            <div class="col-md-12 col-lg-12 col-xs-12" style=" margin-bottom: 20px;">
+                                <a href="<?php echo Yii::app()->createUrl('repair') ?>">
+                                    <span class="badge" style=" position: absolute;top:0px; right: 0px; background: #ff0033;">
+                                        <?php echo $alet->AlertRepair(); ?>
+                                    </span>
+                                    <div class="btn btn-default btn-block">
+                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/alert-icon.png"
+                                             height="48px" /><br/>
+                                        แจ้งเตือนซ่อม - บำรุง
+                                    </div>
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -105,8 +128,8 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6 col-lg-6 col-xs-6" style=" margin-bottom: 20px;">
-                                <?php 
-                                $itemalert = $alet->Alertcenterstockitem(); 
+                                <?php
+                                $itemalert = $alet->Alertcenterstockitem();
                                 ?>
                                 <a href="<?php echo Yii::app()->createUrl('centerstockitem/listalertcenterstockitem') ?>">
                                     <span class="badge" style=" position: absolute;top:0px; right: 0px; background: <?php echo $itemalert > 0 ? "#ff0033" : "#eeeeee" ?>;">
@@ -131,12 +154,25 @@
                                 </a>
                             </div>
 
+                            <div class="col-md-12 col-lg-12 col-xs-12" style=" margin-bottom: 20px;">
+                                <a href="<?php echo Yii::app()->createUrl('repair') ?>">
+                                    <span class="badge" style=" position: absolute;top:0px; right: 0px; background: #ff0033;">
+                                        <?php echo $alet->AlertRepair(); ?>
+                                    </span>
+                                    <div class="btn btn-default btn-block">
+                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/alert-icon.png"
+                                             height="48px" /><br/>
+                                        แจ้งเตือนซ่อม - บำรุง
+                                    </div>
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             <?php } ?>
             <div class="panel panel-info">
-                <div class="panel-heading">การให้บริการ เดือน <?php echo $config->MonthFullArray()[(int)$month] ?></div>
+                <div class="panel-heading">การให้บริการ เดือน <?php echo $config->MonthFullArray()[(int) $month] ?></div>
                 <div class="panel-body" style=" padding: 10px;">
                     <div id="chartstatistics" style=" height: 80px;"></div>
                 </div>

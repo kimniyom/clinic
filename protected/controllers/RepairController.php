@@ -15,7 +15,7 @@ class RepairController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'carlendar', 'carlendarevents', 'viewcarlendar','addevent','deleteevent'),
+                'actions' => array('create', 'update', 'carlendar', 'carlendarevents', 'viewcarlendar', 'addevent', 'deleteevent'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -152,6 +152,11 @@ class RepairController extends Controller {
     }
 
     public function actionCarlendar() {
+        $model = new Alert();
+        $dateRepair = Alert::model()->find(array(
+            'limit' => '1'
+        ));
+        $data['date_repair'] = $dateRepair['alert_repair'];
         $branch = Yii::app()->session['branch'];
         $dateNow = date("Y-m-d");
         if ($branch == "99") {
@@ -161,6 +166,7 @@ class RepairController extends Controller {
         }
         $Model = new Repair();
         $data['repair'] = $Model->findAll("$Wbranch AND status = '0' AND date_alert < '$dateNow'");
+        $data['alertrepair'] = $model->ListAlertRepair();
         $this->render('carlendar', $data);
     }
 
@@ -211,14 +217,14 @@ class RepairController extends Controller {
         $id = Yii::app()->request->getPost('id');
         $price = Yii::app()->request->getPost('price');
         $user = Yii::app()->user->id;
-        $columns = array("price" => $price,"status" => "1","d_update" => date('Y-m-d'),"user" => $user);
+        $columns = array("price" => $price, "status" => "1", "d_update" => date('Y-m-d'), "user" => $user);
         Yii::app()->db->createCommand()
                 ->update("repair", $columns, "id='$id'");
     }
-    
-    public function actionDeleteevent(){
+
+    public function actionDeleteevent() {
         $id = Yii::app()->request->getPost('id');
-         Yii::app()->db->createCommand()
+        Yii::app()->db->createCommand()
                 ->delete("repair", "id='$id'");
     }
 

@@ -18,14 +18,27 @@ $Web = new Configweb_model();
     <div class="row">
         <div class="col-md-4 col-lg-4" id="p-left">
             <p class="text-danger">*คลิกที่ว่างในช่องวันที่เพื่อลงวันที่ซ่อม - บำรุงครั้งต่อไป</p>
-            <div class="panel panel-default">
-                <div class="panel-heading">รายการที่เลยวันซ่อม</div>
+            <div class="panel panel-danger">
+                <div class="panel-heading"><i class="fa fa-bell"></i> รายการที่เลยวันซ่อม</div>
                 <div class="list-group">
                     <?php foreach ($repair as $rss): ?>
                         <a href="javascript:popuprepair('<?php echo $rss['id'] ?>')" class=" list-group-item" style=" border-radius: 0px; border-left: 0px; border-right: 0px; font-size: 14px;">
                             รายการซ่อม: <?php echo $rss['object'] ?><br/>
                             รายละเอียด: <?php echo $rss['detail'] ?><br/>
                             วันที่: <?php echo $Web->thaidate($rss['date_alert']) ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            
+            <div class="panel panel-warning">
+                <div class="panel-heading"><i class="fa fa-bell"></i> แจ้งเตือนซ่อม - บำรุง (ก่อนวันซ่อม <?php echo $date_repair ?> วัน)</div>
+                <div class="list-group">
+                    <?php foreach ($alertrepair as $rss2): ?>
+                        <a href="javascript:popuprepair('<?php echo $rss2['id'] ?>')" class=" list-group-item" style=" border-radius: 0px; border-left: 0px; border-right: 0px; font-size: 14px;">
+                            รายการซ่อม: <?php echo $rss2['object'] ?><br/>
+                            รายละเอียด: <?php echo $rss2['detail'] ?><br/>
+                            วันที่: <?php echo $Web->thaidate($rss2['date_alert']) ?>
                         </a>
                     <?php endforeach; ?>
                 </div>

@@ -1,5 +1,13 @@
-<script type="text/javascript">
+<style type="text/css">
+    #box-data table thead tr th{
+        white-space: nowrap;
+    }
+    #box-data table tbody tr td{
+        white-space: nowrap;
+    }
+</style>
 
+<script type="text/javascript">
     Setscreen();
     function Setscreen() {
         var boxsell = window.innerHeight;
@@ -33,6 +41,7 @@ $config = new Configweb_model();
 $Alert = new Alert();
 $alam = $Alert->Getalert()['alert_product'];
 ?>
+
 <div id="box-data">
     <table class="table table-bordered table-hover" id="p_product" style=" width: 100%;">
         <thead>
@@ -42,8 +51,10 @@ $alam = $Alert->Getalert()['alert_product'];
                 <th>ชื่อสินค้า</th>
                 <th style=" text-align: center;">ต้นทุน</th>
                 <th style="text-align: center;">ราคา / หน่วย</th>
+                <!--
                 <th style="text-align: center;">หมวด</th>
                 <th style="text-align: center;">ประเภท</th>
+                -->
                 <th>ล๊อตที่</th>
                 <!--
                 <th>ผลิต</th>
@@ -54,6 +65,7 @@ $alam = $Alert->Getalert()['alert_product'];
                 <!--
                 <th style=" text-align: center;">รายละเอียด</th>
                 -->
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -82,11 +94,13 @@ $alam = $Alert->Getalert()['alert_product'];
                         <td style=" text-align: center; font-weight: bold;">
                             <?php echo number_format($last['product_price'], 2); ?>
                         </td>
-                        <td><?php echo $last['category'] ?></td>
-                        <td><?php echo $last['type_name'] ?></td>
+                        <!--
+                        <td><?php //echo $last['category']         ?></td>
+                        <td><?php //echo $last['type_name']         ?></td>
+                        -->
                         <td><?php echo $last['lotnumber'] ?></td>
                         <!--
-                        <td><?php //echo $config->thaidate($last['generate'])               ?></td>
+                        <td><?php //echo $config->thaidate($last['generate'])                       ?></td>
                         -->
                         <td><?php echo $config->thaidate($last['expire']) ?></td>
                         <td style=" text-align: right;">
@@ -102,6 +116,7 @@ $alam = $Alert->Getalert()['alert_product'];
                                 <i class="fa fa-lock"></i>
                             <?php } ?>
                         </td>
+                        <td style=" padding: 0px;"><a href="javascript:handcutstock('<?php echo $last['product_id']; ?>','<?php echo $last['lotnumber'] ?>','<?php echo $last['product_name']; ?>','<?php echo $last['total'] ?>')" class="btn btn-info btn-block" style=" margin: 0px; font-size: 18px;"><i class="fa fa-cut"></i> ตัดสต๊อกด้วยมือ</a></td>
                     </tr>
                 <?php } ?>
             <?php endforeach; ?>
@@ -109,6 +124,33 @@ $alam = $Alert->Getalert()['alert_product'];
     </table>
 </div>
 
+
+<!--
+    POPUP HandCutStock
+-->
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" data-backdrop='static' role="dialog" aria-labelledby="mySmallModalLabel" id="popupcutstock">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">ตัดสต๊อก(<span id="cut_productname"></span>)</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="cut_product_id" />
+                <label>ล๊อตที่</label>
+                <input type="text" class="form-control" id="cut_lotnumber" readonly="readonly"/>
+                <label>คงเหลือ</label>
+                <input type="text" class="form-control" id="cut_total" readonly="readonly"/>
+                <label>จำนวนสินค้า</label>
+                <input id='cut_number' placeholder="ตัวเลขเท่านั้น ..." class="form-control" type='text' onKeyUp="if(this.value*1!=this.value) this.value='' ;" >
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-block">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     function confirmdeletestock(id) {
@@ -129,6 +171,14 @@ $alam = $Alert->Getalert()['alert_product'];
                         getdata();
                     });
                 });
+    }
+
+    function handcutstock(product_id, lotnumber,productname,total) {
+        $("#cut_product_id").val(product_id);
+        $("#cut_lotnumber").val(lotnumber);
+        $("#cut_total").val(total);
+        $("#cut_productname").html(productname);
+        $("#popupcutstock").modal();
     }
 </script>
 

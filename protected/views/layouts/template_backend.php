@@ -36,14 +36,14 @@
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
         <!--
-                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;              ?>/css/button-color.css"/>
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;                ?>/css/button-color.css"/>
         -->
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
 
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
-        <!--
-        <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
-        -->
+
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
+
         <!--
         <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap-material/dist/css/bootstrap-material-design.css" type="text/css" media="all" />
         -->
@@ -228,16 +228,17 @@
                         } else {
                             $menuactove = "";
                         }
-                        //echo Yii::app()->session['leftmenu'];
                         ?>
-                        <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>">
-                            <div id="listmenu" class="<?php echo $menuactove; ?>">
-                                <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
-                                     height="32px"
-                                     style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                                     <?php echo $mn['menu'] ?>
-                            </div>
-                        </a>
+                        <?php if ($mn['id'] == $mn['menu_id']) { ?>
+                            <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>">
+                                <div id="listmenu" class="<?php echo $menuactove; ?>">
+                                    <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
+                                         height="32px"
+                                         style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                                         <?php echo $mn['menu'] ?>
+                                </div>
+                            </a>
+                        <?php } ?>
                     <?php endforeach; ?>
                     <?php if (Yii::app()->session['branch'] != "99") { ?>
                         <center><b><i class="fa fa-bell"></i> แจ้งเตือน</b></center>

@@ -26,6 +26,7 @@
 $config = new Configweb_model();
 $Clinic = new ClinicStoreproduct();
 ?>
+
 <div id="box-data">
     <table class="table table-bordered table-hover" id="p_product" style=" width: 100%;">
         <thead>

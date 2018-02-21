@@ -240,6 +240,7 @@ class Report {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
+    /*หารายได้จากการให้บริการและการขายสินค้า*/
     function GetIncome($year, $branch) {
         if ($branch != "99") {
             $wheresell = "o.branch = '$branch'";
@@ -250,29 +251,48 @@ class Report {
         }
         $sql = "SELECT IFNULL(SUM(Q.total),0) AS income
                     FROM(
-                                SELECT SUM(o.totalfinal) AS total
-		FROM logsell o 
-		WHERE  $wheresell AND LEFT(o.date_sell,4) = '$year'
+                          SELECT SUM(o.totalfinal) AS total
+		                  FROM logsell o 
+		                  WHERE  $wheresell AND LEFT(o.date_sell,4) = '$year'
 
-                                    UNION
+                          UNION
 
-                                    SELECT SUM(s.price_total) AS total
-                                    FROM service s 
-                                    WHERE $whereservice AND LEFT(s.service_date,4) = '$year'
+                          SELECT SUM(s.price_total) AS total
+                          FROM service s 
+                          WHERE $whereservice AND LEFT(s.service_date,4) = '$year'
                     ) Q";
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         return $rs['income'];
     }
 
+    //หาค่าใช้จ่ายของสาขา
     function GetOutcome($year, $branch) {
         if ($branch != "99") {
             $where = "o.branch = '$branch'";
         } else {
             $where = " 1=1 ";
         }
+
+        /*
         $sql = "SELECT IFNULL(SUM(o.priceresult),0) AS outcome
-                    FROM orders o 
-                    WHERE $where AND LEFT(o.create_date,4) = '$year' ";
+                FROM orders o 
+                WHERE $where AND LEFT(o.create_date,4) = '$year' ";
+        */
+                /*แก้ไข 2018-02-19*/
+        
+        $sql = "SELECT IFNULL(SUM(Q.outcome),0) AS outcome
+                FROM(
+
+                SELECT IFNULL(SUM(o.price),0) AS outcome
+                FROM `repair` o 
+                WHERE $where AND o.`status` = '1' AND LEFT(o.date_alert,4) = '$year'
+
+                UNION 
+
+                SELECT IFNULL(SUM(o.total),0) AS outcome
+                FROM salary o
+                WHERE $where AND o.year = '$year'
+                ) Q ";
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         return $rs['outcome'];
     }
@@ -299,16 +319,16 @@ class Report {
         //AND SUBSTR(i.date_input,6,2) $PERIOD
         $sql = "SELECT IFNULL(SUM(Q.total),0) AS income
                     FROM(
-                                SELECT SUM(o.totalfinal) AS total
-		FROM logsell o 
-		WHERE $wheresell AND LEFT(o.date_sell,4) = '$year' AND SUBSTR(o.date_sell,6,2) $PERIODS
+                          SELECT SUM(o.totalfinal) AS total
+		                  FROM logsell o 
+		                  WHERE $wheresell AND LEFT(o.date_sell,4) = '$year' AND SUBSTR(o.date_sell,6,2) $PERIODS
 
-                                UNION
+                          UNION
 
-                                SELECT SUM(s.price_total) AS total
-                                FROM service s 
-                                WHERE $whereservice AND LEFT(s.service_date,4) = '$year'																		
-                                    AND SUBSTR(s.service_date,6,2) $PERIODS
+                          SELECT SUM(s.price_total) AS total
+                          FROM service s 
+                          WHERE $whereservice AND LEFT(s.service_date,4) = '$year'																		
+                          AND SUBSTR(s.service_date,6,2) $PERIODS
                     ) Q";
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         return $rs['income'];
@@ -332,10 +352,26 @@ class Report {
         }
 
         //AND SUBSTR(i.date_input,6,2) $PERIOD
+        /*รายจ่ายคำนวนจากการซ่อมบำรุง แก้ไขเมื่อ 2018-02-19*/
+        /*
         $sql = "SELECT IFNULL(SUM(o.priceresult),0) AS outcome
                     FROM orders o 
                     WHERE $where AND LEFT(o.create_date,4) = '$year' 
                         AND SUBSTR(o.create_date,6,2) $PERIODS";
+        */
+        $sql = "SELECT IFNULL(SUM(Q.outcome),0) AS outcome
+                FROM(
+                    SELECT IFNULL(SUM(o.price),0) AS outcome
+                    FROM repair o 
+                    WHERE $where AND LEFT(o.date_alert,4) = '$year' 
+                    AND SUBSTR(o.date_alert,6,2) $PERIODS AND o.status = '1'
+                    
+                    UNION 
+
+                    SELECT IFNULL(SUM(o.total),0) AS outcome
+                    FROM salary o
+                    WHERE $where AND o.year = '$year' AND o.month $PERIODS
+                ) Q";
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         return $rs['outcome'];
     }
@@ -375,6 +411,7 @@ class Report {
         } else {
             $where = " 1=1 ";
         }
+        /*
         $sql = "SELECT m.id,m.month_th,IFNULL(SUM(Q.total),0) AS total
                 FROM `month` m  
                 LEFT JOIN
@@ -385,6 +422,27 @@ class Report {
                         GROUP BY SUBSTR(o.create_date,6,2)
                  ) Q ON m.id = Q.month
                 GROUP BY m.id ";
+        */
+        $sql = "SELECT m.id,m.month_th,IFNULL(SUM(Q.total),0) AS total
+                FROM `month` m  
+                LEFT JOIN
+                (
+				SELECT Q1.month,SUM(Q1.total) AS total
+				FROM(
+						SELECT SUBSTR(o.date_alert,6,2) AS month,SUM(o.price) AS total
+						FROM repair o 
+						WHERE $where AND LEFT(o.date_alert,4) = '$year' AND o.status = '1'
+						GROUP BY SUBSTR(o.date_alert,6,2)
+										
+						UNION
+									
+						SELECT o.month,o.total
+						FROM salary o
+						WHERE $where AND o.year = '$year'
+					) Q1   
+				GROUP BY Q1.month 
+                 ) Q ON m.id = Q.month
+                GROUP BY m.id";
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 

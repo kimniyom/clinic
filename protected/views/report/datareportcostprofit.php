@@ -30,8 +30,8 @@
             กำไร / ขาดทุน<hr/>
             <?php
             $profit = ($income - $outcome);
-            if (substr($profit, 0, 1) == "-") {
-                echo "-" . number_format($profit, 2);
+            if ($profit < 0) {
+                echo number_format($profit, 2);
             } else {
                 echo "+" . number_format($profit, 2);
             }
