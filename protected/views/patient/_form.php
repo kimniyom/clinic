@@ -30,6 +30,8 @@
     <div style=" color: #ff0033;">
         <?php echo $form->errorSummary($model); ?>
     </div>
+    <h4><i class="fa fa-user"></i> ข้อมูลทั่วไป</h4>
+    <hr/>
     <div class="row">
         <div class="col-lg-2">
             <?php echo $form->labelEx($model, 'oid'); ?>
@@ -113,11 +115,12 @@
                 //"name" => 'card',
                 "mask" => '9-9999-99999-99-9',
                 "clientOptions" => array("autoUnmask" => true), /* autoUnmask defaults to false */
-                "defaults" => array("removeMaskOnSubmit" => false),
+                "defaults" => array("removeMaskOnSubmit" => false)
                     /* once defaults are set will be applied to all the masked fields  removeMaskOnSubmit defaults to true */
             ));
             ?>
             <?php echo $form->error($model, 'card'); ?>
+
         </div>
     </div>
 
@@ -188,6 +191,38 @@
         </div>
     </div>
 
+    <h4><i class="fa fa-phone"></i> ข้อมูลติดต่อ</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-2">
+            <?php echo $form->labelEx($model, 'tel'); ?>
+        </div>
+        <div class="col-lg-3">
+            <?php echo $form->textField($model, 'tel', array('size' => 10, 'maxlength' => 10, 'class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'tel'); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <?php echo $form->labelEx($model, 'email'); ?>
+        </div>
+        <div class="col-lg-9">
+            <?php echo $form->textField($model, 'email', array('class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'email'); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <?php echo $form->labelEx($model, 'contact'); ?>
+        </div>
+        <div class="col-lg-5">
+            <?php echo $form->textArea($model, 'contact', array('rows' => 5, 'class' => 'form-control')); ?>
+            <?php echo $form->error($model, 'contact'); ?>
+        </div>
+    </div>
+
+    <h4><i class="fa fa-home"></i> ข้อมูลสาขา</h4>
+    <hr/>
     <div class="row">
         <div class="col-lg-2">
             <?php echo $form->labelEx($model, 'branch'); ?>

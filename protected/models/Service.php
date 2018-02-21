@@ -150,9 +150,10 @@ class Service extends CActiveRecord
 
 					UNION
 
-					SELECT d.service_id,CONCAT(d.drug,'(',c.product_nameclinic,')') AS detail,d.number,d.price,d.total
+					SELECT d.service_id,CONCAT(d.drug,'(',c.product_nameclinic,')') AS detail,SUM(d.number) AS number,d.price,SUM(d.total) AS total
 					FROM service_drug d INNER JOIN center_stockproduct c ON d.drug = c.product_id
 					WHERE d.service_id = '$service_id'
+					GROUP BY d.drug
 
 					UNION
 

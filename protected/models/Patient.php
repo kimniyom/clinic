@@ -34,12 +34,14 @@ class Patient extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('card, oid, name, lname, birth, sex, type, branch, create_date,occupation', 'required'),
-            array('type, branch, emp_id', 'numerical', 'integerOnly' => true),
+            array('card, oid, name, lname, birth, sex, type, branch, create_date,occupation,tel', 'required'),
+            array('type, branch, emp_id,tel', 'numerical', 'integerOnly' => true),
             array('pid', 'length', 'max' => 10),
+            array('tel','length','min'=>10,'max'=>10),
             array('card', 'length', 'max' => 20),
             array('oid,occupation', 'length', 'max' => 3),
             array('name, lname,images', 'length', 'max' => 100),
+             array('email, contact', 'length', 'max' => 255),
             array('sex', 'length', 'max' => 1),
             array('birth, create_date, d_update', 'safe'),
             // The following rule is used by search().
@@ -77,7 +79,10 @@ class Patient extends CActiveRecord {
             'images' => 'รูปภาพ',
             'create_date' => 'วันที่ลงทะเบียน',
             'd_update' => 'วันที่อัพเดทข้อมูล',
-            'occupation' => 'อาชีพ'
+            'occupation' => 'อาชีพ',
+            'tel' => 'เบอร์โทรศัพท์',
+            'email' => 'อีเมล์',
+            'contact' => 'อื่น ๆ'
         );
     }
 
@@ -109,6 +114,8 @@ class Patient extends CActiveRecord {
         $criteria->compare('type', $this->type);
         $criteria->compare('branch', $this->branch);
         $criteria->compare('emp_id', $this->emp_id);
+        $criteria->compare('tel', $this->tel);
+        $criteria->compare('email', $this->email);
         $criteria->compare('create_date', $this->create_date, true);
         $criteria->compare('d_update', $this->d_update, true);
 

@@ -61,7 +61,7 @@ class PatientController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
+    public function actionCreate($card = null) {
         $model = new Patient;
         $config = new Configweb_model();
         // Uncomment the following line if AJAX validation is needed
@@ -75,7 +75,8 @@ class PatientController extends Controller {
             $model->d_update = date("Y-m-d");
             $model->emp_id = Yii::app()->user->id;
             if ($model->save())
-                $this->redirect(array('patientcontact/create', 'id' => $model->id));
+                //$this->redirect(array('patientcontact/create', 'id' => $model->id));
+                $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('create', array(
@@ -328,7 +329,6 @@ class PatientController extends Controller {
     }
 
     public function actionDetailsell($sell_id) {
-        //$sell_id = Yii::app()->request->getPost('sell_id');
 
         $Model = new Sell();
         //$sell_id = Yii::app()->request->getPost('sell_id');

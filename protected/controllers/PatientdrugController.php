@@ -249,11 +249,12 @@ class PatientdrugController extends Controller {
     }
 
     public function actionGetdetailservicedrug($service_id) {
-        $sql = "SELECT s.*,u.unit AS unitname,c.product_nameclinic,c.product_name AS productname
+        $sql = "SELECT s.id,s.service_id,s.drug,SUM(s.number) AS number,s.price,s.total,u.unit AS unitname,c.product_nameclinic,c.product_name AS productname
                 FROM service_drug s INNER JOIN clinic_stockproduct st ON s.drug = st.product_id
                 INNER JOIN unit u ON st.unit = u.id
                 INNER JOIN center_stockproduct c ON s.drug = c.product_id
-                WHERE service_id = '$service_id' ";
+                WHERE service_id = '$service_id' 
+                GROUP BY s.drug ";
         $result = Yii::app()->db->createCommand($sql)->queryAll();
 
         $grid = "<table style='width:100%;' class='table table-striped'>
@@ -284,11 +285,12 @@ class PatientdrugController extends Controller {
     }
 
     public function actionGetdetailservicedrugview($service_id) {
-        $sql = "SELECT s.*,u.unit AS unitname,c.product_nameclinic,c.product_name AS productname
+        $sql = "SELECT s.id,s.service_id,s.drug,SUM(s.number) AS number,s.price,s.total,u.unit AS unitname,c.product_nameclinic,c.product_name AS productname
                 FROM service_drug s INNER JOIN clinic_stockproduct st ON s.drug = st.product_id
                 INNER JOIN unit u ON st.unit = u.id
                 INNER JOIN center_stockproduct c ON s.drug = c.product_id
-                WHERE service_id = '$service_id' ";
+                WHERE service_id = '$service_id' 
+                GROUP BY s.drug";
         $result = Yii::app()->db->createCommand($sql)->queryAll();
 
         $grid = "<table style='width:100%;' class='table table-striped'>

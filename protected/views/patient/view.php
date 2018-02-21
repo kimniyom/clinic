@@ -125,59 +125,29 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
                 <hr style=" margin: 5px;"/>
                 ข้มูลการติดต่อ
+                <ul style=" padding-top: 5px;">
+                    <?php
+                    echo "<li><label>เบอร์โทรศัพท์ : </label> ";
+                    if (isset($model['tel'])) {
+                        echo ($model['tel']);
+                    } else {
+                        echo "-";
+                    } "</li>";
 
-                <?php if ($contact) { ?>
-                    <a href="<?php echo Yii::app()->createUrl('patientcontact/update', array("id" => $model->id)) ?>">
-                        <div class="btn btn-default btn-sm pull-right" id="font-rsu-14"><i class="fa fa-home"></i> แก้ไขข้อมูลติดต่อ</div></a>
-                    <ul style=" padding-top: 5px;">
-                        <?php
-                        echo "<li>เบอร์โทรศัพท์ ";
-                        if (isset($contact['tel'])) {
-                            echo ($contact['tel']);
-                        } else {
-                            echo "-";
-                        } "</li>";
-
-                        echo "<li>อีเมล์ ";
-                        if (isset($contact['email'])) {
-                            echo ($contact['email']);
-                        } else {
-                            echo "-";
-                        } "</li>";
-
-                        echo "<li>ตำบล ";
-                        if (isset($contact['tambon'])) {
-                            echo Tambon::model()->find("tambon_id = '$contact->tambon'")['tambon_name'];
-                        } else {
-                            echo "-";
-                        }
-                        echo " &nbsp;&nbsp;อำเภอ ";
-                        if (isset($contact['amphur'])) {
-                            echo Ampur::model()->find("ampur_id = '$contact->amphur' ")['ampur_name'];
-                        } else {
-                            echo "-";
-                        }
-                        echo " &nbsp;&nbsp;จังหวัด ";
-                        if (isset($contact['changwat'])) {
-                            echo Changwat::model()->find("changwat_id = '$contact->changwat' ")['changwat_name'];
-                        } else {
-                            echo "-";
-                        } "</li>";
-                        echo "<li>รหัสไปรษณีย์ ";
-                        if (isset($contact['zipcode'])) {
-                            echo ($contact['zipcode']);
-                        } else {
-                            echo "-";
-                        } "</li>";
-                        ?>
-                    <?php } else { ?>
-                        <center>
-                            <p style="color: #ff0000;">ยังไม่ได้บันทึกข้อมูลส่วนนี้</p><br/>
-                            <a href="<?php echo Yii::app()->createUrl('patientcontact/create', array("id" => $model->id)) ?>">
-                                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มข้อมูลติดต่อ</button>
-                            </a>
-                        </center>
-                    <?php } ?>
+                    echo "<li><label>อีเมล์ : </label> ";
+                    if (isset($model['email'])) {
+                        echo ($model['email']);
+                    } else {
+                        echo "-";
+                    } "</li>";
+                    
+                    echo "<li><label>อื่น ๆ : </label> ";
+                    if (isset($model['contact'])) {
+                        echo ($model['contact']);
+                    } else {
+                        echo "-";
+                    } "</li>";
+                    ?>
                 </ul>
                 <div>
                     <!-- Nav tabs -->
