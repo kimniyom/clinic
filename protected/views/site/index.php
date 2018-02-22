@@ -6,56 +6,73 @@ $month = date("m");
     $(document).ready(function () {
         $(".breadcrumb").hide();
         $("#m-left").hide();
+        /*
+         var w = window.innerWidth;
+         if (w > 768) {
+         $("#wrapper").toggleClass("toggled");
+         }
+         */
     });
 </script>
-<div id="p-box">
+<div id="p-box" style=" margin-top: 10px;">
     <div class="row" style=" margin: 0px; padding: 0px;">
-        <div class="col-md-12 col-lg-8">
+        <div class="col-md-12 col-lg-8" id="home-left">
+
+            <!--
             <div class="panel panel-default">
                 <div class="panel-heading"><i class="fa fa-cog"></i> เมนู</div>
                 <div class="panel-body">
-                    <div class="row">
-                        <?php
-                        $MenuModel = new Menu();
-                        $UserModel = new Masuser();
-                        $product_model = new Backend_product();
-                        $AppointModel = new Appoint();
-                        $Profile = $UserModel->GetProfile();
-                        $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
-                        $alet = new Alert();
-                        $i = 0;
-                        foreach ($MenuSystem as $mn):
-                            $linkmenu = $mn['link'];
-                            $icon = $mn['icon'];
-                            $i ++;
-                            ?>
-                            <?php if ($mn['id'] == $mn['menu_id']) { ?>
-                                <div class="col-md-3 col-lg-3 col-xs-6" style=" margin-bottom: 20px;">
-                                    <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')">
-                                        <div class="btn btn-default btn-block">
-                                            <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
-                                                 height="48px"/><br/>
-                                                 <?php echo $mn['menu'] ?>
+            -->
+            <div class="row">
+                <?php
+                $MenuModel = new Menu();
+                $UserModel = new Masuser();
+                $product_model = new Backend_product();
+                $AppointModel = new Appoint();
+                $Profile = $UserModel->GetProfile();
+                $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
+                $alet = new Alert();
+                $i = 0;
+                foreach ($MenuSystem as $mn):
+                    $linkmenu = $mn['link'];
+                    $icon = $mn['icon'];
+                    $i ++;
+                    ?>
+                    <?php if ($mn['id'] == $mn['menu_id']) { ?>
+                        <div class="col-md-2 col-lg-2 col-sm-2 col-xs-4" style=" margin-bottom: 20px;">
+                            <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')">
+                                <div class="box-home-menu">
+                                    <center>
+                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>" height="48px"/><br/>
+                                        <div id="text-menus" style=" width: 96%;height: 40px; overflow: hidden;">
+                                            <?php echo $mn['menu'] ?>
                                         </div>
-                                    </a>
+                                    </center>
                                 </div>
-                            <?php } else { ?>
-                                <div class="col-md-3 col-lg-3 col-xs-6" style=" margin-bottom: 20px;opacity: 0.4;">
-                                    <div class="btn btn-default btn-block disabled">
-                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
-                                             height="48px"/><br/>
-                                             <?php echo $mn['menu'] ?>
+                            </a>
+                        </div>
+                    <?php } else { ?>
+                        <div class="col-md-2 col-lg-2 col-sm-2 col-xs-4" style=" margin-bottom: 20px;opacity: 0.4;">
+                            <div class="box-home-menu-disabled">
+                                <center>
+                                    <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>" height="48px"/><br/>
+                                    <div id="text-menus" style=" width: 99%;height: 40px; overflow: hidden;">
+                                        <?php echo $mn['menu'] ?>
                                     </div>
-                                </div>
-                            <?php } ?>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+                                </center>
+                            </div>
+                        </div>
+                    <?php } ?>
+                <?php endforeach; ?>
+                <!--
             </div>
         </div>
-        <div class="col-md-12 col-lg-4">
+                -->
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-4" id="home-right">
             <?php if (Yii::app()->session['branch'] != '99') { ?>
-                <div class="panel panel-warning">
+                <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-bell-o"></i> แจ้งเตือน</div>
                     <div class="panel-body">
                         <div class="row">
@@ -123,7 +140,7 @@ $month = date("m");
                     </div>
                 </div>
             <?php } else { ?>
-                <div class="panel panel-warning">
+                <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-bell-o"></i> แจ้งเตือน</div>
                     <div class="panel-body">
                         <div class="row">
@@ -171,7 +188,7 @@ $month = date("m");
                     </div>
                 </div>
             <?php } ?>
-            <div class="panel panel-info">
+            <div class="panel panel-default">
                 <div class="panel-heading">การให้บริการ เดือน <?php echo $config->MonthFullArray()[(int) $month] ?></div>
                 <div class="panel-body" style=" padding: 10px;">
                     <div id="chartstatistics" style=" height: 80px;"></div>
@@ -179,21 +196,21 @@ $month = date("m");
             </div>
         </div>
     </div>
-
-
 </div>
 
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
+        var w = window.innerWidth;
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 60);
-        $("#p-box").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
+        var screenfull = (screen - 80);
+        if (w > 768) {
+            $("#home-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px','border': 'solid #3c4754 1px','padding-top':'10px'});
+            $("#home-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px','border': 'solid #3c4754 1px','padding-top':'10px','background':'#666666','border-left':'none'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        }
     }
 
     $(function () {

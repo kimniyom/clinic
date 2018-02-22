@@ -257,6 +257,8 @@ $product_id = $product['product_id'];
             //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
         } else {
             $("#btn-add-item").css({'margin-top':'25px'});
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px','border-right': 'none'});
+            $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px','border-left': 'none'});
         }
     }
 

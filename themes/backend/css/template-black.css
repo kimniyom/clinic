@@ -89,7 +89,7 @@ table {
     background: -webkit-linear-gradient(top,  #d7e6f6 0%,#ccddf4 50%,#b6ceef 51%,#c9dbf3 100%); 
     background: linear-gradient(to bottom,  #d7e6f6 0%,#ccddf4 50%,#b6ceef 51%,#c9dbf3 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7e6f6', endColorstr='#c9dbf3',GradientType=0 );
-*/
+    */
     /*color: #999999*/;
 }
 
@@ -105,7 +105,7 @@ table {
     background: -webkit-linear-gradient(top,  #d7e6f6 0%,#ccddf4 50%,#b6ceef 51%,#c9dbf3 100%); 
     background: linear-gradient(to bottom,  #d7e6f6 0%,#ccddf4 50%,#b6ceef 51%,#c9dbf3 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7e6f6', endColorstr='#c9dbf3',GradientType=0 );
-*/
+    */
     /*color: #999999*/;
 }
 
@@ -114,10 +114,12 @@ table {
 }
 
 #nav-bar{
-    border-radius:0px; margin-bottom:0px; border-bottom: #e1e1e1 solid 1px; border-top: none; 
+    border-radius:0px; margin-bottom:0px; 
+    border-bottom: #3c4754 solid 1px; border-top: none; 
     border-left: none;
     border-right: none;
-    background: #FFFFFF;
+    
+    background: #2a323b;
 }
 
 body table thead th{
@@ -127,5 +129,33 @@ body table thead th{
 body table tbody td{
     /*white-space: nowrap;*/
 }
+
+.box-home-menu{
+    color: #000000;
+    background: #cccccc;
+    border: #e3e3e3 solid 1px; width: 100%; position: relative; padding: 5px;
+}
+
+.box-home-menu:hover{
+    background: #e3e3e3;
+}
+
+.box-home-menu-disabled{
+    background: #cccccc;
+    border: #e3e3e3 solid 1px; width: 100%; position: relative; padding: 5px;
+} 
+
+body .breadcrumb .breadcrumbs a{
+    color: #cccccc;
+}
+
+body .breadcrumb .breadcrumbs a:hover{
+    color: #FFFFFF;
+}
+
+body .breadcrumb {
+    color: #ffffff;
+}
+
 
 

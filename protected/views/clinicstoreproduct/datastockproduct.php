@@ -95,12 +95,12 @@ $alam = $Alert->Getalert()['alert_product'];
                             <?php echo number_format($last['product_price'], 2); ?>
                         </td>
                         <!--
-                        <td><?php //echo $last['category']         ?></td>
-                        <td><?php //echo $last['type_name']         ?></td>
+                        <td><?php //echo $last['category']             ?></td>
+                        <td><?php //echo $last['type_name']             ?></td>
                         -->
                         <td><?php echo $last['lotnumber'] ?></td>
                         <!--
-                        <td><?php //echo $config->thaidate($last['generate'])                       ?></td>
+                        <td><?php //echo $config->thaidate($last['generate'])                           ?></td>
                         -->
                         <td><?php echo $config->thaidate($last['expire']) ?></td>
                         <td style=" text-align: right;">
@@ -143,10 +143,13 @@ $alam = $Alert->Getalert()['alert_product'];
                 <label>คงเหลือ</label>
                 <input type="text" class="form-control" id="cut_total" readonly="readonly"/>
                 <label>จำนวนสินค้า</label>
-                <input id='cut_number' placeholder="ตัวเลขเท่านั้น ..." class="form-control" type='text' onKeyUp="if(this.value*1!=this.value) this.value='' ;" >
+                <input id='cut_number' placeholder="ตัวเลขเท่านั้น ..." class="form-control" type='text' onKeyUp="if (this.value * 1 != this.value)
+                            this.value = '';" >
+                <label>หมายเหตุ</label>
+                <textarea id="etc" class="form-control" rows="5"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-block">ยืนยัน</button>
+                <button type="button" class="btn btn-success btn-block" onclick="cutstock()">ยืนยัน</button>
             </div>
         </div>
     </div>
@@ -173,12 +176,31 @@ $alam = $Alert->Getalert()['alert_product'];
                 });
     }
 
-    function handcutstock(product_id, lotnumber,productname,total) {
+    function handcutstock(product_id, lotnumber, productname, total) {
         $("#cut_product_id").val(product_id);
         $("#cut_lotnumber").val(lotnumber);
         $("#cut_total").val(total);
         $("#cut_productname").html(productname);
         $("#popupcutstock").modal();
+    }
+
+    function cutstock() {
+        var product_id = $("#cut_product_id").val();
+        var lotnumber = $("#cut_lotnumber").val();
+        var total = $("#cut_total").val();
+        var number = $("#cut_number").val();
+        var etc = $("#etc").val();
+        var totals = parseInt(total);
+        var numbers = parseInt(number);
+        if (number == "") {
+            $("#cut_number").focus();
+            return false;
+        }
+        
+        if (numbers > totals || numbers == "0") {
+            swal("ข้อมูลจำนวนไม่ถูกต้อง ...!");
+            return false;
+        }
     }
 </script>
 

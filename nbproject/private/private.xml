@@ -6,6 +6,15 @@
             <file>file:/D:/xampp/htdocs/clinic/protected/controllers/ReportController.php</file>
             <file>file:/D:/xampp/htdocs/clinic/protected/views/report/reportcostprofit.php</file>
         </group>
-        <group name="yii"/>
+        <group name="yii">
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/CenterstockproductController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/template-black.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/ClinicstoreproductController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/clinicstoreproduct/datastockproduct.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/detail.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/system-black.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/site/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
+        </group>
     </open-files>
 </project-private>
