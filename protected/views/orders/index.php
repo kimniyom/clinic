@@ -18,7 +18,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'ใบสั่งซื้อสินค้า (สาขา' . $branchModel->branchname . ")",
+    'ใบสั่งสินค้า (สาขา' . $branchModel->branchname . ")",
 );
 ?>
 
@@ -28,7 +28,7 @@ $this->breadcrumbs = array(
         :: ค้นหา ::
         <?php if ($branch != "99") { ?>
             <a href="<?php echo Yii::app()->createUrl('orders/create', array('branch' => $branch)) ?>">
-                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> สร้างใบสั่งซื้อสินค้า</button>
+                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> สร้างใบสั่งสินค้า</button>
             </a>
         <?php } ?>
     </legend>
@@ -52,7 +52,7 @@ $this->breadcrumbs = array(
             ?>
         </div>
         <div class="col-md-3 col-lg-2 col-sm-6">
-            <label>รหัสใบสั่งซื้อ</label>
+            <label>รหัสใบสั่ง</label>
             <input type="text" id="ordercode" class="form-control" onkeypress="return chkNumber()" placeholder="กรอกเฉพาะตัวเลข ..."/>
         </div>
 

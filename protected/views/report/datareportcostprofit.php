@@ -14,19 +14,19 @@
 
 <div class="row" style=" margin: 0px;">
     <div class="col-md-4 col-lg-4" style=" padding: 0px;">
-        <div class="well btn btn-block" style=" text-align: center;color: #FFFFFF; background: url('<?php echo Yii::app()->baseUrl ?>/images/income-icon.png') #69b829 no-repeat bottom right;">
+        <div class="well btn btn-block" style=" border:none; text-align: center;color: #69b829; background: url('<?php echo Yii::app()->baseUrl ?>/images/income-icon.png') #FFFFFF no-repeat bottom right;">
             รายรับ<hr/>
             <?php echo number_format($income, 2) ?>
         </div>
     </div>
     <div class="col-md-4 col-lg-4">
-        <div class="well btn btn-block" style=" text-align: center; color: #FFFFFF;  background: url('<?php echo Yii::app()->baseUrl ?>/images/outcome-icon.png') #de1870 no-repeat bottom right;">
+        <div class="well btn btn-block" style="border:none; text-align: center; color: #de1870;  background: url('<?php echo Yii::app()->baseUrl ?>/images/outcome-icon.png') #FFFFFF no-repeat bottom right;">
             รายจ่าย<hr/>
             <?php echo number_format($outcome, 2) ?>
         </div>
     </div>
     <div class="col-md-4 col-lg-4" style=" padding: 0px;">
-        <div class="well btn btn-block" style=" text-align: center; color: #FFFFFF;background: url('<?php echo Yii::app()->baseUrl ?>/images/money-Bag-icon.png') #4f8ef7 no-repeat bottom right;">
+        <div class="well btn btn-block" style="border:none; text-align: center; color: #FFFFFF;background: url('<?php echo Yii::app()->baseUrl ?>/images/money-Bag-icon.png') #999999 no-repeat bottom right;">
             กำไร / ขาดทุน<hr/>
             <?php
             $profit = ($income - $outcome);
@@ -104,7 +104,7 @@
     </div>
 </div>
 
-<div class="panel panel-default" style=" margin-top: 10px;">
+<div class="panel panel-default" style=" margin-top: 10px; margin-bottom: 0px;">
     <div class="panel-heading" style="background: #FFFFFF;">รายรับ-รายจ่าย รายเดือน</div>
     <div class="panel-body">
         <div class="row">
@@ -139,6 +139,8 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/javascript">
     $(function () {
         Highcharts.chart('reportperiod', {

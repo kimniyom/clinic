@@ -8,8 +8,8 @@
 /* @var $model Orders */
 $branch = $order['branch'];
 $this->breadcrumbs = array(
-    'ใบสั่งซื้อสินค้า' => array('index', "branch" => $branch),
-    'แก้ไขใบสั่งซื้อ',
+    'ใบสั่งสินค้า' => array('index', "branch" => $branch),
+    'แก้ไขใบสั่ง',
 );
 
 $companySell = Companycenter::model()->find("id = '1'");

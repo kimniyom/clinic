@@ -49,7 +49,7 @@ $yearnow = date("Y");
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
         var screenfull = (screen - 163);
-        $("#boxreport").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#boxreport").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '0px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
 

@@ -1,6 +1,6 @@
 <?php
 if (Yii::app()->session['status'] == '1') {
-    $status = "คลังสินค้าย่อย";
+    $status = "คลังสินค้า";
 } else {
     $status = "คลังสินค้า";
 }

@@ -11,7 +11,7 @@ $Config = new Configweb_model();
     <thead>
         <tr>
             <th style="text-align: center; display: none;">#</th>
-            <th>ใบสั่งซื้อสินค้า</th>
+            <th>ใบสั่งสินค้า</th>
         </tr>
     </thead>
     <tbody>

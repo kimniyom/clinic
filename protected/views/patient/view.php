@@ -22,7 +22,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
 <div class="panel panel-default" style=" margin-bottom: 0px;">
     <div class="panel-heading" style=" background: #ffffff;">
-        <i class="fa fa-user"></i> ข้อมูลพื้นฐาน
+        <i class="fa fa-user"></i> ข้อมูลค้า
     </div>
     <div class="row" style="margin:0px;">
         <div class="col-md-2 col-lg-2" style="text-align: center; padding: 0px;" id="p-lefts">
@@ -152,8 +152,8 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                 <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#drug" aria-controls="drug" role="tab" data-toggle="tab" onclick="loaddrug()" style=" padding: 5px;">อาการแพ้ยา</a></li>
-                        <li role="presentation"><a href="#disease" aria-controls="disease" role="tab" data-toggle="tab" style=" padding: 5px;" onclick="loaddisease()">โรคประจำตัว</a></li>
+                        <li role="presentation" class="active"><a href="#drug" aria-controls="drug" role="tab" data-toggle="tab" onclick="loaddrug()" style=" padding: 5px; color: #000;">อาการแพ้ยา</a></li>
+                        <li role="presentation"><a href="#disease" aria-controls="disease" role="tab" data-toggle="tab" style=" padding: 5px;color: #000;" onclick="loaddisease()">โรคประจำตัว</a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -311,7 +311,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 140);
+        var screenfull = (screen - 145);
         $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});

@@ -14,7 +14,7 @@
 
 <?php
 $this->breadcrumbs = array(
-    'ใบสั่งซื้อสินค้า' => array('index', 'branch' => $order['branch']),
+    'ใบสั่งสินค้า' => array('index', 'branch' => $order['branch']),
     $order['order_id'],
 );
 $companySell = Companycenter::model()->find("id = '1'");

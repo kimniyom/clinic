@@ -42,7 +42,7 @@ $branchs = Branch::model()->findAll("active = '1' $WHERE");
         <a href="<?php echo Yii::app()->createUrl('orders/index',array("branch" => $rs['id'])) ?>">
             <button type="button" class="btn btn-default btn-block">
                 <img src="<?= Yii::app()->baseUrl; ?>/images/text-richtext-icon.png"><br/>
-                ใบสั่งซื้อสินค้า
+                ใบสั่งสินค้า
             </button></a>
     </div>
    
