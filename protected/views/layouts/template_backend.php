@@ -36,7 +36,7 @@
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
         <!--
-                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;                ?>/css/button-color.css"/>
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;                 ?>/css/button-color.css"/>
         -->
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
 
@@ -180,16 +180,13 @@
 
     <body style="background: url('<?php echo Yii::app()->baseUrl; ?>/images/bg_ap.png'); /*background: #fbfbfb;*//* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;"> #2a323b-->
-
-
         <nav class="navbar navbar-default" role="navigation" id="nav-head" style=" display: none; margin-bottom: 0px;"></nav>
         <div id="wrapper">
             <!-- Sidebar -->
             <div id="sidebar-wrapper" style=" border-right: #3c4754 solid 1px;">
                 <!-- ###################### USER #################-->
                 <div class="panel panel-info" id="panel-head">
-                    <div class=" panel-heading" style="padding-top: 12px; border-radius: 0px;">
-
+                    <div class="panel-body" style=" text-align: center;border-bottom: #3c4754 solid 1px;">
                         <?php
                         if (!empty($Profile['images'])) {
                             $img_profile = "uploads/profile/" . $Profile['images'];
@@ -197,23 +194,24 @@
                             $img_profile = "images/use-icon.png";
                         }
                         ?>
-
-                        <img src="<?= Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" style="border-radius:20px; padding:2px; border:#FFF solid 2px; height: 32px; background: #FFF;"> ผู้ใช้งาน
-                    </div>
-                    <div class="panel-body">
+                        <center>
+                            <img src="<?= Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img img-responsive" style=" width: 80px;">
+                        </center>
                         <div id="box-profile">
                             User : <?php echo Yii::app()->user->id . " " . Yii::app()->user->name ?><br>
                             สถานะ : <?php echo Yii::app()->session['status'] . ' (' . $Profile['status'] . ')'; ?><br/>
                             สาขา ​: <?php echo Yii::app()->session['branch'] . " " . $branchModel->Getbranch(Yii::app()->session['branch']) ?>
                         </div>
+                        <a href="<?= Yii::app()->createUrl('masuser/profile', array('id' => $Profile['id'])); ?>"><i class="fa fa-pencil"></i> โปรไฟล์</a>
                     </div>
-                    <div class="panel-footer">
-                        <a href="<?= Yii::app()->createUrl('masuser/profile', array('id' => $Profile['id'])); ?>">ข้อมูลส่วนตัว</a>
-                    </div>
+                    
                 </div>
                 <!-- ส่วนของ ผู้ดูแลระบบ -->
 
                 <!-- ตั้งค่าร้านค้า -->
+                <div id="m-left-logo" style=" display: none; width: 95%; text-align: center; margin-top: 50px;">
+                    <img src="<?= Yii::app()->baseUrl; ?>/images/logoheadedit2.png" class="img img-responsive"/>
+                </div>
                 <div id="m-left" style=" margin-bottom: 50px;">
                     <?php
                     $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
@@ -230,7 +228,7 @@
                         }
                         ?>
                         <?php if ($mn['id'] == $mn['menu_id']) { ?>
-                    <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>" title="<?php echo $mn['menu'] ?>">
+                            <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>" title="<?php echo $mn['menu'] ?>">
                                 <div id="listmenu" style=" white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" class="<?php echo $menuactove; ?>">
                                     <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
                                          height="32px"
@@ -241,8 +239,8 @@
                         <?php } ?>
                     <?php endforeach; ?>
                     <?php if (Yii::app()->session['branch'] != "99") { ?>
-                    <br/>
-                    <center><b style=" color: #FFFFFF;"><i class="fa fa-bell"></i> แจ้งเตือน</b></center>
+                        <br/>
+                        <center><b style=" color: #FFFFFF;"><i class="fa fa-bell"></i> แจ้งเตือน</b></center>
                         <a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"> 
                             <div id="listmenu">สินค้าใกล้หมด <span class="badge pull-right"><?php echo $alet->Countalertproduct(Yii::app()->session['branch']); ?> </span></div></a>
                         <a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"> 
@@ -260,7 +258,7 @@
             <!-- /#sidebar-wrapper -->
 
             <!-- Page Content -->
-            <div id="page-content-wrapper" style="padding:0px; background: url('images/logoheadedit2-bg.png') no-repeat bottom left;">
+            <div id="page-content-wrapper" style="padding:0px;">
                 <nav class="navbar navbar-inverse" role="navigation" id="nav-bar">
                     <div class="container-fluid">
                         <div class="navbar-header">
@@ -368,7 +366,7 @@
                 </ol>
                 <div class="container-fluid" style="padding: 0px; padding-bottom: 0px;">
                     <div class="row" style="margin: 5px 0px 0px 0px;">
-                        <div class="col-lg-12"><?php echo $content; ?></div>
+                        <div class="col-lg-12" style=" padding-left: 5px; padding-right: 5px;"><?php echo $content; ?></div>
                     </div>
                 </div>
             </div>

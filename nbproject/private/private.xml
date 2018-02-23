@@ -13,7 +13,10 @@
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/clinicstoreproduct/datastockproduct.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/detail.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/system-black.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/sell/index.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/site/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/simple-sidebar.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/simple-sidebar-black.css</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
     </open-files>

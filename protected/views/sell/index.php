@@ -20,9 +20,9 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
 <div id="content-boxsell" style=" background: #333333;  position: fixed; height: 100%; bottom: 0px;"></div>
 <div class="well" style="border-radius: 0px; padding: 10px; margin-bottom: 0px; border-bottom: none; box-shadow: none;" id="box-sell">
     <div class="row">
-        <div class="col-lg-6" style=" border-right: #999999 solid 1px;">
+        <div class="col-lg-7" style=" border-right: #999999 solid 1px;">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     รหัสขาย
                     <input type="text" class="form-control" id="sellcode" value="<?php echo $sell_id ?>" readonly="readonly"/>
                 </div>
@@ -45,8 +45,7 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
                 </div>
             </div>
             <div class="row">
-
-                <div class="col-lg-5">
+                <div class="col-lg-7">
                     รหัสสินค้า
                     <div id="_item"></div>
                 </div>
@@ -54,17 +53,17 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
                     จำนวน
                     <input type="text" class="form-control" id="number" value="1" onkeypress="return chkNumber()" style=" text-align: center;"/>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     พนักงานขาย
                     <input type="text" class="form-control" id="user" readonly="readonly" value="<?php echo $Profile['name'] . " " . $Profile['lname'] ?>"/>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     สาขา
                     <?php echo $brancList ?>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <button type="button" class="btn btn-default btn-block" id="btnaddproduct" onclick="sell()" style="margin-top: 20px;"><i class="fa fa-plus"></i> เพิ่มสินค้า</button>
                 </div>
             </div>
@@ -72,7 +71,7 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
             <p style=" color: #ff3300;">*ห้าม refresh หน้าจอก่อนสิ้นสุดการขาย</p>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             รับเงิน
             <input type="text" class="form-control" id="income" onkeypress="return chkNumber()" style=" text-align: center; font-weight: bold; font-size: 24px;" onkeyup="Income(this.value)"/>
             <input type="hidden" class="form-control" id="distcount" style=" text-align: center; font-weight: bold; font-size: 24px;" value="0"/>
@@ -138,6 +137,7 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
     loaditems();
     Setscreen();
     $(document).ready(function () {
+        $("#wrapper").toggleClass("toggled");
         $(".breadcrumb").hide();
         $(window).resize(function () {
             var boxsell = $("#box-sell").height();
@@ -165,7 +165,7 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
         var screenfull = ((contentboxsell - boxsell) - 123);
         $("#orderlist").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        $("#patient").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        $("#patient").css({'height': screenfull, 'background': '#333333', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
     }
 
     function sell() {

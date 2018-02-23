@@ -6,6 +6,7 @@ $month = date("m");
     $(document).ready(function () {
         $(".breadcrumb").hide();
         $("#m-left").hide();
+        $("#m-left-logo").show();
         /*
          var w = window.innerWidth;
          if (w > 768) {
@@ -14,7 +15,7 @@ $month = date("m");
          */
     });
 </script>
-<div id="p-box" style=" margin-top: 10px;">
+<div id="p-box" style=" margin-top: 0px;">
     <div class="row" style=" margin: 0px; padding: 0px;">
         <div class="col-md-12 col-lg-8" id="home-left">
 
@@ -204,7 +205,7 @@ $month = date("m");
         var screen = $(window).height();
         var w = window.innerWidth;
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 80);
+        var screenfull = (screen - 63);
         if (w > 768) {
             $("#home-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px','border': 'solid #3c4754 1px','padding-top':'10px'});
             $("#home-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px','border': 'solid #3c4754 1px','padding-top':'10px','background':'#666666','border-left':'none'});
