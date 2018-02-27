@@ -155,13 +155,13 @@ if (isset($model['birth'])) {
         </div>
 
         <button type="button" class="btn btn-default btn-block" onclick="camera()" id="btn-left"><i class="fa fa-camera text-danger"></i> ถ่ายรูป</button>
-
-        <div class="row" style=" margin: 0px;">
-            <div class="col-md-12 col-lg-12" style=" padding: 0px;">
-                <button type="button" class="btn btn-success btn-block" style=" border-radius: 0px;" onclick="doctorconfirm()">ยืนยันรายการ <img src="<?php echo Yii::app()->baseUrl ?>/images/Save-icon.png"/></button>
+        <?php if ($service['status'] != '3' || $service['status'] != '4') { ?>
+            <div class="row" style=" margin: 0px;">
+                <div class="col-md-12 col-lg-12" style=" padding: 0px;">
+                    <button type="button" class="btn btn-success btn-block" style=" border-radius: 0px;" onclick="doctorconfirm()">ยืนยันรายการ <img src="<?php echo Yii::app()->baseUrl ?>/images/Save-icon.png"/></button>
+                </div>
             </div>
-
-        </div>
+        <?php } ?>
         <!--
         <span class="easyui" style=" bottom: 0px; position: absolute; border-top: #cccccc solid 1px; width: 100%; padding: 5px; color: #ff0000;">
             สัญลักษณ์ <i class="fa fa-ellipsis-v text-success"></i> คือ ดูข้อมูล
@@ -224,67 +224,41 @@ if (isset($model['birth'])) {
                         } else {
                             echo "-";
                         }
-                        ?></p><br/>
+                        ?></p>
+
+                    <hr/>
+                    ข้มูลการติดต่อ
+
+
+                    <ul style=" padding-top: 5px;">
+                        <?php
+                        echo "<li>เบอร์โทรศัพท์ ";
+                        if (isset($model['tel'])) {
+                            echo ($model['tel']);
+                        } else {
+                            echo "-";
+                        } "</li>";
+
+                        echo "<li>อีเมล์ ";
+                        if (isset($model['email'])) {
+                            echo ($model['email']);
+                        } else {
+                            echo "-";
+                        } "</li>";
+
+                        echo "<li>ที่อยู่ ";
+                        if (isset($model['contact'])) {
+                            echo ($model['contact']);
+                        } else {
+                            echo "-";
+                        } "</li>";
+                        ?>
+                    </ul>
+                    <hr/>
                     ผู้บันทึกข้อูล <p class="label" id="font-16"><?php
                         $OID = $Author['oid'];
                         echo Pername::model()->find("oid = '$OID'")['pername'] . $Author['name'] . '' . $Author['lname'];
                         ?></p>
-                    <br/>
-
-                    <hr style="margin: 0px;"/>
-                    ข้มูลการติดต่อ
-
-                    <?php if ($contact) { ?>
-                        <ul style=" padding-top: 5px;">
-                            <?php
-                            echo "<li>เบอร์โทรศัพท์ ";
-                            if (isset($contact['tel'])) {
-                                echo ($contact['tel']);
-                            } else {
-                                echo "-";
-                            } "</li>";
-
-                            echo "<li>อีเมล์ ";
-                            if (isset($contact['email'])) {
-                                echo ($contact['email']);
-                            } else {
-                                echo "-";
-                            } "</li>";
-
-                            echo "<li>ตำบล ";
-                            if (isset($contact['tambon'])) {
-                                echo Tambon::model()->find("tambon_id = '$contact->tambon'")['tambon_name'];
-                            } else {
-                                echo "-";
-                            }
-                            echo " &nbsp;&nbsp;อำเภอ ";
-                            if (isset($contact['amphur'])) {
-                                echo Ampur::model()->find("ampur_id = '$contact->amphur' ")['ampur_name'];
-                            } else {
-                                echo "-";
-                            }
-                            echo " &nbsp;&nbsp;จังหวัด ";
-                            if (isset($contact['changwat'])) {
-                                echo Changwat::model()->find("changwat_id = '$contact->changwat' ")['changwat_name'];
-                            } else {
-                                echo "-";
-                            } "</li>";
-                            echo "<li>รหัสไปรษณีย์ ";
-                            if (isset($contact['zipcode'])) {
-                                echo ($contact['zipcode']);
-                            } else {
-                                echo "-";
-                            } "</li>";
-                            ?>
-                        <?php } else { ?>
-                            <center>
-                                <p style="color: #ff0000;">ยังไม่ได้บันทึกข้อมูลส่วนนี้</p><br/>
-                                <a href="<?php echo Yii::app()->createUrl('patientcontact/create', array("id" => $model['id'])) ?>">
-                                    <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มข้อมูลติดต่อ</button>
-                                </a>
-                            </center>
-                        <?php } ?>
-                    </ul>
                 </div>
             </div>
             <div title="ซักประวัติ" style="padding:10px">

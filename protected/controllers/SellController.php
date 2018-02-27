@@ -68,7 +68,7 @@ class SellController extends Controller {
         $number = Yii::app()->request->getPost('number');
 
         $columns = array(
-            "itemcode" => $itemcode, 
+            "itemcode" => $itemcode,
             "product_id" => $itemcode,
             "card" => $card,
             "sell_id" => $sellcode,
@@ -198,20 +198,23 @@ class SellController extends Controller {
 
     public function actionPatient() {
         $card = Yii::app()->request->getPost('card');
-        $sql = "SELECT p.*,c.tel,c.email,g.grad,g.distcount,g.distcountsell
-                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
-                    INNER JOIN patient_contact c ON p.id = c.patient_id
-                    WHERE p.card = '$card' ";
-
-        $rs = Yii::app()->db->createCommand($sql)->queryRow();
-
+        /*
+          $sql = "SELECT p.*,g.grad,g.distcount,g.distcountsell
+          FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+          WHERE p.card = '$card' ";
+          $rs = Yii::app()->db->createCommand($sql)->queryRow();
+         * 
+         */
+        $Model = new Patient();
+        $rs = $Model->GetpatientCard($card);
         $str = "";
-        $str .= "PID : " . $rs['pid'];
-        $str .= "<br/>บัตรประชาชน : " . $rs['card'];
-        $str .= "<br/>คุณ : " . $rs['name'] . " " . $rs['lname'];
-        $str .= "<br/>เบอร์โทรศัพท์ : " . $rs['tel'];
-        $str .= "<br/>ประเภทลูกค้า : " . $rs['grad'];
-        $str .= "<br/> ส่วนลด : " . $rs['distcountsell'] . " บาท";
+        $str .= "<label>รหัส : </label> " . $rs['pid'];
+        $str .= "<br/><label>บัตรประชาชน : </label> " . $rs['card'];
+        $str .= "<br/><label>คุณ : </label>" . $rs['name'] . " " . $rs['lname'];
+        $str .= "<br/><label>ที่อยู่ : </label> " . $rs['contact'];
+        $str .= "<br/><label>เบอร์โทรศัพท์ : </label> " . $rs['tel'];
+        $str .= "<br/><label>ประเภทลูกค้า : </label> " . $rs['grad'];
+        $str .= "<br/><label>ส่วนลด : </label> " . $rs['distcountsell'] . " <label>บาท</label>";
         //$str .= "<input type='hidden' id='distcount' class='form-control' value='".$rs['distcountsell']."'/>";
         $str .= "<script>$(document).ready(function(){ $('#distcount').val(" . $rs['distcountsell'] . ");});</script>";
         if ($rs) {

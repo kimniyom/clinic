@@ -24,43 +24,43 @@ $this->breadcrumbs = array(
 $system = new Configweb_model();
 ?>
 
-<fieldset class="scheduler-border">
-    <legend class="scheduler-border">
-        :: ค้นหา ::
+<div class="panel panel-default" style=" margin-bottom: 0px;">
+
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-2 col-lg-1 col-sm-3 col-xs-3" style=" text-align: center;">
+                <label>สาขา</label>
+            </div>
+            <div class="col-md-6 col-lg-3 col-sm-6 col-xs-5">
+
+                <?php
+                $this->widget(
+                        'booster.widgets.TbSelect2', array(
+                    'name' => 'branch',
+                    'id' => 'branch',
+                    'data' => CHtml::listData($BranchList, 'id', 'branchname'),
+                    'value' => $branch,
+                    'options' => array(
+                        'placeholder' => 'เลือกสาขา',
+                        'width' => '100%',
+                        'allowClear' => true,
+                    )
+                        )
+                );
+                ?>
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-3 col-xs-4">
+                <button type="button" class="btn btn-success btn-block" onclick="Getemployee()"><i class="fa fa-search"></i> ตกลง</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-body">
         <a href="<?php echo Yii::app()->createUrl('employee/create') ?>">
             <button type="button" class="btn btn-default"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลพนักงาน</button></a>
-    </legend>
-    <div class="row">
-        <div class="col-md-3 col-lg-2 col-sm-3 col-xs-3">
-            <label>สาขา</label>
-        </div>
-        <div class="col-md-6 col-lg-3 col-sm-6 col-xs-5">
-
-            <?php
-            $this->widget(
-                    'booster.widgets.TbSelect2', array(
-                'name' => 'branch',
-                'id' => 'branch',
-                'data' => CHtml::listData($BranchList, 'id', 'branchname'),
-                'value' => $branch,
-                'options' => array(
-                    'placeholder' => 'เลือกสาขา',
-                    'width' => '100%',
-                    'allowClear' => true,
-                )
-                    )
-            );
-            ?>
-        </div>
-        <div class="col-md-2 col-lg-2 col-sm-3 col-xs-4">
-            <button type="button" class="btn btn-success btn-block" onclick="Getemployee()">ตกลง</button>
-        </div>
+            <div id="result" style=" margin-top: 10px;"></div>
     </div>
-
-</fieldset>
-
-<div id="result"></div>
-
+</div>
 
 <script type="text/javascript">
     Getemployee();

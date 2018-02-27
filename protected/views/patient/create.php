@@ -7,12 +7,6 @@ $this->breadcrumbs=array(
 	'ลงทะเบียนลูกค้า',
 );
 
-$this->menu=array(
-	array('label'=>'List Patient', 'url'=>array('index')),
-	array('label'=>'Manage Patient', 'url'=>array('admin')),
-);
 ?>
 
-<h1>ลงทะเบียนลูกค้า</h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'head' => 'ลงทะเบียนลูกค้า')); ?>

@@ -82,7 +82,7 @@ class Patient extends CActiveRecord {
             'occupation' => 'อาชีพ',
             'tel' => 'เบอร์โทรศัพท์',
             'email' => 'อีเมล์',
-            'contact' => 'อื่น ๆ'
+            'contact' => 'ที่อยู่'
         );
     }
 
@@ -150,6 +150,24 @@ class Patient extends CActiveRecord {
     public function GetPatientAll() {
         $sql = "SELECT id,card,CONCAT(name,' ',lname) AS name FROM patient";
         $result = Yii::app()->db->createCommand($sql)->queryAll();
+
+        return $result;
+    }
+
+    public function GetpatientId($id){
+        $sql = "SELECT p.*,g.grad,g.distcount,g.distcountsell
+                FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                WHERE p.id = '$id' ";
+        $result = Yii::app()->db->createCommand($sql)->queryRow();
+
+        return $result;
+    }
+
+    public function GetpatientCard($card){
+        $sql = "SELECT p.*,g.grad,g.distcount,g.distcountsell
+                FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                WHERE p.card = '$card' ";
+        $result = Yii::app()->db->createCommand($sql)->queryRow();
 
         return $result;
     }

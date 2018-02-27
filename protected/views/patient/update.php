@@ -7,9 +7,9 @@ $this->breadcrumbs=array(
 	$model->name=>array('view','id'=>$model->id),
 	'Update',
 );
-
+$head = "แก้ไขข้อมูล ".$model->name.' '.$model->lname;
 ?>
 
-<h1>แก้ไขข้อมูล <?php echo $model->name.' '.$model->lname; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+
+<?php $this->renderPartial('_form', array('model'=>$model,'head' => $head )); ?>

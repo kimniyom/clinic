@@ -1,10 +1,25 @@
+<style type="text/css">
+    #box-data table thead tr th{
+        white-space: nowrap;
+    }
+    #box-data table tbody tr td{
+        white-space: nowrap;
+    }
+</style>
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var boxsell = $(window).height();
+        var w = window.innerWidth;
+        var screenfull;
+        if (w > 768) {
+            //var contentboxsell = $("#content-boxsell").height();
+            screenfull = (boxsell - 445);
+        } else {
+            screenfull = false;
+            $("#btn-search-pd").addClass("btn btn-default btn-block");
+        }
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 445);
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง

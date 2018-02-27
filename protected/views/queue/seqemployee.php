@@ -12,7 +12,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs = array(
-    'คิวการรักษา',
+    'คิวการรักษา / ตรวจร่างกาย',
 );
 
 $WebConfig = new Configweb_model();
@@ -48,20 +48,20 @@ $WebConfig = new Configweb_model();
 <!--
     #### POPUP ADD SEQ ####
 -->
-<div class="modal fade" tabindex="-1" role="dialog" id="popupaddseq">
+<div class="modal fade" tabindex="-1" role="dialog" id="popupaddseq" data-backdrop="static">
     <div class="modal-dialog modal-lg large" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">จัดการคิว</h4>
+                <h4 class="modal-title">จัดการคิว / ตรวจร่างกาย</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style=" margin: 0px; padding: 0px;">
                 <div id="bodyaddseq">
-                    <div class="row">
+                    <div class="row" style=" margin: 0px;">
                         <div class="col-md-4 col-lg-4">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    ชื่อลูกค้า
+                                    <label>ชื่อลูกค้า *</label>
                                     <?php
                                     $this->widget(
                                             'booster.widgets.TbSelect2', array(
@@ -72,27 +72,32 @@ $WebConfig = new Configweb_model();
                                             'placeholder' => 'ลูกค้า',
                                             'width' => '100%',
                                             'allowClear' => true,
-                                        )
+                                        ),
+                                        'events' => array('change' => 'js:function(e)       
+                                            { 
+                                                Getpatient(this.value);
+                                        }'),
                                             )
                                     );
                                     ?>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-lg-12">
-                                    อาการที่มารักษา
-                                    <textarea class=" form-control" id="comment" rows="5"></textarea>
+                                    <div id="detailpatient" style=" margin-top: 10px;"></div>
                                 </div>
                             </div>
+
                         </div>
-                        
-                        <div class="col-md-8 col-lg-8" style=" border-left: #cccccc solid 1px;">
+
+                        <div class="col-md-8 col-lg-8" style=" padding-bottom: 0px; border-left: #cccccc solid 1px;">
                             <label>ตรวจร่างกาย</label>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">น้ำหนัก</div>
+                                            <div class="input-group-addon">น้ำหนัก *</div>
                                             <input type="text" class="form-control" id="weight">
                                             <div class="input-group-addon">กก.</div>
                                         </div>
@@ -101,7 +106,7 @@ $WebConfig = new Configweb_model();
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">ส่วนสูง</div>
+                                            <div class="input-group-addon">ส่วนสูง *</div>
                                             <input type="text" class="form-control" id="height">
                                             <div class="input-group-addon">ซม.</div>
                                         </div>
@@ -112,7 +117,7 @@ $WebConfig = new Configweb_model();
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">อุณหภูมิร่างกาย</div>
+                                            <div class="input-group-addon">อุณหภูมิร่างกาย *</div>
                                             <input type="text" class="form-control" id="btemp">
                                             <div class="input-group-addon">&#176;C</div>
                                         </div>
@@ -121,7 +126,7 @@ $WebConfig = new Configweb_model();
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">อัตราการเต้นชีพจร</div>
+                                            <div class="input-group-addon">อัตราการเต้นชีพจร *</div>
                                             <input type="text" class="form-control" id="pr">
                                             <div class="input-group-addon">/m</div>
                                         </div>
@@ -133,7 +138,7 @@ $WebConfig = new Configweb_model();
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">อัตราการหายใจ</div>
+                                            <div class="input-group-addon">อัตราการหายใจ *</div>
                                             <input type="text" class="form-control" id="rr">
                                             <div class="input-group-addon">/m</div>
                                         </div>
@@ -142,7 +147,7 @@ $WebConfig = new Configweb_model();
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">ความดันโลหิต</div>
+                                            <div class="input-group-addon">ความดันโลหิต *</div>
                                             <input type="text" class="form-control" id="ht">
                                         </div>
                                     </div>
@@ -150,12 +155,19 @@ $WebConfig = new Configweb_model();
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">รอบเอว</div>
+                                            <div class="input-group-addon">รอบเอว *</div>
                                             <input type="text" class="form-control" id="waistline">
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    อาการที่มารักษา
+                                    <textarea class=" form-control" id="cc" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="row" style=" margin-top: 10px;">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="input-group">
@@ -165,15 +177,12 @@ $WebConfig = new Configweb_model();
                                     </div>
                                 </div>
                             </div>
-                            <!--
-                            <label>อาการสำคัญ</label>
-                            <textarea class="form-control" id="cc" rows="5"></textarea>
-                            -->
+
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style=" margin-top: 0px;">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="SaveAddseq()">บันทึกรายการ</button>
             </div>
@@ -225,8 +234,6 @@ $WebConfig = new Configweb_model();
                             <input type="text" class="form-control" id="_appoint" readonly="readonly"/>
                         </div>
                     </div>
-
-
                 </div>
             </div>
             <div class="modal-footer">
@@ -239,18 +246,29 @@ $WebConfig = new Configweb_model();
 
 <script type="text/javascript">
     function Addseq() {
+        setscreen();
+        Getpatient("");
         $("#patient").val("");
+        $("#weight").val("");
+        $("#height").val("");
+        $("#btemp").val("");
+        $("#pr").val("");
+        $("#rr").val("");
+        $("#ht").val("");
+        $("#waistline").val("");
+        $("#cc").val("");
         $("#popupaddseq").modal();
     }
 
     function SaveAddseq() {
         var url = "<?php echo Yii::app()->createUrl('queue/saveseq') ?>";
         var patient = $("#patient").val();
-        var comment = $("#comment").val();
-       if(patient == ""){
-           alert("ยังไม่ได้เลือกลูกค้า ...");
-           return false;
-       }
+        //var comment = $("#comment").val();
+        if (patient == "") {
+            swal("แจ้งเตือน!", "ยังไม่ได้เลือกลูกค้า ...!", "warning");
+            return false;
+        }
+
         var weight = $("#weight").val();
         var height = $("#height").val();
         var btemp = $("#btemp").val();
@@ -259,9 +277,14 @@ $WebConfig = new Configweb_model();
         var ht = $("#ht").val();
         var waistline = $("#waistline").val();
         var cc = $("#cc").val();
+
+        if (weight == "" || height == "" || btemp == "" || pr == "" || rr == "" || ht == "" || waistline == "") {
+            swal("แจ้งเตือน!", " กรอกข้อมูลช่อง * ไม่ครบ ...!", "warning");
+            return false;
+        }
         var data = {
             patient: patient,
-            comment: comment,
+            //comment: comment,
             //Check Body 
             weight: weight,
             height: height,
@@ -296,6 +319,7 @@ $WebConfig = new Configweb_model();
                 //$("#_type").val(datas.type);
             }, 'json');
         });
+
     });
 
     function SaveAddseqFormAppoint() {
@@ -303,14 +327,14 @@ $WebConfig = new Configweb_model();
         var patient = $("#_patient").val();
         var comment = $("#_comment").val();
         var appoint_id = $("#_appoint_id").val();
-        
+
         //CheckBody
-        
+
         var data = {
             appoint_id: appoint_id,
             patient: patient,
             comment: comment
-            
+
         };
 
         $.post(url, data, function (datas) {
@@ -347,21 +371,43 @@ $WebConfig = new Configweb_model();
             window.location.reload();
         });
     }
-    
-    function loadtable(){
-        var url = "<?php echo Yii::app()->createUrl('queue/getdata')?>";
-        var data = {a:1};
-        $.post(url,data,function(datas){
+
+    function loadtable() {
+        var url = "<?php echo Yii::app()->createUrl('queue/getdata') ?>";
+        var data = {a: 1};
+        $.post(url, data, function (datas) {
             $("#datas").html(datas);
         });
     }
-    
-    function loadservicesuccess(){
-        var url = "<?php echo Yii::app()->createUrl('queue/getservicesuccess')?>";
-        var data = {a:1};
-        $.post(url,data,function(datas){
+
+    function loadservicesuccess() {
+        var url = "<?php echo Yii::app()->createUrl('queue/getservicesuccess') ?>";
+        var data = {a: 1};
+        $.post(url, data, function (datas) {
             $("#servicesuccess").html(datas);
         });
+    }
+
+    function setscreen() {
+        var h = window.innerHeight;
+        var bodymodel = (h - 218);
+        $("#bodyaddseq").css({'height': bodymodel, 'overflow': 'auto'});
+    }
+
+    function Getpatient(id) {
+        var data = {id: id};
+        var url = "<?php echo Yii::app()->createUrl('queue/getpatient') ?>";
+        $.post(url, data, function (datas) {
+            $("#detailpatient").html(datas);
+        });
+    }
+
+    function linkdetail() {
+        var patient_id = $("#patient").val();
+        var url = "<?php echo Yii::app()->createUrl('patient/view') ?>" + "&id=" + patient_id;
+        var win = window.open(url, '_blank');
+        win.focus();
+
     }
 </script>
 

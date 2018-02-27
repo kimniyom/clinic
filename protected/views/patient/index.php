@@ -13,16 +13,9 @@ $typeModel = new Gradcustomer();
 ?>
 
 <div class="panel panel-default" style=" margin-bottom: 0px;">
-    <div class="panel-heading" style=" padding-bottom: 15px; padding-right: 5px; background: none;">
-        <i class="fa fa-users"></i> ข้อมูลลูกค้า  <span id="loading"></span>
-        <div class="pull-right">
-            <button type="button" class="btn btn-default"
-                    onclick="CheckPatient()"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลลูกค้า</button>
-        </div>
-    </div>
-    <div class="panel-body" style="padding: 10px;">
-        <div class="row" style=" margin-top: 10px;">
-            <div class="col-xs-3 col-lg-1 col-md-1" style=" text-align: center;"><label>สาขา*</label></div>
+    <div class="panel-heading" style="background: none;">
+        <div class="row">
+            <div class="col-xs-3 col-lg-1 col-md-1" style=" text-align: center; padding-top: 5px;"><label>สาขา*</label></div>
             <div class="col-xs-5 col-lg-3 col-md-3">
                 <?php
                 $this->widget('booster.widgets.TbSelect2', array(
@@ -40,12 +33,14 @@ $typeModel = new Gradcustomer();
                 ?>
             </div>
             <div class="col-xs-3 col-md-3 col-lg-3">
-                <button type="button" class="btn btn-default" onclick="getdata();">ค้นหา</button>
+                <button type="button" class="btn btn-default" onclick="getdata();"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
         </div>
-        <hr/>
+    </div>
+    <div class="panel-body" style="padding: 10px;">
+        <button type="button" class="btn btn-default"onclick="CheckPatient()"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลลูกค้า</button>
 
-        <div id="showdata"></div>
+        <div id="showdata" style=" margin-top: 10px;"></div>
     </div>
 </div>
 <script type="text/javascript">
@@ -103,6 +98,9 @@ $typeModel = new Gradcustomer();
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
 
 <script type="text/javascript">
     function deletpatient(id) {

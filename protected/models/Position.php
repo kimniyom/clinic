@@ -51,7 +51,7 @@ class Position extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'position' => 'Position',
+			'position' => 'ชื่อตำแหน่ง',
 		);
 	}
 

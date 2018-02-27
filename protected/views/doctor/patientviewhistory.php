@@ -286,56 +286,31 @@ if (isset($model['birth'])) {
                     <hr style="margin: 0px;"/>
                     ข้มูลการติดต่อ
 
-                    <?php if ($contact) { ?>
                         <ul style=" padding-top: 5px;">
                             <?php
                             echo "<li>เบอร์โทรศัพท์ ";
-                            if (isset($contact['tel'])) {
-                                echo ($contact['tel']);
+                            if (isset($model['tel'])) {
+                                echo ($model['tel']);
                             } else {
                                 echo "-";
                             } "</li>";
 
                             echo "<li>อีเมล์ ";
-                            if (isset($contact['email'])) {
-                                echo ($contact['email']);
+                            if (isset($model['email'])) {
+                                echo ($model['email']);
                             } else {
                                 echo "-";
                             } "</li>";
 
-                            echo "<li>ตำบล ";
-                            if (isset($contact['tambon'])) {
-                                echo Tambon::model()->find("tambon_id = '$contact->tambon'")['tambon_name'];
+                            echo "<li>ที่อยู่ ";
+                            if (isset($model['contact'])) {
+                                echo $model['contact'];
                             } else {
                                 echo "-";
                             }
-                            echo " &nbsp;&nbsp;อำเภอ ";
-                            if (isset($contact['amphur'])) {
-                                echo Ampur::model()->find("ampur_id = '$contact->amphur' ")['ampur_name'];
-                            } else {
-                                echo "-";
-                            }
-                            echo " &nbsp;&nbsp;จังหวัด ";
-                            if (isset($contact['changwat'])) {
-                                echo Changwat::model()->find("changwat_id = '$contact->changwat' ")['changwat_name'];
-                            } else {
-                                echo "-";
-                            } "</li>";
-                            echo "<li>รหัสไปรษณีย์ ";
-                            if (isset($contact['zipcode'])) {
-                                echo ($contact['zipcode']);
-                            } else {
-                                echo "-";
-                            } "</li>";
+                            
                             ?>
-                        <?php } else { ?>
-                            <center>
-                                <p style="color: #ff0000;">ยังไม่ได้บันทึกข้อมูลส่วนนี้</p><br/>
-                                <a href="<?php echo Yii::app()->createUrl('patientcontact/create', array("id" => $model['id'])) ?>">
-                                    <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มข้อมูลติดต่อ</button>
-                                </a>
-                            </center>
-                        <?php } ?>
+
                     </ul>
                 </div>
             </div>

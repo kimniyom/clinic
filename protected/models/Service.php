@@ -123,7 +123,15 @@ class Service extends CActiveRecord
 		$sql = "SELECT p.id AS patient_id,s.id,p.`name`,p.lname,TIMESTAMPDIFF(YEAR,p.birth,NOW()) AS age,p.card,p.pid,p.sex,g.grad,s.`comment`
 				FROM service s INNER JOIN patient p ON s.patient_id = p.id
 				INNER JOIN `gradcustomer` g ON p.type = g.id
-				WHERE s.branch = '$branch' AND s.`status` = '1' ";
+				WHERE s.branch = '$branch' AND s.`status` IN ('1','2') ";
+		return Yii::app()->db->createCommand($sql)->queryAll();
+	}
+
+	public function GetseqEmployee($branch){
+		$sql = "SELECT p.id AS patient_id,s.id,p.`name`,p.lname,TIMESTAMPDIFF(YEAR,p.birth,NOW()) AS age,p.card,p.pid,p.sex,g.grad,s.`comment`
+				FROM service s INNER JOIN patient p ON s.patient_id = p.id
+				INNER JOIN `gradcustomer` g ON p.type = g.id
+				WHERE s.branch = '$branch' AND s.`status` IN ('1')";
 		return Yii::app()->db->createCommand($sql)->queryAll();
 	}
 

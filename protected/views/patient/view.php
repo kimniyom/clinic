@@ -20,13 +20,13 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
 <input type="hidden" id="patient_id" value="<?php echo $model['id'] ?>"/>
 
-<div class="panel panel-default" style=" margin-bottom: 0px;">
-    <div class="panel-heading" style=" background: #ffffff;">
+<div class="panel panel-default" style=" margin-bottom: 5px;">
+    <div class="panel-heading" style=" background: #ffffff; padding-bottom: 0px;">
         <i class="fa fa-user"></i> ข้อมูลค้า
     </div>
     <div class="row" style="margin:0px;">
-        <div class="col-md-2 col-lg-2" style="text-align: center; padding: 0px;" id="p-lefts">
-            <div id="box-img-profile" style=" padding: 5px;">
+        <div class="col-md-2 col-lg-2" style="text-align: center; padding: 0px; background: #cccccc;" id="p-left">
+            <div id="box-img-profiles" style=" padding: 5px;">
                 <?php
                 if (!empty($model['images'])) {
                     $img_profile = "uploads/profile/" . $model['images'];
@@ -140,7 +140,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                     } else {
                         echo "-";
                     } "</li>";
-                    
+
                     echo "<li><label>อื่น ๆ : </label> ";
                     if (isset($model['contact'])) {
                         echo ($model['contact']);
@@ -157,7 +157,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                     </ul>
 
                     <!-- Tab panes -->
-                    <div class="tab-content" style=" padding-top: 10px;">
+                    <div class="tab-content" style=" padding-top: 10px; border: #dddddd solid 1px; border-top: none; padding: 10px;">
                         <div role="tabpanel" class="tab-pane active" id="drug"><div id="result_drug"></div></div>
                         <div role="tabpanel" class="tab-pane" id="disease"><div id="result_disease"></div>
                         </div>
@@ -171,7 +171,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
             <div id="history"></div>
 
             <div style=" background:#f9f9f9; border-bottom: #dddddd solid 1px;  border-top: #dddddd solid 1px; padding: 5px; font-weight: bold;">
-                การนัด | <a href="<?php echo Yii::app()->createUrl('appoint/carlendar') ?>"><i class="fa fa-plus"></i> เพิ่มวันนัด</a>
+                การนัด | <a href="<?php echo Yii::app()->createUrl('appoint/carlendar') ?>" style=" color: #0000FF;"><i class="fa fa-plus"></i> เพิ่มวันนัด</a>
             </div>
             <div id="appoint"></div>
         </div>
@@ -302,16 +302,24 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 </script>
 
 <script type="text/javascript">
+
+setpage();
     loadappoint();
     loadhistory();
-    Setscreen();
-    SetBoxHistory();
     loaddrug();
     loadsellhistory();
+
+    function setpage() {
+        var screen = window.innerWidth;
+        if (screen > 768) {
+            Setscreen();
+            SetBoxHistory();
+        }
+    }
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 145);
+        var screenfull = (screen - 135);
         $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
@@ -323,12 +331,11 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
         var screenfull = ((screen - 205) / 2);
-        var sellhistory = (screen - 195);
-        $("#history").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#appoint").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        $("#history").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '0px'});
+        $("#appoint").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '0px'});
 
-        $("#sellhistory").css({'height': sellhistory - 200, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#box-img-profile").css({'height': 205, 'overflow': 'auto', 'padding-bottom': '0px'});
+        //$("#p-left").css({'height': sellhistory, 'overflow': 'auto', 'padding-bottom': '25px'});
+        //$("#box-img-profile").css({'height': 205, 'overflow': 'auto', 'padding-bottom': '0px'});
     }
 
     function PopupBills(url, title) {

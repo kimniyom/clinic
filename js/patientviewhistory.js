@@ -394,14 +394,12 @@ function loadhistory() {
     });
 }
 
-
-
 function sumservice() {
     var service_id = $("#service_id").val();
     var url = "index.php?r=service/sumservice";
     var data = {service_id: service_id};
     $.post(url, data, function (result) {
-        $("#price_total").val(result);
+        $("#price_total").val(parseInt(result.replace(",", "")));
         $("#sumservice").html(result);
     });
 }

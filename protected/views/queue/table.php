@@ -30,13 +30,15 @@
                 $icon = '';
                 $color = '';
             }
+            
+            $rss = Checkbody::model()->find('service_id=:service_id', array(':service_id'=>$rs['id']));
             ?>
             <tr style="color: <?php echo $color ?>;">
                 <td style=" text-align:center;"><?php echo $icon . ' ' . $rs['id'] ?></td>
                 <td><?php echo $rs['name'] . ' ' . $rs['lname'] ?></td>
                 <td style=" text-align:center;"><?php echo $rs['age'] ?></td>
                 <td style=" text-align: center;"><?php echo $rs['card'] ?></td>
-                <td><?php echo $rs['comment'] ?></td>
+                <td><?php echo $rss['cc'] ?></td>
                 <td style=" text-align: center;">
                     <a href="javascript:deleteservice('<?php echo $rs['id']?>')"><i class="fa fa-trash-o"></i></a></td>
             </tr>

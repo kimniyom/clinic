@@ -87,7 +87,7 @@ class DoctorController extends Controller {
         Yii::app()->db->createCommand()->update("service", array("status" => "2"), "id = '$service_id'");
 
         $this->layout = "dortor";
-        $data['contact'] = PatientContact::model()->find("patient_id = '$id'");
+        //$data['contact'] = PatientContact::model()->find("patient_id = '$id'");
         $data['model'] = Patient::model()->find("id = '$id'");
         $checkbodyModel = new Checkbody();
         $data['checkbody'] = $checkbodyModel->Checkbody($service_id);
@@ -99,7 +99,7 @@ class DoctorController extends Controller {
         //$this->actionCheckImages($data['serviceSEQ']);
         //$data['contact'] = PatientContact::model()->find("patient_id = '$patient_id'");
         $data['patient'] = Patient::model()->find("id = '$id'");
-
+        $data['service'] = Service::model()->find("id=:id",array(":id" => $service_id));
         $this->render('patientview', $data);
     }
 
@@ -113,7 +113,7 @@ class DoctorController extends Controller {
          *
          */
         $this->layout = "template_history";
-        $data['contact'] = PatientContact::model()->find("patient_id = '$id'");
+        //$data['contact'] = PatientContact::model()->find("patient_id = '$id'");
         $data['model'] = Patient::model()->find("id = '$id'");
         $checkbodyModel = new Checkbody();
         $data['checkbody'] = $checkbodyModel->Checkbody($service_id);

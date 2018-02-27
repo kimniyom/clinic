@@ -16,7 +16,7 @@ $branchModel = new Branch();
 </style>
 
 
-<div class="panel panel-info">
+<div class="panel panel-info" style=" margin: 0px;">
     <div class="panel-heading" id="heading-panel">
         <i class="fa fa-user"></i> ID <?php echo $model['pid'] ?>
     </div>
@@ -132,81 +132,24 @@ $branchModel = new Branch();
                     ?></p><br/>
                 <br/>
 
-                <!--
-                ที่อยู่ <br/>
-                <div class="btn btn-default btn-sm pull-right" id="font-rsu-14" onclick="edit_address_profile();">แก้ไขที่อยู่</div>
-                <ul style=" padding-top: 5px;">
-                -->
-                <?php
-                /*
-                  echo "<li>เลขที่ ";
-                  if (isset($model['number'])) {
-                  echo ($model['number']);
-                  } else {
-                  echo "-";
-                  } "</li>";
-                  echo "<li>อาคาร ";
-                  if (isset($model['building'])) {
-                  echo ($model['building']);
-                  } else {
-                  echo "-";
-                  } "</li>";
-                  echo "<li>ชั้น ";
-                  if (isset($model['class'])) {
-                  echo ($model['class']);
-                  } else {
-                  echo "-";
-                  }
-                  echo " ห้อง ";
-                  if (isset($model['room'])) {
-                  echo ($model['room']);
-                  } else {
-                  echo "-";
-                  } "</li>";
-                  echo "<li>ต. ";
-                  if (isset($model['tambon_name'])) {
-                  echo ($model['tambon_name']);
-                  } else {
-                  echo "-";
-                  }
-                  echo " &nbsp;&nbsp;อ. ";
-                  if (isset($model['ampur_name'])) {
-                  echo ($model['ampur_name']);
-                  } else {
-                  echo "-";
-                  }
-                  echo " &nbsp;&nbsp;จ. ";
-                  if (isset($model['changwat_name'])) {
-                  echo ($model['changwat_name']);
-                  } else {
-                  echo "-";
-                  } "</li>";
-                  echo "<li>รหัสไปรษณีย์ ";
-                  if (isset($model['zipcode'])) {
-                  echo ($model['zipcode']);
-                  } else {
-                  echo "-";
-                  } "</li>";
-                 * 
-                 */
-                ?>
+            
                 </ul>
             </div>
 
-            <div class="row" style=" padding: 5px;">
-                <div class="col-lg-4">
+            <div class="row" style=" padding: 5px; margin: 0px;">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="btn btn-success btn-block">
                         <h3><?php echo number_format($Selltotalyearnow) ?></h3><hr/>
                         <h4>ยอดขายปีนี้ </h4>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="btn btn-warning btn-block">
                         <h3><?php echo number_format($Selltotallastyear) ?></h3><hr/>
                         <h4>ยอดขายปีที่แล้ว </h4>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div id="sell" style=" height: 150px;"></div>
                 </div>
             </div>
@@ -215,14 +158,14 @@ $branchModel = new Branch();
 
     </div>
 
-    <div class="row" style=" padding: 15px;">
-        <div class="col-lg-6">
+    <div class="row" style=" padding: 15px; margin: 0px;">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">ประวัติการขายสินค้า</div>
                 <div id="sellmonth" style=" height: 250px;"></div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">ประวัติการเข้าใช้งานระบบ</div>
                 <div id="loginsystem" style=" height: 250px;"></div>

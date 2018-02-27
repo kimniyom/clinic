@@ -195,7 +195,7 @@
                         }
                         ?>
                         <center>
-                            <img src="<?= Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img img-responsive" style=" width: 80px;">
+                            <img src="<?= Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img img-responsive img-circle" style=" width: 80px;">
                         </center>
                         <div id="box-profile">
                             User : <?php echo Yii::app()->user->id . " " . Yii::app()->user->name ?><br>

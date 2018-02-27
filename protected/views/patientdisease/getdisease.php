@@ -7,14 +7,14 @@
 </style>
 
 <div class="row" style=" margin: 0px;">
-    <div class="col-lg-2" style=" padding-top: 5px;">
+    <div class="col-lg-2 col-md-2 col-sm-2" style=" padding-top: 5px;">
         โรคประจำตัว
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-md-8 col-sm-8">
         <input type="text" id="diseaseinsert" class="form-control" placeholder="โรคประจำตัว ..."/>
     </div>
-    <div class="col-lg-2" style=" text-align: right;">
-        <button type="button" class="btn btn-success" onclick="Adddisease()"><i class="fa fa-plus"></i>เพิ่ม</button>
+    <div class="col-lg-2 col-md-2 col-sm-2" style=" text-align: right;">
+        <button type="button" class="btn btn-success btn-block" onclick="Adddisease()"><i class="fa fa-plus"></i>เพิ่ม</button>
     </div>
 </div>
 

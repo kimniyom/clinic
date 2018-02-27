@@ -69,7 +69,7 @@ $this->breadcrumbs = array(
             </div>
 
             <div class="col-lg-2 col-md-2">
-                <button type="button" class="btn btn-default" style=" margin-top: 25px;" onclick="getdata();">ค้นหา</button>
+                <button type="button" class="btn btn-default" id="btn-search-pd" style=" margin-top: 25px;" onclick="getdata();"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
         </div>
         <hr/>

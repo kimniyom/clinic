@@ -20,7 +20,7 @@ class QueueController extends Controller {
             $this->actionSeqemployee();
         }
     }
-    
+
     public function actionSeqdoctor() {
         $Model = new Service();
         $branch = Yii::app()->session['branch'];
@@ -33,13 +33,13 @@ class QueueController extends Controller {
         $Patient = new Patient();
         $branch = Yii::app()->session['branch'];
         $data['PatientList'] = $Patient->GetPatient();
-        $data['seq'] = $Model->Getseq($branch);
+        $data['seq'] = $Model->GetseqEmployee($branch);
         $this->render('seqemployee', $data);
     }
 
     public function actionSaveseq() {
         $patient = Yii::app()->request->getPost('patient');
-        $comment = Yii::app()->request->getPost('comment');
+        //$comment = Yii::app()->request->getPost('comment');
         $branch = Yii::app()->session['branch'];
         //ดึงข้อมูลวันนัดล่าสุดมาอัพเดท5้ามีการนัด
 
@@ -54,7 +54,7 @@ class QueueController extends Controller {
 
         $columns = array(
             "patient_id" => $patient,
-            "comment" => $comment,
+            //"comment" => $comment,
             "branch" => $branch,
             "user_id" => $user_id = Yii::app()->user->id,
             "service_date" => date("Y-m-d")
@@ -62,12 +62,12 @@ class QueueController extends Controller {
 
         Yii::app()->db->createCommand()
                 ->insert("service", $columns);
-        
+
         //รหัสบริการมากสุด
         $sqlMaxservice = "SELECT MAX(id) AS id FROM service ";
         $rsService = Yii::app()->db->createCommand($sqlMaxservice)->queryRow();
         $ServiceId = $rsService['id'];
-        
+
         //ตรวจร่างกาย
         $btemp = Yii::app()->request->getPost('btemp');
         $pr = Yii::app()->request->getPost('pr');
@@ -153,11 +153,11 @@ class QueueController extends Controller {
     public function actionGetdata() {
         $branch = Yii::app()->session['branch'];
         $Model = new Service();
-        $data['seq'] = $Model->Getseq($branch);
+        $data['seq'] = $Model->GetseqEmployee($branch);
         $this->renderPartial('table', $data);
     }
-    
-     public function actionGetservicesuccess() {
+
+    public function actionGetservicesuccess() {
         $branch = Yii::app()->session['branch'];
         $Model = new Service();
         $data['seq'] = $Model->GetseqSuccess($branch);
@@ -168,6 +168,35 @@ class QueueController extends Controller {
         $id = Yii::app()->request->getPost('id');
         Yii::app()->db->createCommand()
                 ->delete("service", "id = '$id'");
+    }
+
+    public function actionGetpatient() {
+        $id = Yii::app()->request->getPost('id');
+        /*
+          $sql = "SELECT p.*,g.grad,g.distcount,g.distcountsell
+          FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+          WHERE p.id = '$id' ";
+          $rs = Yii::app()->db->createCommand($sql)->queryRow();
+         * 
+         */
+        $Model = new Patient();
+        $rs = $Model->GetpatientId($id);
+        $str = "";
+        if (!empty($rs['images'])) {
+            $str .= "<img src='" . Yii::app()->baseUrl . "/uploads/profile/" . $rs['images'] . "' class='img img-responsive' style='height:100px;'/>";
+        } else {
+            $str .= "<img src='" . Yii::app()->baseUrl . "/images/use-icon.png' class='img img-responsive' style='height:100px;'/>";
+        }
+        $str .= "<label>รหัส : </label> " . $rs['pid'];
+        $str .= "<br/><label>บัตรประชาชน : </label> " . $rs['card'];
+        $str .= "<br/><label>คุณ : </label> " . $rs['name'] . " " . $rs['lname'];
+        $str .= "<br/> <label>ที่อยู่ : </label> " . $rs['contact'];
+        $str .= "<br/><label>เบอร์โทรศัพท์ : </label> " . $rs['tel'];
+        $str .= "<br/><label>ประเภทลูกค้า : </label> " . $rs['grad'];
+        $str .= "<br/><button class='btn btn-default' onclick='linkdetail(".$id.")'>ข้อมูลลูกค้า</button>";
+        if ($rs) {
+            echo $str;
+        }
     }
 
 }

@@ -1,7 +1,16 @@
+<style type="text/css">
+    #pv table thead tr th{
+        white-space: nowrap;
+    }
+    #pv table tbody tr td{
+        white-space: nowrap;
+    }
+</style>
 <?php
 $system = new Configweb_model();
 $MasuserModel = new Masuser();
 ?>
+<div id="pv">
 <table class="table table-bordered" id="tuser" style=" width: 100%;">
     <thead>
         <tr>
@@ -23,26 +32,31 @@ $MasuserModel = new Masuser();
                 <td style=" text-align: center;"><?php echo $i ?></td>
                 <td><?php echo $rs['username'] ?></td>
                 <td>
-                    <?php echo $rss['pername'] . '' . $rss['name'] . ' ' . $rss['lname'];?>
+                    <?php echo $rss['pername'] . '' . $rss['name'] . ' ' . $rss['lname']; ?>
                 </td>
                 <td><?php echo $rs['statusname'] ?></td>
                 <td><?php echo $system->thaidate($rs['create_date']) ?></td>
                 <td style="text-align: center;">
                     <a href="<?php echo Yii::app()->createUrl('masuser/view', array('id' => $rs['id'], 'user_id' => $rs['user_id'])) ?>"><i class="fa fa-eye">กำหนดสิทธิ์</i></a>
-                    
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
-
+</div>
 
 <script type="text/javascript">
     Setscreen();
     function Setscreen() {
         var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 365);
+        var w = window.innerWidth;
+        var screenfull;
+        if (w > 768) {
+            //var contentboxsell = $("#content-boxsell").height();
+            screenfull = (boxsell - 365);
+        } else {
+            screenfull = false;
+        }
         $("#tuser").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง

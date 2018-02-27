@@ -327,7 +327,6 @@ function saveDrug() {
         patient_id: patient_id
     };
     
-    alert(druginsert + "/" + drug_number + "/" + pricedrug + "/" + pricedrugtotal);
     if (druginsert == "" || drug_number == "" || pricedrug == "" || pricedrugtotal == "") {
         sweetAlert("Oops...", "กรอกข้อมูล * ไม่ครบ!", "error");
         return false;

@@ -3662,3 +3662,496 @@ REQUEST_URI=/clinic/index.php?r=patient/create/card/1212121212232
 in /Applications/MAMP/htdocs/clinic/protected/views/patient/create.php (18)
 in /Applications/MAMP/htdocs/clinic/protected/controllers/PatientController.php (84)
 in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/23 17:49:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /Applications/MAMP/htdocs/clinic/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Applications/MAMP/htdocs/clinic/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Applications/MAMP/htdocs/clinic/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(450): CModule->getComponent('db')
+#4 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(2361): CActiveRecord->getDbConnection()
+#6 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Orders))
+#7 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(79): CActiveRecord->getMetaData()
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/OrdersController.php(156): CActiveRecord->__construct()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): OrdersController->actionIndex()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('orders/index')
+#20 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#22 {main}
+REQUEST_URI=/clinic/index.php?r=orders/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=repair/carlendar
+---
+2018/02/23 20:35:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /Applications/MAMP/htdocs/clinic/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /Applications/MAMP/htdocs/clinic/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /Applications/MAMP/htdocs/clinic/framework/base/CModule.php(387): CDbConnection->init()
+#3 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(450): CModule->getComponent('db')
+#4 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(2361): CActiveRecord->getDbConnection()
+#6 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Masuser))
+#7 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(79): CActiveRecord->getMetaData()
+#8 /Applications/MAMP/htdocs/clinic/protected/controllers/SiteController.php(104): CActiveRecord->__construct()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/
+---
+2018/02/25 18:46:08 [error] [php] Undefined variable: summonth1 (/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php:80)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportstorecenterController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php(104): ReportstorecenterController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportstorecenterController->actionReportinputitemsmonth()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): ReportstorecenterController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportstorecenterController->runActionWithFilters()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportstorecenterController->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=reportstorecenter/reportinputitemsmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php (80)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php (104)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/25 18:46:43 [error] [php] Undefined variable: summonth1 (/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php:80)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportstorecenterController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php(104): ReportstorecenterController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportstorecenterController->actionReportinputitemsmonth()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): ReportstorecenterController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportstorecenterController->runActionWithFilters()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportstorecenterController->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=reportstorecenter/reportinputitemsmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php (80)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php (104)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/25 18:46:59 [error] [php] Undefined variable: summonth1 (/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php:80)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportstorecenterController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php(104): ReportstorecenterController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportstorecenterController->actionReportinputitemsmonth()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): ReportstorecenterController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportstorecenterController->runActionWithFilters()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportstorecenterController->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=reportstorecenter/reportinputitemsmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php (80)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php (104)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/25 18:47:10 [error] [php] Undefined variable: summonth1 (/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php:80)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportstorecenterController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php(104): ReportstorecenterController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportstorecenterController->actionReportinputitemsmonth()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): ReportstorecenterController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportstorecenterController->runActionWithFilters()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportstorecenterController->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=reportstorecenter/reportinputitemsmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php (80)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php (104)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/25 18:48:42 [error] [php] Undefined variable: summonth (/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php:127)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportstorecenterController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php(104): ReportstorecenterController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportstorecenterController->actionReportinputitemsmonth()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): ReportstorecenterController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportstorecenterController->runActionWithFilters()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportstorecenterController->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=reportstorecenter/reportinputitemsmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php (127)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php (104)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/25 18:48:53 [error] [php] Undefined variable: summonth (/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php:127)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportstorecenterController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php(104): ReportstorecenterController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportstorecenterController->actionReportinputitemsmonth()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): ReportstorecenterController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportstorecenterController->runActionWithFilters()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportstorecenterController->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=reportstorecenter/reportinputitemsmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php (127)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php (104)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/25 18:49:39 [error] [php] Undefined variable: summonth (/Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php:127)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): ReportstorecenterController->renderFile()
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php(104): ReportstorecenterController->renderPartial()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): ReportstorecenterController->actionReportinputitemsmonth()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): ReportstorecenterController->runAction()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): ReportstorecenterController->runActionWithFilters()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): ReportstorecenterController->run()
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=reportstorecenter/reportinputitemsmonth
+in /Applications/MAMP/htdocs/clinic/protected/views/reportstorecenter/reportinputitemsmonth.php (127)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/ReportstorecenterController.php (104)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 02:15:35 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p' at line 3. The SQL statement executed was: SELECT p.*,g.grad,g.distcount,g.distcountsell
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    //INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.id = '1' .
+in /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php (180)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 02:15:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p' at line 3. The SQL statement executed was: SELECT p.*,g.grad,g.distcount,g.distcountsell
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    //INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.id = '1' ' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(180): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): QueueController->actionGetpatient()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getpatient')
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('queue/getpatien...')
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#10 {main}
+REQUEST_URI=/clinic/index.php?r=queue/getpatient
+HTTP_REFERER=http://localhost/clinic/index.php?r=queue/index
+---
+2018/02/26 02:15:37 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p' at line 3. The SQL statement executed was: SELECT p.*,g.grad,g.distcount,g.distcountsell
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    //INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.id = '3' .
+in /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php (180)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 02:15:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p' at line 3. The SQL statement executed was: SELECT p.*,g.grad,g.distcount,g.distcountsell
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    //INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.id = '3' ' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(180): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): QueueController->actionGetpatient()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getpatient')
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('queue/getpatien...')
+#8 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#10 {main}
+REQUEST_URI=/clinic/index.php?r=queue/getpatient
+HTTP_REFERER=http://localhost/clinic/index.php?r=queue/index
+---
+2018/02/26 02:18:42 [error] [php] Undefined index: etc (/Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php:191)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): QueueController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): QueueController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): QueueController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=queue/getpatient
+in /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php (191)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 02:18:43 [error] [php] Undefined index: etc (/Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php:191)
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): QueueController->runAction()
+#1 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): QueueController->runActionWithFilters()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): QueueController->run()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /Applications/MAMP/htdocs/clinic/index.php(15): CWebApplication->run()
+REQUEST_URI=/clinic/index.php?r=queue/getpatient
+in /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php (191)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 02:20:42 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p' at line 3. The SQL statement executed was: SELECT p.*,g.grad,g.distcount,g.distcountsell
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    //INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.card = '1530600027345' .
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php (206)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 02:20:42 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p' at line 3. The SQL statement executed was: SELECT p.*,g.grad,g.distcount,g.distcountsell
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    //INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.card = '1530600027345' ' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php(206): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SellController->actionPatient()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('patient')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('sell/patient')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=sell/patient
+HTTP_REFERER=http://localhost/clinic/index.php?r=sell/index
+---
+2018/02/26 02:20:44 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p' at line 3. The SQL statement executed was: SELECT p.*,g.grad,g.distcount,g.distcountsell
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    //INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.card = '1530600027300' .
+in /Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php (206)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 02:20:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p' at line 3. The SQL statement executed was: SELECT p.*,g.grad,g.distcount,g.distcountsell
+                    FROM patient p INNER JOIN gradcustomer g ON p.type = g.id
+                    //INNER JOIN patient_contact c ON p.id = c.patient_id
+                    WHERE p.card = '1530600027300' ' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/SellController.php(206): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): SellController->actionPatient()
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('patient')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('sell/patient')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=sell/patient
+HTTP_REFERER=http://localhost/clinic/index.php?r=sell/index
+---
+2018/02/26 11:30:34 [error] [exception.CException] exception 'CException' with message 'PatientcontactController ไม่สามารถค้นหา "create" ตามคำสั่งได้' in /Applications/MAMP/htdocs/clinic/framework/web/CController.php:878
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('create', Array, true)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/PatientcontactController.php(75): CController->render('create', Array)
+#2 [internal function]: PatientcontactController->actionCreate('6')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(PatientcontactController), Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(PatientcontactController), Object(ReflectionMethod), Array)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('create')
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('patientcontact/...')
+#15 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#17 {main}
+REQUEST_URI=/clinic/index.php?r=patientcontact/create&id=6
+HTTP_REFERER=http://172.17.3.169/clinic/index.php?r=doctor/patientview&id=6&service_id=19
+---
+2018/02/26 11:59:29 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "CDbCriteria.service_id" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:173
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/schema/CDbCriteria.php(160): CComponent->__set('service_id', '20')
+#1 /Applications/MAMP/htdocs/clinic/framework/db/schema/CDbCommandBuilder.php(585): CDbCriteria->__construct(Array)
+#2 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1455): CDbCommandBuilder->createCriteria(Array, Array)
+#3 /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php(34): CActiveRecord->find(Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(157): CController->renderPartial('table', Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): QueueController->actionGetdata()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getdata')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('queue/getdata')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=queue/getdata
+HTTP_REFERER=http://localhost/clinic/index.php?r=queue/index
+---
+2018/02/26 12:01:23 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'seriver_id' in 'where clause'. The SQL statement executed was: SELECT * FROM `checkbody` `t` WHERE seriver_id=:service_id LIMIT 1.
+in /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php (34)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php (157)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 12:01:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'seriver_id' in 'where clause'. The SQL statement executed was: SELECT * FROM `checkbody` `t` WHERE seriver_id=:service_id LIMIT 1' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php(34): CActiveRecord->find('seriver_id=:ser...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(157): CController->renderPartial('table', Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): QueueController->actionGetdata()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getdata')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('queue/getdata')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=queue/getdata
+HTTP_REFERER=http://localhost/clinic/index.php?r=queue/index
+---
+2018/02/26 12:01:44 [error] [exception.CException] exception 'CException' with message 'Checkbody and its behaviors do not have a method or closure named "findOne".' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:266
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(227): CComponent->__call('findOne', Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php(34): CActiveRecord->__call('findOne', Array)
+#2 /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php(34): Checkbody->findOne('seriver_id=:ser...', Array)
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(157): CController->renderPartial('table', Array)
+#7 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): QueueController->actionGetdata()
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getdata')
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('queue/getdata')
+#13 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#15 {main}
+REQUEST_URI=/clinic/index.php?r=queue/getdata
+HTTP_REFERER=http://localhost/clinic/index.php?r=queue/index
+---
+2018/02/26 12:02:22 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'seriver_id' in 'where clause'. The SQL statement executed was: SELECT * FROM `checkbody` `t` WHERE seriver_id=:service_id LIMIT 1.
+in /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php (34)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php (157)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 12:02:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'seriver_id' in 'where clause'. The SQL statement executed was: SELECT * FROM `checkbody` `t` WHERE seriver_id=:service_id LIMIT 1' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php(34): CActiveRecord->find('seriver_id=:ser...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(157): CController->renderPartial('table', Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): QueueController->actionGetdata()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getdata')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('queue/getdata')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=queue/getdata
+HTTP_REFERER=http://localhost/clinic/index.php?r=queue/index
+---
+2018/02/26 12:03:18 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'seriver_id' in 'where clause'. The SQL statement executed was: SELECT * FROM `checkbody` `t` WHERE seriver_id=:service_id LIMIT 1.
+in /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php (34)
+in /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php (157)
+in /Applications/MAMP/htdocs/clinic/index.php (15)
+2018/02/26 12:03:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand ล้มเหลวในการดำเนินการเรียกลักษณะของ SQL: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'seriver_id' in 'where clause'. The SQL statement executed was: SELECT * FROM `checkbody` `t` WHERE seriver_id=:service_id LIMIT 1' in /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1351): CDbCommand->queryRow()
+#2 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(1456): CActiveRecord->query(Object(CDbCriteria))
+#3 /Applications/MAMP/htdocs/clinic/protected/views/queue/table.php(34): CActiveRecord->find('seriver_id=:ser...', Array)
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(157): CController->renderPartial('table', Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): QueueController->actionGetdata()
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('getdata')
+#13 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('queue/getdata')
+#14 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/clinic/index.php?r=queue/getdata
+HTTP_REFERER=http://localhost/clinic/index.php?r=queue/index
+---
+2018/02/26 14:25:58 [error] [exception.CException] exception 'CException' with message 'คุณสมบัติ "Patient.status" ยังไม่ถูกกำหนด' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:130
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(145): CComponent->__get('status')
+#1 /Applications/MAMP/htdocs/clinic/framework/base/CModel.php(596): CActiveRecord->__get('status')
+#2 /Applications/MAMP/htdocs/clinic/protected/views/doctor/patientview.php(158): CModel->offsetGet('status')
+#3 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(126): require('/Applications/M...')
+#4 /Applications/MAMP/htdocs/clinic/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Applications/M...', Array, true)
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(869): CBaseController->renderFile('/Applications/M...', Array, true)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(782): CController->renderPartial('patientview', Array, true)
+#7 /Applications/MAMP/htdocs/clinic/protected/controllers/DoctorController.php(103): CController->render('patientview', Array)
+#8 [internal function]: DoctorController->actionPatientview('6', '20')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(DoctorController), Array)
+#10 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(DoctorController), Object(ReflectionMethod), Array)
+#11 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#12 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#13 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#14 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#15 /Applications/MAMP/htdocs/clinic/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#16 /Applications/MAMP/htdocs/clinic/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#17 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(291): CFilterChain->run()
+#18 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('patientview')
+#20 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('doctor/patientv...')
+#21 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#23 {main}
+REQUEST_URI=/clinic/index.php?r=doctor/patientview&id=6&service_id=20
+HTTP_REFERER=http://172.17.3.169/clinic/index.php?r=queue/index
+---
+2018/02/26 14:46:55 [error] [exception.CException] exception 'CException' with message 'Service and its behaviors do not have a method or closure named "GetseqEmployees".' in /Applications/MAMP/htdocs/clinic/framework/base/CComponent.php:266
+Stack trace:
+#0 /Applications/MAMP/htdocs/clinic/framework/db/ar/CActiveRecord.php(227): CComponent->__call('GetseqEmployees', Array)
+#1 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(36): CActiveRecord->__call('GetseqEmployees', Array)
+#2 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(36): Service->GetseqEmployees('2')
+#3 /Applications/MAMP/htdocs/clinic/protected/controllers/QueueController.php(20): QueueController->actionSeqemployee()
+#4 /Applications/MAMP/htdocs/clinic/framework/web/actions/CInlineAction.php(49): QueueController->actionIndex()
+#5 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /Applications/MAMP/htdocs/clinic/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(282): CController->run('index')
+#9 /Applications/MAMP/htdocs/clinic/framework/web/CWebApplication.php(141): CWebApplication->runController('queue/index')
+#10 /Applications/MAMP/htdocs/clinic/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Applications/MAMP/htdocs/clinic/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/clinic/index.php?r=queue/index
+HTTP_REFERER=http://localhost/clinic/index.php?r=queue/index
+---

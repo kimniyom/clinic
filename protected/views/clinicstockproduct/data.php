@@ -1,3 +1,11 @@
+<style type="text/css">
+    #p_product table thead tr th{
+        white-space: nowrap;
+    }
+    #p_product table tbody tr td{
+        white-space: nowrap;
+    }
+</style>
 <script type="text/javascript">
 
     Setscreen();
