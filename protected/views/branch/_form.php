@@ -32,7 +32,7 @@
     <div class="row">
         <?php echo $form->labelEx($model, 'address'); ?>
         <?php
-        $form->widget('application.components.widgets.xheditor', array(
+        $form->widget('application.components.widgets.XHeditor', array(
             'model' => $model,
             'modelAttribute' => 'address',
             'showModelAttributeValue' => true, // defaults to true, displays the value of $modelInstance->attribute in the textarea
@@ -51,7 +51,7 @@
     <div class="row">
         <?php echo $form->labelEx($model, 'contact'); ?>
         <?php
-        $form->widget('application.components.widgets.xheditor', array(
+        $form->widget('application.components.widgets.XHeditor', array(
             'model' => $model,
             'modelAttribute' => 'contact',
             'showModelAttributeValue' => true, // defaults to true, displays the value of $modelInstance->attribute in the textarea
