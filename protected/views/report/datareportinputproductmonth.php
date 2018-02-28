@@ -4,7 +4,7 @@ $config = new Configweb_model();
 <div class="row" style=" margin-top: 5px; margin-bottom: 0px;">
     <div class="col-md-6 col-lg-6">
         <div class="panel panel-default" style=" margin-bottom: 0px;">
-            <div class="panel-heading">ชื้อเข้าสินค้าเดือน <?php echo $config->MonthFullArray()[(int)$monthlast] ?> <?php echo ($yearlast + 543) ?></div>
+            <div class="panel-heading">นำเข้าสินค้าเดือน <?php echo $config->MonthFullArray()[(int)$monthlast] ?> <?php echo ($yearlast + 543) ?></div>
             <div class="panel-body">
                 <table class="table table-bordered" id="tb-inputlast">
                     <thead>
@@ -41,7 +41,7 @@ $config = new Configweb_model();
     </div>
     <div class="col-md-6 col-lg-6">
         <div class="panel panel-default" style=" margin-bottom: 0px;">
-            <div class="panel-heading">ชื้อเข้าสินค้าเดือน <?php echo $config->MonthFullArray()[(int) $monthnow] ?> <?php echo ($yearnow + 543) ?></div>
+            <div class="panel-heading">นำเข้าสินค้าเดือน <?php echo $config->MonthFullArray()[(int) $monthnow] ?> <?php echo ($yearnow + 543) ?></div>
             <div class="panel-body">
                 <table class="table table-bordered" id="tb-inputnow">
                     <thead>
