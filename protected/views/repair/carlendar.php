@@ -4,7 +4,7 @@
         border: none;
     }
     #ca{
-        padding: 10px; background: #FFFFFF;
+        padding: 10px;
     }
 </style>
 <?php
@@ -14,8 +14,8 @@ $this->breadcrumbs = array(
 
 $Web = new Configweb_model();
 ?>
-<div id="ca">
-    <div class="row">
+<div class="well well-sm" style=" margin: 0px;">
+    <div class="row" style=" margin: 0px;">
         <div class="col-md-4 col-lg-4" id="p-left">
             <p class="text-danger">*คลิกที่ว่างในช่องวันที่เพื่อลงวันที่ซ่อม - บำรุงครั้งต่อไป</p>
             <div class="panel panel-danger">

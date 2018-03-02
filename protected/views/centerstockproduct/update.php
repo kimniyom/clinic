@@ -42,8 +42,8 @@ $BranchModel = new Branch();
 ?>
 
 <div class="wells" style="width:100%; margin-bottom: 0px;">
-    <div class="row" style=" margin-bottom: 0px;">
-        <div class="col-md-3 col-lg-3" id="p-left" style=" margin-bottom: 0px; border-right: #cccccc solid 1px;">
+    <div class="row" style=" margin: 0px;">
+        <div class="col-md-3 col-lg-3" id="p-left" style=" margin-bottom: 0px;">
             <div class="well" style=" border:#666666 dashed 2px; text-align: center; cursor: pointer;"
                  onclick="GetImages();">
                 <i class="fa fa-image fa-5x" style=" color: #cccccc;"></i><br/>
@@ -397,7 +397,7 @@ $BranchModel = new Branch();
         var w = window.innerWidth;
         if (w > 786) {
             var screenfull = (screen - 170);
-            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px','border-right': '#cccccc solid 1px'});
             $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         }
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});

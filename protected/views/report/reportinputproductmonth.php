@@ -9,8 +9,7 @@ $BranchModel = new Branch();
 $Branch = Yii::app()->session['branch'];
 $yearNow = date("Y");
 ?>
-<div class="row">
-
+<div class="row" style=" margin: 0px;">
     <div class="col-lg-1">
         <label style=" padding-top: 5px;">ปี พ.ศ. </label>
     </div>

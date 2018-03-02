@@ -7,12 +7,11 @@ $this->breadcrumbs = array(
 $web = new Configweb_model();
 ?>
 
-<h1>บริษัทสั่งซื้อวัตถุดิบ</h1>
+<h4>บริษัทสั่งซื้อวัตถุดิบ</h4>
 <hr/>
 <a href="<?php echo Yii::app()->createUrl('centerstockcompany/create') ?>">
     <button class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มบริษัท</button></a>
-<hr/>
-
+<br/><br/>
 <table class="table-bordered table-hover">
     <thead>
         <tr>

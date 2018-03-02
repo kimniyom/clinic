@@ -1,18 +1,4 @@
-<style type="text/css">
-    fieldset.scheduler-border {
-        border: 1px groove #eeeeee !important;
-        padding: 0 1.4em 1.4em 1.4em !important;
-        margin: 0 0 1.5em 0 !important;
-        -webkit-box-shadow:  0px 0px 0px 0px #eeeeee;
-        box-shadow:  0px 0px 0px 0px #eeeeee;
-    }
 
-    legend.scheduler-border {
-        width:inherit; /* Or auto */
-        padding:0 10px; /* To give a bit of padding on the left and right */
-        border-bottom:none;
-    }
-</style>
 <?php
 /* @var $this EmployeeController */
 /* @var $dataProvider CActiveDataProvider */
@@ -56,9 +42,11 @@ $system = new Configweb_model();
 
     </div>
     <div class="panel-body">
-        <a href="<?php echo Yii::app()->createUrl('employee/create') ?>">
-            <button type="button" class="btn btn-default"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลพนักงาน</button></a>
-            <div id="result" style=" margin-top: 10px;"></div>
+        <center>
+            <a href="<?php echo Yii::app()->createUrl('employee/create') ?>">
+                <button type="button" class="btn btn-default"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลพนักงาน</button></a>
+        </center>
+        <div id="result" style=" margin-top: 10px;"></div>
     </div>
 </div>
 

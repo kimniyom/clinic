@@ -20,20 +20,20 @@ $this->breadcrumbs = array(
 <div class="panel panel-default" style=" margin-bottom: 0px;">
     <div class="panel-heading" style=" background: none; padding-top: 10px; padding-bottom: 15px; padding-right: 5px;">
         รายการวัตถุดิบ
-         <span style=" margin-top: 5px;">*</i> <font style="color:red;">คลิกที่แถวเพื่อจัดการข้อมูล</font></span>
+        <span style=" margin-top: 5px;" id="t-comment">*</i> <font style="color:red;">คลิกที่แถวเพื่อจัดการข้อมูล</font></span>
         <a href="<?php echo Yii::app()->createUrl('centerstockitemname/create') ?>" class=" pull-right" style=" margin-top: 0px;">
             <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i> เพิ่มรายการวัตถุดิบ</button></a>
     </div>
     <div class="panel-body">
-        <table class="table-bordered table-hover" id="tb-items" style=" width: 100%;">
+        <table class="table-bordered table-hover " id="tb-items" style=" width: 100%;">
             <thead>
                 <tr>
                     <th style=" width: 5%; text-align: center;">#</th>
                     <th>รหัส</th>
                     <th>วัตถุดิบ</th>
                     <th style="text-align:right;">ราคา / หน่วย</th>
-                    <th>หน่วยนับ</th>
-                    <th>หน่วยตัดสต๊อก</th>
+                    <th style="text-align:right;">หน่วยนับ</th>
+                    <th style="text-align:right;">หน่วยตัดสต๊อก</th>
                     <th style="text-align:center;">แจ้งเตือนใกล้หมด</th>
                 </tr>
             </thead>
@@ -47,13 +47,13 @@ $this->breadcrumbs = array(
                         <td><?php echo $rs['itemcode'] ?></td>
                         <td><?php echo $rs['itemname'] ?></td>
                         <td style="text-align:right;"><?php echo number_format($rs['price']) ?></td>
-                        <td>
+                        <td style=" text-align: right;">
                             <?php
                             $unit = $rs['unit'];
                             echo CenterStockunit::model()->find("id = '$unit' ")['unit']
                             ?>
                         </td>
-                        <td>
+                        <td style=" text-align: right;">
                             <?php
                             $unitcut = $rs['unitcut'];
                             echo CenterStockunit::model()->find("id = '$unitcut' ")['unit']
@@ -119,10 +119,12 @@ function edit(){
         var boxsell = $(window).height();
         var w = window.innerWidth;
         var screenfull;
-        if (w > 786) {
+        if (w >= 786) {
             screenfull = (boxsell - 295);
+            $("#t-comment").show();
         } else {
             screenfull = false;
+            $("#t-comment").hide();
         }
         
         $("#tb-items").dataTable({

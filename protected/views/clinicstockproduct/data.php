@@ -1,8 +1,8 @@
 <style type="text/css">
-    #p_product table thead tr th{
+    #p_product thead tr th{
         white-space: nowrap;
     }
-    #p_product table tbody tr td{
+    #p_product tbody tr td{
         white-space: nowrap;
     }
 </style>
@@ -14,9 +14,10 @@
         var w = window.innerWidth;
         var screenfull;
         if (w > 786) {
-            screenfull = (boxsell - 385);
+            screenfull = (boxsell - 390);
         } else {
             screenfull = false;
+            $(".columns").hide();
         }
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
@@ -41,13 +42,13 @@
     <thead>
         <tr>
             <th style=" width: 5%;">#</th>
-            <th>รหัส</th>
+            <th class="columns">รหัส</th>
             <th>ชื่อสินค้า</th>
-            <th style=" text-align: center;">ต้นทุน</th>
+            <th style=" text-align: center;" class="columns">ต้นทุน</th>
             <th style="text-align: center;">ราคา / หน่วย</th>
-            <th style="text-align: center;">หมวด</th>
-            <th style="text-align: center;">ประเภท</th>
-            <th>หน่วย</th>
+            <th style="text-align: center;" class="columns">หมวด</th>
+            <th style="text-align: center;" class="columns">ประเภท</th>
+            <th class="columns">หน่วย</th>
             <th style=" text-align: center;">รายละเอียด</th>
         </tr>
     </thead>
@@ -62,23 +63,23 @@
             ?>
             <tr>
                 <td style=" text-align: center;"><?php echo $i ?></td>
-                <td><?php echo $last['product_id']; ?></td>
+                <td class="columns"><?php echo $last['product_id']; ?></td>
                 <td>
                     <?php
                     $product_id = $last['product_id'];
                     echo CenterStockproduct::model()->find("product_id = '$product_id' ")['product_nameclinic'];
                     ?>
                 </td>
-                <td style=" text-align: center; font-weight: bold;">
+                <td style=" text-align: center; font-weight: bold;" class="columns">
                     <?php echo number_format($last['costs'], 2); ?>
                 </td>
                 <td style=" text-align: center; font-weight: bold;">
                     <?php echo number_format($last['product_price'], 2); ?>
                 </td>
-                <td><?php echo $last['category'] ?></td>
-                <td><?php echo $last['type_name'] ?></td>
-                <td><?php echo $last['unitname'] ?></td>
-                <td style="text-align: center;"><a href="<?php echo $link ?>">รายละเอียด</a></td>
+                <td class="columns"><?php echo $last['category'] ?></td>
+                <td class="columns"><?php echo $last['type_name'] ?></td>
+                <td class="columns"><?php echo $last['unitname'] ?></td>
+                <td style="text-align: center;"><a href="<?php echo $link ?>" style="text-decoration: none;">รายละเอียด</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

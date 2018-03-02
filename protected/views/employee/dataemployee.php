@@ -18,7 +18,7 @@
         var w = window.innerWidth;
         var screenfull;
         if (w > 768) {
-            screenfull = (boxsell - 345);
+            screenfull = (boxsell - 353);
         } else {
             screenfull = false;
             $(".branchcolumn").hide();

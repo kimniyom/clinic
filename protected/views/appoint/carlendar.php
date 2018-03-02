@@ -14,8 +14,8 @@ $this->breadcrumbs = array(
 $PatientModel = new Patient();
 $PatientList = $PatientModel->GetPatient();
 ?>
-<div id="ca">
-    <div class="row">
+<div id="well well-sm">
+    <div class="row" style=" margin: 0px;">
         <div class="col-md-4 col-lg-4">
             <p class="text-danger">*นัดลูกค้าคลิกที่ว่างในช่องวันที่</p>
             <p class="text-danger">*นัดลูกค้าได้เฉพาะสาขาที่ลูกค้าขึ้นทะเบียนไว้</p>
@@ -192,19 +192,17 @@ $PatientList = $PatientModel->GetPatient();
 </script>
 
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 120);
-        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
+        var w = window.innerWidth;
+        if (w >= 768) {
+            var screenfull = (screen - 120);
+            $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        }
     }
-
-
 </script>
 
 

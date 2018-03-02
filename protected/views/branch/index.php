@@ -8,16 +8,21 @@ $this->breadcrumbs = array(
 
 $LogoModel = new Backend_logo();
 ?>
+<div class="row" style=" margin: 0px;">
+    <div class="col-md-12 col-lg-12">
+        <h4><i class="fa fa-building-o"></i> สาขา</h4>
+        <a href="<?php echo Yii::app()->createUrl('branch/create') ?>">
+            <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มสาขา</button></a><br/><br/>
+    </div>
+</div>
 
-<h1>Branches</h1>
-<a href="<?php echo Yii::app()->createUrl('branch/create') ?>">
-    <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มสาขา</button></a><br/><br/>
-<div class="row">
+<div class="row" style=" margin: 0px;">
     <?php
     foreach ($branch as $rs):
         $logo = $LogoModel->get_logo_by_id($rs['id'])['logo'];
         ?>
         <div class="col-sm-6 col-md-4">
+
             <div class="thumbnail">
 
                 <div class="caption">
@@ -28,9 +33,9 @@ $LogoModel = new Backend_logo();
                             <?php } else { ?>
                                 <img src="<?php echo Yii::app()->baseUrl; ?>/images/clinic-icon.png" />
                             <?php } ?>
-                                <br/> สาขา : <?php echo $rs['branchname'] ?>
+                            <br/> สาขา : <?php echo $rs['branchname'] ?>
                         </center>
-                    
+
                     </h3>
                     <p><?php echo $rs['address'] ?></p>
                     <p><?php echo $rs['contact'] ?></p>
@@ -45,16 +50,16 @@ $LogoModel = new Backend_logo();
         </div>
     <?php endforeach; ?>
 </div>
-    
-    <script type="text/javascript">
-        function deletebranch(branch){
-            var r = confirm("Are you sure ... ข้อมูลที่เชื่อมโยงกับสาขานี้ทั้งหมดจะโดนลบไปด้วย ...?");
-            if(r == true){
-                var url = "<?php echo Yii::app()->createUrl('branch/deletebranch')?>";
-                var data = {branch: branch};
-                $.post(url,data,function(datas){
-                    window.location.reload();
-                });
-            }
+
+<script type="text/javascript">
+    function deletebranch(branch) {
+        var r = confirm("Are you sure ... ข้อมูลที่เชื่อมโยงกับสาขานี้ทั้งหมดจะโดนลบไปด้วย ...?");
+        if (r == true) {
+            var url = "<?php echo Yii::app()->createUrl('branch/deletebranch') ?>";
+            var data = {branch: branch};
+            $.post(url, data, function (datas) {
+                window.location.reload();
+            });
         }
-    </script>
+    }
+</script>

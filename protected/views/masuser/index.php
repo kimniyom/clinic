@@ -38,7 +38,7 @@ $MasuserModel = new Masuser();
                 ?>
             </div>
             <div class="col-xs-3 col-md-3 col-lg-3">
-                <button type="button" class="btn btn-default" onclick="getdata();">ค้นหา</button>
+                <button type="button" class="btn btn-default" onclick="getdata();"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
         </div>
         <hr/>

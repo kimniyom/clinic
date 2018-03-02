@@ -9,14 +9,10 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<div class="wells" style="width:100%;">
-    <div class="row">
-        <div class="col-md-3 col-lg-3" id="p-left">
+<div class="well well-sm" style="margin-bottom: 5px;">
+    <div class="row" style=" margin: 0px;">
 
-            <font id="font-20">รูปภาพสินค้า</font>
-            <div id="load_images_product"></div>
-        </div>
-        <div class="col-md-9 col-lg-9" id="p-right">
+        <div class="col-md-9 col-lg-9" id="p-left">
 
             <label for="">หมวดสินค้า*</label><br/>
             <select id="product_type" style=" width: 50%;" onchange="Getsubproduct(this.value)" disabled="disabled">
@@ -32,15 +28,10 @@ $this->breadcrumbs = array(
                         <?php endforeach; ?>
             </select>
 
-
-            <div class="row">
-                <div class="col-lg-6"><label for="">ประเภทสินค้า*</label></div>
-                <div class="col-lg-6"><label for="">รหัสสินค้า*</label></div>
-            </div>
-
             <div class="row">
 
                 <div class="col-lg-6">
+                    <label for="">ประเภทสินค้า*</label>
                     <div id="boxsubproducttype" style=" width: 100%;">
                         <select id="subproducttype" style=" width: 100%;" disabled="disabled">
                             <?php
@@ -58,7 +49,7 @@ $this->breadcrumbs = array(
                     </div>
                 </div>
                 <div class="col-lg-6">
-
+                    <label for="">รหัสสินค้า*</label>
                     <input type="text" id="product_id" name="product_id" class="form-control" value="<?php echo $product['product_id']; ?>" readonly style="width:40%;"/>
                 </div>
             </div>
@@ -85,12 +76,8 @@ $this->breadcrumbs = array(
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-lg-3"><label for="">หน่วยนับ</label></div>
-                <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน</label></div>
-                <div class="col-md-6 col-lg-3"><label for="">ราคาขาย</label></div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-lg-3">
+                    <label for="">หน่วยนับ</label>
                     <?php
                     $this->widget('booster.widgets.TbSelect2', array(
                         //'model' => $model,
@@ -113,9 +100,11 @@ $this->breadcrumbs = array(
                     ?>
                 </div>
                 <div class="col-md-4 col-lg-3">
+                    <label for="">ราคาต้นทุน</label>
                     <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['costs'] ?>" readonly="readonly"/>
                 </div>
                 <div class="col-md-4 col-lg-3">
+                    <label for="">ราคาขาย</label>
                     <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" value="<?php echo $product['product_price'] ?>"/>
                 </div>
             </div>
@@ -125,13 +114,12 @@ $this->breadcrumbs = array(
             <div id="product_detail" name="product_detail" class="well">
                 <?php echo $product['product_detail'] ?>
             </div>
+        </div>
 
+        <div class="col-md-3 col-lg-3" id="p-right">
 
-            <!--
-            <button id="save_regis" name="save_regis" class="btn btn-success"
-                    onclick="save_product();">
-                <span class="glyphicon glyphicon-save"></span> <b>บันทึกข้อมูล</b></button>
-            -->
+            <font id="font-20">รูปภาพสินค้า</font>
+            <div id="load_images_product"></div>
         </div>
     </div>
     <hr style=" margin-top: 0px; padding-top: 0px;"/>
@@ -277,14 +265,17 @@ $this->breadcrumbs = array(
 </script>
 
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 165);
-        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        var w = window.innerWidth;
+        var screenfull = (screen - 180);
+        if (w >= 768) {
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        } else {
+            $("#p-left").css({'border': 'none'});
+        }
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
 

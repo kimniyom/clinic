@@ -16,8 +16,8 @@ $branchModel = new Branch();
 </style>
 
 
-<div class="panel panel-info" style=" margin: 0px;">
-    <div class="panel-heading" id="heading-panel">
+<div class="panel panel-default" style=" margin: 0px; padding-bottom: 10px;">
+    <div class="panel-heading">
         <i class="fa fa-user"></i> ID <?php echo $model['pid'] ?>
     </div>
     <div class="row" style="margin:0px;">
@@ -46,7 +46,7 @@ $branchModel = new Branch();
                 </div>
             </center>
             <div id="font-18" style="color: #ff6600;">
-                <font id="font-rsu-20" style=" color: #000020;"><?php echo $model['alias']; ?></font><br/>
+                <font id="font-rsu-20"><?php echo $model['alias']; ?></font><br/>
                 เป็นสมาชิกเมื่อ <br/><?php echo $config->thaidate($model['create_date']); ?>
             </div>
         </div>
@@ -94,7 +94,7 @@ $branchModel = new Branch();
                     }
                     ?></p>
 
-                เบอร์โทรศัพท์ <p class="label" id="font-18"><?php
+                <br/>เบอร์โทรศัพท์ <p class="label" id="font-18"><?php
                     if (isset($model['tel'])) {
                         echo $model['tel'];
                     } else {
@@ -132,19 +132,19 @@ $branchModel = new Branch();
                     ?></p><br/>
                 <br/>
 
-            
+
                 </ul>
             </div>
 
-            <div class="row" style=" padding: 5px; margin: 0px;">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="btn btn-success btn-block">
+            <div class="row" style=" padding: 0px; margin: 0px;">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style=" padding: 5px;">
+                    <div class="well well-sm" style=" text-align: center; margin: 0px;">
                         <h3><?php echo number_format($Selltotalyearnow) ?></h3><hr/>
                         <h4>ยอดขายปีนี้ </h4>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="btn btn-warning btn-block">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style=" padding: 5px;">
+                    <div class="well well-sm" style=" text-align: center; margin: 0px;">
                         <h3><?php echo number_format($Selltotallastyear) ?></h3><hr/>
                         <h4>ยอดขายปีที่แล้ว </h4>
                     </div>
@@ -158,15 +158,16 @@ $branchModel = new Branch();
 
     </div>
 
-    <div class="row" style=" padding: 15px; margin: 0px;">
+    <div class="row" style=" padding: 0px; margin: 0px;">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style=" margin: 0px;">
                 <div class="panel-heading">ประวัติการขายสินค้า</div>
                 <div id="sellmonth" style=" height: 250px;"></div>
             </div>
         </div>
+        
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style=" margin: 0px;">
                 <div class="panel-heading">ประวัติการเข้าใช้งานระบบ</div>
                 <div id="loginsystem" style=" height: 250px;"></div>
             </div>
@@ -198,7 +199,7 @@ $branchModel = new Branch();
             var url = "<?php echo Yii::app()->createUrl('employee/delete') ?>";
             var data = {id: id};
             $.post(url, data, function (success) {
-                window.location="<?php echo Yii::app()->createUrl('employee/index') ?>";
+                window.location = "<?php echo Yii::app()->createUrl('employee/index') ?>";
             });
         }
     }
@@ -255,7 +256,7 @@ $branchModel = new Branch();
                 type: 'column'
             },
             title: {
-                text: 'ยอดขายปี <?php echo $year ?>'
+                text: '<span style="color:#eeeeee;"> ยอดขายปี <?php echo ($year + 543) ?> </span>'
             },
             subtitle: {
                 text: ''
@@ -326,7 +327,7 @@ $branchModel = new Branch();
                 type: 'line'
             },
             title: {
-                text: 'จำนวนเข้าใช้งาน <?php echo $year ?>'
+                text: '<span style="color:#eeeeee;">จำนวนเข้าใช้งาน <?php echo ($year + 543) ?> </span>'
             },
             subtitle: {
                 text: ''
@@ -390,5 +391,12 @@ $branchModel = new Branch();
                 }]
         });
     });
+
+    function setboxview() {
+        var w = window.innerWidth;
+        if (w < 768) {
+            $("#sell").css({'height': 'auto'});
+        }
+    }
 </script>
 

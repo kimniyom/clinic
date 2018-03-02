@@ -20,12 +20,12 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
 <input type="hidden" id="patient_id" value="<?php echo $model['id'] ?>"/>
 
-<div class="panel panel-default" style=" margin-bottom: 5px;">
-    <div class="panel-heading" style=" background: #ffffff; padding-bottom: 0px;">
+<div class="panel panel-default" style=" margin-bottom: 0px;">
+    <div class="panel-heading">
         <i class="fa fa-user"></i> ข้อมูลค้า
     </div>
     <div class="row" style="margin:0px;">
-        <div class="col-md-2 col-lg-2" style="text-align: center; padding: 0px; background: #cccccc;" id="p-left">
+        <div class="col-md-2 col-lg-2" style="text-align: center; padding: 0px;" id="p-left">
             <div id="box-img-profiles" style=" padding: 5px;">
                 <?php
                 if (!empty($model['images'])) {
@@ -55,7 +55,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
 
         </div>
-        <div class="col-md-7 col-lg-7" style="padding-right: 0px; padding-left: 0px; border-left: #dddddd solid 1px; border-right: #dddddd solid 1px;" id="p-right">
+        <div class="col-md-7 col-lg-7" style="padding-right: 0px; padding-left: 0px; border-left: #333333 solid 1px; border-right: #333333 solid 1px;" id="p-right">
             <div class="wells" style="margin: 5px; background: none;">
                 <a href="<?php echo Yii::app()->createUrl('patient/update', array('id' => $model['id'])) ?>">
                     <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14">
@@ -152,12 +152,12 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                 <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#drug" aria-controls="drug" role="tab" data-toggle="tab" onclick="loaddrug()" style=" padding: 5px; color: #000;">อาการแพ้ยา</a></li>
-                        <li role="presentation"><a href="#disease" aria-controls="disease" role="tab" data-toggle="tab" style=" padding: 5px;color: #000;" onclick="loaddisease()">โรคประจำตัว</a></li>
+                        <li role="presentation" class="active"><a href="#drug" aria-controls="drug" role="tab" data-toggle="tab" onclick="loaddrug()" style=" padding: 5px; ">อาการแพ้ยา</a></li>
+                        <li role="presentation"><a href="#disease" aria-controls="disease" role="tab" data-toggle="tab" style=" padding: 5px;" onclick="loaddisease()">โรคประจำตัว</a></li>
                     </ul>
 
                     <!-- Tab panes -->
-                    <div class="tab-content" style=" padding-top: 10px; border: #dddddd solid 1px; border-top: none; padding: 10px;">
+                    <div class="tab-content" style=" padding-top: 10px; padding: 10px;">
                         <div role="tabpanel" class="tab-pane active" id="drug"><div id="result_drug"></div></div>
                         <div role="tabpanel" class="tab-pane" id="disease"><div id="result_disease"></div>
                         </div>
@@ -303,7 +303,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
 <script type="text/javascript">
 
-setpage();
+    setpage();
     loadappoint();
     loadhistory();
     loaddrug();
@@ -314,12 +314,14 @@ setpage();
         if (screen > 768) {
             Setscreen();
             SetBoxHistory();
+        } else {
+            $("#p-right").css({'border':'none'});
         }
     }
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 135);
+        var screenfull = (screen - 140);
         $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});

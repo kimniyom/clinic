@@ -1,7 +1,5 @@
 <style type="text/css">
-    table{
-        background: #FFFFFF;
-    }
+
     .modal.large {
         width: 80%;
     }

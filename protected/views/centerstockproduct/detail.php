@@ -51,8 +51,8 @@ $product_id = $product['product_id'];
     -->
 <?php } ?>
 
-<div class="well well-sm" style=" width:100%; margin-top:0px;text-align: left; background: #FFF; margin-bottom: 0px;">
-    <div class="row">
+<div class="well well-sm" style=" width:100%; margin-top:0px;text-align: left; margin-bottom: 0px;">
+    <div class="row" style=" margin: 0px;">
         <div class="col-lg-4 col-md-6 col-xs-12" style=" padding-top: 20px;" id="p-left">
             <?php
             $product_model = new Product();
@@ -249,7 +249,7 @@ $product_id = $product['product_id'];
         //var contentboxsell = $("#content-boxsell").height();
         var w = window.innerWidth;
         if (w > 786) {
-            var screenfull = (screen - 155);
+            var screenfull = (screen - 160);
             $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             $("#btn-add-item").css({'margin-top':'25px'});

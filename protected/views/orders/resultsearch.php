@@ -1,13 +1,14 @@
 <style type="text/css">
     #label{
-        color: #006666;
+        color: #66cc00;
     }
 </style>
 <?php
 $orderModel = new Orders();
 $Config = new Configweb_model();
 ?>    
-<table class="table table-striped" id="tb-orderssearch" style=" width: 100%; background: #ffffff;">
+<div class="well well-sm" style=" margin-bottom: 5px;">
+<table class="table table-striped" id="tb-orderssearch" style=" width: 100%;">
     <thead>
         <tr>
             <th style="text-align: center; display: none;">#</th>
@@ -31,8 +32,8 @@ $Config = new Configweb_model();
                     <hr style="margin-top: 0px;"/>
                     <div class="row" style=" margin: 2px 0px 0px 0px">
                         <div class="col-lg-2 col-md-2 col-sm-4">
-                            <a href="<?php echo Yii::app()->createUrl('orders/view', array('order_id' => $rs['order_id'])) ?>">
-                                <button type="botton" class="btn btn-primary btn-block">รายละเอียด</button></a>
+                            <a href="<?php echo Yii::app()->createUrl('orders/view', array('order_id' => $rs['order_id'])) ?>" style=" text-decoration: none;">
+                                <button type="botton" class="btn btn-default btn-block">รายละเอียด</button></a>
                         </div>
                         <?php if ($rs['status'] == '0') { ?>
                             <?php if (Yii::app()->session['branch'] != "99") { ?>
@@ -52,7 +53,7 @@ $Config = new Configweb_model();
         <?php endforeach; ?>
     </tbody>
 </table>
-
+</div>
 <script type="text/javascript">
     Setscreen();
     function Setscreen() {
@@ -60,7 +61,7 @@ $Config = new Configweb_model();
         var w = window.innerWidth;
         var screenfull;
         if (w > 786) {
-            screenfull = (boxsell - 435);
+            screenfull = (boxsell - 200);
         } else {
             screenfull = false;
         }
@@ -69,14 +70,17 @@ $Config = new Configweb_model();
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
             //"iDisplayLength": 50, // กำหนดค่า default ของจำนวน record
             //"scrollCollapse": true,
+            "searching": false,
             "paging": false,
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
-            "sScrollX": true,
+            "sScrollX": true
+            /*
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'print'
             ]
+            */
         });
     }
 

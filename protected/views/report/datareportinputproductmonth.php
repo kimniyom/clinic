@@ -1,16 +1,16 @@
 <?php
 $config = new Configweb_model();
 ?>
-<div class="row" style=" margin-top: 5px; margin-bottom: 0px;">
+<div class="row" style="margin: 5px 0px 0px 0px;">
     <div class="col-md-6 col-lg-6">
         <div class="panel panel-default" style=" margin-bottom: 0px;">
             <div class="panel-heading">นำเข้าสินค้าเดือน <?php echo $config->MonthFullArray()[(int)$monthlast] ?> <?php echo ($yearlast + 543) ?></div>
             <div class="panel-body">
                 <table class="table table-bordered" id="tb-inputlast">
                     <thead>
-                        <tr style=" background: #e1e1e1;">
+                        <tr style=" background: #000000;">
                             <th>สินค้า</th>
-                            <th style="text-align: right;">ซื้อเข้า</th>
+                            <th style="text-align: right;">นำเข้า</th>
                             <th style=" text-align: right;">ราคา</th>
                         </tr>
                     </thead>
@@ -30,7 +30,7 @@ $config = new Configweb_model();
                         <?php endforeach; ?>
                     </tbody>
                     <tfoot>
-                        <tr style=" background: #e1e1e1;">
+                        <tr style=" background: #000000;">
                             <td colspan="2" style=" text-align: center; font-weight: bold;">รวม</td>
                             <td style="text-align: right; font-weight: bold;"><?php echo number_format($sumalllast,2) ?></td>
                         </tr>
@@ -45,9 +45,9 @@ $config = new Configweb_model();
             <div class="panel-body">
                 <table class="table table-bordered" id="tb-inputnow">
                     <thead>
-                        <tr style=" background: #e1e1e1;">
+                        <tr style=" background: #000000;">
                             <th>สินค้า</th>
-                            <th style="text-align: right;">ซื้อเข้า</th>
+                            <th style="text-align: right;">นำเข้า</th>
                             <th style=" text-align: right;">ราคา</th>
                         </tr>
                     </thead>
@@ -67,7 +67,7 @@ $config = new Configweb_model();
                         <?php endforeach; ?>
                     </tbody>
                     <tfoot>
-                        <tr style=" background: #e1e1e1;">
+                        <tr style=" background: #000000;">
                             <td colspan="2" style=" text-align: center; font-weight: bold;">รวม</td>
                             <td style="text-align: right; font-weight: bold;"><?php echo number_format($sumallnow,2) ?></td>
                         </tr>
@@ -83,8 +83,13 @@ $config = new Configweb_model();
     Setscreen();
     function Setscreen() {
         var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 375);
+       var w = window.innerWidth;
+       var screenfull;
+       if(w >= 768){
+           screenfull = (boxsell - 385);
+       } else {
+           screenfull = false;
+       }
         $("#tb-inputlast,#tb-inputnow").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง

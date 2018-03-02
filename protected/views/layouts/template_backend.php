@@ -25,6 +25,7 @@
             body{
                 overflow-x: hidden;
             }
+
             body table tbody tr td{
                 /*color: #ff9900;*/
             }
@@ -36,17 +37,14 @@
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
         <!--
-                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;                 ?>/css/button-color.css"/>
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;    ?>/css/button-color.css"/>
         -->
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
-
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
-
-        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-theme.css" type="text/css" media="all" />
-
         <!--
-        <link rel="stylesheet" href="<?//= Yii::app()->baseUrl; ?>/themes/backend/bootstrap-material/dist/css/bootstrap-material-design.css" type="text/css" media="all" />
+                <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl;     ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
         -->
+        <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-cyborg.css" type="text/css" media="all" />
+
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/assets/gallery_img/dist/magnific-popup.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/media/css/dataTables.bootstrap.css" type="text/css" media="all" />
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.dataTables.css" type="text/css" media="all" />
@@ -178,12 +176,12 @@
 
     </head>
 
-    <body style="background: url('<?php echo Yii::app()->baseUrl; ?>/images/bg_ap.png'); /*background: #fbfbfb;*//* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
+    <body style="/*background: url('<?php //echo Yii::app()->baseUrl;     ?>/images/bg_ap.png');*/ /*background: #fbfbfb;*//* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;"> #2a323b-->
         <nav class="navbar navbar-default" role="navigation" id="nav-head" style=" display: none; margin-bottom: 0px;"></nav>
         <div id="wrapper">
             <!-- Sidebar -->
-            <div id="sidebar-wrapper" style=" border-right: #3c4754 solid 1px;">
+            <div id="sidebar-wrapper">
                 <!-- ###################### USER #################-->
                 <div class="panel panel-info" id="panel-head">
                     <div class="panel-body" style=" text-align: center;border-bottom: #3c4754 solid 1px;">
@@ -204,7 +202,7 @@
                         </div>
                         <a href="<?= Yii::app()->createUrl('masuser/profile', array('id' => $Profile['id'])); ?>"><i class="fa fa-pencil"></i> โปรไฟล์</a>
                     </div>
-                    
+
                 </div>
                 <!-- ส่วนของ ผู้ดูแลระบบ -->
 
@@ -213,43 +211,44 @@
                     <img src="<?= Yii::app()->baseUrl; ?>/images/logoheadedit2.png" class="img img-responsive"/>
                 </div>
                 <div id="m-left" style=" margin-bottom: 50px;">
-                    <?php
-                    $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
-                    $i = 0;
-                    foreach ($MenuSystem as $mn):
-                        $linkmenu = $mn['link'];
-                        $icon = $mn['icon'];
-                        $i ++;
+                    <?php if (Yii::app()->session['branch'] != "") { ?>
+                        <?php
+                        $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
+                        $i = 0;
+                        foreach ($MenuSystem as $mn):
+                            $linkmenu = $mn['link'];
+                            $icon = $mn['icon'];
+                            $i ++;
 
-                        if (Yii::app()->session['leftmenu'] == "M" . $i) {
-                            $menuactove = "listmenuactive";
-                        } else {
-                            $menuactove = "";
-                        }
-                        ?>
-                        <?php if ($mn['id'] == $mn['menu_id']) { ?>
-                            <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>" title="<?php echo $mn['menu'] ?>">
-                                <div id="listmenu" style=" white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" class="<?php echo $menuactove; ?>">
-                                    <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
-                                         height="32px"
-                                         style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                                         <?php echo $mn['menu'] ?>
-                                </div>
-                            </a>
+                            if (Yii::app()->session['leftmenu'] == "M" . $i) {
+                                $menuactove = "listmenuactive";
+                            } else {
+                                $menuactove = "";
+                            }
+                            ?>
+                            <?php if ($mn['id'] == $mn['menu_id']) { ?>
+                                <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>" title="<?php echo $mn['menu'] ?>">
+                                    <div id="listmenu" style=" white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" class="<?php echo $menuactove; ?>">
+                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
+                                             height="32px"
+                                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
+                                             <?php echo $mn['menu'] ?>
+                                    </div>
+                                </a>
+                            <?php } ?>
+                        <?php endforeach; ?>
+                        <?php if (Yii::app()->session['branch'] != "99") { ?>
+                            <br/>
+                            <center><b style=" color: #FFFFFF;"><i class="fa fa-bell"></i> แจ้งเตือน</b></center>
+                            <a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"> 
+                                <div id="listmenu">สินค้าใกล้หมด <span class="badge pull-right"><?php echo $alet->Countalertproduct(Yii::app()->session['branch']); ?> </span></div></a>
+                            <a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"> 
+                                <div id="listmenu">สินค้าใกล้หมดอายุ <span class="badge pull-right"><?php echo $alet->CountAlertExpire(); ?> </span></div></a>
+                            <a href="<?php echo Yii::app()->createUrl('backend/stock/expire') ?>"> 
+                                <div id="listmenu">สินค้าหมดอายุ <span class="badge pull-right"><?php echo $alet->CountExpire(); ?> </span></div></a>
+                            <a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"> 
+                                <div id="listmenu">ลูกค้าใกล้ถึงวันนัด <span class="badge pull-right"><?php echo $AppointModel->Countover(); ?> </span></div></a>
                         <?php } ?>
-                    <?php endforeach; ?>
-                    <?php if (Yii::app()->session['branch'] != "99") { ?>
-                        <br/>
-                        <center><b style=" color: #FFFFFF;"><i class="fa fa-bell"></i> แจ้งเตือน</b></center>
-                        <a href="<?php echo Yii::app()->createUrl('backend/stock/expireproduct') ?>"> 
-                            <div id="listmenu">สินค้าใกล้หมด <span class="badge pull-right"><?php echo $alet->Countalertproduct(Yii::app()->session['branch']); ?> </span></div></a>
-                        <a href="<?php echo Yii::app()->createUrl('backend/stock/expireitem') ?>"> 
-                            <div id="listmenu">สินค้าใกล้หมดอายุ <span class="badge pull-right"><?php echo $alet->CountAlertExpire(); ?> </span></div></a>
-                        <a href="<?php echo Yii::app()->createUrl('backend/stock/expire') ?>"> 
-                            <div id="listmenu">สินค้าหมดอายุ <span class="badge pull-right"><?php echo $alet->CountExpire(); ?> </span></div></a>
-                        <a href="<?php echo Yii::app()->createUrl('appoint/appointover') ?>"> 
-                            <div id="listmenu">ลูกค้าใกล้ถึงวันนัด <span class="badge pull-right"><?php echo $AppointModel->Countover(); ?> </span></div></a>
-
                     <?php } ?>
                 </div>
 
@@ -272,7 +271,7 @@
                             <a class="navbar-brand" style=" margin-top: 0px; padding-top: 10px;">
                                 <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $web->get_logoweb(); ?>" height="32px"/>
                             </a>
-                            <a class="navbar-brand" href="#" id="text-head-nav" style=" font-family: Th;font-size:28px;">
+                            <a class="navbar-brand" href="#" id="text-head-nav" style=" font-family: Th;font-size:28px; color: #7cb902;">
                                 <?php echo $web->get_webname(); ?>
                             </a>
                         </div>
@@ -285,8 +284,8 @@
                                     ?>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <span class="glyphicon glyphicon-signal"></span>
-                                            <font id="font-th">รายงาน </font><b class="caret"></b>
+                                            <span class="glyphicon glyphicon-signal" style=" color: #7cb902;"></span>
+                                            <font id="font-th" style=" color: #7cb902;">รายงาน </font><b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <?php
@@ -325,8 +324,8 @@
                                     ?>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-                                            <span class="fa fa-gear"></span>
-                                            <font id="font-th">ตั้งค่าระบบ </font><b class="caret"></b>
+                                            <span class="fa fa-gear" style=" color: #7cb902;"></span>
+                                            <font id="font-th" style=" color: #7cb902;">ตั้งค่าระบบ </font><b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <?php
@@ -343,7 +342,7 @@
                             <?php if (!Yii::app()->user->isGuest) { ?>
                                 <ul class="nav navbar-nav navbar-right">
                                     <li>
-                                        <a href="<?= Yii::app()->createUrl('site/logout/') ?>" style=" color: #FFFFFF;">
+                                        <a href="<?= Yii::app()->createUrl('site/logout/') ?>" style=" color: #7cb902;">
                                             <span class="glyphicon glyphicon-off"></span>
                                             <font id="font-th">ออกจากระบบ</font>
                                         </a>
@@ -353,7 +352,7 @@
                         </div><!-- /.navbar-collapse -->
                     </div>
                 </nav>
-                <ol class="breadcrumb " style=" margin-bottom: 0px; margin-top: 0px; border-radius: 0px; background: #2a323b; border-bottom: #3c4754 solid 1px;">
+                <ol class="breadcrumb " style=" margin-bottom: 0px; margin-top: 0px; border-radius: 0px; background: #191919; border-bottom: #191919 solid 1px; box-shadow: #000000 0px 0px 10px 0px;">
 
                     <?php if (isset($this->breadcrumbs)): ?>
                         <?php
@@ -390,6 +389,12 @@
                 });
             }
 
+            function Checkprivilege() {
+                var prilege = "<?php echo Yii::app()->session['branch'] ?>";
+                if (prilege == "") {
+                    window.location = "<?php echo Yii::app()->createUrl('site/index') ?>";
+                }
+            }
             /*
              $(function () {
              $(".dropdown").hover(

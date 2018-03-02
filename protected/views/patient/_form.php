@@ -326,8 +326,8 @@
     function setscreen(){
         var w = window.innerWidth;
         var h = window.innerHeight;
-        var screen = (h - 210);
-        if(w > 768){
+        var screen = (h - 215);
+        if(w >= 768){
             $("#form-patient-body").css({'height':screen,'overflow': 'auto'});
         }
     }

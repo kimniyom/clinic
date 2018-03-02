@@ -42,7 +42,7 @@ $BranchModel = new Branch();
 
 <div class="wells" style="width:100%; margin-bottom: 10px;">
 
-    <div class="row">
+    <div class="row" style=" margin: 0px;">
         <div class="col-md-3 col-lg-3" id="p-left">
             <div class="well" style=" border:#666666 dashed 2px; text-align: center; cursor: pointer;"
                  onclick="GetImages();">
@@ -185,7 +185,7 @@ $BranchModel = new Branch();
 
     </div>
     <hr style=" margin-top: 0px; padding-top: 0px;"/>
-    <div class="row">
+    <div class="row" style=" margin: 0px;">
         <div class="col-md-9 col-lg-9">
             <center><font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font></center>
         </div>
@@ -380,9 +380,11 @@ $BranchModel = new Branch();
         var screen = $(window).height();
         var w = window.innerWidth;
         var screenfull = (screen - 165);
-        if (w > 786) {
+        if (w >= 786) {
             $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+        } else {
+             $("#p-right").css({'border': 'none'});
         }
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});

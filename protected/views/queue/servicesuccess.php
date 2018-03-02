@@ -1,8 +1,4 @@
 <style type="text/css">
-    table{
-        background: #FFFFFF;
-    }
-
     table tbody tr td{
         padding: 0px;
     }

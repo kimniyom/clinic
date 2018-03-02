@@ -13,10 +13,12 @@
         var boxsell = window.innerHeight;
         var w = window.innerWidth;
         var screenfull;
-        if (w > 786) {
+        if (w >= 786) {
             screenfull = (boxsell - 395);
         } else {
             screenfull = false;
+            $(".columns").hide();
+            $("#h-store").hide();
         }
         $("#p_product").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
@@ -47,9 +49,9 @@ $alam = $Alert->Getalert()['alert_product'];
         <thead>
             <tr>
                 <th style=" width: 5%;">#</th>
-                <th>รหัส</th>
+                <th class="columns">รหัส</th>
                 <th>ชื่อสินค้า</th>
-                <th style=" text-align: center;">ต้นทุน</th>
+                <th style=" text-align: center;" class="columns">ต้นทุน</th>
                 <th style="text-align: center;">ราคา / หน่วย</th>
                 <!--
                 <th style="text-align: center;">หมวด</th>
@@ -59,8 +61,8 @@ $alam = $Alert->Getalert()['alert_product'];
                 <!--
                 <th>ผลิต</th>
                 -->
-                <th>หมดอายุ</th>
-                <th>นำเข้า</th>
+                <th class="columns">หมดอายุ</th>
+                <th class="columns">นำเข้า</th>
                 <th style=" text-align: right;">คงเหลือ</th>
                 <!--
                 <th style=" text-align: center;">รายละเอียด</th>
@@ -86,9 +88,9 @@ $alam = $Alert->Getalert()['alert_product'];
                     ?>
                     <tr>
                         <td style=" text-align: center;"><?php echo $a ?></td>
-                        <td><?php echo $last['product_id']; ?></td>
+                        <td class="columns"><?php echo $last['product_id']; ?></td>
                         <td><?php echo $last['product_name']; ?></td>
-                        <td style=" text-align: center; font-weight: bold;">
+                        <td style=" text-align: center; font-weight: bold;" class="columns">
                             <?php echo number_format($last['costs'], 2); ?>
                         </td>
                         <td style=" text-align: center; font-weight: bold;">
@@ -102,11 +104,11 @@ $alam = $Alert->Getalert()['alert_product'];
                         <!--
                         <td><?php //echo $config->thaidate($last['generate'])                           ?></td>
                         -->
-                        <td><?php echo $config->thaidate($last['expire']) ?></td>
+                        <td class="columns"><?php echo $config->thaidate($last['expire']) ?></td>
                         <td style=" text-align: right;">
                             <?php echo number_format($last['number']) . ' ' . $last['unit'] ?>
                         </td>
-                        <td style=" text-align: right; font-weight: bold; color: <?php echo $color ?>">
+                        <td style=" text-align: right; font-weight: bold; color: <?php echo $color ?>" class="columns">
                             <?php echo number_format($last['total']) . ' ' . $last['unit'] ?>
                         </td>
                         <td style="text-align: center;">
@@ -116,7 +118,7 @@ $alam = $Alert->Getalert()['alert_product'];
                                 <i class="fa fa-lock"></i>
                             <?php } ?>
                         </td>
-                        <td style=" padding: 0px;"><a href="javascript:handcutstock('<?php echo $last['product_id']; ?>','<?php echo $last['lotnumber'] ?>','<?php echo $last['product_name']; ?>','<?php echo $last['total'] ?>')" class="btn btn-info btn-block" style=" margin: 0px; font-size: 18px;"><i class="fa fa-cut"></i> ตัดสต๊อกด้วยมือ</a></td>
+                        <td style=" padding: 0px;"><a href="javascript:handcutstock('<?php echo $last['product_id']; ?>','<?php echo $last['lotnumber'] ?>','<?php echo $last['product_name']; ?>','<?php echo $last['total'] ?>')" class="btn btn-default btn-block" style=" margin: 0px; font-size: 18px;"><i class="fa fa-cut"></i> ตัดสต๊อกด้วยมือ</a></td>
                     </tr>
                 <?php } ?>
             <?php endforeach; ?>

@@ -14,10 +14,11 @@
         var screenfull;
         if (w > 768) {
             //var contentboxsell = $("#content-boxsell").height();
-            screenfull = (boxsell - 445);
+            screenfull = (boxsell - 455);
         } else {
             screenfull = false;
             $("#btn-search-pd").addClass("btn btn-default btn-block");
+            $(".columns").hide();
         }
         //var contentboxsell = $("#content-boxsell").height();
         $("#p_product").dataTable({
@@ -49,9 +50,9 @@ $Clinic = new ClinicStoreproduct();
                 <th style=" width: 5%;">#</th>
                 <th>รหัส</th>
                 <th>ชื่อสินค้า</th>
-                <th style="text-align: center;">ราคา / หน่วย</th>
-                <th>หมวด</th>
-                <th>ประเภท</th>
+                <th style="text-align: center;" class="columns">ราคา / หน่วย</th>
+                <th class="columns">หมวด</th>
+                <th class="columns">ประเภท</th>
                 <th style=" text-align: right; color: #009900; font-weight: bold;">คงเหลือ</th>
                 <!--
                 <th style=" text-align: center;">รายละเอียด</th>
@@ -71,11 +72,11 @@ $Clinic = new ClinicStoreproduct();
                     <td style=" text-align: center;"><?php echo $i ?></td>
                     <td><?php echo $last['product_id']; ?></td>
                     <td><?php echo $last['product_name']; ?></td>
-                    <td style=" text-align: center; font-weight: bold;">
+                    <td style=" text-align: center; font-weight: bold;" class="columns">
                         <?php echo number_format($last['product_price'], 2); ?>
                     </td>
-                    <td><?php echo $last['category'] ?></td>
-                    <td><?php echo $last['type_name'] ?></td>
+                    <td class="columns"><?php echo $last['category'] ?></td>
+                    <td class="columns"><?php echo $last['type_name'] ?></td>
                     <td style=" text-align: right;color: #009900; font-weight: bold;">
                         <?php
                         $total = $Clinic->Checkstock($last['product_id'], $branch);

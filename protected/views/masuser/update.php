@@ -10,7 +10,7 @@ $this->breadcrumbs = array(
 ?>
 
 <div class="panel panel-default" style=" margin-bottom: 0px;">
-    <div class="panel-heading" style=" background: #FFFFFF;"><i class="fa fa-pencil"></i> แก้ไข <?php echo $model->username; ?></div>
+    <div class="panel-heading"><i class="fa fa-pencil"></i> แก้ไข <?php echo $model->username; ?></div>
     <div class="panel-body" id="p-box">
         <?php $this->renderPartial('_form', array('model' => $model)); ?>
         <hr/>

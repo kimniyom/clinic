@@ -9,6 +9,6 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h1>เพิ่มบริษัทสั่งซื้อวัตถุดิบ</h1>
+<h4>เพิ่มบริษัทสั่งซื้อวัตถุดิบ</h4>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

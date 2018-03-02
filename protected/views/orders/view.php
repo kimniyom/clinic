@@ -7,10 +7,12 @@
     #tablelistorder tr td{
         padding: 1px;
         font-size: 16px;
+        white-space: nowrap;
     }
 
     #tablelistorder tfoot tr td{
         font-weight: bold;
+        white-space: nowrap;
     }
 </style>
 
@@ -25,31 +27,34 @@ $Thaibath = new Thaibaht();
 ?>
 
 
+<div class="row" style=" margin: 0px;">
+    <div class="col-md-12 col-lg-12">
+        <div class="dropdown" style=" float: left; margin-right: 5px;">
+            <button class="btn btn-default dropdown-toggle" type="button" id="btnstatus" data-toggle="dropdown">
+                อัพเดทสถานะ
+                <span class="caret"></span>
+            </button>
 
-<div class="dropdown" style=" float: left; margin-right: 5px;">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="btnstatus" data-toggle="dropdown">
-        อัพเดทสถานะ
-        <span class="caret"></span>
-    </button>
-
-    <?php if ($order['status'] == '2') { ?>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <?php if ($order['status'] == '2') { ?>
-                <li><a href="javascript:updatestatus('3')">ได้รับสินค้า</a></li>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <?php if ($order['status'] == '2') { ?>
+                        <li><a href="javascript:updatestatus('3')">ได้รับสินค้า</a></li>
+                    <?php } ?>
+                </ul>
             <?php } ?>
-        </ul>
-    <?php } ?>
+        </div>
+
+        <a href="<?php echo Yii::app()->createUrl('orders/print', array("order_id" => $order_id)) ?>" target="_blank">
+            <button type="button" class="btn btn-default">
+                <i class="fa fa-print"></i> พิมพ์ใบสั่งซื้อ
+            </button>
+        </a>
+    </div>
 </div>
 
-<a href="<?php echo Yii::app()->createUrl('orders/print', array("order_id" => $order_id)) ?>" target="_blank">
-    <button type="button" class="btn btn-primary">
-        <i class="fa fa-print"></i> พิมพ์ใบสั่งซื้อ
-    </button>
-</a>
-
-<div class="row" style=" margin-bottom: 0px;">
+<div class="row" style=" margin: 0px;">
     <div class="col-lg-9 col-md-12" >
-        <div class="well" style=" border-radius: 0px; background: #FFFFFF; position: relative;  margin-bottom: 0px;" id="boxorders">
+        <div class="well" style=" border-radius: 0px; position: relative;  margin-bottom: 0px;" id="boxorders">
             <div style=" text-align: center; margin-bottom: 10px;">
                 <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
                 <?php echo $BranchModel['address']; ?><br/>
@@ -112,16 +117,16 @@ $Thaibath = new Thaibaht();
                 <table style=" width: 100%; border: #cccccc solid 2px;" class="" id="tablelistorder">
                     <thead>
                         <tr>
-                            <th style="border-bottom: #cccccc solid 2px; background: #f4f4f4; text-align: center;">#</th>
-                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4; text-align: center;">รหัสสินค้า</th>
-                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">สินค้า</th>
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">จำนวน</th>
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">หน่วยนับ</th>
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">ราคา/หน่วย</th>
+                            <th style="border-bottom: #cccccc solid 2px; text-align: center;">#</th>
+                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;text-align: center;">รหัสสินค้า</th>
+                            <th style="border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">สินค้า</th>
+                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">จำนวน</th>
+                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">หน่วยนับ</th>
+                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">ราคา/หน่วย</th>
                             <!--
                             <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">ส่วนลด</th>
                             -->
-                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">จำนวนเงิน</th>
+                            <th style="text-align: center;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;">จำนวนเงิน</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -146,7 +151,7 @@ $Thaibath = new Thaibaht();
                                 <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php echo $rs['unitname'] ?></td>
                                 <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($rs['costs'], 2) ?></td>
                                 <!--
-                                <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']     ?> % </td>
+                                <td style=" text-align: center;border-left:#cccccc solid 2px;"><?php //echo $rs['distcountpercent']      ?> % </td>
                                 -->
                                 <td style=" text-align: right;border-left:#cccccc solid 2px;"><?php echo number_format($sumrow, 2) ?></td>
                             </tr>
@@ -159,16 +164,16 @@ $Thaibath = new Thaibaht();
                             </td>
                         </tr>
                         <tr>
-                            <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">รวมเงิน</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format($sumproduct, 2) ?></td>
+                            <td style="border-bottom: #cccccc solid 2px; background: #000000;" colspan="2">รวมเงิน</td>
+                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #000000;"><?php echo number_format($sumproduct, 2) ?></td>
                         </tr>
                         <tr>
-                            <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ส่วนลด <?php echo $order['distcount'] ?> %</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format($order['distcountprice'], 2) ?></td>
+                            <td style="border-bottom: #cccccc solid 2px; background: #000000;" colspan="2">ส่วนลด <?php echo $order['distcount'] ?> %</td>
+                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #000000;"><?php echo number_format($order['distcountprice'], 2) ?></td>
                         </tr>
                         <tr>
-                            <td style="border-bottom: #cccccc solid 2px; background: #f4f4f4;" colspan="2">ราคาหลังหักส่วนลด</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;">
+                            <td style="border-bottom: #cccccc solid 2px; background: #000000;" colspan="2">ราคาหลังหักส่วนลด</td>
+                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #000000;">
                                 <?php
                                 $priceresult = ($sumproduct - $order['distcountprice']);
                                 echo number_format($priceresult, 2);
@@ -176,8 +181,8 @@ $Thaibath = new Thaibaht();
                             </td>
                         </tr>
                         <tr>
-                            <td style="border-bottom: #cccccc solid 2px;background: #f4f4f4;" colspan="2">ภาษี 7%</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #f4f4f4;">
+                            <td style="border-bottom: #cccccc solid 2px;background: #000000;" colspan="2">ภาษี 7%</td>
+                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px;background: #000000;">
                                 <?php
                                 $tax = ($priceresult * 7) / 100;
                                 $taxresult = number_format($tax, 2);
@@ -186,7 +191,7 @@ $Thaibath = new Thaibaht();
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="4" style=" text-align: center;border-right:#cccccc solid 2px; background: #f4f4f4;">
+                            <td colspan="4" style=" text-align: center;border-right:#cccccc solid 2px; background: #000000;">
                                 <?php
                                 //$pricetotal = ($priceresult + $tax);
                                 $pricetotal = number_format(($priceresult + $tax), 2);
@@ -200,8 +205,8 @@ $Thaibath = new Thaibaht();
                                 echo "(" . $Thaibath->convert($priceCoverts) . ")";
                                 ?>
                             </td>
-                            <td colspan="2" style="background: #f4f4f4;">รวมเงินทั้งสิ้น</td>
-                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #f4f4f4;"><?php echo number_format(sprintf('%.2f', $priceCovert), 2); ?></td>
+                            <td colspan="2" style="background: #000000;">รวมเงินทั้งสิ้น</td>
+                            <td style=" text-align: right;border-left:#cccccc solid 2px; border-bottom: #cccccc solid 2px; background: #000000;"><?php echo number_format(sprintf('%.2f', $priceCovert), 2); ?></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -211,7 +216,7 @@ $Thaibath = new Thaibaht();
 
     <div class="col-lg-3 col-md-3 col-sm-12">
         <h4 style=" margin-top: 0px;">สถานะ</h4>
-        <div class="well" style=" text-align: center; text-align: left; background: #FFFFFF;">
+        <div class="well" style=" text-align: center; text-align: left;">
             <?php if ($order['status'] == '1') { ?>
                 <h4><i class="fa fa-check text-success"></i> ยืนยันรายการ</h4>
                 <h4><i class="fa fa-remove text-danger"></i> จัดส่งสินค้า</h4>
@@ -270,7 +275,7 @@ $Thaibath = new Thaibaht();
         var screen = window.innerHeight;
         var w = window.innerWidth;
         if (w > 786) {
-            var screenfull = (screen - 132);
+            var screenfull = (screen - 140);
             $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         } else {
             $(".barcodes").css({'text-align': 'left'});

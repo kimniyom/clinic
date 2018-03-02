@@ -8,15 +8,15 @@
 /* @var $model Orders */
 
 $this->breadcrumbs = array(
-    'ใบสั่งซื้อสินค้า (สาขา' . $branchModel->branchname . ")" => array('index', "branch" => $branch),
-    'สร้างใบสั่งซื้อ (สาขา' . $branchModel->branchname . ")",
+    'ใบสั่งสินค้า (สาขา' . $branchModel->branchname . ")" => array('index', "branch" => $branch),
+    'สร้างใบสั่ง (สาขา' . $branchModel->branchname . ")",
 );
 
 $companySell = Companycenter::model()->find("id = '1'");
 $BranchModel = Branch::model()->find("id = '$branch'");
 ?>
 <div class="panel panel-default" style=" margin-bottom: 0px;">
-    <div class="panel-body" style=" border-radius: 0px; background: #FFFFFF; position: relative;" id="boxorders">
+    <div class="panel-body" style=" border-radius: 0px; position: relative;" id="boxorders">
         <div style=" text-align: center;">
             <h4 style=" margin-bottom: 0px;"><?php echo $BranchModel['branchname']; ?></h4><br/>
             <?php echo $BranchModel['address']; ?><br/>
@@ -239,7 +239,7 @@ $BranchModel = Branch::model()->find("id = '$branch'");
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        var screenfull = (screen - 157);
+        var screenfull = (screen - 150);
         $("#boxorders").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
 
         var w = window.innerWidth;
@@ -248,6 +248,4 @@ $BranchModel = Branch::model()->find("id = '$branch'");
             $(".box-codenumber").css({'width': '100%', 'margin': '0px', 'padding': '0px', 'border-top': '0px'});
         }
     }
-
-
 </script>

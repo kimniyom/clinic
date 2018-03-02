@@ -1,7 +1,5 @@
 <style type="text/css">
-    table{
-        background: #FFFFFF;
-    }
+
     .modal.large {
         width: 80%;
     }
@@ -64,7 +62,7 @@
     function Setscreen() {
         var boxsell = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 319);
+        var screenfull = (boxsell - 325);
         $("#tb-service").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง

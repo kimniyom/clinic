@@ -95,9 +95,9 @@ if (strlen($monthNow) < 2) {
         var screen = window.innerHeight;
         var wight = window.innerWidth;
         if (wight > 768) {
-            var h = screen - 265;
+            var h = screen - 270;
             $("#box-em-left").css({'height': h, 'overflow': 'auto'});
-            $("#box-em-right").css({'height': h - 55, 'overflow': 'auto'});
+            $("#box-em-right").css({'height': h - 60, 'overflow': 'auto'});
         }
     }
 

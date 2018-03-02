@@ -9,6 +9,6 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<h1>แก้ไขข้อมูลสาขา <?php echo $model->branchname; ?></h1>
+<h4>แก้ไขข้อมูลสาขา <?php echo $model->branchname; ?></h4>
 
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

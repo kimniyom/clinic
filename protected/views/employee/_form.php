@@ -12,7 +12,7 @@
 
 
 <div class="panel panel-default" style=" margin-bottom: 0px;">
-    <div class="panel-heading" style=" background: #FFFFFF;"><i class="fa fa-users"></i> ข้อมูลพนักงาน</div>
+    <div class="panel-heading"><i class="fa fa-users"></i> ข้อมูลพนักงาน</div>
     <div class="panel-body" id="p-box">
         <?php
         $form = $this->beginWidget('CActiveForm', array(
@@ -273,12 +273,11 @@
     </div>
 </div>
 <script type="text/javascript">
-
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
         //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 148);
+        var screenfull = (screen - 143);
         $("#p-box").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});

@@ -11,6 +11,6 @@ $this->breadcrumbs = array(
 
 ?>
 
-<h1>เพิ่มรายการวัตถุดิบ</h1>
+<h4>เพิ่มรายการวัตถุดิบ</h4>
 <hr/>
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

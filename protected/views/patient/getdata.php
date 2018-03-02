@@ -88,7 +88,7 @@ $typeModel = new Gradcustomer();
         var screenfull;
         if (w > 768) {
             //var contentboxsell = $("#content-boxsell").height();
-            screenfull = (boxsell - 335);
+            screenfull = (boxsell - 345);
         } else {
             screenfull = false;
             $(".pid").hide();

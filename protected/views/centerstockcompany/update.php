@@ -15,6 +15,6 @@ $this->breadcrumbs = array(
 
 ?>
 
-<h1>แก้ไข <?php echo $model->company_name; ?></h1>
+<h4>แก้ไข <?php echo $model->company_name; ?></h4>
 <hr/>
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

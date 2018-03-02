@@ -13,13 +13,10 @@ $BranchModel = new Branch();
 ?>
 
 <input type="hidden" id="branch" value="<?php echo $branch ?>"/>
-<div class="wells" style="width:100%; margin-bottom: 10px;">
+<div class="well well-sm" style="width:100%; margin: 0px;">
 
-    <div class="row">
-        <div class="col-md-3 col-lg-3" id="p-left">
-            <div id="load_images_product"></div>
-        </div>
-        <div class="col-md-9 col-lg-9" id="p-right" style=" padding-bottom: 0px;">
+    <div class="row" style=" margin: 0px;">
+        <div class="col-md-9 col-lg-9" id="p-left" style=" padding-bottom: 0px;">
             <label for="">หมวดสินค้า*</label><br/>
             <?php
             $this->widget('booster.widgets.TbSelect2', array(
@@ -62,39 +59,34 @@ $BranchModel = new Branch();
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3"><label for="">ราคาต้นทุน*</label></div>
-                <div class="col-md-6 col-lg-3"><label for="">ราคาขาย*</label></div>
-                <div class="col-md-6 col-lg-3"><label for="">จำนวนนำเข้า*</label></div>
-                <div class="col-md-6 col-lg-3"><label for="">ราคารวม</label></div>
-            </div>
+
             <div class="row">
                 <div class="col-md-6 col-lg-3">
+                    <label for="">ราคาต้นทุน*</label>
                     <input type="number" id="costs" name="costs" class="form-control" onkeypress="return chkNumber()" required="required" readonly="readonly"/>
                 </div>
                 <div class="col-md-6 col-lg-3">
+                    <label for="">ราคาขาย*</label>
                     <input type="text" id="product_price" name="product_price" class="form-control" onkeypress="return chkNumber()" required="required" readonly="readonly"/>
                 </div>
                 <div class="col-md-6 col-lg-3">
+                    <label for="">จำนวนนำเข้า*</label>
                     <input type="text" id="number" name="number" class="form-control" onkeypress="return chkNumber()" required="required" onkeyup="Calculator()"/>
                 </div>
                 <div class="col-md-6 col-lg-3">
+                    <label for="">ราคารวม</label>
                     <input type="text" id="total" name="total" class="form-control" readonly="readonly"/>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6 col-lg-3"><label for="">ล๊อตที่</label></div>
-                <div class="col-md-6 col-lg-3"><label for="">วันที่ผลิต</label></div>
-                <div class="col-lg-1"></div>
-                <div class="col-md-6 col-lg-3"><label for="">วันที่หมดอายุ</label></div>
-            </div>
-            <div class="row">
                 <div class="col-md-6 col-lg-3">
+                    <label for="">ล๊อตที่</label>
                     <?php $lotnumber = date("Ymd") ?>
                     <input type="text" id="lotnumber" name="lotnumber" class="form-control" required="required" readonly="readonly" value="<?php echo $lotnumber ?>"/>
                 </div>
                 <div class="col-md-6 col-lg-3">
+                    <label for="">วันที่ผลิต</label>
                     <div>
                         <?php
                         $this->widget(
@@ -115,6 +107,7 @@ $BranchModel = new Branch();
                 </div>
                 <div class="col-lg-1"></div>
                 <div class="col-md-6 col-lg-3">
+                    <label for="">วันที่หมดอายุ</label>
                     <div>
                         <?php
                         $this->widget(
@@ -155,9 +148,12 @@ $BranchModel = new Branch();
                 <span class="glyphicon glyphicon-save"></span> <b>บันทึกข้อมูล</b></button>
             -->
         </div>
+        <div class="col-md-3 col-lg-3" id="p-right">
+            <div id="load_images_product"></div>
+        </div>
     </div>
     <hr style=" margin-top: 0px; padding-top: 0px;"/>
-    <div class="row">
+    <div class="row" style=" margin: 0px;">
         <div class="col-md-9 col-lg-9">
             <center><font style=" color: #ff0033; display: none;" id="f_error">กรอกข้อมูลไม่ครบ ..?</font></center>
         </div>
@@ -333,13 +329,16 @@ $BranchModel = new Branch();
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 165);
-        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
+        var w = window.innerWidth;
+        if (w >= 768) {
+            var screenfull = (screen - 180);
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        } else {
+            $("#p-left").css({'border':'none'});
+        }
     }
 
 

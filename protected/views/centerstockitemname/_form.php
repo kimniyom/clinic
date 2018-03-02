@@ -5,7 +5,7 @@
 ?>
 <style type="text/css">
     .form .row{
-        margin-bottom: 5px;
+        margin: 0px 0px 10px 0px;
     }
 </style>
 <div class="form">
@@ -29,7 +29,7 @@
             <?php echo $form->labelEx($model, 'itemcode'); ?>
         </div>
         <div class="col-lg-3">
-            <?php echo $form->textField($model, 'itemcode', array('size' => 20, 'maxlength' => 10)); ?>
+            <?php echo $form->textField($model, 'itemcode', array('size' => 20, 'maxlength' => 10,'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'itemcode'); ?>
         </div>
     </div>
@@ -39,7 +39,7 @@
             <?php echo $form->labelEx($model, 'itemname'); ?>
         </div>
         <div class="col-lg-6">
-            <?php echo $form->textField($model, 'itemname', array('size' => 60, 'maxlength' => 255)); ?>
+            <?php echo $form->textField($model, 'itemname', array('size' => 60, 'maxlength' => 255,'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'itemname'); ?>
         </div>
     </div>
@@ -49,7 +49,7 @@
             <?php echo $form->labelEx($model, 'price'); ?>
         </div>
         <div class="col-lg-2">
-            <?php echo $form->textField($model, 'price'); ?>
+            <?php echo $form->textField($model, 'price',array('class' => 'form-control')); ?>
             <?php echo $form->error($model, 'price'); ?>
         </div>
         <div class="col-lg-2">
@@ -82,7 +82,7 @@
             ?>
             <?php echo $form->error($model, 'unit'); ?>
             <a href='<?php echo Yii::app()->createUrl('unit/create') ?>'>
-            <button type="button"><i class='fa fa-plus'></i> เพิ่มหน่วยนับ</button></a>
+            <button type="button" class="btn btn-default"><i class='fa fa-plus'></i> เพิ่มหน่วยนับ</button></a>
         </div>
     </div>
     
@@ -111,7 +111,7 @@
             ?>
             <?php echo $form->error($model, 'unitcut'); ?>
             <a href='<?php echo Yii::app()->createUrl('centerstockunit/create') ?>'>
-            <button type="button"><i class='fa fa-plus'></i> เพิ่มหน่วยตัดสต๊อก</button></a>
+                <button type="button" class="btn btn-default"><i class='fa fa-plus'></i> เพิ่มหน่วยตัดสต๊อก</button></a>
         </div>
     </div>
 
@@ -120,8 +120,8 @@
         <div class="col-lg-2">
             <?php echo $form->labelEx($model, 'alert'); ?>
         </div>
-        <div class="col-lg-4">
-            <?php echo $form->textField($model, 'alert', array('size' => 10, 'maxlength' => 10)); ?>
+        <div class="col-lg-2">
+            <?php echo $form->textField($model, 'alert', array('size' => 10, 'maxlength' => 10,'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'alert'); ?>
         </div>
     </div>
@@ -130,7 +130,7 @@
     <div class="row buttons">
         <div class="col-lg-2"></div>
         <div class="col-lg-4">
-            <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'btn btn-success')); ?>
+            <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'บันทึก', array('class' => 'btn btn-success')); ?>
         </div>
     </div>
 

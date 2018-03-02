@@ -33,8 +33,10 @@
                 background: #2a323b;
             }
         </style>
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap/css/bootstrap.css" media="screen, projection" />
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap/css/bootstrap-theme.css" media="screen, projection" />
+        <!--
+        <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->request->baseUrl; ?>/css/bootstrap/css/bootstrap.css" media="screen, projection" />
+       -->
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-slate.css" media="screen, projection" />
 
     </head>
     <body style=" background: #2a323b;">
@@ -64,7 +66,7 @@
                             <div class="col-lg-12">
                                 <?php echo $form->labelEx($model, 'username'); ?>
                                 <?php echo $form->textField($model, 'username', array('class' => 'form-control')); ?>
-                                <p style="color: #ff0000;"><?php echo $form->error($model, 'username'); ?></p>
+                                <p style="color: #ff0000;"><?php echo $form->error($model, 'username',array("style" => 'color:red')); ?></p>
                             </div>
                         </div>
 
@@ -72,7 +74,7 @@
                             <div class="col-lg-12">
                                 <?php echo $form->labelEx($model, 'password'); ?>
                                 <?php echo $form->passwordField($model, 'password', array('class' => 'form-control')); ?>
-                                <p style="color:#ff0000;"><?php echo $form->error($model, 'password'); ?></p>
+                                <p style="color:#ff0000;"><?php echo $form->error($model, 'password',array("style" => 'color:red')); ?></p>
                             </div>
                         </div>
                         <hr/>

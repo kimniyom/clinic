@@ -53,7 +53,7 @@ $MasuserModel = new Masuser();
         var screenfull;
         if (w > 768) {
             //var contentboxsell = $("#content-boxsell").height();
-            screenfull = (boxsell - 365);
+            screenfull = (boxsell - 371);
         } else {
             screenfull = false;
         }

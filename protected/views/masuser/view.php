@@ -11,19 +11,23 @@ $this->breadcrumbs = array(
 );
 
 $MasuserModel = new Masuser();
-$profile = $MasuserModel->GetDetailUser($model->user_id);
+$profile = $MasuserModel->GetDetailUser($model['user_id']);
 $StatusModel = new StatusUser();
-$status = $StatusModel->find("id = '$model->status'")['status'];
+$statuss = $model['status'];
+$status = $StatusModel->find("id = '$statuss'")['status'];
 $branch = new Branch();
+
+echo $profile['user_id'];
 ?>
-<div class="row">
+
+<div class="row" style=" margin: 0px;">
     <div class="col-md-4 col-lg-4" id="p-left">
         <input type="hidden" id="user_id" value="<?php echo $user_id ?>"/>
         <div class="panel panel-default">
             <div class="panel-heading">ข้อมูล <?php echo $model->username; ?></div>
             <div style="color:#000000;">
                 <?php
-                $this->widget('zii.widgets.CDetailView', array(
+                $this->widget('booster.widgets.TbDetailView', array(
                     'data' => $model,
                     'attributes' => array(
                         'id',
@@ -60,15 +64,15 @@ $branch = new Branch();
         <div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">สิทธิ์การเข้าถึงสาขา</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="menu()">สิทธิ์การใช้งาน</a></li>
-                <li role="presentation"><a href="#menureport" aria-controls="menureport" role="tab" data-toggle="tab" onclick="getmenureport()">สิทธิ์การดูรายงาน</a></li>
-                <li role="presentation"><a href="#menusetting" aria-controls="menusetting" role="tab" data-toggle="tab" onclick="getmenusetting()">สิทธิ์การตั้งค่า</a></li>
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">สิทธิ์สาขา</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="menu()">สิทธิ์เมนู</a></li>
+                <li role="presentation"><a href="#menureport" aria-controls="menureport" role="tab" data-toggle="tab" onclick="getmenureport()">สิทธิ์ดูรายงาน</a></li>
+                <li role="presentation"><a href="#menusetting" aria-controls="menusetting" role="tab" data-toggle="tab" onclick="getmenusetting()">สิทธิ์ตั้งค่า</a></li>
             </ul>
             <!-- Tab panes -->
-            <div class="tab-content" id="p-right" style=" background: #ffffff; padding: 10px; border: #cccccc solid 1px; border-top: none;">
+            <div class="tab-content" id="p-right" style="  padding:0px; border-top: solid #009ed8 2px;">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    <div class="row" style=" margin: 0px;">
+                    <div class="row" style=" margin: 10px 0px 0px 0px;">
                         <div class="col-lg-10">
                             <?php
                             $user_id = $profile['id'];
@@ -179,13 +183,14 @@ $branch = new Branch();
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 115);
-        var screenfullRight = (screen - 155);
-        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#p-right").css({'height': screenfullRight, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
+        var w = window.innerWidth;
+        if (w >= 768) {
+            var screenfull = (screen - 115);
+            var screenfullRight = (screen - 155);
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#p-right").css({'height': screenfullRight, 'overflow': 'auto', 'padding-bottom': '25px'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        }
     }
 </script>
