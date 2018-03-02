@@ -73,8 +73,8 @@ table thead tr th {
 }
 */
 table {
-    border: #cccccc solid 1px;
-    background: #FFFFFF;
+    /*border: #cccccc solid 1px;*/
+    /*background: #FFFFFF;*/
     font-size: 18px;
     font-family: thaisanslite;
 }
@@ -115,11 +115,12 @@ table {
 
 #nav-bar{
     border-radius:0px; margin-bottom:0px; 
-    border-bottom: #3c4754 solid 1px; border-top: none; 
+    /*border-bottom: #191919 solid 1px;*/ 
+    border-top: none; 
     border-left: none;
     border-right: none;
-    
-    background: #2a323b;
+    box-shadow: #000000 0px 0px 10px 0px;
+    background: #191919;
 }
 
 body table thead th{

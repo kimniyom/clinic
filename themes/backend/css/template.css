@@ -73,8 +73,10 @@ table thead tr th {
 }
 */
 table {
+    /*
     border: #cccccc solid 1px;
     background: #FFFFFF;
+    */
     font-size: 18px;
     font-family: thaisanslite;
 }

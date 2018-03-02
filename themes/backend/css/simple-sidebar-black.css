@@ -36,14 +36,15 @@
     border-right: solid 1px #000000;
     */
     margin-top: 0px;
-    border-right: #eeeeee solid 1px; 
+    /*border-right: #000000 solid 1px; */
     padding-bottom: 50px;
-    background: #2a323b;
+    background: #191919;
+    box-shadow: #000000 0px 0px 10px 0px;
 }
 
 #sidebar-wrapper .panel-body{
     /*background: #2a323b;*/
-    background: #2a323b;
+    background: #191919;
     color: #999999;
 }
 
