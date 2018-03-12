@@ -85,7 +85,7 @@ $product_id = $product['product_id'];
                                             <a href="javascript:void(0);" onclick="set_group_img('<?//php echo $rs->images ?>');" style=" text-decoration: none;">
                                         -->
                                         <a class="image-link" href="<?php echo Yii::app()->baseUrl; ?>/uploads/product/<?= $rs['images'] ?>">
-                                            <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/product/<?= $rs['images'] ?>" class="btn btn-default" id="im-resize" style=" background: #FFF;"/></a>
+                                            <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/product/thumbnail/<?= $rs['images'] ?>" class="btn btn-default" id="im-resize" style=" background: #FFF;"/></a>
                                     <?php endforeach; ?>
                                 </center>
                             </div>

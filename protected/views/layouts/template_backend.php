@@ -37,11 +37,11 @@
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
         <!--
-                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;    ?>/css/button-color.css"/>
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;      ?>/css/button-color.css"/>
         -->
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
         <!--
-                <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl;     ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
+                <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl;       ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
         -->
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-cyborg.css" type="text/css" media="all" />
 
@@ -96,8 +96,8 @@
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/sweet-alert/sweetalert.min.js" type="text/javascript"></script>
 
         <!-- Uploadify 
-        <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl; ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
-        <script src="<?php //echo Yii::app()->baseUrl; ?>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl;   ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
+        <script src="<?php //echo Yii::app()->baseUrl;   ?>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
         -->
         <!--
             SELECT2 Combobox
@@ -114,10 +114,10 @@
 
         <!-- Camera -->
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/php-webcamera/scripts/webcam.js" type="text/javascript"></script>
-        
+
         <!-- MiniUploads -->
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/lib/mini-upload/css/style.css" type="text/css" media="all" />
-        
+
         <script type = "text/javascript" >
             $(document).ready(function () {
                 var user = "<?php echo Yii::app()->user->id ?>";
@@ -179,7 +179,7 @@
 
     </head>
 
-    <body style="/*background: url('<?php //echo Yii::app()->baseUrl;     ?>/images/bg_ap.png');*/ /*background: #fbfbfb;*//* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
+    <body style="/*background: url('<?php //echo Yii::app()->baseUrl;       ?>/images/bg_ap.png');*/ /*background: #fbfbfb;*//* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;"> #2a323b-->
         <nav class="navbar navbar-default" role="navigation" id="nav-head" style=" display: none; margin-bottom: 0px;"></nav>
         <div id="wrapper">
@@ -254,8 +254,6 @@
                         <?php } ?>
                     <?php } ?>
                 </div>
-
-
             </div>
             <!-- /#sidebar-wrapper -->
 
@@ -446,12 +444,12 @@
 
             //ascrollto();
         </script>
-        
+
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/mini-upload/js/jquery.knob.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/mini-upload/js/jquery.ui.widget.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/mini-upload/js/jquery.iframe-transport.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/mini-upload/js/jquery.fileupload.js" type="text/javascript"></script>
-        
-        
+
+
     </body>
 </html>
