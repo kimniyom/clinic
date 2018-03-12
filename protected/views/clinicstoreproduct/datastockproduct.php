@@ -52,7 +52,7 @@ $alam = $Alert->Getalert()['alert_product'];
                 <th class="columns">รหัส</th>
                 <th>ชื่อสินค้า</th>
                 <th style=" text-align: center;" class="columns">ต้นทุน</th>
-                <th style="text-align: center;">ราคา / หน่วย</th>
+                <th style="text-align: center;" class="columns">ราคา / หน่วย</th>
                 <!--
                 <th style="text-align: center;">หมวด</th>
                 <th style="text-align: center;">ประเภท</th>
@@ -68,7 +68,9 @@ $alam = $Alert->Getalert()['alert_product'];
                 <th style=" text-align: center;">รายละเอียด</th>
                 -->
                 <th></th>
+                <!--
                 <th></th>
+                -->
             </tr>
         </thead>
         <tbody>
@@ -93,16 +95,16 @@ $alam = $Alert->Getalert()['alert_product'];
                         <td style=" text-align: center; font-weight: bold;" class="columns">
                             <?php echo number_format($last['costs'], 2); ?>
                         </td>
-                        <td style=" text-align: center; font-weight: bold;">
+                        <td style=" text-align: center; font-weight: bold;" class="columns">
                             <?php echo number_format($last['product_price'], 2); ?>
                         </td>
                         <!--
-                        <td><?php //echo $last['category']             ?></td>
-                        <td><?php //echo $last['type_name']             ?></td>
+                        <td><?php //echo $last['category']              ?></td>
+                        <td><?php //echo $last['type_name']              ?></td>
                         -->
                         <td><?php echo $last['lotnumber'] ?></td>
                         <!--
-                        <td><?php //echo $config->thaidate($last['generate'])                           ?></td>
+                        <td><?php //echo $config->thaidate($last['generate'])                            ?></td>
                         -->
                         <td class="columns"><?php echo $config->thaidate($last['expire']) ?></td>
                         <td style=" text-align: right;">
@@ -113,12 +115,14 @@ $alam = $Alert->Getalert()['alert_product'];
                         </td>
                         <td style="text-align: center;">
                             <?php if ($last['number'] == $last['total']) { ?>
-                                <a href="javascript:confirmdeletestock('<?php echo $last['id'] ?>')"><i class="fa fa-trash-o"></i></a>
+                                <a href="javascript:confirmdeletestock('<?php echo $last['id'] ?>')"><i class="fa fa-trash-o text-danger"></i></a>
                             <?php } else { ?>
                                 <i class="fa fa-lock"></i>
                             <?php } ?>
                         </td>
-                        <td style=" padding: 0px;"><a href="javascript:handcutstock('<?php echo $last['product_id']; ?>','<?php echo $last['lotnumber'] ?>','<?php echo $last['product_name']; ?>','<?php echo $last['total'] ?>')" class="btn btn-default btn-block" style=" margin: 0px; font-size: 18px;"><i class="fa fa-cut"></i> ตัดสต๊อกด้วยมือ</a></td>
+                        <!--
+                        <td style=" padding: 0px;"><a href="javascript:handcutstock('<?php //echo $last['product_id'];  ?>','<?php //echo $last['lotnumber']  ?>','<?php //echo $last['product_name'];  ?>','<?php //echo $last['total']  ?>')" class="btn btn-default btn-block" style=" margin: 0px; font-size: 18px;"><i class="fa fa-cut"></i> ตัดสต๊อกด้วยมือ</a></td>
+                        -->
                     </tr>
                 <?php } ?>
             <?php endforeach; ?>
@@ -198,7 +202,7 @@ $alam = $Alert->Getalert()['alert_product'];
             $("#cut_number").focus();
             return false;
         }
-        
+
         if (numbers > totals || numbers == "0") {
             swal("ข้อมูลจำนวนไม่ถูกต้อง ...!");
             return false;

@@ -265,6 +265,56 @@ class Report {
         $rs = Yii::app()->db->createCommand($sql)->queryRow();
         return $rs['income'];
     }
+    
+    //รายรับวันนี้
+    function GetIncomeToday($date,$branch) {
+        if ($branch != "99") {
+            $wheresell = "o.branch = '$branch'";
+            $whereservice = "s.branch = '$branch'";
+        } else {
+            $wheresell = " 1=1 ";
+            $whereservice = " 1=1 ";
+        }
+        $sql = "SELECT IFNULL(SUM(Q.total),0) AS income
+                    FROM(
+                          SELECT SUM(o.totalfinal) AS total
+		          FROM logsell o 
+		          WHERE $wheresell AND o.date_sell = '$date'
+
+                          UNION
+
+                          SELECT SUM(s.price_total) AS total
+                          FROM service s 
+                          WHERE $whereservice AND s.service_date = '$date'
+                ) Q";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        return $rs['income'];
+    }
+    
+    //รายรับวันนี้
+    function GetIncomeTomonth($date,$branch) {
+        if ($branch != "99") {
+            $wheresell = "o.branch = '$branch'";
+            $whereservice = "s.branch = '$branch'";
+        } else {
+            $wheresell = " 1=1 ";
+            $whereservice = " 1=1 ";
+        }
+        $sql = "SELECT IFNULL(SUM(Q.total),0) AS income
+                    FROM(
+                          SELECT SUM(o.totalfinal) AS total
+		          FROM logsell o 
+		          WHERE $wheresell AND LEFT(o.date_sell,7) = '$date'
+
+                          UNION
+
+                          SELECT SUM(s.price_total) AS total
+                          FROM service s 
+                          WHERE $whereservice AND LEFT(s.service_date,7) = '$date'
+                ) Q";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        return $rs['income'];
+    }
 
     //หาค่าใช้จ่ายของสาขา
     function GetOutcome($year, $branch) {
@@ -447,4 +497,135 @@ class Report {
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
+    function CountServiceNow($branch){
+        if ($branch != "99") {
+            $where = "s.branch = '$branch'";
+        } else {
+            $where = " 1=1 ";
+        }
+        $sql = "SELECT IFNULL(COUNT(*),0) AS total
+                FROM service s 
+                WHERE $where AND s.service_date = DATE(NOW())";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        return $rs['total'];
+    }
+
+    function CountLoginNow($branch){
+        if ($branch != "99") {
+            $where = "s.branch = '$branch'";
+        } else {
+            $where = " 1=1 ";
+        }
+        $sql = "SELECT IFNULL(COUNT(*),0) AS total
+                FROM loglogin s 
+                WHERE $where AND LEFT(s.date,10) = DATE(NOW())";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        return $rs['total'];
+    }
+
+function GetOutcomePeriodCenter($year = null, $branch = null, $period = null) {
+        if ($branch != "99") {
+            $where = "o.branch = '$branch'";
+        } else {
+            $where = " 1=1 ";
+        }
+
+        if ($period == '1') {
+            $PERIODS = " BETWEEN '01' AND '03' ";
+        } else if ($period == '2') {
+            $PERIODS = " BETWEEN '04' AND '06' ";
+        } else if ($period == '3') {
+            $PERIODS = " BETWEEN '07' AND '09' ";
+        } else if ($period == '4') {
+            $PERIODS = " BETWEEN '10' AND '12' ";
+        }
+
+        $sql = "SELECT IFNULL(SUM(Q.outcome),0) AS outcome
+                FROM(
+                    SELECT IFNULL(SUM(o.price),0) AS outcome
+                    FROM repair o 
+                    WHERE $where AND LEFT(o.date_alert,4) = '$year' 
+                    AND SUBSTR(o.date_alert,6,2) $PERIODS AND o.status = '1'
+                    
+                    UNION 
+
+                    SELECT IFNULL(SUM(o.total),0) AS outcome
+                    FROM salary o
+                    WHERE $where AND o.year = '$year' AND o.month $PERIODS
+
+                    UNION 
+
+                    SELECT IFNULL(SUM(c.price),0) AS outcome
+                    FROM center_stockitem c 
+                    WHERE LEFT(c.lotnumber,4) = '$year' AND SUBSTR(c.lotnumber,5,2) $PERIODS
+                ) Q";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        return $rs['outcome'];
+    }
+
+   
+
+    function GetOutcomeMonthCenter($year = null, $branch = null) {
+        if ($branch != "99") {
+            $where = "o.branch = '$branch'";
+        } else {
+            $where = " 1=1 ";
+        }
+        $sql = "SELECT m.id,m.month_th,IFNULL(SUM(Q.total),0) AS total
+                FROM `month` m  
+                LEFT JOIN
+                (
+                SELECT Q1.month,SUM(Q1.total) AS total
+                FROM(
+                        SELECT SUBSTR(o.date_alert,6,2) AS month,SUM(o.price) AS total
+                        FROM repair o 
+                        WHERE $where AND LEFT(o.date_alert,4) = '$year' AND o.status = '1'
+                        GROUP BY SUBSTR(o.date_alert,6,2)
+                                        
+                        UNION
+                                    
+                        SELECT o.month,o.total
+                        FROM salary o
+                        WHERE $where AND o.year = '$year'
+
+                        UNION 
+
+                        SELECT SUBSTR(c.lotnumber,5,2) AS month,IFNULL(SUM(c.price),0) AS total
+                        FROM center_stockitem c
+                        WHERE LEFT(c.lotnumber,4) = '$year'
+                        GROUP BY SUBSTR(c.lotnumber,5,2)
+                    ) Q1   
+                GROUP BY Q1.month 
+                 ) Q ON m.id = Q.month
+                GROUP BY m.id";
+        return Yii::app()->db->createCommand($sql)->queryAll();
+    }
+
+    //หาค่าใช้จ่ายของสาขา
+    function GetOutcomeCenter($year) {
+
+        $sql = "SELECT IFNULL(SUM(Q.outcome),0) AS outcome
+                FROM(
+
+                SELECT IFNULL(SUM(o.price),0) AS outcome
+                FROM `repair` o 
+                WHERE o.`status` = '1' AND LEFT(o.date_alert,4) = '$year'
+
+                UNION 
+
+                SELECT IFNULL(SUM(o.total),0) AS outcome
+                FROM salary o
+                WHERE o.year = '$year'
+
+                UNION
+
+                SELECT IFNULL(SUM(c.price),0) AS outcome
+                FROM center_stockitem c 
+                WHERE LEFT(c.lotnumber,4) = '$year'
+                ) Q ";
+        $rs = Yii::app()->db->createCommand($sql)->queryRow();
+        return $rs['outcome'];
+    }
+
+    
 }

@@ -6,6 +6,7 @@
 <style type="text/css">
     .row{
         margin-bottom: 10px;
+        margin: 0px;
     }
 </style>
 <div class="form">
@@ -28,7 +29,7 @@
     <div class="row">
         <div class="col-md-2 col-lg-2"><?php echo $form->labelEx($model, 'companyname'); ?></div>
         <div class="col-md-10 col-lg-10">
-            <?php echo $form->textField($model, 'companyname', array('size' => 60, 'maxlength' => 255)); ?>
+            <?php echo $form->textField($model, 'companyname', array('size' => 60, 'maxlength' => 255,'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'companyname'); ?>
         </div>
     </div>
@@ -38,7 +39,7 @@
             <?php echo $form->labelEx($model, 'address'); ?>
         </div>
         <div class="col-md-10 col-lg-10">
-            <?php echo $form->textArea($model, 'address', array('rows' => 6, 'cols' => 50)); ?>
+            <?php echo $form->textArea($model, 'address', array('rows' => 6, 'cols' => 50,'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'address'); ?>
         </div>
     </div>
@@ -47,8 +48,8 @@
         <div class="col-md-2 col-lg-2">
             <?php echo $form->labelEx($model, 'tel'); ?>
         </div>
-        <div class="col-md-10 col-lg-10">
-            <?php echo $form->textField($model, 'tel', array('size' => 15, 'maxlength' => 15)); ?>
+        <div class="col-md-4 col-lg-4">
+            <?php echo $form->textField($model, 'tel', array('size' => 15, 'maxlength' => 15,'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'tel'); ?>
         </div>
     </div>
@@ -57,8 +58,8 @@
         <div class="col-md-2 col-lg-2">
             <?php echo $form->labelEx($model, 'memager'); ?>
         </div>
-        <div class="col-md-10 col-lg-10">
-            <?php echo $form->textField($model, 'memager', array('size' => 60, 'maxlength' => 255)); ?>
+        <div class="col-md-5 col-lg-5">
+            <?php echo $form->textField($model, 'memager', array('size' => 60, 'maxlength' => 255,'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'memager'); ?>
         </div>
     </div>
@@ -67,8 +68,8 @@
         <div class="col-md-2 col-lg-2">
             <?php echo $form->labelEx($model, 'tax'); ?>
         </div>
-        <div class="col-md-10 col-lg-10">
-            <?php echo $form->textField($model, 'tax', array('size' => 60, 'maxlength' => 20)); ?>
+        <div class="col-md-4 col-lg-4">
+            <?php echo $form->textField($model, 'tax', array('size' => 60, 'maxlength' => 20,'class' => 'form-control')); ?>
             <?php echo $form->error($model, 'tax'); ?>
         </div>
     </div>

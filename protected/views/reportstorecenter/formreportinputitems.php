@@ -7,8 +7,8 @@ $this->breadcrumbs = array(
 $yearNow = date("Y");
 ?>
 
-<div class="row">
-    <div class="col-lg-2 col-md-2" style=" text-align: center; padding-top: 10px;">
+<div class="row" style="margin:0px;">
+    <div class="col-lg-2 col-md-2" style= padding-top: 10px;">
         เลือกปี
     </div>
     <div class="col-lg-3 col-md-3">
@@ -23,7 +23,7 @@ $yearNow = date("Y");
         <input type="radio" name="type" value="2"/> ดูรายเดือน
     </div>
     <div class="col-lg-2 col-md-2">
-        <button type="button" class="btn btn-raised btn-info" style=" margin: 2px;" onclick="Getreport()">ตกลง</button>
+        <button type="button" class="btn btn-raised btn-default" style=" margin: 2px;" onclick="Getreport()">ตกลง</button>
     </div>
 </div>
 
@@ -53,12 +53,13 @@ $yearNow = date("Y");
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 163);
-        $("#boxreport").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
+        var w = window.innerWidth;
+        if (w >= 768) {
+            var screenfull = (screen - 150);
+            $("#boxreport").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        }
     }
 </script>
 

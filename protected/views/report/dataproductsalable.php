@@ -1,5 +1,5 @@
 
-<div id="reportsalable" style=" margin: 0px; width: 95%;"></div>
+<div id="reportsalable" style=" margin: 0px; padding: 0px; width: 99%;"></div>
 
 <table class="table table-bordered">
     <thead>

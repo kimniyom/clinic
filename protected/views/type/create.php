@@ -6,7 +6,7 @@
         var type_name = $("#type_name").val();
         var upper = $("#upper").val();
         var level = $('input[name=level]:checked').val();
-     
+
         var data = {
             type_id: type_id,
             type_name: type_name,
@@ -67,7 +67,7 @@ if ($uppername) {
 }
 ?>
 
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">จัดการประเภทสินค้า</div>
     <div class="panel-body">
         <div class="row" style="margin: 0px;">
@@ -96,11 +96,11 @@ if ($uppername) {
 
     </div>
     <div class="panel-footer">
-        <div class="btn btn-primary" onclick="save_type();"><i class=" glyphicon glyphicon-plus" id="loading"></i> เพิ่มข้อมูล</div>
+        <div class="btn btn-default" onclick="save_type();"><i class=" glyphicon glyphicon-plus" id="loading"></i> เพิ่มข้อมูล</div>
     </div>
 </div>
 
-<div class="panel panel-primary">
+<div class="panel panel-default">
     <div class="panel-heading">ประเภทสินค้า</div>
     <table class="table table-bordered" id="product_type">
         <thead>
@@ -133,7 +133,7 @@ if ($uppername) {
                         ?>
                     </td>
                     <td style=" text-align: center;">
-                        <a href="<?php echo Yii::app()->createUrl('backend/typeproduct/edit', array('id' => $rs['id'],'upper' => $rs['upper'])) ?>">
+                        <a href="<?php echo Yii::app()->createUrl('backend/typeproduct/edit', array('id' => $rs['id'], 'upper' => $rs['upper'])) ?>">
                             <div class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit"></i> แก้ไข</div></a>
                         <div class="btn btn-danger btn-xs" onclick="Check('<?php echo $rs['type_id'] ?>')"><i class="glyphicon glyphicon-trash"></i> ลบ</div>
                     </td>
@@ -142,8 +142,3 @@ if ($uppername) {
         </tbody>
     </table>
 </div>
-
-
-
-
-

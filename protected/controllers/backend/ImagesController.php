@@ -85,6 +85,71 @@ class ImagesController extends Controller {
         }
     }
 
+    public function actionMiniupload() {
+        // A list of permitted file extensions
+        $allowed = array('jpg', 'jpeg');
+
+        if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
+
+            $extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
+            $Path = Yii::app()->baseUrl . '/uploads/product/';
+
+            $filename = $_FILES["upl"]["name"];
+            $file_basename = substr($filename, 0, strripos($filename, '.')); // get file extention
+            $file_ext = substr($filename, strripos($filename, '.')); // get file name
+            $newfilename = md5($file_basename) . $file_ext;
+
+            if (!in_array(strtolower($extension), $allowed)) {
+                echo 'error';
+                exit;
+            }
+
+            $columns = array(
+                'images' => $newfilename,
+                'create_date' => date("Y-m-d")
+            );
+            Yii::app()->db->createCommand()
+                    ->insert("images", $columns);
+
+            $images = $_FILES["upl"]["tmp_name"];
+            //copy($_FILES["upl"]["tmp_name"],$Path.$newfilename);
+            $width = 1024; //*** Fix Width & Heigh (Autu caculate) ***//
+            $size = GetimageSize($images);
+            $height = round($width * $size[1] / $size[0]);
+            $images_orig = ImageCreateFromJPEG($images);
+            $photoX = ImagesX($images_orig);
+            $photoY = ImagesY($images_orig);
+            $images_fin = ImageCreateTrueColor($width, $height);
+            ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
+            ImageJPEG($images_fin, "uploads/product/" . $newfilename);
+            ImageDestroy($images_orig);
+            ImageDestroy($images_fin);
+
+            $this->actionThumbnail($images, $newfilename);
+            //if(move_uploaded_file($_FILES['upl']['tmp_name'],$Path.$newfilename)){
+            echo 'success';
+            exit;
+            //}
+        }
+
+        echo 'error';
+        exit;
+    }
+
+    public function actionThumbnail($images, $newfilename) {
+        $width = 300; //*** Fix Width & Heigh (Autu caculate) ***//
+        $size = GetimageSize($images);
+        $height = round($width * $size[1] / $size[0]);
+        $images_orig = ImageCreateFromJPEG($images);
+        $photoX = ImagesX($images_orig);
+        $photoY = ImagesY($images_orig);
+        $images_fin = ImageCreateTrueColor($width, $height);
+        ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
+        ImageJPEG($images_fin, "uploads/product/thumbnail/" . $newfilename);
+        ImageDestroy($images_orig);
+        ImageDestroy($images_fin);
+    }
+
     public function actionLoadimages() {
         $sql = "SELECT * FROM images order by id DESC";
         $rs = Yii::app()->db->createCommand($sql)->queryAll();
@@ -112,6 +177,7 @@ class ImagesController extends Controller {
             $result = Yii::app()->db->createCommand($sql)->queryRow();
             if (file_exists("uploads/product/" . $result['images'])) {
                 unlink("uploads/product/" . $result['images']);
+                unlink("uploads/product/thumbnail/" . $result['images']);
             }
 
             $img_id = $result['id'];
@@ -129,6 +195,7 @@ class ImagesController extends Controller {
         foreach ($results as $result) {
             if (file_exists("uploads/product/" . $result['images'])) {
                 unlink("uploads/product/" . $result['images']);
+                unlink("uploads/product/thumbnail/" . $result['images']);
             }
 
             $img_id = $result['id'];

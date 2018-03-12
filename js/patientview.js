@@ -4,7 +4,7 @@ loadimages();
 $(document).ready(function () {
     var service_id = $("#service_id").val();
     var height = $(window).height();
-    var heightlayout = (height - 90);
+    var heightlayout = (height - 5);
     $("#layouts").layout({
         height: heightlayout
     });
@@ -420,7 +420,8 @@ function doctorconfirm() {
         var url = "index.php?r=doctor/doctorconfirm";
         var data = {service_id: service_id};
         $.post(url, data, function (result) {
-            window.location = "index.php?r=queue/index";
+            //window.location = "index.php?r=queue/index";
+            window.close();
         });
     }
 }

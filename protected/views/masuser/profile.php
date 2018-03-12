@@ -7,6 +7,9 @@ $this->breadcrumbs = array(
 );
 $config = new Configweb_model();
 $branchModel = new Branch();
+
+$user_id = Yii::app()->user->id;
+$role = RoleMenu::model()->find('user_id=:user_id AND menu_id = :menu_id', array(':user_id' => $user_id, ':menu_id' => '3'));
 ?>
 <style type="text/css">
     #font-18{
@@ -36,13 +39,10 @@ $branchModel = new Branch();
             ?>
             <center>
                 <img src="<?php echo Yii::app()->baseUrl; ?>/<?php echo $img_profile; ?>" class="img-responsive img-thumbnail" id="img_profile" style=" margin-top: 5px; max-height: 200px;"/>
-                <br/><br/>
-                <div class="well" style="border-radius:0px; text-align: left; padding-left: 30px; padding-bottom: 0px;">
-                    <div style=" padding-left: 30px;">
-                        <input type="file" name="file_upload" id="file_upload" />
-                    </div>
-                    <p id="font-16" style=" color: #ff0000; text-align: center; margin-bottom: 0px;">(ไม่เกิน 2MB)</p>
-                </div>
+                <br/>
+                <button type="button" class="btn btn-default" onclick="javascript:$('#uploadprofile').modal();">เปลี่ยนรูปภาพ</button>
+                <p id="font-16" style=" color: #ff0000; text-align: center; margin-bottom: 0px;">(ไม่เกิน 2MB)</p>
+
             </center>
             <div id="font-18" style="color: #ff6600;">
                 <font id="font-rsu-20"><?php echo $model['alias']; ?></font><br/>
@@ -51,11 +51,12 @@ $branchModel = new Branch();
         </div>
         <div class="col-md-9 col-lg-9" style="padding-right: 0px;">
             <div class="well" style="margin: 5px; background: none;" id="font-20">
-                <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14" 
-                        onclick="deletemployee('<?php echo $model['id'] ?>')"><i class="fa fa-trash"></i> ลบ</button>
-                <a href="<?php echo Yii::app()->createUrl('employee/update', array('id' => $model['id'])) ?>">
-                    <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14"><i class="fa fa-pencil"></i> แก้ไข</button></a>
-
+                <?php if ($role['menu_id']) { ?>
+                    <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14" 
+                            onclick="deletemployee('<?php echo $model['id'] ?>')"><i class="fa fa-trash"></i> ลบ</button>
+                    <a href="<?php echo Yii::app()->createUrl('employee/update', array('id' => $model['id'])) ?>">
+                        <button type="button" class="btn btn-default btn-sm pull-right" id="font-rsu-14"><i class="fa fa-pencil"></i> แก้ไข</button></a>
+                <?php } ?>
                 ชื่อ - สกุล <p class="label" id="font-18"><?php echo $model['name'] . ' ' . $model['lname'] ?></p>
                 ชื่อเล่น <p class="label" id="font-18"><?php
                     if (isset($model['alias'])) {
@@ -192,16 +193,17 @@ $branchModel = new Branch();
                 </ul>
             </div>
 
+            <!--
             <div class="row" style=" padding: 0px; margin: 0px;">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style=" padding: 5px;">
                     <div class="well well-sm" style=" text-align: center; margin: 0px;">
-                        <h3><?php echo number_format($Selltotalyearnow) ?></h3><hr/>
+                        <h3><?php //echo number_format($Selltotalyearnow)    ?></h3><hr/>
                         <h4>ยอดขายปีนี้ </h4>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style=" padding: 5px;">
                     <div class="well well-sm" style=" text-align: center; margin: 0px;">
-                        <h3><?php echo number_format($Selltotallastyear) ?></h3><hr/>
+                        <h3><?php //echo number_format($Selltotallastyear)    ?></h3><hr/>
                         <h4>ยอดขายปีที่แล้ว </h4>
                     </div>
                 </div>
@@ -209,7 +211,7 @@ $branchModel = new Branch();
                     <div id="sell" style=" height: 150px;"></div>
                 </div>
             </div>
-
+            -->
         </div>
 
     </div>
@@ -217,7 +219,7 @@ $branchModel = new Branch();
     <div class="row" style=" padding: 15px; margin: 0px;">
         <div class="col-lg-6">
             <div class="panel panel-default">
-                <div class="panel-heading">ประวัติการขายสินค้า</div>
+                <div class="panel-heading">ผลงาน</div>
                 <div id="sellmonth" style=" height: 250px;"></div>
             </div>
         </div>
@@ -231,22 +233,149 @@ $branchModel = new Branch();
 
 </div>
 
+
+<div class="modal fade" tabindex="-1" role="dialog" id="uploadprofile">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="modal-body">
+                <form id="upload" method="post" action="<?php echo Yii::app()->createUrl('employee/save_upload', array('pid' => $model['pid'])) ?>" enctype="multipart/form-data">
+                    <div id="drop">
+                        เลือกรูปภาพ<br/>
+                        <a class="btn btn-primary"><i class="fa fa-picture-o"></i> Browse</a>
+                        <input type="file" name="upl" />
+                    </div>
+
+                    <ul style="">
+                        <!-- The file uploads will be shown here -->
+                    </ul>
+
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script type="text/javascript">
     setboxview();
-    $(document).ready(function () {
-        $('#file_upload').uploadify({
-            'buttonText': 'เลือกรูปภาพ ...',
-            //'swf ': '<?//php echo Yii::app()->baseUrl; ?>/lib/uploadify/uploadify.swf',
-            'swf': '<?php echo Yii::app()->baseUrl . "/lib/uploadify/uploadify.swf?preventswfcaching=1442560451655"; ?>',
-            'uploader': '<?php echo Yii::app()->createUrl('employee/save_upload', array('pid' => $model['pid'])) ?>',
-            'auto': true,
-            'fileSizeLimit': '2MB',
-            'fileTypeExts': ' *.jpg; *.png',
-            'uploadLimit': 1,
-            'onUploadSuccess': function (data) {
-                window.location.reload();
-            }
+    $(function () {
+
+        var ul = $('#upload ul');
+        $('#drop a').click(function () {
+            // Simulate a click on the file input button
+            // to show the file browser dialog
+            $(this).parent().find('input').click();
         });
+
+        // Initialize the jQuery File Upload plugin
+        $('#upload').fileupload({
+
+            // This element will accept file drag/drop uploading
+            dropZone: $('#drop'),
+
+            // This function is called when a file is added to the queue;
+            // either via the browse button, or via drag/drop:
+
+            add: function (e, data) {
+
+                var tpl = $('<li class="working"><input type="text" value="0" data-width="36" data-height="36"' +
+                        ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+
+                // Append the file name and file size
+                //data.files[0].name
+                tpl.find('p').text("")
+                        .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+
+                // Add the HTML to the UL element
+                data.context = tpl.appendTo(ul);
+
+                // Initialize the knob plugin
+                tpl.find('input').knob();
+
+                // Listen for clicks on the cancel icon
+                tpl.find('span').click(function () {
+
+                    if (tpl.hasClass('working')) {
+                        jqXHR.abort();
+                    }
+
+                    tpl.fadeOut(function () {
+                        tpl.remove();
+                    });
+
+                });
+
+                //Automatically upload the file once it is added to the queue
+                //var jqXHR = data.submit();
+
+                var jqXHR = data.submit()
+                        .success(function (result, textStatus, jqXHR) {
+                            if (result == "error") {
+                                data.context.addClass('error');
+                            }
+
+                        })
+                        //.error(function (jqXHR, textStatus, errorThrown) {alert(jqXHR); return false;})
+                        .complete(function (result, textStatus, jqXHR) {
+                            window.location.reload();
+                        });
+            },
+
+            progress: function (e, data) {
+                var type = data.files[0].type;
+                var size = data.files[0].size;
+
+                if (type == "image/jpeg" && size <= "1000000") {
+                    // Calculate the completion percentage of the upload
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                    // Update the hidden input field and trigger a change
+                    // so that the jQuery knob plugin knows to update the dial
+                    data.context.find('input').val(progress).change();
+
+                    if (progress == 100) {
+                        data.context.removeClass('working');
+                    } else {
+                        data.context.addClass('error');
+                    }
+                } else {
+                    data.context.addClass('error');
+                }
+
+            },
+
+            fail: function (e, data) {
+                // Something has gone wrong!
+                data.context.addClass('error');
+            }
+
+        });
+
+        // Prevent the default action when a file is dropped on the window
+        $(document).on('drop dragover', function (e) {
+            e.preventDefault();
+        });
+
+        // Helper function that formats the file sizes
+        function formatFileSize(bytes) {
+            if (typeof bytes !== 'number') {
+                return '';
+            }
+
+            if (bytes >= 1000000000) {
+                return (bytes / 1000000000).toFixed(2) + ' GB';
+            }
+
+            if (bytes >= 1000000) {
+                return (bytes / 1000000).toFixed(2) + ' MB';
+            }
+
+            return (bytes / 1000).toFixed(2) + ' KB';
+        }
+
     });
 
     function deletemployee(id) {
@@ -260,51 +389,52 @@ $branchModel = new Branch();
         }
     }
 
-    $(function () {
-        Highcharts.chart('sell', {
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: ''
-            },
-            xAxis: {
-                categories: ['ปีนี้', 'ปีที่แล้ว'],
-                title: {
-                    text: null
-                }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: '',
-                    align: 'high'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                valueSuffix: ' บาท'
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                    colorByPoint: true,
-                    name: 'ยอดขาย',
-                    data: [<?php echo $Selltotalyearnow ?>, <?php echo $Selltotallastyear ?>]
-                }]
-        });
-    });
-
+    /*
+     $(function () {
+     Highcharts.chart('sell', {
+     chart: {
+     type: 'bar'
+     },
+     title: {
+     text: ''
+     },
+     xAxis: {
+     categories: ['ปีนี้', 'ปีที่แล้ว'],
+     title: {
+     text: null
+     }
+     },
+     yAxis: {
+     min: 0,
+     title: {
+     text: '',
+     align: 'high'
+     },
+     labels: {
+     overflow: 'justify'
+     }
+     },
+     tooltip: {
+     valueSuffix: ' บาท'
+     },
+     plotOptions: {
+     bar: {
+     dataLabels: {
+     enabled: true
+     }
+     }
+     },
+     credits: {
+     enabled: false
+     },
+     series: [{
+     colorByPoint: true,
+     name: 'ยอดขาย',
+     data: [<?php //echo $Selltotalyearnow    ?>, <?php //echo $Selltotallastyear    ?>]
+     }]
+     });
+     });
+     */
 
     $(function () {
         Highcharts.chart('sellmonth', {
@@ -312,7 +442,7 @@ $branchModel = new Branch();
                 type: 'column'
             },
             title: {
-                text: '<span style="color:#eeeeee;"> ยอดขายปี <?php echo ($year + 543) ?> </span>'
+                text: '<span style="color:#eeeeee;"> ผลงานเดือนนี้ </span>'
             },
             subtitle: {
                 text: ''
@@ -330,21 +460,21 @@ $branchModel = new Branch();
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'จำนวนเงิน'
+                    text: 'จำนวน'
                 }
             },
             legend: {
                 enabled: false
             },
             tooltip: {
-                pointFormat: 'ยอดขาย: <b>{point.y:.1f} บาท</b>'
+                pointFormat: 'ยอดขาย: <b>{point.y:.0f} ครั้ง</b>'
             },
             credits: {
                 enabled: false
             },
             series: [{
                     colorByPoint: true,
-                    name: 'Population',
+                    name: 'ผลงาน',
                     data: [<?php echo $categorys ?>
                         /*
                          ['Shanghai', 23.7],
@@ -366,7 +496,7 @@ $branchModel = new Branch();
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',
-                        format: '{point.y:.1f}', // one decimal
+                        format: '{point.y:.จf}', // one decimal
                         y: 10, // 10 pixels down from the top
                         style: {
                             fontSize: '13px',
@@ -448,10 +578,10 @@ $branchModel = new Branch();
                 }]
         });
     });
-    
+
     function setboxview() {
         var w = window.innerWidth;
-        if (w < 768) {
+        if (w <= 768) {
             $("#sell").css({'max-height': '250px'});
         }
     }

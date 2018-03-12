@@ -80,12 +80,12 @@
             <?php
             foreach ($images as $rs):
                 ?>
-                <li class="col-sm-6 col-md-3 col-lg-3">
+                <li class="col-sm-6 col-md-3 col-lg-3 col-xs-6">
                     <input type="checkbox" id="cb<?php echo $rs['id'] ?>" value="<?php echo $rs['id'] ?>"/>
 
                     <label for="cb<?php echo $rs['id'] ?>">
                         <div class="img-wrapper">
-                            <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/product/<?php echo $rs['images'] ?>" class="img-responsive article-img" style=" height: 100px;"/>
+                            <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/product/thumbnail/<?php echo $rs['images'] ?>" class="img-responsive article-img" style=" height: 100px;"/>
                         </div>
                     </label>
                 </li>

@@ -11,7 +11,7 @@ if (Yii::app()->session['branch'] == "99") {
     $branchlist = Branch::model()->findAll("id=:id", array(":id" => $branch));
 }
 ?>
-<div class="row">
+<div class="row" style="margin:0px;">
     <div class="col-lg-3">
         วันที่เริ่มต้น
         <?php

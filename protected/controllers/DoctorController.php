@@ -86,7 +86,7 @@ class DoctorController extends Controller {
 
         Yii::app()->db->createCommand()->update("service", array("status" => "2"), "id = '$service_id'");
 
-        $this->layout = "dortor";
+        $this->layout = "template_history";
         //$data['contact'] = PatientContact::model()->find("patient_id = '$id'");
         $data['model'] = Patient::model()->find("id = '$id'");
         $checkbodyModel = new Checkbody();

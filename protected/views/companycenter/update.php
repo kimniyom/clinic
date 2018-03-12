@@ -15,6 +15,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>ที่อยู่ / ข้อมูลติดต่อ</h1>
+<h4>ที่อยู่ / ข้อมูลติดต่อ</h4>
 <hr/>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

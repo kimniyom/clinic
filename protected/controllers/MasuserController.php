@@ -69,6 +69,9 @@ class MasuserController extends Controller {
             $model->password = md5($_POST['Masuser']['password']);
             $model->create_date = date("Y-m-d H:i:s");
             $model->d_update = date("Y-m-d H:i:s");
+            $employee = $model->user_id;
+            $em = Employee::model()->find('id=:id',array(':id' => $employee));
+            $model->status = $em['status_id'];
             $model->flag = "0";
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id, 'user_id' => $model->user_id));
@@ -241,10 +244,10 @@ class MasuserController extends Controller {
         $year = date("Y");
         $Model = new Employee();
         $LogloginModel = new Loglogin();
-        $sellmonth = $Model->Getsellmonth($id, $year);
-        foreach ($sellmonth as $sm):
-            //echo $sm['month_th']." ".$sm['total']."<br/>";
-            $category[] = "['" . $sm['month_th'] . "'," . $sm['total'] . "]";
+        $commission = $Model->Getcommission($id);
+        $category = array();
+        foreach ($commission as $sm):
+            $category[] = "['" . $sm['commisionname'] . "'," . $sm['total'] . "]";
         endforeach;
         $categorys = implode(",", $category);
 
@@ -255,15 +258,15 @@ class MasuserController extends Controller {
         endforeach;
 
         $loglogins = implode(",", $loglogin);
-        $Selltotalyearnow = $Model->Selltotalyearnow($id);
-        $Selltotallastyear = $Model->Selltotallastyear($id);
+        //$Selltotalyearnow = $Model->Selltotalyearnow($id);
+        //$Selltotallastyear = $Model->Selltotallastyear($id);
         $this->render('//masuser/profile', array(
             'model' => Employee::model()->find("id = '$id' "),
             'categorys' => $categorys,
             'year' => $year,
             'loglogin' => $loglogins,
-            'Selltotalyearnow' => $Selltotalyearnow,
-            'Selltotallastyear' => $Selltotallastyear,
+            //'Selltotalyearnow' => $Selltotalyearnow,
+            //'Selltotallastyear' => $Selltotallastyear,
         ));
     }
 

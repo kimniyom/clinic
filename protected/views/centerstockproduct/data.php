@@ -1,6 +1,6 @@
 <style type="text/css">
     #p_product tbody tr td b{
-        color: #006699;
+        color: #cccccc;
     }
 </style>
 
@@ -66,7 +66,7 @@
                     <b>ชื่อเรียกในคลินิก:</b> <?php echo $last['product_nameclinic']; ?><br/>
                     <b>หมวด:</b> <?php echo $last['category'] ?>
                     <b>ประเภท:</b> <?php echo $last['type_name'] ?><br/>
-                    <b>ต้นทุน:</b> <label class=" badge" style=" font-size: 20px;"><?php echo number_format($last['costs'], 2); ?></label>
+                    <b>ต้นทุน:</b> <label class=" badge" style=" font-size: 20px;"><?php echo number_format($last['costs'], 2); ?></label><br/>
                     <b>ราคาขาย / หน่วย:</b> <label class=" badge" style=" font-size: 20px;"><?php echo number_format($last['product_price'], 2); ?></label><br/>
                     <b>หน่วยนับ:</b> <?php echo $last['unitname'] ?>
                         <b>สถานะ:</b> <?php if ($last['status'] == "1") { ?>
@@ -75,7 +75,7 @@
                             <font style="color: #669900;"><i class="fa fa-check"></i> ยังผลิต</font>
                         <?php } ?>
                     <div class="pull-right">
-                        <a href="<?php echo $link ?>" class="btn btn-success btn-lg"><i class="fa fa-file"></i> รายละเอียด</a>
+                        <a href="<?php echo $link ?>" class="btn btn-default"><i class="fa fa-file"></i> รายละเอียด</a>
                     </div>
             </tr>
         <?php endforeach; ?>

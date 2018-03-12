@@ -14,7 +14,7 @@ class QueueController extends Controller {
         $data['seq'] = $Model->Getseq($branch);
 
         if (Yii::app()->session['status'] == '2') {
-            $this->layout = "dortor";
+            //$this->layout = "dortor";
             $this->render('index', $data);
         } else {
             $this->actionSeqemployee();

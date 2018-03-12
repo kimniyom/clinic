@@ -46,7 +46,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                 </center>
             </div>
 
-            <div style=" background: #f9f9f9; border-bottom: #dddddd solid 1px; border-top: #dddddd solid 1px; padding: 5px; font-weight: bold;">
+            <div style=" background: #333333; border-bottom: #333333 solid 1px; border-top: #333333 solid 1px; padding: 5px; font-weight: bold;">
                 <i class="fa fa-shopping-cart"></i> ประวัติการซื้อสินค้า
             </div>
             <div id="sellhistory" style=" text-align: left;">
@@ -167,10 +167,10 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
             </div>
         </div>
         <div class="col-md-3 col-lg-3" style=" padding: 0px;">
-            <div style=" background: #f9f9f9; border-bottom: #dddddd solid 1px; padding: 5px; font-weight: bold;">ประวัติการรับบริการ</div>
+            <div style=" background: #333333; border-bottom: #333333 solid 1px; padding: 5px; font-weight: bold;">ประวัติการรับบริการ</div>
             <div id="history"></div>
 
-            <div style=" background:#f9f9f9; border-bottom: #dddddd solid 1px;  border-top: #dddddd solid 1px; padding: 5px; font-weight: bold;">
+            <div style=" background:#333333; border-bottom: #333333 solid 1px;  border-top: #333333 solid 1px; padding: 5px; font-weight: bold;">
                 การนัด | <a href="<?php echo Yii::app()->createUrl('appoint/carlendar') ?>" style=" color: #0000FF;"><i class="fa fa-plus"></i> เพิ่มวันนัด</a>
             </div>
             <div id="appoint"></div>
@@ -187,13 +187,20 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
                 <h4 class="modal-title">รูปภาพ</h4>
             </div>
             <div class="modal-body">
+                <form id="upload" method="post" action="<?php echo Yii::app()->createUrl('patient/save_upload', array('id' => $model['id'])) ?>" enctype="multipart/form-data">
+                    <div id="drop">
+                        เลือกรูปภาพ<br/>
+                        <a class="btn btn-primary"><i class="fa fa-picture-o"></i> Browse</a>
+                        <input type="file" name="upl" />
+                    </div>
 
-                <input type="file" name="file_upload" id="file_upload"/>
+                    <ul style="">
+                        <!-- The file uploads will be shown here -->
+                    </ul>
+
+                </form>
                 <p id="font-16" style=" color: #ff0000; margin-bottom: 0px;">(ขนาดไม่เกิน 2MB)</p>
                 <p id="font-16" style=" color: #ff0000; margin-bottom: 0px;">นามสกุล .jpg .png</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -220,21 +227,122 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
 
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#file_upload').uploadify({
-            'buttonText': 'เลือกรูปภาพ ...',
-            //'swf ': '<?//php echo Yii::app()->baseUrl; ?>/lib/uploadify/uploadify.swf',
-            'swf': '<?php echo Yii::app()->baseUrl . "/lib/uploadify/uploadify.swf?preventswfcaching=1442560451655"; ?>',
-            'uploader': '<?php echo Yii::app()->createUrl('patient/save_upload', array('id' => $model['id'])) ?>',
-            'auto': true,
-            'fileSizeLimit': '2MB',
-            'fileTypeExts': ' *.jpg; *.png',
-            'uploadLimit': 1,
-            'width': 100,
-            'onUploadSuccess': function (data) {
-                window.location.reload();
-            }
+  
+    $(function () {
+
+        var ul = $('#upload ul');
+        $('#drop a').click(function () {
+            // Simulate a click on the file input button
+            // to show the file browser dialog
+            $(this).parent().find('input').click();
         });
+
+        // Initialize the jQuery File Upload plugin
+        $('#upload').fileupload({
+
+            // This element will accept file drag/drop uploading
+            dropZone: $('#drop'),
+
+            // This function is called when a file is added to the queue;
+            // either via the browse button, or via drag/drop:
+
+            add: function (e, data) {
+
+                var tpl = $('<li class="working"><input type="text" value="0" data-width="36" data-height="36"' +
+                        ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+
+                // Append the file name and file size
+                //data.files[0].name
+                tpl.find('p').text("")
+                        .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+
+                // Add the HTML to the UL element
+                data.context = tpl.appendTo(ul);
+
+                // Initialize the knob plugin
+                tpl.find('input').knob();
+
+                // Listen for clicks on the cancel icon
+                tpl.find('span').click(function () {
+
+                    if (tpl.hasClass('working')) {
+                        jqXHR.abort();
+                    }
+
+                    tpl.fadeOut(function () {
+                        tpl.remove();
+                    });
+
+                });
+
+                //Automatically upload the file once it is added to the queue
+                //var jqXHR = data.submit();
+
+                var jqXHR = data.submit()
+                        .success(function (result, textStatus, jqXHR) {
+                            if (result == "error") {
+                                data.context.addClass('error');
+                            }
+
+                        })
+                        //.error(function (jqXHR, textStatus, errorThrown) {alert(jqXHR); return false;})
+                        .complete(function (result, textStatus, jqXHR) {
+                            window.location.reload();
+                        });
+            },
+
+            progress: function (e, data) {
+                var type = data.files[0].type;
+                var size = data.files[0].size;
+
+                if (type == "image/jpeg" && size <= "1000000") {
+                    // Calculate the completion percentage of the upload
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                    // Update the hidden input field and trigger a change
+                    // so that the jQuery knob plugin knows to update the dial
+                    data.context.find('input').val(progress).change();
+
+                    if (progress == 100) {
+                        data.context.removeClass('working');
+                    } else {
+                        data.context.addClass('error');
+                    }
+                } else {
+                    data.context.addClass('error');
+                }
+
+            },
+
+            fail: function (e, data) {
+                // Something has gone wrong!
+                data.context.addClass('error');
+            }
+
+        });
+
+        // Prevent the default action when a file is dropped on the window
+        $(document).on('drop dragover', function (e) {
+            e.preventDefault();
+        });
+
+        // Helper function that formats the file sizes
+        function formatFileSize(bytes) {
+            if (typeof bytes !== 'number') {
+                return '';
+            }
+
+            if (bytes >= 1000000000) {
+                return (bytes / 1000000000).toFixed(2) + ' GB';
+            }
+
+            if (bytes >= 1000000) {
+                return (bytes / 1000000).toFixed(2) + ' MB';
+            }
+
+            return (bytes / 1000).toFixed(2) + ' KB';
+        }
+
     });
 
     function popupprofile() {
@@ -315,7 +423,7 @@ $Author = $MasuserModel->GetDetailUser($model->emp_id);
             Setscreen();
             SetBoxHistory();
         } else {
-            $("#p-right").css({'border':'none'});
+            $("#p-right").css({'border': 'none'});
         }
     }
     function Setscreen() {

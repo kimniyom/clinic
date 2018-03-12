@@ -27,12 +27,12 @@ class PatientController extends Controller {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('index', 'view', 'checkpatient',
-                'save_upload', 'getdata', 'history', 'appoint', 'sellhistory','getappointpatient',
-                'deleteappoint','detailsell','delete'),
+                    'save_upload', 'getdata', 'history', 'appoint', 'sellhistory', 'getappointpatient',
+                    'deleteappoint', 'detailsell', 'delete'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'dortorsearch','delete'),
+                'actions' => array('create', 'update', 'dortorsearch', 'delete'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -75,7 +75,7 @@ class PatientController extends Controller {
             $model->d_update = date("Y-m-d");
             $model->emp_id = Yii::app()->user->id;
             if ($model->save())
-                //$this->redirect(array('patientcontact/create', 'id' => $model->id));
+            //$this->redirect(array('patientcontact/create', 'id' => $model->id));
                 $this->redirect(array('view', 'id' => $model->id));
         }
 
@@ -204,9 +204,7 @@ class PatientController extends Controller {
     }
 
     public function actionSave_upload() {
-        $configWeb = new Configweb_model();
         $id = $_GET['id'];
-        $targetFolder = Yii::app()->baseUrl . '/uploads/profile'; // Relative to the root
 
         $sqlCkeck = "SELECT images FROM patient WHERE id = '$id' ";
         $rs = Yii::app()->db->createCommand($sqlCkeck)->queryRow();
@@ -216,58 +214,52 @@ class PatientController extends Controller {
             unlink('./uploads/profile/' . $rs['images']);
         }
 
-        if (!empty($_FILES)) {
-            $tempFile = $_FILES['Filedata']['tmp_name'];
-            $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-            $FULLNAME = $_FILES['Filedata']['name'];
-            $type = substr($FULLNAME, -3);
-            $Name = "file_" . $configWeb->Randstrgen(30) . "." . $type;
-            $targetFile = $targetPath . '/' . $Name;
+        $allowed = array('jpg', 'jpeg');
 
-            $fileTypes = array('jpg', 'jpeg', 'JPEG', 'png'); // File extensions
-            $fileParts = pathinfo($_FILES['Filedata']['name']);
+        if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 
-            if (in_array($fileParts['extension'], $fileTypes)) {
-                move_uploaded_file($tempFile, $targetFile);
-                $columns = array(
-                    "images" => $Name
-                );
+            $extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
+            //$Path = Yii::app()->baseUrl . '/uploads/profile/';
 
-                Yii::app()->db->createCommand()
-                        ->update("patient", $columns, "id = '$id' ");
+            $filename = $_FILES["upl"]["name"];
+            $file_basename = substr($filename, 0, strripos($filename, '.')); // get file extention
+            $file_ext = substr($filename, strripos($filename, '.')); // get file name
+            $newfilename = md5($file_basename) . $file_ext;
 
-
-                echo '1';
-            } else {
-                echo 'Invalid file type.';
+            if (!in_array(strtolower($extension), $allowed)) {
+                echo 'error';
+                exit;
             }
+
+            $columns = array(
+                "images" => $newfilename
+            );
+
+            Yii::app()->db->createCommand()
+                    ->update("patient", $columns, "id = '$id' ");
+
+            $images = $_FILES["upl"]["tmp_name"];
+            //copy($_FILES["upl"]["tmp_name"],$Path.$newfilename);
+            $width = 300; //*** Fix Width & Heigh (Autu caculate) ***//
+            $size = GetimageSize($images);
+            $height = round($width * $size[1] / $size[0]);
+            $images_orig = ImageCreateFromJPEG($images);
+            $photoX = ImagesX($images_orig);
+            $photoY = ImagesY($images_orig);
+            $images_fin = ImageCreateTrueColor($width, $height);
+            ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
+            ImageJPEG($images_fin, "uploads/profile/" . $newfilename);
+            ImageDestroy($images_orig);
+            ImageDestroy($images_fin);
+
+            //if(move_uploaded_file($_FILES['upl']['tmp_name'],$Path.$newfilename)){
+            echo 'success';
+            exit;
+            //}
         }
 
-        /*
-          if (!empty($_FILES)) {
-          $tempFile = $_FILES['Filedata']['tmp_name'];
-          $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-          $FileName = time() . $_FILES['Filedata']['name'];
-          $targetFile = rtrim($targetPath, '/') . '/' . $FileName;
-
-          $fileTypes = array('jpg', 'jpeg', 'png'); // File extensions
-          $fileParts = pathinfo($_FILES['Filedata']['name']);
-
-          if (in_array($fileParts['extension'], $fileTypes)) {
-          move_uploaded_file($tempFile, $targetFile);
-
-          $columns = array(
-          "images" => $FileName
-          );
-
-          Yii::app()->db->createCommand()
-          ->update("masuser", $columns, "pid = '$pid' ");
-          echo '1';
-          } else {
-          echo 'Invalid file type.';
-          }
-          }
-         */
+        echo 'error';
+        exit;
     }
 
     public function actionDortorsearch() {
@@ -314,18 +306,18 @@ class PatientController extends Controller {
         $appoint = $Model->GetappointPatient($appoint_id);
 
         $str = "";
-        $str .= "<table class='table'><tr><td>วันที่นัด</td><td>".$appoint['appoint']."</td></tr>";
-        $str .= "<tr><td>ประเภทนัด</td><td>".$Model->Typeappoint($appoint['type'])."</td></tr>";
-        $str .= "<tr><td>อื่น ๆ</td><td>".$appoint['etc']."</td></tr>";
-        $str .="</table>";
+        $str .= "<table class='table'><tr><td>วันที่นัด</td><td>" . $appoint['appoint'] . "</td></tr>";
+        $str .= "<tr><td>ประเภทนัด</td><td>" . $Model->Typeappoint($appoint['type']) . "</td></tr>";
+        $str .= "<tr><td>อื่น ๆ</td><td>" . $appoint['etc'] . "</td></tr>";
+        $str .= "</table>";
 
         echo $str;
     }
 
-    public function actionDeleteappoint(){
+    public function actionDeleteappoint() {
         $appoint_id = Yii::app()->request->getPost('appoint_id');
         Yii::app()->db->createCommand()
-                ->delete("appoint","id = '$appoint_id'");
+                ->delete("appoint", "id = '$appoint_id'");
     }
 
     public function actionDetailsell($sell_id) {

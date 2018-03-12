@@ -35,6 +35,11 @@ if (isset($model['birth'])) {
         border: 0px;
         border-bottom: #e6e6e6 solid 1px;
     }
+    
+    #btn-left:hover{
+        background: none;
+    }
+
 
     .tabpatient ul li a{
         border-radius: 0px;

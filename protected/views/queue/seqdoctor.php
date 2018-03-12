@@ -1,11 +1,6 @@
-<style type="text/css">
 
-    .modal.large {
-        width: 80%;
-    }
-</style>
 
-<table class="table table-striped table-bordered" id="tb-services" style=" background: #FFFFFF;">
+<table class="table table-striped table-bordered" id="tb-services" style=" background: none;">
     <thead>
         <tr>
             <td style=" width: 5%; text-align: center;">#</td>
@@ -39,11 +34,11 @@
                 <td><?php echo $rss['cc'] ?></td>
                 <td style=" text-align: center;">
                     <?php if ($i == 1) { ?>
-                        <a href="<?php echo Yii::app()->createUrl('doctor/patientview', array('id' => $rs['patient_id'], 'service_id' => $rs['id'])) ?>">
-                            <button type="button" class="btn btn-default btn-xs">ให้บริการ</button>
+                    <a href="<?php echo Yii::app()->createUrl('doctor/patientview', array('id' => $rs['patient_id'], 'service_id' => $rs['id'])) ?>" target="_blank">
+                            <button type="button" class="btn btn-default btn-sm">ให้บริการ</button>
                         </a>
                     <?php } else { ?>
-                        <button type="button" class="btn btn-default btn-xs disabled">ให้บริการ</button>
+                        <button type="button" class="btn btn-default btn-sm disabled">ให้บริการ</button>
                     <?php } ?>
                 </td>
 
@@ -57,8 +52,13 @@
     Setscreen();
     function Setscreen() {
         var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (boxsell - 255);
+        var w = window.innerWidth;
+        var screenfull;
+        if(w >= 768){
+            screenfull = (boxsell - 260);
+        } else {
+            screenfull = false;
+        }
         $("#tb-services").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง

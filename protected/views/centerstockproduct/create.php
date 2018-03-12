@@ -1,33 +1,6 @@
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckfinder/ckfinder.js"></script>
 
-<script src="<?= Yii::app()->baseUrl ?>/assets/uploadify/jquery.uploadify.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/assets/uploadify/uploadify.css">
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        //load_data();
-        $('#Filedata').uploadify({
-            /*'buttonText': 'กรุณาเลือกรูปภาพ ...',*/
-            'auto': true, //เปิดใช้การอัพโหลดแบบอัติโนมัติ
-            buttonText: "อัพโหลดรูปภาพ",
-            //'buttonImage': '<?//= Yii::app()->baseUrl ?>/images/image-up-icon.png',
-            'swf': '<?= Yii::app()->baseUrl ?>/assets/uploadify/uploadify.swf', //โฟเดอร์ที่เก็บไฟล์ปุ่มอัพโหลด
-            'uploader': "<?= Yii::app()->createUrl('backend/images/uploadify') ?>",
-            'fileSizeLimit': '1MB', //อัพโหลดได้ครั้งละไม่เกิน 1024kb
-            //'width': '128',
-            //'height': '132',
-            'fileTypeExts': '*.jpg;', //กำหนดชนิดของไฟล์ที่สามารถอัพโหลดได้
-            'multi': true, //เปิดใช้งานการอัพโหลดแบบหลายไฟล์ในครั้งเดียว
-            'queueSizeLimit': 5, //อัพโหลดได้ครั้งละ 5 ไฟล์
-            'onUploadSuccess': function (file, data, response) {
-                load_data();
-            }
-        });
-    });
-
-</script>
-
 <?php
 $title = "เพิ่มสินค้า";
 $this->breadcrumbs = array(
@@ -97,7 +70,7 @@ $BranchModel = new Branch();
             <label for="">ชื่อสินค้าคลินิก*</label>
             <input type="text" id="product_nameclinic" name="product_nameclinic" class="form-control" style="width:100%;" required="required"/>
 
-           
+
             <div class="row">
                 <div class="col-md-6 col-lg-3">
                     <label for="">หน่วยนับ*</label>
@@ -133,33 +106,33 @@ $BranchModel = new Branch();
             </div>
 
             <div class="row">
-<!--
-                <div class="col-lg-4">
-                    <label for="">บริษัท</label><br/>
-                    <?php
-/*
-                    $this->widget('booster.widgets.TbSelect2', array(
-                        //'model' => $model,
-                        'asDropDownList' => true,
-                        //'attribute' => 'itemid',
-                        'name' => 'company',
-                        'id' => 'company',
-                        'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
-                        //'value' => $model,
-                        'options' => array(
-                            'allowClear' => true,
-                            //$model,
-                            //'oid',
-                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
-                            'placeholder' => '== บริษัท ==',
-                            'width' => '100%',
-                        //'tokenSeparators' => array(',', ' ')
-                        )
-                    ));
-                    */
+                <!--
+                                <div class="col-lg-4">
+                                    <label for="">บริษัท</label><br/>
+                <?php
+                /*
+                  $this->widget('booster.widgets.TbSelect2', array(
+                  //'model' => $model,
+                  'asDropDownList' => true,
+                  //'attribute' => 'itemid',
+                  'name' => 'company',
+                  'id' => 'company',
+                  'data' => CHtml::listData(CenterStockcompany::model()->findAll(""), 'id', 'company_name'),
+                  //'value' => $model,
+                  'options' => array(
+                  'allowClear' => true,
+                  //$model,
+                  //'oid',
+                  //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                  'placeholder' => '== บริษัท ==',
+                  'width' => '100%',
+                  //'tokenSeparators' => array(',', ' ')
+                  )
+                  ));
+                 */
                 ?>
-                </div>
--->
+                                </div>
+                -->
                 <div class="col-lg-5" style=" padding-top: 22px;">
                     <div class="well well-sm" style=" text-align: center;">
                         <input type="radio" id="private" name="private" value="0" checked="checked"/> คลินิกมองเห็น
@@ -209,7 +182,19 @@ $BranchModel = new Branch();
                 <h4 class="modal-title" id="font-18">เลือกรูปภาพ</h4>
             </div>
             <div class="modal-body" style="height: 400px; overflow: auto;">
-                <input id="Filedata" name="Filedata" type="file" multiple="true">
+                <form id="upload" method="post" action="<?= Yii::app()->createUrl('backend/images/miniupload') ?>" enctype="multipart/form-data">
+                    <div id="drop">
+                        เลือกรูปภาพ<br/>
+                        <a class="btn btn-primary"><i class="fa fa-picture-o"></i> Browse</a>
+                        <input type="file" name="upl" multiple />
+                    </div>
+
+                    <ul style="">
+                        <!-- The file uploads will be shown here -->
+                    </ul>
+
+                </form>
+
                 <font id="font-16">* อัพโหลดได้ครั้งละไม่เกิน 5 ภาพ,นามสกุลไฟล์ .jpg,ขนาดไม่เกิน 1 MB </font>
                 <hr/>
                 <div id="load_images"></div>
@@ -384,10 +369,12 @@ $BranchModel = new Branch();
             $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             $("#p-right").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
         } else {
-             $("#p-right").css({'border': 'none'});
+            $("#p-right").css({'border': 'none'});
         }
         //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
         //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
     }
+    
 </script>
+<script src="<?php echo Yii::app()->baseUrl; ?>/lib/mini-upload/js/script.js" type="text/javascript"></script>
 

@@ -10,6 +10,6 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h1>แก้ไขรายการหัตถการ <?php echo $model->diagname; ?></h1>
+<h4>แก้ไขรายการหัตถการ <?php echo $model->diagname; ?></h4>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

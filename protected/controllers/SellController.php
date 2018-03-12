@@ -56,7 +56,8 @@ class SellController extends Controller {
             Yii::app()->db->createCommand()
                     ->delete("sell", "itemcode = '$itemcode' ");
         endforeach;
-
+        
+        $this->layout = 'template_sell';
         $this->render('index');
     }
 
@@ -67,6 +68,8 @@ class SellController extends Controller {
         $branch = Yii::app()->request->getPost('branch');
         $number = Yii::app()->request->getPost('number');
 
+        $Product = ClinicStockproduct::model()->find("product_id=:product_id AND branch=:branch", array(":product_id" => $itemcode, ":branch" => $branch));
+
         $columns = array(
             "itemcode" => $itemcode,
             "product_id" => $itemcode,
@@ -75,6 +78,7 @@ class SellController extends Controller {
             "user_id" => Yii::app()->user->id,
             "branch" => $branch,
             "number" => $number,
+            "price" => $Product['product_price'],
             "date_sell" => date("Y-m-d")
         );
         Yii::app()->db->createCommand()
@@ -91,7 +95,7 @@ class SellController extends Controller {
 
     public function actionLoadorder() {
         $sell_id = Yii::app()->request->getPost('sell_id');
-        $sql = "SELECT s.id,p.product_id,c.product_nameclinic AS product_name,SUM(s.number) AS total,p.product_price
+        $sql = "SELECT s.id,p.product_id,c.product_nameclinic AS product_name,SUM(s.number) AS total,s.price AS product_price
                         FROM sell s INNER JOIN clinic_stockproduct p ON s.product_id = p.product_id
                         INNER JOIN center_stockproduct c ON p.product_id = c.product_id
                         WHERE s.sell_id = '$sell_id' 
@@ -106,7 +110,7 @@ class SellController extends Controller {
         $sql = "SELECT SUM(Q.total) AS total
                 FROM
                 (
-                        SELECT (SUM(s.number) * p.product_price) AS total
+                        SELECT (SUM(s.number) * s.price) AS total
                         FROM sell s INNER JOIN clinic_stockproduct p ON s.product_id = p.product_id
                         WHERE s.sell_id = '$sell_id'
                         GROUP BY s.product_id

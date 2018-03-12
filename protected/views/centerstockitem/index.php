@@ -4,8 +4,9 @@
         color: #ff0000;
     }
     #bcutstock{
-        background: #ccffff;
+        background: #000000;
         font-weight: bold;
+        color:green;
     }
 
     table tbody tr td{
@@ -69,7 +70,11 @@ $this->breadcrumbs = array(
                                 $status = "2";
                             }
                             ?>
-                            <tr <?php echo $class ?> onclick="action('<?php echo $rs['id'] ?>', '<?php echo $status ?>')" style="cursor: pointer;">
+                            <?php if ($rs['numbercut'] == $rs['totalcut']) { ?>
+                                <tr <?php echo $class ?> onclick="action('<?php echo $rs['id'] ?>', '<?php echo $status ?>')" style="cursor: pointer;">
+                                <?php } else { ?>
+                                <tr <?php echo $class ?> onclick="javascript:alert('ไม่สามารถทำรายการได้ ...'); return false;" style="cursor: pointer;">
+                                <?php } ?>
                                 <td style=" text-align: center;"><?php echo $i ?></td>
                                 <td><?php echo $rs['lotnumber'] ?></td>
                                 <td><?php echo $rs['itemcode'] ?></td>

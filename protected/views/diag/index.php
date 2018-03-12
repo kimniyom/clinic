@@ -7,7 +7,7 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<h1>รายการหัตถการ</h1>
+<h4>รายการหัตถการ</h4>
 <a href="<?php echo Yii::app()->createUrl('diag/create') ?>">
     <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มข้อมูลหัตถการ</button></a>
 <br/><br/>

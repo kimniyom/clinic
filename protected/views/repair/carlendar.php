@@ -6,6 +6,11 @@
     #ca{
         padding: 10px;
     }
+    h2{
+        font-size: 18px;
+        text-align: center;
+        padding-top: 15px;
+    }
 </style>
 <?php
 $this->breadcrumbs = array(
@@ -30,7 +35,7 @@ $Web = new Configweb_model();
                     <?php endforeach; ?>
                 </div>
             </div>
-            
+
             <div class="panel panel-warning">
                 <div class="panel-heading"><i class="fa fa-bell"></i> แจ้งเตือนซ่อม - บำรุง (ก่อนวันซ่อม <?php echo $date_repair ?> วัน)</div>
                 <div class="list-group">

@@ -37,10 +37,10 @@ class Employee extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('oid,name,lname,email,tel,sex,birth,walking,salary,branch', 'required'),
+            array('oid,name,lname,email,tel,sex,birth,walking,salary,branch,status_id', 'required'),
             array('salary', 'numerical', 'integerOnly' => true),
             array('tel', 'length', 'max' => 10),
-            array('oid,branch,position', 'length', 'max' => 3),
+            array('oid,branch,position,status_id', 'length', 'max' => 3),
             array('name, lname, email', 'length', 'max' => 100),
             array('alias, images', 'length', 'max' => 255),
             array('sex', 'length', 'max' => 1),
@@ -82,6 +82,7 @@ class Employee extends CActiveRecord {
             'position' => 'ตำแหน่ง',
             'branch' => 'สาขาที่ปฏิบัติงาน',
             'salary' => 'เงินเดือน',
+            'status_id' => 'สถานะ'
         );
     }
 
@@ -149,28 +150,50 @@ class Employee extends CActiveRecord {
 
         return Yii::app()->db->createCommand($sql)->queryAll();
     }
-    
-    function Selltotalyearnow($user_id = null){
+
+    function Selltotalyearnow($user_id = null) {
         $year = date("Y");
         $sql = "SELECT IFNULL(SUM(l.total),0) AS total
                 FROM logsell l 
                 WHERE LEFT(l.date_sell,4) = '$year'
                 AND l.user_id = '$user_id' ";
-        
+
         $result = Yii::app()->db->createCommand($sql)->queryRow();
         return $result['total'];
     }
-    
-    function Selltotallastyear($user_id = null){
+
+    function Selltotallastyear($user_id = null) {
         $years = date("Y");
         $year = ($years - 1);
         $sql = "SELECT IFNULL(SUM(l.total),0) AS total
                 FROM logsell l 
                 WHERE LEFT(l.date_sell,4) = '$year'
                 AND l.user_id = '$user_id' ";
-        
+
         $result = Yii::app()->db->createCommand($sql)->queryRow();
         return $result['total'];
+    }
+
+    function Getcommission($employee = null) {
+        $model = Employee::model()->find("id=:id", array(":id" => $employee));
+        $status = $model['status_id'];
+        $year = date("Y");
+        $month = date("m");
+        if (strlen($month) < 2) {
+            $months = "0" . $month;
+        } else {
+            $months = $month;
+        }
+        $sql = "SELECT ms.commisionname,IFNULL(Q.total,0) AS total
+                FROM mascommision ms 
+                LEFT JOIN (
+                    SELECT m.id,m.commisionname,COUNT(*) AS total
+                    FROM mascommision m INNER JOIN job j ON m.id = j.commision
+                    WHERE m.user_status = '$status' AND j.employee = '$employee' AND j.`year` = '$year' AND j.`month` = '$months'
+                    GROUP BY m.id
+                ) Q ON ms.id = Q.id
+                WHERE ms.user_status = '$status'";
+        return Yii::app()->db->createCommand($sql)->queryAll();
     }
 
 }

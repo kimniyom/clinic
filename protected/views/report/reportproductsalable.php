@@ -12,6 +12,7 @@ if (Yii::app()->session['branch'] == "99") {
     $branchlist = Branch::model()->findAll("id=:id", array(":id" => $branch));
 }
 ?>
+<div class="well well-sm" style=" margin: 0px;">
 <div class="row" style=" margin: 0px;">
     <div class="col-lg-3">
         เลือกปี พ.ศ.
@@ -33,13 +34,12 @@ if (Yii::app()->session['branch'] == "99") {
         <button type="button" class="btn btn-default btn-block" onclick="getreport()">ตกลง</button>
     </div>
 </div>
-<div class="row" style=" margin: 0px;">
-    <div class="col-md-12 col-lg-12">
-        <div id="boxreport" style=" background: #ffffff; margin-top: 10px;">
+
+        <div id="boxreport" style="margin-top: 10px;">
             <div id="showreport"></div>
         </div>
     </div>
-</div>
+
 <script type="text/javascript">
     getreport();
     function getreport() {
@@ -58,12 +58,13 @@ if (Yii::app()->session['branch'] == "99") {
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 165);
-        $("#boxreport").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
+        var w = window.innerWidth;
+        if (w >= 768) {
+            var screenfull = (screen - 190);
+            $("#boxreport").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        }
     }
 
 

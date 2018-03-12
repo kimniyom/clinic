@@ -7,18 +7,19 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<div class="panel panel-primary" style=" margin-bottom: 0px;">
-    <div class="panel-heading" style=" position: relative;">
-        <h4>ตำแหน่งพนักงาน</h4>
-        <a href="<?php echo Yii::app()->createUrl('position/create') ?>" style="position: absolute; right: 10px; top: 10px;">
+<div class="panel panel-default" style=" margin-bottom: 0px;">
+    <div class="panel-heading">
+        ตำแหน่งพนักงาน
+        <a href="<?php echo Yii::app()->createUrl('position/create') ?>">
             <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> เพิ่ม</button></a>
     </div>
-    <div class="panel-body" id="boxbody">
-        <table class="table table-responsive">
+    <div class="panel-body">
+        <table class="table table-bordered table-striped" id="position">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th style=" text-align: center;">#</th>
                     <th>ตำแหน่ง</th>
+                    <th style="text-align:right;">เงินประจำตำแหน่ง</th>
                     <th style=" text-align: center;">จัดการ</th>
                 </tr>
             </thead>
@@ -28,11 +29,12 @@ $this->breadcrumbs = array(
                 foreach ($position as $rs): $i++;
                     ?>
                     <tr>
-                        <td><?php echo $i ?></td>
+                        <td style=" text-align: center;"><?php echo $i ?></td>
                         <td><?php echo $rs['position'] ?></td>
+                        <td style="text-align:right;"><?php echo number_format($rs['positionfree'],2) ?></td>
                         <td style=" text-align: center;">
-                            <a href="<?php echo Yii::app()->createUrl('position/update', array('id' => $rs['id'])) ?>"><i class="fa fa-pencil"></i> แก้ไข</a>
-                            <a href="javascript:deleteposition('<?php echo $rs['id'] ?>')"><i class="fa fa-trash-o"></i> ลบ</a>
+                            <a href="<?php echo Yii::app()->createUrl('position/update', array('id' => $rs['id'])) ?>" style="color:orange; text-decoration:none;"><i class="fa fa-pencil"></i> แก้ไข</a>
+                            <a href="javascript:deleteposition('<?php echo $rs['id'] ?>')" style="color:red;text-decoration:none;"><i class="fa fa-trash-o"></i> ลบ</a>
                         </td>
                     </tr>
 <?php endforeach; ?>
@@ -42,7 +44,7 @@ $this->breadcrumbs = array(
 </div>
 
 <script type="text/javascript">
-    Setscreen();
+
     function deleteposition(id) {
         var r = confirm("Are you sure");
         if (r == true) {
@@ -53,13 +55,7 @@ $this->breadcrumbs = array(
             });
         }
     }
-
-    function Setscreen() {
-        var screen = $(window).height();
-        var w = window.innerWidth;
-        var screenfull = (screen - 160);
-        if (w > 768) {
-            $("#boxbody").css({'height': screenfull, 'overflow': 'auto'});
-        }
-    }
+    $(document).ready(function(){
+        $("#position").dataTable();
+    });
 </script>

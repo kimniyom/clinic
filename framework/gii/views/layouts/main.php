@@ -26,7 +26,11 @@ $cs->registerCssFile($baseUrl.'/js/fancybox/jquery.fancybox-1.3.1.css');
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
 	<script type="text/javascript" src="<?php echo $this->module->assetsUrl; ?>/js/main.js"></script>
-
+<style type="text/css">
+	#header a{
+		color: #000000;
+	}
+</style>
 </head>
 
 <body>

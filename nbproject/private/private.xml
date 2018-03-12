@@ -7,13 +7,11 @@
             <file>file:/D:/xampp/htdocs/clinic/protected/views/report/reportcostprofit.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/dataemployee.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/template-black.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/system-black.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/simple-sidebar-black.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/themes/backend/css/simple-sidebar.css</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/salary/calsalary.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/clinicstoreproduct/datastockproduct.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/clinicstoreproduct/datasearchproduct.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SalaryController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/config/main.php</file>
         </group>
     </open-files>
 </project-private>

@@ -96,7 +96,7 @@ $product_id = $product['product_id'];
         </div>
 
         <div class="col-lg-8 col-md-6 col-xs-12" id="p-right">
-            <font style=" color: #F00; font-size: 24px; font-weight: normal;">
+            <font style=" color: #F00; font-size: 18px; font-weight: normal;">
             ชื่อสามัญบริษัท : <?= $product['product_name'] ?><br/>
             ชื่อใช้เรียกในคลินิก : <?= $product['product_nameclinic'] ?>
             </font><br/>
@@ -105,10 +105,10 @@ $product_id = $product['product_id'];
             <b>ประเภทสินค้า</b> <?= $product['subtypename'] ?><br/>
             <b>อัพเดทล่าสุด</b> <?= $config->thaidate($product['d_update']); ?>
 
-            <br/><font style=" font-size: 24px; color: #ffcc00;">
+            <br/><font style=" font-size: 18px; color: #ffcc00;">
             ต้นทุน <?= number_format($product['costs']) ?>.-  บาท
-            </font>
-            <font style=" font-size: 24px; color: #F00;">
+            </font><br/>
+            <font style=" font-size: 18px; color: #F00;">
             ราคาขาย <?= number_format($product['product_price']) ?>.-  บาท
             </font>
             <br/>
@@ -156,6 +156,25 @@ $product_id = $product['product_id'];
 
     </div>
 </div>
+    
+    <!-- Action -->
+<div class="modal fade" tabindex="-1" role="dialog" id="action" style="margin-top:20%;">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <input type="hidden" id="_id">
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button class="btn btn-danger btn-block btn-lg" onclick="deletemixer()"><i class="fa fa-save"></i> ลบข้อมูล</button>
+                    </div>
+                </div>
+                <hr/>
+                <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script type="text/javascript">
     checkheight();
@@ -232,13 +251,7 @@ $product_id = $product['product_id'];
         }
     }
 
-    function deletemixer(id) {
-        var url = "<?php echo Yii::app()->createUrl('centerstockmix/deletemixer') ?>";
-        var data = {id: id};
-        $.post(url, data, function (success) {
-            loadmix();
-        });
-    }
+    
 </script>
 
 <script type="text/javascript">
@@ -262,7 +275,15 @@ $product_id = $product['product_id'];
         }
     }
 
-
+    function deletemixer() {
+        var id = $("#_id").val();
+        var url = "<?php echo Yii::app()->createUrl('centerstockmix/deletemixer') ?>";
+        var data = {id: id};
+        $.post(url, data, function (success) {
+            $("#action").modal('hide');
+            loadmix();
+        });
+    }
 </script>
 
 

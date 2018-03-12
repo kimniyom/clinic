@@ -3,16 +3,12 @@
 /* @var $model Position */
 
 $this->breadcrumbs=array(
-	'Positions'=>array('index'),
-	'Create',
+	'ตำแหน่งพนังงาน'=>array('index'),
+	'เพิ่ม',
 );
 
-$this->menu=array(
-	array('label'=>'List Position', 'url'=>array('index')),
-	array('label'=>'Manage Position', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Create Position</h1>
+<h4>ตำแหน่งพนังงาน</h4>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -8,6 +8,6 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<h1><img src="<?php echo Yii::app()->baseUrl; ?>/images/text-plus-icon.png"/> เพิ่มวัตถุดิบเข้าคลัง</h1>
+<h4><img src="<?php echo Yii::app()->baseUrl; ?>/images/text-plus-icon.png"/> เพิ่มวัตถุดิบเข้าคลัง</h4>
 <hr/>
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

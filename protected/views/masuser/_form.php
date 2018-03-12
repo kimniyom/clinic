@@ -45,15 +45,14 @@
         </div>
     </div>
 
+<!--
     <div class="row">
         <div class="col-lg-2">
-            <?php echo $form->labelEx($model, 'status'); ?>  
+            <?php //echo $form->labelEx($model, 'status'); ?>  
         </div>
         <div class="col-lg-4">
             <?php
-            //echo CHtml::dropDownList('status', $model, CHtml::listData(StatusUser::model()->findAll(""), 'id', 'status'), array('empty' => '(Select a status)', 'class' => 'form-control')
-            //);
-            
+            /*
             $form->widget('booster.widgets.TbSelect2', array(
                 'model' => $model,
                 'asDropDownList' => true,
@@ -70,10 +69,12 @@
                 //'tokenSeparators' => array(',', ' ')
                 )
             ));
+            */
             ?>
-            <?php echo $form->error($model, 'status'); ?>
+            <?php //echo $form->error($model, 'status'); ?>
         </div>
     </div>
+-->
 
     <div class="row">
         <div class="col-lg-2">

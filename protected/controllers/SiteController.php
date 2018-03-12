@@ -31,11 +31,17 @@ class SiteController extends Controller {
     public function actionIndex() {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
-        
+        $report = new Report();
         $rs = $this->CountService();
-        $data['countservice'] = $rs['c']['humen'];
+        $data['countserviceh'] = $rs['c']['humen'];
         $data['countvisit'] = $rs['c']['visit'];
-
+        
+        $branch = Yii::app()->session['branch'];
+        $date = date("Y-m-d");
+        $data['incomtoday'] = $report->GetIncomeToday($date, $branch);
+        $data['incomtomonth'] = $report->GetIncomeTomonth(date("Y-m"), $branch);
+        $data['countservice'] = $report->CountServiceNow($branch);
+        $data['countloginnow'] = $report->CountLoginNow($branch);
         $this->render('index', $data);
     }
 
@@ -44,7 +50,7 @@ class SiteController extends Controller {
         if ($branch == "99") {
             $wherebranch = " 1=1";
         } else {
-            $wherebranch = "s.branch = '1'";
+            $wherebranch = "s.branch = '$branch'";
         }
         $sql = "SELECT COUNT(DISTINCT(s.patient_id)) AS total
                     FROM service s 

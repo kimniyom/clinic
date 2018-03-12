@@ -71,6 +71,29 @@ $month = date("m");
             </div>
                     -->
                 </div>
+                <hr/>
+                <div class="row" style=" margin: 0px;">
+                    <div class="col-sm-6 col-md-6 col-lg-6" style=" padding: 0px;">
+                        <div class="well" style=" margin: 0px; margin-bottom: 10px;">
+                            <h4 style="color: #ff9900; font-size: 18px;"><i class="fa fa-cart-arrow-down"></i> ยอดวันนี้ <?php echo number_format($incomtoday, 2) ?> บาท</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6" style=" padding: 0px;">
+                        <div class="well" style=" margin: 0px; margin-bottom: 10px;">
+                            <h4 style="color: #ff9900; font-size: 18px;"><i class="fa fa-calendar"></i> ยอดทั้งเดือน <?php echo number_format($incomtomonth, 2) ?> บาท</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6" style=" padding: 0px;">
+                        <div class="well" style=" margin: 0px; margin-bottom: 10px;">
+                            <h4 style="color: #ff9900; font-size: 18px;"><i class="fa fa-user"></i> การให้บริการวันนี้ <?php echo number_format($countservice) ?> ครั้ง</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6" style=" padding: 0px;">
+                        <div class="well" style=" margin: 0px; margin-bottom: 10px;">
+                            <h4 style="color: #ff9900; font-size: 18px;"><i class="fa fa-user"></i> การเข้าใช้งานวันนี้ <?php echo number_format($countloginnow) ?> ครั้ง</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-12 col-lg-4" id="home-right">
@@ -279,7 +302,7 @@ $month = date("m");
             series: [{
                     name: 'จำนวน',
                     colorByPoint: true,
-                    data: [<?php echo $countservice ?>, <?php echo $countvisit ?>]
+                    data: [<?php echo $countserviceh ?>, <?php echo $countvisit ?>]
                 }]
         });
     });

@@ -1,29 +1,4 @@
-<script src="<?= Yii::app()->baseUrl ?>/assets/uploadify/jquery.uploadify.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/assets/uploadify/uploadify.css">
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        //load_data();
-        $('#Filedata').uploadify({
-            /*'buttonText': 'กรุณาเลือกรูปภาพ ...',*/
-            'auto': true, //เปิดใช้การอัพโหลดแบบอัติโนมัติ
-            buttonText: "อัพโหลดรูปภาพ",
-            //'buttonImage': '<?//= Yii::app()->baseUrl ?>/images/image-up-icon.png',
-            'swf': '<?= Yii::app()->baseUrl ?>/assets/uploadify/uploadify.swf', //โฟเดอร์ที่เก็บไฟล์ปุ่มอัพโหลด
-            'uploader': "<?= Yii::app()->createUrl('backend/images/uploadify') ?>",
-            'fileSizeLimit': '1MB', //อัพโหลดได้ครั้งละไม่เกิน 1024kb
-            //'width': '128',
-            //'height': '132',
-            'fileTypeExts': '*.jpg;', //กำหนดชนิดของไฟล์ที่สามารถอัพโหลดได้
-            'multi': true, //เปิดใช้งานการอัพโหลดแบบหลายไฟล์ในครั้งเดียว
-            'queueSizeLimit': 5, //อัพโหลดได้ครั้งละ 5 ไฟล์
-            'onQueueComplete': function (file, data) {
-                load_data();
-            }
-        });
-    });
-
-</script>
 
 <?php
 $title = "คลังรูปภาพ";
@@ -35,10 +10,21 @@ $web = new Configweb_model();
 $BranchModel = new Branch();
 ?>
 
-<div class="well well-sm" style="width:100%; margin-bottom:0px; background: #ffffff;">
-    <div class="row">
-        <div class="col-xs-6 col-md-3 col-lg-3" id="p-left">
-            <input id="Filedata" name="Filedata" type="file" multiple="true">
+<div class="well well-sm" style="width:100%; margin-bottom:0px;">
+    <div class="row" style=" margin: 0px;">
+        <div class="col-xs-12 col-md-3 col-lg-3" id="p-left">
+            <form id="upload" method="post" action="<?= Yii::app()->createUrl('backend/images/miniupload') ?>" enctype="multipart/form-data">
+                <div id="drop">
+                    เลือกรูปภาพ<br/>
+                    <a class="btn btn-primary"><i class="fa fa-picture-o"></i> Browse</a>
+                    <input type="file" name="upl" multiple />
+                </div>
+
+                <ul style="">
+                    <!-- The file uploads will be shown here -->
+                </ul>
+
+            </form>
             <font id="font-16">
             <ul>
                 <li>อัพโหลดได้ครั้งละไม่เกิน 5 ภาพ</li>
@@ -48,7 +34,7 @@ $BranchModel = new Branch();
             </font>
             <hr/>
         </div>
-        <div class="col-xs-6 col-md-9 col-lg-9">
+        <div class="col-xs-12 col-md-9 col-lg-9">
             <div style=" width: 100%; padding-left: 20px;">
                 <button type="button" class="btn btn-default" onclick="DelImg()"><i class="fa fa-trash-o"></i> ลบ</button>
                 <button type="button" class="btn btn-default" onclick="DelImgAll()"><i class="fa fa-trash-o"></i> ลบทั้งหมด</button>
@@ -91,14 +77,20 @@ $BranchModel = new Branch();
     Setscreen();
     function Setscreen() {
         var screen = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
-        var screenfull = (screen - 120);
-        var screenfullRight = (screen - 160);
-        $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
-        $("#p-rights").css({'height': screenfullRight, 'overflow': 'auto', 'padding-bottom': '25px'});
-        //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
-        //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
-
+        var w = window.innerWidth;
+        if (w >= 768) {
+            var screenfull = (screen - 120);
+            var screenfullRight = (screen - 160);
+            $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
+            $("#p-rights").css({'height': screenfullRight, 'overflow': 'auto', 'padding-bottom': '25px'});
+            //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
+            //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        } else {
+            $("#p-left").css({'border': 'none'});
+            $("#p-right").css({'border': 'none'});
+        }
     }
 </script>
+
+<script src="<?php echo Yii::app()->baseUrl; ?>/lib/mini-upload/js/script.js" type="text/javascript"></script>
 

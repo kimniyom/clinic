@@ -9,16 +9,22 @@ $Month = Month::model()->findAll();
     table tbody td{
         white-space: nowrap;
     }
+
+    table tfoot tr td{
+        background:#000000;
+        color:red;
+    }
 </style>
 <div class="row" style=" margin: 0px;">
     <div class="col-lg-12 col-md-12">
-        <div class="panel panel-inverse">
+        <div class="panel panel-default">
             <div class="panel-heading">จำนวนนำเข้าวัตถุดิบ ปี <?php echo ($year + 543) ?> (จำนวน)</div>
             <div class="panel-body">
+                <div class=" table-responsive">
                 <table class="table table-bordered" style=" width: 100%;" id="ordersumall">
                     <thead>
                         <tr>
-                            <th style=" text-align: center;">
+                            <th style=" text-align: center; background:#000000;">
                                 เดือน
                                 <hr/>
                                 วัตถุดิบ
@@ -35,34 +41,36 @@ $Month = Month::model()->findAll();
                             $sum = $rs['month1'] + $rs['month2'] + $rs['month3'] + $rs['month4'] + $rs['month5'] + $rs['month6'] + $rs['month7'] + $rs['month8'] + $rs['month9'] + $rs['month10'] + $rs['month11'] + $rs['month12'];
                             ?>
                             <tr>
-                                <td><?php echo $rs['itemcode'] . ' ' . $rs['itemname'] ?></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month1']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month2']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month3']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month4']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month5']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month6']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month7']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month8']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month9']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month10']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month11']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rs['month12']) ?></a></td>
-                                <td style=" text-align: right; font-weight: bold;"><a href=""><?php echo number_format($sum) ?></a></td>
+                                <td style="background:#000000;"><?php echo $rs['itemcode'] . ' ' . $rs['itemname'] ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month1']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month2']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month3']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month4']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month5']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month6']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month7']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month8']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month9']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month10']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month11']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rs['month12']) ?></td>
+                                <td style=" text-align: right; font-weight: bold;"><?php echo number_format($sum) ?></td>
                             </tr>
                         <?php endforeach; ?>                      
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
 
-        <div class="panel panel-inverse">
+        <div class="panel panel-default" style="margin:0px;">
             <div class="panel-heading">รายงานการซื้อเข้าวัตถุดิบ ปี <?php echo ($year + 543) ?> (ราคา)</div>
             <div class="panel-body">
+                <div class=" table-responsive">
                 <table class="table table-bordered table-responsive" style=" width: 100%;" id="ordersumalls">
                     <thead>
                         <tr>
-                            <th style=" text-align: center;">
+                            <th style=" text-align: center; background:#000000;">
                                 เดือน
                                 <hr/>
                                 วัตถุดิบ
@@ -103,20 +111,20 @@ $Month = Month::model()->findAll();
                             $summonth12 = $summonth12 + $rss['month12'];
                             ?>
                             <tr>
-                                <td><?php echo $rss['itemcode'] . ' ' . $rss['itemname'] ?></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month1']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month2']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month3']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month4']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month5']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month6']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month7']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month8']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month9']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month10']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month11']) ?></a></td>
-                                <td style=" text-align: right;"><a href=""><?php echo number_format($rss['month12']) ?></a></td>
-                                <td style=" text-align: right; font-weight: bold;"><a href=""><?php echo number_format($sumPrice) ?></a></td>
+                                <td style="background:#000000;"><?php echo $rss['itemcode'] . ' ' . $rss['itemname'] ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month1']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month2']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month3']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month4']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month5']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month6']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month7']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month8']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month9']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month10']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month11']) ?></td>
+                                <td style=" text-align: right;"><?php echo number_format($rss['month12']) ?></td>
+                                <td style=" text-align: right; font-weight: bold;"><?php echo number_format($sumPrice) ?></td>
                             </tr>
                         <?php endforeach; ?>                      
                     </tbody>
@@ -141,6 +149,7 @@ $Month = Month::model()->findAll();
                         </tr>
                     </tfoot>
                 </table>
+                </div>
             </div>
         </div>
     </div>

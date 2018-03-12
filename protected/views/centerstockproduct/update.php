@@ -1,33 +1,6 @@
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/assets/ckeditor/ckfinder/ckfinder.js"></script>
 
-<script src="<?php echo Yii::app()->baseUrl ?>/assets/uploadify/jquery.uploadify.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl ?>/assets/uploadify/uploadify.css">
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        //load_data();
-        $('#Filedata').uploadify({
-            /*'buttonText': 'กรุณาเลือกรูปภาพ ...',*/
-            'auto': true, //เปิดใช้การอัพโหลดแบบอัติโนมัติ
-            buttonText: "อัพโหลดรูปภาพ",
-            //'buttonImage': '<?//= Yii::app()->baseUrl ?>/images/image-up-icon.png',
-            'swf': '<?= Yii::app()->baseUrl ?>/assets/uploadify/uploadify.swf', //โฟเดอร์ที่เก็บไฟล์ปุ่มอัพโหลด
-            'uploader': "<?= Yii::app()->createUrl('backend/images/uploadify') ?>",
-            'fileSizeLimit': '1MB', //อัพโหลดได้ครั้งละไม่เกิน 1024kb
-            //'width': '128',
-            //'height': '132',
-            'fileTypeExts': '*.jpg;', //กำหนดชนิดของไฟล์ที่สามารถอัพโหลดได้
-            'multi': true, //เปิดใช้งานการอัพโหลดแบบหลายไฟล์ในครั้งเดียว
-            'queueSizeLimit': 5, //อัพโหลดได้ครั้งละ 5 ไฟล์
-            'onUploadSuccess': function (file, data, response) {
-                load_data();
-            }
-        });
-    });
-
-</script>
-
 <?php
 $title = "แก้ไขสินค้า " . $product['product_id'];
 $product_name = $product['product_name'];
@@ -222,7 +195,18 @@ $BranchModel = new Branch();
                 <h4 class="modal-title" id="font-18">เลือกรูปภาพ</h4>
             </div>
             <div class="modal-body" style="height: 400px; overflow: auto;">
-                <input id="Filedata" name="Filedata" type="file" multiple="true">
+                <form id="upload" method="post" action="<?= Yii::app()->createUrl('backend/images/miniupload') ?>" enctype="multipart/form-data">
+                <div id="drop">
+                    เลือกรูปภาพ<br/>
+                    <a class="btn btn-primary"><i class="fa fa-picture-o"></i> Browse</a>
+                    <input type="file" name="upl" multiple />
+                </div>
+
+                <ul style="">
+                    <!-- The file uploads will be shown here -->
+                </ul>
+
+            </form>
                 <font id="font-16">* อัพโหลดได้ครั้งละไม่เกิน 5 ภาพ,นามสกุลไฟล์ .jpg,ขนาดไม่เกิน 1 MB </font>
                 <hr/>
                 <div id="load_images"></div>
@@ -407,3 +391,5 @@ $BranchModel = new Branch();
 
 
 </script>
+
+<script src="<?php echo Yii::app()->baseUrl; ?>/lib/mini-upload/js/script.js" type="text/javascript"></script>

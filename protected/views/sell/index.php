@@ -20,13 +20,13 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
 <div id="content-boxsell" style=" background: #333333;  position: fixed; height: 100%; bottom: 0px;"></div>
 <div class="well" style="border-radius: 0px; padding: 10px; margin-bottom: 0px; border-bottom: none; box-shadow: none;" id="box-sell">
     <div class="row">
-        <div class="col-lg-7" style=" border-right: #999999 solid 1px;">
+        <div class="col-lg-7 col-md-7" style=" border-right: #999999 solid 1px;">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6">
                     รหัสขาย
                     <input type="text" class="form-control" id="sellcode" value="<?php echo $sell_id ?>" readonly="readonly"/>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6">
                     ชื่อสมาชิก *ถ้ามี
                     <?php
                     $this->widget(
@@ -45,25 +45,25 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-7 col-md-7">
                     รหัสสินค้า
                     <div id="_item"></div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-2">
                     จำนวน
                     <input type="text" class="form-control" id="number" value="1" onkeypress="return chkNumber()" style=" text-align: center;"/>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-3">
                     พนักงานขาย
                     <input type="text" class="form-control" id="user" readonly="readonly" value="<?php echo $Profile['name'] . " " . $Profile['lname'] ?>"/>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8 col-md-8">
                     สาขา
                     <?php echo $brancList ?>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4">
                     <button type="button" class="btn btn-default btn-block" id="btnaddproduct" onclick="sell()" style="margin-top: 20px;"><i class="fa fa-plus"></i> เพิ่มสินค้า</button>
                 </div>
             </div>
@@ -71,35 +71,40 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
             <p style=" color: #ff3300;">*ห้าม refresh หน้าจอก่อนสิ้นสุดการขาย</p>
         </div>
 
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-md-2">
             รับเงิน
             <input type="text" class="form-control" id="income" onkeypress="return chkNumber()" style=" text-align: center; font-weight: bold; font-size: 24px;" onkeyup="Income(this.value)"/>
             <input type="hidden" class="form-control" id="distcount" style=" text-align: center; font-weight: bold; font-size: 24px;" value="0"/>
             เงินทอน
             <input type="text" class="form-control" id="change" readonly="readonly" style=" text-align: center; color: #33cc00; font-weight: bold; font-size: 24px; background: #333333;"/>
             <hr style=" border-bottom: #999999 solid 1px;"/>
-            <div style=" text-align: center;">
-                <button type="button" class="btn btn-default" id="btncheckbill" onclick="Check_bill()">
-                    <i class="fa fa-money"></i> ชำระเงิน</button>
-                <button type="button" class="btn btn-default disabled" id="btnprintbill" onclick="PrintBill('<?php echo $sell_id ?>')">
-                    <i class="fa fa-file-archive-o"></i> ใบเสร็จ</button>
+
+            <div class="row" style=" margin: 0px;">
+                <div class="col-lg-12 col-md-12" style=" padding: 0px;">
+                    <button type="button" class="btn btn-success btn-lg btn-block" id="btncheckbill" onclick="Check_bill()">
+                        <i class="fa fa-calculator"></i> ชำระเงิน</button>
+                </div>
+                <div class="col-lg-12 col-md-12" style=" padding: 0px;">
+                    <button type="button" class="btn btn-default btn-lg btn-block disabled" id="btnprintbill" onclick="PrintBill('<?php echo $sell_id ?>')" style=" display: none;">
+                        <i class="fa fa-file-o"></i> ใบเสร็จ</button>
+                </div>
             </div>
         </div>
 
-        <div class="col-lg-3" style=" border-left: #999999 solid 1px;">
+        <div class="col-lg-3 col-md-3" style=" border-left: #999999 solid 1px;">
             <div class="well-sm" style=" text-align: center; background: #333333;">
                 <!--
                 <h3 style=" color: #FFFFFF; margin: 0px;">ราคารวม</h3>
                 <h1 id="total" style=" color: #ffcc00;">0</h1>
                 -->
                 <input type="hidden" id="_total" value="0">
-                <h2 style=" color: #FFFFFF;">ราคาหักส่วนลด</h2>
+                <h4 style=" color: #FFFFFF;">ราคาหักส่วนลด</h4>
                 <input type="hidden" id="_totalfinal" value="0">
                 <h1 id="totalfinal" style=" color: #ffcc00;">0</h1>
             </div>
             <?php $url = Yii::app()->createUrl('sell/bill', array("sell_id" => $sell_id)) ?>
             <!--
-            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                                  ?>', '<?php //echo $sell_id                                                  ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
+            <button type="button" class="btn btn-success btn-block" onclick="PopupBill('<?php //echo $url                                                      ?>', '<?php //echo $sell_id                                                      ?>')"><i class="fa fa-print"></i> พิมพ์ใบเสร็จ</button>
             -->
             <hr/>
             <button type="button" class="btn btn-danger btn-block" id="btn-bg-danger" onclick="javascript:window.location.reload()"><i class="fa fa-remove"></i> จบการขาย</button>
@@ -108,9 +113,9 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
 </div>
 
 <div class="row" style=" margin-bottom: 0px;">
-    <div class="col-lg-8" style=" padding-right: 0px; border-right: none;">
-        <div class="panel panel-info" style="border-radius: 0px; margin-bottom: 0px;">
-            <div class="panel-heading" style="border-radius: 0px;" id="heading-panel"><i class="fa fa-bars"></i> รายการขาย</div>
+    <div class="col-lg-8 col-md-8" style=" padding-right: 0px; border-right: none;">
+        <div class="panel panel-default" style="border-radius: 0px; margin-bottom: 0px;">
+            <div class="panel-heading" style="border-radius: 0px;" id="heading-panels"><i class="fa fa-bars"></i> รายการขาย</div>
 
             <div id="orderlist" style=" position: relative;"><h3 style=" text-align: center;">ยังไม่มีรายการขาย</h3></div>
 
@@ -121,9 +126,9 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
         </div>
     </div>
 
-    <div class="col-lg-4" style=" padding-left: 0px; border-left: none;">
-        <div class="panel panel-info" style="border-radius: 0px; margin-bottom: 0px;" id="patientbox">
-            <div class="panel-heading" style="border-radius: 0px;" id="heading-panel"><i class="fa fa-user"></i> ข้อมูลลูกค้า</div>
+    <div class="col-lg-4 col-md-4" style=" padding-left: 0px; border-left: none;">
+        <div class="panel panel-default" style="border-radius: 0px; margin-bottom: 0px;" id="patientbox">
+            <div class="panel-heading" style="border-radius: 0px;" id="heading-panels"><i class="fa fa-user"></i> ข้อมูลลูกค้า</div>
             <div class="panel-body" id="font-22" style=" padding: 0px;">
                 <div id="patient" style=" position: relative;"></div>
             </div>
@@ -182,7 +187,7 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
         }
 
         var UrlCheckStock = "<?php echo Yii::app()->createUrl('sell/checkstock') ?>";
-        var datacheck = {product_id: itemcode,branch: branch};
+        var datacheck = {product_id: itemcode, branch: branch};
         $.post(UrlCheckStock, datacheck, function (stock) {
             if (parseInt(stock) >= number) {
                 $.post(url, data, function (datas) {
@@ -228,8 +233,10 @@ $sell_id = "IVN" . $Config->RandstrgenNumber(5) . trim(time());
             PrintBill(sellcode);
             $("#btncheckbill").removeClass("btn btn-default");
             $("#btncheckbill").addClass("btn btn-default disabled");
+            $("#btncheckbill").hide();
             $("#btnprintbill").removeClass("btn btn-default disabled");
             $("#btnprintbill").addClass("btn btn-default");
+            $("#btnprintbill").show();
             $("#btnaddproduct").removeClass("btn btn-default btn-block");
             $("#btnaddproduct").addClass("btn btn-default btn-block disabled");
             $("#card").attr("disabled", true);

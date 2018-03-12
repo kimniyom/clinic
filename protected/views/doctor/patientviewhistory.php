@@ -38,6 +38,10 @@ if (isset($model['birth'])) {
         border: 0px;
         border-bottom: #e6e6e6 solid 1px;
     }
+    
+    #btn-left:hover{
+        background: none;
+    }
 
     .tabpatient ul li a{
         border-radius: 0px;
@@ -65,6 +69,7 @@ if (isset($model['birth'])) {
     #listservice table thead tr th{
         padding: 1px;
     }
+
 </style>
 
 
@@ -167,11 +172,11 @@ if (isset($model['birth'])) {
                 $link = Yii::app()->createUrl('service/bill', array("service_id" => $service_id));
                 ?>
                 <div class="row" style=" margin: 0px;">
-                    <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px; border: none;" onclick="PopupCenter('<?php echo $link ?>', 'ใบเสร็จ')">ใบเสร็จ</button></div>
+                    <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px; border: none;" id="btn-left" onclick="PopupCenter('<?php echo $link ?>', 'ใบเสร็จ')">ใบเสร็จ</button></div>
                 </div>
             <?php } else { ?>
                 <div class="row" style=" margin: 0px;">
-                    <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px; border: none;" onclick="billfalse()">ใบเสร็จ</button></div>
+                    <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-default btn-block" style="border-radius: 0px; border: none;"  onclick="billfalse()">ใบเสร็จ</button></div>
                 </div>
                 <div class="row" style=" margin: 0px;">
                     <div class="col-md-12 col-lg-12" style=" padding: 0px;"><button type="button" class="btn btn-success btn-block" style="border-radius: 0px;" onclick="confirmservice()">บันทึก</button></div>

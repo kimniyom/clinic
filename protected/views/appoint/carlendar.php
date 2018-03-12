@@ -6,6 +6,14 @@
     #ca{
         padding: 10px; background: #FFFFFF;
     }
+
+        h2{
+            font-size: 18px;
+            text-align: center;
+            padding-top: 15px;
+        }
+    
+
 </style>
 <?php
 $this->breadcrumbs = array(
@@ -30,7 +38,7 @@ $PatientList = $PatientModel->GetPatient();
                     //'themeCssFile'=>'cupertino/jquery-ui.min.css',
                     //'id' => 'appoint',
                     'htmlOptions' => array(
-                        'style' => 'border:#eeeeee solid 0px;'
+                        'style' => 'border:#eeeeee solid 0px;font-size:18px;color:red;'
                     ),
                     'options' => array(
                         'lang' => 'th',
@@ -203,6 +211,7 @@ $PatientList = $PatientModel->GetPatient();
             //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
         }
     }
+
 </script>
 
 

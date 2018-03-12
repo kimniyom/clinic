@@ -88,23 +88,6 @@ return array(
             'password' => 'root',
             'charset' => 'utf8',
         ),
-        /*
-          'db' => array(
-          'connectionString' => 'mysql:host=203.157.144.140;dbname=shopping_cart_db',
-          'emulatePrepare' => true,
-          'username' => 'assembler',
-          'password' => 'assembler',
-          'charset' => 'utf8',
-          ),
-
-          'db' => array(
-          'connectionString' => 'mysql:host=192.0.1.18;dbname=shopping_cart_db',
-          'emulatePrepare' => true,
-          'username' => 'assembler',
-          'password' => 'assembler',
-          'charset' => 'utf8',
-          ),
-         */
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',

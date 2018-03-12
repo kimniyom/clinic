@@ -11,14 +11,14 @@ class EmployeeController extends Controller {
     /**
      * @return array action filters
      */
-     /*
-    public function filters() {
-        return array(
-            'accessControl', // perform access control for CRUD operations
-            'postOnly + delete', // we only allow deletion via POST request
-        );
-    }
-*/
+    /*
+      public function filters() {
+      return array(
+      'accessControl', // perform access control for CRUD operations
+      'postOnly + delete', // we only allow deletion via POST request
+      );
+      }
+     */
     /**
      * Specifies the access control rules.
      * This method is used by the 'accessControl' filter.
@@ -56,11 +56,11 @@ class EmployeeController extends Controller {
         $year = date("Y");
         $Model = new Employee();
         $LogloginModel = new Loglogin();
-        $sellmonth = $Model->Getsellmonth($id, $year);
-
-        foreach ($sellmonth as $sm):
+        $commission = $Model->Getcommission($id);
+        $category = array();
+        foreach ($commission as $sm):
             //echo $sm['month_th']." ".$sm['total']."<br/>";
-            $category[] = "['" . $sm['month_th'] . "'," . $sm['total'] . "]";
+            $category[] = "['" . $sm['commisionname'] . "'," . $sm['total'] . "]";
         endforeach;
 
         $categorys = implode(",", $category);
@@ -71,15 +71,15 @@ class EmployeeController extends Controller {
             $loglogin[] = "['" . $lg['month_th'] . "'," . $lg['total'] . "]";
         endforeach;
         $loglogins = implode(",", $loglogin);
-        $Selltotalyearnow = $Model->Selltotalyearnow($id);
-        $Selltotallastyear = $Model->Selltotallastyear($id);
+        //$Selltotalyearnow = $Model->Selltotalyearnow($id);
+        //$Selltotallastyear = $Model->Selltotallastyear($id);
         $this->render('view', array(
             'model' => $this->loadModel($id),
             'categorys' => $categorys,
             'year' => $year,
             'loglogin' => $loglogins,
-            'Selltotalyearnow' => $Selltotalyearnow,
-            'Selltotallastyear' => $Selltotallastyear,
+                //'Selltotalyearnow' => $Selltotalyearnow,
+                //'Selltotallastyear' => $Selltotallastyear,
         ));
     }
 
@@ -217,10 +217,7 @@ class EmployeeController extends Controller {
     }
 
     public function actionSave_upload() {
-        $configWeb = new Configweb_model();
         $pid = $_GET['pid'];
-        $targetFolder = Yii::app()->baseUrl . '/uploads/profile'; // Relative to the root
-
         $sqlCkeck = "SELECT images FROM employee WHERE pid = '$pid' ";
         $rs = Yii::app()->db->createCommand($sqlCkeck)->queryRow();
         $filename = './uploads/profile/' . $rs['images'];
@@ -229,58 +226,53 @@ class EmployeeController extends Controller {
             unlink('./uploads/profile/' . $rs['images']);
         }
 
-        if (!empty($_FILES)) {
-            $tempFile = $_FILES['Filedata']['tmp_name'];
-            $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-            $FULLNAME = $_FILES['Filedata']['name'];
-            $type = substr($FULLNAME, -3);
-            $Name = "file_" . $configWeb->Randstrgen(30) . "." . $type;
-            $targetFile = $targetPath . '/' . $Name;
+// A list of permitted file extensions
+        $allowed = array('jpg', 'jpeg');
 
-            $fileTypes = array('jpg', 'jpeg', 'JPEG', 'png'); // File extensions
-            $fileParts = pathinfo($_FILES['Filedata']['name']);
+        if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 
-            if (in_array($fileParts['extension'], $fileTypes)) {
-                move_uploaded_file($tempFile, $targetFile);
-                $columns = array(
-                    "images" => $Name
-                );
+            $extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
+            $Path = Yii::app()->baseUrl . '/uploads/profile/';
 
-                Yii::app()->db->createCommand()
-                        ->update("employee", $columns, "pid = '$pid' ");
+            $filename = $_FILES["upl"]["name"];
+            $file_basename = substr($filename, 0, strripos($filename, '.')); // get file extention
+            $file_ext = substr($filename, strripos($filename, '.')); // get file name
+            $newfilename = md5($file_basename) . $file_ext;
 
-
-                echo '1';
-            } else {
-                echo 'Invalid file type.';
+            if (!in_array(strtolower($extension), $allowed)) {
+                echo 'error';
+                exit;
             }
+
+            $columns = array(
+                "images" => $newfilename
+            );
+
+            Yii::app()->db->createCommand()
+                    ->update("employee", $columns, "pid = '$pid' ");
+
+            $images = $_FILES["upl"]["tmp_name"];
+            //copy($_FILES["upl"]["tmp_name"],$Path.$newfilename);
+            $width = 300; //*** Fix Width & Heigh (Autu caculate) ***//
+            $size = GetimageSize($images);
+            $height = round($width * $size[1] / $size[0]);
+            $images_orig = ImageCreateFromJPEG($images);
+            $photoX = ImagesX($images_orig);
+            $photoY = ImagesY($images_orig);
+            $images_fin = ImageCreateTrueColor($width, $height);
+            ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
+            ImageJPEG($images_fin, "uploads/profile/" . $newfilename);
+            ImageDestroy($images_orig);
+            ImageDestroy($images_fin);
+
+            //if(move_uploaded_file($_FILES['upl']['tmp_name'],$Path.$newfilename)){
+            echo 'success';
+            exit;
+            //}
         }
 
-        /*
-          if (!empty($_FILES)) {
-          $tempFile = $_FILES['Filedata']['tmp_name'];
-          $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-          $FileName = time() . $_FILES['Filedata']['name'];
-          $targetFile = rtrim($targetPath, '/') . '/' . $FileName;
-
-          $fileTypes = array('jpg', 'jpeg', 'png'); // File extensions
-          $fileParts = pathinfo($_FILES['Filedata']['name']);
-
-          if (in_array($fileParts['extension'], $fileTypes)) {
-          move_uploaded_file($tempFile, $targetFile);
-
-          $columns = array(
-          "images" => $FileName
-          );
-
-          Yii::app()->db->createCommand()
-          ->update("masuser", $columns, "pid = '$pid' ");
-          echo '1';
-          } else {
-          echo 'Invalid file type.';
-          }
-          }
-         */
+        echo 'error';
+        exit;
     }
 
     public function actionCommission() {

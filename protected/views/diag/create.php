@@ -9,6 +9,6 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h1>เพิ่มรายการหัตถการ</h1>
+<h4>เพิ่มรายการหัตถการ</h4>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

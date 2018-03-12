@@ -9,6 +9,6 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h3>แก้ไข <?php echo $model->position; ?></h3>
+<h4>แก้ไข <?php echo $model->position; ?></h4>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

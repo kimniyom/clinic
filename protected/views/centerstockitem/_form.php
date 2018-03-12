@@ -5,6 +5,7 @@
 ?>
 <style type="text/css">
     .form .row{
+        margin: 0px;
         margin-bottom: 5px;
     }
 </style>
@@ -51,7 +52,7 @@
         </div>
         <div class="col-md-2 col-lg-2 col-sm-3 col-xs-3">
             <a href="<?php echo Yii::app()->createUrl('centerstockitemname/create') ?>">
-            <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มรายการวัตถุดิบ</button></a>
+            <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> เพิ่ม</button></a>
         </div>
     </div>
 

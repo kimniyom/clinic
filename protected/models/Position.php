@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'position':
  * @property integer $id
  * @property string $position
+ * @property integer $positionfree
  */
 class Position extends CActiveRecord
 {
@@ -25,11 +26,12 @@ class Position extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('position', 'required'),
+			array('position,positionfree','required'),
+			array('positionfree', 'numerical', 'integerOnly'=>true),
 			array('position', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, position', 'safe', 'on'=>'search'),
+			array('id, position, positionfree', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,7 +53,8 @@ class Position extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'position' => 'ชื่อตำแหน่ง',
+			'position' => 'Position',
+			'positionfree' => 'ค่าประจำตำแหน่ง',
 		);
 	}
 
@@ -75,6 +78,7 @@ class Position extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('position',$this->position,true);
+		$criteria->compare('positionfree',$this->positionfree);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

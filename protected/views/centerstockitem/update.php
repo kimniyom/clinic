@@ -11,6 +11,6 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h1>แก้ไขวัตถุดิบ <?php echo $model->id; ?></h1>
+<h4>แก้ไขวัตถุดิบ <?php echo $model->id; ?></h4>
 <hr/>
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

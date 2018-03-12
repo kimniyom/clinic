@@ -260,6 +260,33 @@
                     <?php echo $form->error($model, 'salary'); ?>
                 </div>
             </div>
+
+                        <div class="row">
+                <div class="col-lg-2">
+                    <?php echo $form->labelEx($model, 'status_id'); ?>
+                </div>
+                <div class="col-lg-5">
+                    <?php
+                    $form->widget('booster.widgets.TbSelect2', array(
+                        'model' => $model,
+                        'asDropDownList' => true,
+                        'attribute' => 'status_id',
+                        //'name' => 'oid',
+                        'data' => CHtml::listData(StatusUser::model()->findAll(""), 'id', 'status'),
+                        //'value' => $model,
+                        'options' => array(
+                            //$model,
+                            //'oid',
+                            //'tags' => array('clever', 'is', 'better', 'clevertech'),
+                            'placeholder' => 'สถานะ',
+                            'width' => '100%',
+                        //'tokenSeparators' => array(',', ' ')
+                        )
+                    ));
+                    ?>
+                    <?php echo $form->error($model, 'status_id'); ?>
+                </div>
+            </div>
             <hr/>
             <div class="row">
                 <div class="col-lg-2"></div>
