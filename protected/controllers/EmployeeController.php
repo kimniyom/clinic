@@ -218,11 +218,12 @@ class EmployeeController extends Controller {
 
     public function actionSave_upload() {
         $pid = $_GET['pid'];
+        //$Path = Yii::app()->baseUrl . '/uploads/profile/';
         $sqlCkeck = "SELECT images FROM employee WHERE pid = '$pid' ";
         $rs = Yii::app()->db->createCommand($sqlCkeck)->queryRow();
-        $filename = './uploads/profile/' . $rs['images'];
+        //$filenames = './uploads/profile/' . $rs['images'];
 
-        if (!file_exists($filename)) {
+        if (file_exists($rs['images'])) {
             unlink('./uploads/profile/' . $rs['images']);
         }
 
@@ -232,7 +233,7 @@ class EmployeeController extends Controller {
         if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 
             $extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
-            $Path = Yii::app()->baseUrl . '/uploads/profile/';
+            
 
             $filename = $_FILES["upl"]["name"];
             $file_basename = substr($filename, 0, strripos($filename, '.')); // get file extention

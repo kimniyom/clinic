@@ -177,6 +177,9 @@ class ImagesController extends Controller {
             $result = Yii::app()->db->createCommand($sql)->queryRow();
             if (file_exists("uploads/product/" . $result['images'])) {
                 unlink("uploads/product/" . $result['images']);
+            }
+            
+            if (file_exists("uploads/product/thumbnail/" . $result['images'])) {
                 unlink("uploads/product/thumbnail/" . $result['images']);
             }
 
@@ -195,6 +198,10 @@ class ImagesController extends Controller {
         foreach ($results as $result) {
             if (file_exists("uploads/product/" . $result['images'])) {
                 unlink("uploads/product/" . $result['images']);
+                
+            }
+            
+            if (file_exists("uploads/product/thumbnail/" . $result['images'])) {
                 unlink("uploads/product/thumbnail/" . $result['images']);
             }
 
