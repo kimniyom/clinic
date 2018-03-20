@@ -64,10 +64,10 @@ echo $profile['user_id'];
         <div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">สิทธิ์สาขา</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="menu()">สิทธิ์เมนู</a></li>
-                <li role="presentation"><a href="#menureport" aria-controls="menureport" role="tab" data-toggle="tab" onclick="getmenureport()">สิทธิ์ดูรายงาน</a></li>
-                <li role="presentation"><a href="#menusetting" aria-controls="menusetting" role="tab" data-toggle="tab" onclick="getmenusetting()">สิทธิ์ตั้งค่า</a></li>
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><font class="sit">สิทธิ์</font>สาขา</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="menu()"><font class="sit">สิทธิ์</font>เมนู</a></li>
+                <li role="presentation"><a href="#menureport" aria-controls="menureport" role="tab" data-toggle="tab" onclick="getmenureport()"><font class="sit">สิทธิ์</font>ดูรายงาน</a></li>
+                <li role="presentation"><a href="#menusetting" aria-controls="menusetting" role="tab" data-toggle="tab" onclick="getmenusetting()"><font class="sit">สิทธิ์</font>ตั้งค่า</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content" id="p-right" style="  padding:0px; border-top: solid #009ed8 2px;">
@@ -189,8 +189,11 @@ echo $profile['user_id'];
             var screenfullRight = (screen - 155);
             $("#p-left").css({'height': screenfull, 'overflow': 'auto', 'padding-bottom': '25px'});
             $("#p-right").css({'height': screenfullRight, 'overflow': 'auto', 'padding-bottom': '25px'});
+            
             //$("#patientbox").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF'});
             //$("#boxorders").css({'height': screenfull, 'background': '#00bca5', 'color': '#FFFFFF', 'overflow': 'auto', 'padding-left': '10px'});
+        } else {
+            $(".sit").hide();
         }
     }
 </script>

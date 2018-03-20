@@ -164,34 +164,66 @@ class CompanycenterController extends Controller {
         $sql = "SELECT * FROM companycenter LIMIT 1";
         $row = Yii::app()->db->createCommand($sql)->queryRow();
 
-        if (!empty($_FILES)) {
-            $tempFile = $_FILES['Filedata']['tmp_name'];
-            $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-            $FileName = time() . $_FILES['Filedata']['name'];
-            $targetFile = rtrim($targetPath, '/') . '/' . $FileName;
+        
 
-            // Validate the file type
-            $fileTypes = array('jpg', 'jpeg', 'png'); // File extensions
-            $fileParts = pathinfo($_FILES['Filedata']['name']);
+        if (file_exists('./uploads/logo/'.$row['logo'])) {
+            unlink('./uploads/logo/' . $row['logo']);
+        }
 
-            if (in_array($fileParts['extension'], $fileTypes)) {
-                $filename = $targetFolder . '/' . $row['logo'];
-                if (file_exists($filename)) {
-                    unlink($filename);
-                }
-                move_uploaded_file($tempFile, $targetFile);
-                //สั่งอัพเดท
-                $columns = array(
-                    "logo" => $FileName
+// A list of permitted file extensions
+        $allowed = array('jpg', 'jpeg','png','gif');
+
+        if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
+
+            $extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
+            
+            $filename = $_FILES["upl"]["name"];
+            $file_basename = substr($filename, 0, strripos($filename, '.')); // get file extention
+            $file_ext = substr($filename, strripos($filename, '.')); // get file name
+            $newfilename = md5($file_basename) . $file_ext;
+
+            if (!in_array(strtolower($extension), $allowed)) {
+                echo 'error';
+                exit;
+            }
+
+
+           
+
+
+            $images = $_FILES["upl"]["tmp_name"];
+            //copy($_FILES["upl"]["tmp_name"],$Path.$newfilename);
+            /*
+            $width = 300; 
+            $size = GetimageSize($images);
+            $height = round($width * $size[1] / $size[0]);
+            $images_orig = ImageCreateFromJPEG($images);
+            $photoX = ImagesX($images_orig);
+            $photoY = ImagesY($images_orig);
+            $images_fin = ImageCreateTrueColor($width, $height);
+            ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
+            ImageJPEG($images_fin, "uploads/profile/" . $newfilename);
+            ImageDestroy($images_orig);
+            ImageDestroy($images_fin);
+            */
+            //copy($_FILES["upl"]["tmp_name"],"./uploads/logo/".$newfilename);
+            
+            
+            if(move_uploaded_file($_FILES["upl"]["tmp_name"],"./uploads/logo/".$newfilename)){
+                 $columns = array(
+                    "logo" => $newfilename
                 );
 
                 Yii::app()->db->createCommand()
                         ->update("companycenter", $columns, "id = '1'");
-                echo '1';
-            } else {
-                echo 'Invalid file type.';
+            echo 'success';
+            exit;
             }
+            
         }
+
+        echo 'error';
+        exit;
     }
 
 }

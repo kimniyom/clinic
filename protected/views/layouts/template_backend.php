@@ -34,14 +34,19 @@
                 color: #ff9900;
             }
 
+            .modal .mainmenu {
+                width: 100%;
+                margin:auto;
+            }
+
         </style>
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/template-black.css"/>
         <!--
-                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;      ?>/css/button-color.css"/>
+                <link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->baseUrl;           ?>/css/button-color.css"/>
         -->
         <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/themes/backend/css/system-black.css"/>
         <!--
-                <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl;       ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
+                <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl;            ?>/themes/backend/bootstrap/css/bootstrap.css" type="text/css" media="all" />
         -->
         <link rel="stylesheet" href="<?= Yii::app()->baseUrl; ?>/themes/backend/bootstrap/css/bootstrap-cyborg.css" type="text/css" media="all" />
 
@@ -96,8 +101,8 @@
         <script src="<?php echo Yii::app()->baseUrl; ?>/lib/sweet-alert/sweetalert.min.js" type="text/javascript"></script>
 
         <!-- Uploadify 
-        <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl;   ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
-        <script src="<?php //echo Yii::app()->baseUrl;   ?>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="<?php //echo Yii::app()->baseUrl;        ?>/lib/uploadify/uploadify.css" type="text/css" media="all" />
+        <script src="<?php //echo Yii::app()->baseUrl;        ?>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
         -->
         <!--
             SELECT2 Combobox
@@ -179,7 +184,7 @@
 
     </head>
 
-    <body style="/*background: url('<?php //echo Yii::app()->baseUrl;       ?>/images/bg_ap.png');*/ /*background: #fbfbfb;*//* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
+    <body style="/*background: url('<?php //echo Yii::app()->baseUrl;            ?>/images/bg_ap.png');*/ /*background: #fbfbfb;*//* background:url('<?//php echo Yii::app()->baseUrl; ?>images/line-bg-advice.png')repeat-x fixed #fdfbfc;*/">
         <!--<div class="container" style="margin-bottom:5%;"> #2a323b-->
         <nav class="navbar navbar-default" role="navigation" id="nav-head" style=" display: none; margin-bottom: 0px;"></nav>
         <div id="wrapper">
@@ -210,36 +215,12 @@
                 <!-- ส่วนของ ผู้ดูแลระบบ -->
 
                 <!-- ตั้งค่าร้านค้า -->
-                <div id="m-left-logo" style=" display: none; width: 95%; text-align: center; margin-top: 50px;">
+                <div id="m-left-logo" style="width: 95%; text-align: center; margin-top: 50px;">
                     <img src="<?= Yii::app()->baseUrl; ?>/images/logoheadedit2.png" class="img img-responsive"/>
                 </div>
                 <div id="m-left" style=" margin-bottom: 50px;">
                     <?php if (Yii::app()->session['branch'] != "") { ?>
-                        <?php
-                        $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
-                        $i = 0;
-                        foreach ($MenuSystem as $mn):
-                            $linkmenu = $mn['link'];
-                            $icon = $mn['icon'];
-                            $i ++;
 
-                            if (Yii::app()->session['leftmenu'] == "M" . $i) {
-                                $menuactove = "listmenuactive";
-                            } else {
-                                $menuactove = "";
-                            }
-                            ?>
-                            <?php if ($mn['id'] == $mn['menu_id']) { ?>
-                                <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>" onclick="setactivemenu('<?php echo "M" . $i ?>')" id="<?php echo "M" . $i ?>" title="<?php echo $mn['menu'] ?>">
-                                    <div id="listmenu" style=" white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" class="<?php echo $menuactove; ?>">
-                                        <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
-                                             height="32px"
-                                             style="border-radius:20px; padding:2px; border:#FFF solid 2px;"/>
-                                             <?php echo $mn['menu'] ?>
-                                    </div>
-                                </a>
-                            <?php } ?>
-                        <?php endforeach; ?>
                         <?php if (Yii::app()->session['branch'] != "99") { ?>
                             <br/>
                             <center><b style=" color: #FFFFFF;"><i class="fa fa-bell"></i> แจ้งเตือน</b></center>
@@ -268,13 +249,16 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a href="#menu-toggle" class="navbar-brand" id="menu-toggle"><i class="fa fa-bars"></i> menu</a>
+                            <a href="#menu-toggle" class="navbar-brand" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                            <a href="javascript:mainmenu()" class="navbar-brand"><i class="fa fa-th"></i> menu</a>
                             <a class="navbar-brand" style=" margin-top: 0px; padding-top: 10px;">
                                 <img src="<?php echo Yii::app()->baseUrl; ?>/uploads/logo/<?php echo $web->get_logoweb(); ?>" height="32px"/>
                             </a>
                             <a class="navbar-brand" href="#" id="text-head-nav" style=" font-family: Th;font-size:28px; color: #7cb902;">
                                 <?php echo $web->get_webname(); ?>
                             </a>
+
+                           
                         </div>
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
@@ -374,9 +358,60 @@
         </div>
         <!-- /#wrapper -->
 
+        <!-- News Menu -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="mainmenu">
+            <div class="modal-dialog mainmenu" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" style=" text-align: center;"><i class="fa fa-th"></i> MENU</h4>
+                    </div>
+                    <div class="modal-body" id="bodymainmenu">
+                        <div class="row" style=" margin: 0px;">
+                            <?php
+                            $MenuSystem = $MenuModel->Getrolemenu($Profile['user_id']);
+                            $i = 0;
+                            foreach ($MenuSystem as $mn):
+                                $linkmenu = $mn['link'];
+                                $icon = $mn['icon'];
+                                $i ++;
+
+                                if (Yii::app()->session['leftmenu'] == "M" . $i) {
+                                    $menuactove = "";
+                                } else {
+                                    $menuactove = "";
+                                }
+                                ?>
+                                <?php if ($mn['id'] == $mn['menu_id']) { ?>
+                                    <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+                                        <a href="<?php echo Yii::app()->createUrl($linkmenu) ?>"  title="<?php echo $mn['menu'] ?>">
+                                            <div id="listmenu" style=" white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" class="<?php echo $menuactove; ?>">
+                                                <img src="<?php echo Yii::app()->baseUrl; ?>/images/<?php echo $icon ?>"
+                                                     height="48px" style="/*border-radius:20px; padding:2px; border:#FFF solid 2px;*/"/>
+                                                <?php echo $mn['menu'] ?>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <?php } ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <!-- Menu Toggle Script -->
         <script type="text/javascript">
             setnavbar();
+            $(document).ready(function () {
+                var h = window.innerHeight;
+                var m = h - 70;
+                $("#bodymainmenu").css({"height": m, "overflow": "auto"});
+            });
+            function mainmenu() {
+                $("#mainmenu").modal();
+            }
             $("#menu-toggle").click(function (e) {
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");

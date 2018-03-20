@@ -85,7 +85,7 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=clinic',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '01234',
+            'password' => 'root',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(

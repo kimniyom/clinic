@@ -13,33 +13,28 @@ $typeModel = new Gradcustomer();
 ?>
 
 <div class="panel panel-default" style=" margin-bottom: 0px;">
-    <div class="panel-heading" style="background: none;">
-        <div class="row">
-            <div class="col-xs-3 col-lg-1 col-md-1" style=" text-align: center; padding-top: 5px;"><label>สาขา*</label></div>
-            <div class="col-xs-5 col-lg-3 col-md-3">
-                <?php
-                $this->widget('booster.widgets.TbSelect2', array(
-                    'name' => 'branch',
-                    'id' => 'branch',
-                    'data' => CHtml::listData($BranchList, 'id', 'branchname'),
-                    'value' => $branch,
-                    'options' => array(
-                        'placeholder' => 'เลือกสาขา',
-                        'width' => '100%',
-                        'allowClear' => true,
-                    )
-                        )
-                );
-                ?>
+    <div class="panel-heading">
+        <div class="row" style=" margin: 0px;">
+            <div class="col-md-2 col-lg-1 col-sm-3 col-xs-3" style=" text-align: center; padding-top: 8px;">
+                <label>สาขา</label>
             </div>
-            <div class="col-xs-3 col-md-3 col-lg-3">
-                <button type="button" class="btn btn-default" onclick="getdata();"><i class="fa fa-search"></i> ค้นหา</button>
+            <div class="col-md-6 col-lg-3 col-sm-6 col-xs-5">
+                <select id="branch" class="form-control">
+                    <?php foreach ($BranchList as $bs): ?>
+                        <option value="<?php echo $bs['id'] ?>" <?php echo ($branch == $bs['id']) ? "selected" : "" ?>><?php echo $bs['branchname'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-3 col-xs-4">
+                <button type="button" class="btn btn-default btn-block" onclick="getdata()"><i class="fa fa-search"></i> ตกลง</button>
             </div>
         </div>
-    </div>
-    <div class="panel-body" style="padding: 10px;">
-        <button type="button" class="btn btn-default"onclick="CheckPatient()"><i class="fa fa-user-plus"></i> เพิ่มข้อมูลลูกค้า</button>
 
+    </div>
+    <div class="panel-body" style="padding:0px; padding-top: 10px;">
+        <center>
+            <button type="button" id="btn-btn-search" class="btn btn-success" onclick="CheckPatient()"><i class="fa fa-user-plus"></i> เพิ่มข้อมูล</button>
+        </center>
         <div id="showdata" style=" margin-top: 10px;"></div>
     </div>
 </div>
@@ -76,18 +71,18 @@ $typeModel = new Gradcustomer();
             </div>
             <div class="modal-body">
                 <label>รหัสบัตรประชาชน 13 หลัก</label>
-
+                <input type="text" class="form-control" id="card" maxlength="13" style="text-align: center;" onKeyUp="if(this.value*1!=this.value) this.value='' ;"/>
                 <?php
-                $this->widget("ext.maskedInput.MaskedInput", array(
-                    //"model" => $model,
-                    //"attribute" => "card",
-                    //"id" => 'card',
-                    "name" => 'card',
-                    "mask" => '9-9999-99999-99-9',
-                    "clientOptions" => array("autoUnmask" => true, "id" => "card"), /* autoUnmask defaults to false */
-                    "defaults" => array("removeMaskOnSubmit" => false),
-                        /* once defaults are set will be applied to all the masked fields  removeMaskOnSubmit defaults to true */
-                ));
+                //$this->widget("ext.maskedInput.MaskedInput", array(
+                //"model" => $model,
+                //"attribute" => "card",
+                //"id" => 'card',
+                //"name" => 'card',
+                //"mask" => '9-9999-99999-99-9',
+                //"clientOptions" => array("autoUnmask" => true, "id" => "card"), /* autoUnmask defaults to false */
+                //"defaults" => array("removeMaskOnSubmit" => false),
+                /* once defaults are set will be applied to all the masked fields  removeMaskOnSubmit defaults to true */
+                //));
                 ?>
                 <div id="error"></div>
             </div>

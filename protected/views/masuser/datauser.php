@@ -10,7 +10,7 @@
 $system = new Configweb_model();
 $MasuserModel = new Masuser();
 ?>
-<table class="table table-bordered table-hover table-striped" id="tuser" style=" width: 100%;">
+<table class="table table-hover table-striped" id="tuser" style=" width: 100%;">
     <thead>
         <tr>
             <th style=" text-align: center;">#</th>
@@ -74,11 +74,15 @@ $MasuserModel = new Masuser();
         var boxsell = $(window).height();
         var w = window.innerWidth;
         var screenfull;
+        var buttonsHtml;
         if (w >= 768) {
-            screenfull = (boxsell - 371);
+            screenfull = (boxsell - 323);
+            buttonsHtml = ["copy", "excel", "print"];
         } else {
             screenfull = false;
             $(".columns").hide();
+            buttonsHtml = [];
+            $("#btn-btn-search").css({"position": "fixed", "bottom": "5px", "right": "5px", "z-index": "10"});
         }
         $("#tuser").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
@@ -90,9 +94,7 @@ $MasuserModel = new Masuser();
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
             "scrollX": true,
             dom: 'Bfrtip',
-            buttons: [
-                'copy', 'excel', 'print'
-            ]
+            buttons: buttonsHtml
         });
     }
 

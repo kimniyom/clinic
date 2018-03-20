@@ -117,9 +117,15 @@ class SalaryController extends Controller {
         $str .= "<h4>ยอดร้าน = " . number_format($Income, 2) . " สาขา " . $branchName . $time . "</h4>";
 
         foreach ($Emp as $rs):
+            $Agework = $Lib->get_age($rs['walking']);
+            if($Agework >= 3){
+                $positionsalary = 500;
+            } else {
+                $positionsalary = 0;
+            }
             $bonus = $this->actionBonus($rs['id'], $Income, $branch);
             $commission = $this->actionCommission($rs['id'], $year, $month);
-            $sum = $rs['salary'] + $bonus + $commission;
+            $sum = $rs['salary'] + $bonus + $commission + $positionsalary;
             $str .= "<table class='table table-bordered'><thead><tr><th colspan='2'>";
             $str .= $rs['name'] . " " . $rs['lname'] . " (" . StatusUser::model()->find("id=:id", array(":id" => $rs['status_id']))['status'] . ") " . $time;
             $str .= "</th></tr></thead>";
@@ -128,7 +134,7 @@ class SalaryController extends Controller {
             $str .= "<td> โบนัส " . number_format($bonus) . " บาท</td>";
             $str .= "</tr>";
             $str .= "<tr>";
-            $str .= "<td></td>";
+            $str .= "<td> ค่าตำแหน่ง " . number_format($positionsalary, 2) . " บาท</td>";
             $str .= "<td> คอมมิชชั่น " . number_format($commission, 2) . " บาท</td>";
             $str .= "</tr>";
             $str .= "</tbody>";
@@ -182,9 +188,15 @@ class SalaryController extends Controller {
         $str .= "<span style='font-size:24px;'>ยอดร้าน = " . number_format($Income, 2) . " สาขา " . $branchName . $time . "</span>";
 
         foreach ($Emp as $rs):
+            $Agework = $Lib->get_age($rs['walking']);
+            if($Agework >= 3){
+                $positionsalary = 500;
+            } else {
+                $positionsalary = 0;
+            }
             $bonus = $this->actionBonus($rs['id'], $Income, $branch);
             $commission = $this->actionCommission($rs['id'], $year, $month);
-            $sum = $rs['salary'] + $bonus + $commission;
+            $sum = $rs['salary'] + $bonus + $commission + $positionsalary;
             $str .= "<table class='table table-bordered'><thead><tr><th colspan='2'>";
             $str .= $rs['name'] . " " . $rs['lname'] . " (" . StatusUser::model()->find("id=:id", array(":id" => $rs['status_id']))['status'] . ") " . $time;
             $str .= "</th></tr></thead>";
@@ -193,7 +205,7 @@ class SalaryController extends Controller {
             $str .= "<td>โบนัส " . number_format($bonus) . " บาท</td>";
             $str .= "</tr>";
             $str .= "<tr>";
-            $str .= "<td></td>";
+            $str .= "<td>ค่าตำแหน่ง " . number_format($positionsalary, 2) . " บาท</td>";
             $str .= "<td> คอมมิชชั่น " . number_format($commission, 2) . " บาท</td>";
             $str .= "</tr>";
             $str .= "</tbody>";

@@ -11,6 +11,6 @@ $this->breadcrumbs = array(
 
 ?>
 
-<h1>แก้ไขหน่วยนับ <?php echo $model->unit; ?></h1>
+<h4>แก้ไขหน่วยนับ <?php echo $model->unit; ?></h4>
 <hr/>
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

@@ -1,4 +1,9 @@
 <style type="text/css">
+    .box-all{
+        height: 30px;
+        width: 30px;
+        margin: 0px;
+    }
     #box-patient table thead tr th{
         white-space: nowrap;
     }
@@ -15,7 +20,8 @@ $typeModel = new Gradcustomer();
     <table class="table table-striped table-hover" id="patient" style=" width: 100%;">
         <thead>
             <tr>
-                <th>#</th>
+                <th style=" display: none;">#</th>
+                <th></th>
                 <th class="pid">Pid</th>
                 <th>Card</th>
                 <th>Name - Lname</th>
@@ -29,7 +35,21 @@ $typeModel = new Gradcustomer();
             foreach ($patient as $rs): $i++;
                 ?>
                 <tr onclick="action('<?php echo $rs['id'] ?>')" style=" cursor: pointer;">
-                    <td><?php echo $i ?></td>
+                    <td style=" display: none;"><?php echo $i ?></td>
+                    <td>
+                        <div class="container-card set-views-card box-all">
+
+                            <div class="img-wrapper">
+                                <?php if (!empty($rs['images'])) { ?>
+                                    <img src="<?php echo Yii::app()->baseUrl ?>/uploads/profile/<?php echo $rs['images'] ?>" class="img-responsive img-polaroid" style="height:30px;"/>
+                                <?php } else { ?>
+                                    <center>
+                                        <img src="<?php echo Yii::app()->baseUrl ?>/images/No_image.jpg" class="img-responsive img_news" style="height:30px;"/>
+                                    </center>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </td>
                     <td class="pid"><?php echo $rs['pid'] ?></td>
                     <td><?php echo $rs['card'] ?></td>
                     <td><?php echo $rs['name'] . ' ' . $rs['lname'] ?></td>
@@ -83,19 +103,22 @@ $typeModel = new Gradcustomer();
     Setscreen();
     function Setscreen() {
         var boxsell = $(window).height();
-        //var contentboxsell = $("#content-boxsell").height();
+        var buttonsHtml;
         var w = window.innerWidth;
         var screenfull;
         if (w > 768) {
             //var contentboxsell = $("#content-boxsell").height();
-            screenfull = (boxsell - 345);
+            screenfull = (boxsell - 333);
+            buttonsHtml = ["copy", "excel", "print"];
         } else {
             screenfull = false;
             $(".pid").hide();
             $(".branch").hide();
             $(".type").hide();
+            buttonsHtml = [];
+            $("#btn-btn-search").css({"position":"fixed","bottom":"5px","right":"5px","z-index":"10"});
         }
-        
+
         $("#patient").dataTable({
             //"sPaginationType": "full_numbers", // แสดงตัวแบ่งหน้า
             "bLengthChange": false, // แสดงจำนวน record ที่จะแสดงในตาราง
@@ -105,10 +128,8 @@ $typeModel = new Gradcustomer();
             "bFilter": true, // แสดง search box
             "sScrollY": screenfull, // กำหนดความสูงของ ตาราง
             "scrollX": true,
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'excel', 'print'
-            ]
+            "dom": "Bfrtip",
+            'buttons': buttonsHtml
         });
     }
 

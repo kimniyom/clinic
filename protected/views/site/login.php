@@ -42,8 +42,8 @@
     <body style=" background: #2a323b;">
         <div class="container" style="text-align: center;text-align: left; margin-top: 30px;">
             <div class="row">
-                <div class="col-xs-1 col-sm-4 col-md-4 col-lg-4"></div>
-                <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                <div class="col-xs-0 col-sm-3 col-md-4 col-lg-4"></div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                     <div class="well" style=" margin: 10px; margin-bottom: 30px;">
                         <center>
                             <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/bill-logo.png" style=" width: 100px;"/>
@@ -86,7 +86,7 @@
 
                         <?php $this->endWidget(); ?>
                     </div>
-                    <div class="col-xs-1 col-sm-4 col-md-4 col-lg-4"></div>
+                    <div class="col-xs-0 col-sm-3 col-md-4 col-lg-4"></div>
                 </div>
             </div>
         </div>

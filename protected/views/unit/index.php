@@ -8,7 +8,7 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<h1>หน่วยนับสินค้า</h1>
+<h4>หน่วยนับสินค้า</h4>
 <hr/>
 <a href="<?php echo Yii::app()->createUrl('unit/create') ?>">
     <button class="btn btn-default"><i class="fa fa-plus"></i> เพิ่มหน่วยนับ</button></a>

@@ -7,11 +7,25 @@
             <file>file:/D:/xampp/htdocs/clinic/protected/views/report/reportcostprofit.php</file>
         </group>
         <group name="yii">
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/salary/calsalary.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/clinicstoreproduct/datastockproduct.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/clinicstoreproduct/datasearchproduct.php</file>
-            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/SalaryController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/masuser/profile.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/lib/mini-upload/js/script.js</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/detail.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/images/loadimages.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/update.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/MasuserController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/PatientController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/lib/mini-upload/css/style.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/images/loadimagescontrol.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/assets/b55d51b/bootstrap-datepicker/css/datepicker3.css</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/patient/view.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/centerstockproduct/create.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/employee/view.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/EmployeeController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/config/test.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/controllers/backend/ImagesController.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/backend/images/index.php</file>
             <file>file:/Applications/MAMP/htdocs/clinic/protected/config/main.php</file>
+            <file>file:/Applications/MAMP/htdocs/clinic/protected/views/layouts/template_backend.php</file>
         </group>
     </open-files>
 </project-private>
